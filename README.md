@@ -2,7 +2,7 @@
 
 This is a randomised instruction generator for RISC-V, based on the
 [Sail model][sail].  A snapshot of that model is in the `model`
-directory, and was generated from commit `f0d2765b` using the
+directory, and was generated from commit `35f7c171` using the
 `-ocaml_generators ast` option.
 
 [sail]: https://github.com/rems-project/sail

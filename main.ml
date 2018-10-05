@@ -35,7 +35,10 @@ let generate () =
     let rec aux () =
       try
         let instr = rand_gens.gen_zast rand_gens in
-        let bits = zencdec_forwards instr in
+        let bits =
+          try zencdec_forwards instr
+          with Match_failure _ -> zencdec_compressed_forwards instr
+        in
         let () = print_endline (string_of_bits bits ^ " " ^ zassembly_forwards instr) in
         instr, bits
       with Match_failure _ -> aux ()
