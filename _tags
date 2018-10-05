@@ -1,3 +1,4 @@
 true: debug
 <*.m{l,li}>: package(lem), package(linksem), package(zarith)
 <main.native>: package(lem), package(linksem), package(zarith)
+<main.top>: package(lem), package(linksem), package(zarith)
