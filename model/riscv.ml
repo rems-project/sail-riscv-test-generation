@@ -34362,6 +34362,27 @@ let rand_zamoop g =
     ZAMOMINU;
     ZAMOMAXU
   ]
+let constructors_zamoop = [
+  "AMOSWAP";
+  "AMOADD";
+  "AMOXOR";
+  "AMOAND";
+  "AMOOR";
+  "AMOMIN";
+  "AMOMAX";
+  "AMOMINU";
+  "AMOMAXU"
+  ]
+let build_zamoop g c = match c with
+  | "AMOSWAP" -> ZAMOSWAP
+  | "AMOADD" -> ZAMOADD
+  | "AMOXOR" -> ZAMOXOR
+  | "AMOAND" -> ZAMOAND
+  | "AMOOR" -> ZAMOOR
+  | "AMOMIN" -> ZAMOMIN
+  | "AMOMAX" -> ZAMOMAX
+  | "AMOMINU" -> ZAMOMINU
+  | "AMOMAXU" -> ZAMOMAXU
 
 let rand_zast g =
   let c = rand_choice [
@@ -34434,6 +34455,145 @@ let rand_zast g =
     (fun g -> ZILLEGAL (g.gen_zword g));
     (fun g -> ZC_ILLEGAL (g.gen_zhalf g))
   ] in c g
+let constructors_zast = [
+  "UTYPE";
+  "RISCV_JAL";
+  "RISCV_JALR";
+  "BTYPE";
+  "ITYPE";
+  "SHIFTIOP";
+  "RTYPE";
+  "LOAD";
+  "STORE";
+  "ADDIW";
+  "SHIFTW";
+  "RTYPEW";
+  "SHIFTIWOP";
+  "MUL";
+  "DIV";
+  "REM";
+  "MULW";
+  "DIVW";
+  "REMW";
+  "FENCE";
+  "FENCEI";
+  "ECALL";
+  "MRET";
+  "SRET";
+  "EBREAK";
+  "WFI";
+  "SFENCE_VMA";
+  "LOADRES";
+  "STORECON";
+  "AMO";
+  "CSR";
+  "C_NOP";
+  "C_ADDI4SPN";
+  "C_LW";
+  "C_LD";
+  "C_SW";
+  "C_SD";
+  "C_ADDI";
+  "C_JAL";
+  "C_ADDIW";
+  "C_LI";
+  "C_ADDI16SP";
+  "C_LUI";
+  "C_SRLI";
+  "C_SRAI";
+  "C_ANDI";
+  "C_SUB";
+  "C_XOR";
+  "C_OR";
+  "C_AND";
+  "C_SUBW";
+  "C_ADDW";
+  "C_J";
+  "C_BEQZ";
+  "C_BNEZ";
+  "C_SLLI";
+  "C_LWSP";
+  "C_LDSP";
+  "C_SWSP";
+  "C_SDSP";
+  "C_JR";
+  "C_JALR";
+  "C_MV";
+  "C_ADD";
+  "STOP_FETCHING";
+  "THREAD_START";
+  "ILLEGAL";
+  "C_ILLEGAL"
+  ]
+let build_zast g c = match c with
+  | "UTYPE" -> ZUTYPE (g.gen_zbits g 20, g.gen_zregbits g, g.gen_zuop g)
+  | "RISCV_JAL" -> ZRISCV_JAL (g.gen_zbits g 21, g.gen_zregbits g)
+  | "RISCV_JALR" -> ZRISCV_JALR (g.gen_zbits g 12, g.gen_zregbits g, g.gen_zregbits g)
+  | "BTYPE" -> ZBTYPE (g.gen_zbits g 13, g.gen_zregbits g, g.gen_zregbits g, g.gen_zbop g)
+  | "ITYPE" -> ZITYPE (g.gen_zbits g 12, g.gen_zregbits g, g.gen_zregbits g, g.gen_ziop g)
+  | "SHIFTIOP" -> ZSHIFTIOP (g.gen_zbits g 6, g.gen_zregbits g, g.gen_zregbits g, g.gen_zsop g)
+  | "RTYPE" -> ZRTYPE (g.gen_zregbits g, g.gen_zregbits g, g.gen_zregbits g, g.gen_zrop g)
+  | "LOAD" -> ZLOAD (g.gen_zbits g 12, g.gen_zregbits g, g.gen_zregbits g, g.gen_zbool g, g.gen_zword_width g, g.gen_zbool g, g.gen_zbool g)
+  | "STORE" -> ZSTORE (g.gen_zbits g 12, g.gen_zregbits g, g.gen_zregbits g, g.gen_zword_width g, g.gen_zbool g, g.gen_zbool g)
+  | "ADDIW" -> ZADDIW (g.gen_zbits g 12, g.gen_zregbits g, g.gen_zregbits g)
+  | "SHIFTW" -> ZSHIFTW (g.gen_zbits g 5, g.gen_zregbits g, g.gen_zregbits g, g.gen_zsop g)
+  | "RTYPEW" -> ZRTYPEW (g.gen_zregbits g, g.gen_zregbits g, g.gen_zregbits g, g.gen_zropw g)
+  | "SHIFTIWOP" -> ZSHIFTIWOP (g.gen_zbits g 5, g.gen_zregbits g, g.gen_zregbits g, g.gen_zsopw g)
+  | "MUL" -> ZMUL (g.gen_zregbits g, g.gen_zregbits g, g.gen_zregbits g, g.gen_zbool g, g.gen_zbool g, g.gen_zbool g)
+  | "DIV" -> ZDIV (g.gen_zregbits g, g.gen_zregbits g, g.gen_zregbits g, g.gen_zbool g)
+  | "REM" -> ZREM (g.gen_zregbits g, g.gen_zregbits g, g.gen_zregbits g, g.gen_zbool g)
+  | "MULW" -> ZMULW (g.gen_zregbits g, g.gen_zregbits g, g.gen_zregbits g)
+  | "DIVW" -> ZDIVW (g.gen_zregbits g, g.gen_zregbits g, g.gen_zregbits g, g.gen_zbool g)
+  | "REMW" -> ZREMW (g.gen_zregbits g, g.gen_zregbits g, g.gen_zregbits g, g.gen_zbool g)
+  | "FENCE" -> ZFENCE (g.gen_zbits g 4, g.gen_zbits g 4)
+  | "FENCEI" -> ZFENCEI (g.gen_zunit g)
+  | "ECALL" -> ZECALL (g.gen_zunit g)
+  | "MRET" -> ZMRET (g.gen_zunit g)
+  | "SRET" -> ZSRET (g.gen_zunit g)
+  | "EBREAK" -> ZEBREAK (g.gen_zunit g)
+  | "WFI" -> ZWFI (g.gen_zunit g)
+  | "SFENCE_VMA" -> ZSFENCE_VMA (g.gen_zregbits g, g.gen_zregbits g)
+  | "LOADRES" -> ZLOADRES (g.gen_zbool g, g.gen_zbool g, g.gen_zregbits g, g.gen_zword_width g, g.gen_zregbits g)
+  | "STORECON" -> ZSTORECON (g.gen_zbool g, g.gen_zbool g, g.gen_zregbits g, g.gen_zregbits g, g.gen_zword_width g, g.gen_zregbits g)
+  | "AMO" -> ZAMO (g.gen_zamoop g, g.gen_zbool g, g.gen_zbool g, g.gen_zregbits g, g.gen_zregbits g, g.gen_zword_width g, g.gen_zregbits g)
+  | "CSR" -> ZCSR (g.gen_zbits g 12, g.gen_zregbits g, g.gen_zregbits g, g.gen_zbool g, g.gen_zcsrop g)
+  | "C_NOP" -> ZC_NOP (g.gen_zunit g)
+  | "C_ADDI4SPN" -> ZC_ADDI4SPN (g.gen_zcregbits g, g.gen_zbits g 8)
+  | "C_LW" -> ZC_LW (g.gen_zbits g 5, g.gen_zcregbits g, g.gen_zcregbits g)
+  | "C_LD" -> ZC_LD (g.gen_zbits g 5, g.gen_zcregbits g, g.gen_zcregbits g)
+  | "C_SW" -> ZC_SW (g.gen_zbits g 5, g.gen_zcregbits g, g.gen_zcregbits g)
+  | "C_SD" -> ZC_SD (g.gen_zbits g 5, g.gen_zcregbits g, g.gen_zcregbits g)
+  | "C_ADDI" -> ZC_ADDI (g.gen_zbits g 6, g.gen_zregbits g)
+  | "C_JAL" -> ZC_JAL (g.gen_zbits g 11)
+  | "C_ADDIW" -> ZC_ADDIW (g.gen_zbits g 6, g.gen_zregbits g)
+  | "C_LI" -> ZC_LI (g.gen_zbits g 6, g.gen_zregbits g)
+  | "C_ADDI16SP" -> ZC_ADDI16SP (g.gen_zbits g 6)
+  | "C_LUI" -> ZC_LUI (g.gen_zbits g 6, g.gen_zregbits g)
+  | "C_SRLI" -> ZC_SRLI (g.gen_zbits g 6, g.gen_zcregbits g)
+  | "C_SRAI" -> ZC_SRAI (g.gen_zbits g 6, g.gen_zcregbits g)
+  | "C_ANDI" -> ZC_ANDI (g.gen_zbits g 6, g.gen_zcregbits g)
+  | "C_SUB" -> ZC_SUB (g.gen_zcregbits g, g.gen_zcregbits g)
+  | "C_XOR" -> ZC_XOR (g.gen_zcregbits g, g.gen_zcregbits g)
+  | "C_OR" -> ZC_OR (g.gen_zcregbits g, g.gen_zcregbits g)
+  | "C_AND" -> ZC_AND (g.gen_zcregbits g, g.gen_zcregbits g)
+  | "C_SUBW" -> ZC_SUBW (g.gen_zcregbits g, g.gen_zcregbits g)
+  | "C_ADDW" -> ZC_ADDW (g.gen_zcregbits g, g.gen_zcregbits g)
+  | "C_J" -> ZC_J (g.gen_zbits g 11)
+  | "C_BEQZ" -> ZC_BEQZ (g.gen_zbits g 8, g.gen_zcregbits g)
+  | "C_BNEZ" -> ZC_BNEZ (g.gen_zbits g 8, g.gen_zcregbits g)
+  | "C_SLLI" -> ZC_SLLI (g.gen_zbits g 6, g.gen_zregbits g)
+  | "C_LWSP" -> ZC_LWSP (g.gen_zbits g 6, g.gen_zregbits g)
+  | "C_LDSP" -> ZC_LDSP (g.gen_zbits g 6, g.gen_zregbits g)
+  | "C_SWSP" -> ZC_SWSP (g.gen_zbits g 6, g.gen_zregbits g)
+  | "C_SDSP" -> ZC_SDSP (g.gen_zbits g 6, g.gen_zregbits g)
+  | "C_JR" -> ZC_JR (g.gen_zregbits g)
+  | "C_JALR" -> ZC_JALR (g.gen_zregbits g)
+  | "C_MV" -> ZC_MV (g.gen_zregbits g, g.gen_zregbits g)
+  | "C_ADD" -> ZC_ADD (g.gen_zregbits g, g.gen_zregbits g)
+  | "STOP_FETCHING" -> ZSTOP_FETCHING (g.gen_zunit g)
+  | "THREAD_START" -> ZTHREAD_START (g.gen_zunit g)
+  | "ILLEGAL" -> ZILLEGAL (g.gen_zword g)
+  | "C_ILLEGAL" -> ZC_ILLEGAL (g.gen_zhalf g)
 
 
 let rand_zbits g zz7n =
@@ -34449,12 +34609,36 @@ let rand_zbop g =
     ZRISCV_BLTU;
     ZRISCV_BGEU
   ]
+let constructors_zbop = [
+  "RISCV_BEQ";
+  "RISCV_BNE";
+  "RISCV_BLT";
+  "RISCV_BGE";
+  "RISCV_BLTU";
+  "RISCV_BGEU"
+  ]
+let build_zbop g c = match c with
+  | "RISCV_BEQ" -> ZRISCV_BEQ
+  | "RISCV_BNE" -> ZRISCV_BNE
+  | "RISCV_BLT" -> ZRISCV_BLT
+  | "RISCV_BGE" -> ZRISCV_BGE
+  | "RISCV_BLTU" -> ZRISCV_BLTU
+  | "RISCV_BGEU" -> ZRISCV_BGEU
 
 let rand_zcregbits g =
   g.gen_zbits g 3
 
 let rand_zcsrop g =
   rand_choice [ZCSRRW; ZCSRRS; ZCSRRC]
+let constructors_zcsrop = [
+  "CSRRW";
+  "CSRRS";
+  "CSRRC"
+  ]
+let build_zcsrop g c = match c with
+  | "CSRRW" -> ZCSRRW
+  | "CSRRS" -> ZCSRRS
+  | "CSRRC" -> ZCSRRC
 
 let rand_zhalf g =
   g.gen_zbits g 16
@@ -34468,6 +34652,21 @@ let rand_ziop g =
     ZRISCV_ORI;
     ZRISCV_ANDI
   ]
+let constructors_ziop = [
+  "RISCV_ADDI";
+  "RISCV_SLTI";
+  "RISCV_SLTIU";
+  "RISCV_XORI";
+  "RISCV_ORI";
+  "RISCV_ANDI"
+  ]
+let build_ziop g c = match c with
+  | "RISCV_ADDI" -> ZRISCV_ADDI
+  | "RISCV_SLTI" -> ZRISCV_SLTI
+  | "RISCV_SLTIU" -> ZRISCV_SLTIU
+  | "RISCV_XORI" -> ZRISCV_XORI
+  | "RISCV_ORI" -> ZRISCV_ORI
+  | "RISCV_ANDI" -> ZRISCV_ANDI
 
 let rand_zregbits g =
   g.gen_zbits g 5
@@ -34485,19 +34684,80 @@ let rand_zrop g =
     ZRISCV_OR;
     ZRISCV_AND
   ]
+let constructors_zrop = [
+  "RISCV_ADD";
+  "RISCV_SUB";
+  "RISCV_SLL";
+  "RISCV_SLT";
+  "RISCV_SLTU";
+  "RISCV_XOR";
+  "RISCV_SRL";
+  "RISCV_SRA";
+  "RISCV_OR";
+  "RISCV_AND"
+  ]
+let build_zrop g c = match c with
+  | "RISCV_ADD" -> ZRISCV_ADD
+  | "RISCV_SUB" -> ZRISCV_SUB
+  | "RISCV_SLL" -> ZRISCV_SLL
+  | "RISCV_SLT" -> ZRISCV_SLT
+  | "RISCV_SLTU" -> ZRISCV_SLTU
+  | "RISCV_XOR" -> ZRISCV_XOR
+  | "RISCV_SRL" -> ZRISCV_SRL
+  | "RISCV_SRA" -> ZRISCV_SRA
+  | "RISCV_OR" -> ZRISCV_OR
+  | "RISCV_AND" -> ZRISCV_AND
 
 let rand_zropw g =
   rand_choice [ZRISCV_ADDW; ZRISCV_SUBW; ZRISCV_SLLW; ZRISCV_SRLW; ZRISCV_SRAW]
+let constructors_zropw = [
+  "RISCV_ADDW";
+  "RISCV_SUBW";
+  "RISCV_SLLW";
+  "RISCV_SRLW";
+  "RISCV_SRAW"
+  ]
+let build_zropw g c = match c with
+  | "RISCV_ADDW" -> ZRISCV_ADDW
+  | "RISCV_SUBW" -> ZRISCV_SUBW
+  | "RISCV_SLLW" -> ZRISCV_SLLW
+  | "RISCV_SRLW" -> ZRISCV_SRLW
+  | "RISCV_SRAW" -> ZRISCV_SRAW
 
 let rand_zsop g =
   rand_choice [ZRISCV_SLLI; ZRISCV_SRLI; ZRISCV_SRAI]
+let constructors_zsop = [
+  "RISCV_SLLI";
+  "RISCV_SRLI";
+  "RISCV_SRAI"
+  ]
+let build_zsop g c = match c with
+  | "RISCV_SLLI" -> ZRISCV_SLLI
+  | "RISCV_SRLI" -> ZRISCV_SRLI
+  | "RISCV_SRAI" -> ZRISCV_SRAI
 
 let rand_zsopw g =
   rand_choice [ZRISCV_SLLIW; ZRISCV_SRLIW; ZRISCV_SRAIW]
+let constructors_zsopw = [
+  "RISCV_SLLIW";
+  "RISCV_SRLIW";
+  "RISCV_SRAIW"
+  ]
+let build_zsopw g c = match c with
+  | "RISCV_SLLIW" -> ZRISCV_SLLIW
+  | "RISCV_SRLIW" -> ZRISCV_SRLIW
+  | "RISCV_SRAIW" -> ZRISCV_SRAIW
 
 
 let rand_zuop g =
   rand_choice [ZRISCV_LUI; ZRISCV_AUIPC]
+let constructors_zuop = [
+  "RISCV_LUI";
+  "RISCV_AUIPC"
+  ]
+let build_zuop g c = match c with
+  | "RISCV_LUI" -> ZRISCV_LUI
+  | "RISCV_AUIPC" -> ZRISCV_AUIPC
 
 
 let rand_zword g =
@@ -34505,6 +34765,17 @@ let rand_zword g =
 
 let rand_zword_width g =
   rand_choice [ZBYTE; ZHALF; ZWORD; ZDOUBLE]
+let constructors_zword_width = [
+  "BYTE";
+  "HALF";
+  "WORD";
+  "DOUBLE"
+  ]
+let build_zword_width g c = match c with
+  | "BYTE" -> ZBYTE
+  | "HALF" -> ZHALF
+  | "WORD" -> ZWORD
+  | "DOUBLE" -> ZDOUBLE
 
 let rand_gens : generators = {
   gen_zamoop = rand_zamoop;

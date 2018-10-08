@@ -1,5 +1,6 @@
 open Riscv
 open Sail_lib
+open Generators
 
 let set_bytes bytes off v =
   let rec build acc v =
@@ -18,15 +19,28 @@ let set_bytes bytes off v =
   in set off (build [] v)
 ;;
 
-let socket =
-  match Sys.argv with
-  | [| _; host; port |] ->
-     let open Unix in
-     let addr::_ = getaddrinfo host port [AI_FAMILY PF_INET; AI_SOCKTYPE SOCK_STREAM] in
-     let sock = socket ~cloexec:true PF_INET SOCK_STREAM 0 in
-     let () = connect sock addr.ai_addr in
-     Some sock
-  | _ -> None
+let gens, socket =
+  let gens = ref rand_gens in
+  let sock = ref false in
+  let host = ref "localhost" in
+  let port = ref "1234" in
+  let open Arg in
+  let () = parse
+    (align
+       ["-c", Set sock, " Connect to socket";
+        "-h", String (fun s -> host := s; sock := true), "<host> Host to connect to (default \"localhost\"), implies -c";
+        "-p", String (fun p -> port := p; sock := true), "<port> Port to connect to (default \"1234\"), implies -c";
+        "-no_compressed", Unit (fun () -> gens := remove_compressed !gens), " Generate non-compressed instructions"])
+    (fun _ -> raise (Bad "Unexpected argument"))
+    "RISC-V instruction generator"
+  in !gens,
+     if !sock then
+       let open Unix in
+       let addr::_ = getaddrinfo !host !port [AI_FAMILY PF_INET; AI_SOCKTYPE SOCK_STREAM] in
+       let sock = socket ~cloexec:true PF_INET SOCK_STREAM 0 in
+       let () = connect sock addr.ai_addr in
+       Some sock
+     else None
 ;;
 
 (* Loop until we get an instruction supported by the encoder *)
@@ -34,7 +48,7 @@ let generate () =
   let instr, bits =
     let rec aux () =
       try
-        let instr = rand_gens.gen_zast rand_gens in
+        let instr = gens.gen_zast gens in
         let bits =
           try zencdec_forwards instr
           with Match_failure _ -> zencdec_compressed_forwards instr
