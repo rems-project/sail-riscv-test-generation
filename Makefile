@@ -1,9 +1,9 @@
-.PHONY: clean top
+.PHONY: clean top main.native main.top
 
-main.native: main.ml model/*.ml
+main.native:
 	ocamlbuild -use-ocamlfind main.native -I model
 
-main.top: main.ml model/*.ml
+main.top:
 	ocamlbuild -use-ocamlfind main.top -I model
 
 top: main.top

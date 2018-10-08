@@ -19,33 +19,38 @@ let set_bytes bytes off v =
   in set off (build [] v)
 ;;
 
-let gens, socket =
+let gens, socket, num =
   let gens = ref rand_gens in
   let sock = ref false in
   let host = ref "localhost" in
   let port = ref "1234" in
+  let num = ref 1 in
   let open Arg in
   let () = parse
     (align
        ["-c", Set sock, " Connect to socket";
         "-h", String (fun s -> host := s; sock := true), "<host> Host to connect to (default \"localhost\"), implies -c";
         "-p", String (fun p -> port := p; sock := true), "<port> Port to connect to (default \"1234\"), implies -c";
-        "-no_compressed", Unit (fun () -> gens := remove_compressed !gens), " Generate non-compressed instructions"])
+        "-no_compressed", Unit (fun () -> gens := remove_compressed !gens), " Generate non-compressed instructions";
+        "-n", Set_int num, "<number> Number of instructions to generate";
+        "-restrict_registers", Unit (fun () -> gens := restrict_registers !gens), " Apply a simple-minded restriction on the choice of registers"])
     (fun _ -> raise (Bad "Unexpected argument"))
     "RISC-V instruction generator"
   in !gens,
-     if !sock then
-       let open Unix in
-       let addr::_ = getaddrinfo !host !port [AI_FAMILY PF_INET; AI_SOCKTYPE SOCK_STREAM] in
-       let sock = socket ~cloexec:true PF_INET SOCK_STREAM 0 in
-       let () = connect sock addr.ai_addr in
-       Some sock
-     else None
+     (if !sock then
+        let open Unix in
+        let addr::_ = getaddrinfo !host !port [AI_FAMILY PF_INET; AI_SOCKTYPE SOCK_STREAM] in
+        let sock = socket ~cloexec:true PF_INET SOCK_STREAM 0 in
+        let () = connect sock addr.ai_addr in
+        Some sock
+      else None),
+     !num
 ;;
 
-(* Loop until we get an instruction supported by the encoder *)
-let generate () =
+let rec generate n =
+  if n = 0 then () else
   let instr, bits =
+    (* Loop until we get an instruction supported by the encoder *)
     let rec aux () =
       try
         let instr = gens.gen_zast gens in
@@ -58,19 +63,21 @@ let generate () =
       with Match_failure _ -> aux ()
     in aux ()
   in
-  match socket with
-  | None -> ()
-  | Some sock ->
-     let bytes = Bytes.make 8 '\000' in
-     let () = Bytes.set bytes 4 '\001' in
-     let () = set_bytes bytes 0 bits in
-     if Unix.send sock bytes 0 8 [] <> 8
-     then prerr_endline "Unable to send full instruction"
-     else ()
+  let () =
+    match socket with
+    | None -> ()
+    | Some sock ->
+       let bytes = Bytes.make 8 '\000' in
+       let () = Bytes.set bytes 4 '\001' in
+       let () = set_bytes bytes 0 bits in
+       if Unix.send sock bytes 0 8 [] <> 8
+       then prerr_endline "Unable to send full instruction"
+       else ()
+  in generate (n-1)
 ;;
 
 Random.self_init ();;
-generate ();;
+generate num;;
 
 match socket with
 | None -> ()
