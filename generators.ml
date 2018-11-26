@@ -10,15 +10,39 @@ let frequency l =
       | (m,h)::t -> if n < m then h else pick (n-m) t
     in pick n l
 
-let remove_compressed g =
-  let instrs =
-    List.filter (fun s -> String.length s < 3 || s.[0] <> 'C' || s.[1] <> '_')
-    constructors_zast
-  in
+let rec any x = function
+  | [] -> false
+  | p::ps -> p x || any x ps
+
+let restrict_instructions restrictions g =
+  let pred s = not (any s restrictions) in
+  let instrs = List.filter pred constructors_zast in
   let mk_ast g =
     build_zast g (rand_choice instrs)
   in
   { g with gen_zast = mk_ast }
+
+let startswith s s' =
+  if String.length s' >= String.length s then
+    String.sub s' 0 (String.length s) = s
+  else false
+
+let unsupported = [
+    (* Arbitrary nonsense *)
+    String.equal "ILLEGAL";
+    (* AMO *)
+    startswith "AMO"; String.equal "LOADRES"; String.equal "STORECON";
+    (* RMEM sentinels *)
+    String.equal "STOP_FETCHING"; String.equal "THREAD_START";
+    (* Not sure what different sims do with WFI, but spike is diff to sail *)
+    String.equal "WFI"
+  ]
+
+let remove_unsupported g =
+  restrict_instructions unsupported g
+
+let remove_compressed g =
+  restrict_instructions (startswith "C_"::unsupported) g
 
 let restrict_registers g =
   (* Make sure there's overlap between the full register suite and those

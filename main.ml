@@ -23,16 +23,19 @@ let gens, socket, num =
   let gens = ref rand_gens in
   let port = ref None in
   let num = ref 1 in
+  let remove_compressed = ref false in
   let open Arg in
   let () = parse
     (align
        ["-p", String (fun p -> port := Some p), "<port> Provide an instruction generator service on this port";
-        "-no_compressed", Unit (fun () -> gens := remove_compressed !gens), " Generate non-compressed instructions";
+        "-no_compressed", Set remove_compressed, " Generate non-compressed instructions";
         "-n", Set_int num, "<number> Number of instructions to generate";
         "-restrict_registers", Unit (fun () -> gens := restrict_registers !gens), " Apply a simple-minded restriction on the choice of registers"])
     (fun _ -> raise (Bad "Unexpected argument"))
     "RISC-V instruction generator"
-  in !gens,
+  in (if !remove_compressed
+     then Generators.remove_compressed rand_gens
+     else Generators.remove_unsupported rand_gens),
      (match !port with
       | Some port ->
         let open Unix in
