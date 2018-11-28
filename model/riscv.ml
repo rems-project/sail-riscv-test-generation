@@ -23,15 +23,15 @@ type 'za zoption = | ZNone of unit | ZSome of 'za;;
 
 let string_of_zoption _ = "VARIANT";;
 
-let rec zundefined_option : 'za. ('za) -> ('za) zoption = fun (ztyp_a) -> sail_call (fun r ->
+let rec zundefined_option : 'za. ('za) -> ('za) zoption = fun ztyp_a -> sail_call (fun r ->
   let zu_0 = (undefined_unit ()) in
   let zu_1 = ztyp_a in
   internal_pick [ZNone zu_0; ZSome zu_1])
 
-and zhex_bits_1_forwards_matches (zbv : zbits) : bool = sail_call (fun r ->
+and zhex_bits_1_forwards_matches (zbv : ((bit) list)) : bool = sail_call (fun r ->
   true)
 
-and zhex_bits_1_backwards_matches (zs : string) : bool = sail_call (fun r ->
+and zhex_bits_1_backwards_matches (zs : (string)) : bool = sail_call (fun r ->
   begin
     match zs with
     | zs when (begin
@@ -43,16 +43,16 @@ and zhex_bits_1_backwards_matches (zs : string) : bool = sail_call (fun r ->
     | _ -> false
   end)
 
-and zhex_bits_1_backwards (zs : string) : zbits = sail_call (fun r ->
+and zhex_bits_1_backwards (zs : (string)) : (bit) list = sail_call (fun r ->
   begin
     match (hex_bits_1_matches_prefix zs) with
     | ZSome (zbv, zn) when (eq_int (zn, (string_length zs))) -> zbv
   end)
 
-and zhex_bits_2_forwards_matches (zbv : zbits) : bool = sail_call (fun r ->
+and zhex_bits_2_forwards_matches (zbv : ((bit) list)) : bool = sail_call (fun r ->
   true)
 
-and zhex_bits_2_backwards_matches (zs : string) : bool = sail_call (fun r ->
+and zhex_bits_2_backwards_matches (zs : (string)) : bool = sail_call (fun r ->
   begin
     match zs with
     | zs when (begin
@@ -64,16 +64,16 @@ and zhex_bits_2_backwards_matches (zs : string) : bool = sail_call (fun r ->
     | _ -> false
   end)
 
-and zhex_bits_2_backwards (zs : string) : zbits = sail_call (fun r ->
+and zhex_bits_2_backwards (zs : (string)) : (bit) list = sail_call (fun r ->
   begin
     match (hex_bits_2_matches_prefix zs) with
     | ZSome (zbv, zn) when (eq_int (zn, (string_length zs))) -> zbv
   end)
 
-and zhex_bits_3_forwards_matches (zbv : zbits) : bool = sail_call (fun r ->
+and zhex_bits_3_forwards_matches (zbv : ((bit) list)) : bool = sail_call (fun r ->
   true)
 
-and zhex_bits_3_backwards_matches (zs : string) : bool = sail_call (fun r ->
+and zhex_bits_3_backwards_matches (zs : (string)) : bool = sail_call (fun r ->
   begin
     match zs with
     | zs when (begin
@@ -85,16 +85,16 @@ and zhex_bits_3_backwards_matches (zs : string) : bool = sail_call (fun r ->
     | _ -> false
   end)
 
-and zhex_bits_3_backwards (zs : string) : zbits = sail_call (fun r ->
+and zhex_bits_3_backwards (zs : (string)) : (bit) list = sail_call (fun r ->
   begin
     match (hex_bits_3_matches_prefix zs) with
     | ZSome (zbv, zn) when (eq_int (zn, (string_length zs))) -> zbv
   end)
 
-and zhex_bits_4_forwards_matches (zbv : zbits) : bool = sail_call (fun r ->
+and zhex_bits_4_forwards_matches (zbv : ((bit) list)) : bool = sail_call (fun r ->
   true)
 
-and zhex_bits_4_backwards_matches (zs : string) : bool = sail_call (fun r ->
+and zhex_bits_4_backwards_matches (zs : (string)) : bool = sail_call (fun r ->
   begin
     match zs with
     | zs when (begin
@@ -106,16 +106,16 @@ and zhex_bits_4_backwards_matches (zs : string) : bool = sail_call (fun r ->
     | _ -> false
   end)
 
-and zhex_bits_4_backwards (zs : string) : zbits = sail_call (fun r ->
+and zhex_bits_4_backwards (zs : (string)) : (bit) list = sail_call (fun r ->
   begin
     match (hex_bits_4_matches_prefix zs) with
     | ZSome (zbv, zn) when (eq_int (zn, (string_length zs))) -> zbv
   end)
 
-and zhex_bits_5_forwards_matches (zbv : zbits) : bool = sail_call (fun r ->
+and zhex_bits_5_forwards_matches (zbv : ((bit) list)) : bool = sail_call (fun r ->
   true)
 
-and zhex_bits_5_backwards_matches (zs : string) : bool = sail_call (fun r ->
+and zhex_bits_5_backwards_matches (zs : (string)) : bool = sail_call (fun r ->
   begin
     match zs with
     | zs when (begin
@@ -127,16 +127,16 @@ and zhex_bits_5_backwards_matches (zs : string) : bool = sail_call (fun r ->
     | _ -> false
   end)
 
-and zhex_bits_5_backwards (zs : string) : zbits = sail_call (fun r ->
+and zhex_bits_5_backwards (zs : (string)) : (bit) list = sail_call (fun r ->
   begin
     match (hex_bits_5_matches_prefix zs) with
     | ZSome (zbv, zn) when (eq_int (zn, (string_length zs))) -> zbv
   end)
 
-and zhex_bits_6_forwards_matches (zbv : zbits) : bool = sail_call (fun r ->
+and zhex_bits_6_forwards_matches (zbv : ((bit) list)) : bool = sail_call (fun r ->
   true)
 
-and zhex_bits_6_backwards_matches (zs : string) : bool = sail_call (fun r ->
+and zhex_bits_6_backwards_matches (zs : (string)) : bool = sail_call (fun r ->
   begin
     match zs with
     | zs when (begin
@@ -148,16 +148,16 @@ and zhex_bits_6_backwards_matches (zs : string) : bool = sail_call (fun r ->
     | _ -> false
   end)
 
-and zhex_bits_6_backwards (zs : string) : zbits = sail_call (fun r ->
+and zhex_bits_6_backwards (zs : (string)) : (bit) list = sail_call (fun r ->
   begin
     match (hex_bits_6_matches_prefix zs) with
     | ZSome (zbv, zn) when (eq_int (zn, (string_length zs))) -> zbv
   end)
 
-and zhex_bits_7_forwards_matches (zbv : zbits) : bool = sail_call (fun r ->
+and zhex_bits_7_forwards_matches (zbv : ((bit) list)) : bool = sail_call (fun r ->
   true)
 
-and zhex_bits_7_backwards_matches (zs : string) : bool = sail_call (fun r ->
+and zhex_bits_7_backwards_matches (zs : (string)) : bool = sail_call (fun r ->
   begin
     match zs with
     | zs when (begin
@@ -169,16 +169,16 @@ and zhex_bits_7_backwards_matches (zs : string) : bool = sail_call (fun r ->
     | _ -> false
   end)
 
-and zhex_bits_7_backwards (zs : string) : zbits = sail_call (fun r ->
+and zhex_bits_7_backwards (zs : (string)) : (bit) list = sail_call (fun r ->
   begin
     match (hex_bits_7_matches_prefix zs) with
     | ZSome (zbv, zn) when (eq_int (zn, (string_length zs))) -> zbv
   end)
 
-and zhex_bits_8_forwards_matches (zbv : zbits) : bool = sail_call (fun r ->
+and zhex_bits_8_forwards_matches (zbv : ((bit) list)) : bool = sail_call (fun r ->
   true)
 
-and zhex_bits_8_backwards_matches (zs : string) : bool = sail_call (fun r ->
+and zhex_bits_8_backwards_matches (zs : (string)) : bool = sail_call (fun r ->
   begin
     match zs with
     | zs when (begin
@@ -190,16 +190,16 @@ and zhex_bits_8_backwards_matches (zs : string) : bool = sail_call (fun r ->
     | _ -> false
   end)
 
-and zhex_bits_8_backwards (zs : string) : zbits = sail_call (fun r ->
+and zhex_bits_8_backwards (zs : (string)) : (bit) list = sail_call (fun r ->
   begin
     match (hex_bits_8_matches_prefix zs) with
     | ZSome (zbv, zn) when (eq_int (zn, (string_length zs))) -> zbv
   end)
 
-and zhex_bits_9_forwards_matches (zbv : zbits) : bool = sail_call (fun r ->
+and zhex_bits_9_forwards_matches (zbv : ((bit) list)) : bool = sail_call (fun r ->
   true)
 
-and zhex_bits_9_backwards_matches (zs : string) : bool = sail_call (fun r ->
+and zhex_bits_9_backwards_matches (zs : (string)) : bool = sail_call (fun r ->
   begin
     match zs with
     | zs when (begin
@@ -211,16 +211,16 @@ and zhex_bits_9_backwards_matches (zs : string) : bool = sail_call (fun r ->
     | _ -> false
   end)
 
-and zhex_bits_9_backwards (zs : string) : zbits = sail_call (fun r ->
+and zhex_bits_9_backwards (zs : (string)) : (bit) list = sail_call (fun r ->
   begin
     match (hex_bits_9_matches_prefix zs) with
     | ZSome (zbv, zn) when (eq_int (zn, (string_length zs))) -> zbv
   end)
 
-and zhex_bits_10_forwards_matches (zbv : zbits) : bool = sail_call (fun r ->
+and zhex_bits_10_forwards_matches (zbv : ((bit) list)) : bool = sail_call (fun r ->
   true)
 
-and zhex_bits_10_backwards_matches (zs : string) : bool = sail_call (fun r ->
+and zhex_bits_10_backwards_matches (zs : (string)) : bool = sail_call (fun r ->
   begin
     match zs with
     | zs when (begin
@@ -232,16 +232,16 @@ and zhex_bits_10_backwards_matches (zs : string) : bool = sail_call (fun r ->
     | _ -> false
   end)
 
-and zhex_bits_10_backwards (zs : string) : zbits = sail_call (fun r ->
+and zhex_bits_10_backwards (zs : (string)) : (bit) list = sail_call (fun r ->
   begin
     match (hex_bits_10_matches_prefix zs) with
     | ZSome (zbv, zn) when (eq_int (zn, (string_length zs))) -> zbv
   end)
 
-and zhex_bits_11_forwards_matches (zbv : zbits) : bool = sail_call (fun r ->
+and zhex_bits_11_forwards_matches (zbv : ((bit) list)) : bool = sail_call (fun r ->
   true)
 
-and zhex_bits_11_backwards_matches (zs : string) : bool = sail_call (fun r ->
+and zhex_bits_11_backwards_matches (zs : (string)) : bool = sail_call (fun r ->
   begin
     match zs with
     | zs when (begin
@@ -253,16 +253,16 @@ and zhex_bits_11_backwards_matches (zs : string) : bool = sail_call (fun r ->
     | _ -> false
   end)
 
-and zhex_bits_11_backwards (zs : string) : zbits = sail_call (fun r ->
+and zhex_bits_11_backwards (zs : (string)) : (bit) list = sail_call (fun r ->
   begin
     match (hex_bits_11_matches_prefix zs) with
     | ZSome (zbv, zn) when (eq_int (zn, (string_length zs))) -> zbv
   end)
 
-and zhex_bits_12_forwards_matches (zbv : zbits) : bool = sail_call (fun r ->
+and zhex_bits_12_forwards_matches (zbv : ((bit) list)) : bool = sail_call (fun r ->
   true)
 
-and zhex_bits_12_backwards_matches (zs : string) : bool = sail_call (fun r ->
+and zhex_bits_12_backwards_matches (zs : (string)) : bool = sail_call (fun r ->
   begin
     match zs with
     | zs when (begin
@@ -274,16 +274,16 @@ and zhex_bits_12_backwards_matches (zs : string) : bool = sail_call (fun r ->
     | _ -> false
   end)
 
-and zhex_bits_12_backwards (zs : string) : zbits = sail_call (fun r ->
+and zhex_bits_12_backwards (zs : (string)) : (bit) list = sail_call (fun r ->
   begin
     match (hex_bits_12_matches_prefix zs) with
     | ZSome (zbv, zn) when (eq_int (zn, (string_length zs))) -> zbv
   end)
 
-and zhex_bits_13_forwards_matches (zbv : zbits) : bool = sail_call (fun r ->
+and zhex_bits_13_forwards_matches (zbv : ((bit) list)) : bool = sail_call (fun r ->
   true)
 
-and zhex_bits_13_backwards_matches (zs : string) : bool = sail_call (fun r ->
+and zhex_bits_13_backwards_matches (zs : (string)) : bool = sail_call (fun r ->
   begin
     match zs with
     | zs when (begin
@@ -295,16 +295,16 @@ and zhex_bits_13_backwards_matches (zs : string) : bool = sail_call (fun r ->
     | _ -> false
   end)
 
-and zhex_bits_13_backwards (zs : string) : zbits = sail_call (fun r ->
+and zhex_bits_13_backwards (zs : (string)) : (bit) list = sail_call (fun r ->
   begin
     match (hex_bits_13_matches_prefix zs) with
     | ZSome (zbv, zn) when (eq_int (zn, (string_length zs))) -> zbv
   end)
 
-and zhex_bits_14_forwards_matches (zbv : zbits) : bool = sail_call (fun r ->
+and zhex_bits_14_forwards_matches (zbv : ((bit) list)) : bool = sail_call (fun r ->
   true)
 
-and zhex_bits_14_backwards_matches (zs : string) : bool = sail_call (fun r ->
+and zhex_bits_14_backwards_matches (zs : (string)) : bool = sail_call (fun r ->
   begin
     match zs with
     | zs when (begin
@@ -316,16 +316,16 @@ and zhex_bits_14_backwards_matches (zs : string) : bool = sail_call (fun r ->
     | _ -> false
   end)
 
-and zhex_bits_14_backwards (zs : string) : zbits = sail_call (fun r ->
+and zhex_bits_14_backwards (zs : (string)) : (bit) list = sail_call (fun r ->
   begin
     match (hex_bits_14_matches_prefix zs) with
     | ZSome (zbv, zn) when (eq_int (zn, (string_length zs))) -> zbv
   end)
 
-and zhex_bits_15_forwards_matches (zbv : zbits) : bool = sail_call (fun r ->
+and zhex_bits_15_forwards_matches (zbv : ((bit) list)) : bool = sail_call (fun r ->
   true)
 
-and zhex_bits_15_backwards_matches (zs : string) : bool = sail_call (fun r ->
+and zhex_bits_15_backwards_matches (zs : (string)) : bool = sail_call (fun r ->
   begin
     match zs with
     | zs when (begin
@@ -337,16 +337,16 @@ and zhex_bits_15_backwards_matches (zs : string) : bool = sail_call (fun r ->
     | _ -> false
   end)
 
-and zhex_bits_15_backwards (zs : string) : zbits = sail_call (fun r ->
+and zhex_bits_15_backwards (zs : (string)) : (bit) list = sail_call (fun r ->
   begin
     match (hex_bits_15_matches_prefix zs) with
     | ZSome (zbv, zn) when (eq_int (zn, (string_length zs))) -> zbv
   end)
 
-and zhex_bits_16_forwards_matches (zbv : zbits) : bool = sail_call (fun r ->
+and zhex_bits_16_forwards_matches (zbv : ((bit) list)) : bool = sail_call (fun r ->
   true)
 
-and zhex_bits_16_backwards_matches (zs : string) : bool = sail_call (fun r ->
+and zhex_bits_16_backwards_matches (zs : (string)) : bool = sail_call (fun r ->
   begin
     match zs with
     | zs when (begin
@@ -358,16 +358,16 @@ and zhex_bits_16_backwards_matches (zs : string) : bool = sail_call (fun r ->
     | _ -> false
   end)
 
-and zhex_bits_16_backwards (zs : string) : zbits = sail_call (fun r ->
+and zhex_bits_16_backwards (zs : (string)) : (bit) list = sail_call (fun r ->
   begin
     match (hex_bits_16_matches_prefix zs) with
     | ZSome (zbv, zn) when (eq_int (zn, (string_length zs))) -> zbv
   end)
 
-and zhex_bits_17_forwards_matches (zbv : zbits) : bool = sail_call (fun r ->
+and zhex_bits_17_forwards_matches (zbv : ((bit) list)) : bool = sail_call (fun r ->
   true)
 
-and zhex_bits_17_backwards_matches (zs : string) : bool = sail_call (fun r ->
+and zhex_bits_17_backwards_matches (zs : (string)) : bool = sail_call (fun r ->
   begin
     match zs with
     | zs when (begin
@@ -379,16 +379,16 @@ and zhex_bits_17_backwards_matches (zs : string) : bool = sail_call (fun r ->
     | _ -> false
   end)
 
-and zhex_bits_17_backwards (zs : string) : zbits = sail_call (fun r ->
+and zhex_bits_17_backwards (zs : (string)) : (bit) list = sail_call (fun r ->
   begin
     match (hex_bits_17_matches_prefix zs) with
     | ZSome (zbv, zn) when (eq_int (zn, (string_length zs))) -> zbv
   end)
 
-and zhex_bits_18_forwards_matches (zbv : zbits) : bool = sail_call (fun r ->
+and zhex_bits_18_forwards_matches (zbv : ((bit) list)) : bool = sail_call (fun r ->
   true)
 
-and zhex_bits_18_backwards_matches (zs : string) : bool = sail_call (fun r ->
+and zhex_bits_18_backwards_matches (zs : (string)) : bool = sail_call (fun r ->
   begin
     match zs with
     | zs when (begin
@@ -400,16 +400,16 @@ and zhex_bits_18_backwards_matches (zs : string) : bool = sail_call (fun r ->
     | _ -> false
   end)
 
-and zhex_bits_18_backwards (zs : string) : zbits = sail_call (fun r ->
+and zhex_bits_18_backwards (zs : (string)) : (bit) list = sail_call (fun r ->
   begin
     match (hex_bits_18_matches_prefix zs) with
     | ZSome (zbv, zn) when (eq_int (zn, (string_length zs))) -> zbv
   end)
 
-and zhex_bits_19_forwards_matches (zbv : zbits) : bool = sail_call (fun r ->
+and zhex_bits_19_forwards_matches (zbv : ((bit) list)) : bool = sail_call (fun r ->
   true)
 
-and zhex_bits_19_backwards_matches (zs : string) : bool = sail_call (fun r ->
+and zhex_bits_19_backwards_matches (zs : (string)) : bool = sail_call (fun r ->
   begin
     match zs with
     | zs when (begin
@@ -421,16 +421,16 @@ and zhex_bits_19_backwards_matches (zs : string) : bool = sail_call (fun r ->
     | _ -> false
   end)
 
-and zhex_bits_19_backwards (zs : string) : zbits = sail_call (fun r ->
+and zhex_bits_19_backwards (zs : (string)) : (bit) list = sail_call (fun r ->
   begin
     match (hex_bits_19_matches_prefix zs) with
     | ZSome (zbv, zn) when (eq_int (zn, (string_length zs))) -> zbv
   end)
 
-and zhex_bits_20_forwards_matches (zbv : zbits) : bool = sail_call (fun r ->
+and zhex_bits_20_forwards_matches (zbv : ((bit) list)) : bool = sail_call (fun r ->
   true)
 
-and zhex_bits_20_backwards_matches (zs : string) : bool = sail_call (fun r ->
+and zhex_bits_20_backwards_matches (zs : (string)) : bool = sail_call (fun r ->
   begin
     match zs with
     | zs when (begin
@@ -442,16 +442,16 @@ and zhex_bits_20_backwards_matches (zs : string) : bool = sail_call (fun r ->
     | _ -> false
   end)
 
-and zhex_bits_20_backwards (zs : string) : zbits = sail_call (fun r ->
+and zhex_bits_20_backwards (zs : (string)) : (bit) list = sail_call (fun r ->
   begin
     match (hex_bits_20_matches_prefix zs) with
     | ZSome (zbv, zn) when (eq_int (zn, (string_length zs))) -> zbv
   end)
 
-and zhex_bits_21_forwards_matches (zbv : zbits) : bool = sail_call (fun r ->
+and zhex_bits_21_forwards_matches (zbv : ((bit) list)) : bool = sail_call (fun r ->
   true)
 
-and zhex_bits_21_backwards_matches (zs : string) : bool = sail_call (fun r ->
+and zhex_bits_21_backwards_matches (zs : (string)) : bool = sail_call (fun r ->
   begin
     match zs with
     | zs when (begin
@@ -463,16 +463,16 @@ and zhex_bits_21_backwards_matches (zs : string) : bool = sail_call (fun r ->
     | _ -> false
   end)
 
-and zhex_bits_21_backwards (zs : string) : zbits = sail_call (fun r ->
+and zhex_bits_21_backwards (zs : (string)) : (bit) list = sail_call (fun r ->
   begin
     match (hex_bits_21_matches_prefix zs) with
     | ZSome (zbv, zn) when (eq_int (zn, (string_length zs))) -> zbv
   end)
 
-and zhex_bits_22_forwards_matches (zbv : zbits) : bool = sail_call (fun r ->
+and zhex_bits_22_forwards_matches (zbv : ((bit) list)) : bool = sail_call (fun r ->
   true)
 
-and zhex_bits_22_backwards_matches (zs : string) : bool = sail_call (fun r ->
+and zhex_bits_22_backwards_matches (zs : (string)) : bool = sail_call (fun r ->
   begin
     match zs with
     | zs when (begin
@@ -484,16 +484,16 @@ and zhex_bits_22_backwards_matches (zs : string) : bool = sail_call (fun r ->
     | _ -> false
   end)
 
-and zhex_bits_22_backwards (zs : string) : zbits = sail_call (fun r ->
+and zhex_bits_22_backwards (zs : (string)) : (bit) list = sail_call (fun r ->
   begin
     match (hex_bits_22_matches_prefix zs) with
     | ZSome (zbv, zn) when (eq_int (zn, (string_length zs))) -> zbv
   end)
 
-and zhex_bits_23_forwards_matches (zbv : zbits) : bool = sail_call (fun r ->
+and zhex_bits_23_forwards_matches (zbv : ((bit) list)) : bool = sail_call (fun r ->
   true)
 
-and zhex_bits_23_backwards_matches (zs : string) : bool = sail_call (fun r ->
+and zhex_bits_23_backwards_matches (zs : (string)) : bool = sail_call (fun r ->
   begin
     match zs with
     | zs when (begin
@@ -505,16 +505,16 @@ and zhex_bits_23_backwards_matches (zs : string) : bool = sail_call (fun r ->
     | _ -> false
   end)
 
-and zhex_bits_23_backwards (zs : string) : zbits = sail_call (fun r ->
+and zhex_bits_23_backwards (zs : (string)) : (bit) list = sail_call (fun r ->
   begin
     match (hex_bits_23_matches_prefix zs) with
     | ZSome (zbv, zn) when (eq_int (zn, (string_length zs))) -> zbv
   end)
 
-and zhex_bits_24_forwards_matches (zbv : zbits) : bool = sail_call (fun r ->
+and zhex_bits_24_forwards_matches (zbv : ((bit) list)) : bool = sail_call (fun r ->
   true)
 
-and zhex_bits_24_backwards_matches (zs : string) : bool = sail_call (fun r ->
+and zhex_bits_24_backwards_matches (zs : (string)) : bool = sail_call (fun r ->
   begin
     match zs with
     | zs when (begin
@@ -526,16 +526,16 @@ and zhex_bits_24_backwards_matches (zs : string) : bool = sail_call (fun r ->
     | _ -> false
   end)
 
-and zhex_bits_24_backwards (zs : string) : zbits = sail_call (fun r ->
+and zhex_bits_24_backwards (zs : (string)) : (bit) list = sail_call (fun r ->
   begin
     match (hex_bits_24_matches_prefix zs) with
     | ZSome (zbv, zn) when (eq_int (zn, (string_length zs))) -> zbv
   end)
 
-and zhex_bits_25_forwards_matches (zbv : zbits) : bool = sail_call (fun r ->
+and zhex_bits_25_forwards_matches (zbv : ((bit) list)) : bool = sail_call (fun r ->
   true)
 
-and zhex_bits_25_backwards_matches (zs : string) : bool = sail_call (fun r ->
+and zhex_bits_25_backwards_matches (zs : (string)) : bool = sail_call (fun r ->
   begin
     match zs with
     | zs when (begin
@@ -547,16 +547,16 @@ and zhex_bits_25_backwards_matches (zs : string) : bool = sail_call (fun r ->
     | _ -> false
   end)
 
-and zhex_bits_25_backwards (zs : string) : zbits = sail_call (fun r ->
+and zhex_bits_25_backwards (zs : (string)) : (bit) list = sail_call (fun r ->
   begin
     match (hex_bits_25_matches_prefix zs) with
     | ZSome (zbv, zn) when (eq_int (zn, (string_length zs))) -> zbv
   end)
 
-and zhex_bits_26_forwards_matches (zbv : zbits) : bool = sail_call (fun r ->
+and zhex_bits_26_forwards_matches (zbv : ((bit) list)) : bool = sail_call (fun r ->
   true)
 
-and zhex_bits_26_backwards_matches (zs : string) : bool = sail_call (fun r ->
+and zhex_bits_26_backwards_matches (zs : (string)) : bool = sail_call (fun r ->
   begin
     match zs with
     | zs when (begin
@@ -568,16 +568,16 @@ and zhex_bits_26_backwards_matches (zs : string) : bool = sail_call (fun r ->
     | _ -> false
   end)
 
-and zhex_bits_26_backwards (zs : string) : zbits = sail_call (fun r ->
+and zhex_bits_26_backwards (zs : (string)) : (bit) list = sail_call (fun r ->
   begin
     match (hex_bits_26_matches_prefix zs) with
     | ZSome (zbv, zn) when (eq_int (zn, (string_length zs))) -> zbv
   end)
 
-and zhex_bits_27_forwards_matches (zbv : zbits) : bool = sail_call (fun r ->
+and zhex_bits_27_forwards_matches (zbv : ((bit) list)) : bool = sail_call (fun r ->
   true)
 
-and zhex_bits_27_backwards_matches (zs : string) : bool = sail_call (fun r ->
+and zhex_bits_27_backwards_matches (zs : (string)) : bool = sail_call (fun r ->
   begin
     match zs with
     | zs when (begin
@@ -589,16 +589,16 @@ and zhex_bits_27_backwards_matches (zs : string) : bool = sail_call (fun r ->
     | _ -> false
   end)
 
-and zhex_bits_27_backwards (zs : string) : zbits = sail_call (fun r ->
+and zhex_bits_27_backwards (zs : (string)) : (bit) list = sail_call (fun r ->
   begin
     match (hex_bits_27_matches_prefix zs) with
     | ZSome (zbv, zn) when (eq_int (zn, (string_length zs))) -> zbv
   end)
 
-and zhex_bits_28_forwards_matches (zbv : zbits) : bool = sail_call (fun r ->
+and zhex_bits_28_forwards_matches (zbv : ((bit) list)) : bool = sail_call (fun r ->
   true)
 
-and zhex_bits_28_backwards_matches (zs : string) : bool = sail_call (fun r ->
+and zhex_bits_28_backwards_matches (zs : (string)) : bool = sail_call (fun r ->
   begin
     match zs with
     | zs when (begin
@@ -610,16 +610,16 @@ and zhex_bits_28_backwards_matches (zs : string) : bool = sail_call (fun r ->
     | _ -> false
   end)
 
-and zhex_bits_28_backwards (zs : string) : zbits = sail_call (fun r ->
+and zhex_bits_28_backwards (zs : (string)) : (bit) list = sail_call (fun r ->
   begin
     match (hex_bits_28_matches_prefix zs) with
     | ZSome (zbv, zn) when (eq_int (zn, (string_length zs))) -> zbv
   end)
 
-and zhex_bits_29_forwards_matches (zbv : zbits) : bool = sail_call (fun r ->
+and zhex_bits_29_forwards_matches (zbv : ((bit) list)) : bool = sail_call (fun r ->
   true)
 
-and zhex_bits_29_backwards_matches (zs : string) : bool = sail_call (fun r ->
+and zhex_bits_29_backwards_matches (zs : (string)) : bool = sail_call (fun r ->
   begin
     match zs with
     | zs when (begin
@@ -631,16 +631,16 @@ and zhex_bits_29_backwards_matches (zs : string) : bool = sail_call (fun r ->
     | _ -> false
   end)
 
-and zhex_bits_29_backwards (zs : string) : zbits = sail_call (fun r ->
+and zhex_bits_29_backwards (zs : (string)) : (bit) list = sail_call (fun r ->
   begin
     match (hex_bits_29_matches_prefix zs) with
     | ZSome (zbv, zn) when (eq_int (zn, (string_length zs))) -> zbv
   end)
 
-and zhex_bits_30_forwards_matches (zbv : zbits) : bool = sail_call (fun r ->
+and zhex_bits_30_forwards_matches (zbv : ((bit) list)) : bool = sail_call (fun r ->
   true)
 
-and zhex_bits_30_backwards_matches (zs : string) : bool = sail_call (fun r ->
+and zhex_bits_30_backwards_matches (zs : (string)) : bool = sail_call (fun r ->
   begin
     match zs with
     | zs when (begin
@@ -652,16 +652,16 @@ and zhex_bits_30_backwards_matches (zs : string) : bool = sail_call (fun r ->
     | _ -> false
   end)
 
-and zhex_bits_30_backwards (zs : string) : zbits = sail_call (fun r ->
+and zhex_bits_30_backwards (zs : (string)) : (bit) list = sail_call (fun r ->
   begin
     match (hex_bits_30_matches_prefix zs) with
     | ZSome (zbv, zn) when (eq_int (zn, (string_length zs))) -> zbv
   end)
 
-and zhex_bits_31_forwards_matches (zbv : zbits) : bool = sail_call (fun r ->
+and zhex_bits_31_forwards_matches (zbv : ((bit) list)) : bool = sail_call (fun r ->
   true)
 
-and zhex_bits_31_backwards_matches (zs : string) : bool = sail_call (fun r ->
+and zhex_bits_31_backwards_matches (zs : (string)) : bool = sail_call (fun r ->
   begin
     match zs with
     | zs when (begin
@@ -673,16 +673,16 @@ and zhex_bits_31_backwards_matches (zs : string) : bool = sail_call (fun r ->
     | _ -> false
   end)
 
-and zhex_bits_31_backwards (zs : string) : zbits = sail_call (fun r ->
+and zhex_bits_31_backwards (zs : (string)) : (bit) list = sail_call (fun r ->
   begin
     match (hex_bits_31_matches_prefix zs) with
     | ZSome (zbv, zn) when (eq_int (zn, (string_length zs))) -> zbv
   end)
 
-and zhex_bits_32_forwards_matches (zbv : zbits) : bool = sail_call (fun r ->
+and zhex_bits_32_forwards_matches (zbv : ((bit) list)) : bool = sail_call (fun r ->
   true)
 
-and zhex_bits_32_backwards_matches (zs : string) : bool = sail_call (fun r ->
+and zhex_bits_32_backwards_matches (zs : (string)) : bool = sail_call (fun r ->
   begin
     match zs with
     | zs when (begin
@@ -694,16 +694,16 @@ and zhex_bits_32_backwards_matches (zs : string) : bool = sail_call (fun r ->
     | _ -> false
   end)
 
-and zhex_bits_32_backwards (zs : string) : zbits = sail_call (fun r ->
+and zhex_bits_32_backwards (zs : (string)) : (bit) list = sail_call (fun r ->
   begin
     match (hex_bits_32_matches_prefix zs) with
     | ZSome (zbv, zn) when (eq_int (zn, (string_length zs))) -> zbv
   end)
 
-and zhex_bits_33_forwards_matches (zbv : zbits) : bool = sail_call (fun r ->
+and zhex_bits_33_forwards_matches (zbv : ((bit) list)) : bool = sail_call (fun r ->
   true)
 
-and zhex_bits_33_backwards_matches (zs : string) : bool = sail_call (fun r ->
+and zhex_bits_33_backwards_matches (zs : (string)) : bool = sail_call (fun r ->
   begin
     match zs with
     | zs when (begin
@@ -715,16 +715,16 @@ and zhex_bits_33_backwards_matches (zs : string) : bool = sail_call (fun r ->
     | _ -> false
   end)
 
-and zhex_bits_33_backwards (zs : string) : zbits = sail_call (fun r ->
+and zhex_bits_33_backwards (zs : (string)) : (bit) list = sail_call (fun r ->
   begin
     match (hex_bits_33_matches_prefix zs) with
     | ZSome (zbv, zn) when (eq_int (zn, (string_length zs))) -> zbv
   end)
 
-and zhex_bits_48_forwards_matches (zbv : zbits) : bool = sail_call (fun r ->
+and zhex_bits_48_forwards_matches (zbv : ((bit) list)) : bool = sail_call (fun r ->
   true)
 
-and zhex_bits_48_backwards_matches (zs : string) : bool = sail_call (fun r ->
+and zhex_bits_48_backwards_matches (zs : (string)) : bool = sail_call (fun r ->
   begin
     match zs with
     | zs when (begin
@@ -736,16 +736,16 @@ and zhex_bits_48_backwards_matches (zs : string) : bool = sail_call (fun r ->
     | _ -> false
   end)
 
-and zhex_bits_48_backwards (zs : string) : zbits = sail_call (fun r ->
+and zhex_bits_48_backwards (zs : (string)) : (bit) list = sail_call (fun r ->
   begin
     match (hex_bits_48_matches_prefix zs) with
     | ZSome (zbv, zn) when (eq_int (zn, (string_length zs))) -> zbv
   end)
 
-and zhex_bits_64_forwards_matches (zbv : zbits) : bool = sail_call (fun r ->
+and zhex_bits_64_forwards_matches (zbv : ((bit) list)) : bool = sail_call (fun r ->
   true)
 
-and zhex_bits_64_backwards_matches (zs : string) : bool = sail_call (fun r ->
+and zhex_bits_64_backwards_matches (zs : (string)) : bool = sail_call (fun r ->
   begin
     match zs with
     | zs when (begin
@@ -757,44 +757,32 @@ and zhex_bits_64_backwards_matches (zs : string) : bool = sail_call (fun r ->
     | _ -> false
   end)
 
-and zhex_bits_64_backwards (zs : string) : zbits = sail_call (fun r ->
+and zhex_bits_64_backwards (zs : (string)) : (bit) list = sail_call (fun r ->
   begin
     match (hex_bits_64_matches_prefix zs) with
     | ZSome (zbv, zn) when (eq_int (zn, (string_length zs))) -> zbv
   end)
 
-and zspc_forwards (() : unit) : string = sail_call (fun r -> " ")
-
-and zspc_backwards (zs : string) : unit = sail_call (fun r -> ())
-
-and zopt_spc_forwards (() : unit) : string = sail_call (fun r -> "")
-
-and zopt_spc_backwards (zs : string) : unit = sail_call (fun r -> ())
-
-and zdef_spc_forwards (() : unit) : string = sail_call (fun r -> " ")
-
-and zdef_spc_backwards (zs : string) : unit = sail_call (fun r -> ())
-
-and zneq_vec ((zx, zy) : (zbits * zbits)) : bool = sail_call (fun r ->
+and zneq_vec ((zx, zy) : ((bit) list * (bit) list)) : bool = sail_call (fun r ->
   not (eq_list (zx, zy)))
 
 and zneq_anything : 'za. ('za * 'za) -> bool = fun (zx, zy) -> sail_call (fun r ->
   not ((fun (x, y) -> x = y) (zx, zy)))
 
-and z__GetSlice_int ((zn, zm, zo) : (Big_int.num * Big_int.num * Big_int.num)) : zbits = sail_call (fun r ->
+and z__GetSlice_int ((zn, zm, zo) : (Big_int.num * Big_int.num * Big_int.num)) : (bit) list = sail_call (fun r ->
   get_slice_int (zn, zm, zo))
 
-and zcast_unit_vec (zb : bit) : zbits = sail_call (fun r ->
+and zcast_unit_vec (zb : (bit)) : (bit) list = sail_call (fun r ->
   begin
     match zb with
     | zp0z3 when (eq_bit (zp0z3, B0)) -> [B0]
     | zp0z3 when (eq_bit (zp0z3, B1)) -> [B1]
   end)
 
-and z__RISCV_write ((zaddr, zwidth, zdata) : (zbits * Big_int.num * zbits)) : bool = sail_call (fun r ->
+and z__RISCV_write ((zaddr, zwidth, zdata) : ((bit) list * Big_int.num * (bit) list)) : bool = sail_call (fun r ->
   write_ram ((Big_int.of_int (64)), zwidth, [B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0], zaddr, zdata))
 
-and z__RISCV_read ((zaddr, zwidth, zaq, zrl, zres) : (zbits * Big_int.num * bool * bool * bool)) : (zbits) zoption = sail_call (fun r ->
+and z__RISCV_read ((zaddr, zwidth, zaq, zrl, zres) : ((bit) list * Big_int.num * bool * bool * bool)) : ((bit) list) zoption = sail_call (fun r ->
   begin
     match (zaq, zrl, zres) with
     | (zp0z3, zp1z3, zp2z3) when (((eq_bool (zp2z3, false)) && (eq_bool (zp1z3, false))) && (eq_bool (zp0z3, false))) ->
@@ -815,63 +803,102 @@ and z__RISCV_read ((zaddr, zwidth, zaq, zrl, zres) : (zbits * Big_int.num * bool
       ZNone ()
   end)
 
-and zex_nat (zn : Big_int.num) : Big_int.num = sail_call (fun r -> zn)
+and zex_nat (zn : (Big_int.num)) : Big_int.num = sail_call (fun r -> zn)
 
-and zex_int (zn : Big_int.num) : Big_int.num = sail_call (fun r -> zn)
+and zex_int (zn : (Big_int.num)) : Big_int.num = sail_call (fun r -> zn)
 
-and zcoerce_int_nat (zx : Big_int.num) : Big_int.num = sail_call (fun r ->
+and zcoerce_int_nat (zx : (Big_int.num)) : Big_int.num = sail_call (fun r ->
   begin assert (gteq (zx, Big_int.zero)); zx end)
 
-and zEXTS ((zm__tv, zv) : (Big_int.num * zbits)) : zbits = sail_call (fun r ->
+and zEXTS ((zm__tv, zv) : (Big_int.num * (bit) list)) : (bit) list = sail_call (fun r ->
   sign_extend (zv, zm__tv))
 
-and zEXTZ ((zm__tv, zv) : (Big_int.num * zbits)) : zbits = sail_call (fun r ->
+and zEXTZ ((zm__tv, zv) : (Big_int.num * (bit) list)) : (bit) list = sail_call (fun r ->
   zero_extend (zv, zm__tv))
 
-and zz8operatorz0zI_sz9 ((zx, zy) : (zbits * zbits)) : bool = sail_call (fun r ->
+and zz8operatorz0zI_sz9 ((zx, zy) : ((bit) list * (bit) list)) : bool = sail_call (fun r ->
   lt ((sint zx), (sint zy)))
 
-and zz8operatorz0zKzJ_sz9 ((zx, zy) : (zbits * zbits)) : bool = sail_call (fun r ->
+and zz8operatorz0zKzJ_sz9 ((zx, zy) : ((bit) list * (bit) list)) : bool = sail_call (fun r ->
   gteq ((sint zx), (sint zy)))
 
-and zz8operatorz0zI_uz9 ((zx, zy) : (zbits * zbits)) : bool = sail_call (fun r ->
+and zz8operatorz0zI_uz9 ((zx, zy) : ((bit) list * (bit) list)) : bool = sail_call (fun r ->
   lt ((uint zx), (uint zy)))
 
-and zz8operatorz0zKzJ_uz9 ((zx, zy) : (zbits * zbits)) : bool = sail_call (fun r ->
+and zz8operatorz0zKzJ_uz9 ((zx, zy) : ((bit) list * (bit) list)) : bool = sail_call (fun r ->
   gteq ((uint zx), (uint zy)))
 
-and zz8operatorz0zIzJ_uz9 ((zx, zy) : (zbits * zbits)) : bool = sail_call (fun r ->
+and zz8operatorz0zIzJ_uz9 ((zx, zy) : ((bit) list * (bit) list)) : bool = sail_call (fun r ->
   lteq ((uint zx), (uint zy)))
 
-and zbool_to_bits (zx : bool) : zbits = sail_call (fun r ->
+and zbool_to_bits (zx : (bool)) : (bit) list = sail_call (fun r ->
   if zx then [B1] else [B0])
 
-and zbit_to_bool (zb : bit) : bool = sail_call (fun r ->
+and zbit_to_bool (zb : (bit)) : bool = sail_call (fun r ->
   begin
     match zb with
     | zp0z3 when (eq_bit (zp0z3, B1)) -> true
     | zp0z3 when (eq_bit (zp0z3, B0)) -> false
   end)
 
-and zvector64 (zn : Big_int.num) : zbits = sail_call (fun r ->
+and zvector64 (zn : (Big_int.num)) : (bit) list = sail_call (fun r ->
   get_slice_int ((Big_int.of_int (64)), zn, Big_int.zero))
 
-and zto_bits ((zl, zn) : (Big_int.num * Big_int.num)) : zbits = sail_call (fun r ->
+and zto_bits ((zl, zn) : (Big_int.num * Big_int.num)) : (bit) list = sail_call (fun r ->
   get_slice_int (zl, zn, Big_int.zero))
 
-and zshift_right_arith64 ((zv, zshift) : (zbits * zbits)) : zbits = sail_call (fun r ->
+and zshift_right_arith64 ((zv, zshift) : ((bit) list * (bit) list)) : (bit) list = sail_call (fun r ->
   let zv128 = (zEXTS ((Big_int.of_int (128)), zv)) in
   subrange ((shift_bits_right (zv128, zshift)), (Big_int.of_int (63)), Big_int.zero))
 
-and zshift_right_arith32 ((zv, zshift) : (zbits * zbits)) : zbits = sail_call (fun r ->
+and zshift_right_arith32 ((zv, zshift) : ((bit) list * (bit) list)) : (bit) list = sail_call (fun r ->
   let zv64 = (zEXTS ((Big_int.of_int (64)), zv)) in
   subrange ((shift_bits_right (zv64, zshift)), (Big_int.of_int (31)), Big_int.zero))
+
+and zn_leading_spaces (zs : (string)) : Big_int.num = sail_call (fun r ->
+  begin
+    match zs with
+    | "" -> Big_int.zero
+    | _ ->
+      begin
+        match (string_take (zs, (Big_int.of_int (1)))) with
+        | " " ->
+          add_int ((Big_int.of_int (1)), (zex_nat (zn_leading_spaces (string_drop (zs, (Big_int.of_int (1)))))))
+        | _ -> Big_int.zero
+      end
+  end)
+
+and zspc_forwards (() : (unit)) : string = sail_call (fun r -> " ")
+
+and zspc_backwards (zs : (string)) : unit = sail_call (fun r -> ())
+
+and zspc_matches_prefix (zs : (string)) : ((unit * Big_int.num)) zoption = sail_call (fun r ->
+  let zn = (zn_leading_spaces zs) in
+  begin
+    match zn with
+    | zl__192 when (eq_int (zl__192, Big_int.zero)) -> ZNone ()
+    | _ -> ZSome ((), zn)
+  end)
+
+and zopt_spc_forwards (() : (unit)) : string = sail_call (fun r -> "")
+
+and zopt_spc_backwards (zs : (string)) : unit = sail_call (fun r -> ())
+
+and zopt_spc_matches_prefix (zs : (string)) : ((unit * Big_int.num)) zoption = sail_call (fun r ->
+  ZSome ((), zn_leading_spaces zs))
+
+and zdef_spc_forwards (() : (unit)) : string = sail_call (fun r -> " ")
+
+and zdef_spc_backwards (zs : (string)) : unit = sail_call (fun r -> ())
+
+and zdef_spc_matches_prefix (zs : (string)) : ((unit * Big_int.num)) zoption = sail_call (fun r ->
+  zopt_spc_matches_prefix zs)
 
 let zxlen = (Big_int.of_int (64));;
 
 type  zxlenbits = zbits;;
 
-let string_of_zxlenbits (gs464 : zxlenbits) = string_of_zbits gs464;;
+let string_of_zxlenbits (gs598 : zxlenbits) = string_of_zbits gs598;;
 
 let zxlen_max_unsigned = (sub_int ((pow2 zxlen), (Big_int.of_int (1))));;
 
@@ -881,33 +908,33 @@ let zxlen_min_signed = (sub_int (Big_int.zero, (pow2 (sub_int (zxlen, (Big_int.o
 
 type  zhalf = zbits;;
 
-let string_of_zhalf (gs465 : zhalf) = string_of_zbits gs465;;
+let string_of_zhalf (gs599 : zhalf) = string_of_zbits gs599;;
 
 type  zword = zbits;;
 
-let string_of_zword (gs466 : zword) = string_of_zbits gs466;;
+let string_of_zword (gs600 : zword) = string_of_zbits gs600;;
 
 type  zregbits = zbits;;
 
-let string_of_zregbits (gs467 : zregbits) = string_of_zbits gs467;;
+let string_of_zregbits (gs601 : zregbits) = string_of_zbits gs601;;
 
 type  zcregbits = zbits;;
 
-let string_of_zcregbits (gs468 : zcregbits) = string_of_zbits gs468;;
+let string_of_zcregbits (gs602 : zcregbits) = string_of_zbits gs602;;
 
 type  zcsreg = zbits;;
 
-let string_of_zcsreg (gs469 : zcsreg) = string_of_zbits gs469;;
+let string_of_zcsreg (gs603 : zcsreg) = string_of_zbits gs603;;
 
 type  zregno = Big_int.num;;
 
-let string_of_zregno (gs470 : zregno) = string_of_zint gs470;;
+let string_of_zregno (gs604 : zregno) = string_of_zint gs604;;
 
-let rec zregbits_to_regno (zb : zbits) : zregno = sail_call (fun r ->
+let rec zregbits_to_regno (zb : ((bit) list)) : Big_int.num = sail_call (fun r ->
   let zr = (uint zb) in
   zr)
 
-and zcreg2reg_bits (zcreg : zcregbits) : zregbits = sail_call (fun r ->
+and zcreg2reg_bits (zcreg : ((bit) list)) : (bit) list = sail_call (fun r ->
   append ([B0; B1], zcreg))
 
 let zzzreg = [B0; B0; B0; B0; B0];;
@@ -919,6 +946,8 @@ let zsp = [B0; B0; B0; B1; B0];;
 let zPC : (zxlenbits) ref = ref (undefined_vector ((Big_int.of_int (64)), (undefined_bit ())));;
 
 let znextPC : (zxlenbits) ref = ref (undefined_vector ((Big_int.of_int (64)), (undefined_bit ())));;
+
+let zinstbits : (zxlenbits) ref = ref (undefined_vector ((Big_int.of_int (64)), (undefined_bit ())));;
 
 let zXs : ((zxlenbits) list) ref = ref (undefined_vector ((Big_int.of_int (32)), (undefined_vector ((Big_int.of_int (64)), (undefined_bit ())))));;
 
@@ -984,7 +1013,7 @@ let zx30 : (zxlenbits) ref = ref (undefined_vector ((Big_int.of_int (64)), (unde
 
 let zx31 : (zxlenbits) ref = ref (undefined_vector ((Big_int.of_int (64)), (undefined_bit ())));;
 
-let rec zrX (zr : zregno) : zxlenbits = sail_call (fun r ->
+let rec zrX (zr : (Big_int.num)) : (bit) list = sail_call (fun r ->
   begin
     match zr with
     | zl__160 when (eq_int (zl__160, Big_int.zero)) ->
@@ -1022,7 +1051,7 @@ let rec zrX (zr : zregno) : zxlenbits = sail_call (fun r ->
     | zl__191 when (eq_int (zl__191, (Big_int.of_int (31)))) -> !zx31
   end)
 
-and zwX ((zr, zv) : (zregno * zxlenbits)) : unit = sail_call (fun r ->
+and zwX ((zr, zv) : (Big_int.num * (bit) list)) : unit = sail_call (fun r ->
   begin
     begin
       match zr with
@@ -1062,7 +1091,7 @@ and zwX ((zr, zv) : (zregno * zxlenbits)) : unit = sail_call (fun r ->
     if (zneq_atom (zr, Big_int.zero)) then (print_endline (concat_str ("x", (concat_str ((string_of_int zr), (concat_str (" <- ", (string_of_bits zv)))))))) else ()
   end)
 
-and zreg_name_abi (zr : zregbits) : string = sail_call (fun r ->
+and zreg_name_abi (zr : ((bit) list)) : string = sail_call (fun r ->
   begin
     match zr with
     | zb__0 when (let zp0z3 = (access (zb__0, (Big_int.of_int (4)))) in
@@ -1293,19 +1322,19 @@ and zreg_name_abi (zr : zregbits) : string = sail_call (fun r ->
 
 type  zopcode = zbits;;
 
-let string_of_zopcode (gs519 : zopcode) = string_of_zbits gs519;;
+let string_of_zopcode (gs657 : zopcode) = string_of_zbits gs657;;
 
 type  zimm12 = zbits;;
 
-let string_of_zimm12 (gs520 : zimm12) = string_of_zbits gs520;;
+let string_of_zimm12 (gs658 : zimm12) = string_of_zbits gs658;;
 
 type  zimm20 = zbits;;
 
-let string_of_zimm20 (gs521 : zimm20) = string_of_zbits gs521;;
+let string_of_zimm20 (gs659 : zimm20) = string_of_zbits gs659;;
 
 type  zamo = zbits;;
 
-let string_of_zamo (gs522 : zamo) = string_of_zbits gs522;;
+let string_of_zamo (gs660 : zamo) = string_of_zbits gs660;;
 
 type zArchitecture = | ZRV32 | ZRV64 | ZRV128;;
 
@@ -1314,7 +1343,7 @@ let string_of_zArchitecture = function
   | ZRV64 -> "RV64"
   | ZRV128 -> "RV128";;
 
-let rec zArchitecture_of_num (zargz3 : Big_int.num) : zArchitecture = sail_call (fun r ->
+let rec zArchitecture_of_num (zargz3 : (Big_int.num)) : zArchitecture = sail_call (fun r ->
   begin
     match zargz3 with
     | zl__126 when (eq_int (zl__126, Big_int.zero)) -> ZRV32
@@ -1322,7 +1351,7 @@ let rec zArchitecture_of_num (zargz3 : Big_int.num) : zArchitecture = sail_call 
     | _ -> ZRV128
   end)
 
-and znum_of_Architecture (zargz3 : zArchitecture) : Big_int.num = sail_call (fun r ->
+and znum_of_Architecture (zargz3 : (zArchitecture)) : Big_int.num = sail_call (fun r ->
   begin
     match zargz3 with
     | ZRV32 -> Big_int.zero
@@ -1330,14 +1359,14 @@ and znum_of_Architecture (zargz3 : zArchitecture) : Big_int.num = sail_call (fun
     | ZRV128 -> (Big_int.of_int (2))
   end)
 
-and zundefined_Architecture (() : unit) : zArchitecture = sail_call (fun r ->
+and zundefined_Architecture (() : (unit)) : zArchitecture = sail_call (fun r ->
   internal_pick [ZRV32; ZRV64; ZRV128])
 
 type  zarch_xlen = zbits;;
 
-let string_of_zarch_xlen (gs532 : zarch_xlen) = string_of_zbits gs532;;
+let string_of_zarch_xlen (gs673 : zarch_xlen) = string_of_zbits gs673;;
 
-let rec zarchitecture (za : zarch_xlen) : (zArchitecture) zoption = sail_call (fun r ->
+let rec zarchitecture (za : ((bit) list)) : (zArchitecture) zoption = sail_call (fun r ->
   begin
     match za with
     | zb__0 when (let zp0z3 = (access (zb__0, (Big_int.of_int (1)))) in
@@ -1355,7 +1384,7 @@ let rec zarchitecture (za : zarch_xlen) : (zArchitecture) zoption = sail_call (f
     | _ -> ZNone ()
   end)
 
-and zarch_to_bits (za : zArchitecture) : zarch_xlen = sail_call (fun r ->
+and zarch_to_bits (za : (zArchitecture)) : (bit) list = sail_call (fun r ->
   begin
     match za with
     | ZRV32 -> [B0; B1]
@@ -1365,7 +1394,7 @@ and zarch_to_bits (za : zArchitecture) : zarch_xlen = sail_call (fun r ->
 
 type  zpriv_level = zbits;;
 
-let string_of_zpriv_level (gs539 : zpriv_level) = string_of_zbits gs539;;
+let string_of_zpriv_level (gs682 : zpriv_level) = string_of_zbits gs682;;
 
 type zPrivilege = | ZUser | ZSupervisor | ZMachine;;
 
@@ -1374,7 +1403,7 @@ let string_of_zPrivilege = function
   | ZSupervisor -> "Supervisor"
   | ZMachine -> "Machine";;
 
-let rec zPrivilege_of_num (zargz3 : Big_int.num) : zPrivilege = sail_call (fun r ->
+let rec zPrivilege_of_num (zargz3 : (Big_int.num)) : zPrivilege = sail_call (fun r ->
   begin
     match zargz3 with
     | zl__124 when (eq_int (zl__124, Big_int.zero)) -> ZUser
@@ -1382,7 +1411,7 @@ let rec zPrivilege_of_num (zargz3 : Big_int.num) : zPrivilege = sail_call (fun r
     | _ -> ZMachine
   end)
 
-and znum_of_Privilege (zargz3 : zPrivilege) : Big_int.num = sail_call (fun r ->
+and znum_of_Privilege (zargz3 : (zPrivilege)) : Big_int.num = sail_call (fun r ->
   begin
     match zargz3 with
     | ZUser -> Big_int.zero
@@ -1390,10 +1419,10 @@ and znum_of_Privilege (zargz3 : zPrivilege) : Big_int.num = sail_call (fun r ->
     | ZMachine -> (Big_int.of_int (2))
   end)
 
-and zundefined_Privilege (() : unit) : zPrivilege = sail_call (fun r ->
+and zundefined_Privilege (() : (unit)) : zPrivilege = sail_call (fun r ->
   internal_pick [ZUser; ZSupervisor; ZMachine])
 
-and zprivLevel_to_bits (zp : zPrivilege) : zpriv_level = sail_call (fun r ->
+and zprivLevel_to_bits (zp : (zPrivilege)) : (bit) list = sail_call (fun r ->
   begin
     match zp with
     | ZUser -> [B0; B0]
@@ -1401,7 +1430,7 @@ and zprivLevel_to_bits (zp : zPrivilege) : zpriv_level = sail_call (fun r ->
     | ZMachine -> [B1; B1]
   end)
 
-and zprivLevel_of_bits (zp : zpriv_level) : zPrivilege = sail_call (fun r ->
+and zprivLevel_of_bits (zp : ((bit) list)) : zPrivilege = sail_call (fun r ->
   begin
     match zp with
     | zb__0 when (let zp0z3 = (access (zb__0, (Big_int.of_int (1)))) in
@@ -1418,7 +1447,7 @@ and zprivLevel_of_bits (zp : zpriv_level) : zPrivilege = sail_call (fun r ->
       ZMachine
   end)
 
-and zprivLevel_to_str (zp : zPrivilege) : string = sail_call (fun r ->
+and zprivLevel_to_str (zp : (zPrivilege)) : string = sail_call (fun r ->
   begin match zp with | ZUser -> "U" | ZSupervisor -> "S" | ZMachine -> "M" end)
 
 type zAccessType = | ZRead | ZWrite | ZReadWrite | ZExecute;;
@@ -1429,7 +1458,7 @@ let string_of_zAccessType = function
   | ZReadWrite -> "ReadWrite"
   | ZExecute -> "Execute";;
 
-let rec zAccessType_of_num (zargz3 : Big_int.num) : zAccessType = sail_call (fun r ->
+let rec zAccessType_of_num (zargz3 : (Big_int.num)) : zAccessType = sail_call (fun r ->
   begin
     match zargz3 with
     | zl__121 when (eq_int (zl__121, Big_int.zero)) -> ZRead
@@ -1438,7 +1467,7 @@ let rec zAccessType_of_num (zargz3 : Big_int.num) : zAccessType = sail_call (fun
     | _ -> ZExecute
   end)
 
-and znum_of_AccessType (zargz3 : zAccessType) : Big_int.num = sail_call (fun r ->
+and znum_of_AccessType (zargz3 : (zAccessType)) : Big_int.num = sail_call (fun r ->
   begin
     match zargz3 with
     | ZRead -> Big_int.zero
@@ -1447,10 +1476,10 @@ and znum_of_AccessType (zargz3 : zAccessType) : Big_int.num = sail_call (fun r -
     | ZExecute -> (Big_int.of_int (3))
   end)
 
-and zundefined_AccessType (() : unit) : zAccessType = sail_call (fun r ->
+and zundefined_AccessType (() : (unit)) : zAccessType = sail_call (fun r ->
   internal_pick [ZRead; ZWrite; ZReadWrite; ZExecute])
 
-and zaccessType_to_str (za : zAccessType) : string = sail_call (fun r ->
+and zaccessType_to_str (za : (zAccessType)) : string = sail_call (fun r ->
   begin
     match za with
     | ZRead -> "R"
@@ -1465,24 +1494,24 @@ let string_of_zReadType = function
   | ZInstruction -> "Instruction"
   | ZData -> "Data";;
 
-let rec zReadType_of_num (zargz3 : Big_int.num) : zReadType = sail_call (fun r ->
+let rec zReadType_of_num (zargz3 : (Big_int.num)) : zReadType = sail_call (fun r ->
   begin
     match zargz3 with
     | zl__120 when (eq_int (zl__120, Big_int.zero)) -> ZInstruction
     | _ -> ZData
   end)
 
-and znum_of_ReadType (zargz3 : zReadType) : Big_int.num = sail_call (fun r ->
+and znum_of_ReadType (zargz3 : (zReadType)) : Big_int.num = sail_call (fun r ->
   begin
     match zargz3 with
     | ZInstruction -> Big_int.zero
     | ZData -> (Big_int.of_int (1))
   end)
 
-and zundefined_ReadType (() : unit) : zReadType = sail_call (fun r ->
+and zundefined_ReadType (() : (unit)) : zReadType = sail_call (fun r ->
   internal_pick [ZInstruction; ZData])
 
-and zreadType_to_str (zr : zReadType) : string = sail_call (fun r ->
+and zreadType_to_str (zr : (zReadType)) : string = sail_call (fun r ->
   begin match zr with | ZInstruction -> "I" | ZData -> "D" end)
 
 type zword_width = | ZBYTE | ZHALF | ZWORD | ZDOUBLE;;
@@ -1493,7 +1522,7 @@ let string_of_zword_width = function
   | ZWORD -> "WORD"
   | ZDOUBLE -> "DOUBLE";;
 
-let rec zword_width_of_num (zargz3 : Big_int.num) : zword_width = sail_call (fun r ->
+let rec zword_width_of_num (zargz3 : (Big_int.num)) : zword_width = sail_call (fun r ->
   begin
     match zargz3 with
     | zl__117 when (eq_int (zl__117, Big_int.zero)) -> ZBYTE
@@ -1502,7 +1531,7 @@ let rec zword_width_of_num (zargz3 : Big_int.num) : zword_width = sail_call (fun
     | _ -> ZDOUBLE
   end)
 
-and znum_of_word_width (zargz3 : zword_width) : Big_int.num = sail_call (fun r ->
+and znum_of_word_width (zargz3 : (zword_width)) : Big_int.num = sail_call (fun r ->
   begin
     match zargz3 with
     | ZBYTE -> Big_int.zero
@@ -1511,12 +1540,12 @@ and znum_of_word_width (zargz3 : zword_width) : Big_int.num = sail_call (fun r -
     | ZDOUBLE -> (Big_int.of_int (3))
   end)
 
-and zundefined_word_width (() : unit) : zword_width = sail_call (fun r ->
+and zundefined_word_width (() : (unit)) : zword_width = sail_call (fun r ->
   internal_pick [ZBYTE; ZHALF; ZWORD; ZDOUBLE])
 
 type  zexc_code = zbits;;
 
-let string_of_zexc_code (gs591 : zexc_code) = string_of_zbits gs591;;
+let string_of_zexc_code (gs751 : zexc_code) = string_of_zbits gs751;;
 
 type zInterruptType =
   | ZI_U_Software
@@ -1540,7 +1569,7 @@ let string_of_zInterruptType = function
   | ZI_S_External -> "I_S_External"
   | ZI_M_External -> "I_M_External";;
 
-let rec zInterruptType_of_num (zargz3 : Big_int.num) : zInterruptType = sail_call (fun r ->
+let rec zInterruptType_of_num (zargz3 : (Big_int.num)) : zInterruptType = sail_call (fun r ->
   begin
     match zargz3 with
     | zl__109 when (eq_int (zl__109, Big_int.zero)) -> ZI_U_Software
@@ -1554,7 +1583,7 @@ let rec zInterruptType_of_num (zargz3 : Big_int.num) : zInterruptType = sail_cal
     | _ -> ZI_M_External
   end)
 
-and znum_of_InterruptType (zargz3 : zInterruptType) : Big_int.num = sail_call (fun r ->
+and znum_of_InterruptType (zargz3 : (zInterruptType)) : Big_int.num = sail_call (fun r ->
   begin
     match zargz3 with
     | ZI_U_Software -> Big_int.zero
@@ -1568,10 +1597,10 @@ and znum_of_InterruptType (zargz3 : zInterruptType) : Big_int.num = sail_call (f
     | ZI_M_External -> (Big_int.of_int (8))
   end)
 
-and zundefined_InterruptType (() : unit) : zInterruptType = sail_call (fun r ->
+and zundefined_InterruptType (() : (unit)) : zInterruptType = sail_call (fun r ->
   internal_pick [ZI_U_Software; ZI_S_Software; ZI_M_Software; ZI_U_Timer; ZI_S_Timer; ZI_M_Timer; ZI_U_External; ZI_S_External; ZI_M_External])
 
-and zinterruptType_to_bits (zi : zInterruptType) : zexc_code = sail_call (fun r ->
+and zinterruptType_to_bits (zi : (zInterruptType)) : (bit) list = sail_call (fun r ->
   begin
     match zi with
     | ZI_U_Software -> [B0; B0; B0; B0]
@@ -1621,7 +1650,7 @@ let string_of_zExceptionType = function
   | ZE_Reserved_14 -> "E_Reserved_14"
   | ZE_SAMO_Page_Fault -> "E_SAMO_Page_Fault";;
 
-let rec zExceptionType_of_num (zargz3 : Big_int.num) : zExceptionType = sail_call (fun r ->
+let rec zExceptionType_of_num (zargz3 : (Big_int.num)) : zExceptionType = sail_call (fun r ->
   begin
     match zargz3 with
     | zl__94 when (eq_int (zl__94, Big_int.zero)) -> ZE_Fetch_Addr_Align
@@ -1648,7 +1677,7 @@ let rec zExceptionType_of_num (zargz3 : Big_int.num) : zExceptionType = sail_cal
     | _ -> ZE_SAMO_Page_Fault
   end)
 
-and znum_of_ExceptionType (zargz3 : zExceptionType) : Big_int.num = sail_call (fun r ->
+and znum_of_ExceptionType (zargz3 : (zExceptionType)) : Big_int.num = sail_call (fun r ->
   begin
     match zargz3 with
     | ZE_Fetch_Addr_Align -> Big_int.zero
@@ -1669,10 +1698,10 @@ and znum_of_ExceptionType (zargz3 : zExceptionType) : Big_int.num = sail_call (f
     | ZE_SAMO_Page_Fault -> (Big_int.of_int (15))
   end)
 
-and zundefined_ExceptionType (() : unit) : zExceptionType = sail_call (fun r ->
+and zundefined_ExceptionType (() : (unit)) : zExceptionType = sail_call (fun r ->
   internal_pick [ZE_Fetch_Addr_Align; ZE_Fetch_Access_Fault; ZE_Illegal_Instr; ZE_Breakpoint; ZE_Load_Addr_Align; ZE_Load_Access_Fault; ZE_SAMO_Addr_Align; ZE_SAMO_Access_Fault; ZE_U_EnvCall; ZE_S_EnvCall; ZE_Reserved_10; ZE_M_EnvCall; ZE_Fetch_Page_Fault; ZE_Load_Page_Fault; ZE_Reserved_14; ZE_SAMO_Page_Fault])
 
-and zexceptionType_to_bits (ze : zExceptionType) : zexc_code = sail_call (fun r ->
+and zexceptionType_to_bits (ze : (zExceptionType)) : (bit) list = sail_call (fun r ->
   begin
     match ze with
     | ZE_Fetch_Addr_Align -> [B0; B0; B0; B0]
@@ -1693,7 +1722,7 @@ and zexceptionType_to_bits (ze : zExceptionType) : zexc_code = sail_call (fun r 
     | ZE_SAMO_Page_Fault -> [B1; B1; B1; B1]
   end)
 
-and zexceptionType_to_str (ze : zExceptionType) : string = sail_call (fun r ->
+and zexceptionType_to_str (ze : (zExceptionType)) : string = sail_call (fun r ->
   begin
     match ze with
     | ZE_Fetch_Addr_Align -> "misaligned-fetch"
@@ -1717,20 +1746,20 @@ and zexceptionType_to_str (ze : zExceptionType) : string = sail_call (fun r ->
 exception ZError_not_implemented of string;;
 exception ZError_internal_error of unit;;
 
-let rec zundefined_exception (() : unit) : exn = sail_call (fun r ->
+let rec zundefined_exception (() : (unit)) : exn = sail_call (fun r ->
   let zu_0 = (undefined_string ()) in
   let zu_1 = (undefined_unit ()) in
   internal_pick [ZError_not_implemented zu_0; ZError_internal_error zu_1])
 
-and znot_implemented : 'za. string -> 'za = fun zmessage -> sail_call (fun r ->
+and znot_implemented : 'za. (string) -> 'za = fun zmessage -> sail_call (fun r ->
   raise (ZError_not_implemented zmessage))
 
-and zinternal_error : 'za. string -> 'za = fun zs -> sail_call (fun r ->
+and zinternal_error : 'za. (string) -> 'za = fun zs -> sail_call (fun r ->
   begin assert false; raise (ZError_internal_error ()) end)
 
 type  ztv_mode = zbits;;
 
-let string_of_ztv_mode (gs628 : ztv_mode) = string_of_zbits gs628;;
+let string_of_ztv_mode (gs800 : ztv_mode) = string_of_zbits gs800;;
 
 type zTrapVectorMode = | ZTV_Direct | ZTV_Vector | ZTV_Reserved;;
 
@@ -1739,7 +1768,7 @@ let string_of_zTrapVectorMode = function
   | ZTV_Vector -> "TV_Vector"
   | ZTV_Reserved -> "TV_Reserved";;
 
-let rec zTrapVectorMode_of_num (zargz3 : Big_int.num) : zTrapVectorMode = sail_call (fun r ->
+let rec zTrapVectorMode_of_num (zargz3 : (Big_int.num)) : zTrapVectorMode = sail_call (fun r ->
   begin
     match zargz3 with
     | zl__92 when (eq_int (zl__92, Big_int.zero)) -> ZTV_Direct
@@ -1747,7 +1776,7 @@ let rec zTrapVectorMode_of_num (zargz3 : Big_int.num) : zTrapVectorMode = sail_c
     | _ -> ZTV_Reserved
   end)
 
-and znum_of_TrapVectorMode (zargz3 : zTrapVectorMode) : Big_int.num = sail_call (fun r ->
+and znum_of_TrapVectorMode (zargz3 : (zTrapVectorMode)) : Big_int.num = sail_call (fun r ->
   begin
     match zargz3 with
     | ZTV_Direct -> Big_int.zero
@@ -1755,10 +1784,10 @@ and znum_of_TrapVectorMode (zargz3 : zTrapVectorMode) : Big_int.num = sail_call 
     | ZTV_Reserved -> (Big_int.of_int (2))
   end)
 
-and zundefined_TrapVectorMode (() : unit) : zTrapVectorMode = sail_call (fun r ->
+and zundefined_TrapVectorMode (() : (unit)) : zTrapVectorMode = sail_call (fun r ->
   internal_pick [ZTV_Direct; ZTV_Vector; ZTV_Reserved])
 
-and ztrapVectorMode_of_bits (zm : ztv_mode) : zTrapVectorMode = sail_call (fun r ->
+and ztrapVectorMode_of_bits (zm : ((bit) list)) : zTrapVectorMode = sail_call (fun r ->
   begin
     match zm with
     | zb__0 when (let zp0z3 = (access (zb__0, (Big_int.of_int (1)))) in
@@ -1774,7 +1803,7 @@ and ztrapVectorMode_of_bits (zm : ztv_mode) : zTrapVectorMode = sail_call (fun r
 
 type  zext_status = zbits;;
 
-let string_of_zext_status (gs641 : zext_status) = string_of_zbits gs641;;
+let string_of_zext_status (gs817 : zext_status) = string_of_zbits gs817;;
 
 type zExtStatus = | ZOff | ZInitial | ZClean | ZDirty;;
 
@@ -1784,7 +1813,7 @@ let string_of_zExtStatus = function
   | ZClean -> "Clean"
   | ZDirty -> "Dirty";;
 
-let rec zExtStatus_of_num (zargz3 : Big_int.num) : zExtStatus = sail_call (fun r ->
+let rec zExtStatus_of_num (zargz3 : (Big_int.num)) : zExtStatus = sail_call (fun r ->
   begin
     match zargz3 with
     | zl__89 when (eq_int (zl__89, Big_int.zero)) -> ZOff
@@ -1793,7 +1822,7 @@ let rec zExtStatus_of_num (zargz3 : Big_int.num) : zExtStatus = sail_call (fun r
     | _ -> ZDirty
   end)
 
-and znum_of_ExtStatus (zargz3 : zExtStatus) : Big_int.num = sail_call (fun r ->
+and znum_of_ExtStatus (zargz3 : (zExtStatus)) : Big_int.num = sail_call (fun r ->
   begin
     match zargz3 with
     | ZOff -> Big_int.zero
@@ -1802,10 +1831,10 @@ and znum_of_ExtStatus (zargz3 : zExtStatus) : Big_int.num = sail_call (fun r ->
     | ZDirty -> (Big_int.of_int (3))
   end)
 
-and zundefined_ExtStatus (() : unit) : zExtStatus = sail_call (fun r ->
+and zundefined_ExtStatus (() : (unit)) : zExtStatus = sail_call (fun r ->
   internal_pick [ZOff; ZInitial; ZClean; ZDirty])
 
-and zextStatus_to_bits (ze : zExtStatus) : zext_status = sail_call (fun r ->
+and zextStatus_to_bits (ze : (zExtStatus)) : (bit) list = sail_call (fun r ->
   begin
     match ze with
     | ZOff -> [B0; B0]
@@ -1814,7 +1843,7 @@ and zextStatus_to_bits (ze : zExtStatus) : zext_status = sail_call (fun r ->
     | ZDirty -> [B1; B1]
   end)
 
-and zextStatus_of_bits (ze : zext_status) : zExtStatus = sail_call (fun r ->
+and zextStatus_of_bits (ze : ((bit) list)) : zExtStatus = sail_call (fun r ->
   begin
     match ze with
     | zb__0 when (let zp0z3 = (access (zb__0, (Big_int.of_int (1)))) in
@@ -1837,7 +1866,7 @@ and zextStatus_of_bits (ze : zext_status) : zExtStatus = sail_call (fun r ->
 
 type  zsatp_mode = zbits;;
 
-let string_of_zsatp_mode (gs657 : zsatp_mode) = string_of_zbits gs657;;
+let string_of_zsatp_mode (gs838 : zsatp_mode) = string_of_zbits gs838;;
 
 type zSATPMode = | ZSbare | ZSv32 | ZSv39;;
 
@@ -1846,7 +1875,7 @@ let string_of_zSATPMode = function
   | ZSv32 -> "Sv32"
   | ZSv39 -> "Sv39";;
 
-let rec zSATPMode_of_num (zargz3 : Big_int.num) : zSATPMode = sail_call (fun r ->
+let rec zSATPMode_of_num (zargz3 : (Big_int.num)) : zSATPMode = sail_call (fun r ->
   begin
     match zargz3 with
     | zl__87 when (eq_int (zl__87, Big_int.zero)) -> ZSbare
@@ -1854,7 +1883,7 @@ let rec zSATPMode_of_num (zargz3 : Big_int.num) : zSATPMode = sail_call (fun r -
     | _ -> ZSv39
   end)
 
-and znum_of_SATPMode (zargz3 : zSATPMode) : Big_int.num = sail_call (fun r ->
+and znum_of_SATPMode (zargz3 : (zSATPMode)) : Big_int.num = sail_call (fun r ->
   begin
     match zargz3 with
     | ZSbare -> Big_int.zero
@@ -1862,10 +1891,10 @@ and znum_of_SATPMode (zargz3 : zSATPMode) : Big_int.num = sail_call (fun r ->
     | ZSv39 -> (Big_int.of_int (2))
   end)
 
-and zundefined_SATPMode (() : unit) : zSATPMode = sail_call (fun r ->
+and zundefined_SATPMode (() : (unit)) : zSATPMode = sail_call (fun r ->
   internal_pick [ZSbare; ZSv32; ZSv39])
 
-and zsatpMode_of_bits ((za, zm) : (zArchitecture * zsatp_mode)) : (zSATPMode) zoption = sail_call (fun r ->
+and zsatpMode_of_bits ((za, zm) : (zArchitecture * (bit) list)) : (zSATPMode) zoption = sail_call (fun r ->
   begin
     match (za, zm) with
     | (_, zb__0) when (let zp0z3 = (access (zb__0, (Big_int.of_int (3)))) in
@@ -1891,7 +1920,7 @@ and zsatpMode_of_bits ((za, zm) : (zArchitecture * zsatp_mode)) : (zSATPMode) zo
 
 type  zcsrRW = zbits;;
 
-let string_of_zcsrRW (gs672 : zcsrRW) = string_of_zbits gs672;;
+let string_of_zcsrRW (gs856 : zcsrRW) = string_of_zbits gs856;;
 
 type zuop = | ZRISCV_LUI | ZRISCV_AUIPC;;
 
@@ -1899,21 +1928,21 @@ let string_of_zuop = function
   | ZRISCV_LUI -> "RISCV_LUI"
   | ZRISCV_AUIPC -> "RISCV_AUIPC";;
 
-let rec zuop_of_num (zargz3 : Big_int.num) : zuop = sail_call (fun r ->
+let rec zuop_of_num (zargz3 : (Big_int.num)) : zuop = sail_call (fun r ->
   begin
     match zargz3 with
     | zl__86 when (eq_int (zl__86, Big_int.zero)) -> ZRISCV_LUI
     | _ -> ZRISCV_AUIPC
   end)
 
-and znum_of_uop (zargz3 : zuop) : Big_int.num = sail_call (fun r ->
+and znum_of_uop (zargz3 : (zuop)) : Big_int.num = sail_call (fun r ->
   begin
     match zargz3 with
     | ZRISCV_LUI -> Big_int.zero
     | ZRISCV_AUIPC -> (Big_int.of_int (1))
   end)
 
-and zundefined_uop (() : unit) : zuop = sail_call (fun r ->
+and zundefined_uop (() : (unit)) : zuop = sail_call (fun r ->
   internal_pick [ZRISCV_LUI; ZRISCV_AUIPC])
 
 type zbop =
@@ -1932,7 +1961,7 @@ let string_of_zbop = function
   | ZRISCV_BLTU -> "RISCV_BLTU"
   | ZRISCV_BGEU -> "RISCV_BGEU";;
 
-let rec zbop_of_num (zargz3 : Big_int.num) : zbop = sail_call (fun r ->
+let rec zbop_of_num (zargz3 : (Big_int.num)) : zbop = sail_call (fun r ->
   begin
     match zargz3 with
     | zl__81 when (eq_int (zl__81, Big_int.zero)) -> ZRISCV_BEQ
@@ -1943,7 +1972,7 @@ let rec zbop_of_num (zargz3 : Big_int.num) : zbop = sail_call (fun r ->
     | _ -> ZRISCV_BGEU
   end)
 
-and znum_of_bop (zargz3 : zbop) : Big_int.num = sail_call (fun r ->
+and znum_of_bop (zargz3 : (zbop)) : Big_int.num = sail_call (fun r ->
   begin
     match zargz3 with
     | ZRISCV_BEQ -> Big_int.zero
@@ -1954,7 +1983,7 @@ and znum_of_bop (zargz3 : zbop) : Big_int.num = sail_call (fun r ->
     | ZRISCV_BGEU -> (Big_int.of_int (5))
   end)
 
-and zundefined_bop (() : unit) : zbop = sail_call (fun r ->
+and zundefined_bop (() : (unit)) : zbop = sail_call (fun r ->
   internal_pick [ZRISCV_BEQ; ZRISCV_BNE; ZRISCV_BLT; ZRISCV_BGE; ZRISCV_BLTU; ZRISCV_BGEU])
 
 type ziop =
@@ -1973,7 +2002,7 @@ let string_of_ziop = function
   | ZRISCV_ORI -> "RISCV_ORI"
   | ZRISCV_ANDI -> "RISCV_ANDI";;
 
-let rec ziop_of_num (zargz3 : Big_int.num) : ziop = sail_call (fun r ->
+let rec ziop_of_num (zargz3 : (Big_int.num)) : ziop = sail_call (fun r ->
   begin
     match zargz3 with
     | zl__76 when (eq_int (zl__76, Big_int.zero)) -> ZRISCV_ADDI
@@ -1984,7 +2013,7 @@ let rec ziop_of_num (zargz3 : Big_int.num) : ziop = sail_call (fun r ->
     | _ -> ZRISCV_ANDI
   end)
 
-and znum_of_iop (zargz3 : ziop) : Big_int.num = sail_call (fun r ->
+and znum_of_iop (zargz3 : (ziop)) : Big_int.num = sail_call (fun r ->
   begin
     match zargz3 with
     | ZRISCV_ADDI -> Big_int.zero
@@ -1995,7 +2024,7 @@ and znum_of_iop (zargz3 : ziop) : Big_int.num = sail_call (fun r ->
     | ZRISCV_ANDI -> (Big_int.of_int (5))
   end)
 
-and zundefined_iop (() : unit) : ziop = sail_call (fun r ->
+and zundefined_iop (() : (unit)) : ziop = sail_call (fun r ->
   internal_pick [ZRISCV_ADDI; ZRISCV_SLTI; ZRISCV_SLTIU; ZRISCV_XORI; ZRISCV_ORI; ZRISCV_ANDI])
 
 type zsop = | ZRISCV_SLLI | ZRISCV_SRLI | ZRISCV_SRAI;;
@@ -2005,7 +2034,7 @@ let string_of_zsop = function
   | ZRISCV_SRLI -> "RISCV_SRLI"
   | ZRISCV_SRAI -> "RISCV_SRAI";;
 
-let rec zsop_of_num (zargz3 : Big_int.num) : zsop = sail_call (fun r ->
+let rec zsop_of_num (zargz3 : (Big_int.num)) : zsop = sail_call (fun r ->
   begin
     match zargz3 with
     | zl__74 when (eq_int (zl__74, Big_int.zero)) -> ZRISCV_SLLI
@@ -2013,7 +2042,7 @@ let rec zsop_of_num (zargz3 : Big_int.num) : zsop = sail_call (fun r ->
     | _ -> ZRISCV_SRAI
   end)
 
-and znum_of_sop (zargz3 : zsop) : Big_int.num = sail_call (fun r ->
+and znum_of_sop (zargz3 : (zsop)) : Big_int.num = sail_call (fun r ->
   begin
     match zargz3 with
     | ZRISCV_SLLI -> Big_int.zero
@@ -2021,7 +2050,7 @@ and znum_of_sop (zargz3 : zsop) : Big_int.num = sail_call (fun r ->
     | ZRISCV_SRAI -> (Big_int.of_int (2))
   end)
 
-and zundefined_sop (() : unit) : zsop = sail_call (fun r ->
+and zundefined_sop (() : (unit)) : zsop = sail_call (fun r ->
   internal_pick [ZRISCV_SLLI; ZRISCV_SRLI; ZRISCV_SRAI])
 
 type zrop =
@@ -2048,7 +2077,7 @@ let string_of_zrop = function
   | ZRISCV_OR -> "RISCV_OR"
   | ZRISCV_AND -> "RISCV_AND";;
 
-let rec zrop_of_num (zargz3 : Big_int.num) : zrop = sail_call (fun r ->
+let rec zrop_of_num (zargz3 : (Big_int.num)) : zrop = sail_call (fun r ->
   begin
     match zargz3 with
     | zl__65 when (eq_int (zl__65, Big_int.zero)) -> ZRISCV_ADD
@@ -2063,7 +2092,7 @@ let rec zrop_of_num (zargz3 : Big_int.num) : zrop = sail_call (fun r ->
     | _ -> ZRISCV_AND
   end)
 
-and znum_of_rop (zargz3 : zrop) : Big_int.num = sail_call (fun r ->
+and znum_of_rop (zargz3 : (zrop)) : Big_int.num = sail_call (fun r ->
   begin
     match zargz3 with
     | ZRISCV_ADD -> Big_int.zero
@@ -2078,7 +2107,7 @@ and znum_of_rop (zargz3 : zrop) : Big_int.num = sail_call (fun r ->
     | ZRISCV_AND -> (Big_int.of_int (9))
   end)
 
-and zundefined_rop (() : unit) : zrop = sail_call (fun r ->
+and zundefined_rop (() : (unit)) : zrop = sail_call (fun r ->
   internal_pick [ZRISCV_ADD; ZRISCV_SUB; ZRISCV_SLL; ZRISCV_SLT; ZRISCV_SLTU; ZRISCV_XOR; ZRISCV_SRL; ZRISCV_SRA; ZRISCV_OR; ZRISCV_AND])
 
 type zropw =
@@ -2095,7 +2124,7 @@ let string_of_zropw = function
   | ZRISCV_SRLW -> "RISCV_SRLW"
   | ZRISCV_SRAW -> "RISCV_SRAW";;
 
-let rec zropw_of_num (zargz3 : Big_int.num) : zropw = sail_call (fun r ->
+let rec zropw_of_num (zargz3 : (Big_int.num)) : zropw = sail_call (fun r ->
   begin
     match zargz3 with
     | zl__61 when (eq_int (zl__61, Big_int.zero)) -> ZRISCV_ADDW
@@ -2105,7 +2134,7 @@ let rec zropw_of_num (zargz3 : Big_int.num) : zropw = sail_call (fun r ->
     | _ -> ZRISCV_SRAW
   end)
 
-and znum_of_ropw (zargz3 : zropw) : Big_int.num = sail_call (fun r ->
+and znum_of_ropw (zargz3 : (zropw)) : Big_int.num = sail_call (fun r ->
   begin
     match zargz3 with
     | ZRISCV_ADDW -> Big_int.zero
@@ -2115,7 +2144,7 @@ and znum_of_ropw (zargz3 : zropw) : Big_int.num = sail_call (fun r ->
     | ZRISCV_SRAW -> (Big_int.of_int (4))
   end)
 
-and zundefined_ropw (() : unit) : zropw = sail_call (fun r ->
+and zundefined_ropw (() : (unit)) : zropw = sail_call (fun r ->
   internal_pick [ZRISCV_ADDW; ZRISCV_SUBW; ZRISCV_SLLW; ZRISCV_SRLW; ZRISCV_SRAW])
 
 type zsopw = | ZRISCV_SLLIW | ZRISCV_SRLIW | ZRISCV_SRAIW;;
@@ -2125,7 +2154,7 @@ let string_of_zsopw = function
   | ZRISCV_SRLIW -> "RISCV_SRLIW"
   | ZRISCV_SRAIW -> "RISCV_SRAIW";;
 
-let rec zsopw_of_num (zargz3 : Big_int.num) : zsopw = sail_call (fun r ->
+let rec zsopw_of_num (zargz3 : (Big_int.num)) : zsopw = sail_call (fun r ->
   begin
     match zargz3 with
     | zl__59 when (eq_int (zl__59, Big_int.zero)) -> ZRISCV_SLLIW
@@ -2133,7 +2162,7 @@ let rec zsopw_of_num (zargz3 : Big_int.num) : zsopw = sail_call (fun r ->
     | _ -> ZRISCV_SRAIW
   end)
 
-and znum_of_sopw (zargz3 : zsopw) : Big_int.num = sail_call (fun r ->
+and znum_of_sopw (zargz3 : (zsopw)) : Big_int.num = sail_call (fun r ->
   begin
     match zargz3 with
     | ZRISCV_SLLIW -> Big_int.zero
@@ -2141,7 +2170,7 @@ and znum_of_sopw (zargz3 : zsopw) : Big_int.num = sail_call (fun r ->
     | ZRISCV_SRAIW -> (Big_int.of_int (2))
   end)
 
-and zundefined_sopw (() : unit) : zsopw = sail_call (fun r ->
+and zundefined_sopw (() : (unit)) : zsopw = sail_call (fun r ->
   internal_pick [ZRISCV_SLLIW; ZRISCV_SRLIW; ZRISCV_SRAIW])
 
 type zamoop =
@@ -2166,7 +2195,7 @@ let string_of_zamoop = function
   | ZAMOMINU -> "AMOMINU"
   | ZAMOMAXU -> "AMOMAXU";;
 
-let rec zamoop_of_num (zargz3 : Big_int.num) : zamoop = sail_call (fun r ->
+let rec zamoop_of_num (zargz3 : (Big_int.num)) : zamoop = sail_call (fun r ->
   begin
     match zargz3 with
     | zl__51 when (eq_int (zl__51, Big_int.zero)) -> ZAMOSWAP
@@ -2180,7 +2209,7 @@ let rec zamoop_of_num (zargz3 : Big_int.num) : zamoop = sail_call (fun r ->
     | _ -> ZAMOMAXU
   end)
 
-and znum_of_amoop (zargz3 : zamoop) : Big_int.num = sail_call (fun r ->
+and znum_of_amoop (zargz3 : (zamoop)) : Big_int.num = sail_call (fun r ->
   begin
     match zargz3 with
     | ZAMOSWAP -> Big_int.zero
@@ -2194,7 +2223,7 @@ and znum_of_amoop (zargz3 : zamoop) : Big_int.num = sail_call (fun r ->
     | ZAMOMAXU -> (Big_int.of_int (8))
   end)
 
-and zundefined_amoop (() : unit) : zamoop = sail_call (fun r ->
+and zundefined_amoop (() : (unit)) : zamoop = sail_call (fun r ->
   internal_pick [ZAMOSWAP; ZAMOADD; ZAMOXOR; ZAMOAND; ZAMOOR; ZAMOMIN; ZAMOMAX; ZAMOMINU; ZAMOMAXU])
 
 type zcsrop = | ZCSRRW | ZCSRRS | ZCSRRC;;
@@ -2204,7 +2233,7 @@ let string_of_zcsrop = function
   | ZCSRRS -> "CSRRS"
   | ZCSRRC -> "CSRRC";;
 
-let rec zcsrop_of_num (zargz3 : Big_int.num) : zcsrop = sail_call (fun r ->
+let rec zcsrop_of_num (zargz3 : (Big_int.num)) : zcsrop = sail_call (fun r ->
   begin
     match zargz3 with
     | zl__49 when (eq_int (zl__49, Big_int.zero)) -> ZCSRRW
@@ -2212,7 +2241,7 @@ let rec zcsrop_of_num (zargz3 : Big_int.num) : zcsrop = sail_call (fun r ->
     | _ -> ZCSRRC
   end)
 
-and znum_of_csrop (zargz3 : zcsrop) : Big_int.num = sail_call (fun r ->
+and znum_of_csrop (zargz3 : (zcsrop)) : Big_int.num = sail_call (fun r ->
   begin
     match zargz3 with
     | ZCSRRW -> Big_int.zero
@@ -2220,10 +2249,10 @@ and znum_of_csrop (zargz3 : zcsrop) : Big_int.num = sail_call (fun r ->
     | ZCSRRC -> (Big_int.of_int (2))
   end)
 
-and zundefined_csrop (() : unit) : zcsrop = sail_call (fun r ->
+and zundefined_csrop (() : (unit)) : zcsrop = sail_call (fun r ->
   internal_pick [ZCSRRW; ZCSRRS; ZCSRRC])
 
-and zreg_name_forwards (zargz3 : (bit) list) : string = sail_call (fun r ->
+and zreg_name_forwards (zargz3 : ((bit) list)) : string = sail_call (fun r ->
   begin
     match zargz3 with
     | zb__0 when (let zp0z3 = (access (zb__0, (Big_int.of_int (4)))) in
@@ -2452,7 +2481,7 @@ and zreg_name_forwards (zargz3 : (bit) list) : string = sail_call (fun r ->
       "t6"
   end)
 
-and zreg_name_backwards (zargz3 : string) : (bit) list = sail_call (fun r ->
+and zreg_name_backwards (zargz3 : (string)) : (bit) list = sail_call (fun r ->
   begin
     match zargz3 with
     | "zero" -> [B0; B0; B0; B0; B0]
@@ -2489,7 +2518,7 @@ and zreg_name_backwards (zargz3 : string) : (bit) list = sail_call (fun r ->
     | "t6" -> [B1; B1; B1; B1; B1]
   end)
 
-and zreg_name_forwards_matches (zargz3 : (bit) list) : bool = sail_call (fun r ->
+and zreg_name_forwards_matches (zargz3 : ((bit) list)) : bool = sail_call (fun r ->
   begin
     match zargz3 with
     | zb__0 when (let zp0z3 = (access (zb__0, (Big_int.of_int (4)))) in
@@ -2719,7 +2748,7 @@ and zreg_name_forwards_matches (zargz3 : (bit) list) : bool = sail_call (fun r -
     | _ -> false
   end)
 
-and zreg_name_backwards_matches (zargz3 : string) : bool = sail_call (fun r ->
+and zreg_name_backwards_matches (zargz3 : (string)) : bool = sail_call (fun r ->
   begin
     match zargz3 with
     | "zero" -> true
@@ -2757,7 +2786,7 @@ and zreg_name_backwards_matches (zargz3 : string) : bool = sail_call (fun r ->
     | _ -> false
   end)
 
-and z_s124z3 (z_s125z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s124z3 (z_s125z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s125z3 with
     | z_s126z3 when (string_startswith (z_s126z3, "t6")) ->
@@ -2769,7 +2798,7 @@ and z_s124z3 (z_s125z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s120z3 (z_s121z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s120z3 (z_s121z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s121z3 with
     | z_s122z3 when (string_startswith (z_s122z3, "t5")) ->
@@ -2781,7 +2810,7 @@ and z_s120z3 (z_s121z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s116z3 (z_s117z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s116z3 (z_s117z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s117z3 with
     | z_s118z3 when (string_startswith (z_s118z3, "t4")) ->
@@ -2793,7 +2822,7 @@ and z_s116z3 (z_s117z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s112z3 (z_s113z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s112z3 (z_s113z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s113z3 with
     | z_s114z3 when (string_startswith (z_s114z3, "t3")) ->
@@ -2805,7 +2834,7 @@ and z_s112z3 (z_s113z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s108z3 (z_s109z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s108z3 (z_s109z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s109z3 with
     | z_s110z3 when (string_startswith (z_s110z3, "s11")) ->
@@ -2817,7 +2846,7 @@ and z_s108z3 (z_s109z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s104z3 (z_s105z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s104z3 (z_s105z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s105z3 with
     | z_s106z3 when (string_startswith (z_s106z3, "s10")) ->
@@ -2829,7 +2858,7 @@ and z_s104z3 (z_s105z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s100z3 (z_s101z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s100z3 (z_s101z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s101z3 with
     | z_s102z3 when (string_startswith (z_s102z3, "s9")) ->
@@ -2841,7 +2870,7 @@ and z_s100z3 (z_s101z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s96z3 (z_s97z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s96z3 (z_s97z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s97z3 with
     | z_s98z3 when (string_startswith (z_s98z3, "s8")) ->
@@ -2853,7 +2882,7 @@ and z_s96z3 (z_s97z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s92z3 (z_s93z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s92z3 (z_s93z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s93z3 with
     | z_s94z3 when (string_startswith (z_s94z3, "s7")) ->
@@ -2865,7 +2894,7 @@ and z_s92z3 (z_s93z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s88z3 (z_s89z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s88z3 (z_s89z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s89z3 with
     | z_s90z3 when (string_startswith (z_s90z3, "s6")) ->
@@ -2877,7 +2906,7 @@ and z_s88z3 (z_s89z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s84z3 (z_s85z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s84z3 (z_s85z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s85z3 with
     | z_s86z3 when (string_startswith (z_s86z3, "s5")) ->
@@ -2889,7 +2918,7 @@ and z_s84z3 (z_s85z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s80z3 (z_s81z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s80z3 (z_s81z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s81z3 with
     | z_s82z3 when (string_startswith (z_s82z3, "s4")) ->
@@ -2901,7 +2930,7 @@ and z_s80z3 (z_s81z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s76z3 (z_s77z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s76z3 (z_s77z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s77z3 with
     | z_s78z3 when (string_startswith (z_s78z3, "s3")) ->
@@ -2913,7 +2942,7 @@ and z_s76z3 (z_s77z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s72z3 (z_s73z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s72z3 (z_s73z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s73z3 with
     | z_s74z3 when (string_startswith (z_s74z3, "s2")) ->
@@ -2925,7 +2954,7 @@ and z_s72z3 (z_s73z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s68z3 (z_s69z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s68z3 (z_s69z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s69z3 with
     | z_s70z3 when (string_startswith (z_s70z3, "a7")) ->
@@ -2937,7 +2966,7 @@ and z_s68z3 (z_s69z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s64z3 (z_s65z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s64z3 (z_s65z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s65z3 with
     | z_s66z3 when (string_startswith (z_s66z3, "a6")) ->
@@ -2949,7 +2978,7 @@ and z_s64z3 (z_s65z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s60z3 (z_s61z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s60z3 (z_s61z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s61z3 with
     | z_s62z3 when (string_startswith (z_s62z3, "a5")) ->
@@ -2961,7 +2990,7 @@ and z_s60z3 (z_s61z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s56z3 (z_s57z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s56z3 (z_s57z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s57z3 with
     | z_s58z3 when (string_startswith (z_s58z3, "a4")) ->
@@ -2973,7 +3002,7 @@ and z_s56z3 (z_s57z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s52z3 (z_s53z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s52z3 (z_s53z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s53z3 with
     | z_s54z3 when (string_startswith (z_s54z3, "a3")) ->
@@ -2985,7 +3014,7 @@ and z_s52z3 (z_s53z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s48z3 (z_s49z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s48z3 (z_s49z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s49z3 with
     | z_s50z3 when (string_startswith (z_s50z3, "a2")) ->
@@ -2997,7 +3026,7 @@ and z_s48z3 (z_s49z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s44z3 (z_s45z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s44z3 (z_s45z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s45z3 with
     | z_s46z3 when (string_startswith (z_s46z3, "a1")) ->
@@ -3009,7 +3038,7 @@ and z_s44z3 (z_s45z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s40z3 (z_s41z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s40z3 (z_s41z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s41z3 with
     | z_s42z3 when (string_startswith (z_s42z3, "a0")) ->
@@ -3021,7 +3050,7 @@ and z_s40z3 (z_s41z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s36z3 (z_s37z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s36z3 (z_s37z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s37z3 with
     | z_s38z3 when (string_startswith (z_s38z3, "s1")) ->
@@ -3033,7 +3062,7 @@ and z_s36z3 (z_s37z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s32z3 (z_s33z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s32z3 (z_s33z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s33z3 with
     | z_s34z3 when (string_startswith (z_s34z3, "fp")) ->
@@ -3045,7 +3074,7 @@ and z_s32z3 (z_s33z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s28z3 (z_s29z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s28z3 (z_s29z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s29z3 with
     | z_s30z3 when (string_startswith (z_s30z3, "t2")) ->
@@ -3057,7 +3086,7 @@ and z_s28z3 (z_s29z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s24z3 (z_s25z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s24z3 (z_s25z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s25z3 with
     | z_s26z3 when (string_startswith (z_s26z3, "t1")) ->
@@ -3069,7 +3098,7 @@ and z_s24z3 (z_s25z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s20z3 (z_s21z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s20z3 (z_s21z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s21z3 with
     | z_s22z3 when (string_startswith (z_s22z3, "t0")) ->
@@ -3081,7 +3110,7 @@ and z_s20z3 (z_s21z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s16z3 (z_s17z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s16z3 (z_s17z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s17z3 with
     | z_s18z3 when (string_startswith (z_s18z3, "tp")) ->
@@ -3093,7 +3122,7 @@ and z_s16z3 (z_s17z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s12z3 (z_s13z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s12z3 (z_s13z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s13z3 with
     | z_s14z3 when (string_startswith (z_s14z3, "gp")) ->
@@ -3105,7 +3134,7 @@ and z_s12z3 (z_s13z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s8z3 (z_s9z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s8z3 (z_s9z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s9z3 with
     | z_s10z3 when (string_startswith (z_s10z3, "sp")) ->
@@ -3117,7 +3146,7 @@ and z_s8z3 (z_s9z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s4z3 (z_s5z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s4z3 (z_s5z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s5z3 with
     | z_s6z3 when (string_startswith (z_s6z3, "ra")) ->
@@ -3129,7 +3158,7 @@ and z_s4z3 (z_s5z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s0z3 (z_s1z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s0z3 (z_s1z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s1z3 with
     | z_s2z3 when (string_startswith (z_s2z3, "zero")) ->
@@ -3141,7 +3170,7 @@ and z_s0z3 (z_s1z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and zreg_name_matches_prefix (zargz3 : string) : (((bit) list * Big_int.num)) zoption = sail_call (fun r ->
+and zreg_name_matches_prefix (zargz3 : (string)) : (((bit) list * Big_int.num)) zoption = sail_call (fun r ->
   begin
     match zargz3 with
     | z_s3z3 when (begin
@@ -3371,7 +3400,7 @@ and zreg_name_matches_prefix (zargz3 : string) : (((bit) list * Big_int.num)) zo
     | _ -> ZNone ()
   end)
 
-and zcreg_name_forwards (zargz3 : (bit) list) : string = sail_call (fun r ->
+and zcreg_name_forwards (zargz3 : ((bit) list)) : string = sail_call (fun r ->
   begin
     match zargz3 with
     | zb__0 when (let zp0z3 = (access (zb__0, (Big_int.of_int (2)))) in
@@ -3416,7 +3445,7 @@ and zcreg_name_forwards (zargz3 : (bit) list) : string = sail_call (fun r ->
       "a5"
   end)
 
-and zcreg_name_backwards (zargz3 : string) : (bit) list = sail_call (fun r ->
+and zcreg_name_backwards (zargz3 : (string)) : (bit) list = sail_call (fun r ->
   begin
     match zargz3 with
     | "s0" -> [B0; B0; B0]
@@ -3429,7 +3458,7 @@ and zcreg_name_backwards (zargz3 : string) : (bit) list = sail_call (fun r ->
     | "a5" -> [B1; B1; B1]
   end)
 
-and zcreg_name_forwards_matches (zargz3 : (bit) list) : bool = sail_call (fun r ->
+and zcreg_name_forwards_matches (zargz3 : ((bit) list)) : bool = sail_call (fun r ->
   begin
     match zargz3 with
     | zb__0 when (let zp0z3 = (access (zb__0, (Big_int.of_int (2)))) in
@@ -3475,7 +3504,7 @@ and zcreg_name_forwards_matches (zargz3 : (bit) list) : bool = sail_call (fun r 
     | _ -> false
   end)
 
-and zcreg_name_backwards_matches (zargz3 : string) : bool = sail_call (fun r ->
+and zcreg_name_backwards_matches (zargz3 : (string)) : bool = sail_call (fun r ->
   begin
     match zargz3 with
     | "s0" -> true
@@ -3489,7 +3518,7 @@ and zcreg_name_backwards_matches (zargz3 : string) : bool = sail_call (fun r ->
     | _ -> false
   end)
 
-and z_s156z3 (z_s157z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s156z3 (z_s157z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s157z3 with
     | z_s158z3 when (string_startswith (z_s158z3, "a5")) ->
@@ -3501,7 +3530,7 @@ and z_s156z3 (z_s157z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s152z3 (z_s153z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s152z3 (z_s153z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s153z3 with
     | z_s154z3 when (string_startswith (z_s154z3, "a4")) ->
@@ -3513,7 +3542,7 @@ and z_s152z3 (z_s153z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s148z3 (z_s149z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s148z3 (z_s149z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s149z3 with
     | z_s150z3 when (string_startswith (z_s150z3, "a3")) ->
@@ -3525,7 +3554,7 @@ and z_s148z3 (z_s149z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s144z3 (z_s145z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s144z3 (z_s145z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s145z3 with
     | z_s146z3 when (string_startswith (z_s146z3, "a2")) ->
@@ -3537,7 +3566,7 @@ and z_s144z3 (z_s145z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s140z3 (z_s141z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s140z3 (z_s141z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s141z3 with
     | z_s142z3 when (string_startswith (z_s142z3, "a1")) ->
@@ -3549,7 +3578,7 @@ and z_s140z3 (z_s141z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s136z3 (z_s137z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s136z3 (z_s137z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s137z3 with
     | z_s138z3 when (string_startswith (z_s138z3, "a0")) ->
@@ -3561,7 +3590,7 @@ and z_s136z3 (z_s137z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s132z3 (z_s133z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s132z3 (z_s133z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s133z3 with
     | z_s134z3 when (string_startswith (z_s134z3, "s1")) ->
@@ -3573,7 +3602,7 @@ and z_s132z3 (z_s133z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s128z3 (z_s129z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s128z3 (z_s129z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s129z3 with
     | z_s130z3 when (string_startswith (z_s130z3, "s0")) ->
@@ -3585,7 +3614,7 @@ and z_s128z3 (z_s129z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and zcreg_name_matches_prefix (zargz3 : string) : (((bit) list * Big_int.num)) zoption = sail_call (fun r ->
+and zcreg_name_matches_prefix (zargz3 : (string)) : (((bit) list * Big_int.num)) zoption = sail_call (fun r ->
   begin
     match zargz3 with
     | z_s131z3 when (begin
@@ -3647,19 +3676,19 @@ and zcreg_name_matches_prefix (zargz3 : string) : (((bit) list * Big_int.num)) z
     | _ -> ZNone ()
   end)
 
-and zsep_forwards (zargz3 : unit) : string = sail_call (fun r ->
+and zsep_forwards (zargz3 : (unit)) : string = sail_call (fun r ->
   begin
     match zargz3 with
     | () ->
       string_append ((zopt_spc_forwards ()), (string_append (",", (string_append ((zdef_spc_forwards ()), "")))))
   end)
 
-and z_s160z3 (z_s161z3 : string) : (unit) zoption = sail_call (fun r ->
+and z_s160z3 (z_s161z3 : (string)) : (unit) zoption = sail_call (fun r ->
   begin
     match z_s161z3 with
     | z_s162z3 ->
       begin
-        match (opt_spc_matches_prefix z_s162z3) with
+        match (zopt_spc_matches_prefix z_s162z3) with
         | ZSome ((), z_s163z3) ->
           begin
             match (string_drop (z_s162z3, z_s163z3)) with
@@ -3668,7 +3697,7 @@ and z_s160z3 (z_s161z3 : string) : (unit) zoption = sail_call (fun r ->
                 match (string_drop (z_s164z3, (string_length ","))) with
                 | z_s165z3 ->
                   begin
-                    match (opt_spc_matches_prefix z_s165z3) with
+                    match (zdef_spc_matches_prefix z_s165z3) with
                     | ZSome ((), z_s166z3) ->
                       begin
                         match (string_drop (z_s165z3, z_s166z3)) with
@@ -3686,7 +3715,7 @@ and z_s160z3 (z_s161z3 : string) : (unit) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and zsep_backwards (zargz3 : string) : unit = sail_call (fun r ->
+and zsep_backwards (zargz3 : (string)) : unit = sail_call (fun r ->
   begin
     match zargz3 with
     | z_s167z3 when (begin
@@ -3697,15 +3726,15 @@ and zsep_backwards (zargz3 : string) : unit = sail_call (fun r ->
       let ZSome (()) = (z_s160z3 z_s167z3) in ()
   end)
 
-and zsep_forwards_matches (zargz3 : unit) : bool = sail_call (fun r ->
+and zsep_forwards_matches (zargz3 : (unit)) : bool = sail_call (fun r ->
   begin match zargz3 with | () -> true | _ -> false end)
 
-and z_s168z3 (z_s169z3 : string) : (unit) zoption = sail_call (fun r ->
+and z_s168z3 (z_s169z3 : (string)) : (unit) zoption = sail_call (fun r ->
   begin
     match z_s169z3 with
     | z_s170z3 ->
       begin
-        match (opt_spc_matches_prefix z_s170z3) with
+        match (zopt_spc_matches_prefix z_s170z3) with
         | ZSome ((), z_s171z3) ->
           begin
             match (string_drop (z_s170z3, z_s171z3)) with
@@ -3714,7 +3743,7 @@ and z_s168z3 (z_s169z3 : string) : (unit) zoption = sail_call (fun r ->
                 match (string_drop (z_s172z3, (string_length ","))) with
                 | z_s173z3 ->
                   begin
-                    match (opt_spc_matches_prefix z_s173z3) with
+                    match (zdef_spc_matches_prefix z_s173z3) with
                     | ZSome ((), z_s174z3) ->
                       begin
                         match (string_drop (z_s173z3, z_s174z3)) with
@@ -3732,7 +3761,7 @@ and z_s168z3 (z_s169z3 : string) : (unit) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and zsep_backwards_matches (zargz3 : string) : bool = sail_call (fun r ->
+and zsep_backwards_matches (zargz3 : (string)) : bool = sail_call (fun r ->
   begin
     match zargz3 with
     | z_s175z3 when (begin
@@ -3744,12 +3773,12 @@ and zsep_backwards_matches (zargz3 : string) : bool = sail_call (fun r ->
     | _ -> false
   end)
 
-and z_s176z3 (z_s177z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s176z3 (z_s177z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s177z3 with
     | z_s178z3 ->
       begin
-        match (opt_spc_matches_prefix z_s178z3) with
+        match (zopt_spc_matches_prefix z_s178z3) with
         | ZSome ((), z_s179z3) ->
           begin
             match (string_drop (z_s178z3, z_s179z3)) with
@@ -3758,7 +3787,7 @@ and z_s176z3 (z_s177z3 : string) : (string) zoption = sail_call (fun r ->
                 match (string_drop (z_s180z3, (string_length ","))) with
                 | z_s181z3 ->
                   begin
-                    match (opt_spc_matches_prefix z_s181z3) with
+                    match (zdef_spc_matches_prefix z_s181z3) with
                     | ZSome ((), z_s182z3) ->
                       begin
                         match (string_drop (z_s181z3, z_s182z3)) with
@@ -3776,7 +3805,7 @@ and z_s176z3 (z_s177z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and zsep_matches_prefix (zargz3 : string) : ((unit * Big_int.num)) zoption = sail_call (fun r ->
+and zsep_matches_prefix (zargz3 : (string)) : ((unit * Big_int.num)) zoption = sail_call (fun r ->
   begin
     match zargz3 with
     | z_s183z3 when (begin
@@ -3789,14 +3818,14 @@ and zsep_matches_prefix (zargz3 : string) : ((unit * Big_int.num)) zoption = sai
     | _ -> ZNone ()
   end)
 
-and zbool_bits_forwards (zargz3 : bool) : (bit) list = sail_call (fun r ->
+and zbool_bits_forwards (zargz3 : (bool)) : (bit) list = sail_call (fun r ->
   begin
     match zargz3 with
     | zp0z3 when (eq_bool (zp0z3, true)) -> [B1]
     | zp0z3 when (eq_bool (zp0z3, false)) -> [B0]
   end)
 
-and zbool_bits_backwards (zargz3 : (bit) list) : bool = sail_call (fun r ->
+and zbool_bits_backwards (zargz3 : ((bit) list)) : bool = sail_call (fun r ->
   begin
     match zargz3 with
     | zb__0 when (let zp0z3 = (access (zb__0, Big_int.zero)) in
@@ -3807,7 +3836,7 @@ and zbool_bits_backwards (zargz3 : (bit) list) : bool = sail_call (fun r ->
       false
   end)
 
-and zbool_bits_forwards_matches (zargz3 : bool) : bool = sail_call (fun r ->
+and zbool_bits_forwards_matches (zargz3 : (bool)) : bool = sail_call (fun r ->
   begin
     match zargz3 with
     | zp0z3 when (eq_bool (zp0z3, true)) -> true
@@ -3815,7 +3844,7 @@ and zbool_bits_forwards_matches (zargz3 : bool) : bool = sail_call (fun r ->
     | _ -> false
   end)
 
-and zbool_bits_backwards_matches (zargz3 : (bit) list) : bool = sail_call (fun r ->
+and zbool_bits_backwards_matches (zargz3 : ((bit) list)) : bool = sail_call (fun r ->
   begin
     match zargz3 with
     | zb__0 when (let zp0z3 = (access (zb__0, Big_int.zero)) in
@@ -3827,14 +3856,14 @@ and zbool_bits_backwards_matches (zargz3 : (bit) list) : bool = sail_call (fun r
     | _ -> false
   end)
 
-and zbool_not_bits_forwards (zargz3 : bool) : (bit) list = sail_call (fun r ->
+and zbool_not_bits_forwards (zargz3 : (bool)) : (bit) list = sail_call (fun r ->
   begin
     match zargz3 with
     | zp0z3 when (eq_bool (zp0z3, true)) -> [B0]
     | zp0z3 when (eq_bool (zp0z3, false)) -> [B1]
   end)
 
-and zbool_not_bits_backwards (zargz3 : (bit) list) : bool = sail_call (fun r ->
+and zbool_not_bits_backwards (zargz3 : ((bit) list)) : bool = sail_call (fun r ->
   begin
     match zargz3 with
     | zb__0 when (let zp0z3 = (access (zb__0, Big_int.zero)) in
@@ -3845,7 +3874,7 @@ and zbool_not_bits_backwards (zargz3 : (bit) list) : bool = sail_call (fun r ->
       false
   end)
 
-and zbool_not_bits_forwards_matches (zargz3 : bool) : bool = sail_call (fun r ->
+and zbool_not_bits_forwards_matches (zargz3 : (bool)) : bool = sail_call (fun r ->
   begin
     match zargz3 with
     | zp0z3 when (eq_bool (zp0z3, true)) -> true
@@ -3853,7 +3882,7 @@ and zbool_not_bits_forwards_matches (zargz3 : bool) : bool = sail_call (fun r ->
     | _ -> false
   end)
 
-and zbool_not_bits_backwards_matches (zargz3 : (bit) list) : bool = sail_call (fun r ->
+and zbool_not_bits_backwards_matches (zargz3 : ((bit) list)) : bool = sail_call (fun r ->
   begin
     match zargz3 with
     | zb__0 when (let zp0z3 = (access (zb__0, Big_int.zero)) in
@@ -3865,7 +3894,7 @@ and zbool_not_bits_backwards_matches (zargz3 : (bit) list) : bool = sail_call (f
     | _ -> false
   end)
 
-and zsizze_bits_forwards (zargz3 : zword_width) : (bit) list = sail_call (fun r ->
+and zsizze_bits_forwards (zargz3 : (zword_width)) : (bit) list = sail_call (fun r ->
   begin
     match zargz3 with
     | ZBYTE -> [B0; B0]
@@ -3874,7 +3903,7 @@ and zsizze_bits_forwards (zargz3 : zword_width) : (bit) list = sail_call (fun r 
     | ZDOUBLE -> [B1; B1]
   end)
 
-and zsizze_bits_backwards (zargz3 : (bit) list) : zword_width = sail_call (fun r ->
+and zsizze_bits_backwards (zargz3 : ((bit) list)) : zword_width = sail_call (fun r ->
   begin
     match zargz3 with
     | zb__0 when (let zp0z3 = (access (zb__0, (Big_int.of_int (1)))) in
@@ -3895,7 +3924,7 @@ and zsizze_bits_backwards (zargz3 : (bit) list) : zword_width = sail_call (fun r
       ZDOUBLE
   end)
 
-and zsizze_bits_forwards_matches (zargz3 : zword_width) : bool = sail_call (fun r ->
+and zsizze_bits_forwards_matches (zargz3 : (zword_width)) : bool = sail_call (fun r ->
   begin
     match zargz3 with
     | ZBYTE -> true
@@ -3905,7 +3934,7 @@ and zsizze_bits_forwards_matches (zargz3 : zword_width) : bool = sail_call (fun 
     | _ -> false
   end)
 
-and zsizze_bits_backwards_matches (zargz3 : (bit) list) : bool = sail_call (fun r ->
+and zsizze_bits_backwards_matches (zargz3 : ((bit) list)) : bool = sail_call (fun r ->
   begin
     match zargz3 with
     | zb__0 when (let zp0z3 = (access (zb__0, (Big_int.of_int (1)))) in
@@ -3927,7 +3956,7 @@ and zsizze_bits_backwards_matches (zargz3 : (bit) list) : bool = sail_call (fun 
     | _ -> false
   end)
 
-and zsizze_mnemonic_forwards (zargz3 : zword_width) : string = sail_call (fun r ->
+and zsizze_mnemonic_forwards (zargz3 : (zword_width)) : string = sail_call (fun r ->
   begin
     match zargz3 with
     | ZBYTE -> "b"
@@ -3936,7 +3965,7 @@ and zsizze_mnemonic_forwards (zargz3 : zword_width) : string = sail_call (fun r 
     | ZDOUBLE -> "d"
   end)
 
-and zsizze_mnemonic_backwards (zargz3 : string) : zword_width = sail_call (fun r ->
+and zsizze_mnemonic_backwards (zargz3 : (string)) : zword_width = sail_call (fun r ->
   begin
     match zargz3 with
     | "b" -> ZBYTE
@@ -3945,7 +3974,7 @@ and zsizze_mnemonic_backwards (zargz3 : string) : zword_width = sail_call (fun r
     | "d" -> ZDOUBLE
   end)
 
-and zsizze_mnemonic_forwards_matches (zargz3 : zword_width) : bool = sail_call (fun r ->
+and zsizze_mnemonic_forwards_matches (zargz3 : (zword_width)) : bool = sail_call (fun r ->
   begin
     match zargz3 with
     | ZBYTE -> true
@@ -3955,7 +3984,7 @@ and zsizze_mnemonic_forwards_matches (zargz3 : zword_width) : bool = sail_call (
     | _ -> false
   end)
 
-and zsizze_mnemonic_backwards_matches (zargz3 : string) : bool = sail_call (fun r ->
+and zsizze_mnemonic_backwards_matches (zargz3 : (string)) : bool = sail_call (fun r ->
   begin
     match zargz3 with
     | "b" -> true
@@ -3965,7 +3994,7 @@ and zsizze_mnemonic_backwards_matches (zargz3 : string) : bool = sail_call (fun 
     | _ -> false
   end)
 
-and z_s196z3 (z_s197z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s196z3 (z_s197z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s197z3 with
     | z_s198z3 when (string_startswith (z_s198z3, "d")) ->
@@ -3977,7 +4006,7 @@ and z_s196z3 (z_s197z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s192z3 (z_s193z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s192z3 (z_s193z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s193z3 with
     | z_s194z3 when (string_startswith (z_s194z3, "w")) ->
@@ -3989,7 +4018,7 @@ and z_s192z3 (z_s193z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s188z3 (z_s189z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s188z3 (z_s189z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s189z3 with
     | z_s190z3 when (string_startswith (z_s190z3, "h")) ->
@@ -4001,7 +4030,7 @@ and z_s188z3 (z_s189z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s184z3 (z_s185z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s184z3 (z_s185z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s185z3 with
     | z_s186z3 when (string_startswith (z_s186z3, "b")) ->
@@ -4013,7 +4042,7 @@ and z_s184z3 (z_s185z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and zsizze_mnemonic_matches_prefix (zargz3 : string) : ((zword_width * Big_int.num)) zoption = sail_call (fun r ->
+and zsizze_mnemonic_matches_prefix (zargz3 : (string)) : ((zword_width * Big_int.num)) zoption = sail_call (fun r ->
   begin
     match zargz3 with
     | z_s187z3 when (begin
@@ -4054,23 +4083,23 @@ let zcur_inst : (zxlenbits) ref = ref (undefined_vector ((Big_int.of_int (64)), 
 type  zMisa = { zMisa_chunk_0 : (bit) list
 };;
 
-let string_of_zMisa (gs991 : zMisa) =
-  "{Misa_chunk_0 = " ^ string_of_bits gs991.zMisa_chunk_0 ^ "}";;
+let string_of_zMisa (gs1281 : zMisa) =
+  "{Misa_chunk_0 = " ^ string_of_bits gs1281.zMisa_chunk_0 ^ "}";;
 
-let rec zundefined_Misa (() : unit) : zMisa = sail_call (fun r ->
+let rec zundefined_Misa (() : (unit)) : zMisa = sail_call (fun r ->
   {zMisa_chunk_0 = undefined_vector ((Big_int.of_int (64)), (undefined_bit ()))})
 
-and zMk_Misa (zv : (bit) list) : zMisa = sail_call (fun r ->
+and zMk_Misa (zv : ((bit) list)) : zMisa = sail_call (fun r ->
   {zMisa_chunk_0 = subrange (zv, (Big_int.of_int (63)), Big_int.zero)})
 
-and z_get_Misa_bits (zv : zMisa) : (bit) list = sail_call (fun r ->
+and z_get_Misa_bits (zv : (zMisa)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zMisa_chunk_0), (Big_int.of_int (63)), Big_int.zero))
 
 and z_set_Misa_bits ((zr_ref, zv) : ((zMisa) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zMisa) in
   begin
-    zr := {!zr with zMisa_chunk_0 = update_subrange ((!zr.zMisa_chunk_0), (Big_int.of_int (63)), Big_int.zero, (subrange (zv, (Big_int.of_int (63)), Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zMisa_chunk_0 = update_subrange ((!zr.zMisa_chunk_0), (Big_int.of_int (63)), Big_int.zero, (subrange (zv, (Big_int.of_int (63)), Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Misa_bits ((zv, zx) : (zMisa * (bit) list)) : zMisa = sail_call (fun r ->
@@ -4080,59 +4109,59 @@ and z_update_Misa_bits ((zv, zx) : (zMisa * (bit) list)) : zMisa = sail_call (fu
 type  zSV39_PTE = { zSV39_PTE_chunk_0 : (bit) list
 };;
 
-let string_of_zSV39_PTE (gs1011 : zSV39_PTE) =
-  "{SV39_PTE_chunk_0 = " ^ string_of_bits gs1011.zSV39_PTE_chunk_0 ^ "}";;
+let string_of_zSV39_PTE (gs1304 : zSV39_PTE) =
+  "{SV39_PTE_chunk_0 = " ^ string_of_bits gs1304.zSV39_PTE_chunk_0 ^ "}";;
 
-let rec z_get_Misa_MXL (zv : zMisa) : (bit) list = sail_call (fun r ->
+let rec z_get_Misa_MXL (zv : (zMisa)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zMisa_chunk_0), (Big_int.of_int (63)), (Big_int.of_int (62))))
 
 and z_set_Misa_MXL ((zr_ref, zv) : ((zMisa) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zMisa) in
   begin
-    zr := {!zr with zMisa_chunk_0 = update_subrange ((!zr.zMisa_chunk_0), (Big_int.of_int (63)), (Big_int.of_int (62)), (subrange (zv, (Big_int.of_int (1)), Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zMisa_chunk_0 = update_subrange ((!zr.zMisa_chunk_0), (Big_int.of_int (63)), (Big_int.of_int (62)), (subrange (zv, (Big_int.of_int (1)), Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Misa_MXL ((zv, zx) : (zMisa * (bit) list)) : zMisa = sail_call (fun r ->
   let zv = ({zv with zMisa_chunk_0 = update_subrange ((zv.zMisa_chunk_0), (Big_int.of_int (63)), (Big_int.of_int (62)), (subrange (zx, (Big_int.of_int (1)), Big_int.zero)))}) in
   zv)
 
-and z_get_Misa_Z (zv : zMisa) : (bit) list = sail_call (fun r ->
+and z_get_Misa_Z (zv : (zMisa)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zMisa_chunk_0), (Big_int.of_int (25)), (Big_int.of_int (25))))
 
 and z_set_Misa_Z ((zr_ref, zv) : ((zMisa) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zMisa) in
   begin
-    zr := {!zr with zMisa_chunk_0 = update_subrange ((!zr.zMisa_chunk_0), (Big_int.of_int (25)), (Big_int.of_int (25)), (subrange (zv, Big_int.zero, Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zMisa_chunk_0 = update_subrange ((!zr.zMisa_chunk_0), (Big_int.of_int (25)), (Big_int.of_int (25)), (subrange (zv, Big_int.zero, Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Misa_Z ((zv, zx) : (zMisa * (bit) list)) : zMisa = sail_call (fun r ->
   let zv = ({zv with zMisa_chunk_0 = update_subrange ((zv.zMisa_chunk_0), (Big_int.of_int (25)), (Big_int.of_int (25)), (subrange (zx, Big_int.zero, Big_int.zero)))}) in
   zv)
 
-and z_get_Misa_Y (zv : zMisa) : (bit) list = sail_call (fun r ->
+and z_get_Misa_Y (zv : (zMisa)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zMisa_chunk_0), (Big_int.of_int (24)), (Big_int.of_int (24))))
 
 and z_set_Misa_Y ((zr_ref, zv) : ((zMisa) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zMisa) in
   begin
-    zr := {!zr with zMisa_chunk_0 = update_subrange ((!zr.zMisa_chunk_0), (Big_int.of_int (24)), (Big_int.of_int (24)), (subrange (zv, Big_int.zero, Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zMisa_chunk_0 = update_subrange ((!zr.zMisa_chunk_0), (Big_int.of_int (24)), (Big_int.of_int (24)), (subrange (zv, Big_int.zero, Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Misa_Y ((zv, zx) : (zMisa * (bit) list)) : zMisa = sail_call (fun r ->
   let zv = ({zv with zMisa_chunk_0 = update_subrange ((zv.zMisa_chunk_0), (Big_int.of_int (24)), (Big_int.of_int (24)), (subrange (zx, Big_int.zero, Big_int.zero)))}) in
   zv)
 
-and z_get_Misa_X (zv : zMisa) : (bit) list = sail_call (fun r ->
+and z_get_Misa_X (zv : (zMisa)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zMisa_chunk_0), (Big_int.of_int (23)), (Big_int.of_int (23))))
 
 and z_set_Misa_X ((zr_ref, zv) : ((zMisa) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zMisa) in
   begin
-    zr := {!zr with zMisa_chunk_0 = update_subrange ((!zr.zMisa_chunk_0), (Big_int.of_int (23)), (Big_int.of_int (23)), (subrange (zv, Big_int.zero, Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zMisa_chunk_0 = update_subrange ((!zr.zMisa_chunk_0), (Big_int.of_int (23)), (Big_int.of_int (23)), (subrange (zv, Big_int.zero, Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Misa_X ((zv, zx) : (zMisa * (bit) list)) : zMisa = sail_call (fun r ->
@@ -4142,325 +4171,325 @@ and z_update_Misa_X ((zv, zx) : (zMisa * (bit) list)) : zMisa = sail_call (fun r
 type  zPTE_Bits = { zPTE_Bits_chunk_0 : (bit) list
 };;
 
-let string_of_zPTE_Bits (gs1064 : zPTE_Bits) =
-  "{PTE_Bits_chunk_0 = " ^ string_of_bits gs1064.zPTE_Bits_chunk_0 ^ "}";;
+let string_of_zPTE_Bits (gs1361 : zPTE_Bits) =
+  "{PTE_Bits_chunk_0 = " ^ string_of_bits gs1361.zPTE_Bits_chunk_0 ^ "}";;
 
-let rec z_get_Misa_W (zv : zMisa) : (bit) list = sail_call (fun r ->
+let rec z_get_Misa_W (zv : (zMisa)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zMisa_chunk_0), (Big_int.of_int (22)), (Big_int.of_int (22))))
 
 and z_set_Misa_W ((zr_ref, zv) : ((zMisa) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zMisa) in
   begin
-    zr := {!zr with zMisa_chunk_0 = update_subrange ((!zr.zMisa_chunk_0), (Big_int.of_int (22)), (Big_int.of_int (22)), (subrange (zv, Big_int.zero, Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zMisa_chunk_0 = update_subrange ((!zr.zMisa_chunk_0), (Big_int.of_int (22)), (Big_int.of_int (22)), (subrange (zv, Big_int.zero, Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Misa_W ((zv, zx) : (zMisa * (bit) list)) : zMisa = sail_call (fun r ->
   let zv = ({zv with zMisa_chunk_0 = update_subrange ((zv.zMisa_chunk_0), (Big_int.of_int (22)), (Big_int.of_int (22)), (subrange (zx, Big_int.zero, Big_int.zero)))}) in
   zv)
 
-and z_get_Misa_V (zv : zMisa) : (bit) list = sail_call (fun r ->
+and z_get_Misa_V (zv : (zMisa)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zMisa_chunk_0), (Big_int.of_int (21)), (Big_int.of_int (21))))
 
 and z_set_Misa_V ((zr_ref, zv) : ((zMisa) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zMisa) in
   begin
-    zr := {!zr with zMisa_chunk_0 = update_subrange ((!zr.zMisa_chunk_0), (Big_int.of_int (21)), (Big_int.of_int (21)), (subrange (zv, Big_int.zero, Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zMisa_chunk_0 = update_subrange ((!zr.zMisa_chunk_0), (Big_int.of_int (21)), (Big_int.of_int (21)), (subrange (zv, Big_int.zero, Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Misa_V ((zv, zx) : (zMisa * (bit) list)) : zMisa = sail_call (fun r ->
   let zv = ({zv with zMisa_chunk_0 = update_subrange ((zv.zMisa_chunk_0), (Big_int.of_int (21)), (Big_int.of_int (21)), (subrange (zx, Big_int.zero, Big_int.zero)))}) in
   zv)
 
-and z_get_Misa_U (zv : zMisa) : (bit) list = sail_call (fun r ->
+and z_get_Misa_U (zv : (zMisa)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zMisa_chunk_0), (Big_int.of_int (20)), (Big_int.of_int (20))))
 
 and z_set_Misa_U ((zr_ref, zv) : ((zMisa) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zMisa) in
   begin
-    zr := {!zr with zMisa_chunk_0 = update_subrange ((!zr.zMisa_chunk_0), (Big_int.of_int (20)), (Big_int.of_int (20)), (subrange (zv, Big_int.zero, Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zMisa_chunk_0 = update_subrange ((!zr.zMisa_chunk_0), (Big_int.of_int (20)), (Big_int.of_int (20)), (subrange (zv, Big_int.zero, Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Misa_U ((zv, zx) : (zMisa * (bit) list)) : zMisa = sail_call (fun r ->
   let zv = ({zv with zMisa_chunk_0 = update_subrange ((zv.zMisa_chunk_0), (Big_int.of_int (20)), (Big_int.of_int (20)), (subrange (zx, Big_int.zero, Big_int.zero)))}) in
   zv)
 
-and z_get_Misa_T (zv : zMisa) : (bit) list = sail_call (fun r ->
+and z_get_Misa_T (zv : (zMisa)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zMisa_chunk_0), (Big_int.of_int (19)), (Big_int.of_int (19))))
 
 and z_set_Misa_T ((zr_ref, zv) : ((zMisa) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zMisa) in
   begin
-    zr := {!zr with zMisa_chunk_0 = update_subrange ((!zr.zMisa_chunk_0), (Big_int.of_int (19)), (Big_int.of_int (19)), (subrange (zv, Big_int.zero, Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zMisa_chunk_0 = update_subrange ((!zr.zMisa_chunk_0), (Big_int.of_int (19)), (Big_int.of_int (19)), (subrange (zv, Big_int.zero, Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Misa_T ((zv, zx) : (zMisa * (bit) list)) : zMisa = sail_call (fun r ->
   let zv = ({zv with zMisa_chunk_0 = update_subrange ((zv.zMisa_chunk_0), (Big_int.of_int (19)), (Big_int.of_int (19)), (subrange (zx, Big_int.zero, Big_int.zero)))}) in
   zv)
 
-and z_get_Misa_S (zv : zMisa) : (bit) list = sail_call (fun r ->
+and z_get_Misa_S (zv : (zMisa)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zMisa_chunk_0), (Big_int.of_int (18)), (Big_int.of_int (18))))
 
 and z_set_Misa_S ((zr_ref, zv) : ((zMisa) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zMisa) in
   begin
-    zr := {!zr with zMisa_chunk_0 = update_subrange ((!zr.zMisa_chunk_0), (Big_int.of_int (18)), (Big_int.of_int (18)), (subrange (zv, Big_int.zero, Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zMisa_chunk_0 = update_subrange ((!zr.zMisa_chunk_0), (Big_int.of_int (18)), (Big_int.of_int (18)), (subrange (zv, Big_int.zero, Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Misa_S ((zv, zx) : (zMisa * (bit) list)) : zMisa = sail_call (fun r ->
   let zv = ({zv with zMisa_chunk_0 = update_subrange ((zv.zMisa_chunk_0), (Big_int.of_int (18)), (Big_int.of_int (18)), (subrange (zx, Big_int.zero, Big_int.zero)))}) in
   zv)
 
-and z_get_Misa_R (zv : zMisa) : (bit) list = sail_call (fun r ->
+and z_get_Misa_R (zv : (zMisa)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zMisa_chunk_0), (Big_int.of_int (17)), (Big_int.of_int (17))))
 
 and z_set_Misa_R ((zr_ref, zv) : ((zMisa) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zMisa) in
   begin
-    zr := {!zr with zMisa_chunk_0 = update_subrange ((!zr.zMisa_chunk_0), (Big_int.of_int (17)), (Big_int.of_int (17)), (subrange (zv, Big_int.zero, Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zMisa_chunk_0 = update_subrange ((!zr.zMisa_chunk_0), (Big_int.of_int (17)), (Big_int.of_int (17)), (subrange (zv, Big_int.zero, Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Misa_R ((zv, zx) : (zMisa * (bit) list)) : zMisa = sail_call (fun r ->
   let zv = ({zv with zMisa_chunk_0 = update_subrange ((zv.zMisa_chunk_0), (Big_int.of_int (17)), (Big_int.of_int (17)), (subrange (zx, Big_int.zero, Big_int.zero)))}) in
   zv)
 
-and z_get_Misa_Q (zv : zMisa) : (bit) list = sail_call (fun r ->
+and z_get_Misa_Q (zv : (zMisa)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zMisa_chunk_0), (Big_int.of_int (16)), (Big_int.of_int (16))))
 
 and z_set_Misa_Q ((zr_ref, zv) : ((zMisa) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zMisa) in
   begin
-    zr := {!zr with zMisa_chunk_0 = update_subrange ((!zr.zMisa_chunk_0), (Big_int.of_int (16)), (Big_int.of_int (16)), (subrange (zv, Big_int.zero, Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zMisa_chunk_0 = update_subrange ((!zr.zMisa_chunk_0), (Big_int.of_int (16)), (Big_int.of_int (16)), (subrange (zv, Big_int.zero, Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Misa_Q ((zv, zx) : (zMisa * (bit) list)) : zMisa = sail_call (fun r ->
   let zv = ({zv with zMisa_chunk_0 = update_subrange ((zv.zMisa_chunk_0), (Big_int.of_int (16)), (Big_int.of_int (16)), (subrange (zx, Big_int.zero, Big_int.zero)))}) in
   zv)
 
-and z_get_Misa_P (zv : zMisa) : (bit) list = sail_call (fun r ->
+and z_get_Misa_P (zv : (zMisa)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zMisa_chunk_0), (Big_int.of_int (15)), (Big_int.of_int (15))))
 
 and z_set_Misa_P ((zr_ref, zv) : ((zMisa) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zMisa) in
   begin
-    zr := {!zr with zMisa_chunk_0 = update_subrange ((!zr.zMisa_chunk_0), (Big_int.of_int (15)), (Big_int.of_int (15)), (subrange (zv, Big_int.zero, Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zMisa_chunk_0 = update_subrange ((!zr.zMisa_chunk_0), (Big_int.of_int (15)), (Big_int.of_int (15)), (subrange (zv, Big_int.zero, Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Misa_P ((zv, zx) : (zMisa * (bit) list)) : zMisa = sail_call (fun r ->
   let zv = ({zv with zMisa_chunk_0 = update_subrange ((zv.zMisa_chunk_0), (Big_int.of_int (15)), (Big_int.of_int (15)), (subrange (zx, Big_int.zero, Big_int.zero)))}) in
   zv)
 
-and z_get_Misa_O (zv : zMisa) : (bit) list = sail_call (fun r ->
+and z_get_Misa_O (zv : (zMisa)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zMisa_chunk_0), (Big_int.of_int (14)), (Big_int.of_int (14))))
 
 and z_set_Misa_O ((zr_ref, zv) : ((zMisa) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zMisa) in
   begin
-    zr := {!zr with zMisa_chunk_0 = update_subrange ((!zr.zMisa_chunk_0), (Big_int.of_int (14)), (Big_int.of_int (14)), (subrange (zv, Big_int.zero, Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zMisa_chunk_0 = update_subrange ((!zr.zMisa_chunk_0), (Big_int.of_int (14)), (Big_int.of_int (14)), (subrange (zv, Big_int.zero, Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Misa_O ((zv, zx) : (zMisa * (bit) list)) : zMisa = sail_call (fun r ->
   let zv = ({zv with zMisa_chunk_0 = update_subrange ((zv.zMisa_chunk_0), (Big_int.of_int (14)), (Big_int.of_int (14)), (subrange (zx, Big_int.zero, Big_int.zero)))}) in
   zv)
 
-and z_get_Misa_N (zv : zMisa) : (bit) list = sail_call (fun r ->
+and z_get_Misa_N (zv : (zMisa)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zMisa_chunk_0), (Big_int.of_int (13)), (Big_int.of_int (13))))
 
 and z_set_Misa_N ((zr_ref, zv) : ((zMisa) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zMisa) in
   begin
-    zr := {!zr with zMisa_chunk_0 = update_subrange ((!zr.zMisa_chunk_0), (Big_int.of_int (13)), (Big_int.of_int (13)), (subrange (zv, Big_int.zero, Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zMisa_chunk_0 = update_subrange ((!zr.zMisa_chunk_0), (Big_int.of_int (13)), (Big_int.of_int (13)), (subrange (zv, Big_int.zero, Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Misa_N ((zv, zx) : (zMisa * (bit) list)) : zMisa = sail_call (fun r ->
   let zv = ({zv with zMisa_chunk_0 = update_subrange ((zv.zMisa_chunk_0), (Big_int.of_int (13)), (Big_int.of_int (13)), (subrange (zx, Big_int.zero, Big_int.zero)))}) in
   zv)
 
-and z_get_Misa_M (zv : zMisa) : (bit) list = sail_call (fun r ->
+and z_get_Misa_M (zv : (zMisa)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zMisa_chunk_0), (Big_int.of_int (12)), (Big_int.of_int (12))))
 
 and z_set_Misa_M ((zr_ref, zv) : ((zMisa) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zMisa) in
   begin
-    zr := {!zr with zMisa_chunk_0 = update_subrange ((!zr.zMisa_chunk_0), (Big_int.of_int (12)), (Big_int.of_int (12)), (subrange (zv, Big_int.zero, Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zMisa_chunk_0 = update_subrange ((!zr.zMisa_chunk_0), (Big_int.of_int (12)), (Big_int.of_int (12)), (subrange (zv, Big_int.zero, Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Misa_M ((zv, zx) : (zMisa * (bit) list)) : zMisa = sail_call (fun r ->
   let zv = ({zv with zMisa_chunk_0 = update_subrange ((zv.zMisa_chunk_0), (Big_int.of_int (12)), (Big_int.of_int (12)), (subrange (zx, Big_int.zero, Big_int.zero)))}) in
   zv)
 
-and z_get_Misa_L (zv : zMisa) : (bit) list = sail_call (fun r ->
+and z_get_Misa_L (zv : (zMisa)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zMisa_chunk_0), (Big_int.of_int (11)), (Big_int.of_int (11))))
 
 and z_set_Misa_L ((zr_ref, zv) : ((zMisa) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zMisa) in
   begin
-    zr := {!zr with zMisa_chunk_0 = update_subrange ((!zr.zMisa_chunk_0), (Big_int.of_int (11)), (Big_int.of_int (11)), (subrange (zv, Big_int.zero, Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zMisa_chunk_0 = update_subrange ((!zr.zMisa_chunk_0), (Big_int.of_int (11)), (Big_int.of_int (11)), (subrange (zv, Big_int.zero, Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Misa_L ((zv, zx) : (zMisa * (bit) list)) : zMisa = sail_call (fun r ->
   let zv = ({zv with zMisa_chunk_0 = update_subrange ((zv.zMisa_chunk_0), (Big_int.of_int (11)), (Big_int.of_int (11)), (subrange (zx, Big_int.zero, Big_int.zero)))}) in
   zv)
 
-and z_get_Misa_K (zv : zMisa) : (bit) list = sail_call (fun r ->
+and z_get_Misa_K (zv : (zMisa)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zMisa_chunk_0), (Big_int.of_int (10)), (Big_int.of_int (10))))
 
 and z_set_Misa_K ((zr_ref, zv) : ((zMisa) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zMisa) in
   begin
-    zr := {!zr with zMisa_chunk_0 = update_subrange ((!zr.zMisa_chunk_0), (Big_int.of_int (10)), (Big_int.of_int (10)), (subrange (zv, Big_int.zero, Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zMisa_chunk_0 = update_subrange ((!zr.zMisa_chunk_0), (Big_int.of_int (10)), (Big_int.of_int (10)), (subrange (zv, Big_int.zero, Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Misa_K ((zv, zx) : (zMisa * (bit) list)) : zMisa = sail_call (fun r ->
   let zv = ({zv with zMisa_chunk_0 = update_subrange ((zv.zMisa_chunk_0), (Big_int.of_int (10)), (Big_int.of_int (10)), (subrange (zx, Big_int.zero, Big_int.zero)))}) in
   zv)
 
-and z_get_Misa_J (zv : zMisa) : (bit) list = sail_call (fun r ->
+and z_get_Misa_J (zv : (zMisa)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zMisa_chunk_0), (Big_int.of_int (9)), (Big_int.of_int (9))))
 
 and z_set_Misa_J ((zr_ref, zv) : ((zMisa) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zMisa) in
   begin
-    zr := {!zr with zMisa_chunk_0 = update_subrange ((!zr.zMisa_chunk_0), (Big_int.of_int (9)), (Big_int.of_int (9)), (subrange (zv, Big_int.zero, Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zMisa_chunk_0 = update_subrange ((!zr.zMisa_chunk_0), (Big_int.of_int (9)), (Big_int.of_int (9)), (subrange (zv, Big_int.zero, Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Misa_J ((zv, zx) : (zMisa * (bit) list)) : zMisa = sail_call (fun r ->
   let zv = ({zv with zMisa_chunk_0 = update_subrange ((zv.zMisa_chunk_0), (Big_int.of_int (9)), (Big_int.of_int (9)), (subrange (zx, Big_int.zero, Big_int.zero)))}) in
   zv)
 
-and z_get_Misa_I (zv : zMisa) : (bit) list = sail_call (fun r ->
+and z_get_Misa_I (zv : (zMisa)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zMisa_chunk_0), (Big_int.of_int (8)), (Big_int.of_int (8))))
 
 and z_set_Misa_I ((zr_ref, zv) : ((zMisa) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zMisa) in
   begin
-    zr := {!zr with zMisa_chunk_0 = update_subrange ((!zr.zMisa_chunk_0), (Big_int.of_int (8)), (Big_int.of_int (8)), (subrange (zv, Big_int.zero, Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zMisa_chunk_0 = update_subrange ((!zr.zMisa_chunk_0), (Big_int.of_int (8)), (Big_int.of_int (8)), (subrange (zv, Big_int.zero, Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Misa_I ((zv, zx) : (zMisa * (bit) list)) : zMisa = sail_call (fun r ->
   let zv = ({zv with zMisa_chunk_0 = update_subrange ((zv.zMisa_chunk_0), (Big_int.of_int (8)), (Big_int.of_int (8)), (subrange (zx, Big_int.zero, Big_int.zero)))}) in
   zv)
 
-and z_get_Misa_H (zv : zMisa) : (bit) list = sail_call (fun r ->
+and z_get_Misa_H (zv : (zMisa)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zMisa_chunk_0), (Big_int.of_int (7)), (Big_int.of_int (7))))
 
 and z_set_Misa_H ((zr_ref, zv) : ((zMisa) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zMisa) in
   begin
-    zr := {!zr with zMisa_chunk_0 = update_subrange ((!zr.zMisa_chunk_0), (Big_int.of_int (7)), (Big_int.of_int (7)), (subrange (zv, Big_int.zero, Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zMisa_chunk_0 = update_subrange ((!zr.zMisa_chunk_0), (Big_int.of_int (7)), (Big_int.of_int (7)), (subrange (zv, Big_int.zero, Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Misa_H ((zv, zx) : (zMisa * (bit) list)) : zMisa = sail_call (fun r ->
   let zv = ({zv with zMisa_chunk_0 = update_subrange ((zv.zMisa_chunk_0), (Big_int.of_int (7)), (Big_int.of_int (7)), (subrange (zx, Big_int.zero, Big_int.zero)))}) in
   zv)
 
-and z_get_Misa_G (zv : zMisa) : (bit) list = sail_call (fun r ->
+and z_get_Misa_G (zv : (zMisa)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zMisa_chunk_0), (Big_int.of_int (6)), (Big_int.of_int (6))))
 
 and z_set_Misa_G ((zr_ref, zv) : ((zMisa) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zMisa) in
   begin
-    zr := {!zr with zMisa_chunk_0 = update_subrange ((!zr.zMisa_chunk_0), (Big_int.of_int (6)), (Big_int.of_int (6)), (subrange (zv, Big_int.zero, Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zMisa_chunk_0 = update_subrange ((!zr.zMisa_chunk_0), (Big_int.of_int (6)), (Big_int.of_int (6)), (subrange (zv, Big_int.zero, Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Misa_G ((zv, zx) : (zMisa * (bit) list)) : zMisa = sail_call (fun r ->
   let zv = ({zv with zMisa_chunk_0 = update_subrange ((zv.zMisa_chunk_0), (Big_int.of_int (6)), (Big_int.of_int (6)), (subrange (zx, Big_int.zero, Big_int.zero)))}) in
   zv)
 
-and z_get_Misa_F (zv : zMisa) : (bit) list = sail_call (fun r ->
+and z_get_Misa_F (zv : (zMisa)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zMisa_chunk_0), (Big_int.of_int (5)), (Big_int.of_int (5))))
 
 and z_set_Misa_F ((zr_ref, zv) : ((zMisa) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zMisa) in
   begin
-    zr := {!zr with zMisa_chunk_0 = update_subrange ((!zr.zMisa_chunk_0), (Big_int.of_int (5)), (Big_int.of_int (5)), (subrange (zv, Big_int.zero, Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zMisa_chunk_0 = update_subrange ((!zr.zMisa_chunk_0), (Big_int.of_int (5)), (Big_int.of_int (5)), (subrange (zv, Big_int.zero, Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Misa_F ((zv, zx) : (zMisa * (bit) list)) : zMisa = sail_call (fun r ->
   let zv = ({zv with zMisa_chunk_0 = update_subrange ((zv.zMisa_chunk_0), (Big_int.of_int (5)), (Big_int.of_int (5)), (subrange (zx, Big_int.zero, Big_int.zero)))}) in
   zv)
 
-and z_get_Misa_E (zv : zMisa) : (bit) list = sail_call (fun r ->
+and z_get_Misa_E (zv : (zMisa)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zMisa_chunk_0), (Big_int.of_int (4)), (Big_int.of_int (4))))
 
 and z_set_Misa_E ((zr_ref, zv) : ((zMisa) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zMisa) in
   begin
-    zr := {!zr with zMisa_chunk_0 = update_subrange ((!zr.zMisa_chunk_0), (Big_int.of_int (4)), (Big_int.of_int (4)), (subrange (zv, Big_int.zero, Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zMisa_chunk_0 = update_subrange ((!zr.zMisa_chunk_0), (Big_int.of_int (4)), (Big_int.of_int (4)), (subrange (zv, Big_int.zero, Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Misa_E ((zv, zx) : (zMisa * (bit) list)) : zMisa = sail_call (fun r ->
   let zv = ({zv with zMisa_chunk_0 = update_subrange ((zv.zMisa_chunk_0), (Big_int.of_int (4)), (Big_int.of_int (4)), (subrange (zx, Big_int.zero, Big_int.zero)))}) in
   zv)
 
-and z_get_Misa_D (zv : zMisa) : (bit) list = sail_call (fun r ->
+and z_get_Misa_D (zv : (zMisa)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zMisa_chunk_0), (Big_int.of_int (3)), (Big_int.of_int (3))))
 
 and z_set_Misa_D ((zr_ref, zv) : ((zMisa) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zMisa) in
   begin
-    zr := {!zr with zMisa_chunk_0 = update_subrange ((!zr.zMisa_chunk_0), (Big_int.of_int (3)), (Big_int.of_int (3)), (subrange (zv, Big_int.zero, Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zMisa_chunk_0 = update_subrange ((!zr.zMisa_chunk_0), (Big_int.of_int (3)), (Big_int.of_int (3)), (subrange (zv, Big_int.zero, Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Misa_D ((zv, zx) : (zMisa * (bit) list)) : zMisa = sail_call (fun r ->
   let zv = ({zv with zMisa_chunk_0 = update_subrange ((zv.zMisa_chunk_0), (Big_int.of_int (3)), (Big_int.of_int (3)), (subrange (zx, Big_int.zero, Big_int.zero)))}) in
   zv)
 
-and z_get_Misa_C (zv : zMisa) : (bit) list = sail_call (fun r ->
+and z_get_Misa_C (zv : (zMisa)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zMisa_chunk_0), (Big_int.of_int (2)), (Big_int.of_int (2))))
 
 and z_set_Misa_C ((zr_ref, zv) : ((zMisa) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zMisa) in
   begin
-    zr := {!zr with zMisa_chunk_0 = update_subrange ((!zr.zMisa_chunk_0), (Big_int.of_int (2)), (Big_int.of_int (2)), (subrange (zv, Big_int.zero, Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zMisa_chunk_0 = update_subrange ((!zr.zMisa_chunk_0), (Big_int.of_int (2)), (Big_int.of_int (2)), (subrange (zv, Big_int.zero, Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Misa_C ((zv, zx) : (zMisa * (bit) list)) : zMisa = sail_call (fun r ->
   let zv = ({zv with zMisa_chunk_0 = update_subrange ((zv.zMisa_chunk_0), (Big_int.of_int (2)), (Big_int.of_int (2)), (subrange (zx, Big_int.zero, Big_int.zero)))}) in
   zv)
 
-and z_get_Misa_B (zv : zMisa) : (bit) list = sail_call (fun r ->
+and z_get_Misa_B (zv : (zMisa)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zMisa_chunk_0), (Big_int.of_int (1)), (Big_int.of_int (1))))
 
 and z_set_Misa_B ((zr_ref, zv) : ((zMisa) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zMisa) in
   begin
-    zr := {!zr with zMisa_chunk_0 = update_subrange ((!zr.zMisa_chunk_0), (Big_int.of_int (1)), (Big_int.of_int (1)), (subrange (zv, Big_int.zero, Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zMisa_chunk_0 = update_subrange ((!zr.zMisa_chunk_0), (Big_int.of_int (1)), (Big_int.of_int (1)), (subrange (zv, Big_int.zero, Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Misa_B ((zv, zx) : (zMisa * (bit) list)) : zMisa = sail_call (fun r ->
   let zv = ({zv with zMisa_chunk_0 = update_subrange ((zv.zMisa_chunk_0), (Big_int.of_int (1)), (Big_int.of_int (1)), (subrange (zx, Big_int.zero, Big_int.zero)))}) in
   zv)
 
-and z_get_Misa_A (zv : zMisa) : (bit) list = sail_call (fun r ->
+and z_get_Misa_A (zv : (zMisa)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zMisa_chunk_0), Big_int.zero, Big_int.zero))
 
 and z_set_Misa_A ((zr_ref, zv) : ((zMisa) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zMisa) in
   begin
-    zr := {!zr with zMisa_chunk_0 = update_subrange ((!zr.zMisa_chunk_0), Big_int.zero, Big_int.zero, (subrange (zv, Big_int.zero, Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zMisa_chunk_0 = update_subrange ((!zr.zMisa_chunk_0), Big_int.zero, Big_int.zero, (subrange (zv, Big_int.zero, Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Misa_A ((zv, zx) : (zMisa * (bit) list)) : zMisa = sail_call (fun r ->
@@ -4469,44 +4498,44 @@ and z_update_Misa_A ((zv, zx) : (zMisa * (bit) list)) : zMisa = sail_call (fun r
 
 let zmisa : (zMisa) ref = ref (zundefined_Misa ());;
 
-let rec zlegalizze_misa ((zm, zv) : (zMisa * zxlenbits)) : zMisa = sail_call (fun r ->
+let rec zlegalizze_misa ((zm, zv) : (zMisa * (bit) list)) : zMisa = sail_call (fun r ->
   let zv = (zMk_Misa zv) in
   if ((eq_list ((z_get_Misa_C zv), (zbool_to_bits false))) && (eq_bool ((zbit_to_bool (access (!znextPC, (Big_int.of_int (1))))), true))) then zm else (z_update_Misa_C (zm, (z_get_Misa_C zv))))
 
 type  zMstatus = { zMstatus_chunk_0 : (bit) list
 };;
 
-let string_of_zMstatus (gs1369 : zMstatus) =
-  "{Mstatus_chunk_0 = " ^ string_of_bits gs1369.zMstatus_chunk_0 ^ "}";;
+let string_of_zMstatus (gs1689 : zMstatus) =
+  "{Mstatus_chunk_0 = " ^ string_of_bits gs1689.zMstatus_chunk_0 ^ "}";;
 
-let rec zundefined_Mstatus (() : unit) : zMstatus = sail_call (fun r ->
+let rec zundefined_Mstatus (() : (unit)) : zMstatus = sail_call (fun r ->
   {zMstatus_chunk_0 = undefined_vector ((Big_int.of_int (64)), (undefined_bit ()))})
 
-and zMk_Mstatus (zv : (bit) list) : zMstatus = sail_call (fun r ->
+and zMk_Mstatus (zv : ((bit) list)) : zMstatus = sail_call (fun r ->
   {zMstatus_chunk_0 = subrange (zv, (Big_int.of_int (63)), Big_int.zero)})
 
-and z_get_Mstatus_bits (zv : zMstatus) : (bit) list = sail_call (fun r ->
+and z_get_Mstatus_bits (zv : (zMstatus)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zMstatus_chunk_0), (Big_int.of_int (63)), Big_int.zero))
 
 and z_set_Mstatus_bits ((zr_ref, zv) : ((zMstatus) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zMstatus) in
   begin
-    zr := {!zr with zMstatus_chunk_0 = update_subrange ((!zr.zMstatus_chunk_0), (Big_int.of_int (63)), Big_int.zero, (subrange (zv, (Big_int.of_int (63)), Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zMstatus_chunk_0 = update_subrange ((!zr.zMstatus_chunk_0), (Big_int.of_int (63)), Big_int.zero, (subrange (zv, (Big_int.of_int (63)), Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Mstatus_bits ((zv, zx) : (zMstatus * (bit) list)) : zMstatus = sail_call (fun r ->
   let zv = ({zv with zMstatus_chunk_0 = update_subrange ((zv.zMstatus_chunk_0), (Big_int.of_int (63)), Big_int.zero, (subrange (zx, (Big_int.of_int (63)), Big_int.zero)))}) in
   zv)
 
-and z_get_Mstatus_SD (zv : zMstatus) : (bit) list = sail_call (fun r ->
+and z_get_Mstatus_SD (zv : (zMstatus)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zMstatus_chunk_0), (Big_int.of_int (63)), (Big_int.of_int (63))))
 
 and z_set_Mstatus_SD ((zr_ref, zv) : ((zMstatus) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zMstatus) in
   begin
-    zr := {!zr with zMstatus_chunk_0 = update_subrange ((!zr.zMstatus_chunk_0), (Big_int.of_int (63)), (Big_int.of_int (63)), (subrange (zv, Big_int.zero, Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zMstatus_chunk_0 = update_subrange ((!zr.zMstatus_chunk_0), (Big_int.of_int (63)), (Big_int.of_int (63)), (subrange (zv, Big_int.zero, Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Mstatus_SD ((zv, zx) : (zMstatus * (bit) list)) : zMstatus = sail_call (fun r ->
@@ -4516,255 +4545,255 @@ and z_update_Mstatus_SD ((zv, zx) : (zMstatus * (bit) list)) : zMstatus = sail_c
 type  zSstatus = { zSstatus_chunk_0 : (bit) list
 };;
 
-let string_of_zSstatus (gs1402 : zSstatus) =
-  "{Sstatus_chunk_0 = " ^ string_of_bits gs1402.zSstatus_chunk_0 ^ "}";;
+let string_of_zSstatus (gs1726 : zSstatus) =
+  "{Sstatus_chunk_0 = " ^ string_of_bits gs1726.zSstatus_chunk_0 ^ "}";;
 
-let rec z_get_Mstatus_SXL (zv : zMstatus) : (bit) list = sail_call (fun r ->
+let rec z_get_Mstatus_SXL (zv : (zMstatus)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zMstatus_chunk_0), (Big_int.of_int (35)), (Big_int.of_int (34))))
 
 and z_set_Mstatus_SXL ((zr_ref, zv) : ((zMstatus) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zMstatus) in
   begin
-    zr := {!zr with zMstatus_chunk_0 = update_subrange ((!zr.zMstatus_chunk_0), (Big_int.of_int (35)), (Big_int.of_int (34)), (subrange (zv, (Big_int.of_int (1)), Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zMstatus_chunk_0 = update_subrange ((!zr.zMstatus_chunk_0), (Big_int.of_int (35)), (Big_int.of_int (34)), (subrange (zv, (Big_int.of_int (1)), Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Mstatus_SXL ((zv, zx) : (zMstatus * (bit) list)) : zMstatus = sail_call (fun r ->
   let zv = ({zv with zMstatus_chunk_0 = update_subrange ((zv.zMstatus_chunk_0), (Big_int.of_int (35)), (Big_int.of_int (34)), (subrange (zx, (Big_int.of_int (1)), Big_int.zero)))}) in
   zv)
 
-and z_get_Mstatus_UXL (zv : zMstatus) : (bit) list = sail_call (fun r ->
+and z_get_Mstatus_UXL (zv : (zMstatus)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zMstatus_chunk_0), (Big_int.of_int (33)), (Big_int.of_int (32))))
 
 and z_set_Mstatus_UXL ((zr_ref, zv) : ((zMstatus) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zMstatus) in
   begin
-    zr := {!zr with zMstatus_chunk_0 = update_subrange ((!zr.zMstatus_chunk_0), (Big_int.of_int (33)), (Big_int.of_int (32)), (subrange (zv, (Big_int.of_int (1)), Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zMstatus_chunk_0 = update_subrange ((!zr.zMstatus_chunk_0), (Big_int.of_int (33)), (Big_int.of_int (32)), (subrange (zv, (Big_int.of_int (1)), Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Mstatus_UXL ((zv, zx) : (zMstatus * (bit) list)) : zMstatus = sail_call (fun r ->
   let zv = ({zv with zMstatus_chunk_0 = update_subrange ((zv.zMstatus_chunk_0), (Big_int.of_int (33)), (Big_int.of_int (32)), (subrange (zx, (Big_int.of_int (1)), Big_int.zero)))}) in
   zv)
 
-and z_get_Mstatus_TSR (zv : zMstatus) : (bit) list = sail_call (fun r ->
+and z_get_Mstatus_TSR (zv : (zMstatus)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zMstatus_chunk_0), (Big_int.of_int (22)), (Big_int.of_int (22))))
 
 and z_set_Mstatus_TSR ((zr_ref, zv) : ((zMstatus) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zMstatus) in
   begin
-    zr := {!zr with zMstatus_chunk_0 = update_subrange ((!zr.zMstatus_chunk_0), (Big_int.of_int (22)), (Big_int.of_int (22)), (subrange (zv, Big_int.zero, Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zMstatus_chunk_0 = update_subrange ((!zr.zMstatus_chunk_0), (Big_int.of_int (22)), (Big_int.of_int (22)), (subrange (zv, Big_int.zero, Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Mstatus_TSR ((zv, zx) : (zMstatus * (bit) list)) : zMstatus = sail_call (fun r ->
   let zv = ({zv with zMstatus_chunk_0 = update_subrange ((zv.zMstatus_chunk_0), (Big_int.of_int (22)), (Big_int.of_int (22)), (subrange (zx, Big_int.zero, Big_int.zero)))}) in
   zv)
 
-and z_get_Mstatus_TW (zv : zMstatus) : (bit) list = sail_call (fun r ->
+and z_get_Mstatus_TW (zv : (zMstatus)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zMstatus_chunk_0), (Big_int.of_int (21)), (Big_int.of_int (21))))
 
 and z_set_Mstatus_TW ((zr_ref, zv) : ((zMstatus) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zMstatus) in
   begin
-    zr := {!zr with zMstatus_chunk_0 = update_subrange ((!zr.zMstatus_chunk_0), (Big_int.of_int (21)), (Big_int.of_int (21)), (subrange (zv, Big_int.zero, Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zMstatus_chunk_0 = update_subrange ((!zr.zMstatus_chunk_0), (Big_int.of_int (21)), (Big_int.of_int (21)), (subrange (zv, Big_int.zero, Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Mstatus_TW ((zv, zx) : (zMstatus * (bit) list)) : zMstatus = sail_call (fun r ->
   let zv = ({zv with zMstatus_chunk_0 = update_subrange ((zv.zMstatus_chunk_0), (Big_int.of_int (21)), (Big_int.of_int (21)), (subrange (zx, Big_int.zero, Big_int.zero)))}) in
   zv)
 
-and z_get_Mstatus_TVM (zv : zMstatus) : (bit) list = sail_call (fun r ->
+and z_get_Mstatus_TVM (zv : (zMstatus)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zMstatus_chunk_0), (Big_int.of_int (20)), (Big_int.of_int (20))))
 
 and z_set_Mstatus_TVM ((zr_ref, zv) : ((zMstatus) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zMstatus) in
   begin
-    zr := {!zr with zMstatus_chunk_0 = update_subrange ((!zr.zMstatus_chunk_0), (Big_int.of_int (20)), (Big_int.of_int (20)), (subrange (zv, Big_int.zero, Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zMstatus_chunk_0 = update_subrange ((!zr.zMstatus_chunk_0), (Big_int.of_int (20)), (Big_int.of_int (20)), (subrange (zv, Big_int.zero, Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Mstatus_TVM ((zv, zx) : (zMstatus * (bit) list)) : zMstatus = sail_call (fun r ->
   let zv = ({zv with zMstatus_chunk_0 = update_subrange ((zv.zMstatus_chunk_0), (Big_int.of_int (20)), (Big_int.of_int (20)), (subrange (zx, Big_int.zero, Big_int.zero)))}) in
   zv)
 
-and z_get_Mstatus_MXR (zv : zMstatus) : (bit) list = sail_call (fun r ->
+and z_get_Mstatus_MXR (zv : (zMstatus)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zMstatus_chunk_0), (Big_int.of_int (19)), (Big_int.of_int (19))))
 
 and z_set_Mstatus_MXR ((zr_ref, zv) : ((zMstatus) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zMstatus) in
   begin
-    zr := {!zr with zMstatus_chunk_0 = update_subrange ((!zr.zMstatus_chunk_0), (Big_int.of_int (19)), (Big_int.of_int (19)), (subrange (zv, Big_int.zero, Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zMstatus_chunk_0 = update_subrange ((!zr.zMstatus_chunk_0), (Big_int.of_int (19)), (Big_int.of_int (19)), (subrange (zv, Big_int.zero, Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Mstatus_MXR ((zv, zx) : (zMstatus * (bit) list)) : zMstatus = sail_call (fun r ->
   let zv = ({zv with zMstatus_chunk_0 = update_subrange ((zv.zMstatus_chunk_0), (Big_int.of_int (19)), (Big_int.of_int (19)), (subrange (zx, Big_int.zero, Big_int.zero)))}) in
   zv)
 
-and z_get_Mstatus_SUM (zv : zMstatus) : (bit) list = sail_call (fun r ->
+and z_get_Mstatus_SUM (zv : (zMstatus)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zMstatus_chunk_0), (Big_int.of_int (18)), (Big_int.of_int (18))))
 
 and z_set_Mstatus_SUM ((zr_ref, zv) : ((zMstatus) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zMstatus) in
   begin
-    zr := {!zr with zMstatus_chunk_0 = update_subrange ((!zr.zMstatus_chunk_0), (Big_int.of_int (18)), (Big_int.of_int (18)), (subrange (zv, Big_int.zero, Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zMstatus_chunk_0 = update_subrange ((!zr.zMstatus_chunk_0), (Big_int.of_int (18)), (Big_int.of_int (18)), (subrange (zv, Big_int.zero, Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Mstatus_SUM ((zv, zx) : (zMstatus * (bit) list)) : zMstatus = sail_call (fun r ->
   let zv = ({zv with zMstatus_chunk_0 = update_subrange ((zv.zMstatus_chunk_0), (Big_int.of_int (18)), (Big_int.of_int (18)), (subrange (zx, Big_int.zero, Big_int.zero)))}) in
   zv)
 
-and z_get_Mstatus_MPRV (zv : zMstatus) : (bit) list = sail_call (fun r ->
+and z_get_Mstatus_MPRV (zv : (zMstatus)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zMstatus_chunk_0), (Big_int.of_int (17)), (Big_int.of_int (17))))
 
 and z_set_Mstatus_MPRV ((zr_ref, zv) : ((zMstatus) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zMstatus) in
   begin
-    zr := {!zr with zMstatus_chunk_0 = update_subrange ((!zr.zMstatus_chunk_0), (Big_int.of_int (17)), (Big_int.of_int (17)), (subrange (zv, Big_int.zero, Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zMstatus_chunk_0 = update_subrange ((!zr.zMstatus_chunk_0), (Big_int.of_int (17)), (Big_int.of_int (17)), (subrange (zv, Big_int.zero, Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Mstatus_MPRV ((zv, zx) : (zMstatus * (bit) list)) : zMstatus = sail_call (fun r ->
   let zv = ({zv with zMstatus_chunk_0 = update_subrange ((zv.zMstatus_chunk_0), (Big_int.of_int (17)), (Big_int.of_int (17)), (subrange (zx, Big_int.zero, Big_int.zero)))}) in
   zv)
 
-and z_get_Mstatus_XS (zv : zMstatus) : (bit) list = sail_call (fun r ->
+and z_get_Mstatus_XS (zv : (zMstatus)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zMstatus_chunk_0), (Big_int.of_int (16)), (Big_int.of_int (15))))
 
 and z_set_Mstatus_XS ((zr_ref, zv) : ((zMstatus) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zMstatus) in
   begin
-    zr := {!zr with zMstatus_chunk_0 = update_subrange ((!zr.zMstatus_chunk_0), (Big_int.of_int (16)), (Big_int.of_int (15)), (subrange (zv, (Big_int.of_int (1)), Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zMstatus_chunk_0 = update_subrange ((!zr.zMstatus_chunk_0), (Big_int.of_int (16)), (Big_int.of_int (15)), (subrange (zv, (Big_int.of_int (1)), Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Mstatus_XS ((zv, zx) : (zMstatus * (bit) list)) : zMstatus = sail_call (fun r ->
   let zv = ({zv with zMstatus_chunk_0 = update_subrange ((zv.zMstatus_chunk_0), (Big_int.of_int (16)), (Big_int.of_int (15)), (subrange (zx, (Big_int.of_int (1)), Big_int.zero)))}) in
   zv)
 
-and z_get_Mstatus_FS (zv : zMstatus) : (bit) list = sail_call (fun r ->
+and z_get_Mstatus_FS (zv : (zMstatus)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zMstatus_chunk_0), (Big_int.of_int (14)), (Big_int.of_int (13))))
 
 and z_set_Mstatus_FS ((zr_ref, zv) : ((zMstatus) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zMstatus) in
   begin
-    zr := {!zr with zMstatus_chunk_0 = update_subrange ((!zr.zMstatus_chunk_0), (Big_int.of_int (14)), (Big_int.of_int (13)), (subrange (zv, (Big_int.of_int (1)), Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zMstatus_chunk_0 = update_subrange ((!zr.zMstatus_chunk_0), (Big_int.of_int (14)), (Big_int.of_int (13)), (subrange (zv, (Big_int.of_int (1)), Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Mstatus_FS ((zv, zx) : (zMstatus * (bit) list)) : zMstatus = sail_call (fun r ->
   let zv = ({zv with zMstatus_chunk_0 = update_subrange ((zv.zMstatus_chunk_0), (Big_int.of_int (14)), (Big_int.of_int (13)), (subrange (zx, (Big_int.of_int (1)), Big_int.zero)))}) in
   zv)
 
-and z_get_Mstatus_MPP (zv : zMstatus) : (bit) list = sail_call (fun r ->
+and z_get_Mstatus_MPP (zv : (zMstatus)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zMstatus_chunk_0), (Big_int.of_int (12)), (Big_int.of_int (11))))
 
 and z_set_Mstatus_MPP ((zr_ref, zv) : ((zMstatus) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zMstatus) in
   begin
-    zr := {!zr with zMstatus_chunk_0 = update_subrange ((!zr.zMstatus_chunk_0), (Big_int.of_int (12)), (Big_int.of_int (11)), (subrange (zv, (Big_int.of_int (1)), Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zMstatus_chunk_0 = update_subrange ((!zr.zMstatus_chunk_0), (Big_int.of_int (12)), (Big_int.of_int (11)), (subrange (zv, (Big_int.of_int (1)), Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Mstatus_MPP ((zv, zx) : (zMstatus * (bit) list)) : zMstatus = sail_call (fun r ->
   let zv = ({zv with zMstatus_chunk_0 = update_subrange ((zv.zMstatus_chunk_0), (Big_int.of_int (12)), (Big_int.of_int (11)), (subrange (zx, (Big_int.of_int (1)), Big_int.zero)))}) in
   zv)
 
-and z_get_Mstatus_SPP (zv : zMstatus) : (bit) list = sail_call (fun r ->
+and z_get_Mstatus_SPP (zv : (zMstatus)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zMstatus_chunk_0), (Big_int.of_int (8)), (Big_int.of_int (8))))
 
 and z_set_Mstatus_SPP ((zr_ref, zv) : ((zMstatus) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zMstatus) in
   begin
-    zr := {!zr with zMstatus_chunk_0 = update_subrange ((!zr.zMstatus_chunk_0), (Big_int.of_int (8)), (Big_int.of_int (8)), (subrange (zv, Big_int.zero, Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zMstatus_chunk_0 = update_subrange ((!zr.zMstatus_chunk_0), (Big_int.of_int (8)), (Big_int.of_int (8)), (subrange (zv, Big_int.zero, Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Mstatus_SPP ((zv, zx) : (zMstatus * (bit) list)) : zMstatus = sail_call (fun r ->
   let zv = ({zv with zMstatus_chunk_0 = update_subrange ((zv.zMstatus_chunk_0), (Big_int.of_int (8)), (Big_int.of_int (8)), (subrange (zx, Big_int.zero, Big_int.zero)))}) in
   zv)
 
-and z_get_Mstatus_MPIE (zv : zMstatus) : (bit) list = sail_call (fun r ->
+and z_get_Mstatus_MPIE (zv : (zMstatus)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zMstatus_chunk_0), (Big_int.of_int (7)), (Big_int.of_int (7))))
 
 and z_set_Mstatus_MPIE ((zr_ref, zv) : ((zMstatus) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zMstatus) in
   begin
-    zr := {!zr with zMstatus_chunk_0 = update_subrange ((!zr.zMstatus_chunk_0), (Big_int.of_int (7)), (Big_int.of_int (7)), (subrange (zv, Big_int.zero, Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zMstatus_chunk_0 = update_subrange ((!zr.zMstatus_chunk_0), (Big_int.of_int (7)), (Big_int.of_int (7)), (subrange (zv, Big_int.zero, Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Mstatus_MPIE ((zv, zx) : (zMstatus * (bit) list)) : zMstatus = sail_call (fun r ->
   let zv = ({zv with zMstatus_chunk_0 = update_subrange ((zv.zMstatus_chunk_0), (Big_int.of_int (7)), (Big_int.of_int (7)), (subrange (zx, Big_int.zero, Big_int.zero)))}) in
   zv)
 
-and z_get_Mstatus_SPIE (zv : zMstatus) : (bit) list = sail_call (fun r ->
+and z_get_Mstatus_SPIE (zv : (zMstatus)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zMstatus_chunk_0), (Big_int.of_int (5)), (Big_int.of_int (5))))
 
 and z_set_Mstatus_SPIE ((zr_ref, zv) : ((zMstatus) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zMstatus) in
   begin
-    zr := {!zr with zMstatus_chunk_0 = update_subrange ((!zr.zMstatus_chunk_0), (Big_int.of_int (5)), (Big_int.of_int (5)), (subrange (zv, Big_int.zero, Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zMstatus_chunk_0 = update_subrange ((!zr.zMstatus_chunk_0), (Big_int.of_int (5)), (Big_int.of_int (5)), (subrange (zv, Big_int.zero, Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Mstatus_SPIE ((zv, zx) : (zMstatus * (bit) list)) : zMstatus = sail_call (fun r ->
   let zv = ({zv with zMstatus_chunk_0 = update_subrange ((zv.zMstatus_chunk_0), (Big_int.of_int (5)), (Big_int.of_int (5)), (subrange (zx, Big_int.zero, Big_int.zero)))}) in
   zv)
 
-and z_get_Mstatus_UPIE (zv : zMstatus) : (bit) list = sail_call (fun r ->
+and z_get_Mstatus_UPIE (zv : (zMstatus)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zMstatus_chunk_0), (Big_int.of_int (4)), (Big_int.of_int (4))))
 
 and z_set_Mstatus_UPIE ((zr_ref, zv) : ((zMstatus) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zMstatus) in
   begin
-    zr := {!zr with zMstatus_chunk_0 = update_subrange ((!zr.zMstatus_chunk_0), (Big_int.of_int (4)), (Big_int.of_int (4)), (subrange (zv, Big_int.zero, Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zMstatus_chunk_0 = update_subrange ((!zr.zMstatus_chunk_0), (Big_int.of_int (4)), (Big_int.of_int (4)), (subrange (zv, Big_int.zero, Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Mstatus_UPIE ((zv, zx) : (zMstatus * (bit) list)) : zMstatus = sail_call (fun r ->
   let zv = ({zv with zMstatus_chunk_0 = update_subrange ((zv.zMstatus_chunk_0), (Big_int.of_int (4)), (Big_int.of_int (4)), (subrange (zx, Big_int.zero, Big_int.zero)))}) in
   zv)
 
-and z_get_Mstatus_MIE (zv : zMstatus) : (bit) list = sail_call (fun r ->
+and z_get_Mstatus_MIE (zv : (zMstatus)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zMstatus_chunk_0), (Big_int.of_int (3)), (Big_int.of_int (3))))
 
 and z_set_Mstatus_MIE ((zr_ref, zv) : ((zMstatus) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zMstatus) in
   begin
-    zr := {!zr with zMstatus_chunk_0 = update_subrange ((!zr.zMstatus_chunk_0), (Big_int.of_int (3)), (Big_int.of_int (3)), (subrange (zv, Big_int.zero, Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zMstatus_chunk_0 = update_subrange ((!zr.zMstatus_chunk_0), (Big_int.of_int (3)), (Big_int.of_int (3)), (subrange (zv, Big_int.zero, Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Mstatus_MIE ((zv, zx) : (zMstatus * (bit) list)) : zMstatus = sail_call (fun r ->
   let zv = ({zv with zMstatus_chunk_0 = update_subrange ((zv.zMstatus_chunk_0), (Big_int.of_int (3)), (Big_int.of_int (3)), (subrange (zx, Big_int.zero, Big_int.zero)))}) in
   zv)
 
-and z_get_Mstatus_SIE (zv : zMstatus) : (bit) list = sail_call (fun r ->
+and z_get_Mstatus_SIE (zv : (zMstatus)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zMstatus_chunk_0), (Big_int.of_int (1)), (Big_int.of_int (1))))
 
 and z_set_Mstatus_SIE ((zr_ref, zv) : ((zMstatus) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zMstatus) in
   begin
-    zr := {!zr with zMstatus_chunk_0 = update_subrange ((!zr.zMstatus_chunk_0), (Big_int.of_int (1)), (Big_int.of_int (1)), (subrange (zv, Big_int.zero, Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zMstatus_chunk_0 = update_subrange ((!zr.zMstatus_chunk_0), (Big_int.of_int (1)), (Big_int.of_int (1)), (subrange (zv, Big_int.zero, Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Mstatus_SIE ((zv, zx) : (zMstatus * (bit) list)) : zMstatus = sail_call (fun r ->
   let zv = ({zv with zMstatus_chunk_0 = update_subrange ((zv.zMstatus_chunk_0), (Big_int.of_int (1)), (Big_int.of_int (1)), (subrange (zx, Big_int.zero, Big_int.zero)))}) in
   zv)
 
-and z_get_Mstatus_UIE (zv : zMstatus) : (bit) list = sail_call (fun r ->
+and z_get_Mstatus_UIE (zv : (zMstatus)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zMstatus_chunk_0), Big_int.zero, Big_int.zero))
 
 and z_set_Mstatus_UIE ((zr_ref, zv) : ((zMstatus) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zMstatus) in
   begin
-    zr := {!zr with zMstatus_chunk_0 = update_subrange ((!zr.zMstatus_chunk_0), Big_int.zero, Big_int.zero, (subrange (zv, Big_int.zero, Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zMstatus_chunk_0 = update_subrange ((!zr.zMstatus_chunk_0), Big_int.zero, Big_int.zero, (subrange (zv, Big_int.zero, Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Mstatus_UIE ((zv, zx) : (zMstatus * (bit) list)) : zMstatus = sail_call (fun r ->
@@ -4773,7 +4802,7 @@ and z_update_Mstatus_UIE ((zv, zx) : (zMstatus * (bit) list)) : zMstatus = sail_
 
 let zmstatus : (zMstatus) ref = ref (zundefined_Mstatus ());;
 
-let rec zlegalizze_mstatus ((zo, zv) : (zMstatus * zxlenbits)) : zMstatus = sail_call (fun r ->
+let rec zlegalizze_mstatus ((zo, zv) : (zMstatus * (bit) list)) : zMstatus = sail_call (fun r ->
   let zm = (zMk_Mstatus zv) in
   let zm = (z_update_Mstatus_XS (zm, (zextStatus_to_bits ZOff))) in
   let zm = (z_update_Mstatus_SD (zm, (zbool_to_bits ((eq_list ((zextStatus_to_bits (zextStatus_of_bits (z_get_Mstatus_FS zm))), (zextStatus_to_bits ZDirty))) || (eq_list ((zextStatus_to_bits (zextStatus_of_bits (z_get_Mstatus_XS zm))), (zextStatus_to_bits ZDirty))))))) in
@@ -4783,7 +4812,7 @@ let rec zlegalizze_mstatus ((zo, zv) : (zMstatus * zxlenbits)) : zMstatus = sail
   let zm = (z_update_Mstatus_UIE (zm, (zbool_to_bits false))) in
   zm)
 
-and zcur_Architecture (() : unit) : zArchitecture = sail_call (fun r ->
+and zcur_Architecture (() : (unit)) : zArchitecture = sail_call (fun r ->
   let za = (begin
     match !zcur_privilege with
     | ZMachine -> z_get_Misa_MXL !zmisa
@@ -4796,69 +4825,69 @@ and zcur_Architecture (() : unit) : zArchitecture = sail_call (fun r ->
     | ZNone (()) -> zinternal_error "Invalid current architecture"
   end)
 
-and zin32BitMode (() : unit) : bool = sail_call (fun r ->
+and zin32BitMode (() : (unit)) : bool = sail_call (fun r ->
   (fun (x, y) -> x = y) ((zcur_Architecture ()), ZRV32))
 
-and zhaveAtomics (() : unit) : bool = sail_call (fun r ->
+and zhaveAtomics (() : (unit)) : bool = sail_call (fun r ->
   eq_list ((z_get_Misa_A !zmisa), (zbool_to_bits true)))
 
-and zhaveRVC (() : unit) : bool = sail_call (fun r ->
+and zhaveRVC (() : (unit)) : bool = sail_call (fun r ->
   eq_list ((z_get_Misa_C !zmisa), (zbool_to_bits true)))
 
-and zhaveMulDiv (() : unit) : bool = sail_call (fun r ->
+and zhaveMulDiv (() : (unit)) : bool = sail_call (fun r ->
   eq_list ((z_get_Misa_M !zmisa), (zbool_to_bits true)))
 
-and zhaveFP (() : unit) : bool = sail_call (fun r ->
+and zhaveFP (() : (unit)) : bool = sail_call (fun r ->
   (eq_list ((z_get_Misa_F !zmisa), (zbool_to_bits true))) || (eq_list ((z_get_Misa_D !zmisa), (zbool_to_bits true))))
 
 type  zMinterrupts = { zMinterrupts_chunk_0 : (bit) list
 };;
 
-let string_of_zMinterrupts (gs1660 : zMinterrupts) =
-  "{Minterrupts_chunk_0 = " ^ string_of_bits gs1660.zMinterrupts_chunk_0 ^ "}";;
+let string_of_zMinterrupts (gs2008 : zMinterrupts) =
+  "{Minterrupts_chunk_0 = " ^ string_of_bits gs2008.zMinterrupts_chunk_0 ^ "}";;
 
-let rec zundefined_Minterrupts (() : unit) : zMinterrupts = sail_call (fun r ->
+let rec zundefined_Minterrupts (() : (unit)) : zMinterrupts = sail_call (fun r ->
   {zMinterrupts_chunk_0 = undefined_vector ((Big_int.of_int (64)), (undefined_bit ()))})
 
-and zMk_Minterrupts (zv : (bit) list) : zMinterrupts = sail_call (fun r ->
+and zMk_Minterrupts (zv : ((bit) list)) : zMinterrupts = sail_call (fun r ->
   {zMinterrupts_chunk_0 = subrange (zv, (Big_int.of_int (63)), Big_int.zero)})
 
-and z_get_Minterrupts_bits (zv : zMinterrupts) : (bit) list = sail_call (fun r ->
+and z_get_Minterrupts_bits (zv : (zMinterrupts)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zMinterrupts_chunk_0), (Big_int.of_int (63)), Big_int.zero))
 
 and z_set_Minterrupts_bits ((zr_ref, zv) : ((zMinterrupts) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zMinterrupts) in
   begin
-    zr := {!zr with zMinterrupts_chunk_0 = update_subrange ((!zr.zMinterrupts_chunk_0), (Big_int.of_int (63)), Big_int.zero, (subrange (zv, (Big_int.of_int (63)), Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zMinterrupts_chunk_0 = update_subrange ((!zr.zMinterrupts_chunk_0), (Big_int.of_int (63)), Big_int.zero, (subrange (zv, (Big_int.of_int (63)), Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Minterrupts_bits ((zv, zx) : (zMinterrupts * (bit) list)) : zMinterrupts = sail_call (fun r ->
   let zv = ({zv with zMinterrupts_chunk_0 = update_subrange ((zv.zMinterrupts_chunk_0), (Big_int.of_int (63)), Big_int.zero, (subrange (zx, (Big_int.of_int (63)), Big_int.zero)))}) in
   zv)
 
-and z_get_Minterrupts_MEI (zv : zMinterrupts) : (bit) list = sail_call (fun r ->
+and z_get_Minterrupts_MEI (zv : (zMinterrupts)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zMinterrupts_chunk_0), (Big_int.of_int (11)), (Big_int.of_int (11))))
 
 and z_set_Minterrupts_MEI ((zr_ref, zv) : ((zMinterrupts) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zMinterrupts) in
   begin
-    zr := {!zr with zMinterrupts_chunk_0 = update_subrange ((!zr.zMinterrupts_chunk_0), (Big_int.of_int (11)), (Big_int.of_int (11)), (subrange (zv, Big_int.zero, Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zMinterrupts_chunk_0 = update_subrange ((!zr.zMinterrupts_chunk_0), (Big_int.of_int (11)), (Big_int.of_int (11)), (subrange (zv, Big_int.zero, Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Minterrupts_MEI ((zv, zx) : (zMinterrupts * (bit) list)) : zMinterrupts = sail_call (fun r ->
   let zv = ({zv with zMinterrupts_chunk_0 = update_subrange ((zv.zMinterrupts_chunk_0), (Big_int.of_int (11)), (Big_int.of_int (11)), (subrange (zx, Big_int.zero, Big_int.zero)))}) in
   zv)
 
-and z_get_Minterrupts_SEI (zv : zMinterrupts) : (bit) list = sail_call (fun r ->
+and z_get_Minterrupts_SEI (zv : (zMinterrupts)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zMinterrupts_chunk_0), (Big_int.of_int (9)), (Big_int.of_int (9))))
 
 and z_set_Minterrupts_SEI ((zr_ref, zv) : ((zMinterrupts) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zMinterrupts) in
   begin
-    zr := {!zr with zMinterrupts_chunk_0 = update_subrange ((!zr.zMinterrupts_chunk_0), (Big_int.of_int (9)), (Big_int.of_int (9)), (subrange (zv, Big_int.zero, Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zMinterrupts_chunk_0 = update_subrange ((!zr.zMinterrupts_chunk_0), (Big_int.of_int (9)), (Big_int.of_int (9)), (subrange (zv, Big_int.zero, Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Minterrupts_SEI ((zv, zx) : (zMinterrupts * (bit) list)) : zMinterrupts = sail_call (fun r ->
@@ -4868,101 +4897,101 @@ and z_update_Minterrupts_SEI ((zv, zx) : (zMinterrupts * (bit) list)) : zMinterr
 type  zSinterrupts = { zSinterrupts_chunk_0 : (bit) list
 };;
 
-let string_of_zSinterrupts (gs1706 : zSinterrupts) =
-  "{Sinterrupts_chunk_0 = " ^ string_of_bits gs1706.zSinterrupts_chunk_0 ^ "}";;
+let string_of_zSinterrupts (gs2059 : zSinterrupts) =
+  "{Sinterrupts_chunk_0 = " ^ string_of_bits gs2059.zSinterrupts_chunk_0 ^ "}";;
 
-let rec z_get_Minterrupts_UEI (zv : zMinterrupts) : (bit) list = sail_call (fun r ->
+let rec z_get_Minterrupts_UEI (zv : (zMinterrupts)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zMinterrupts_chunk_0), (Big_int.of_int (8)), (Big_int.of_int (8))))
 
 and z_set_Minterrupts_UEI ((zr_ref, zv) : ((zMinterrupts) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zMinterrupts) in
   begin
-    zr := {!zr with zMinterrupts_chunk_0 = update_subrange ((!zr.zMinterrupts_chunk_0), (Big_int.of_int (8)), (Big_int.of_int (8)), (subrange (zv, Big_int.zero, Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zMinterrupts_chunk_0 = update_subrange ((!zr.zMinterrupts_chunk_0), (Big_int.of_int (8)), (Big_int.of_int (8)), (subrange (zv, Big_int.zero, Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Minterrupts_UEI ((zv, zx) : (zMinterrupts * (bit) list)) : zMinterrupts = sail_call (fun r ->
   let zv = ({zv with zMinterrupts_chunk_0 = update_subrange ((zv.zMinterrupts_chunk_0), (Big_int.of_int (8)), (Big_int.of_int (8)), (subrange (zx, Big_int.zero, Big_int.zero)))}) in
   zv)
 
-and z_get_Minterrupts_MTI (zv : zMinterrupts) : (bit) list = sail_call (fun r ->
+and z_get_Minterrupts_MTI (zv : (zMinterrupts)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zMinterrupts_chunk_0), (Big_int.of_int (7)), (Big_int.of_int (7))))
 
 and z_set_Minterrupts_MTI ((zr_ref, zv) : ((zMinterrupts) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zMinterrupts) in
   begin
-    zr := {!zr with zMinterrupts_chunk_0 = update_subrange ((!zr.zMinterrupts_chunk_0), (Big_int.of_int (7)), (Big_int.of_int (7)), (subrange (zv, Big_int.zero, Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zMinterrupts_chunk_0 = update_subrange ((!zr.zMinterrupts_chunk_0), (Big_int.of_int (7)), (Big_int.of_int (7)), (subrange (zv, Big_int.zero, Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Minterrupts_MTI ((zv, zx) : (zMinterrupts * (bit) list)) : zMinterrupts = sail_call (fun r ->
   let zv = ({zv with zMinterrupts_chunk_0 = update_subrange ((zv.zMinterrupts_chunk_0), (Big_int.of_int (7)), (Big_int.of_int (7)), (subrange (zx, Big_int.zero, Big_int.zero)))}) in
   zv)
 
-and z_get_Minterrupts_STI (zv : zMinterrupts) : (bit) list = sail_call (fun r ->
+and z_get_Minterrupts_STI (zv : (zMinterrupts)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zMinterrupts_chunk_0), (Big_int.of_int (5)), (Big_int.of_int (5))))
 
 and z_set_Minterrupts_STI ((zr_ref, zv) : ((zMinterrupts) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zMinterrupts) in
   begin
-    zr := {!zr with zMinterrupts_chunk_0 = update_subrange ((!zr.zMinterrupts_chunk_0), (Big_int.of_int (5)), (Big_int.of_int (5)), (subrange (zv, Big_int.zero, Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zMinterrupts_chunk_0 = update_subrange ((!zr.zMinterrupts_chunk_0), (Big_int.of_int (5)), (Big_int.of_int (5)), (subrange (zv, Big_int.zero, Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Minterrupts_STI ((zv, zx) : (zMinterrupts * (bit) list)) : zMinterrupts = sail_call (fun r ->
   let zv = ({zv with zMinterrupts_chunk_0 = update_subrange ((zv.zMinterrupts_chunk_0), (Big_int.of_int (5)), (Big_int.of_int (5)), (subrange (zx, Big_int.zero, Big_int.zero)))}) in
   zv)
 
-and z_get_Minterrupts_UTI (zv : zMinterrupts) : (bit) list = sail_call (fun r ->
+and z_get_Minterrupts_UTI (zv : (zMinterrupts)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zMinterrupts_chunk_0), (Big_int.of_int (4)), (Big_int.of_int (4))))
 
 and z_set_Minterrupts_UTI ((zr_ref, zv) : ((zMinterrupts) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zMinterrupts) in
   begin
-    zr := {!zr with zMinterrupts_chunk_0 = update_subrange ((!zr.zMinterrupts_chunk_0), (Big_int.of_int (4)), (Big_int.of_int (4)), (subrange (zv, Big_int.zero, Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zMinterrupts_chunk_0 = update_subrange ((!zr.zMinterrupts_chunk_0), (Big_int.of_int (4)), (Big_int.of_int (4)), (subrange (zv, Big_int.zero, Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Minterrupts_UTI ((zv, zx) : (zMinterrupts * (bit) list)) : zMinterrupts = sail_call (fun r ->
   let zv = ({zv with zMinterrupts_chunk_0 = update_subrange ((zv.zMinterrupts_chunk_0), (Big_int.of_int (4)), (Big_int.of_int (4)), (subrange (zx, Big_int.zero, Big_int.zero)))}) in
   zv)
 
-and z_get_Minterrupts_MSI (zv : zMinterrupts) : (bit) list = sail_call (fun r ->
+and z_get_Minterrupts_MSI (zv : (zMinterrupts)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zMinterrupts_chunk_0), (Big_int.of_int (3)), (Big_int.of_int (3))))
 
 and z_set_Minterrupts_MSI ((zr_ref, zv) : ((zMinterrupts) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zMinterrupts) in
   begin
-    zr := {!zr with zMinterrupts_chunk_0 = update_subrange ((!zr.zMinterrupts_chunk_0), (Big_int.of_int (3)), (Big_int.of_int (3)), (subrange (zv, Big_int.zero, Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zMinterrupts_chunk_0 = update_subrange ((!zr.zMinterrupts_chunk_0), (Big_int.of_int (3)), (Big_int.of_int (3)), (subrange (zv, Big_int.zero, Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Minterrupts_MSI ((zv, zx) : (zMinterrupts * (bit) list)) : zMinterrupts = sail_call (fun r ->
   let zv = ({zv with zMinterrupts_chunk_0 = update_subrange ((zv.zMinterrupts_chunk_0), (Big_int.of_int (3)), (Big_int.of_int (3)), (subrange (zx, Big_int.zero, Big_int.zero)))}) in
   zv)
 
-and z_get_Minterrupts_SSI (zv : zMinterrupts) : (bit) list = sail_call (fun r ->
+and z_get_Minterrupts_SSI (zv : (zMinterrupts)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zMinterrupts_chunk_0), (Big_int.of_int (1)), (Big_int.of_int (1))))
 
 and z_set_Minterrupts_SSI ((zr_ref, zv) : ((zMinterrupts) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zMinterrupts) in
   begin
-    zr := {!zr with zMinterrupts_chunk_0 = update_subrange ((!zr.zMinterrupts_chunk_0), (Big_int.of_int (1)), (Big_int.of_int (1)), (subrange (zv, Big_int.zero, Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zMinterrupts_chunk_0 = update_subrange ((!zr.zMinterrupts_chunk_0), (Big_int.of_int (1)), (Big_int.of_int (1)), (subrange (zv, Big_int.zero, Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Minterrupts_SSI ((zv, zx) : (zMinterrupts * (bit) list)) : zMinterrupts = sail_call (fun r ->
   let zv = ({zv with zMinterrupts_chunk_0 = update_subrange ((zv.zMinterrupts_chunk_0), (Big_int.of_int (1)), (Big_int.of_int (1)), (subrange (zx, Big_int.zero, Big_int.zero)))}) in
   zv)
 
-and z_get_Minterrupts_USI (zv : zMinterrupts) : (bit) list = sail_call (fun r ->
+and z_get_Minterrupts_USI (zv : (zMinterrupts)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zMinterrupts_chunk_0), Big_int.zero, Big_int.zero))
 
 and z_set_Minterrupts_USI ((zr_ref, zv) : ((zMinterrupts) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zMinterrupts) in
   begin
-    zr := {!zr with zMinterrupts_chunk_0 = update_subrange ((!zr.zMinterrupts_chunk_0), Big_int.zero, Big_int.zero, (subrange (zv, Big_int.zero, Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zMinterrupts_chunk_0 = update_subrange ((!zr.zMinterrupts_chunk_0), Big_int.zero, Big_int.zero, (subrange (zv, Big_int.zero, Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Minterrupts_USI ((zv, zx) : (zMinterrupts * (bit) list)) : zMinterrupts = sail_call (fun r ->
@@ -4975,14 +5004,14 @@ let zmie : (zMinterrupts) ref = ref (zundefined_Minterrupts ());;
 
 let zmideleg : (zMinterrupts) ref = ref (zundefined_Minterrupts ());;
 
-let rec zlegalizze_mip ((zo, zv) : (zMinterrupts * zxlenbits)) : zMinterrupts = sail_call (fun r ->
+let rec zlegalizze_mip ((zo, zv) : (zMinterrupts * (bit) list)) : zMinterrupts = sail_call (fun r ->
   let zv = (zMk_Minterrupts zv) in
   let zm = (z_update_Minterrupts_SEI (zo, (z_get_Minterrupts_SEI zv))) in
   let zm = (z_update_Minterrupts_STI (zm, (z_get_Minterrupts_STI zv))) in
   let zm = (z_update_Minterrupts_SSI (zm, (z_get_Minterrupts_SSI zv))) in
   zm)
 
-and zlegalizze_mie ((zo, zv) : (zMinterrupts * zxlenbits)) : zMinterrupts = sail_call (fun r ->
+and zlegalizze_mie ((zo, zv) : (zMinterrupts * (bit) list)) : zMinterrupts = sail_call (fun r ->
   let zv = (zMk_Minterrupts zv) in
   let zm = (z_update_Minterrupts_MEI (zo, (z_get_Minterrupts_MEI zv))) in
   let zm = (z_update_Minterrupts_MTI (zm, (z_get_Minterrupts_MTI zv))) in
@@ -4992,7 +5021,7 @@ and zlegalizze_mie ((zo, zv) : (zMinterrupts * zxlenbits)) : zMinterrupts = sail
   let zm = (z_update_Minterrupts_SSI (zm, (z_get_Minterrupts_SSI zv))) in
   zm)
 
-and zlegalizze_mideleg ((zo, zv) : (zMinterrupts * zxlenbits)) : zMinterrupts = sail_call (fun r ->
+and zlegalizze_mideleg ((zo, zv) : (zMinterrupts * (bit) list)) : zMinterrupts = sail_call (fun r ->
   let zm = (zMk_Minterrupts zv) in
   let zm = (z_update_Minterrupts_MEI (zm, (zbool_to_bits false))) in
   let zm = (z_update_Minterrupts_MTI (zm, (zbool_to_bits false))) in
@@ -5002,107 +5031,107 @@ and zlegalizze_mideleg ((zo, zv) : (zMinterrupts * zxlenbits)) : zMinterrupts = 
 type  zMedeleg = { zMedeleg_chunk_0 : (bit) list
 };;
 
-let string_of_zMedeleg (gs1813 : zMedeleg) =
-  "{Medeleg_chunk_0 = " ^ string_of_bits gs1813.zMedeleg_chunk_0 ^ "}";;
+let string_of_zMedeleg (gs2173 : zMedeleg) =
+  "{Medeleg_chunk_0 = " ^ string_of_bits gs2173.zMedeleg_chunk_0 ^ "}";;
 
-let rec zundefined_Medeleg (() : unit) : zMedeleg = sail_call (fun r ->
+let rec zundefined_Medeleg (() : (unit)) : zMedeleg = sail_call (fun r ->
   {zMedeleg_chunk_0 = undefined_vector ((Big_int.of_int (64)), (undefined_bit ()))})
 
-and zMk_Medeleg (zv : (bit) list) : zMedeleg = sail_call (fun r ->
+and zMk_Medeleg (zv : ((bit) list)) : zMedeleg = sail_call (fun r ->
   {zMedeleg_chunk_0 = subrange (zv, (Big_int.of_int (63)), Big_int.zero)})
 
-and z_get_Medeleg_bits (zv : zMedeleg) : (bit) list = sail_call (fun r ->
+and z_get_Medeleg_bits (zv : (zMedeleg)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zMedeleg_chunk_0), (Big_int.of_int (63)), Big_int.zero))
 
 and z_set_Medeleg_bits ((zr_ref, zv) : ((zMedeleg) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zMedeleg) in
   begin
-    zr := {!zr with zMedeleg_chunk_0 = update_subrange ((!zr.zMedeleg_chunk_0), (Big_int.of_int (63)), Big_int.zero, (subrange (zv, (Big_int.of_int (63)), Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zMedeleg_chunk_0 = update_subrange ((!zr.zMedeleg_chunk_0), (Big_int.of_int (63)), Big_int.zero, (subrange (zv, (Big_int.of_int (63)), Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Medeleg_bits ((zv, zx) : (zMedeleg * (bit) list)) : zMedeleg = sail_call (fun r ->
   let zv = ({zv with zMedeleg_chunk_0 = update_subrange ((zv.zMedeleg_chunk_0), (Big_int.of_int (63)), Big_int.zero, (subrange (zx, (Big_int.of_int (63)), Big_int.zero)))}) in
   zv)
 
-and z_get_Medeleg_SAMO_Page_Fault (zv : zMedeleg) : (bit) list = sail_call (fun r ->
+and z_get_Medeleg_SAMO_Page_Fault (zv : (zMedeleg)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zMedeleg_chunk_0), (Big_int.of_int (15)), (Big_int.of_int (15))))
 
 and z_set_Medeleg_SAMO_Page_Fault ((zr_ref, zv) : ((zMedeleg) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zMedeleg) in
   begin
-    zr := {!zr with zMedeleg_chunk_0 = update_subrange ((!zr.zMedeleg_chunk_0), (Big_int.of_int (15)), (Big_int.of_int (15)), (subrange (zv, Big_int.zero, Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zMedeleg_chunk_0 = update_subrange ((!zr.zMedeleg_chunk_0), (Big_int.of_int (15)), (Big_int.of_int (15)), (subrange (zv, Big_int.zero, Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Medeleg_SAMO_Page_Fault ((zv, zx) : (zMedeleg * (bit) list)) : zMedeleg = sail_call (fun r ->
   let zv = ({zv with zMedeleg_chunk_0 = update_subrange ((zv.zMedeleg_chunk_0), (Big_int.of_int (15)), (Big_int.of_int (15)), (subrange (zx, Big_int.zero, Big_int.zero)))}) in
   zv)
 
-and z_get_Medeleg_Load_Page_Fault (zv : zMedeleg) : (bit) list = sail_call (fun r ->
+and z_get_Medeleg_Load_Page_Fault (zv : (zMedeleg)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zMedeleg_chunk_0), (Big_int.of_int (13)), (Big_int.of_int (13))))
 
 and z_set_Medeleg_Load_Page_Fault ((zr_ref, zv) : ((zMedeleg) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zMedeleg) in
   begin
-    zr := {!zr with zMedeleg_chunk_0 = update_subrange ((!zr.zMedeleg_chunk_0), (Big_int.of_int (13)), (Big_int.of_int (13)), (subrange (zv, Big_int.zero, Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zMedeleg_chunk_0 = update_subrange ((!zr.zMedeleg_chunk_0), (Big_int.of_int (13)), (Big_int.of_int (13)), (subrange (zv, Big_int.zero, Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Medeleg_Load_Page_Fault ((zv, zx) : (zMedeleg * (bit) list)) : zMedeleg = sail_call (fun r ->
   let zv = ({zv with zMedeleg_chunk_0 = update_subrange ((zv.zMedeleg_chunk_0), (Big_int.of_int (13)), (Big_int.of_int (13)), (subrange (zx, Big_int.zero, Big_int.zero)))}) in
   zv)
 
-and z_get_Medeleg_Fetch_Page_Fault (zv : zMedeleg) : (bit) list = sail_call (fun r ->
+and z_get_Medeleg_Fetch_Page_Fault (zv : (zMedeleg)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zMedeleg_chunk_0), (Big_int.of_int (12)), (Big_int.of_int (12))))
 
 and z_set_Medeleg_Fetch_Page_Fault ((zr_ref, zv) : ((zMedeleg) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zMedeleg) in
   begin
-    zr := {!zr with zMedeleg_chunk_0 = update_subrange ((!zr.zMedeleg_chunk_0), (Big_int.of_int (12)), (Big_int.of_int (12)), (subrange (zv, Big_int.zero, Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zMedeleg_chunk_0 = update_subrange ((!zr.zMedeleg_chunk_0), (Big_int.of_int (12)), (Big_int.of_int (12)), (subrange (zv, Big_int.zero, Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Medeleg_Fetch_Page_Fault ((zv, zx) : (zMedeleg * (bit) list)) : zMedeleg = sail_call (fun r ->
   let zv = ({zv with zMedeleg_chunk_0 = update_subrange ((zv.zMedeleg_chunk_0), (Big_int.of_int (12)), (Big_int.of_int (12)), (subrange (zx, Big_int.zero, Big_int.zero)))}) in
   zv)
 
-and z_get_Medeleg_MEnvCall (zv : zMedeleg) : (bit) list = sail_call (fun r ->
+and z_get_Medeleg_MEnvCall (zv : (zMedeleg)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zMedeleg_chunk_0), (Big_int.of_int (10)), (Big_int.of_int (10))))
 
 and z_set_Medeleg_MEnvCall ((zr_ref, zv) : ((zMedeleg) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zMedeleg) in
   begin
-    zr := {!zr with zMedeleg_chunk_0 = update_subrange ((!zr.zMedeleg_chunk_0), (Big_int.of_int (10)), (Big_int.of_int (10)), (subrange (zv, Big_int.zero, Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zMedeleg_chunk_0 = update_subrange ((!zr.zMedeleg_chunk_0), (Big_int.of_int (10)), (Big_int.of_int (10)), (subrange (zv, Big_int.zero, Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Medeleg_MEnvCall ((zv, zx) : (zMedeleg * (bit) list)) : zMedeleg = sail_call (fun r ->
   let zv = ({zv with zMedeleg_chunk_0 = update_subrange ((zv.zMedeleg_chunk_0), (Big_int.of_int (10)), (Big_int.of_int (10)), (subrange (zx, Big_int.zero, Big_int.zero)))}) in
   zv)
 
-and z_get_Medeleg_SEnvCall (zv : zMedeleg) : (bit) list = sail_call (fun r ->
+and z_get_Medeleg_SEnvCall (zv : (zMedeleg)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zMedeleg_chunk_0), (Big_int.of_int (9)), (Big_int.of_int (9))))
 
 and z_set_Medeleg_SEnvCall ((zr_ref, zv) : ((zMedeleg) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zMedeleg) in
   begin
-    zr := {!zr with zMedeleg_chunk_0 = update_subrange ((!zr.zMedeleg_chunk_0), (Big_int.of_int (9)), (Big_int.of_int (9)), (subrange (zv, Big_int.zero, Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zMedeleg_chunk_0 = update_subrange ((!zr.zMedeleg_chunk_0), (Big_int.of_int (9)), (Big_int.of_int (9)), (subrange (zv, Big_int.zero, Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Medeleg_SEnvCall ((zv, zx) : (zMedeleg * (bit) list)) : zMedeleg = sail_call (fun r ->
   let zv = ({zv with zMedeleg_chunk_0 = update_subrange ((zv.zMedeleg_chunk_0), (Big_int.of_int (9)), (Big_int.of_int (9)), (subrange (zx, Big_int.zero, Big_int.zero)))}) in
   zv)
 
-and z_get_Medeleg_UEnvCall (zv : zMedeleg) : (bit) list = sail_call (fun r ->
+and z_get_Medeleg_UEnvCall (zv : (zMedeleg)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zMedeleg_chunk_0), (Big_int.of_int (8)), (Big_int.of_int (8))))
 
 and z_set_Medeleg_UEnvCall ((zr_ref, zv) : ((zMedeleg) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zMedeleg) in
   begin
-    zr := {!zr with zMedeleg_chunk_0 = update_subrange ((!zr.zMedeleg_chunk_0), (Big_int.of_int (8)), (Big_int.of_int (8)), (subrange (zv, Big_int.zero, Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zMedeleg_chunk_0 = update_subrange ((!zr.zMedeleg_chunk_0), (Big_int.of_int (8)), (Big_int.of_int (8)), (subrange (zv, Big_int.zero, Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Medeleg_UEnvCall ((zv, zx) : (zMedeleg * (bit) list)) : zMedeleg = sail_call (fun r ->
@@ -5112,115 +5141,115 @@ and z_update_Medeleg_UEnvCall ((zv, zx) : (zMedeleg * (bit) list)) : zMedeleg = 
 type  zSedeleg = { zSedeleg_chunk_0 : (bit) list
 };;
 
-let string_of_zSedeleg (gs1911 : zSedeleg) =
-  "{Sedeleg_chunk_0 = " ^ string_of_bits gs1911.zSedeleg_chunk_0 ^ "}";;
+let string_of_zSedeleg (gs2280 : zSedeleg) =
+  "{Sedeleg_chunk_0 = " ^ string_of_bits gs2280.zSedeleg_chunk_0 ^ "}";;
 
-let rec z_get_Medeleg_SAMO_Access_Fault (zv : zMedeleg) : (bit) list = sail_call (fun r ->
+let rec z_get_Medeleg_SAMO_Access_Fault (zv : (zMedeleg)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zMedeleg_chunk_0), (Big_int.of_int (7)), (Big_int.of_int (7))))
 
 and z_set_Medeleg_SAMO_Access_Fault ((zr_ref, zv) : ((zMedeleg) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zMedeleg) in
   begin
-    zr := {!zr with zMedeleg_chunk_0 = update_subrange ((!zr.zMedeleg_chunk_0), (Big_int.of_int (7)), (Big_int.of_int (7)), (subrange (zv, Big_int.zero, Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zMedeleg_chunk_0 = update_subrange ((!zr.zMedeleg_chunk_0), (Big_int.of_int (7)), (Big_int.of_int (7)), (subrange (zv, Big_int.zero, Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Medeleg_SAMO_Access_Fault ((zv, zx) : (zMedeleg * (bit) list)) : zMedeleg = sail_call (fun r ->
   let zv = ({zv with zMedeleg_chunk_0 = update_subrange ((zv.zMedeleg_chunk_0), (Big_int.of_int (7)), (Big_int.of_int (7)), (subrange (zx, Big_int.zero, Big_int.zero)))}) in
   zv)
 
-and z_get_Medeleg_SAMO_Addr_Align (zv : zMedeleg) : (bit) list = sail_call (fun r ->
+and z_get_Medeleg_SAMO_Addr_Align (zv : (zMedeleg)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zMedeleg_chunk_0), (Big_int.of_int (6)), (Big_int.of_int (6))))
 
 and z_set_Medeleg_SAMO_Addr_Align ((zr_ref, zv) : ((zMedeleg) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zMedeleg) in
   begin
-    zr := {!zr with zMedeleg_chunk_0 = update_subrange ((!zr.zMedeleg_chunk_0), (Big_int.of_int (6)), (Big_int.of_int (6)), (subrange (zv, Big_int.zero, Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zMedeleg_chunk_0 = update_subrange ((!zr.zMedeleg_chunk_0), (Big_int.of_int (6)), (Big_int.of_int (6)), (subrange (zv, Big_int.zero, Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Medeleg_SAMO_Addr_Align ((zv, zx) : (zMedeleg * (bit) list)) : zMedeleg = sail_call (fun r ->
   let zv = ({zv with zMedeleg_chunk_0 = update_subrange ((zv.zMedeleg_chunk_0), (Big_int.of_int (6)), (Big_int.of_int (6)), (subrange (zx, Big_int.zero, Big_int.zero)))}) in
   zv)
 
-and z_get_Medeleg_Load_Access_Fault (zv : zMedeleg) : (bit) list = sail_call (fun r ->
+and z_get_Medeleg_Load_Access_Fault (zv : (zMedeleg)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zMedeleg_chunk_0), (Big_int.of_int (5)), (Big_int.of_int (5))))
 
 and z_set_Medeleg_Load_Access_Fault ((zr_ref, zv) : ((zMedeleg) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zMedeleg) in
   begin
-    zr := {!zr with zMedeleg_chunk_0 = update_subrange ((!zr.zMedeleg_chunk_0), (Big_int.of_int (5)), (Big_int.of_int (5)), (subrange (zv, Big_int.zero, Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zMedeleg_chunk_0 = update_subrange ((!zr.zMedeleg_chunk_0), (Big_int.of_int (5)), (Big_int.of_int (5)), (subrange (zv, Big_int.zero, Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Medeleg_Load_Access_Fault ((zv, zx) : (zMedeleg * (bit) list)) : zMedeleg = sail_call (fun r ->
   let zv = ({zv with zMedeleg_chunk_0 = update_subrange ((zv.zMedeleg_chunk_0), (Big_int.of_int (5)), (Big_int.of_int (5)), (subrange (zx, Big_int.zero, Big_int.zero)))}) in
   zv)
 
-and z_get_Medeleg_Load_Addr_Align (zv : zMedeleg) : (bit) list = sail_call (fun r ->
+and z_get_Medeleg_Load_Addr_Align (zv : (zMedeleg)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zMedeleg_chunk_0), (Big_int.of_int (4)), (Big_int.of_int (4))))
 
 and z_set_Medeleg_Load_Addr_Align ((zr_ref, zv) : ((zMedeleg) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zMedeleg) in
   begin
-    zr := {!zr with zMedeleg_chunk_0 = update_subrange ((!zr.zMedeleg_chunk_0), (Big_int.of_int (4)), (Big_int.of_int (4)), (subrange (zv, Big_int.zero, Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zMedeleg_chunk_0 = update_subrange ((!zr.zMedeleg_chunk_0), (Big_int.of_int (4)), (Big_int.of_int (4)), (subrange (zv, Big_int.zero, Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Medeleg_Load_Addr_Align ((zv, zx) : (zMedeleg * (bit) list)) : zMedeleg = sail_call (fun r ->
   let zv = ({zv with zMedeleg_chunk_0 = update_subrange ((zv.zMedeleg_chunk_0), (Big_int.of_int (4)), (Big_int.of_int (4)), (subrange (zx, Big_int.zero, Big_int.zero)))}) in
   zv)
 
-and z_get_Medeleg_Breakpoint (zv : zMedeleg) : (bit) list = sail_call (fun r ->
+and z_get_Medeleg_Breakpoint (zv : (zMedeleg)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zMedeleg_chunk_0), (Big_int.of_int (3)), (Big_int.of_int (3))))
 
 and z_set_Medeleg_Breakpoint ((zr_ref, zv) : ((zMedeleg) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zMedeleg) in
   begin
-    zr := {!zr with zMedeleg_chunk_0 = update_subrange ((!zr.zMedeleg_chunk_0), (Big_int.of_int (3)), (Big_int.of_int (3)), (subrange (zv, Big_int.zero, Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zMedeleg_chunk_0 = update_subrange ((!zr.zMedeleg_chunk_0), (Big_int.of_int (3)), (Big_int.of_int (3)), (subrange (zv, Big_int.zero, Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Medeleg_Breakpoint ((zv, zx) : (zMedeleg * (bit) list)) : zMedeleg = sail_call (fun r ->
   let zv = ({zv with zMedeleg_chunk_0 = update_subrange ((zv.zMedeleg_chunk_0), (Big_int.of_int (3)), (Big_int.of_int (3)), (subrange (zx, Big_int.zero, Big_int.zero)))}) in
   zv)
 
-and z_get_Medeleg_Illegal_Instr (zv : zMedeleg) : (bit) list = sail_call (fun r ->
+and z_get_Medeleg_Illegal_Instr (zv : (zMedeleg)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zMedeleg_chunk_0), (Big_int.of_int (2)), (Big_int.of_int (2))))
 
 and z_set_Medeleg_Illegal_Instr ((zr_ref, zv) : ((zMedeleg) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zMedeleg) in
   begin
-    zr := {!zr with zMedeleg_chunk_0 = update_subrange ((!zr.zMedeleg_chunk_0), (Big_int.of_int (2)), (Big_int.of_int (2)), (subrange (zv, Big_int.zero, Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zMedeleg_chunk_0 = update_subrange ((!zr.zMedeleg_chunk_0), (Big_int.of_int (2)), (Big_int.of_int (2)), (subrange (zv, Big_int.zero, Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Medeleg_Illegal_Instr ((zv, zx) : (zMedeleg * (bit) list)) : zMedeleg = sail_call (fun r ->
   let zv = ({zv with zMedeleg_chunk_0 = update_subrange ((zv.zMedeleg_chunk_0), (Big_int.of_int (2)), (Big_int.of_int (2)), (subrange (zx, Big_int.zero, Big_int.zero)))}) in
   zv)
 
-and z_get_Medeleg_Fetch_Access_Fault (zv : zMedeleg) : (bit) list = sail_call (fun r ->
+and z_get_Medeleg_Fetch_Access_Fault (zv : (zMedeleg)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zMedeleg_chunk_0), (Big_int.of_int (1)), (Big_int.of_int (1))))
 
 and z_set_Medeleg_Fetch_Access_Fault ((zr_ref, zv) : ((zMedeleg) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zMedeleg) in
   begin
-    zr := {!zr with zMedeleg_chunk_0 = update_subrange ((!zr.zMedeleg_chunk_0), (Big_int.of_int (1)), (Big_int.of_int (1)), (subrange (zv, Big_int.zero, Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zMedeleg_chunk_0 = update_subrange ((!zr.zMedeleg_chunk_0), (Big_int.of_int (1)), (Big_int.of_int (1)), (subrange (zv, Big_int.zero, Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Medeleg_Fetch_Access_Fault ((zv, zx) : (zMedeleg * (bit) list)) : zMedeleg = sail_call (fun r ->
   let zv = ({zv with zMedeleg_chunk_0 = update_subrange ((zv.zMedeleg_chunk_0), (Big_int.of_int (1)), (Big_int.of_int (1)), (subrange (zx, Big_int.zero, Big_int.zero)))}) in
   zv)
 
-and z_get_Medeleg_Fetch_Addr_Align (zv : zMedeleg) : (bit) list = sail_call (fun r ->
+and z_get_Medeleg_Fetch_Addr_Align (zv : (zMedeleg)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zMedeleg_chunk_0), Big_int.zero, Big_int.zero))
 
 and z_set_Medeleg_Fetch_Addr_Align ((zr_ref, zv) : ((zMedeleg) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zMedeleg) in
   begin
-    zr := {!zr with zMedeleg_chunk_0 = update_subrange ((!zr.zMedeleg_chunk_0), Big_int.zero, Big_int.zero, (subrange (zv, Big_int.zero, Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zMedeleg_chunk_0 = update_subrange ((!zr.zMedeleg_chunk_0), Big_int.zero, Big_int.zero, (subrange (zv, Big_int.zero, Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Medeleg_Fetch_Addr_Align ((zv, zx) : (zMedeleg * (bit) list)) : zMedeleg = sail_call (fun r ->
@@ -5229,7 +5258,7 @@ and z_update_Medeleg_Fetch_Addr_Align ((zv, zx) : (zMedeleg * (bit) list)) : zMe
 
 let zmedeleg : (zMedeleg) ref = ref (zundefined_Medeleg ());;
 
-let rec zlegalizze_medeleg ((zo, zv) : (zMedeleg * zxlenbits)) : zMedeleg = sail_call (fun r ->
+let rec zlegalizze_medeleg ((zo, zv) : (zMedeleg * (bit) list)) : zMedeleg = sail_call (fun r ->
   let zm = (zMk_Medeleg zv) in
   let zm = (z_update_Medeleg_MEnvCall (zm, (zbool_to_bits false))) in
   zm)
@@ -5237,51 +5266,51 @@ let rec zlegalizze_medeleg ((zo, zv) : (zMedeleg * zxlenbits)) : zMedeleg = sail
 type  zMtvec = { zMtvec_chunk_0 : (bit) list
 };;
 
-let string_of_zMtvec (gs2021 : zMtvec) =
-  "{Mtvec_chunk_0 = " ^ string_of_bits gs2021.zMtvec_chunk_0 ^ "}";;
+let string_of_zMtvec (gs2398 : zMtvec) =
+  "{Mtvec_chunk_0 = " ^ string_of_bits gs2398.zMtvec_chunk_0 ^ "}";;
 
-let rec zundefined_Mtvec (() : unit) : zMtvec = sail_call (fun r ->
+let rec zundefined_Mtvec (() : (unit)) : zMtvec = sail_call (fun r ->
   {zMtvec_chunk_0 = undefined_vector ((Big_int.of_int (64)), (undefined_bit ()))})
 
-and zMk_Mtvec (zv : (bit) list) : zMtvec = sail_call (fun r ->
+and zMk_Mtvec (zv : ((bit) list)) : zMtvec = sail_call (fun r ->
   {zMtvec_chunk_0 = subrange (zv, (Big_int.of_int (63)), Big_int.zero)})
 
-and z_get_Mtvec_bits (zv : zMtvec) : (bit) list = sail_call (fun r ->
+and z_get_Mtvec_bits (zv : (zMtvec)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zMtvec_chunk_0), (Big_int.of_int (63)), Big_int.zero))
 
 and z_set_Mtvec_bits ((zr_ref, zv) : ((zMtvec) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zMtvec) in
   begin
-    zr := {!zr with zMtvec_chunk_0 = update_subrange ((!zr.zMtvec_chunk_0), (Big_int.of_int (63)), Big_int.zero, (subrange (zv, (Big_int.of_int (63)), Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zMtvec_chunk_0 = update_subrange ((!zr.zMtvec_chunk_0), (Big_int.of_int (63)), Big_int.zero, (subrange (zv, (Big_int.of_int (63)), Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Mtvec_bits ((zv, zx) : (zMtvec * (bit) list)) : zMtvec = sail_call (fun r ->
   let zv = ({zv with zMtvec_chunk_0 = update_subrange ((zv.zMtvec_chunk_0), (Big_int.of_int (63)), Big_int.zero, (subrange (zx, (Big_int.of_int (63)), Big_int.zero)))}) in
   zv)
 
-and z_get_Mtvec_Base (zv : zMtvec) : (bit) list = sail_call (fun r ->
+and z_get_Mtvec_Base (zv : (zMtvec)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zMtvec_chunk_0), (Big_int.of_int (63)), (Big_int.of_int (2))))
 
 and z_set_Mtvec_Base ((zr_ref, zv) : ((zMtvec) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zMtvec) in
   begin
-    zr := {!zr with zMtvec_chunk_0 = update_subrange ((!zr.zMtvec_chunk_0), (Big_int.of_int (63)), (Big_int.of_int (2)), (subrange (zv, (Big_int.of_int (61)), Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zMtvec_chunk_0 = update_subrange ((!zr.zMtvec_chunk_0), (Big_int.of_int (63)), (Big_int.of_int (2)), (subrange (zv, (Big_int.of_int (61)), Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Mtvec_Base ((zv, zx) : (zMtvec * (bit) list)) : zMtvec = sail_call (fun r ->
   let zv = ({zv with zMtvec_chunk_0 = update_subrange ((zv.zMtvec_chunk_0), (Big_int.of_int (63)), (Big_int.of_int (2)), (subrange (zx, (Big_int.of_int (61)), Big_int.zero)))}) in
   zv)
 
-and z_get_Mtvec_Mode (zv : zMtvec) : (bit) list = sail_call (fun r ->
+and z_get_Mtvec_Mode (zv : (zMtvec)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zMtvec_chunk_0), (Big_int.of_int (1)), Big_int.zero))
 
 and z_set_Mtvec_Mode ((zr_ref, zv) : ((zMtvec) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zMtvec) in
   begin
-    zr := {!zr with zMtvec_chunk_0 = update_subrange ((!zr.zMtvec_chunk_0), (Big_int.of_int (1)), Big_int.zero, (subrange (zv, (Big_int.of_int (1)), Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zMtvec_chunk_0 = update_subrange ((!zr.zMtvec_chunk_0), (Big_int.of_int (1)), Big_int.zero, (subrange (zv, (Big_int.of_int (1)), Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Mtvec_Mode ((zv, zx) : (zMtvec * (bit) list)) : zMtvec = sail_call (fun r ->
@@ -5291,12 +5320,12 @@ and z_update_Mtvec_Mode ((zv, zx) : (zMtvec * (bit) list)) : zMtvec = sail_call 
 type  zSatp64 = { zSatp64_chunk_0 : (bit) list
 };;
 
-let string_of_zSatp64 (gs2067 : zSatp64) =
-  "{Satp64_chunk_0 = " ^ string_of_bits gs2067.zSatp64_chunk_0 ^ "}";;
+let string_of_zSatp64 (gs2449 : zSatp64) =
+  "{Satp64_chunk_0 = " ^ string_of_bits gs2449.zSatp64_chunk_0 ^ "}";;
 
 let zmtvec : (zMtvec) ref = ref (zundefined_Mtvec ());;
 
-let rec zlegalizze_tvec ((zo, zv) : (zMtvec * zxlenbits)) : zMtvec = sail_call (fun r ->
+let rec zlegalizze_tvec ((zo, zv) : (zMtvec * (bit) list)) : zMtvec = sail_call (fun r ->
   let zv = (zMk_Mtvec zv) in
   begin
     match (ztrapVectorMode_of_bits (z_get_Mtvec_Mode zv)) with
@@ -5308,51 +5337,51 @@ let rec zlegalizze_tvec ((zo, zv) : (zMtvec * zxlenbits)) : zMtvec = sail_call (
 type  zMcause = { zMcause_chunk_0 : (bit) list
 };;
 
-let string_of_zMcause (gs2073 : zMcause) =
-  "{Mcause_chunk_0 = " ^ string_of_bits gs2073.zMcause_chunk_0 ^ "}";;
+let string_of_zMcause (gs2455 : zMcause) =
+  "{Mcause_chunk_0 = " ^ string_of_bits gs2455.zMcause_chunk_0 ^ "}";;
 
-let rec zundefined_Mcause (() : unit) : zMcause = sail_call (fun r ->
+let rec zundefined_Mcause (() : (unit)) : zMcause = sail_call (fun r ->
   {zMcause_chunk_0 = undefined_vector ((Big_int.of_int (64)), (undefined_bit ()))})
 
-and zMk_Mcause (zv : (bit) list) : zMcause = sail_call (fun r ->
+and zMk_Mcause (zv : ((bit) list)) : zMcause = sail_call (fun r ->
   {zMcause_chunk_0 = subrange (zv, (Big_int.of_int (63)), Big_int.zero)})
 
-and z_get_Mcause_bits (zv : zMcause) : (bit) list = sail_call (fun r ->
+and z_get_Mcause_bits (zv : (zMcause)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zMcause_chunk_0), (Big_int.of_int (63)), Big_int.zero))
 
 and z_set_Mcause_bits ((zr_ref, zv) : ((zMcause) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zMcause) in
   begin
-    zr := {!zr with zMcause_chunk_0 = update_subrange ((!zr.zMcause_chunk_0), (Big_int.of_int (63)), Big_int.zero, (subrange (zv, (Big_int.of_int (63)), Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zMcause_chunk_0 = update_subrange ((!zr.zMcause_chunk_0), (Big_int.of_int (63)), Big_int.zero, (subrange (zv, (Big_int.of_int (63)), Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Mcause_bits ((zv, zx) : (zMcause * (bit) list)) : zMcause = sail_call (fun r ->
   let zv = ({zv with zMcause_chunk_0 = update_subrange ((zv.zMcause_chunk_0), (Big_int.of_int (63)), Big_int.zero, (subrange (zx, (Big_int.of_int (63)), Big_int.zero)))}) in
   zv)
 
-and z_get_Mcause_IsInterrupt (zv : zMcause) : (bit) list = sail_call (fun r ->
+and z_get_Mcause_IsInterrupt (zv : (zMcause)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zMcause_chunk_0), (Big_int.of_int (63)), (Big_int.of_int (63))))
 
 and z_set_Mcause_IsInterrupt ((zr_ref, zv) : ((zMcause) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zMcause) in
   begin
-    zr := {!zr with zMcause_chunk_0 = update_subrange ((!zr.zMcause_chunk_0), (Big_int.of_int (63)), (Big_int.of_int (63)), (subrange (zv, Big_int.zero, Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zMcause_chunk_0 = update_subrange ((!zr.zMcause_chunk_0), (Big_int.of_int (63)), (Big_int.of_int (63)), (subrange (zv, Big_int.zero, Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Mcause_IsInterrupt ((zv, zx) : (zMcause * (bit) list)) : zMcause = sail_call (fun r ->
   let zv = ({zv with zMcause_chunk_0 = update_subrange ((zv.zMcause_chunk_0), (Big_int.of_int (63)), (Big_int.of_int (63)), (subrange (zx, Big_int.zero, Big_int.zero)))}) in
   zv)
 
-and z_get_Mcause_Cause (zv : zMcause) : (bit) list = sail_call (fun r ->
+and z_get_Mcause_Cause (zv : (zMcause)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zMcause_chunk_0), (Big_int.of_int (62)), Big_int.zero))
 
 and z_set_Mcause_Cause ((zr_ref, zv) : ((zMcause) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zMcause) in
   begin
-    zr := {!zr with zMcause_chunk_0 = update_subrange ((!zr.zMcause_chunk_0), (Big_int.of_int (62)), Big_int.zero, (subrange (zv, (Big_int.of_int (62)), Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zMcause_chunk_0 = update_subrange ((!zr.zMcause_chunk_0), (Big_int.of_int (62)), Big_int.zero, (subrange (zv, (Big_int.of_int (62)), Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Mcause_Cause ((zv, zx) : (zMcause * (bit) list)) : zMcause = sail_call (fun r ->
@@ -5361,7 +5390,7 @@ and z_update_Mcause_Cause ((zv, zx) : (zMcause * (bit) list)) : zMcause = sail_c
 
 let zmcause : (zMcause) ref = ref (zundefined_Mcause ());;
 
-let rec ztvec_addr ((zm, zc) : (zMtvec * zMcause)) : (zxlenbits) zoption = sail_call (fun r ->
+let rec ztvec_addr ((zm, zc) : (zMtvec * zMcause)) : ((bit) list) zoption = sail_call (fun r ->
   let zbase = (append ((z_get_Mtvec_Base zm), [B0; B0])) in
   begin
     match (ztrapVectorMode_of_bits (z_get_Mtvec_Mode zm)) with
@@ -5373,10 +5402,10 @@ let rec ztvec_addr ((zm, zc) : (zMtvec * zMcause)) : (zxlenbits) zoption = sail_
 
 let zmepc : (zxlenbits) ref = ref (undefined_vector ((Big_int.of_int (64)), (undefined_bit ())));;
 
-let rec zlegalizze_xepc (zv : zxlenbits) : zxlenbits = sail_call (fun r ->
+let rec zlegalizze_xepc (zv : ((bit) list)) : (bit) list = sail_call (fun r ->
   and_vec (zv, (zEXTS ((Big_int.of_int (64)), (if (zhaveRVC ()) then [B1; B1; B0] else [B1; B0; B0])))))
 
-and zpc_alignment_mask (() : unit) : zxlenbits = sail_call (fun r ->
+and zpc_alignment_mask (() : (unit)) : (bit) list = sail_call (fun r ->
   not_vec (zEXTZ ((Big_int.of_int (64)), (if (eq_list ((z_get_Misa_C !zmisa), (zbool_to_bits true))) then [B0; B0] else [B1; B0]))))
 
 let zmtval : (zxlenbits) ref = ref (undefined_vector ((Big_int.of_int (64)), (undefined_bit ())));;
@@ -5386,79 +5415,79 @@ let zmscratch : (zxlenbits) ref = ref (undefined_vector ((Big_int.of_int (64)), 
 type  zCounteren = { zCounteren_chunk_0 : (bit) list
 };;
 
-let string_of_zCounteren (gs2130 : zCounteren) =
-  "{Counteren_chunk_0 = " ^ string_of_bits gs2130.zCounteren_chunk_0 ^ "}";;
+let string_of_zCounteren (gs2519 : zCounteren) =
+  "{Counteren_chunk_0 = " ^ string_of_bits gs2519.zCounteren_chunk_0 ^ "}";;
 
-let rec zundefined_Counteren (() : unit) : zCounteren = sail_call (fun r ->
+let rec zundefined_Counteren (() : (unit)) : zCounteren = sail_call (fun r ->
   {zCounteren_chunk_0 = undefined_vector ((Big_int.of_int (32)), (undefined_bit ()))})
 
-and zMk_Counteren (zv : (bit) list) : zCounteren = sail_call (fun r ->
+and zMk_Counteren (zv : ((bit) list)) : zCounteren = sail_call (fun r ->
   {zCounteren_chunk_0 = subrange (zv, (Big_int.of_int (31)), Big_int.zero)})
 
-and z_get_Counteren_bits (zv : zCounteren) : (bit) list = sail_call (fun r ->
+and z_get_Counteren_bits (zv : (zCounteren)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zCounteren_chunk_0), (Big_int.of_int (31)), Big_int.zero))
 
 and z_set_Counteren_bits ((zr_ref, zv) : ((zCounteren) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zCounteren) in
   begin
-    zr := {!zr with zCounteren_chunk_0 = update_subrange ((!zr.zCounteren_chunk_0), (Big_int.of_int (31)), Big_int.zero, (subrange (zv, (Big_int.of_int (31)), Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zCounteren_chunk_0 = update_subrange ((!zr.zCounteren_chunk_0), (Big_int.of_int (31)), Big_int.zero, (subrange (zv, (Big_int.of_int (31)), Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Counteren_bits ((zv, zx) : (zCounteren * (bit) list)) : zCounteren = sail_call (fun r ->
   let zv = ({zv with zCounteren_chunk_0 = update_subrange ((zv.zCounteren_chunk_0), (Big_int.of_int (31)), Big_int.zero, (subrange (zx, (Big_int.of_int (31)), Big_int.zero)))}) in
   zv)
 
-and z_get_Counteren_HPM (zv : zCounteren) : (bit) list = sail_call (fun r ->
+and z_get_Counteren_HPM (zv : (zCounteren)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zCounteren_chunk_0), (Big_int.of_int (31)), (Big_int.of_int (3))))
 
 and z_set_Counteren_HPM ((zr_ref, zv) : ((zCounteren) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zCounteren) in
   begin
-    zr := {!zr with zCounteren_chunk_0 = update_subrange ((!zr.zCounteren_chunk_0), (Big_int.of_int (31)), (Big_int.of_int (3)), (subrange (zv, (Big_int.of_int (28)), Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zCounteren_chunk_0 = update_subrange ((!zr.zCounteren_chunk_0), (Big_int.of_int (31)), (Big_int.of_int (3)), (subrange (zv, (Big_int.of_int (28)), Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Counteren_HPM ((zv, zx) : (zCounteren * (bit) list)) : zCounteren = sail_call (fun r ->
   let zv = ({zv with zCounteren_chunk_0 = update_subrange ((zv.zCounteren_chunk_0), (Big_int.of_int (31)), (Big_int.of_int (3)), (subrange (zx, (Big_int.of_int (28)), Big_int.zero)))}) in
   zv)
 
-and z_get_Counteren_IR (zv : zCounteren) : (bit) list = sail_call (fun r ->
+and z_get_Counteren_IR (zv : (zCounteren)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zCounteren_chunk_0), (Big_int.of_int (2)), (Big_int.of_int (2))))
 
 and z_set_Counteren_IR ((zr_ref, zv) : ((zCounteren) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zCounteren) in
   begin
-    zr := {!zr with zCounteren_chunk_0 = update_subrange ((!zr.zCounteren_chunk_0), (Big_int.of_int (2)), (Big_int.of_int (2)), (subrange (zv, Big_int.zero, Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zCounteren_chunk_0 = update_subrange ((!zr.zCounteren_chunk_0), (Big_int.of_int (2)), (Big_int.of_int (2)), (subrange (zv, Big_int.zero, Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Counteren_IR ((zv, zx) : (zCounteren * (bit) list)) : zCounteren = sail_call (fun r ->
   let zv = ({zv with zCounteren_chunk_0 = update_subrange ((zv.zCounteren_chunk_0), (Big_int.of_int (2)), (Big_int.of_int (2)), (subrange (zx, Big_int.zero, Big_int.zero)))}) in
   zv)
 
-and z_get_Counteren_TM (zv : zCounteren) : (bit) list = sail_call (fun r ->
+and z_get_Counteren_TM (zv : (zCounteren)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zCounteren_chunk_0), (Big_int.of_int (1)), (Big_int.of_int (1))))
 
 and z_set_Counteren_TM ((zr_ref, zv) : ((zCounteren) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zCounteren) in
   begin
-    zr := {!zr with zCounteren_chunk_0 = update_subrange ((!zr.zCounteren_chunk_0), (Big_int.of_int (1)), (Big_int.of_int (1)), (subrange (zv, Big_int.zero, Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zCounteren_chunk_0 = update_subrange ((!zr.zCounteren_chunk_0), (Big_int.of_int (1)), (Big_int.of_int (1)), (subrange (zv, Big_int.zero, Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Counteren_TM ((zv, zx) : (zCounteren * (bit) list)) : zCounteren = sail_call (fun r ->
   let zv = ({zv with zCounteren_chunk_0 = update_subrange ((zv.zCounteren_chunk_0), (Big_int.of_int (1)), (Big_int.of_int (1)), (subrange (zx, Big_int.zero, Big_int.zero)))}) in
   zv)
 
-and z_get_Counteren_CY (zv : zCounteren) : (bit) list = sail_call (fun r ->
+and z_get_Counteren_CY (zv : (zCounteren)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zCounteren_chunk_0), Big_int.zero, Big_int.zero))
 
 and z_set_Counteren_CY ((zr_ref, zv) : ((zCounteren) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zCounteren) in
   begin
-    zr := {!zr with zCounteren_chunk_0 = update_subrange ((!zr.zCounteren_chunk_0), Big_int.zero, Big_int.zero, (subrange (zv, Big_int.zero, Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zCounteren_chunk_0 = update_subrange ((!zr.zCounteren_chunk_0), Big_int.zero, Big_int.zero, (subrange (zv, Big_int.zero, Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Counteren_CY ((zv, zx) : (zCounteren * (bit) list)) : zCounteren = sail_call (fun r ->
@@ -5469,13 +5498,13 @@ let zmcounteren : (zCounteren) ref = ref (zundefined_Counteren ());;
 
 let zscounteren : (zCounteren) ref = ref (zundefined_Counteren ());;
 
-let rec zlegalizze_mcounteren ((zc, zv) : (zCounteren * zxlenbits)) : zCounteren = sail_call (fun r ->
+let rec zlegalizze_mcounteren ((zc, zv) : (zCounteren * (bit) list)) : zCounteren = sail_call (fun r ->
   let zc = (z_update_Counteren_IR (zc, (zcast_unit_vec (access (zv, (Big_int.of_int (2))))))) in
   let zc = (z_update_Counteren_TM (zc, (zcast_unit_vec (access (zv, (Big_int.of_int (1))))))) in
   let zc = (z_update_Counteren_CY (zc, (zcast_unit_vec (access (zv, Big_int.zero))))) in
   zc)
 
-and zlegalizze_scounteren ((zc, zv) : (zCounteren * zxlenbits)) : zCounteren = sail_call (fun r ->
+and zlegalizze_scounteren ((zc, zv) : (zCounteren * (bit) list)) : zCounteren = sail_call (fun r ->
   let zc = (z_update_Counteren_IR (zc, (zcast_unit_vec (access (zv, (Big_int.of_int (2))))))) in
   let zc = (z_update_Counteren_TM (zc, (zcast_unit_vec (access (zv, (Big_int.of_int (1))))))) in
   let zc = (z_update_Counteren_CY (zc, (zcast_unit_vec (access (zv, Big_int.zero))))) in
@@ -5489,7 +5518,7 @@ let zminstret : (zxlenbits) ref = ref (undefined_vector ((Big_int.of_int (64)), 
 
 let zminstret_written : (bool) ref = ref (undefined_bool ());;
 
-let rec zretire_instruction (() : unit) : unit = sail_call (fun r ->
+let rec zretire_instruction (() : (unit)) : unit = sail_call (fun r ->
   if (eq_bool (!zminstret_written, true)) then (zminstret_written := false) else (zminstret := (add_vec_int (!zminstret, (Big_int.of_int (1))))))
 
 let zmvendorid : (zxlenbits) ref = ref (undefined_vector ((Big_int.of_int (64)), (undefined_bit ())));;
@@ -5504,181 +5533,181 @@ let zpmpaddr0 : (zxlenbits) ref = ref (undefined_vector ((Big_int.of_int (64)), 
 
 let zpmpcfg0 : (zxlenbits) ref = ref (undefined_vector ((Big_int.of_int (64)), (undefined_bit ())));;
 
-let rec zundefined_Sstatus (() : unit) : zSstatus = sail_call (fun r ->
+let rec zundefined_Sstatus (() : (unit)) : zSstatus = sail_call (fun r ->
   {zSstatus_chunk_0 = undefined_vector ((Big_int.of_int (64)), (undefined_bit ()))})
 
-and zMk_Sstatus (zv : (bit) list) : zSstatus = sail_call (fun r ->
+and zMk_Sstatus (zv : ((bit) list)) : zSstatus = sail_call (fun r ->
   {zSstatus_chunk_0 = subrange (zv, (Big_int.of_int (63)), Big_int.zero)})
 
-and z_get_Sstatus_bits (zv : zSstatus) : (bit) list = sail_call (fun r ->
+and z_get_Sstatus_bits (zv : (zSstatus)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zSstatus_chunk_0), (Big_int.of_int (63)), Big_int.zero))
 
 and z_set_Sstatus_bits ((zr_ref, zv) : ((zSstatus) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zSstatus) in
   begin
-    zr := {!zr with zSstatus_chunk_0 = update_subrange ((!zr.zSstatus_chunk_0), (Big_int.of_int (63)), Big_int.zero, (subrange (zv, (Big_int.of_int (63)), Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zSstatus_chunk_0 = update_subrange ((!zr.zSstatus_chunk_0), (Big_int.of_int (63)), Big_int.zero, (subrange (zv, (Big_int.of_int (63)), Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Sstatus_bits ((zv, zx) : (zSstatus * (bit) list)) : zSstatus = sail_call (fun r ->
   let zv = ({zv with zSstatus_chunk_0 = update_subrange ((zv.zSstatus_chunk_0), (Big_int.of_int (63)), Big_int.zero, (subrange (zx, (Big_int.of_int (63)), Big_int.zero)))}) in
   zv)
 
-and z_get_Sstatus_SD (zv : zSstatus) : (bit) list = sail_call (fun r ->
+and z_get_Sstatus_SD (zv : (zSstatus)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zSstatus_chunk_0), (Big_int.of_int (63)), (Big_int.of_int (63))))
 
 and z_set_Sstatus_SD ((zr_ref, zv) : ((zSstatus) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zSstatus) in
   begin
-    zr := {!zr with zSstatus_chunk_0 = update_subrange ((!zr.zSstatus_chunk_0), (Big_int.of_int (63)), (Big_int.of_int (63)), (subrange (zv, Big_int.zero, Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zSstatus_chunk_0 = update_subrange ((!zr.zSstatus_chunk_0), (Big_int.of_int (63)), (Big_int.of_int (63)), (subrange (zv, Big_int.zero, Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Sstatus_SD ((zv, zx) : (zSstatus * (bit) list)) : zSstatus = sail_call (fun r ->
   let zv = ({zv with zSstatus_chunk_0 = update_subrange ((zv.zSstatus_chunk_0), (Big_int.of_int (63)), (Big_int.of_int (63)), (subrange (zx, Big_int.zero, Big_int.zero)))}) in
   zv)
 
-and z_get_Sstatus_UXL (zv : zSstatus) : (bit) list = sail_call (fun r ->
+and z_get_Sstatus_UXL (zv : (zSstatus)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zSstatus_chunk_0), (Big_int.of_int (33)), (Big_int.of_int (32))))
 
 and z_set_Sstatus_UXL ((zr_ref, zv) : ((zSstatus) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zSstatus) in
   begin
-    zr := {!zr with zSstatus_chunk_0 = update_subrange ((!zr.zSstatus_chunk_0), (Big_int.of_int (33)), (Big_int.of_int (32)), (subrange (zv, (Big_int.of_int (1)), Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zSstatus_chunk_0 = update_subrange ((!zr.zSstatus_chunk_0), (Big_int.of_int (33)), (Big_int.of_int (32)), (subrange (zv, (Big_int.of_int (1)), Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Sstatus_UXL ((zv, zx) : (zSstatus * (bit) list)) : zSstatus = sail_call (fun r ->
   let zv = ({zv with zSstatus_chunk_0 = update_subrange ((zv.zSstatus_chunk_0), (Big_int.of_int (33)), (Big_int.of_int (32)), (subrange (zx, (Big_int.of_int (1)), Big_int.zero)))}) in
   zv)
 
-and z_get_Sstatus_MXR (zv : zSstatus) : (bit) list = sail_call (fun r ->
+and z_get_Sstatus_MXR (zv : (zSstatus)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zSstatus_chunk_0), (Big_int.of_int (19)), (Big_int.of_int (19))))
 
 and z_set_Sstatus_MXR ((zr_ref, zv) : ((zSstatus) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zSstatus) in
   begin
-    zr := {!zr with zSstatus_chunk_0 = update_subrange ((!zr.zSstatus_chunk_0), (Big_int.of_int (19)), (Big_int.of_int (19)), (subrange (zv, Big_int.zero, Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zSstatus_chunk_0 = update_subrange ((!zr.zSstatus_chunk_0), (Big_int.of_int (19)), (Big_int.of_int (19)), (subrange (zv, Big_int.zero, Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Sstatus_MXR ((zv, zx) : (zSstatus * (bit) list)) : zSstatus = sail_call (fun r ->
   let zv = ({zv with zSstatus_chunk_0 = update_subrange ((zv.zSstatus_chunk_0), (Big_int.of_int (19)), (Big_int.of_int (19)), (subrange (zx, Big_int.zero, Big_int.zero)))}) in
   zv)
 
-and z_get_Sstatus_SUM (zv : zSstatus) : (bit) list = sail_call (fun r ->
+and z_get_Sstatus_SUM (zv : (zSstatus)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zSstatus_chunk_0), (Big_int.of_int (18)), (Big_int.of_int (18))))
 
 and z_set_Sstatus_SUM ((zr_ref, zv) : ((zSstatus) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zSstatus) in
   begin
-    zr := {!zr with zSstatus_chunk_0 = update_subrange ((!zr.zSstatus_chunk_0), (Big_int.of_int (18)), (Big_int.of_int (18)), (subrange (zv, Big_int.zero, Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zSstatus_chunk_0 = update_subrange ((!zr.zSstatus_chunk_0), (Big_int.of_int (18)), (Big_int.of_int (18)), (subrange (zv, Big_int.zero, Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Sstatus_SUM ((zv, zx) : (zSstatus * (bit) list)) : zSstatus = sail_call (fun r ->
   let zv = ({zv with zSstatus_chunk_0 = update_subrange ((zv.zSstatus_chunk_0), (Big_int.of_int (18)), (Big_int.of_int (18)), (subrange (zx, Big_int.zero, Big_int.zero)))}) in
   zv)
 
-and z_get_Sstatus_XS (zv : zSstatus) : (bit) list = sail_call (fun r ->
+and z_get_Sstatus_XS (zv : (zSstatus)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zSstatus_chunk_0), (Big_int.of_int (16)), (Big_int.of_int (15))))
 
 and z_set_Sstatus_XS ((zr_ref, zv) : ((zSstatus) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zSstatus) in
   begin
-    zr := {!zr with zSstatus_chunk_0 = update_subrange ((!zr.zSstatus_chunk_0), (Big_int.of_int (16)), (Big_int.of_int (15)), (subrange (zv, (Big_int.of_int (1)), Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zSstatus_chunk_0 = update_subrange ((!zr.zSstatus_chunk_0), (Big_int.of_int (16)), (Big_int.of_int (15)), (subrange (zv, (Big_int.of_int (1)), Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Sstatus_XS ((zv, zx) : (zSstatus * (bit) list)) : zSstatus = sail_call (fun r ->
   let zv = ({zv with zSstatus_chunk_0 = update_subrange ((zv.zSstatus_chunk_0), (Big_int.of_int (16)), (Big_int.of_int (15)), (subrange (zx, (Big_int.of_int (1)), Big_int.zero)))}) in
   zv)
 
-and z_get_Sstatus_FS (zv : zSstatus) : (bit) list = sail_call (fun r ->
+and z_get_Sstatus_FS (zv : (zSstatus)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zSstatus_chunk_0), (Big_int.of_int (14)), (Big_int.of_int (13))))
 
 and z_set_Sstatus_FS ((zr_ref, zv) : ((zSstatus) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zSstatus) in
   begin
-    zr := {!zr with zSstatus_chunk_0 = update_subrange ((!zr.zSstatus_chunk_0), (Big_int.of_int (14)), (Big_int.of_int (13)), (subrange (zv, (Big_int.of_int (1)), Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zSstatus_chunk_0 = update_subrange ((!zr.zSstatus_chunk_0), (Big_int.of_int (14)), (Big_int.of_int (13)), (subrange (zv, (Big_int.of_int (1)), Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Sstatus_FS ((zv, zx) : (zSstatus * (bit) list)) : zSstatus = sail_call (fun r ->
   let zv = ({zv with zSstatus_chunk_0 = update_subrange ((zv.zSstatus_chunk_0), (Big_int.of_int (14)), (Big_int.of_int (13)), (subrange (zx, (Big_int.of_int (1)), Big_int.zero)))}) in
   zv)
 
-and z_get_Sstatus_SPP (zv : zSstatus) : (bit) list = sail_call (fun r ->
+and z_get_Sstatus_SPP (zv : (zSstatus)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zSstatus_chunk_0), (Big_int.of_int (8)), (Big_int.of_int (8))))
 
 and z_set_Sstatus_SPP ((zr_ref, zv) : ((zSstatus) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zSstatus) in
   begin
-    zr := {!zr with zSstatus_chunk_0 = update_subrange ((!zr.zSstatus_chunk_0), (Big_int.of_int (8)), (Big_int.of_int (8)), (subrange (zv, Big_int.zero, Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zSstatus_chunk_0 = update_subrange ((!zr.zSstatus_chunk_0), (Big_int.of_int (8)), (Big_int.of_int (8)), (subrange (zv, Big_int.zero, Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Sstatus_SPP ((zv, zx) : (zSstatus * (bit) list)) : zSstatus = sail_call (fun r ->
   let zv = ({zv with zSstatus_chunk_0 = update_subrange ((zv.zSstatus_chunk_0), (Big_int.of_int (8)), (Big_int.of_int (8)), (subrange (zx, Big_int.zero, Big_int.zero)))}) in
   zv)
 
-and z_get_Sstatus_SPIE (zv : zSstatus) : (bit) list = sail_call (fun r ->
+and z_get_Sstatus_SPIE (zv : (zSstatus)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zSstatus_chunk_0), (Big_int.of_int (5)), (Big_int.of_int (5))))
 
 and z_set_Sstatus_SPIE ((zr_ref, zv) : ((zSstatus) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zSstatus) in
   begin
-    zr := {!zr with zSstatus_chunk_0 = update_subrange ((!zr.zSstatus_chunk_0), (Big_int.of_int (5)), (Big_int.of_int (5)), (subrange (zv, Big_int.zero, Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zSstatus_chunk_0 = update_subrange ((!zr.zSstatus_chunk_0), (Big_int.of_int (5)), (Big_int.of_int (5)), (subrange (zv, Big_int.zero, Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Sstatus_SPIE ((zv, zx) : (zSstatus * (bit) list)) : zSstatus = sail_call (fun r ->
   let zv = ({zv with zSstatus_chunk_0 = update_subrange ((zv.zSstatus_chunk_0), (Big_int.of_int (5)), (Big_int.of_int (5)), (subrange (zx, Big_int.zero, Big_int.zero)))}) in
   zv)
 
-and z_get_Sstatus_UPIE (zv : zSstatus) : (bit) list = sail_call (fun r ->
+and z_get_Sstatus_UPIE (zv : (zSstatus)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zSstatus_chunk_0), (Big_int.of_int (4)), (Big_int.of_int (4))))
 
 and z_set_Sstatus_UPIE ((zr_ref, zv) : ((zSstatus) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zSstatus) in
   begin
-    zr := {!zr with zSstatus_chunk_0 = update_subrange ((!zr.zSstatus_chunk_0), (Big_int.of_int (4)), (Big_int.of_int (4)), (subrange (zv, Big_int.zero, Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zSstatus_chunk_0 = update_subrange ((!zr.zSstatus_chunk_0), (Big_int.of_int (4)), (Big_int.of_int (4)), (subrange (zv, Big_int.zero, Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Sstatus_UPIE ((zv, zx) : (zSstatus * (bit) list)) : zSstatus = sail_call (fun r ->
   let zv = ({zv with zSstatus_chunk_0 = update_subrange ((zv.zSstatus_chunk_0), (Big_int.of_int (4)), (Big_int.of_int (4)), (subrange (zx, Big_int.zero, Big_int.zero)))}) in
   zv)
 
-and z_get_Sstatus_SIE (zv : zSstatus) : (bit) list = sail_call (fun r ->
+and z_get_Sstatus_SIE (zv : (zSstatus)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zSstatus_chunk_0), (Big_int.of_int (1)), (Big_int.of_int (1))))
 
 and z_set_Sstatus_SIE ((zr_ref, zv) : ((zSstatus) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zSstatus) in
   begin
-    zr := {!zr with zSstatus_chunk_0 = update_subrange ((!zr.zSstatus_chunk_0), (Big_int.of_int (1)), (Big_int.of_int (1)), (subrange (zv, Big_int.zero, Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zSstatus_chunk_0 = update_subrange ((!zr.zSstatus_chunk_0), (Big_int.of_int (1)), (Big_int.of_int (1)), (subrange (zv, Big_int.zero, Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Sstatus_SIE ((zv, zx) : (zSstatus * (bit) list)) : zSstatus = sail_call (fun r ->
   let zv = ({zv with zSstatus_chunk_0 = update_subrange ((zv.zSstatus_chunk_0), (Big_int.of_int (1)), (Big_int.of_int (1)), (subrange (zx, Big_int.zero, Big_int.zero)))}) in
   zv)
 
-and z_get_Sstatus_UIE (zv : zSstatus) : (bit) list = sail_call (fun r ->
+and z_get_Sstatus_UIE (zv : (zSstatus)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zSstatus_chunk_0), Big_int.zero, Big_int.zero))
 
 and z_set_Sstatus_UIE ((zr_ref, zv) : ((zSstatus) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zSstatus) in
   begin
-    zr := {!zr with zSstatus_chunk_0 = update_subrange ((!zr.zSstatus_chunk_0), Big_int.zero, Big_int.zero, (subrange (zv, Big_int.zero, Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zSstatus_chunk_0 = update_subrange ((!zr.zSstatus_chunk_0), Big_int.zero, Big_int.zero, (subrange (zv, Big_int.zero, Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Sstatus_UIE ((zv, zx) : (zSstatus * (bit) list)) : zSstatus = sail_call (fun r ->
   let zv = ({zv with zSstatus_chunk_0 = update_subrange ((zv.zSstatus_chunk_0), Big_int.zero, Big_int.zero, (subrange (zx, Big_int.zero, Big_int.zero)))}) in
   zv)
 
-and zlower_mstatus (zm : zMstatus) : zSstatus = sail_call (fun r ->
+and zlower_mstatus (zm : (zMstatus)) : zSstatus = sail_call (fun r ->
   let zs = (zMk_Sstatus (zEXTZ ((Big_int.of_int (64)), [B0]))) in
   let zs = (z_update_Sstatus_SD (zs, (z_get_Mstatus_SD zm))) in
   let zs = (z_update_Sstatus_UXL (zs, (z_get_Mstatus_UXL zm))) in
@@ -5694,11 +5723,11 @@ and zlower_mstatus (zm : zMstatus) : zSstatus = sail_call (fun r ->
   zs)
 
 and zlift_sstatus ((zm, zs) : (zMstatus * zSstatus)) : zMstatus = sail_call (fun r ->
-  let zm = (z_update_Mstatus_SD (zm, (z_get_Sstatus_SD zs))) in
   let zm = (z_update_Mstatus_MXR (zm, (z_get_Sstatus_MXR zs))) in
   let zm = (z_update_Mstatus_SUM (zm, (z_get_Sstatus_SUM zs))) in
   let zm = (z_update_Mstatus_XS (zm, (z_get_Sstatus_XS zs))) in
   let zm = (z_update_Mstatus_FS (zm, (z_get_Sstatus_FS zs))) in
+  let zm = (z_update_Mstatus_SD (zm, (zbool_to_bits ((eq_list ((zextStatus_to_bits (zextStatus_of_bits (z_get_Mstatus_FS zm))), (zextStatus_to_bits ZDirty))) || (eq_list ((zextStatus_to_bits (zextStatus_of_bits (z_get_Mstatus_XS zm))), (zextStatus_to_bits ZDirty))))))) in
   let zm = (z_update_Mstatus_SPP (zm, (z_get_Sstatus_SPP zs))) in
   let zm = (z_update_Mstatus_SPIE (zm, (z_get_Sstatus_SPIE zs))) in
   let zm = (z_update_Mstatus_UPIE (zm, (z_get_Sstatus_UPIE zs))) in
@@ -5706,149 +5735,149 @@ and zlift_sstatus ((zm, zs) : (zMstatus * zSstatus)) : zMstatus = sail_call (fun
   let zm = (z_update_Mstatus_UIE (zm, (z_get_Sstatus_UIE zs))) in
   zm)
 
-and zlegalizze_sstatus ((zm, zv) : (zMstatus * zxlenbits)) : zMstatus = sail_call (fun r ->
+and zlegalizze_sstatus ((zm, zv) : (zMstatus * (bit) list)) : zMstatus = sail_call (fun r ->
   zlift_sstatus (zm, (zMk_Sstatus zv)))
 
-and zundefined_Sedeleg (() : unit) : zSedeleg = sail_call (fun r ->
+and zundefined_Sedeleg (() : (unit)) : zSedeleg = sail_call (fun r ->
   {zSedeleg_chunk_0 = undefined_vector ((Big_int.of_int (64)), (undefined_bit ()))})
 
-and zMk_Sedeleg (zv : (bit) list) : zSedeleg = sail_call (fun r ->
+and zMk_Sedeleg (zv : ((bit) list)) : zSedeleg = sail_call (fun r ->
   {zSedeleg_chunk_0 = subrange (zv, (Big_int.of_int (63)), Big_int.zero)})
 
-and z_get_Sedeleg_bits (zv : zSedeleg) : (bit) list = sail_call (fun r ->
+and z_get_Sedeleg_bits (zv : (zSedeleg)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zSedeleg_chunk_0), (Big_int.of_int (63)), Big_int.zero))
 
 and z_set_Sedeleg_bits ((zr_ref, zv) : ((zSedeleg) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zSedeleg) in
   begin
-    zr := {!zr with zSedeleg_chunk_0 = update_subrange ((!zr.zSedeleg_chunk_0), (Big_int.of_int (63)), Big_int.zero, (subrange (zv, (Big_int.of_int (63)), Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zSedeleg_chunk_0 = update_subrange ((!zr.zSedeleg_chunk_0), (Big_int.of_int (63)), Big_int.zero, (subrange (zv, (Big_int.of_int (63)), Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Sedeleg_bits ((zv, zx) : (zSedeleg * (bit) list)) : zSedeleg = sail_call (fun r ->
   let zv = ({zv with zSedeleg_chunk_0 = update_subrange ((zv.zSedeleg_chunk_0), (Big_int.of_int (63)), Big_int.zero, (subrange (zx, (Big_int.of_int (63)), Big_int.zero)))}) in
   zv)
 
-and z_get_Sedeleg_UEnvCall (zv : zSedeleg) : (bit) list = sail_call (fun r ->
+and z_get_Sedeleg_UEnvCall (zv : (zSedeleg)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zSedeleg_chunk_0), (Big_int.of_int (8)), (Big_int.of_int (8))))
 
 and z_set_Sedeleg_UEnvCall ((zr_ref, zv) : ((zSedeleg) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zSedeleg) in
   begin
-    zr := {!zr with zSedeleg_chunk_0 = update_subrange ((!zr.zSedeleg_chunk_0), (Big_int.of_int (8)), (Big_int.of_int (8)), (subrange (zv, Big_int.zero, Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zSedeleg_chunk_0 = update_subrange ((!zr.zSedeleg_chunk_0), (Big_int.of_int (8)), (Big_int.of_int (8)), (subrange (zv, Big_int.zero, Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Sedeleg_UEnvCall ((zv, zx) : (zSedeleg * (bit) list)) : zSedeleg = sail_call (fun r ->
   let zv = ({zv with zSedeleg_chunk_0 = update_subrange ((zv.zSedeleg_chunk_0), (Big_int.of_int (8)), (Big_int.of_int (8)), (subrange (zx, Big_int.zero, Big_int.zero)))}) in
   zv)
 
-and z_get_Sedeleg_SAMO_Access_Fault (zv : zSedeleg) : (bit) list = sail_call (fun r ->
+and z_get_Sedeleg_SAMO_Access_Fault (zv : (zSedeleg)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zSedeleg_chunk_0), (Big_int.of_int (7)), (Big_int.of_int (7))))
 
 and z_set_Sedeleg_SAMO_Access_Fault ((zr_ref, zv) : ((zSedeleg) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zSedeleg) in
   begin
-    zr := {!zr with zSedeleg_chunk_0 = update_subrange ((!zr.zSedeleg_chunk_0), (Big_int.of_int (7)), (Big_int.of_int (7)), (subrange (zv, Big_int.zero, Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zSedeleg_chunk_0 = update_subrange ((!zr.zSedeleg_chunk_0), (Big_int.of_int (7)), (Big_int.of_int (7)), (subrange (zv, Big_int.zero, Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Sedeleg_SAMO_Access_Fault ((zv, zx) : (zSedeleg * (bit) list)) : zSedeleg = sail_call (fun r ->
   let zv = ({zv with zSedeleg_chunk_0 = update_subrange ((zv.zSedeleg_chunk_0), (Big_int.of_int (7)), (Big_int.of_int (7)), (subrange (zx, Big_int.zero, Big_int.zero)))}) in
   zv)
 
-and z_get_Sedeleg_SAMO_Addr_Align (zv : zSedeleg) : (bit) list = sail_call (fun r ->
+and z_get_Sedeleg_SAMO_Addr_Align (zv : (zSedeleg)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zSedeleg_chunk_0), (Big_int.of_int (6)), (Big_int.of_int (6))))
 
 and z_set_Sedeleg_SAMO_Addr_Align ((zr_ref, zv) : ((zSedeleg) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zSedeleg) in
   begin
-    zr := {!zr with zSedeleg_chunk_0 = update_subrange ((!zr.zSedeleg_chunk_0), (Big_int.of_int (6)), (Big_int.of_int (6)), (subrange (zv, Big_int.zero, Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zSedeleg_chunk_0 = update_subrange ((!zr.zSedeleg_chunk_0), (Big_int.of_int (6)), (Big_int.of_int (6)), (subrange (zv, Big_int.zero, Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Sedeleg_SAMO_Addr_Align ((zv, zx) : (zSedeleg * (bit) list)) : zSedeleg = sail_call (fun r ->
   let zv = ({zv with zSedeleg_chunk_0 = update_subrange ((zv.zSedeleg_chunk_0), (Big_int.of_int (6)), (Big_int.of_int (6)), (subrange (zx, Big_int.zero, Big_int.zero)))}) in
   zv)
 
-and z_get_Sedeleg_Load_Access_Fault (zv : zSedeleg) : (bit) list = sail_call (fun r ->
+and z_get_Sedeleg_Load_Access_Fault (zv : (zSedeleg)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zSedeleg_chunk_0), (Big_int.of_int (5)), (Big_int.of_int (5))))
 
 and z_set_Sedeleg_Load_Access_Fault ((zr_ref, zv) : ((zSedeleg) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zSedeleg) in
   begin
-    zr := {!zr with zSedeleg_chunk_0 = update_subrange ((!zr.zSedeleg_chunk_0), (Big_int.of_int (5)), (Big_int.of_int (5)), (subrange (zv, Big_int.zero, Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zSedeleg_chunk_0 = update_subrange ((!zr.zSedeleg_chunk_0), (Big_int.of_int (5)), (Big_int.of_int (5)), (subrange (zv, Big_int.zero, Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Sedeleg_Load_Access_Fault ((zv, zx) : (zSedeleg * (bit) list)) : zSedeleg = sail_call (fun r ->
   let zv = ({zv with zSedeleg_chunk_0 = update_subrange ((zv.zSedeleg_chunk_0), (Big_int.of_int (5)), (Big_int.of_int (5)), (subrange (zx, Big_int.zero, Big_int.zero)))}) in
   zv)
 
-and z_get_Sedeleg_Load_Addr_Align (zv : zSedeleg) : (bit) list = sail_call (fun r ->
+and z_get_Sedeleg_Load_Addr_Align (zv : (zSedeleg)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zSedeleg_chunk_0), (Big_int.of_int (4)), (Big_int.of_int (4))))
 
 and z_set_Sedeleg_Load_Addr_Align ((zr_ref, zv) : ((zSedeleg) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zSedeleg) in
   begin
-    zr := {!zr with zSedeleg_chunk_0 = update_subrange ((!zr.zSedeleg_chunk_0), (Big_int.of_int (4)), (Big_int.of_int (4)), (subrange (zv, Big_int.zero, Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zSedeleg_chunk_0 = update_subrange ((!zr.zSedeleg_chunk_0), (Big_int.of_int (4)), (Big_int.of_int (4)), (subrange (zv, Big_int.zero, Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Sedeleg_Load_Addr_Align ((zv, zx) : (zSedeleg * (bit) list)) : zSedeleg = sail_call (fun r ->
   let zv = ({zv with zSedeleg_chunk_0 = update_subrange ((zv.zSedeleg_chunk_0), (Big_int.of_int (4)), (Big_int.of_int (4)), (subrange (zx, Big_int.zero, Big_int.zero)))}) in
   zv)
 
-and z_get_Sedeleg_Breakpoint (zv : zSedeleg) : (bit) list = sail_call (fun r ->
+and z_get_Sedeleg_Breakpoint (zv : (zSedeleg)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zSedeleg_chunk_0), (Big_int.of_int (3)), (Big_int.of_int (3))))
 
 and z_set_Sedeleg_Breakpoint ((zr_ref, zv) : ((zSedeleg) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zSedeleg) in
   begin
-    zr := {!zr with zSedeleg_chunk_0 = update_subrange ((!zr.zSedeleg_chunk_0), (Big_int.of_int (3)), (Big_int.of_int (3)), (subrange (zv, Big_int.zero, Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zSedeleg_chunk_0 = update_subrange ((!zr.zSedeleg_chunk_0), (Big_int.of_int (3)), (Big_int.of_int (3)), (subrange (zv, Big_int.zero, Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Sedeleg_Breakpoint ((zv, zx) : (zSedeleg * (bit) list)) : zSedeleg = sail_call (fun r ->
   let zv = ({zv with zSedeleg_chunk_0 = update_subrange ((zv.zSedeleg_chunk_0), (Big_int.of_int (3)), (Big_int.of_int (3)), (subrange (zx, Big_int.zero, Big_int.zero)))}) in
   zv)
 
-and z_get_Sedeleg_Illegal_Instr (zv : zSedeleg) : (bit) list = sail_call (fun r ->
+and z_get_Sedeleg_Illegal_Instr (zv : (zSedeleg)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zSedeleg_chunk_0), (Big_int.of_int (2)), (Big_int.of_int (2))))
 
 and z_set_Sedeleg_Illegal_Instr ((zr_ref, zv) : ((zSedeleg) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zSedeleg) in
   begin
-    zr := {!zr with zSedeleg_chunk_0 = update_subrange ((!zr.zSedeleg_chunk_0), (Big_int.of_int (2)), (Big_int.of_int (2)), (subrange (zv, Big_int.zero, Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zSedeleg_chunk_0 = update_subrange ((!zr.zSedeleg_chunk_0), (Big_int.of_int (2)), (Big_int.of_int (2)), (subrange (zv, Big_int.zero, Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Sedeleg_Illegal_Instr ((zv, zx) : (zSedeleg * (bit) list)) : zSedeleg = sail_call (fun r ->
   let zv = ({zv with zSedeleg_chunk_0 = update_subrange ((zv.zSedeleg_chunk_0), (Big_int.of_int (2)), (Big_int.of_int (2)), (subrange (zx, Big_int.zero, Big_int.zero)))}) in
   zv)
 
-and z_get_Sedeleg_Fetch_Access_Fault (zv : zSedeleg) : (bit) list = sail_call (fun r ->
+and z_get_Sedeleg_Fetch_Access_Fault (zv : (zSedeleg)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zSedeleg_chunk_0), (Big_int.of_int (1)), (Big_int.of_int (1))))
 
 and z_set_Sedeleg_Fetch_Access_Fault ((zr_ref, zv) : ((zSedeleg) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zSedeleg) in
   begin
-    zr := {!zr with zSedeleg_chunk_0 = update_subrange ((!zr.zSedeleg_chunk_0), (Big_int.of_int (1)), (Big_int.of_int (1)), (subrange (zv, Big_int.zero, Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zSedeleg_chunk_0 = update_subrange ((!zr.zSedeleg_chunk_0), (Big_int.of_int (1)), (Big_int.of_int (1)), (subrange (zv, Big_int.zero, Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Sedeleg_Fetch_Access_Fault ((zv, zx) : (zSedeleg * (bit) list)) : zSedeleg = sail_call (fun r ->
   let zv = ({zv with zSedeleg_chunk_0 = update_subrange ((zv.zSedeleg_chunk_0), (Big_int.of_int (1)), (Big_int.of_int (1)), (subrange (zx, Big_int.zero, Big_int.zero)))}) in
   zv)
 
-and z_get_Sedeleg_Fetch_Addr_Align (zv : zSedeleg) : (bit) list = sail_call (fun r ->
+and z_get_Sedeleg_Fetch_Addr_Align (zv : (zSedeleg)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zSedeleg_chunk_0), Big_int.zero, Big_int.zero))
 
 and z_set_Sedeleg_Fetch_Addr_Align ((zr_ref, zv) : ((zSedeleg) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zSedeleg) in
   begin
-    zr := {!zr with zSedeleg_chunk_0 = update_subrange ((!zr.zSedeleg_chunk_0), Big_int.zero, Big_int.zero, (subrange (zv, Big_int.zero, Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zSedeleg_chunk_0 = update_subrange ((!zr.zSedeleg_chunk_0), Big_int.zero, Big_int.zero, (subrange (zv, Big_int.zero, Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Sedeleg_Fetch_Addr_Align ((zv, zx) : (zSedeleg * (bit) list)) : zSedeleg = sail_call (fun r ->
@@ -5857,107 +5886,107 @@ and z_update_Sedeleg_Fetch_Addr_Align ((zv, zx) : (zSedeleg * (bit) list)) : zSe
 
 let zsedeleg : (zSedeleg) ref = ref (zundefined_Sedeleg ());;
 
-let rec zlegalizze_sedeleg ((zs, zv) : (zSedeleg * zxlenbits)) : zSedeleg = sail_call (fun r ->
+let rec zlegalizze_sedeleg ((zs, zv) : (zSedeleg * (bit) list)) : zSedeleg = sail_call (fun r ->
   zMk_Sedeleg (zEXTZ ((Big_int.of_int (64)), (subrange (zv, (Big_int.of_int (8)), Big_int.zero)))))
 
-and zundefined_Sinterrupts (() : unit) : zSinterrupts = sail_call (fun r ->
+and zundefined_Sinterrupts (() : (unit)) : zSinterrupts = sail_call (fun r ->
   {zSinterrupts_chunk_0 = undefined_vector ((Big_int.of_int (64)), (undefined_bit ()))})
 
-and zMk_Sinterrupts (zv : (bit) list) : zSinterrupts = sail_call (fun r ->
+and zMk_Sinterrupts (zv : ((bit) list)) : zSinterrupts = sail_call (fun r ->
   {zSinterrupts_chunk_0 = subrange (zv, (Big_int.of_int (63)), Big_int.zero)})
 
-and z_get_Sinterrupts_bits (zv : zSinterrupts) : (bit) list = sail_call (fun r ->
+and z_get_Sinterrupts_bits (zv : (zSinterrupts)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zSinterrupts_chunk_0), (Big_int.of_int (63)), Big_int.zero))
 
 and z_set_Sinterrupts_bits ((zr_ref, zv) : ((zSinterrupts) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zSinterrupts) in
   begin
-    zr := {!zr with zSinterrupts_chunk_0 = update_subrange ((!zr.zSinterrupts_chunk_0), (Big_int.of_int (63)), Big_int.zero, (subrange (zv, (Big_int.of_int (63)), Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zSinterrupts_chunk_0 = update_subrange ((!zr.zSinterrupts_chunk_0), (Big_int.of_int (63)), Big_int.zero, (subrange (zv, (Big_int.of_int (63)), Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Sinterrupts_bits ((zv, zx) : (zSinterrupts * (bit) list)) : zSinterrupts = sail_call (fun r ->
   let zv = ({zv with zSinterrupts_chunk_0 = update_subrange ((zv.zSinterrupts_chunk_0), (Big_int.of_int (63)), Big_int.zero, (subrange (zx, (Big_int.of_int (63)), Big_int.zero)))}) in
   zv)
 
-and z_get_Sinterrupts_SEI (zv : zSinterrupts) : (bit) list = sail_call (fun r ->
+and z_get_Sinterrupts_SEI (zv : (zSinterrupts)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zSinterrupts_chunk_0), (Big_int.of_int (9)), (Big_int.of_int (9))))
 
 and z_set_Sinterrupts_SEI ((zr_ref, zv) : ((zSinterrupts) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zSinterrupts) in
   begin
-    zr := {!zr with zSinterrupts_chunk_0 = update_subrange ((!zr.zSinterrupts_chunk_0), (Big_int.of_int (9)), (Big_int.of_int (9)), (subrange (zv, Big_int.zero, Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zSinterrupts_chunk_0 = update_subrange ((!zr.zSinterrupts_chunk_0), (Big_int.of_int (9)), (Big_int.of_int (9)), (subrange (zv, Big_int.zero, Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Sinterrupts_SEI ((zv, zx) : (zSinterrupts * (bit) list)) : zSinterrupts = sail_call (fun r ->
   let zv = ({zv with zSinterrupts_chunk_0 = update_subrange ((zv.zSinterrupts_chunk_0), (Big_int.of_int (9)), (Big_int.of_int (9)), (subrange (zx, Big_int.zero, Big_int.zero)))}) in
   zv)
 
-and z_get_Sinterrupts_UEI (zv : zSinterrupts) : (bit) list = sail_call (fun r ->
+and z_get_Sinterrupts_UEI (zv : (zSinterrupts)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zSinterrupts_chunk_0), (Big_int.of_int (8)), (Big_int.of_int (8))))
 
 and z_set_Sinterrupts_UEI ((zr_ref, zv) : ((zSinterrupts) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zSinterrupts) in
   begin
-    zr := {!zr with zSinterrupts_chunk_0 = update_subrange ((!zr.zSinterrupts_chunk_0), (Big_int.of_int (8)), (Big_int.of_int (8)), (subrange (zv, Big_int.zero, Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zSinterrupts_chunk_0 = update_subrange ((!zr.zSinterrupts_chunk_0), (Big_int.of_int (8)), (Big_int.of_int (8)), (subrange (zv, Big_int.zero, Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Sinterrupts_UEI ((zv, zx) : (zSinterrupts * (bit) list)) : zSinterrupts = sail_call (fun r ->
   let zv = ({zv with zSinterrupts_chunk_0 = update_subrange ((zv.zSinterrupts_chunk_0), (Big_int.of_int (8)), (Big_int.of_int (8)), (subrange (zx, Big_int.zero, Big_int.zero)))}) in
   zv)
 
-and z_get_Sinterrupts_STI (zv : zSinterrupts) : (bit) list = sail_call (fun r ->
+and z_get_Sinterrupts_STI (zv : (zSinterrupts)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zSinterrupts_chunk_0), (Big_int.of_int (5)), (Big_int.of_int (5))))
 
 and z_set_Sinterrupts_STI ((zr_ref, zv) : ((zSinterrupts) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zSinterrupts) in
   begin
-    zr := {!zr with zSinterrupts_chunk_0 = update_subrange ((!zr.zSinterrupts_chunk_0), (Big_int.of_int (5)), (Big_int.of_int (5)), (subrange (zv, Big_int.zero, Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zSinterrupts_chunk_0 = update_subrange ((!zr.zSinterrupts_chunk_0), (Big_int.of_int (5)), (Big_int.of_int (5)), (subrange (zv, Big_int.zero, Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Sinterrupts_STI ((zv, zx) : (zSinterrupts * (bit) list)) : zSinterrupts = sail_call (fun r ->
   let zv = ({zv with zSinterrupts_chunk_0 = update_subrange ((zv.zSinterrupts_chunk_0), (Big_int.of_int (5)), (Big_int.of_int (5)), (subrange (zx, Big_int.zero, Big_int.zero)))}) in
   zv)
 
-and z_get_Sinterrupts_UTI (zv : zSinterrupts) : (bit) list = sail_call (fun r ->
+and z_get_Sinterrupts_UTI (zv : (zSinterrupts)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zSinterrupts_chunk_0), (Big_int.of_int (4)), (Big_int.of_int (4))))
 
 and z_set_Sinterrupts_UTI ((zr_ref, zv) : ((zSinterrupts) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zSinterrupts) in
   begin
-    zr := {!zr with zSinterrupts_chunk_0 = update_subrange ((!zr.zSinterrupts_chunk_0), (Big_int.of_int (4)), (Big_int.of_int (4)), (subrange (zv, Big_int.zero, Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zSinterrupts_chunk_0 = update_subrange ((!zr.zSinterrupts_chunk_0), (Big_int.of_int (4)), (Big_int.of_int (4)), (subrange (zv, Big_int.zero, Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Sinterrupts_UTI ((zv, zx) : (zSinterrupts * (bit) list)) : zSinterrupts = sail_call (fun r ->
   let zv = ({zv with zSinterrupts_chunk_0 = update_subrange ((zv.zSinterrupts_chunk_0), (Big_int.of_int (4)), (Big_int.of_int (4)), (subrange (zx, Big_int.zero, Big_int.zero)))}) in
   zv)
 
-and z_get_Sinterrupts_SSI (zv : zSinterrupts) : (bit) list = sail_call (fun r ->
+and z_get_Sinterrupts_SSI (zv : (zSinterrupts)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zSinterrupts_chunk_0), (Big_int.of_int (1)), (Big_int.of_int (1))))
 
 and z_set_Sinterrupts_SSI ((zr_ref, zv) : ((zSinterrupts) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zSinterrupts) in
   begin
-    zr := {!zr with zSinterrupts_chunk_0 = update_subrange ((!zr.zSinterrupts_chunk_0), (Big_int.of_int (1)), (Big_int.of_int (1)), (subrange (zv, Big_int.zero, Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zSinterrupts_chunk_0 = update_subrange ((!zr.zSinterrupts_chunk_0), (Big_int.of_int (1)), (Big_int.of_int (1)), (subrange (zv, Big_int.zero, Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Sinterrupts_SSI ((zv, zx) : (zSinterrupts * (bit) list)) : zSinterrupts = sail_call (fun r ->
   let zv = ({zv with zSinterrupts_chunk_0 = update_subrange ((zv.zSinterrupts_chunk_0), (Big_int.of_int (1)), (Big_int.of_int (1)), (subrange (zx, Big_int.zero, Big_int.zero)))}) in
   zv)
 
-and z_get_Sinterrupts_USI (zv : zSinterrupts) : (bit) list = sail_call (fun r ->
+and z_get_Sinterrupts_USI (zv : (zSinterrupts)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zSinterrupts_chunk_0), Big_int.zero, Big_int.zero))
 
 and z_set_Sinterrupts_USI ((zr_ref, zv) : ((zSinterrupts) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zSinterrupts) in
   begin
-    zr := {!zr with zSinterrupts_chunk_0 = update_subrange ((!zr.zSinterrupts_chunk_0), Big_int.zero, Big_int.zero, (subrange (zv, Big_int.zero, Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zSinterrupts_chunk_0 = update_subrange ((!zr.zSinterrupts_chunk_0), Big_int.zero, Big_int.zero, (subrange (zv, Big_int.zero, Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Sinterrupts_USI ((zv, zx) : (zSinterrupts * (bit) list)) : zSinterrupts = sail_call (fun r ->
@@ -5991,7 +6020,7 @@ and zlift_sip ((zo, zd, zs) : (zMinterrupts * zMinterrupts * zSinterrupts)) : zM
   let zm = (z_update_Minterrupts_USI (zm, (and_vec ((z_get_Minterrupts_USI zm), (z_get_Minterrupts_USI zd))))) in
   zm)
 
-and zlegalizze_sip ((zm, zd, zv) : (zMinterrupts * zMinterrupts * zxlenbits)) : zMinterrupts = sail_call (fun r ->
+and zlegalizze_sip ((zm, zd, zv) : (zMinterrupts * zMinterrupts * (bit) list)) : zMinterrupts = sail_call (fun r ->
   zlift_sip (zm, zd, (zMk_Sinterrupts zv)))
 
 and zlift_sie ((zo, zd, zs) : (zMinterrupts * zMinterrupts * zSinterrupts)) : zMinterrupts = sail_call (fun r ->
@@ -6004,67 +6033,67 @@ and zlift_sie ((zo, zd, zs) : (zMinterrupts * zMinterrupts * zSinterrupts)) : zM
   let zm = (if (eq_list ((z_get_Minterrupts_USI zd), (zbool_to_bits true))) then (z_update_Minterrupts_USI (zm, (z_get_Sinterrupts_USI zs))) else zm) in
   zm)
 
-and zlegalizze_sie ((zm, zd, zv) : (zMinterrupts * zMinterrupts * zxlenbits)) : zMinterrupts = sail_call (fun r ->
+and zlegalizze_sie ((zm, zd, zv) : (zMinterrupts * zMinterrupts * (bit) list)) : zMinterrupts = sail_call (fun r ->
   zlift_sie (zm, zd, (zMk_Sinterrupts zv)))
 
 let zsideleg : (zSinterrupts) ref = ref (zundefined_Sinterrupts ());;
 
-let rec zundefined_Satp64 (() : unit) : zSatp64 = sail_call (fun r ->
+let rec zundefined_Satp64 (() : (unit)) : zSatp64 = sail_call (fun r ->
   {zSatp64_chunk_0 = undefined_vector ((Big_int.of_int (64)), (undefined_bit ()))})
 
-and zMk_Satp64 (zv : (bit) list) : zSatp64 = sail_call (fun r ->
+and zMk_Satp64 (zv : ((bit) list)) : zSatp64 = sail_call (fun r ->
   {zSatp64_chunk_0 = subrange (zv, (Big_int.of_int (63)), Big_int.zero)})
 
-and z_get_Satp64_bits (zv : zSatp64) : (bit) list = sail_call (fun r ->
+and z_get_Satp64_bits (zv : (zSatp64)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zSatp64_chunk_0), (Big_int.of_int (63)), Big_int.zero))
 
 and z_set_Satp64_bits ((zr_ref, zv) : ((zSatp64) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zSatp64) in
   begin
-    zr := {!zr with zSatp64_chunk_0 = update_subrange ((!zr.zSatp64_chunk_0), (Big_int.of_int (63)), Big_int.zero, (subrange (zv, (Big_int.of_int (63)), Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zSatp64_chunk_0 = update_subrange ((!zr.zSatp64_chunk_0), (Big_int.of_int (63)), Big_int.zero, (subrange (zv, (Big_int.of_int (63)), Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Satp64_bits ((zv, zx) : (zSatp64 * (bit) list)) : zSatp64 = sail_call (fun r ->
   let zv = ({zv with zSatp64_chunk_0 = update_subrange ((zv.zSatp64_chunk_0), (Big_int.of_int (63)), Big_int.zero, (subrange (zx, (Big_int.of_int (63)), Big_int.zero)))}) in
   zv)
 
-and z_get_Satp64_Mode (zv : zSatp64) : (bit) list = sail_call (fun r ->
+and z_get_Satp64_Mode (zv : (zSatp64)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zSatp64_chunk_0), (Big_int.of_int (63)), (Big_int.of_int (60))))
 
 and z_set_Satp64_Mode ((zr_ref, zv) : ((zSatp64) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zSatp64) in
   begin
-    zr := {!zr with zSatp64_chunk_0 = update_subrange ((!zr.zSatp64_chunk_0), (Big_int.of_int (63)), (Big_int.of_int (60)), (subrange (zv, (Big_int.of_int (3)), Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zSatp64_chunk_0 = update_subrange ((!zr.zSatp64_chunk_0), (Big_int.of_int (63)), (Big_int.of_int (60)), (subrange (zv, (Big_int.of_int (3)), Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Satp64_Mode ((zv, zx) : (zSatp64 * (bit) list)) : zSatp64 = sail_call (fun r ->
   let zv = ({zv with zSatp64_chunk_0 = update_subrange ((zv.zSatp64_chunk_0), (Big_int.of_int (63)), (Big_int.of_int (60)), (subrange (zx, (Big_int.of_int (3)), Big_int.zero)))}) in
   zv)
 
-and z_get_Satp64_Asid (zv : zSatp64) : (bit) list = sail_call (fun r ->
+and z_get_Satp64_Asid (zv : (zSatp64)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zSatp64_chunk_0), (Big_int.of_int (59)), (Big_int.of_int (44))))
 
 and z_set_Satp64_Asid ((zr_ref, zv) : ((zSatp64) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zSatp64) in
   begin
-    zr := {!zr with zSatp64_chunk_0 = update_subrange ((!zr.zSatp64_chunk_0), (Big_int.of_int (59)), (Big_int.of_int (44)), (subrange (zv, (Big_int.of_int (15)), Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zSatp64_chunk_0 = update_subrange ((!zr.zSatp64_chunk_0), (Big_int.of_int (59)), (Big_int.of_int (44)), (subrange (zv, (Big_int.of_int (15)), Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Satp64_Asid ((zv, zx) : (zSatp64 * (bit) list)) : zSatp64 = sail_call (fun r ->
   let zv = ({zv with zSatp64_chunk_0 = update_subrange ((zv.zSatp64_chunk_0), (Big_int.of_int (59)), (Big_int.of_int (44)), (subrange (zx, (Big_int.of_int (15)), Big_int.zero)))}) in
   zv)
 
-and z_get_Satp64_PPN (zv : zSatp64) : (bit) list = sail_call (fun r ->
+and z_get_Satp64_PPN (zv : (zSatp64)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zSatp64_chunk_0), (Big_int.of_int (43)), Big_int.zero))
 
 and z_set_Satp64_PPN ((zr_ref, zv) : ((zSatp64) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zSatp64) in
   begin
-    zr := {!zr with zSatp64_chunk_0 = update_subrange ((!zr.zSatp64_chunk_0), (Big_int.of_int (43)), Big_int.zero, (subrange (zv, (Big_int.of_int (43)), Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zSatp64_chunk_0 = update_subrange ((!zr.zSatp64_chunk_0), (Big_int.of_int (43)), Big_int.zero, (subrange (zv, (Big_int.of_int (43)), Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_Satp64_PPN ((zv, zx) : (zSatp64 * (bit) list)) : zSatp64 = sail_call (fun r ->
@@ -6073,7 +6102,7 @@ and z_update_Satp64_PPN ((zv, zx) : (zSatp64 * (bit) list)) : zSatp64 = sail_cal
 
 let zsatp : (zxlenbits) ref = ref (undefined_vector ((Big_int.of_int (64)), (undefined_bit ())));;
 
-let rec zlegalizze_satp ((za, zo, zv) : (zArchitecture * zxlenbits * zxlenbits)) : zxlenbits = sail_call (fun r ->
+let rec zlegalizze_satp ((za, zo, zv) : (zArchitecture * (bit) list * (bit) list)) : (bit) list = sail_call (fun r ->
   let zs = (zMk_Satp64 zv) in
   begin
     match (zsatpMode_of_bits (za, (z_get_Satp64_Mode zs))) with
@@ -6094,7 +6123,7 @@ let zstval : (zxlenbits) ref = ref (undefined_vector ((Big_int.of_int (64)), (un
 
 let ztselect : (zxlenbits) ref = ref (undefined_vector ((Big_int.of_int (64)), (undefined_bit ())));;
 
-let rec zcsr_name (zcsr : zcsreg) : string = sail_call (fun r ->
+let rec zcsr_name (zcsr : ((bit) list)) : string = sail_call (fun r ->
   begin
     match zcsr with
     | zb__0 when (let zp0z3 = (access (zb__0, (Big_int.of_int (11)))) in
@@ -6758,7 +6787,7 @@ let rec zcsr_name (zcsr : zcsreg) : string = sail_call (fun r ->
     | _ -> "UNKNOWN"
   end)
 
-and zcsr_name_map_forwards (zargz3 : (bit) list) : string = sail_call (fun r ->
+and zcsr_name_map_forwards (zargz3 : ((bit) list)) : string = sail_call (fun r ->
   begin
     match zargz3 with
     | zb__0 when (let zp0z3 = (access (zb__0, (Big_int.of_int (11)))) in
@@ -7785,7 +7814,7 @@ and zcsr_name_map_forwards (zargz3 : (bit) list) : string = sail_call (fun r ->
       "tdata3"
   end)
 
-and zcsr_name_map_backwards (zargz3 : string) : (bit) list = sail_call (fun r ->
+and zcsr_name_map_backwards (zargz3 : (string)) : (bit) list = sail_call (fun r ->
   begin
     match zargz3 with
     | "ustatus" -> [B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0]
@@ -7863,7 +7892,7 @@ and zcsr_name_map_backwards (zargz3 : string) : (bit) list = sail_call (fun r ->
     | "tdata3" -> [B0; B1; B1; B1; B1; B0; B1; B0; B0; B0; B1; B1]
   end)
 
-and zcsr_name_map_forwards_matches (zargz3 : (bit) list) : bool = sail_call (fun r ->
+and zcsr_name_map_forwards_matches (zargz3 : ((bit) list)) : bool = sail_call (fun r ->
   begin
     match zargz3 with
     | zb__0 when (let zp0z3 = (access (zb__0, (Big_int.of_int (11)))) in
@@ -8891,7 +8920,7 @@ and zcsr_name_map_forwards_matches (zargz3 : (bit) list) : bool = sail_call (fun
     | _ -> false
   end)
 
-and zcsr_name_map_backwards_matches (zargz3 : string) : bool = sail_call (fun r ->
+and zcsr_name_map_backwards_matches (zargz3 : (string)) : bool = sail_call (fun r ->
   begin
     match zargz3 with
     | "ustatus" -> true
@@ -8970,7 +8999,7 @@ and zcsr_name_map_backwards_matches (zargz3 : string) : bool = sail_call (fun r 
     | _ -> false
   end)
 
-and z_s488z3 (z_s489z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s488z3 (z_s489z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s489z3 with
     | z_s490z3 when (string_startswith (z_s490z3, "tdata3")) ->
@@ -8982,7 +9011,7 @@ and z_s488z3 (z_s489z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s484z3 (z_s485z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s484z3 (z_s485z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s485z3 with
     | z_s486z3 when (string_startswith (z_s486z3, "tdata2")) ->
@@ -8994,7 +9023,7 @@ and z_s484z3 (z_s485z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s480z3 (z_s481z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s480z3 (z_s481z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s481z3 with
     | z_s482z3 when (string_startswith (z_s482z3, "tdata1")) ->
@@ -9006,7 +9035,7 @@ and z_s480z3 (z_s481z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s476z3 (z_s477z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s476z3 (z_s477z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s477z3 with
     | z_s478z3 when (string_startswith (z_s478z3, "tselect")) ->
@@ -9018,7 +9047,7 @@ and z_s476z3 (z_s477z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s472z3 (z_s473z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s472z3 (z_s473z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s473z3 with
     | z_s474z3 when (string_startswith (z_s474z3, "minstreth")) ->
@@ -9030,7 +9059,7 @@ and z_s472z3 (z_s473z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s468z3 (z_s469z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s468z3 (z_s469z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s469z3 with
     | z_s470z3 when (string_startswith (z_s470z3, "mcycleh")) ->
@@ -9042,7 +9071,7 @@ and z_s468z3 (z_s469z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s464z3 (z_s465z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s464z3 (z_s465z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s465z3 with
     | z_s466z3 when (string_startswith (z_s466z3, "minstret")) ->
@@ -9054,7 +9083,7 @@ and z_s464z3 (z_s465z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s460z3 (z_s461z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s460z3 (z_s461z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s461z3 with
     | z_s462z3 when (string_startswith (z_s462z3, "mcycle")) ->
@@ -9066,7 +9095,7 @@ and z_s460z3 (z_s461z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s456z3 (z_s457z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s456z3 (z_s457z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s457z3 with
     | z_s458z3 when (string_startswith (z_s458z3, "pmpaddr15")) ->
@@ -9078,7 +9107,7 @@ and z_s456z3 (z_s457z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s452z3 (z_s453z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s452z3 (z_s453z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s453z3 with
     | z_s454z3 when (string_startswith (z_s454z3, "pmpaddr14")) ->
@@ -9090,7 +9119,7 @@ and z_s452z3 (z_s453z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s448z3 (z_s449z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s448z3 (z_s449z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s449z3 with
     | z_s450z3 when (string_startswith (z_s450z3, "pmpaddr13")) ->
@@ -9102,7 +9131,7 @@ and z_s448z3 (z_s449z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s444z3 (z_s445z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s444z3 (z_s445z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s445z3 with
     | z_s446z3 when (string_startswith (z_s446z3, "pmpaddr12")) ->
@@ -9114,7 +9143,7 @@ and z_s444z3 (z_s445z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s440z3 (z_s441z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s440z3 (z_s441z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s441z3 with
     | z_s442z3 when (string_startswith (z_s442z3, "pmpaddr11")) ->
@@ -9126,7 +9155,7 @@ and z_s440z3 (z_s441z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s436z3 (z_s437z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s436z3 (z_s437z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s437z3 with
     | z_s438z3 when (string_startswith (z_s438z3, "pmpaddr10")) ->
@@ -9138,7 +9167,7 @@ and z_s436z3 (z_s437z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s432z3 (z_s433z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s432z3 (z_s433z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s433z3 with
     | z_s434z3 when (string_startswith (z_s434z3, "pmpaddr9")) ->
@@ -9150,7 +9179,7 @@ and z_s432z3 (z_s433z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s428z3 (z_s429z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s428z3 (z_s429z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s429z3 with
     | z_s430z3 when (string_startswith (z_s430z3, "pmpaddr8")) ->
@@ -9162,7 +9191,7 @@ and z_s428z3 (z_s429z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s424z3 (z_s425z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s424z3 (z_s425z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s425z3 with
     | z_s426z3 when (string_startswith (z_s426z3, "pmpaddr7")) ->
@@ -9174,7 +9203,7 @@ and z_s424z3 (z_s425z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s420z3 (z_s421z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s420z3 (z_s421z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s421z3 with
     | z_s422z3 when (string_startswith (z_s422z3, "pmpaddr6")) ->
@@ -9186,7 +9215,7 @@ and z_s420z3 (z_s421z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s416z3 (z_s417z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s416z3 (z_s417z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s417z3 with
     | z_s418z3 when (string_startswith (z_s418z3, "pmpaddr5")) ->
@@ -9198,7 +9227,7 @@ and z_s416z3 (z_s417z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s412z3 (z_s413z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s412z3 (z_s413z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s413z3 with
     | z_s414z3 when (string_startswith (z_s414z3, "pmpaddr4")) ->
@@ -9210,7 +9239,7 @@ and z_s412z3 (z_s413z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s408z3 (z_s409z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s408z3 (z_s409z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s409z3 with
     | z_s410z3 when (string_startswith (z_s410z3, "pmpaddr3")) ->
@@ -9222,7 +9251,7 @@ and z_s408z3 (z_s409z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s404z3 (z_s405z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s404z3 (z_s405z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s405z3 with
     | z_s406z3 when (string_startswith (z_s406z3, "pmpaddr2")) ->
@@ -9234,7 +9263,7 @@ and z_s404z3 (z_s405z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s400z3 (z_s401z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s400z3 (z_s401z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s401z3 with
     | z_s402z3 when (string_startswith (z_s402z3, "pmpaddr1")) ->
@@ -9246,7 +9275,7 @@ and z_s400z3 (z_s401z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s396z3 (z_s397z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s396z3 (z_s397z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s397z3 with
     | z_s398z3 when (string_startswith (z_s398z3, "pmpaddr0")) ->
@@ -9258,7 +9287,7 @@ and z_s396z3 (z_s397z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s392z3 (z_s393z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s392z3 (z_s393z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s393z3 with
     | z_s394z3 when (string_startswith (z_s394z3, "pmpcfg3")) ->
@@ -9270,7 +9299,7 @@ and z_s392z3 (z_s393z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s388z3 (z_s389z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s388z3 (z_s389z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s389z3 with
     | z_s390z3 when (string_startswith (z_s390z3, "pmpcfg2")) ->
@@ -9282,7 +9311,7 @@ and z_s388z3 (z_s389z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s384z3 (z_s385z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s384z3 (z_s385z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s385z3 with
     | z_s386z3 when (string_startswith (z_s386z3, "pmpcfg1")) ->
@@ -9294,7 +9323,7 @@ and z_s384z3 (z_s385z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s380z3 (z_s381z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s380z3 (z_s381z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s381z3 with
     | z_s382z3 when (string_startswith (z_s382z3, "pmpcfg0")) ->
@@ -9306,7 +9335,7 @@ and z_s380z3 (z_s381z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s376z3 (z_s377z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s376z3 (z_s377z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s377z3 with
     | z_s378z3 when (string_startswith (z_s378z3, "mip")) ->
@@ -9318,7 +9347,7 @@ and z_s376z3 (z_s377z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s372z3 (z_s373z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s372z3 (z_s373z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s373z3 with
     | z_s374z3 when (string_startswith (z_s374z3, "mtval")) ->
@@ -9330,7 +9359,7 @@ and z_s372z3 (z_s373z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s368z3 (z_s369z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s368z3 (z_s369z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s369z3 with
     | z_s370z3 when (string_startswith (z_s370z3, "mcause")) ->
@@ -9342,7 +9371,7 @@ and z_s368z3 (z_s369z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s364z3 (z_s365z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s364z3 (z_s365z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s365z3 with
     | z_s366z3 when (string_startswith (z_s366z3, "mepc")) ->
@@ -9354,7 +9383,7 @@ and z_s364z3 (z_s365z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s360z3 (z_s361z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s360z3 (z_s361z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s361z3 with
     | z_s362z3 when (string_startswith (z_s362z3, "mscratch")) ->
@@ -9366,7 +9395,7 @@ and z_s360z3 (z_s361z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s356z3 (z_s357z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s356z3 (z_s357z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s357z3 with
     | z_s358z3 when (string_startswith (z_s358z3, "mcounteren")) ->
@@ -9378,7 +9407,7 @@ and z_s356z3 (z_s357z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s352z3 (z_s353z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s352z3 (z_s353z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s353z3 with
     | z_s354z3 when (string_startswith (z_s354z3, "mtvec")) ->
@@ -9390,7 +9419,7 @@ and z_s352z3 (z_s353z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s348z3 (z_s349z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s348z3 (z_s349z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s349z3 with
     | z_s350z3 when (string_startswith (z_s350z3, "mie")) ->
@@ -9402,7 +9431,7 @@ and z_s348z3 (z_s349z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s344z3 (z_s345z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s344z3 (z_s345z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s345z3 with
     | z_s346z3 when (string_startswith (z_s346z3, "mideleg")) ->
@@ -9414,7 +9443,7 @@ and z_s344z3 (z_s345z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s340z3 (z_s341z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s340z3 (z_s341z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s341z3 with
     | z_s342z3 when (string_startswith (z_s342z3, "medeleg")) ->
@@ -9426,7 +9455,7 @@ and z_s340z3 (z_s341z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s336z3 (z_s337z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s336z3 (z_s337z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s337z3 with
     | z_s338z3 when (string_startswith (z_s338z3, "misa")) ->
@@ -9438,7 +9467,7 @@ and z_s336z3 (z_s337z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s332z3 (z_s333z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s332z3 (z_s333z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s333z3 with
     | z_s334z3 when (string_startswith (z_s334z3, "mstatus")) ->
@@ -9450,7 +9479,7 @@ and z_s332z3 (z_s333z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s328z3 (z_s329z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s328z3 (z_s329z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s329z3 with
     | z_s330z3 when (string_startswith (z_s330z3, "mhartid")) ->
@@ -9462,7 +9491,7 @@ and z_s328z3 (z_s329z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s324z3 (z_s325z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s324z3 (z_s325z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s325z3 with
     | z_s326z3 when (string_startswith (z_s326z3, "mimpid")) ->
@@ -9474,7 +9503,7 @@ and z_s324z3 (z_s325z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s320z3 (z_s321z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s320z3 (z_s321z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s321z3 with
     | z_s322z3 when (string_startswith (z_s322z3, "marchid")) ->
@@ -9486,7 +9515,7 @@ and z_s320z3 (z_s321z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s316z3 (z_s317z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s316z3 (z_s317z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s317z3 with
     | z_s318z3 when (string_startswith (z_s318z3, "mvendorid")) ->
@@ -9498,7 +9527,7 @@ and z_s316z3 (z_s317z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s312z3 (z_s313z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s312z3 (z_s313z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s313z3 with
     | z_s314z3 when (string_startswith (z_s314z3, "satp")) ->
@@ -9510,7 +9539,7 @@ and z_s312z3 (z_s313z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s308z3 (z_s309z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s308z3 (z_s309z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s309z3 with
     | z_s310z3 when (string_startswith (z_s310z3, "sip")) ->
@@ -9522,7 +9551,7 @@ and z_s308z3 (z_s309z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s304z3 (z_s305z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s304z3 (z_s305z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s305z3 with
     | z_s306z3 when (string_startswith (z_s306z3, "stval")) ->
@@ -9534,7 +9563,7 @@ and z_s304z3 (z_s305z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s300z3 (z_s301z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s300z3 (z_s301z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s301z3 with
     | z_s302z3 when (string_startswith (z_s302z3, "scause")) ->
@@ -9546,7 +9575,7 @@ and z_s300z3 (z_s301z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s296z3 (z_s297z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s296z3 (z_s297z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s297z3 with
     | z_s298z3 when (string_startswith (z_s298z3, "sepc")) ->
@@ -9558,7 +9587,7 @@ and z_s296z3 (z_s297z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s292z3 (z_s293z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s292z3 (z_s293z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s293z3 with
     | z_s294z3 when (string_startswith (z_s294z3, "sscratch")) ->
@@ -9570,7 +9599,7 @@ and z_s292z3 (z_s293z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s288z3 (z_s289z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s288z3 (z_s289z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s289z3 with
     | z_s290z3 when (string_startswith (z_s290z3, "scounteren")) ->
@@ -9582,7 +9611,7 @@ and z_s288z3 (z_s289z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s284z3 (z_s285z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s284z3 (z_s285z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s285z3 with
     | z_s286z3 when (string_startswith (z_s286z3, "stvec")) ->
@@ -9594,7 +9623,7 @@ and z_s284z3 (z_s285z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s280z3 (z_s281z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s280z3 (z_s281z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s281z3 with
     | z_s282z3 when (string_startswith (z_s282z3, "sie")) ->
@@ -9606,7 +9635,7 @@ and z_s280z3 (z_s281z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s276z3 (z_s277z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s276z3 (z_s277z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s277z3 with
     | z_s278z3 when (string_startswith (z_s278z3, "sideleg")) ->
@@ -9618,7 +9647,7 @@ and z_s276z3 (z_s277z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s272z3 (z_s273z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s272z3 (z_s273z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s273z3 with
     | z_s274z3 when (string_startswith (z_s274z3, "sedeleg")) ->
@@ -9630,7 +9659,7 @@ and z_s272z3 (z_s273z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s268z3 (z_s269z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s268z3 (z_s269z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s269z3 with
     | z_s270z3 when (string_startswith (z_s270z3, "sstatus")) ->
@@ -9642,7 +9671,7 @@ and z_s268z3 (z_s269z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s264z3 (z_s265z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s264z3 (z_s265z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s265z3 with
     | z_s266z3 when (string_startswith (z_s266z3, "instreth")) ->
@@ -9654,7 +9683,7 @@ and z_s264z3 (z_s265z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s260z3 (z_s261z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s260z3 (z_s261z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s261z3 with
     | z_s262z3 when (string_startswith (z_s262z3, "timeh")) ->
@@ -9666,7 +9695,7 @@ and z_s260z3 (z_s261z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s256z3 (z_s257z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s256z3 (z_s257z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s257z3 with
     | z_s258z3 when (string_startswith (z_s258z3, "cycleh")) ->
@@ -9678,7 +9707,7 @@ and z_s256z3 (z_s257z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s252z3 (z_s253z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s252z3 (z_s253z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s253z3 with
     | z_s254z3 when (string_startswith (z_s254z3, "instret")) ->
@@ -9690,7 +9719,7 @@ and z_s252z3 (z_s253z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s248z3 (z_s249z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s248z3 (z_s249z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s249z3 with
     | z_s250z3 when (string_startswith (z_s250z3, "time")) ->
@@ -9702,7 +9731,7 @@ and z_s248z3 (z_s249z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s244z3 (z_s245z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s244z3 (z_s245z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s245z3 with
     | z_s246z3 when (string_startswith (z_s246z3, "cycle")) ->
@@ -9714,7 +9743,7 @@ and z_s244z3 (z_s245z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s240z3 (z_s241z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s240z3 (z_s241z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s241z3 with
     | z_s242z3 when (string_startswith (z_s242z3, "fcsr")) ->
@@ -9726,7 +9755,7 @@ and z_s240z3 (z_s241z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s236z3 (z_s237z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s236z3 (z_s237z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s237z3 with
     | z_s238z3 when (string_startswith (z_s238z3, "frm")) ->
@@ -9738,7 +9767,7 @@ and z_s236z3 (z_s237z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s232z3 (z_s233z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s232z3 (z_s233z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s233z3 with
     | z_s234z3 when (string_startswith (z_s234z3, "fflags")) ->
@@ -9750,7 +9779,7 @@ and z_s232z3 (z_s233z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s228z3 (z_s229z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s228z3 (z_s229z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s229z3 with
     | z_s230z3 when (string_startswith (z_s230z3, "uip")) ->
@@ -9762,7 +9791,7 @@ and z_s228z3 (z_s229z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s224z3 (z_s225z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s224z3 (z_s225z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s225z3 with
     | z_s226z3 when (string_startswith (z_s226z3, "utval")) ->
@@ -9774,7 +9803,7 @@ and z_s224z3 (z_s225z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s220z3 (z_s221z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s220z3 (z_s221z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s221z3 with
     | z_s222z3 when (string_startswith (z_s222z3, "ucause")) ->
@@ -9786,7 +9815,7 @@ and z_s220z3 (z_s221z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s216z3 (z_s217z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s216z3 (z_s217z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s217z3 with
     | z_s218z3 when (string_startswith (z_s218z3, "uepc")) ->
@@ -9798,7 +9827,7 @@ and z_s216z3 (z_s217z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s212z3 (z_s213z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s212z3 (z_s213z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s213z3 with
     | z_s214z3 when (string_startswith (z_s214z3, "uscratch")) ->
@@ -9810,7 +9839,7 @@ and z_s212z3 (z_s213z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s208z3 (z_s209z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s208z3 (z_s209z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s209z3 with
     | z_s210z3 when (string_startswith (z_s210z3, "utvec")) ->
@@ -9822,7 +9851,7 @@ and z_s208z3 (z_s209z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s204z3 (z_s205z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s204z3 (z_s205z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s205z3 with
     | z_s206z3 when (string_startswith (z_s206z3, "uie")) ->
@@ -9834,7 +9863,7 @@ and z_s204z3 (z_s205z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s200z3 (z_s201z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s200z3 (z_s201z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s201z3 with
     | z_s202z3 when (string_startswith (z_s202z3, "ustatus")) ->
@@ -9846,7 +9875,7 @@ and z_s200z3 (z_s201z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and zcsr_name_map_matches_prefix (zargz3 : string) : (((bit) list * Big_int.num)) zoption = sail_call (fun r ->
+and zcsr_name_map_matches_prefix (zargz3 : (string)) : (((bit) list * Big_int.num)) zoption = sail_call (fun r ->
   begin
     match zargz3 with
     | z_s203z3 when (begin
@@ -10363,13 +10392,13 @@ and zcsr_name_map_matches_prefix (zargz3 : string) : (((bit) list * Big_int.num)
     | _ -> ZNone ()
   end)
 
-and zcsrAccess (zcsr : zcsreg) : zcsrRW = sail_call (fun r ->
+and zcsrAccess (zcsr : ((bit) list)) : (bit) list = sail_call (fun r ->
   subrange (zcsr, (Big_int.of_int (11)), (Big_int.of_int (10))))
 
-and zcsrPriv (zcsr : zcsreg) : zpriv_level = sail_call (fun r ->
+and zcsrPriv (zcsr : ((bit) list)) : (bit) list = sail_call (fun r ->
   subrange (zcsr, (Big_int.of_int (9)), (Big_int.of_int (8))))
 
-and zis_CSR_defined ((zcsr, zp) : (zbits * zPrivilege)) : bool = sail_call (fun r ->
+and zis_CSR_defined ((zcsr, zp) : ((bit) list * zPrivilege)) : bool = sail_call (fun r ->
   begin
     match zcsr with
     | zb__0 when (let zp0z3 = (access (zb__0, (Big_int.of_int (11)))) in
@@ -10809,13 +10838,13 @@ and zis_CSR_defined ((zcsr, zp) : (zbits * zPrivilege)) : bool = sail_call (fun 
     | _ -> false
   end)
 
-and zcheck_CSR_access ((zcsrrw, zcsrpr, zp, zisWrite) : (zcsrRW * zpriv_level * zPrivilege * bool)) : bool = sail_call (fun r ->
+and zcheck_CSR_access ((zcsrrw, zcsrpr, zp, zisWrite) : ((bit) list * (bit) list * zPrivilege * bool)) : bool = sail_call (fun r ->
   (not ((eq_bool (zisWrite, true)) && (eq_list (zcsrrw, [B1; B1])))) && (zz8operatorz0zKzJ_uz9 ((zprivLevel_to_bits zp), zcsrpr)))
 
-and zcheck_TVM_SATP ((zcsr, zp) : (zcsreg * zPrivilege)) : bool = sail_call (fun r ->
+and zcheck_TVM_SATP ((zcsr, zp) : ((bit) list * zPrivilege)) : bool = sail_call (fun r ->
   not ((eq_list (zcsr, [B0; B0; B0; B1; B1; B0; B0; B0; B0; B0; B0; B0])) && ((eq_list ((zprivLevel_to_bits zp), (zprivLevel_to_bits ZSupervisor))) && (eq_list ((z_get_Mstatus_TVM !zmstatus), (zbool_to_bits true))))))
 
-and zcheck_Counteren ((zcsr, zp) : (zcsreg * zPrivilege)) : bool = sail_call (fun r ->
+and zcheck_Counteren ((zcsr, zp) : ((bit) list * zPrivilege)) : bool = sail_call (fun r ->
   begin
     match (zcsr, zp) with
     | (zb__0, ZSupervisor) when (let zp0z3 = (access (zb__0, (Big_int.of_int (11)))) in
@@ -10906,7 +10935,7 @@ and zcheck_Counteren ((zcsr, zp) : (zcsreg * zPrivilege)) : bool = sail_call (fu
       if ((zz8operatorz0zIzJ_uz9 ([B1; B1; B0; B0; B0; B0; B0; B0; B0; B0; B1; B1], zcsr)) && (zz8operatorz0zIzJ_uz9 (zcsr, [B1; B1; B0; B0; B0; B0; B0; B1; B1; B1; B1; B1]))) then false else true
   end)
 
-and zcheck_CSR ((zcsr, zp, zisWrite) : (zcsreg * zPrivilege * bool)) : bool = sail_call (fun r ->
+and zcheck_CSR ((zcsr, zp, zisWrite) : ((bit) list * zPrivilege * bool)) : bool = sail_call (fun r ->
   (zis_CSR_defined (zcsr, zp)) && ((zcheck_CSR_access ((zcsrAccess zcsr), (zcsrPriv zcsr), zp, zisWrite)) && ((zcheck_TVM_SATP (zcsr, zp)) && (zcheck_Counteren (zcsr, zp)))))
 
 and zexception_delegatee ((ze, zp) : (zExceptionType * zPrivilege)) : zPrivilege = sail_call (fun r ->
@@ -10916,7 +10945,7 @@ and zexception_delegatee ((ze, zp) : (zExceptionType * zPrivilege)) : zPrivilege
   let zdeleg = (if ((eq_list ((z_get_Misa_S !zmisa), (zbool_to_bits true))) && (zbit_to_bool zsuper)) then ZSupervisor else ZMachine) in
   if (zz8operatorz0zI_uz9 ((zprivLevel_to_bits zdeleg), (zprivLevel_to_bits zp))) then zp else zdeleg)
 
-and zfindPendingInterrupt (zip : zxlenbits) : (zInterruptType) zoption = sail_call (fun r ->
+and zfindPendingInterrupt (zip : ((bit) list)) : (zInterruptType) zoption = sail_call (fun r ->
   let zip = (zMk_Minterrupts zip) in
   if (eq_list ((z_get_Minterrupts_MEI zip), (zbool_to_bits true))) then (ZSome ZI_M_External) else (if (eq_list ((z_get_Minterrupts_MSI zip), (zbool_to_bits true))) then (ZSome ZI_M_Software) else (if (eq_list ((z_get_Minterrupts_MTI zip), (zbool_to_bits true))) then (ZSome ZI_M_Timer) else (if (eq_list ((z_get_Minterrupts_SEI zip), (zbool_to_bits true))) then (ZSome ZI_S_External) else (if (eq_list ((z_get_Minterrupts_SSI zip), (zbool_to_bits true))) then (ZSome ZI_S_Software) else (if (eq_list ((z_get_Minterrupts_STI zip), (zbool_to_bits true))) then (ZSome ZI_S_Timer) else (if (eq_list ((z_get_Minterrupts_UEI zip), (zbool_to_bits true))) then (ZSome ZI_U_External) else (if (eq_list ((z_get_Minterrupts_USI zip), (zbool_to_bits true))) then (ZSome ZI_U_Software) else (if (eq_list ((z_get_Minterrupts_UTI zip), (zbool_to_bits true))) then (ZSome ZI_U_Timer) else (ZNone ()))))))))))
 
@@ -10952,15 +10981,15 @@ and zcurInterrupt ((zpriv, zpend, zenbl, zdelg) : (zPrivilege * zMinterrupts * z
 type  zsync_exception = { ztrap : zExceptionType; zexcinfo : (zxlenbits) zoption
 };;
 
-let string_of_zsync_exception (gs3014 : zsync_exception) =
-  "{trap = " ^ string_of_zExceptionType gs3014.ztrap
+let string_of_zsync_exception (gs3535 : zsync_exception) =
+  "{trap = " ^ string_of_zExceptionType gs3535.ztrap
   ^ ", excinfo = " ^ "APP" ^ "}";;
 
-let rec zundefined_sync_exception (() : unit) : zsync_exception = sail_call (fun r ->
+let rec zundefined_sync_exception (() : (unit)) : zsync_exception = sail_call (fun r ->
   {ztrap = zundefined_ExceptionType ();
   zexcinfo = zundefined_option (undefined_vector ((Big_int.of_int (64)), (undefined_bit ())))})
 
-and ztval (zexcinfo : (zxlenbits) zoption) : zxlenbits = sail_call (fun r ->
+and ztval (zexcinfo : (((bit) list) zoption)) : (bit) list = sail_call (fun r ->
   begin
     match zexcinfo with
     | ZSome (ze) -> ze
@@ -10974,12 +11003,12 @@ type  zctl_result =
 
 let string_of_zctl_result _ = "VARIANT";;
 
-let rec zundefined_ctl_result (() : unit) : zctl_result = sail_call (fun r ->
+let rec zundefined_ctl_result (() : (unit)) : zctl_result = sail_call (fun r ->
   let zu_0 = (zundefined_sync_exception ()) in
   let zu_1 = (undefined_unit ()) in
   internal_pick [ZCTL_TRAP zu_0; ZCTL_SRET zu_1; ZCTL_MRET zu_1])
 
-and zhandle_trap ((zdel_priv, zintr, zc, zpc, zinfo) : (zPrivilege * bool * zexc_code * zxlenbits * (zxlenbits) zoption)) : zxlenbits = sail_call (fun r ->
+and zhandle_trap ((zdel_priv, zintr, zc, zpc, zinfo) : (zPrivilege * bool * (bit) list * (bit) list * ((bit) list) zoption)) : (bit) list = sail_call (fun r ->
   begin
     print_endline (concat_str ("handling ", (concat_str ((if zintr then "int#" else "exc#"), (concat_str ((string_of_bits zc), (concat_str (" at priv ", (concat_str ((zprivLevel_to_str zdel_priv), (concat_str (" with tval ", (string_of_bits (ztval zinfo))))))))))))));
     begin
@@ -11029,7 +11058,7 @@ and zhandle_trap ((zdel_priv, zintr, zc, zpc, zinfo) : (zPrivilege * bool * zexc
     end
   end)
 
-and zhandle_exception ((zcur_priv, zctl, zpc) : (zPrivilege * zctl_result * zxlenbits)) : zxlenbits = sail_call (fun r ->
+and zhandle_exception ((zcur_priv, zctl, zpc) : (zPrivilege * zctl_result * (bit) list)) : (bit) list = sail_call (fun r ->
   begin
     match (zcur_priv, zctl) with
     | (_, ZCTL_TRAP (ze)) ->
@@ -11064,22 +11093,14 @@ and zhandle_exception ((zcur_priv, zctl, zpc) : (zPrivilege * zctl_result * zxle
       end
   end)
 
-and zhandle_mem_exception ((zaddr, ze) : (zxlenbits * zExceptionType)) : unit = sail_call (fun r ->
+and zhandle_mem_exception ((zaddr, ze) : ((bit) list * zExceptionType)) : unit = sail_call (fun r ->
   let zt = ({ztrap = ze; zexcinfo = ZSome zaddr}) in
-  znextPC := (zhandle_exception (!zcur_privilege, (ZCTL_TRAP zt), !zPC)))
-
-and zhandle_decode_exception (zinstbits : zxlenbits) : unit = sail_call (fun r ->
-  let zt = ({ztrap = ZE_Illegal_Instr; zexcinfo = ZSome zinstbits}) in
   znextPC := (zhandle_exception (!zcur_privilege, (ZCTL_TRAP zt), !zPC)))
 
 and zhandle_interrupt ((zi, zdel_priv) : (zInterruptType * zPrivilege)) : unit = sail_call (fun r ->
   znextPC := (zhandle_trap (zdel_priv, true, (zinterruptType_to_bits zi), !zPC, (ZNone ()))))
 
-and zhandle_illegal (() : unit) : unit = sail_call (fun r ->
-  let zt = ({ztrap = ZE_Illegal_Instr; zexcinfo = ZNone ()}) in
-  znextPC := (zhandle_exception (!zcur_privilege, (ZCTL_TRAP zt), !zPC)))
-
-and zinit_sys (() : unit) : unit = sail_call (fun r ->
+and zinit_sys (() : (unit)) : unit = sail_call (fun r ->
   begin
     zcur_privilege := ZMachine;
     zmhartid := (zEXTZ ((Big_int.of_int (64)), [B0]));
@@ -11114,24 +11135,35 @@ type 'za zMemoryOpResult = | ZMemValue of 'za | ZMemException of zExceptionType;
 
 let string_of_zMemoryOpResult _ = "VARIANT";;
 
-let rec zundefined_MemoryOpResult : 'za. ('za) -> ('za) zMemoryOpResult = fun (ztyp_a) -> sail_call (fun r ->
+let rec zundefined_MemoryOpResult : 'za. ('za) -> ('za) zMemoryOpResult = fun ztyp_a -> sail_call (fun r ->
   let zu_0 = (zundefined_ExceptionType ()) in
   let zu_1 = ztyp_a in
   internal_pick [ZMemValue zu_1; ZMemException zu_0])
 
-and zphys_mem_segments (() : unit) : ((zxlenbits * zxlenbits)) list = sail_call (fun r ->
+and zphys_mem_segments (() : (unit)) : (((bit) list * (bit) list)) list = sail_call (fun r ->
   (Platform.rom_base (), Platform.rom_size ()) :: (Platform.dram_base (), Platform.dram_size ()) :: [])
 
-and zwithin_phys_mem ((zaddr, zwidth) : (zxlenbits * Big_int.num)) : bool = sail_call (fun r ->
-  if ((zz8operatorz0zIzJ_uz9 ((Platform.dram_base ()), zaddr)) && (zz8operatorz0zIzJ_uz9 ((add_vec_int (zaddr, zwidth)), (add_vec ((Platform.dram_base ()), (Platform.dram_size ())))))) then true else (if ((zz8operatorz0zIzJ_uz9 ((Platform.rom_base ()), zaddr)) && (zz8operatorz0zIzJ_uz9 ((add_vec_int (zaddr, zwidth)), (add_vec ((Platform.rom_base ()), (Platform.rom_size ())))))) then true else false))
+and zwithin_phys_mem ((zaddr, zwidth) : ((bit) list * Big_int.num)) : bool = sail_call (fun r ->
+  let zram_base = (Platform.dram_base ()) in
+  let zrom_base = (Platform.rom_base ()) in
+  let zram_sizze = (Platform.dram_size ()) in
+  let zrom_sizze = (Platform.rom_size ()) in
+  if ((zz8operatorz0zIzJ_uz9 (zram_base, zaddr)) && (zz8operatorz0zIzJ_uz9 ((add_vec_int (zaddr, zwidth)), (add_vec (zram_base, zram_sizze))))) then true else (if ((zz8operatorz0zIzJ_uz9 (zrom_base, zaddr)) && (zz8operatorz0zIzJ_uz9 ((add_vec_int (zaddr, zwidth)), (add_vec (zrom_base, zrom_sizze))))) then true else (begin
+    print_endline (concat_str ("within_phys_mem: ", (concat_str ((string_of_bits zaddr), " not within phys-mem:"))));
+    print_endline (concat_str ("  plat_rom_base: ", (string_of_bits zrom_base)));
+    print_endline (concat_str ("  plat_rom_size: ", (string_of_bits zrom_sizze)));
+    print_endline (concat_str ("  plat_ram_base: ", (string_of_bits zram_base)));
+    print_endline (concat_str ("  plat_ram_size: ", (string_of_bits zram_sizze)));
+    false
+  end)))
 
-and zwithin_clint ((zaddr, zwidth) : (zxlenbits * Big_int.num)) : bool = sail_call (fun r ->
+and zwithin_clint ((zaddr, zwidth) : ((bit) list * Big_int.num)) : bool = sail_call (fun r ->
   (zz8operatorz0zIzJ_uz9 ((Platform.clint_base ()), zaddr)) && (zz8operatorz0zIzJ_uz9 ((add_vec_int (zaddr, zwidth)), (add_vec ((Platform.clint_base ()), (Platform.clint_size ()))))))
 
-and zwithin_htif_writable ((zaddr, zwidth) : (zxlenbits * Big_int.num)) : bool = sail_call (fun r ->
+and zwithin_htif_writable ((zaddr, zwidth) : ((bit) list * Big_int.num)) : bool = sail_call (fun r ->
   eq_list ((Platform.htif_tohost ()), zaddr))
 
-and zwithin_htif_readable ((zaddr, zwidth) : (zxlenbits * Big_int.num)) : bool = sail_call (fun r ->
+and zwithin_htif_readable ((zaddr, zwidth) : ((bit) list * Big_int.num)) : bool = sail_call (fun r ->
   eq_list ((Platform.htif_tohost ()), zaddr))
 
 let zmtimecmp : (zxlenbits) ref = ref (undefined_vector ((Big_int.of_int (64)), (undefined_bit ())));;
@@ -11142,7 +11174,7 @@ let zMTIMECMP_BASE = [B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0
 
 let zMTIME_BASE = [B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B1; B0; B1; B1; B1; B1; B1; B1; B1; B1; B1; B1; B1; B0; B0; B0];;
 
-let rec zclint_load ((zaddr, zwidth) : (zxlenbits * Big_int.num)) : (zbits) zMemoryOpResult = sail_call (fun r ->
+let rec zclint_load ((zaddr, zwidth) : ((bit) list * Big_int.num)) : ((bit) list) zMemoryOpResult = sail_call (fun r ->
   let zaddr = (sub_vec (zaddr, (Platform.clint_base ()))) in
   if ((eq_list (zaddr, zMSIP_BASE)) && ((eq_int (zwidth, (Big_int.of_int (8)))) || (eq_int (zwidth, (Big_int.of_int (4)))))) then (begin
     print_endline (concat_str ("clint[", (concat_str ((string_of_bits zaddr), (concat_str ("] -> ", (string_of_bits (z_get_Minterrupts_MSI !zmip))))))));
@@ -11158,7 +11190,7 @@ let rec zclint_load ((zaddr, zwidth) : (zxlenbits * Big_int.num)) : (zbits) zMem
     ZMemException ZE_Load_Access_Fault
   end))))
 
-and zclint_dispatch (() : unit) : unit = sail_call (fun r ->
+and zclint_dispatch (() : (unit)) : unit = sail_call (fun r ->
   begin
     print_endline (concat_str ("clint::tick mtime <- ", (string_of_bits !zmtime)));
     z_set_Minterrupts_MTI (zmip, (zbool_to_bits false));
@@ -11168,7 +11200,7 @@ and zclint_dispatch (() : unit) : unit = sail_call (fun r ->
     end) else ()
   end)
 
-and zclint_store ((zaddr, zwidth, zdata) : (zxlenbits * Big_int.num * zbits)) : (bool) zMemoryOpResult = sail_call (fun r ->
+and zclint_store ((zaddr, zwidth, zdata) : ((bit) list * Big_int.num * (bit) list)) : (bool) zMemoryOpResult = sail_call (fun r ->
   let zaddr = (sub_vec (zaddr, (Platform.clint_base ()))) in
   if ((eq_list (zaddr, zMSIP_BASE)) && ((eq_int (zwidth, (Big_int.of_int (8)))) || (eq_int (zwidth, (Big_int.of_int (4)))))) then (begin
     print_endline (concat_str ("clint[", (concat_str ((string_of_bits zaddr), (concat_str ("] <- ", (concat_str ((string_of_bits zdata), (concat_str (" (mip.MSI <- ", (concat_str ((string_of_bits (zcast_unit_vec (access (zdata, Big_int.zero)))), ")"))))))))))));
@@ -11185,7 +11217,7 @@ and zclint_store ((zaddr, zwidth, zdata) : (zxlenbits * Big_int.num * zbits)) : 
     ZMemException ZE_SAMO_Access_Fault
   end)))
 
-and ztick_clock (() : unit) : unit = sail_call (fun r ->
+and ztick_clock (() : (unit)) : unit = sail_call (fun r ->
   begin
     zmcycle := (add_vec_int (!zmcycle, (Big_int.of_int (1))));
     zmtime := (add_vec_int (!zmtime, (Big_int.of_int (1))));
@@ -11195,65 +11227,65 @@ and ztick_clock (() : unit) : unit = sail_call (fun r ->
 type  zhtif_cmd = { zhtif_cmd_chunk_0 : (bit) list
 };;
 
-let string_of_zhtif_cmd (gs3128 : zhtif_cmd) =
-  "{htif_cmd_chunk_0 = " ^ string_of_bits gs3128.zhtif_cmd_chunk_0 ^ "}";;
+let string_of_zhtif_cmd (gs3648 : zhtif_cmd) =
+  "{htif_cmd_chunk_0 = " ^ string_of_bits gs3648.zhtif_cmd_chunk_0 ^ "}";;
 
-let rec zundefined_htif_cmd (() : unit) : zhtif_cmd = sail_call (fun r ->
+let rec zundefined_htif_cmd (() : (unit)) : zhtif_cmd = sail_call (fun r ->
   {zhtif_cmd_chunk_0 = undefined_vector ((Big_int.of_int (64)), (undefined_bit ()))})
 
-and zMk_htif_cmd (zv : (bit) list) : zhtif_cmd = sail_call (fun r ->
+and zMk_htif_cmd (zv : ((bit) list)) : zhtif_cmd = sail_call (fun r ->
   {zhtif_cmd_chunk_0 = subrange (zv, (Big_int.of_int (63)), Big_int.zero)})
 
-and z_get_htif_cmd_bits (zv : zhtif_cmd) : (bit) list = sail_call (fun r ->
+and z_get_htif_cmd_bits (zv : (zhtif_cmd)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zhtif_cmd_chunk_0), (Big_int.of_int (63)), Big_int.zero))
 
 and z_set_htif_cmd_bits ((zr_ref, zv) : ((zhtif_cmd) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zhtif_cmd) in
   begin
-    zr := {!zr with zhtif_cmd_chunk_0 = update_subrange ((!zr.zhtif_cmd_chunk_0), (Big_int.of_int (63)), Big_int.zero, (subrange (zv, (Big_int.of_int (63)), Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zhtif_cmd_chunk_0 = update_subrange ((!zr.zhtif_cmd_chunk_0), (Big_int.of_int (63)), Big_int.zero, (subrange (zv, (Big_int.of_int (63)), Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_htif_cmd_bits ((zv, zx) : (zhtif_cmd * (bit) list)) : zhtif_cmd = sail_call (fun r ->
   let zv = ({zv with zhtif_cmd_chunk_0 = update_subrange ((zv.zhtif_cmd_chunk_0), (Big_int.of_int (63)), Big_int.zero, (subrange (zx, (Big_int.of_int (63)), Big_int.zero)))}) in
   zv)
 
-and z_get_htif_cmd_device (zv : zhtif_cmd) : (bit) list = sail_call (fun r ->
+and z_get_htif_cmd_device (zv : (zhtif_cmd)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zhtif_cmd_chunk_0), (Big_int.of_int (63)), (Big_int.of_int (56))))
 
 and z_set_htif_cmd_device ((zr_ref, zv) : ((zhtif_cmd) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zhtif_cmd) in
   begin
-    zr := {!zr with zhtif_cmd_chunk_0 = update_subrange ((!zr.zhtif_cmd_chunk_0), (Big_int.of_int (63)), (Big_int.of_int (56)), (subrange (zv, (Big_int.of_int (7)), Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zhtif_cmd_chunk_0 = update_subrange ((!zr.zhtif_cmd_chunk_0), (Big_int.of_int (63)), (Big_int.of_int (56)), (subrange (zv, (Big_int.of_int (7)), Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_htif_cmd_device ((zv, zx) : (zhtif_cmd * (bit) list)) : zhtif_cmd = sail_call (fun r ->
   let zv = ({zv with zhtif_cmd_chunk_0 = update_subrange ((zv.zhtif_cmd_chunk_0), (Big_int.of_int (63)), (Big_int.of_int (56)), (subrange (zx, (Big_int.of_int (7)), Big_int.zero)))}) in
   zv)
 
-and z_get_htif_cmd_cmd (zv : zhtif_cmd) : (bit) list = sail_call (fun r ->
+and z_get_htif_cmd_cmd (zv : (zhtif_cmd)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zhtif_cmd_chunk_0), (Big_int.of_int (55)), (Big_int.of_int (48))))
 
 and z_set_htif_cmd_cmd ((zr_ref, zv) : ((zhtif_cmd) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zhtif_cmd) in
   begin
-    zr := {!zr with zhtif_cmd_chunk_0 = update_subrange ((!zr.zhtif_cmd_chunk_0), (Big_int.of_int (55)), (Big_int.of_int (48)), (subrange (zv, (Big_int.of_int (7)), Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zhtif_cmd_chunk_0 = update_subrange ((!zr.zhtif_cmd_chunk_0), (Big_int.of_int (55)), (Big_int.of_int (48)), (subrange (zv, (Big_int.of_int (7)), Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_htif_cmd_cmd ((zv, zx) : (zhtif_cmd * (bit) list)) : zhtif_cmd = sail_call (fun r ->
   let zv = ({zv with zhtif_cmd_chunk_0 = update_subrange ((zv.zhtif_cmd_chunk_0), (Big_int.of_int (55)), (Big_int.of_int (48)), (subrange (zx, (Big_int.of_int (7)), Big_int.zero)))}) in
   zv)
 
-and z_get_htif_cmd_payload (zv : zhtif_cmd) : (bit) list = sail_call (fun r ->
+and z_get_htif_cmd_payload (zv : (zhtif_cmd)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zhtif_cmd_chunk_0), (Big_int.of_int (47)), Big_int.zero))
 
 and z_set_htif_cmd_payload ((zr_ref, zv) : ((zhtif_cmd) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zhtif_cmd) in
   begin
-    zr := {!zr with zhtif_cmd_chunk_0 = update_subrange ((!zr.zhtif_cmd_chunk_0), (Big_int.of_int (47)), Big_int.zero, (subrange (zv, (Big_int.of_int (47)), Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zhtif_cmd_chunk_0 = update_subrange ((!zr.zhtif_cmd_chunk_0), (Big_int.of_int (47)), Big_int.zero, (subrange (zv, (Big_int.of_int (47)), Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_htif_cmd_payload ((zv, zx) : (zhtif_cmd * (bit) list)) : zhtif_cmd = sail_call (fun r ->
@@ -11266,13 +11298,13 @@ let zhtif_done : (bool) ref = ref (undefined_bool ());;
 
 let zhtif_exit_code : (zxlenbits) ref = ref (undefined_vector ((Big_int.of_int (64)), (undefined_bit ())));;
 
-let rec zhtif_load ((zaddr, zwidth) : (zxlenbits * Big_int.num)) : (zbits) zMemoryOpResult = sail_call (fun r ->
+let rec zhtif_load ((zaddr, zwidth) : ((bit) list * Big_int.num)) : ((bit) list) zMemoryOpResult = sail_call (fun r ->
   begin
     print_endline (concat_str ("htif[", (concat_str ((string_of_bits zaddr), (concat_str ("] -> ", (string_of_bits !zhtif_tohost)))))));
     if (eq_int (zwidth, (Big_int.of_int (8)))) then (ZMemValue (zero_extend (!zhtif_tohost, (Big_int.of_int (64))))) else (ZMemException ZE_Load_Access_Fault)
   end)
 
-and zhtif_store ((zaddr, zwidth, zdata) : (zxlenbits * Big_int.num * zbits)) : (bool) zMemoryOpResult = sail_call (fun r ->
+and zhtif_store ((zaddr, zwidth, zdata) : ((bit) list * Big_int.num * (bit) list)) : (bool) zMemoryOpResult = sail_call (fun r ->
   begin
     print_endline (concat_str ("htif[", (concat_str ((string_of_bits zaddr), (concat_str ("] <- ", (string_of_bits zdata)))))));
     let zcbits = (zEXTZ ((Big_int.of_int (64)), zdata)) in
@@ -11351,38 +11383,43 @@ and zhtif_store ((zaddr, zwidth, zdata) : (zxlenbits * Big_int.num * zbits)) : (
     end
   end)
 
-and zhtif_tick (() : unit) : unit = sail_call (fun r ->
+and zhtif_tick (() : (unit)) : unit = sail_call (fun r ->
   begin
     print_endline (concat_str ("htif::tick ", (string_of_bits !zhtif_tohost)));
     zhtif_tohost := (zEXTZ ((Big_int.of_int (64)), [B0]))
   end)
 
-and zwithin_mmio_readable ((zaddr, zwidth) : (zxlenbits * Big_int.num)) : bool = sail_call (fun r ->
+and zwithin_mmio_readable ((zaddr, zwidth) : ((bit) list * Big_int.num)) : bool = sail_call (fun r ->
   (zwithin_clint (zaddr, zwidth)) || ((zwithin_htif_readable (zaddr, zwidth)) && (lteq ((Big_int.of_int (1)), zwidth))))
 
-and zwithin_mmio_writable ((zaddr, zwidth) : (zxlenbits * Big_int.num)) : bool = sail_call (fun r ->
+and zwithin_mmio_writable ((zaddr, zwidth) : ((bit) list * Big_int.num)) : bool = sail_call (fun r ->
   (zwithin_clint (zaddr, zwidth)) || ((zwithin_htif_writable (zaddr, zwidth)) && (lteq (zwidth, (Big_int.of_int (8))))))
 
-and zmmio_read ((zaddr, zwidth) : (zxlenbits * Big_int.num)) : (zbits) zMemoryOpResult = sail_call (fun r ->
+and zmmio_read ((zaddr, zwidth) : ((bit) list * Big_int.num)) : ((bit) list) zMemoryOpResult = sail_call (fun r ->
   if (zwithin_clint (zaddr, zwidth)) then (zclint_load (zaddr, zwidth)) else (if ((zwithin_htif_readable (zaddr, zwidth)) && (lteq ((Big_int.of_int (1)), zwidth))) then (zhtif_load (zaddr, zwidth)) else (ZMemException ZE_Load_Access_Fault)))
 
-and zmmio_write ((zaddr, zwidth, zdata) : (zxlenbits * Big_int.num * zbits)) : (bool) zMemoryOpResult = sail_call (fun r ->
+and zmmio_write ((zaddr, zwidth, zdata) : ((bit) list * Big_int.num * (bit) list)) : (bool) zMemoryOpResult = sail_call (fun r ->
   if (zwithin_clint (zaddr, zwidth)) then (zclint_store (zaddr, zwidth, zdata)) else (if ((zwithin_htif_writable (zaddr, zwidth)) && (lteq (zwidth, (Big_int.of_int (8))))) then (zhtif_store (zaddr, zwidth, zdata)) else (ZMemException ZE_SAMO_Access_Fault)))
 
-and zinit_platform (() : unit) : unit = sail_call (fun r ->
+and zinit_platform (() : (unit)) : unit = sail_call (fun r ->
   begin
     zhtif_tohost := (zEXTZ ((Big_int.of_int (64)), [B0]));
     zhtif_done := false;
     zhtif_exit_code := (zEXTZ ((Big_int.of_int (64)), [B0]))
   end)
 
-and ztick_platform (() : unit) : unit = sail_call (fun r ->
+and ztick_platform (() : (unit)) : unit = sail_call (fun r ->
   begin Platform.cancel_reservation (); zhtif_tick () end)
 
-and zis_aligned_addr ((zaddr, zwidth) : (zxlenbits * Big_int.num)) : bool = sail_call (fun r ->
+and zhandle_illegal (() : (unit)) : unit = sail_call (fun r ->
+  let zinfo = (if (Platform.mtval_has_illegal_inst_bits ()) then (ZSome !zinstbits) else (ZNone ())) in
+  let zt = ({ztrap = ZE_Illegal_Instr; zexcinfo = zinfo}) in
+  znextPC := (zhandle_exception (!zcur_privilege, (ZCTL_TRAP zt), !zPC)))
+
+and zis_aligned_addr ((zaddr, zwidth) : ((bit) list * Big_int.num)) : bool = sail_call (fun r ->
   eq_int ((zex_int (modulus ((uint zaddr), zwidth))), Big_int.zero))
 
-and zphys_mem_read ((zt, zaddr, zwidth, zaq, zrl, zres) : (zReadType * zxlenbits * Big_int.num * bool * bool * bool)) : (zbits) zMemoryOpResult = sail_call (fun r ->
+and zphys_mem_read ((zt, zaddr, zwidth, zaq, zrl, zres) : (zReadType * (bit) list * Big_int.num * bool * bool * bool)) : ((bit) list) zMemoryOpResult = sail_call (fun r ->
   begin
     match (zt, z__RISCV_read (zaddr, zwidth, zaq, zrl, zres)) with
     | (ZInstruction, ZNone (())) -> ZMemException ZE_Fetch_Access_Fault
@@ -11394,32 +11431,32 @@ and zphys_mem_read ((zt, zaddr, zwidth, zaq, zrl, zres) : (zReadType * zxlenbits
       end
   end)
 
-and zchecked_mem_read ((zt, zaddr, zwidth) : (zReadType * zxlenbits * Big_int.num)) : (zbits) zMemoryOpResult = sail_call (fun r ->
-  if ((eq_string ((zreadType_to_str zt), (zreadType_to_str ZData))) && (zwithin_mmio_readable (zaddr, zwidth))) then (zmmio_read (zaddr, zwidth)) else (if (zwithin_phys_mem (zaddr, zwidth)) then (zphys_mem_read (zt, zaddr, zwidth, false, false, false)) else (ZMemException ZE_Load_Access_Fault)))
+and zchecked_mem_read ((zt, zaddr, zwidth, zaq, zrl, zres) : (zReadType * (bit) list * Big_int.num * bool * bool * bool)) : ((bit) list) zMemoryOpResult = sail_call (fun r ->
+  if ((eq_string ((zreadType_to_str zt), (zreadType_to_str ZData))) && (zwithin_mmio_readable (zaddr, zwidth))) then (zmmio_read (zaddr, zwidth)) else (if (zwithin_phys_mem (zaddr, zwidth)) then (zphys_mem_read (zt, zaddr, zwidth, zaq, zrl, zres)) else (ZMemException ZE_Load_Access_Fault)))
 
-and zMEMr ((zaddr, zwidth) : (zxlenbits * Big_int.num)) : (zbits) zMemoryOpResult = sail_call (fun r ->
-  zchecked_mem_read (ZData, zaddr, zwidth))
+and zMEMr ((zaddr, zwidth) : ((bit) list * Big_int.num)) : ((bit) list) zMemoryOpResult = sail_call (fun r ->
+  zchecked_mem_read (ZData, zaddr, zwidth, false, false, false))
 
-and zMEMr_acquire ((zaddr, zwidth) : (zxlenbits * Big_int.num)) : (zbits) zMemoryOpResult = sail_call (fun r ->
-  zchecked_mem_read (ZData, zaddr, zwidth))
+and zMEMr_acquire ((zaddr, zwidth) : ((bit) list * Big_int.num)) : ((bit) list) zMemoryOpResult = sail_call (fun r ->
+  zchecked_mem_read (ZData, zaddr, zwidth, true, false, false))
 
-and zMEMr_strong_acquire ((zaddr, zwidth) : (zxlenbits * Big_int.num)) : (zbits) zMemoryOpResult = sail_call (fun r ->
-  zchecked_mem_read (ZData, zaddr, zwidth))
+and zMEMr_strong_acquire ((zaddr, zwidth) : ((bit) list * Big_int.num)) : ((bit) list) zMemoryOpResult = sail_call (fun r ->
+  zchecked_mem_read (ZData, zaddr, zwidth, true, true, false))
 
-and zMEMr_reserved ((zaddr, zwidth) : (zxlenbits * Big_int.num)) : (zbits) zMemoryOpResult = sail_call (fun r ->
-  zchecked_mem_read (ZData, zaddr, zwidth))
+and zMEMr_reserved ((zaddr, zwidth) : ((bit) list * Big_int.num)) : ((bit) list) zMemoryOpResult = sail_call (fun r ->
+  zchecked_mem_read (ZData, zaddr, zwidth, false, false, true))
 
-and zMEMr_reserved_acquire ((zaddr, zwidth) : (zxlenbits * Big_int.num)) : (zbits) zMemoryOpResult = sail_call (fun r ->
-  zchecked_mem_read (ZData, zaddr, zwidth))
+and zMEMr_reserved_acquire ((zaddr, zwidth) : ((bit) list * Big_int.num)) : ((bit) list) zMemoryOpResult = sail_call (fun r ->
+  zchecked_mem_read (ZData, zaddr, zwidth, true, false, true))
 
-and zMEMr_reserved_strong_acquire ((zaddr, zwidth) : (zxlenbits * Big_int.num)) : (zbits) zMemoryOpResult = sail_call (fun r ->
-  zchecked_mem_read (ZData, zaddr, zwidth))
+and zMEMr_reserved_strong_acquire ((zaddr, zwidth) : ((bit) list * Big_int.num)) : ((bit) list) zMemoryOpResult = sail_call (fun r ->
+  zchecked_mem_read (ZData, zaddr, zwidth, true, true, true))
 
-and zmem_read ((zaddr, zwidth, zaq, zrl, zres) : (zxlenbits * Big_int.num * bool * bool * bool)) : (zbits) zMemoryOpResult = sail_call (fun r ->
+and zmem_read ((zaddr, zwidth, zaq, zrl, zres) : ((bit) list * Big_int.num * bool * bool * bool)) : ((bit) list) zMemoryOpResult = sail_call (fun r ->
   if ((zaq || zres) && (not (zis_aligned_addr (zaddr, zwidth)))) then (ZMemException ZE_Load_Addr_Align) else (begin
     match (zaq, zrl, zres) with
     | (zp0z3, zp1z3, zp2z3) when (((eq_bool (zp2z3, false)) && (eq_bool (zp1z3, false))) && (eq_bool (zp0z3, false))) ->
-      zchecked_mem_read (ZData, zaddr, zwidth)
+      zchecked_mem_read (ZData, zaddr, zwidth, false, false, false)
     | (zp0z3, zp1z3, zp2z3) when (((eq_bool (zp2z3, false)) && (eq_bool (zp1z3, false))) && (eq_bool (zp0z3, true))) ->
       zMEMr_acquire (zaddr, zwidth)
     | (zp0z3, zp1z3, zp2z3) when (((eq_bool (zp2z3, true)) && (eq_bool (zp1z3, false))) && (eq_bool (zp0z3, false))) ->
@@ -11436,7 +11473,7 @@ and zmem_read ((zaddr, zwidth, zaq, zrl, zres) : (zxlenbits * Big_int.num * bool
       zMEMr_reserved_strong_acquire (zaddr, zwidth)
   end))
 
-and zmem_write_ea ((zaddr, zwidth, zaq, zrl, zcon) : (zxlenbits * Big_int.num * bool * bool * bool)) : (unit) zMemoryOpResult = sail_call (fun r ->
+and zmem_write_ea ((zaddr, zwidth, zaq, zrl, zcon) : ((bit) list * Big_int.num * bool * bool * bool)) : (unit) zMemoryOpResult = sail_call (fun r ->
   if ((zrl || zcon) && (not (zis_aligned_addr (zaddr, zwidth)))) then (ZMemException ZE_SAMO_Addr_Align) else (begin
     match (zaq, zrl, zcon) with
     | (zp0z3, zp1z3, zp2z3) when (((eq_bool (zp2z3, false)) && (eq_bool (zp1z3, false))) && (eq_bool (zp0z3, false))) ->
@@ -11457,34 +11494,34 @@ and zmem_write_ea ((zaddr, zwidth, zaq, zrl, zcon) : (zxlenbits * Big_int.num * 
       ZMemValue (memea (zaddr, zwidth))
   end))
 
-and zphys_mem_write ((zaddr, zwidth, zdata) : (zxlenbits * Big_int.num * zbits)) : (bool) zMemoryOpResult = sail_call (fun r ->
+and zphys_mem_write ((zaddr, zwidth, zdata) : ((bit) list * Big_int.num * (bit) list)) : (bool) zMemoryOpResult = sail_call (fun r ->
   begin
     print_endline (concat_str ("mem[", (concat_str ((string_of_bits zaddr), (concat_str ("] <- ", (string_of_bits zdata)))))));
     ZMemValue (z__RISCV_write (zaddr, zwidth, zdata))
   end)
 
-and zchecked_mem_write ((zaddr, zwidth, zdata) : (zxlenbits * Big_int.num * zbits)) : (bool) zMemoryOpResult = sail_call (fun r ->
+and zchecked_mem_write ((zaddr, zwidth, zdata) : ((bit) list * Big_int.num * (bit) list)) : (bool) zMemoryOpResult = sail_call (fun r ->
   if (zwithin_mmio_writable (zaddr, zwidth)) then (zmmio_write (zaddr, zwidth, zdata)) else (if (zwithin_phys_mem (zaddr, zwidth)) then (zphys_mem_write (zaddr, zwidth, zdata)) else (ZMemException ZE_SAMO_Access_Fault)))
 
-and zMEMval ((zaddr, zwidth, zdata) : (zxlenbits * Big_int.num * zbits)) : (bool) zMemoryOpResult = sail_call (fun r ->
+and zMEMval ((zaddr, zwidth, zdata) : ((bit) list * Big_int.num * (bit) list)) : (bool) zMemoryOpResult = sail_call (fun r ->
   zchecked_mem_write (zaddr, zwidth, zdata))
 
-and zMEMval_release ((zaddr, zwidth, zdata) : (zxlenbits * Big_int.num * zbits)) : (bool) zMemoryOpResult = sail_call (fun r ->
+and zMEMval_release ((zaddr, zwidth, zdata) : ((bit) list * Big_int.num * (bit) list)) : (bool) zMemoryOpResult = sail_call (fun r ->
   zchecked_mem_write (zaddr, zwidth, zdata))
 
-and zMEMval_strong_release ((zaddr, zwidth, zdata) : (zxlenbits * Big_int.num * zbits)) : (bool) zMemoryOpResult = sail_call (fun r ->
+and zMEMval_strong_release ((zaddr, zwidth, zdata) : ((bit) list * Big_int.num * (bit) list)) : (bool) zMemoryOpResult = sail_call (fun r ->
   zchecked_mem_write (zaddr, zwidth, zdata))
 
-and zMEMval_conditional ((zaddr, zwidth, zdata) : (zxlenbits * Big_int.num * zbits)) : (bool) zMemoryOpResult = sail_call (fun r ->
+and zMEMval_conditional ((zaddr, zwidth, zdata) : ((bit) list * Big_int.num * (bit) list)) : (bool) zMemoryOpResult = sail_call (fun r ->
   zchecked_mem_write (zaddr, zwidth, zdata))
 
-and zMEMval_conditional_release ((zaddr, zwidth, zdata) : (zxlenbits * Big_int.num * zbits)) : (bool) zMemoryOpResult = sail_call (fun r ->
+and zMEMval_conditional_release ((zaddr, zwidth, zdata) : ((bit) list * Big_int.num * (bit) list)) : (bool) zMemoryOpResult = sail_call (fun r ->
   zchecked_mem_write (zaddr, zwidth, zdata))
 
-and zMEMval_conditional_strong_release ((zaddr, zwidth, zdata) : (zxlenbits * Big_int.num * zbits)) : (bool) zMemoryOpResult = sail_call (fun r ->
+and zMEMval_conditional_strong_release ((zaddr, zwidth, zdata) : ((bit) list * Big_int.num * (bit) list)) : (bool) zMemoryOpResult = sail_call (fun r ->
   zchecked_mem_write (zaddr, zwidth, zdata))
 
-and zmem_write_value ((zaddr, zwidth, zvalue, zaq, zrl, zcon) : (zxlenbits * Big_int.num * zbits * bool * bool * bool)) : (bool) zMemoryOpResult = sail_call (fun r ->
+and zmem_write_value ((zaddr, zwidth, zvalue, zaq, zrl, zcon) : ((bit) list * Big_int.num * (bit) list * bool * bool * bool)) : (bool) zMemoryOpResult = sail_call (fun r ->
   if ((zrl || zcon) && (not (zis_aligned_addr (zaddr, zwidth)))) then (ZMemException ZE_SAMO_Addr_Align) else (begin
     match (zaq, zrl, zcon) with
     | (zp0z3, zp1z3, zp2z3) when (((eq_bool (zp2z3, false)) && (eq_bool (zp1z3, false))) && (eq_bool (zp0z3, false))) ->
@@ -11509,145 +11546,145 @@ let zPAGESIZE_BITS = (Big_int.of_int (12));;
 
 type  zpteAttribs = zbits;;
 
-let string_of_zpteAttribs (gs3358 : zpteAttribs) = string_of_zbits gs3358;;
+let string_of_zpteAttribs (gs3895 : zpteAttribs) = string_of_zbits gs3895;;
 
-let rec zundefined_PTE_Bits (() : unit) : zPTE_Bits = sail_call (fun r ->
+let rec zundefined_PTE_Bits (() : (unit)) : zPTE_Bits = sail_call (fun r ->
   {zPTE_Bits_chunk_0 = undefined_vector ((Big_int.of_int (8)), (undefined_bit ()))})
 
-and zMk_PTE_Bits (zv : (bit) list) : zPTE_Bits = sail_call (fun r ->
+and zMk_PTE_Bits (zv : ((bit) list)) : zPTE_Bits = sail_call (fun r ->
   {zPTE_Bits_chunk_0 = subrange (zv, (Big_int.of_int (7)), Big_int.zero)})
 
-and z_get_PTE_Bits_bits (zv : zPTE_Bits) : (bit) list = sail_call (fun r ->
+and z_get_PTE_Bits_bits (zv : (zPTE_Bits)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zPTE_Bits_chunk_0), (Big_int.of_int (7)), Big_int.zero))
 
 and z_set_PTE_Bits_bits ((zr_ref, zv) : ((zPTE_Bits) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zPTE_Bits) in
   begin
-    zr := {!zr with zPTE_Bits_chunk_0 = update_subrange ((!zr.zPTE_Bits_chunk_0), (Big_int.of_int (7)), Big_int.zero, (subrange (zv, (Big_int.of_int (7)), Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zPTE_Bits_chunk_0 = update_subrange ((!zr.zPTE_Bits_chunk_0), (Big_int.of_int (7)), Big_int.zero, (subrange (zv, (Big_int.of_int (7)), Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_PTE_Bits_bits ((zv, zx) : (zPTE_Bits * (bit) list)) : zPTE_Bits = sail_call (fun r ->
   let zv = ({zv with zPTE_Bits_chunk_0 = update_subrange ((zv.zPTE_Bits_chunk_0), (Big_int.of_int (7)), Big_int.zero, (subrange (zx, (Big_int.of_int (7)), Big_int.zero)))}) in
   zv)
 
-and z_get_PTE_Bits_D (zv : zPTE_Bits) : (bit) list = sail_call (fun r ->
+and z_get_PTE_Bits_D (zv : (zPTE_Bits)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zPTE_Bits_chunk_0), (Big_int.of_int (7)), (Big_int.of_int (7))))
 
 and z_set_PTE_Bits_D ((zr_ref, zv) : ((zPTE_Bits) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zPTE_Bits) in
   begin
-    zr := {!zr with zPTE_Bits_chunk_0 = update_subrange ((!zr.zPTE_Bits_chunk_0), (Big_int.of_int (7)), (Big_int.of_int (7)), (subrange (zv, Big_int.zero, Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zPTE_Bits_chunk_0 = update_subrange ((!zr.zPTE_Bits_chunk_0), (Big_int.of_int (7)), (Big_int.of_int (7)), (subrange (zv, Big_int.zero, Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_PTE_Bits_D ((zv, zx) : (zPTE_Bits * (bit) list)) : zPTE_Bits = sail_call (fun r ->
   let zv = ({zv with zPTE_Bits_chunk_0 = update_subrange ((zv.zPTE_Bits_chunk_0), (Big_int.of_int (7)), (Big_int.of_int (7)), (subrange (zx, Big_int.zero, Big_int.zero)))}) in
   zv)
 
-and z_get_PTE_Bits_A (zv : zPTE_Bits) : (bit) list = sail_call (fun r ->
+and z_get_PTE_Bits_A (zv : (zPTE_Bits)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zPTE_Bits_chunk_0), (Big_int.of_int (6)), (Big_int.of_int (6))))
 
 and z_set_PTE_Bits_A ((zr_ref, zv) : ((zPTE_Bits) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zPTE_Bits) in
   begin
-    zr := {!zr with zPTE_Bits_chunk_0 = update_subrange ((!zr.zPTE_Bits_chunk_0), (Big_int.of_int (6)), (Big_int.of_int (6)), (subrange (zv, Big_int.zero, Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zPTE_Bits_chunk_0 = update_subrange ((!zr.zPTE_Bits_chunk_0), (Big_int.of_int (6)), (Big_int.of_int (6)), (subrange (zv, Big_int.zero, Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_PTE_Bits_A ((zv, zx) : (zPTE_Bits * (bit) list)) : zPTE_Bits = sail_call (fun r ->
   let zv = ({zv with zPTE_Bits_chunk_0 = update_subrange ((zv.zPTE_Bits_chunk_0), (Big_int.of_int (6)), (Big_int.of_int (6)), (subrange (zx, Big_int.zero, Big_int.zero)))}) in
   zv)
 
-and z_get_PTE_Bits_G (zv : zPTE_Bits) : (bit) list = sail_call (fun r ->
+and z_get_PTE_Bits_G (zv : (zPTE_Bits)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zPTE_Bits_chunk_0), (Big_int.of_int (5)), (Big_int.of_int (5))))
 
 and z_set_PTE_Bits_G ((zr_ref, zv) : ((zPTE_Bits) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zPTE_Bits) in
   begin
-    zr := {!zr with zPTE_Bits_chunk_0 = update_subrange ((!zr.zPTE_Bits_chunk_0), (Big_int.of_int (5)), (Big_int.of_int (5)), (subrange (zv, Big_int.zero, Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zPTE_Bits_chunk_0 = update_subrange ((!zr.zPTE_Bits_chunk_0), (Big_int.of_int (5)), (Big_int.of_int (5)), (subrange (zv, Big_int.zero, Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_PTE_Bits_G ((zv, zx) : (zPTE_Bits * (bit) list)) : zPTE_Bits = sail_call (fun r ->
   let zv = ({zv with zPTE_Bits_chunk_0 = update_subrange ((zv.zPTE_Bits_chunk_0), (Big_int.of_int (5)), (Big_int.of_int (5)), (subrange (zx, Big_int.zero, Big_int.zero)))}) in
   zv)
 
-and z_get_PTE_Bits_U (zv : zPTE_Bits) : (bit) list = sail_call (fun r ->
+and z_get_PTE_Bits_U (zv : (zPTE_Bits)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zPTE_Bits_chunk_0), (Big_int.of_int (4)), (Big_int.of_int (4))))
 
 and z_set_PTE_Bits_U ((zr_ref, zv) : ((zPTE_Bits) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zPTE_Bits) in
   begin
-    zr := {!zr with zPTE_Bits_chunk_0 = update_subrange ((!zr.zPTE_Bits_chunk_0), (Big_int.of_int (4)), (Big_int.of_int (4)), (subrange (zv, Big_int.zero, Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zPTE_Bits_chunk_0 = update_subrange ((!zr.zPTE_Bits_chunk_0), (Big_int.of_int (4)), (Big_int.of_int (4)), (subrange (zv, Big_int.zero, Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_PTE_Bits_U ((zv, zx) : (zPTE_Bits * (bit) list)) : zPTE_Bits = sail_call (fun r ->
   let zv = ({zv with zPTE_Bits_chunk_0 = update_subrange ((zv.zPTE_Bits_chunk_0), (Big_int.of_int (4)), (Big_int.of_int (4)), (subrange (zx, Big_int.zero, Big_int.zero)))}) in
   zv)
 
-and z_get_PTE_Bits_X (zv : zPTE_Bits) : (bit) list = sail_call (fun r ->
+and z_get_PTE_Bits_X (zv : (zPTE_Bits)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zPTE_Bits_chunk_0), (Big_int.of_int (3)), (Big_int.of_int (3))))
 
 and z_set_PTE_Bits_X ((zr_ref, zv) : ((zPTE_Bits) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zPTE_Bits) in
   begin
-    zr := {!zr with zPTE_Bits_chunk_0 = update_subrange ((!zr.zPTE_Bits_chunk_0), (Big_int.of_int (3)), (Big_int.of_int (3)), (subrange (zv, Big_int.zero, Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zPTE_Bits_chunk_0 = update_subrange ((!zr.zPTE_Bits_chunk_0), (Big_int.of_int (3)), (Big_int.of_int (3)), (subrange (zv, Big_int.zero, Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_PTE_Bits_X ((zv, zx) : (zPTE_Bits * (bit) list)) : zPTE_Bits = sail_call (fun r ->
   let zv = ({zv with zPTE_Bits_chunk_0 = update_subrange ((zv.zPTE_Bits_chunk_0), (Big_int.of_int (3)), (Big_int.of_int (3)), (subrange (zx, Big_int.zero, Big_int.zero)))}) in
   zv)
 
-and z_get_PTE_Bits_W (zv : zPTE_Bits) : (bit) list = sail_call (fun r ->
+and z_get_PTE_Bits_W (zv : (zPTE_Bits)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zPTE_Bits_chunk_0), (Big_int.of_int (2)), (Big_int.of_int (2))))
 
 and z_set_PTE_Bits_W ((zr_ref, zv) : ((zPTE_Bits) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zPTE_Bits) in
   begin
-    zr := {!zr with zPTE_Bits_chunk_0 = update_subrange ((!zr.zPTE_Bits_chunk_0), (Big_int.of_int (2)), (Big_int.of_int (2)), (subrange (zv, Big_int.zero, Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zPTE_Bits_chunk_0 = update_subrange ((!zr.zPTE_Bits_chunk_0), (Big_int.of_int (2)), (Big_int.of_int (2)), (subrange (zv, Big_int.zero, Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_PTE_Bits_W ((zv, zx) : (zPTE_Bits * (bit) list)) : zPTE_Bits = sail_call (fun r ->
   let zv = ({zv with zPTE_Bits_chunk_0 = update_subrange ((zv.zPTE_Bits_chunk_0), (Big_int.of_int (2)), (Big_int.of_int (2)), (subrange (zx, Big_int.zero, Big_int.zero)))}) in
   zv)
 
-and z_get_PTE_Bits_R (zv : zPTE_Bits) : (bit) list = sail_call (fun r ->
+and z_get_PTE_Bits_R (zv : (zPTE_Bits)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zPTE_Bits_chunk_0), (Big_int.of_int (1)), (Big_int.of_int (1))))
 
 and z_set_PTE_Bits_R ((zr_ref, zv) : ((zPTE_Bits) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zPTE_Bits) in
   begin
-    zr := {!zr with zPTE_Bits_chunk_0 = update_subrange ((!zr.zPTE_Bits_chunk_0), (Big_int.of_int (1)), (Big_int.of_int (1)), (subrange (zv, Big_int.zero, Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zPTE_Bits_chunk_0 = update_subrange ((!zr.zPTE_Bits_chunk_0), (Big_int.of_int (1)), (Big_int.of_int (1)), (subrange (zv, Big_int.zero, Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_PTE_Bits_R ((zv, zx) : (zPTE_Bits * (bit) list)) : zPTE_Bits = sail_call (fun r ->
   let zv = ({zv with zPTE_Bits_chunk_0 = update_subrange ((zv.zPTE_Bits_chunk_0), (Big_int.of_int (1)), (Big_int.of_int (1)), (subrange (zx, Big_int.zero, Big_int.zero)))}) in
   zv)
 
-and z_get_PTE_Bits_V (zv : zPTE_Bits) : (bit) list = sail_call (fun r ->
+and z_get_PTE_Bits_V (zv : (zPTE_Bits)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zPTE_Bits_chunk_0), Big_int.zero, Big_int.zero))
 
 and z_set_PTE_Bits_V ((zr_ref, zv) : ((zPTE_Bits) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zPTE_Bits) in
   begin
-    zr := {!zr with zPTE_Bits_chunk_0 = update_subrange ((!zr.zPTE_Bits_chunk_0), Big_int.zero, Big_int.zero, (subrange (zv, Big_int.zero, Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zPTE_Bits_chunk_0 = update_subrange ((!zr.zPTE_Bits_chunk_0), Big_int.zero, Big_int.zero, (subrange (zv, Big_int.zero, Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_PTE_Bits_V ((zv, zx) : (zPTE_Bits * (bit) list)) : zPTE_Bits = sail_call (fun r ->
   let zv = ({zv with zPTE_Bits_chunk_0 = update_subrange ((zv.zPTE_Bits_chunk_0), Big_int.zero, Big_int.zero, (subrange (zx, Big_int.zero, Big_int.zero)))}) in
   zv)
 
-and zisPTEPtr (zp : zpteAttribs) : bool = sail_call (fun r ->
+and zisPTEPtr (zp : ((bit) list)) : bool = sail_call (fun r ->
   let za = (zMk_PTE_Bits zp) in
   (eq_list ((z_get_PTE_Bits_R za), (zbool_to_bits false))) && ((eq_list ((z_get_PTE_Bits_W za), (zbool_to_bits false))) && (eq_list ((z_get_PTE_Bits_X za), (zbool_to_bits false)))))
 
-and zisInvalidPTE (zp : zpteAttribs) : bool = sail_call (fun r ->
+and zisInvalidPTE (zp : ((bit) list)) : bool = sail_call (fun r ->
   let za = (zMk_PTE_Bits zp) in
   (eq_list ((z_get_PTE_Bits_V za), (zbool_to_bits false))) || ((eq_list ((z_get_PTE_Bits_W za), (zbool_to_bits true))) && (eq_list ((z_get_PTE_Bits_R za), (zbool_to_bits false)))))
 
@@ -11677,7 +11714,7 @@ and zupdate_PTE_Bits ((zp, za) : (zPTE_Bits * zAccessType)) : (zPTE_Bits) zoptio
   let zupdate_d = (((eq_string ((zaccessType_to_str za), (zaccessType_to_str ZWrite))) || (eq_string ((zaccessType_to_str za), (zaccessType_to_str ZReadWrite)))) && (eq_list ((z_get_PTE_Bits_D zp), (zbool_to_bits false)))) in
   let zupdate_a = (eq_list ((z_get_PTE_Bits_A zp), (zbool_to_bits false))) in
   if (zupdate_d || zupdate_a) then (let znp = (z_update_PTE_Bits_A (zp, (zbool_to_bits true))) in
-  let znp = (if zupdate_d then (z_update_PTE_Bits_D (zp, (zbool_to_bits true))) else znp) in
+  let znp = (if zupdate_d then (z_update_PTE_Bits_D (znp, (zbool_to_bits true))) else znp) in
   ZSome znp) else (ZNone ()))
 
 type zPTW_Error =
@@ -11694,7 +11731,7 @@ let string_of_zPTW_Error = function
   | ZPTW_Misaligned -> "PTW_Misaligned"
   | ZPTW_PTE_Update -> "PTW_PTE_Update";;
 
-let rec zPTW_Error_of_num (zargz3 : Big_int.num) : zPTW_Error = sail_call (fun r ->
+let rec zPTW_Error_of_num (zargz3 : (Big_int.num)) : zPTW_Error = sail_call (fun r ->
   begin
     match zargz3 with
     | zl__45 when (eq_int (zl__45, Big_int.zero)) -> ZPTW_Access
@@ -11704,7 +11741,7 @@ let rec zPTW_Error_of_num (zargz3 : Big_int.num) : zPTW_Error = sail_call (fun r
     | _ -> ZPTW_PTE_Update
   end)
 
-and znum_of_PTW_Error (zargz3 : zPTW_Error) : Big_int.num = sail_call (fun r ->
+and znum_of_PTW_Error (zargz3 : (zPTW_Error)) : Big_int.num = sail_call (fun r ->
   begin
     match zargz3 with
     | ZPTW_Access -> Big_int.zero
@@ -11714,10 +11751,10 @@ and znum_of_PTW_Error (zargz3 : zPTW_Error) : Big_int.num = sail_call (fun r ->
     | ZPTW_PTE_Update -> (Big_int.of_int (4))
   end)
 
-and zundefined_PTW_Error (() : unit) : zPTW_Error = sail_call (fun r ->
+and zundefined_PTW_Error (() : (unit)) : zPTW_Error = sail_call (fun r ->
   internal_pick [ZPTW_Access; ZPTW_Invalid_PTE; ZPTW_No_Permission; ZPTW_Misaligned; ZPTW_PTE_Update])
 
-and zptw_error_to_str (ze : zPTW_Error) : string = sail_call (fun r ->
+and zptw_error_to_str (ze : (zPTW_Error)) : string = sail_call (fun r ->
   begin
     match ze with
     | ZPTW_Access -> "mem-access-error"
@@ -11751,64 +11788,64 @@ let zPTE39_SIZE = (Big_int.of_int (8));;
 
 type  zvaddr39 = zbits;;
 
-let string_of_zvaddr39 (gs3518 : zvaddr39) = string_of_zbits gs3518;;
+let string_of_zvaddr39 (gs4072 : zvaddr39) = string_of_zbits gs4072;;
 
 type  zpaddr39 = zbits;;
 
-let string_of_zpaddr39 (gs3519 : zpaddr39) = string_of_zbits gs3519;;
+let string_of_zpaddr39 (gs4073 : zpaddr39) = string_of_zbits gs4073;;
 
 type  zpte39 = zxlenbits;;
 
-let string_of_zpte39 (gs3520 : zpte39) = string_of_zxlenbits gs3520;;
+let string_of_zpte39 (gs4074 : zpte39) = string_of_zxlenbits gs4074;;
 
 type  zSV39_Vaddr = { zSV39_Vaddr_chunk_0 : (bit) list
 };;
 
-let string_of_zSV39_Vaddr (gs3521 : zSV39_Vaddr) =
-  "{SV39_Vaddr_chunk_0 = " ^ string_of_bits gs3521.zSV39_Vaddr_chunk_0 ^ "}";;
+let string_of_zSV39_Vaddr (gs4075 : zSV39_Vaddr) =
+  "{SV39_Vaddr_chunk_0 = " ^ string_of_bits gs4075.zSV39_Vaddr_chunk_0 ^ "}";;
 
-let rec zundefined_SV39_Vaddr (() : unit) : zSV39_Vaddr = sail_call (fun r ->
+let rec zundefined_SV39_Vaddr (() : (unit)) : zSV39_Vaddr = sail_call (fun r ->
   {zSV39_Vaddr_chunk_0 = undefined_vector ((Big_int.of_int (39)), (undefined_bit ()))})
 
-and zMk_SV39_Vaddr (zv : (bit) list) : zSV39_Vaddr = sail_call (fun r ->
+and zMk_SV39_Vaddr (zv : ((bit) list)) : zSV39_Vaddr = sail_call (fun r ->
   {zSV39_Vaddr_chunk_0 = subrange (zv, (Big_int.of_int (38)), Big_int.zero)})
 
-and z_get_SV39_Vaddr_bits (zv : zSV39_Vaddr) : (bit) list = sail_call (fun r ->
+and z_get_SV39_Vaddr_bits (zv : (zSV39_Vaddr)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zSV39_Vaddr_chunk_0), (Big_int.of_int (38)), Big_int.zero))
 
 and z_set_SV39_Vaddr_bits ((zr_ref, zv) : ((zSV39_Vaddr) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zSV39_Vaddr) in
   begin
-    zr := {!zr with zSV39_Vaddr_chunk_0 = update_subrange ((!zr.zSV39_Vaddr_chunk_0), (Big_int.of_int (38)), Big_int.zero, (subrange (zv, (Big_int.of_int (38)), Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zSV39_Vaddr_chunk_0 = update_subrange ((!zr.zSV39_Vaddr_chunk_0), (Big_int.of_int (38)), Big_int.zero, (subrange (zv, (Big_int.of_int (38)), Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_SV39_Vaddr_bits ((zv, zx) : (zSV39_Vaddr * (bit) list)) : zSV39_Vaddr = sail_call (fun r ->
   let zv = ({zv with zSV39_Vaddr_chunk_0 = update_subrange ((zv.zSV39_Vaddr_chunk_0), (Big_int.of_int (38)), Big_int.zero, (subrange (zx, (Big_int.of_int (38)), Big_int.zero)))}) in
   zv)
 
-and z_get_SV39_Vaddr_VPNi (zv : zSV39_Vaddr) : (bit) list = sail_call (fun r ->
+and z_get_SV39_Vaddr_VPNi (zv : (zSV39_Vaddr)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zSV39_Vaddr_chunk_0), (Big_int.of_int (38)), (Big_int.of_int (12))))
 
 and z_set_SV39_Vaddr_VPNi ((zr_ref, zv) : ((zSV39_Vaddr) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zSV39_Vaddr) in
   begin
-    zr := {!zr with zSV39_Vaddr_chunk_0 = update_subrange ((!zr.zSV39_Vaddr_chunk_0), (Big_int.of_int (38)), (Big_int.of_int (12)), (subrange (zv, (Big_int.of_int (26)), Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zSV39_Vaddr_chunk_0 = update_subrange ((!zr.zSV39_Vaddr_chunk_0), (Big_int.of_int (38)), (Big_int.of_int (12)), (subrange (zv, (Big_int.of_int (26)), Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_SV39_Vaddr_VPNi ((zv, zx) : (zSV39_Vaddr * (bit) list)) : zSV39_Vaddr = sail_call (fun r ->
   let zv = ({zv with zSV39_Vaddr_chunk_0 = update_subrange ((zv.zSV39_Vaddr_chunk_0), (Big_int.of_int (38)), (Big_int.of_int (12)), (subrange (zx, (Big_int.of_int (26)), Big_int.zero)))}) in
   zv)
 
-and z_get_SV39_Vaddr_PgOfs (zv : zSV39_Vaddr) : (bit) list = sail_call (fun r ->
+and z_get_SV39_Vaddr_PgOfs (zv : (zSV39_Vaddr)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zSV39_Vaddr_chunk_0), (Big_int.of_int (11)), Big_int.zero))
 
 and z_set_SV39_Vaddr_PgOfs ((zr_ref, zv) : ((zSV39_Vaddr) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zSV39_Vaddr) in
   begin
-    zr := {!zr with zSV39_Vaddr_chunk_0 = update_subrange ((!zr.zSV39_Vaddr_chunk_0), (Big_int.of_int (11)), Big_int.zero, (subrange (zv, (Big_int.of_int (11)), Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zSV39_Vaddr_chunk_0 = update_subrange ((!zr.zSV39_Vaddr_chunk_0), (Big_int.of_int (11)), Big_int.zero, (subrange (zv, (Big_int.of_int (11)), Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_SV39_Vaddr_PgOfs ((zv, zx) : (zSV39_Vaddr * (bit) list)) : zSV39_Vaddr = sail_call (fun r ->
@@ -11818,113 +11855,113 @@ and z_update_SV39_Vaddr_PgOfs ((zv, zx) : (zSV39_Vaddr * (bit) list)) : zSV39_Va
 type  zSV39_Paddr = { zSV39_Paddr_chunk_0 : (bit) list
 };;
 
-let string_of_zSV39_Paddr (gs3567 : zSV39_Paddr) =
-  "{SV39_Paddr_chunk_0 = " ^ string_of_bits gs3567.zSV39_Paddr_chunk_0 ^ "}";;
+let string_of_zSV39_Paddr (gs4126 : zSV39_Paddr) =
+  "{SV39_Paddr_chunk_0 = " ^ string_of_bits gs4126.zSV39_Paddr_chunk_0 ^ "}";;
 
-let rec zundefined_SV39_Paddr (() : unit) : zSV39_Paddr = sail_call (fun r ->
+let rec zundefined_SV39_Paddr (() : (unit)) : zSV39_Paddr = sail_call (fun r ->
   {zSV39_Paddr_chunk_0 = undefined_vector ((Big_int.of_int (56)), (undefined_bit ()))})
 
-and zMk_SV39_Paddr (zv : (bit) list) : zSV39_Paddr = sail_call (fun r ->
+and zMk_SV39_Paddr (zv : ((bit) list)) : zSV39_Paddr = sail_call (fun r ->
   {zSV39_Paddr_chunk_0 = subrange (zv, (Big_int.of_int (55)), Big_int.zero)})
 
-and z_get_SV39_Paddr_bits (zv : zSV39_Paddr) : (bit) list = sail_call (fun r ->
+and z_get_SV39_Paddr_bits (zv : (zSV39_Paddr)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zSV39_Paddr_chunk_0), (Big_int.of_int (55)), Big_int.zero))
 
 and z_set_SV39_Paddr_bits ((zr_ref, zv) : ((zSV39_Paddr) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zSV39_Paddr) in
   begin
-    zr := {!zr with zSV39_Paddr_chunk_0 = update_subrange ((!zr.zSV39_Paddr_chunk_0), (Big_int.of_int (55)), Big_int.zero, (subrange (zv, (Big_int.of_int (55)), Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zSV39_Paddr_chunk_0 = update_subrange ((!zr.zSV39_Paddr_chunk_0), (Big_int.of_int (55)), Big_int.zero, (subrange (zv, (Big_int.of_int (55)), Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_SV39_Paddr_bits ((zv, zx) : (zSV39_Paddr * (bit) list)) : zSV39_Paddr = sail_call (fun r ->
   let zv = ({zv with zSV39_Paddr_chunk_0 = update_subrange ((zv.zSV39_Paddr_chunk_0), (Big_int.of_int (55)), Big_int.zero, (subrange (zx, (Big_int.of_int (55)), Big_int.zero)))}) in
   zv)
 
-and z_get_SV39_Paddr_PPNi (zv : zSV39_Paddr) : (bit) list = sail_call (fun r ->
+and z_get_SV39_Paddr_PPNi (zv : (zSV39_Paddr)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zSV39_Paddr_chunk_0), (Big_int.of_int (55)), (Big_int.of_int (12))))
 
 and z_set_SV39_Paddr_PPNi ((zr_ref, zv) : ((zSV39_Paddr) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zSV39_Paddr) in
   begin
-    zr := {!zr with zSV39_Paddr_chunk_0 = update_subrange ((!zr.zSV39_Paddr_chunk_0), (Big_int.of_int (55)), (Big_int.of_int (12)), (subrange (zv, (Big_int.of_int (43)), Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zSV39_Paddr_chunk_0 = update_subrange ((!zr.zSV39_Paddr_chunk_0), (Big_int.of_int (55)), (Big_int.of_int (12)), (subrange (zv, (Big_int.of_int (43)), Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_SV39_Paddr_PPNi ((zv, zx) : (zSV39_Paddr * (bit) list)) : zSV39_Paddr = sail_call (fun r ->
   let zv = ({zv with zSV39_Paddr_chunk_0 = update_subrange ((zv.zSV39_Paddr_chunk_0), (Big_int.of_int (55)), (Big_int.of_int (12)), (subrange (zx, (Big_int.of_int (43)), Big_int.zero)))}) in
   zv)
 
-and z_get_SV39_Paddr_PgOfs (zv : zSV39_Paddr) : (bit) list = sail_call (fun r ->
+and z_get_SV39_Paddr_PgOfs (zv : (zSV39_Paddr)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zSV39_Paddr_chunk_0), (Big_int.of_int (11)), Big_int.zero))
 
 and z_set_SV39_Paddr_PgOfs ((zr_ref, zv) : ((zSV39_Paddr) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zSV39_Paddr) in
   begin
-    zr := {!zr with zSV39_Paddr_chunk_0 = update_subrange ((!zr.zSV39_Paddr_chunk_0), (Big_int.of_int (11)), Big_int.zero, (subrange (zv, (Big_int.of_int (11)), Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zSV39_Paddr_chunk_0 = update_subrange ((!zr.zSV39_Paddr_chunk_0), (Big_int.of_int (11)), Big_int.zero, (subrange (zv, (Big_int.of_int (11)), Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_SV39_Paddr_PgOfs ((zv, zx) : (zSV39_Paddr * (bit) list)) : zSV39_Paddr = sail_call (fun r ->
   let zv = ({zv with zSV39_Paddr_chunk_0 = update_subrange ((zv.zSV39_Paddr_chunk_0), (Big_int.of_int (11)), Big_int.zero, (subrange (zx, (Big_int.of_int (11)), Big_int.zero)))}) in
   zv)
 
-and zundefined_SV39_PTE (() : unit) : zSV39_PTE = sail_call (fun r ->
+and zundefined_SV39_PTE (() : (unit)) : zSV39_PTE = sail_call (fun r ->
   {zSV39_PTE_chunk_0 = undefined_vector ((Big_int.of_int (64)), (undefined_bit ()))})
 
-and zMk_SV39_PTE (zv : (bit) list) : zSV39_PTE = sail_call (fun r ->
+and zMk_SV39_PTE (zv : ((bit) list)) : zSV39_PTE = sail_call (fun r ->
   {zSV39_PTE_chunk_0 = subrange (zv, (Big_int.of_int (63)), Big_int.zero)})
 
-and z_get_SV39_PTE_bits (zv : zSV39_PTE) : (bit) list = sail_call (fun r ->
+and z_get_SV39_PTE_bits (zv : (zSV39_PTE)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zSV39_PTE_chunk_0), (Big_int.of_int (63)), Big_int.zero))
 
 and z_set_SV39_PTE_bits ((zr_ref, zv) : ((zSV39_PTE) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zSV39_PTE) in
   begin
-    zr := {!zr with zSV39_PTE_chunk_0 = update_subrange ((!zr.zSV39_PTE_chunk_0), (Big_int.of_int (63)), Big_int.zero, (subrange (zv, (Big_int.of_int (63)), Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zSV39_PTE_chunk_0 = update_subrange ((!zr.zSV39_PTE_chunk_0), (Big_int.of_int (63)), Big_int.zero, (subrange (zv, (Big_int.of_int (63)), Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_SV39_PTE_bits ((zv, zx) : (zSV39_PTE * (bit) list)) : zSV39_PTE = sail_call (fun r ->
   let zv = ({zv with zSV39_PTE_chunk_0 = update_subrange ((zv.zSV39_PTE_chunk_0), (Big_int.of_int (63)), Big_int.zero, (subrange (zx, (Big_int.of_int (63)), Big_int.zero)))}) in
   zv)
 
-and z_get_SV39_PTE_PPNi (zv : zSV39_PTE) : (bit) list = sail_call (fun r ->
+and z_get_SV39_PTE_PPNi (zv : (zSV39_PTE)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zSV39_PTE_chunk_0), (Big_int.of_int (53)), (Big_int.of_int (10))))
 
 and z_set_SV39_PTE_PPNi ((zr_ref, zv) : ((zSV39_PTE) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zSV39_PTE) in
   begin
-    zr := {!zr with zSV39_PTE_chunk_0 = update_subrange ((!zr.zSV39_PTE_chunk_0), (Big_int.of_int (53)), (Big_int.of_int (10)), (subrange (zv, (Big_int.of_int (43)), Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zSV39_PTE_chunk_0 = update_subrange ((!zr.zSV39_PTE_chunk_0), (Big_int.of_int (53)), (Big_int.of_int (10)), (subrange (zv, (Big_int.of_int (43)), Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_SV39_PTE_PPNi ((zv, zx) : (zSV39_PTE * (bit) list)) : zSV39_PTE = sail_call (fun r ->
   let zv = ({zv with zSV39_PTE_chunk_0 = update_subrange ((zv.zSV39_PTE_chunk_0), (Big_int.of_int (53)), (Big_int.of_int (10)), (subrange (zx, (Big_int.of_int (43)), Big_int.zero)))}) in
   zv)
 
-and z_get_SV39_PTE_RSW (zv : zSV39_PTE) : (bit) list = sail_call (fun r ->
+and z_get_SV39_PTE_RSW (zv : (zSV39_PTE)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zSV39_PTE_chunk_0), (Big_int.of_int (9)), (Big_int.of_int (8))))
 
 and z_set_SV39_PTE_RSW ((zr_ref, zv) : ((zSV39_PTE) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zSV39_PTE) in
   begin
-    zr := {!zr with zSV39_PTE_chunk_0 = update_subrange ((!zr.zSV39_PTE_chunk_0), (Big_int.of_int (9)), (Big_int.of_int (8)), (subrange (zv, (Big_int.of_int (1)), Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zSV39_PTE_chunk_0 = update_subrange ((!zr.zSV39_PTE_chunk_0), (Big_int.of_int (9)), (Big_int.of_int (8)), (subrange (zv, (Big_int.of_int (1)), Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_SV39_PTE_RSW ((zv, zx) : (zSV39_PTE * (bit) list)) : zSV39_PTE = sail_call (fun r ->
   let zv = ({zv with zSV39_PTE_chunk_0 = update_subrange ((zv.zSV39_PTE_chunk_0), (Big_int.of_int (9)), (Big_int.of_int (8)), (subrange (zx, (Big_int.of_int (1)), Big_int.zero)))}) in
   zv)
 
-and z_get_SV39_PTE_BITS (zv : zSV39_PTE) : (bit) list = sail_call (fun r ->
+and z_get_SV39_PTE_BITS (zv : (zSV39_PTE)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zSV39_PTE_chunk_0), (Big_int.of_int (7)), Big_int.zero))
 
 and z_set_SV39_PTE_BITS ((zr_ref, zv) : ((zSV39_PTE) ref * (bit) list)) : unit = sail_call (fun r ->
   let zr = ref ((reg_deref zr_ref) : zSV39_PTE) in
   begin
-    zr := {!zr with zSV39_PTE_chunk_0 = update_subrange ((!zr.zSV39_PTE_chunk_0), (Big_int.of_int (7)), Big_int.zero, (subrange (zv, (Big_int.of_int (7)), Big_int.zero)))};
-    zr_ref := !zr
+    zr := ({!zr with zSV39_PTE_chunk_0 = update_subrange ((!zr.zSV39_PTE_chunk_0), (Big_int.of_int (7)), Big_int.zero, (subrange (zv, (Big_int.of_int (7)), Big_int.zero)))});
+    zr_ref := (!zr)
   end)
 
 and z_update_SV39_PTE_BITS ((zv, zx) : (zSV39_PTE * (bit) list)) : zSV39_PTE = sail_call (fun r ->
@@ -11933,13 +11970,13 @@ and z_update_SV39_PTE_BITS ((zv, zx) : (zSV39_PTE * (bit) list)) : zSV39_PTE = s
 
 type  zasid64 = zbits;;
 
-let string_of_zasid64 (gs3671 : zasid64) = string_of_zbits gs3671;;
+let string_of_zasid64 (gs4241 : zasid64) = string_of_zbits gs4241;;
 
-let rec zcurAsid64 (() : unit) : zasid64 = sail_call (fun r ->
+let rec zcurAsid64 (() : (unit)) : (bit) list = sail_call (fun r ->
   let zsatp64 = (zMk_Satp64 !zsatp) in
   z_get_Satp64_Asid zsatp64)
 
-and zcurPTB39 (() : unit) : zpaddr39 = sail_call (fun r ->
+and zcurPTB39 (() : (unit)) : (bit) list = sail_call (fun r ->
   let zsatp64 = (zMk_Satp64 !zsatp) in
   zEXTZ ((Big_int.of_int (56)), (shiftl ((z_get_Satp64_PPN zsatp64), zPAGESIZE_BITS))))
 
@@ -11949,7 +11986,7 @@ type  zPTW_Result =
 
 let string_of_zPTW_Result _ = "VARIANT";;
 
-let rec zundefined_PTW_Result (() : unit) : zPTW_Result = sail_call (fun r ->
+let rec zundefined_PTW_Result (() : (unit)) : zPTW_Result = sail_call (fun r ->
   let zu_0 = (zundefined_PTW_Error ()) in
   let zu_1 = (zundefined_SV39_PTE ()) in
   let zu_2 = (undefined_bool ()) in
@@ -11958,7 +11995,7 @@ let rec zundefined_PTW_Result (() : unit) : zPTW_Result = sail_call (fun r ->
   let zu_4 = (undefined_vector ((Big_int.of_int (56)), (undefined_bit ()))) in
   internal_pick [ZPTW_Success (zu_5, zu_1, zu_4, zu_3, zu_2); ZPTW_Failure zu_0])
 
-and zwalk39 ((zvaddr, zac, zpriv, zmxr, zdo_sum, zptb, zlevel, zglobal) : (zvaddr39 * zAccessType * zPrivilege * bool * bool * zpaddr39 * Big_int.num * bool)) : zPTW_Result = sail_call (fun r ->
+and zwalk39 ((zvaddr, zac, zpriv, zmxr, zdo_sum, zptb, zlevel, zglobal) : ((bit) list * zAccessType * zPrivilege * bool * bool * (bit) list * Big_int.num * bool)) : zPTW_Result = sail_call (fun r ->
   let zva = (zMk_SV39_Vaddr zvaddr) in
   let zpt_ofs = (shiftl ((zEXTZ ((Big_int.of_int (56)), (subrange ((shiftr ((z_get_SV39_Vaddr_VPNi zva), (mult (zlevel, zSV39_LEVEL_BITS)))), (sub_int (zSV39_LEVEL_BITS, (Big_int.of_int (1)))), Big_int.zero)))), zPTE39_LOG_SIZE)) in
   let zpte_addr = (add_vec (zptb, zpt_ofs)) in
@@ -11987,18 +12024,18 @@ type  zTLB39_Entry = {
   zage : zxlenbits
 };;
 
-let string_of_zTLB39_Entry (gs3692 : zTLB39_Entry) =
-  "{asid = " ^ string_of_zasid64 gs3692.zasid
-  ^ ", global = " ^ string_of_zbool gs3692.zglobal
-  ^ ", vAddr = " ^ string_of_zvaddr39 gs3692.zvAddr
-  ^ ", pAddr = " ^ string_of_zpaddr39 gs3692.zpAddr
-  ^ ", vMatchMask = " ^ string_of_zvaddr39 gs3692.zvMatchMask
-  ^ ", vAddrMask = " ^ string_of_zvaddr39 gs3692.zvAddrMask
-  ^ ", pte = " ^ string_of_zSV39_PTE gs3692.zpte
-  ^ ", pteAddr = " ^ string_of_zpaddr39 gs3692.zpteAddr
-  ^ ", age = " ^ string_of_zxlenbits gs3692.zage ^ "}";;
+let string_of_zTLB39_Entry (gs4265 : zTLB39_Entry) =
+  "{asid = " ^ string_of_zasid64 gs4265.zasid
+  ^ ", global = " ^ string_of_zbool gs4265.zglobal
+  ^ ", vAddr = " ^ string_of_zvaddr39 gs4265.zvAddr
+  ^ ", pAddr = " ^ string_of_zpaddr39 gs4265.zpAddr
+  ^ ", vMatchMask = " ^ string_of_zvaddr39 gs4265.zvMatchMask
+  ^ ", vAddrMask = " ^ string_of_zvaddr39 gs4265.zvAddrMask
+  ^ ", pte = " ^ string_of_zSV39_PTE gs4265.zpte
+  ^ ", pteAddr = " ^ string_of_zpaddr39 gs4265.zpteAddr
+  ^ ", age = " ^ string_of_zxlenbits gs4265.zage ^ "}";;
 
-let rec zundefined_TLB39_Entry (() : unit) : zTLB39_Entry = sail_call (fun r ->
+let rec zundefined_TLB39_Entry (() : (unit)) : zTLB39_Entry = sail_call (fun r ->
   {zasid = undefined_vector ((Big_int.of_int (16)), (undefined_bit ()));
   zglobal = undefined_bool ();
   zvAddr = undefined_vector ((Big_int.of_int (39)), (undefined_bit ()));
@@ -12009,7 +12046,7 @@ let rec zundefined_TLB39_Entry (() : unit) : zTLB39_Entry = sail_call (fun r ->
   zpteAddr = undefined_vector ((Big_int.of_int (56)), (undefined_bit ()));
   zage = undefined_vector ((Big_int.of_int (64)), (undefined_bit ()))})
 
-and zmake_TLB39_Entry ((zasid, zglobal, zvAddr, zpAddr, zpte, zlevel, zpteAddr) : (zasid64 * bool * zvaddr39 * zpaddr39 * zSV39_PTE * Big_int.num * zpaddr39)) : zTLB39_Entry = sail_call (fun r ->
+and zmake_TLB39_Entry ((zasid, zglobal, zvAddr, zpAddr, zpte, zlevel, zpteAddr) : ((bit) list * bool * (bit) list * (bit) list * zSV39_PTE * Big_int.num * (bit) list)) : zTLB39_Entry = sail_call (fun r ->
   let zshift = (add_int (zPAGESIZE_BITS, (mult (zlevel, zSV39_LEVEL_BITS)))) in
   let zvAddrMask = (sub_vec_int ((shiftl ((xor_vec (zvAddr, (xor_vec (zvAddr, (zEXTZ ((Big_int.of_int (39)), [B1])))))), zshift)), (Big_int.of_int (1)))) in
   let zvMatchMask = (not_vec zvAddrMask) in
@@ -12025,7 +12062,7 @@ and zmake_TLB39_Entry ((zasid, zglobal, zvAddr, zpAddr, zpte, zlevel, zpteAddr) 
 
 let ztlb39 : ((zTLB39_Entry) zoption) ref = ref (zundefined_option (zundefined_TLB39_Entry ()));;
 
-let rec zlookupTLB39 ((zasid, zvaddr) : (zasid64 * zvaddr39)) : ((Big_int.num * zTLB39_Entry)) zoption = sail_call (fun r ->
+let rec zlookupTLB39 ((zasid, zvaddr) : ((bit) list * (bit) list)) : ((Big_int.num * zTLB39_Entry)) zoption = sail_call (fun r ->
   begin
     match !ztlb39 with
     | ZNone (()) -> ZNone ()
@@ -12033,14 +12070,14 @@ let rec zlookupTLB39 ((zasid, zvaddr) : (zasid64 * zvaddr39)) : ((Big_int.num * 
       if (((ze.zglobal) || (eq_list ((ze.zasid), zasid))) && (eq_list ((ze.zvAddr), (and_vec ((ze.zvMatchMask), zvaddr))))) then (ZSome (Big_int.zero, ze)) else (ZNone ())
   end)
 
-and zaddToTLB39 ((zasid, zvAddr, zpAddr, zpte, zpteAddr, zlevel, zglobal) : (zasid64 * zvaddr39 * zpaddr39 * zSV39_PTE * zpaddr39 * Big_int.num * bool)) : unit = sail_call (fun r ->
+and zaddToTLB39 ((zasid, zvAddr, zpAddr, zpte, zpteAddr, zlevel, zglobal) : ((bit) list * (bit) list * (bit) list * zSV39_PTE * (bit) list * Big_int.num * bool)) : unit = sail_call (fun r ->
   let zent = (zmake_TLB39_Entry (zasid, zglobal, zvAddr, zpAddr, zpte, zlevel, zpteAddr)) in
   ztlb39 := (ZSome zent))
 
 and zwriteTLB39 ((zidx, zent) : (Big_int.num * zTLB39_Entry)) : unit = sail_call (fun r ->
   ztlb39 := (ZSome zent))
 
-and zflushTLB ((zasid, zaddr) : ((zasid64) zoption * (zvaddr39) zoption)) : unit = sail_call (fun r ->
+and zflushTLB ((zasid, zaddr) : (((bit) list) zoption * ((bit) list) zoption)) : unit = sail_call (fun r ->
   let zent = (begin
     match (!ztlb39, zasid, zaddr) with
     | (ZNone (()), _, _) -> ZNone ()
@@ -12058,12 +12095,12 @@ type  zTR39_Result = | ZTR39_Address of zpaddr39 | ZTR39_Failure of zPTW_Error;;
 
 let string_of_zTR39_Result _ = "VARIANT";;
 
-let rec zundefined_TR39_Result (() : unit) : zTR39_Result = sail_call (fun r ->
+let rec zundefined_TR39_Result (() : (unit)) : zTR39_Result = sail_call (fun r ->
   let zu_0 = (zundefined_PTW_Error ()) in
   let zu_1 = (undefined_vector ((Big_int.of_int (56)), (undefined_bit ()))) in
   internal_pick [ZTR39_Address zu_1; ZTR39_Failure zu_0])
 
-and ztranslate39 ((zvAddr, zac, zpriv, zmxr, zdo_sum, zlevel) : (zvaddr39 * zAccessType * zPrivilege * bool * bool * Big_int.num)) : zTR39_Result = sail_call (fun r ->
+and ztranslate39 ((zvAddr, zac, zpriv, zmxr, zdo_sum, zlevel) : ((bit) list * zAccessType * zPrivilege * bool * bool * Big_int.num)) : zTR39_Result = sail_call (fun r ->
   let zasid = (zcurAsid64 ()) in
   begin
     match (zlookupTLB39 (zasid, zvAddr)) with
@@ -12076,7 +12113,7 @@ and ztranslate39 ((zvAddr, zac, zpriv, zmxr, zdo_sum, zlevel) : (zvaddr39 * zAcc
         | ZSome (zpbits) ->
           if (not (Platform.enable_dirty_update ())) then (ZTR39_Failure ZPTW_PTE_Update) else (let zn_ent = ref (zent : zTLB39_Entry) in
           begin
-            zn_ent := {!zn_ent with zpte = z_update_SV39_PTE_BITS ((zent.zpte), (z_get_PTE_Bits_bits zpbits))};
+            zn_ent := ({!zn_ent with zpte = z_update_SV39_PTE_BITS ((zent.zpte), (z_get_PTE_Bits_bits zpbits))});
             zwriteTLB39 (zidx, !zn_ent);
             begin
               match (zchecked_mem_write ((zEXTZ ((Big_int.of_int (64)), (zent.zpteAddr))), (Big_int.of_int (8)), (z_get_SV39_PTE_bits (zent.zpte)))) with
@@ -12114,7 +12151,7 @@ and ztranslate39 ((zvAddr, zac, zpriv, zmxr, zdo_sum, zlevel) : (zvaddr39 * zAcc
       end
   end)
 
-and ztranslationMode (zpriv : zPrivilege) : zSATPMode = sail_call (fun r ->
+and ztranslationMode (zpriv : (zPrivilege)) : zSATPMode = sail_call (fun r ->
   if (eq_list ((zprivLevel_to_bits zpriv), (zprivLevel_to_bits ZMachine))) then ZSbare else (let zarch = (zarchitecture (z_get_Mstatus_SXL !zmstatus)) in
   begin
     match zarch with
@@ -12132,12 +12169,12 @@ type  zTR_Result = | ZTR_Address of zxlenbits | ZTR_Failure of zExceptionType;;
 
 let string_of_zTR_Result _ = "VARIANT";;
 
-let rec zundefined_TR_Result (() : unit) : zTR_Result = sail_call (fun r ->
+let rec zundefined_TR_Result (() : (unit)) : zTR_Result = sail_call (fun r ->
   let zu_0 = (zundefined_ExceptionType ()) in
   let zu_1 = (undefined_vector ((Big_int.of_int (64)), (undefined_bit ()))) in
   internal_pick [ZTR_Address zu_1; ZTR_Failure zu_0])
 
-and ztranslateAddr ((zvAddr, zac, zrt) : (zxlenbits * zAccessType * zReadType)) : zTR_Result = sail_call (fun r ->
+and ztranslateAddr ((zvAddr, zac, zrt) : ((bit) list * zAccessType * zReadType)) : zTR_Result = sail_call (fun r ->
   let zeffPriv = (begin
     match zrt with
     | ZInstruction -> !zcur_privilege
@@ -12224,6 +12261,7 @@ type  zast =
   | ZC_JR of zregbits
   | ZC_JALR of zregbits
   | ZC_MV of (zregbits * zregbits)
+  | ZC_EBREAK of unit
   | ZC_ADD of (zregbits * zregbits)
   | ZSTOP_FETCHING of unit
   | ZTHREAD_START of unit
@@ -12232,7 +12270,7 @@ type  zast =
 
 let string_of_zast _ = "VARIANT";;
 
-let rec zundefined_ast (() : unit) : zast = sail_call (fun r ->
+let rec zundefined_ast (() : (unit)) : zast = sail_call (fun r ->
   let zu_0 = (zundefined_amoop ()) in
   let zu_3 = (undefined_bool ()) in
   let zu_2 = (undefined_bool ()) in
@@ -12264,16 +12302,16 @@ let rec zundefined_ast (() : unit) : zast = sail_call (fun r ->
   let zu_28 = (undefined_vector ((Big_int.of_int (13)), (undefined_bit ()))) in
   let zu_29 = (undefined_vector ((Big_int.of_int (20)), (undefined_bit ()))) in
   let zu_30 = (undefined_vector ((Big_int.of_int (21)), (undefined_bit ()))) in
-  internal_pick [ZUTYPE (zu_29, zu_10, zu_18); ZRISCV_JAL (zu_30, zu_10); ZRISCV_JALR (zu_27, zu_11, zu_10); ZBTYPE (zu_28, zu_11, zu_10, zu_4); ZITYPE (zu_27, zu_11, zu_10, zu_9); ZSHIFTIOP (zu_24, zu_11, zu_10, zu_15); ZRTYPE (zu_12, zu_11, zu_10, zu_13); ZLOAD (zu_27, zu_11, zu_10, zu_3, zu_20, zu_2, zu_1); ZSTORE (zu_27, zu_11, zu_10, zu_20, zu_2, zu_1); ZADDIW (zu_27, zu_11, zu_10); ZSHIFTW (zu_23, zu_11, zu_10, zu_15); ZRTYPEW (zu_12, zu_11, zu_10, zu_14); ZSHIFTIWOP (zu_23, zu_11, zu_10, zu_16); ZMUL (zu_12, zu_11, zu_10, zu_3, zu_2, zu_1); ZDIV (zu_12, zu_11, zu_10, zu_1); ZREM (zu_12, zu_11, zu_10, zu_1); ZMULW (zu_12, zu_11, zu_10); ZDIVW (zu_12, zu_11, zu_10, zu_1); ZREMW (zu_12, zu_11, zu_10, zu_1); ZFENCE (zu_22, zu_21); ZFENCEI zu_17; ZECALL zu_17; ZMRET zu_17; ZSRET zu_17; ZEBREAK zu_17; ZWFI zu_17; ZSFENCE_VMA (zu_11, zu_10); ZLOADRES (zu_2, zu_1, zu_11, zu_20, zu_10); ZSTORECON (zu_2, zu_1, zu_12, zu_11, zu_20, zu_10); ZAMO (zu_0, zu_2, zu_1, zu_12, zu_11, zu_20, zu_10); ZCSR (zu_27, zu_11, zu_10, zu_1, zu_7); ZC_NOP zu_17; ZC_ADDI4SPN (zu_5, zu_25); ZC_LW (zu_23, zu_6, zu_5); ZC_LD (zu_23, zu_6, zu_5); ZC_SW (zu_23, zu_6, zu_5); ZC_SD (zu_23, zu_6, zu_5); ZC_ADDI (zu_24, zu_10); ZC_JAL zu_26; ZC_ADDIW (zu_24, zu_10); ZC_LI (zu_24, zu_10); ZC_ADDI16SP zu_24; ZC_LUI (zu_24, zu_10); ZC_SRLI (zu_24, zu_5); ZC_SRAI (zu_24, zu_5); ZC_ANDI (zu_24, zu_5); ZC_SUB (zu_6, zu_5); ZC_XOR (zu_6, zu_5); ZC_OR (zu_6, zu_5); ZC_AND (zu_6, zu_5); ZC_SUBW (zu_6, zu_5); ZC_ADDW (zu_6, zu_5); ZC_J zu_26; ZC_BEQZ (zu_25, zu_5); ZC_BNEZ (zu_25, zu_5); ZC_SLLI (zu_24, zu_10); ZC_LWSP (zu_24, zu_10); ZC_LDSP (zu_24, zu_10); ZC_SWSP (zu_24, zu_10); ZC_SDSP (zu_24, zu_10); ZC_JR zu_10; ZC_JALR zu_10; ZC_MV (zu_11, zu_10); ZC_ADD (zu_11, zu_10); ZSTOP_FETCHING zu_17; ZTHREAD_START zu_17; ZILLEGAL zu_19; ZC_ILLEGAL zu_8])
+  internal_pick [ZUTYPE (zu_29, zu_10, zu_18); ZRISCV_JAL (zu_30, zu_10); ZRISCV_JALR (zu_27, zu_11, zu_10); ZBTYPE (zu_28, zu_11, zu_10, zu_4); ZITYPE (zu_27, zu_11, zu_10, zu_9); ZSHIFTIOP (zu_24, zu_11, zu_10, zu_15); ZRTYPE (zu_12, zu_11, zu_10, zu_13); ZLOAD (zu_27, zu_11, zu_10, zu_3, zu_20, zu_2, zu_1); ZSTORE (zu_27, zu_11, zu_10, zu_20, zu_2, zu_1); ZADDIW (zu_27, zu_11, zu_10); ZSHIFTW (zu_23, zu_11, zu_10, zu_15); ZRTYPEW (zu_12, zu_11, zu_10, zu_14); ZSHIFTIWOP (zu_23, zu_11, zu_10, zu_16); ZMUL (zu_12, zu_11, zu_10, zu_3, zu_2, zu_1); ZDIV (zu_12, zu_11, zu_10, zu_1); ZREM (zu_12, zu_11, zu_10, zu_1); ZMULW (zu_12, zu_11, zu_10); ZDIVW (zu_12, zu_11, zu_10, zu_1); ZREMW (zu_12, zu_11, zu_10, zu_1); ZFENCE (zu_22, zu_21); ZFENCEI zu_17; ZECALL zu_17; ZMRET zu_17; ZSRET zu_17; ZEBREAK zu_17; ZWFI zu_17; ZSFENCE_VMA (zu_11, zu_10); ZLOADRES (zu_2, zu_1, zu_11, zu_20, zu_10); ZSTORECON (zu_2, zu_1, zu_12, zu_11, zu_20, zu_10); ZAMO (zu_0, zu_2, zu_1, zu_12, zu_11, zu_20, zu_10); ZCSR (zu_27, zu_11, zu_10, zu_1, zu_7); ZC_NOP zu_17; ZC_ADDI4SPN (zu_5, zu_25); ZC_LW (zu_23, zu_6, zu_5); ZC_LD (zu_23, zu_6, zu_5); ZC_SW (zu_23, zu_6, zu_5); ZC_SD (zu_23, zu_6, zu_5); ZC_ADDI (zu_24, zu_10); ZC_JAL zu_26; ZC_ADDIW (zu_24, zu_10); ZC_LI (zu_24, zu_10); ZC_ADDI16SP zu_24; ZC_LUI (zu_24, zu_10); ZC_SRLI (zu_24, zu_5); ZC_SRAI (zu_24, zu_5); ZC_ANDI (zu_24, zu_5); ZC_SUB (zu_6, zu_5); ZC_XOR (zu_6, zu_5); ZC_OR (zu_6, zu_5); ZC_AND (zu_6, zu_5); ZC_SUBW (zu_6, zu_5); ZC_ADDW (zu_6, zu_5); ZC_J zu_26; ZC_BEQZ (zu_25, zu_5); ZC_BNEZ (zu_25, zu_5); ZC_SLLI (zu_24, zu_10); ZC_LWSP (zu_24, zu_10); ZC_LDSP (zu_24, zu_10); ZC_SWSP (zu_24, zu_10); ZC_SDSP (zu_24, zu_10); ZC_JR zu_10; ZC_JALR zu_10; ZC_MV (zu_11, zu_10); ZC_EBREAK zu_17; ZC_ADD (zu_11, zu_10); ZSTOP_FETCHING zu_17; ZTHREAD_START zu_17; ZILLEGAL zu_19; ZC_ILLEGAL zu_8])
 
-and zencdec_uop_forwards (zargz3 : zuop) : (bit) list = sail_call (fun r ->
+and zencdec_uop_forwards (zargz3 : (zuop)) : (bit) list = sail_call (fun r ->
   begin
     match zargz3 with
     | ZRISCV_LUI -> [B0; B1; B1; B0; B1; B1; B1]
     | ZRISCV_AUIPC -> [B0; B0; B1; B0; B1; B1; B1]
   end)
 
-and zencdec_uop_backwards (zargz3 : (bit) list) : zuop = sail_call (fun r ->
+and zencdec_uop_backwards (zargz3 : ((bit) list)) : zuop = sail_call (fun r ->
   begin
     match zargz3 with
     | zb__0 when (let zp0z3 = (access (zb__0, (Big_int.of_int (6)))) in
@@ -12296,7 +12334,7 @@ and zencdec_uop_backwards (zargz3 : (bit) list) : zuop = sail_call (fun r ->
       ZRISCV_AUIPC
   end)
 
-and zencdec_uop_forwards_matches (zargz3 : zuop) : bool = sail_call (fun r ->
+and zencdec_uop_forwards_matches (zargz3 : (zuop)) : bool = sail_call (fun r ->
   begin
     match zargz3 with
     | ZRISCV_LUI -> true
@@ -12304,7 +12342,7 @@ and zencdec_uop_forwards_matches (zargz3 : zuop) : bool = sail_call (fun r ->
     | _ -> false
   end)
 
-and zencdec_uop_backwards_matches (zargz3 : (bit) list) : bool = sail_call (fun r ->
+and zencdec_uop_backwards_matches (zargz3 : ((bit) list)) : bool = sail_call (fun r ->
   begin
     match zargz3 with
     | zb__0 when (let zp0z3 = (access (zb__0, (Big_int.of_int (6)))) in
@@ -12328,13 +12366,13 @@ and zencdec_uop_backwards_matches (zargz3 : (bit) list) : bool = sail_call (fun 
     | _ -> false
   end)
 
-and zutype_mnemonic_forwards (zargz3 : zuop) : string = sail_call (fun r ->
+and zutype_mnemonic_forwards (zargz3 : (zuop)) : string = sail_call (fun r ->
   begin match zargz3 with | ZRISCV_LUI -> "lui" | ZRISCV_AUIPC -> "auipc" end)
 
-and zutype_mnemonic_backwards (zargz3 : string) : zuop = sail_call (fun r ->
+and zutype_mnemonic_backwards (zargz3 : (string)) : zuop = sail_call (fun r ->
   begin match zargz3 with | "lui" -> ZRISCV_LUI | "auipc" -> ZRISCV_AUIPC end)
 
-and zutype_mnemonic_forwards_matches (zargz3 : zuop) : bool = sail_call (fun r ->
+and zutype_mnemonic_forwards_matches (zargz3 : (zuop)) : bool = sail_call (fun r ->
   begin
     match zargz3 with
     | ZRISCV_LUI -> true
@@ -12342,10 +12380,10 @@ and zutype_mnemonic_forwards_matches (zargz3 : zuop) : bool = sail_call (fun r -
     | _ -> false
   end)
 
-and zutype_mnemonic_backwards_matches (zargz3 : string) : bool = sail_call (fun r ->
+and zutype_mnemonic_backwards_matches (zargz3 : (string)) : bool = sail_call (fun r ->
   begin match zargz3 with | "lui" -> true | "auipc" -> true | _ -> false end)
 
-and z_s496z3 (z_s497z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s496z3 (z_s497z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s497z3 with
     | z_s498z3 when (string_startswith (z_s498z3, "auipc")) ->
@@ -12357,7 +12395,7 @@ and z_s496z3 (z_s497z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s492z3 (z_s493z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s492z3 (z_s493z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s493z3 with
     | z_s494z3 when (string_startswith (z_s494z3, "lui")) ->
@@ -12369,7 +12407,7 @@ and z_s492z3 (z_s493z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and zutype_mnemonic_matches_prefix (zargz3 : string) : ((zuop * Big_int.num)) zoption = sail_call (fun r ->
+and zutype_mnemonic_matches_prefix (zargz3 : (string)) : ((zuop * Big_int.num)) zoption = sail_call (fun r ->
   begin
     match zargz3 with
     | z_s495z3 when (begin
@@ -12389,7 +12427,7 @@ and zutype_mnemonic_matches_prefix (zargz3 : string) : ((zuop * Big_int.num)) zo
     | _ -> ZNone ()
   end)
 
-and zencdec_bop_forwards (zargz3 : zbop) : (bit) list = sail_call (fun r ->
+and zencdec_bop_forwards (zargz3 : (zbop)) : (bit) list = sail_call (fun r ->
   begin
     match zargz3 with
     | ZRISCV_BEQ -> [B0; B0; B0]
@@ -12400,7 +12438,7 @@ and zencdec_bop_forwards (zargz3 : zbop) : (bit) list = sail_call (fun r ->
     | ZRISCV_BGEU -> [B1; B1; B1]
   end)
 
-and zencdec_bop_backwards (zargz3 : (bit) list) : zbop = sail_call (fun r ->
+and zencdec_bop_backwards (zargz3 : ((bit) list)) : zbop = sail_call (fun r ->
   begin
     match zargz3 with
     | zb__0 when (let zp0z3 = (access (zb__0, (Big_int.of_int (2)))) in
@@ -12435,7 +12473,7 @@ and zencdec_bop_backwards (zargz3 : (bit) list) : zbop = sail_call (fun r ->
       ZRISCV_BGEU
   end)
 
-and zencdec_bop_forwards_matches (zargz3 : zbop) : bool = sail_call (fun r ->
+and zencdec_bop_forwards_matches (zargz3 : (zbop)) : bool = sail_call (fun r ->
   begin
     match zargz3 with
     | ZRISCV_BEQ -> true
@@ -12447,7 +12485,7 @@ and zencdec_bop_forwards_matches (zargz3 : zbop) : bool = sail_call (fun r ->
     | _ -> false
   end)
 
-and zencdec_bop_backwards_matches (zargz3 : (bit) list) : bool = sail_call (fun r ->
+and zencdec_bop_backwards_matches (zargz3 : ((bit) list)) : bool = sail_call (fun r ->
   begin
     match zargz3 with
     | zb__0 when (let zp0z3 = (access (zb__0, (Big_int.of_int (2)))) in
@@ -12483,7 +12521,7 @@ and zencdec_bop_backwards_matches (zargz3 : (bit) list) : bool = sail_call (fun 
     | _ -> false
   end)
 
-and zbtype_mnemonic_forwards (zargz3 : zbop) : string = sail_call (fun r ->
+and zbtype_mnemonic_forwards (zargz3 : (zbop)) : string = sail_call (fun r ->
   begin
     match zargz3 with
     | ZRISCV_BEQ -> "beq"
@@ -12494,7 +12532,7 @@ and zbtype_mnemonic_forwards (zargz3 : zbop) : string = sail_call (fun r ->
     | ZRISCV_BGEU -> "bgeu"
   end)
 
-and zbtype_mnemonic_backwards (zargz3 : string) : zbop = sail_call (fun r ->
+and zbtype_mnemonic_backwards (zargz3 : (string)) : zbop = sail_call (fun r ->
   begin
     match zargz3 with
     | "beq" -> ZRISCV_BEQ
@@ -12505,7 +12543,7 @@ and zbtype_mnemonic_backwards (zargz3 : string) : zbop = sail_call (fun r ->
     | "bgeu" -> ZRISCV_BGEU
   end)
 
-and zbtype_mnemonic_forwards_matches (zargz3 : zbop) : bool = sail_call (fun r ->
+and zbtype_mnemonic_forwards_matches (zargz3 : (zbop)) : bool = sail_call (fun r ->
   begin
     match zargz3 with
     | ZRISCV_BEQ -> true
@@ -12517,7 +12555,7 @@ and zbtype_mnemonic_forwards_matches (zargz3 : zbop) : bool = sail_call (fun r -
     | _ -> false
   end)
 
-and zbtype_mnemonic_backwards_matches (zargz3 : string) : bool = sail_call (fun r ->
+and zbtype_mnemonic_backwards_matches (zargz3 : (string)) : bool = sail_call (fun r ->
   begin
     match zargz3 with
     | "beq" -> true
@@ -12529,7 +12567,7 @@ and zbtype_mnemonic_backwards_matches (zargz3 : string) : bool = sail_call (fun 
     | _ -> false
   end)
 
-and z_s520z3 (z_s521z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s520z3 (z_s521z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s521z3 with
     | z_s522z3 when (string_startswith (z_s522z3, "bgeu")) ->
@@ -12541,7 +12579,7 @@ and z_s520z3 (z_s521z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s516z3 (z_s517z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s516z3 (z_s517z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s517z3 with
     | z_s518z3 when (string_startswith (z_s518z3, "bltu")) ->
@@ -12553,7 +12591,7 @@ and z_s516z3 (z_s517z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s512z3 (z_s513z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s512z3 (z_s513z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s513z3 with
     | z_s514z3 when (string_startswith (z_s514z3, "bge")) ->
@@ -12565,7 +12603,7 @@ and z_s512z3 (z_s513z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s508z3 (z_s509z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s508z3 (z_s509z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s509z3 with
     | z_s510z3 when (string_startswith (z_s510z3, "blt")) ->
@@ -12577,7 +12615,7 @@ and z_s508z3 (z_s509z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s504z3 (z_s505z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s504z3 (z_s505z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s505z3 with
     | z_s506z3 when (string_startswith (z_s506z3, "bne")) ->
@@ -12589,7 +12627,7 @@ and z_s504z3 (z_s505z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s500z3 (z_s501z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s500z3 (z_s501z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s501z3 with
     | z_s502z3 when (string_startswith (z_s502z3, "beq")) ->
@@ -12601,7 +12639,7 @@ and z_s500z3 (z_s501z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and zbtype_mnemonic_matches_prefix (zargz3 : string) : ((zbop * Big_int.num)) zoption = sail_call (fun r ->
+and zbtype_mnemonic_matches_prefix (zargz3 : (string)) : ((zbop * Big_int.num)) zoption = sail_call (fun r ->
   begin
     match zargz3 with
     | z_s503z3 when (begin
@@ -12649,7 +12687,7 @@ and zbtype_mnemonic_matches_prefix (zargz3 : string) : ((zbop * Big_int.num)) zo
     | _ -> ZNone ()
   end)
 
-and zencdec_iop_forwards (zargz3 : ziop) : (bit) list = sail_call (fun r ->
+and zencdec_iop_forwards (zargz3 : (ziop)) : (bit) list = sail_call (fun r ->
   begin
     match zargz3 with
     | ZRISCV_ADDI -> [B0; B0; B0]
@@ -12660,7 +12698,7 @@ and zencdec_iop_forwards (zargz3 : ziop) : (bit) list = sail_call (fun r ->
     | ZRISCV_ANDI -> [B1; B1; B1]
   end)
 
-and zencdec_iop_backwards (zargz3 : (bit) list) : ziop = sail_call (fun r ->
+and zencdec_iop_backwards (zargz3 : ((bit) list)) : ziop = sail_call (fun r ->
   begin
     match zargz3 with
     | zb__0 when (let zp0z3 = (access (zb__0, (Big_int.of_int (2)))) in
@@ -12695,7 +12733,7 @@ and zencdec_iop_backwards (zargz3 : (bit) list) : ziop = sail_call (fun r ->
       ZRISCV_ANDI
   end)
 
-and zencdec_iop_forwards_matches (zargz3 : ziop) : bool = sail_call (fun r ->
+and zencdec_iop_forwards_matches (zargz3 : (ziop)) : bool = sail_call (fun r ->
   begin
     match zargz3 with
     | ZRISCV_ADDI -> true
@@ -12707,7 +12745,7 @@ and zencdec_iop_forwards_matches (zargz3 : ziop) : bool = sail_call (fun r ->
     | _ -> false
   end)
 
-and zencdec_iop_backwards_matches (zargz3 : (bit) list) : bool = sail_call (fun r ->
+and zencdec_iop_backwards_matches (zargz3 : ((bit) list)) : bool = sail_call (fun r ->
   begin
     match zargz3 with
     | zb__0 when (let zp0z3 = (access (zb__0, (Big_int.of_int (2)))) in
@@ -12743,7 +12781,7 @@ and zencdec_iop_backwards_matches (zargz3 : (bit) list) : bool = sail_call (fun 
     | _ -> false
   end)
 
-and zitype_mnemonic_forwards (zargz3 : ziop) : string = sail_call (fun r ->
+and zitype_mnemonic_forwards (zargz3 : (ziop)) : string = sail_call (fun r ->
   begin
     match zargz3 with
     | ZRISCV_ADDI -> "addi"
@@ -12754,7 +12792,7 @@ and zitype_mnemonic_forwards (zargz3 : ziop) : string = sail_call (fun r ->
     | ZRISCV_ANDI -> "andi"
   end)
 
-and zitype_mnemonic_backwards (zargz3 : string) : ziop = sail_call (fun r ->
+and zitype_mnemonic_backwards (zargz3 : (string)) : ziop = sail_call (fun r ->
   begin
     match zargz3 with
     | "addi" -> ZRISCV_ADDI
@@ -12765,7 +12803,7 @@ and zitype_mnemonic_backwards (zargz3 : string) : ziop = sail_call (fun r ->
     | "andi" -> ZRISCV_ANDI
   end)
 
-and zitype_mnemonic_forwards_matches (zargz3 : ziop) : bool = sail_call (fun r ->
+and zitype_mnemonic_forwards_matches (zargz3 : (ziop)) : bool = sail_call (fun r ->
   begin
     match zargz3 with
     | ZRISCV_ADDI -> true
@@ -12777,7 +12815,7 @@ and zitype_mnemonic_forwards_matches (zargz3 : ziop) : bool = sail_call (fun r -
     | _ -> false
   end)
 
-and zitype_mnemonic_backwards_matches (zargz3 : string) : bool = sail_call (fun r ->
+and zitype_mnemonic_backwards_matches (zargz3 : (string)) : bool = sail_call (fun r ->
   begin
     match zargz3 with
     | "addi" -> true
@@ -12789,7 +12827,7 @@ and zitype_mnemonic_backwards_matches (zargz3 : string) : bool = sail_call (fun 
     | _ -> false
   end)
 
-and z_s544z3 (z_s545z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s544z3 (z_s545z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s545z3 with
     | z_s546z3 when (string_startswith (z_s546z3, "andi")) ->
@@ -12801,7 +12839,7 @@ and z_s544z3 (z_s545z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s540z3 (z_s541z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s540z3 (z_s541z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s541z3 with
     | z_s542z3 when (string_startswith (z_s542z3, "ori")) ->
@@ -12813,7 +12851,7 @@ and z_s540z3 (z_s541z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s536z3 (z_s537z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s536z3 (z_s537z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s537z3 with
     | z_s538z3 when (string_startswith (z_s538z3, "xori")) ->
@@ -12825,7 +12863,7 @@ and z_s536z3 (z_s537z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s532z3 (z_s533z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s532z3 (z_s533z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s533z3 with
     | z_s534z3 when (string_startswith (z_s534z3, "sltiu")) ->
@@ -12837,7 +12875,7 @@ and z_s532z3 (z_s533z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s528z3 (z_s529z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s528z3 (z_s529z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s529z3 with
     | z_s530z3 when (string_startswith (z_s530z3, "slti")) ->
@@ -12849,7 +12887,7 @@ and z_s528z3 (z_s529z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s524z3 (z_s525z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s524z3 (z_s525z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s525z3 with
     | z_s526z3 when (string_startswith (z_s526z3, "addi")) ->
@@ -12861,7 +12899,7 @@ and z_s524z3 (z_s525z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and zitype_mnemonic_matches_prefix (zargz3 : string) : ((ziop * Big_int.num)) zoption = sail_call (fun r ->
+and zitype_mnemonic_matches_prefix (zargz3 : (string)) : ((ziop * Big_int.num)) zoption = sail_call (fun r ->
   begin
     match zargz3 with
     | z_s527z3 when (begin
@@ -12909,7 +12947,7 @@ and zitype_mnemonic_matches_prefix (zargz3 : string) : ((ziop * Big_int.num)) zo
     | _ -> ZNone ()
   end)
 
-and zencdec_sop_forwards (zargz3 : zsop) : (bit) list = sail_call (fun r ->
+and zencdec_sop_forwards (zargz3 : (zsop)) : (bit) list = sail_call (fun r ->
   begin
     match zargz3 with
     | ZRISCV_SLLI -> [B0; B0; B1]
@@ -12917,7 +12955,7 @@ and zencdec_sop_forwards (zargz3 : zsop) : (bit) list = sail_call (fun r ->
     | ZRISCV_SRAI -> [B1; B0; B1]
   end)
 
-and zencdec_sop_backwards (zargz3 : (bit) list) : zsop = sail_call (fun r ->
+and zencdec_sop_backwards (zargz3 : ((bit) list)) : zsop = sail_call (fun r ->
   begin
     match zargz3 with
     | zb__0 when (let zp0z3 = (access (zb__0, (Big_int.of_int (2)))) in
@@ -12937,7 +12975,7 @@ and zencdec_sop_backwards (zargz3 : (bit) list) : zsop = sail_call (fun r ->
       ZRISCV_SRAI
   end)
 
-and zencdec_sop_forwards_matches (zargz3 : zsop) : bool = sail_call (fun r ->
+and zencdec_sop_forwards_matches (zargz3 : (zsop)) : bool = sail_call (fun r ->
   begin
     match zargz3 with
     | ZRISCV_SLLI -> true
@@ -12946,7 +12984,7 @@ and zencdec_sop_forwards_matches (zargz3 : zsop) : bool = sail_call (fun r ->
     | _ -> false
   end)
 
-and zencdec_sop_backwards_matches (zargz3 : (bit) list) : bool = sail_call (fun r ->
+and zencdec_sop_backwards_matches (zargz3 : ((bit) list)) : bool = sail_call (fun r ->
   begin
     match zargz3 with
     | zb__0 when (let zp0z3 = (access (zb__0, (Big_int.of_int (2)))) in
@@ -12967,7 +13005,7 @@ and zencdec_sop_backwards_matches (zargz3 : (bit) list) : bool = sail_call (fun 
     | _ -> false
   end)
 
-and zshiftiop_mnemonic_forwards (zargz3 : zsop) : string = sail_call (fun r ->
+and zshiftiop_mnemonic_forwards (zargz3 : (zsop)) : string = sail_call (fun r ->
   begin
     match zargz3 with
     | ZRISCV_SLLI -> "slli"
@@ -12975,7 +13013,7 @@ and zshiftiop_mnemonic_forwards (zargz3 : zsop) : string = sail_call (fun r ->
     | ZRISCV_SRAI -> "srai"
   end)
 
-and zshiftiop_mnemonic_backwards (zargz3 : string) : zsop = sail_call (fun r ->
+and zshiftiop_mnemonic_backwards (zargz3 : (string)) : zsop = sail_call (fun r ->
   begin
     match zargz3 with
     | "slli" -> ZRISCV_SLLI
@@ -12983,7 +13021,7 @@ and zshiftiop_mnemonic_backwards (zargz3 : string) : zsop = sail_call (fun r ->
     | "srai" -> ZRISCV_SRAI
   end)
 
-and zshiftiop_mnemonic_forwards_matches (zargz3 : zsop) : bool = sail_call (fun r ->
+and zshiftiop_mnemonic_forwards_matches (zargz3 : (zsop)) : bool = sail_call (fun r ->
   begin
     match zargz3 with
     | ZRISCV_SLLI -> true
@@ -12992,7 +13030,7 @@ and zshiftiop_mnemonic_forwards_matches (zargz3 : zsop) : bool = sail_call (fun 
     | _ -> false
   end)
 
-and zshiftiop_mnemonic_backwards_matches (zargz3 : string) : bool = sail_call (fun r ->
+and zshiftiop_mnemonic_backwards_matches (zargz3 : (string)) : bool = sail_call (fun r ->
   begin
     match zargz3 with
     | "slli" -> true
@@ -13001,7 +13039,7 @@ and zshiftiop_mnemonic_backwards_matches (zargz3 : string) : bool = sail_call (f
     | _ -> false
   end)
 
-and z_s556z3 (z_s557z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s556z3 (z_s557z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s557z3 with
     | z_s558z3 when (string_startswith (z_s558z3, "srai")) ->
@@ -13013,7 +13051,7 @@ and z_s556z3 (z_s557z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s552z3 (z_s553z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s552z3 (z_s553z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s553z3 with
     | z_s554z3 when (string_startswith (z_s554z3, "srli")) ->
@@ -13025,7 +13063,7 @@ and z_s552z3 (z_s553z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s548z3 (z_s549z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s548z3 (z_s549z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s549z3 with
     | z_s550z3 when (string_startswith (z_s550z3, "slli")) ->
@@ -13037,7 +13075,7 @@ and z_s548z3 (z_s549z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and zshiftiop_mnemonic_matches_prefix (zargz3 : string) : ((zsop * Big_int.num)) zoption = sail_call (fun r ->
+and zshiftiop_mnemonic_matches_prefix (zargz3 : (string)) : ((zsop * Big_int.num)) zoption = sail_call (fun r ->
   begin
     match zargz3 with
     | z_s551z3 when (begin
@@ -13064,7 +13102,7 @@ and zshiftiop_mnemonic_matches_prefix (zargz3 : string) : ((zsop * Big_int.num))
     | _ -> ZNone ()
   end)
 
-and zrtype_mnemonic_forwards (zargz3 : zrop) : string = sail_call (fun r ->
+and zrtype_mnemonic_forwards (zargz3 : (zrop)) : string = sail_call (fun r ->
   begin
     match zargz3 with
     | ZRISCV_ADD -> "add"
@@ -13079,7 +13117,7 @@ and zrtype_mnemonic_forwards (zargz3 : zrop) : string = sail_call (fun r ->
     | ZRISCV_AND -> "and"
   end)
 
-and zrtype_mnemonic_backwards (zargz3 : string) : zrop = sail_call (fun r ->
+and zrtype_mnemonic_backwards (zargz3 : (string)) : zrop = sail_call (fun r ->
   begin
     match zargz3 with
     | "add" -> ZRISCV_ADD
@@ -13094,7 +13132,7 @@ and zrtype_mnemonic_backwards (zargz3 : string) : zrop = sail_call (fun r ->
     | "and" -> ZRISCV_AND
   end)
 
-and zrtype_mnemonic_forwards_matches (zargz3 : zrop) : bool = sail_call (fun r ->
+and zrtype_mnemonic_forwards_matches (zargz3 : (zrop)) : bool = sail_call (fun r ->
   begin
     match zargz3 with
     | ZRISCV_ADD -> true
@@ -13110,7 +13148,7 @@ and zrtype_mnemonic_forwards_matches (zargz3 : zrop) : bool = sail_call (fun r -
     | _ -> false
   end)
 
-and zrtype_mnemonic_backwards_matches (zargz3 : string) : bool = sail_call (fun r ->
+and zrtype_mnemonic_backwards_matches (zargz3 : (string)) : bool = sail_call (fun r ->
   begin
     match zargz3 with
     | "add" -> true
@@ -13126,7 +13164,7 @@ and zrtype_mnemonic_backwards_matches (zargz3 : string) : bool = sail_call (fun 
     | _ -> false
   end)
 
-and z_s596z3 (z_s597z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s596z3 (z_s597z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s597z3 with
     | z_s598z3 when (string_startswith (z_s598z3, "and")) ->
@@ -13138,7 +13176,7 @@ and z_s596z3 (z_s597z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s592z3 (z_s593z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s592z3 (z_s593z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s593z3 with
     | z_s594z3 when (string_startswith (z_s594z3, "or")) ->
@@ -13150,7 +13188,7 @@ and z_s592z3 (z_s593z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s588z3 (z_s589z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s588z3 (z_s589z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s589z3 with
     | z_s590z3 when (string_startswith (z_s590z3, "sra")) ->
@@ -13162,7 +13200,7 @@ and z_s588z3 (z_s589z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s584z3 (z_s585z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s584z3 (z_s585z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s585z3 with
     | z_s586z3 when (string_startswith (z_s586z3, "srl")) ->
@@ -13174,7 +13212,7 @@ and z_s584z3 (z_s585z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s580z3 (z_s581z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s580z3 (z_s581z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s581z3 with
     | z_s582z3 when (string_startswith (z_s582z3, "xor")) ->
@@ -13186,7 +13224,7 @@ and z_s580z3 (z_s581z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s576z3 (z_s577z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s576z3 (z_s577z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s577z3 with
     | z_s578z3 when (string_startswith (z_s578z3, "sltu")) ->
@@ -13198,7 +13236,7 @@ and z_s576z3 (z_s577z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s572z3 (z_s573z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s572z3 (z_s573z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s573z3 with
     | z_s574z3 when (string_startswith (z_s574z3, "slt")) ->
@@ -13210,7 +13248,7 @@ and z_s572z3 (z_s573z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s568z3 (z_s569z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s568z3 (z_s569z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s569z3 with
     | z_s570z3 when (string_startswith (z_s570z3, "sll")) ->
@@ -13222,7 +13260,7 @@ and z_s568z3 (z_s569z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s564z3 (z_s565z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s564z3 (z_s565z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s565z3 with
     | z_s566z3 when (string_startswith (z_s566z3, "sub")) ->
@@ -13234,7 +13272,7 @@ and z_s564z3 (z_s565z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s560z3 (z_s561z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s560z3 (z_s561z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s561z3 with
     | z_s562z3 when (string_startswith (z_s562z3, "add")) ->
@@ -13246,7 +13284,7 @@ and z_s560z3 (z_s561z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and zrtype_mnemonic_matches_prefix (zargz3 : string) : ((zrop * Big_int.num)) zoption = sail_call (fun r ->
+and zrtype_mnemonic_matches_prefix (zargz3 : (string)) : ((zrop * Big_int.num)) zoption = sail_call (fun r ->
   begin
     match zargz3 with
     | z_s563z3 when (begin
@@ -13322,7 +13360,7 @@ and zrtype_mnemonic_matches_prefix (zargz3 : string) : ((zrop * Big_int.num)) zo
     | _ -> ZNone ()
   end)
 
-and zextend_value ((zis_unsigned, zvalue) : (bool * (zbits) zMemoryOpResult)) : (zxlenbits) zMemoryOpResult = sail_call (fun r ->
+and zextend_value ((zis_unsigned, zvalue) : (bool * ((bit) list) zMemoryOpResult)) : ((bit) list) zMemoryOpResult = sail_call (fun r ->
   begin
     match zvalue with
     | ZMemValue (zv) ->
@@ -13330,7 +13368,7 @@ and zextend_value ((zis_unsigned, zvalue) : (bool * (zbits) zMemoryOpResult)) : 
     | ZMemException (ze) -> ZMemException ze
   end)
 
-and zprocess_load ((zrd, zaddr, zvalue, zis_unsigned) : (zregbits * zxlenbits * (zbits) zMemoryOpResult * bool)) : bool = sail_call (fun r ->
+and zprocess_load ((zrd, zaddr, zvalue, zis_unsigned) : ((bit) list * (bit) list * ((bit) list) zMemoryOpResult * bool)) : bool = sail_call (fun r ->
   begin
     match (zextend_value (zis_unsigned, zvalue)) with
     | ZMemValue (zresult) ->
@@ -13338,7 +13376,7 @@ and zprocess_load ((zrd, zaddr, zvalue, zis_unsigned) : (zregbits * zxlenbits * 
     | ZMemException (ze) -> begin zhandle_mem_exception (zaddr, ze); false end
   end)
 
-and zcheck_misaligned ((zvaddr, zwidth) : (zxlenbits * zword_width)) : bool = sail_call (fun r ->
+and zcheck_misaligned ((zvaddr, zwidth) : ((bit) list * zword_width)) : bool = sail_call (fun r ->
   if (Platform.enable_misaligned_access ()) then false else (begin
     match zwidth with
     | ZBYTE -> false
@@ -13349,17 +13387,17 @@ and zcheck_misaligned ((zvaddr, zwidth) : (zxlenbits * zword_width)) : bool = sa
       (eq_bool ((zbit_to_bool (access (zvaddr, Big_int.zero))), true)) || ((eq_bool ((zbit_to_bool (access (zvaddr, (Big_int.of_int (1))))), true)) || (eq_bool ((zbit_to_bool (access (zvaddr, (Big_int.of_int (2))))), true)))
   end))
 
-and zmaybe_aq_forwards (zargz3 : bool) : string = sail_call (fun r ->
+and zmaybe_aq_forwards (zargz3 : (bool)) : string = sail_call (fun r ->
   begin
     match zargz3 with
     | zp0z3 when (eq_bool (zp0z3, true)) -> ".aq"
     | zp0z3 when (eq_bool (zp0z3, false)) -> ""
   end)
 
-and zmaybe_aq_backwards (zargz3 : string) : bool = sail_call (fun r ->
+and zmaybe_aq_backwards (zargz3 : (string)) : bool = sail_call (fun r ->
   begin match zargz3 with | ".aq" -> true | "" -> false end)
 
-and zmaybe_aq_forwards_matches (zargz3 : bool) : bool = sail_call (fun r ->
+and zmaybe_aq_forwards_matches (zargz3 : (bool)) : bool = sail_call (fun r ->
   begin
     match zargz3 with
     | zp0z3 when (eq_bool (zp0z3, true)) -> true
@@ -13367,10 +13405,10 @@ and zmaybe_aq_forwards_matches (zargz3 : bool) : bool = sail_call (fun r ->
     | _ -> false
   end)
 
-and zmaybe_aq_backwards_matches (zargz3 : string) : bool = sail_call (fun r ->
+and zmaybe_aq_backwards_matches (zargz3 : (string)) : bool = sail_call (fun r ->
   begin match zargz3 with | ".aq" -> true | "" -> true | _ -> false end)
 
-and z_s604z3 (z_s605z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s604z3 (z_s605z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s605z3 with
     | z_s606z3 when (string_startswith (z_s606z3, "")) ->
@@ -13382,7 +13420,7 @@ and z_s604z3 (z_s605z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s600z3 (z_s601z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s600z3 (z_s601z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s601z3 with
     | z_s602z3 when (string_startswith (z_s602z3, ".aq")) ->
@@ -13394,7 +13432,7 @@ and z_s600z3 (z_s601z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and zmaybe_aq_matches_prefix (zargz3 : string) : ((bool * Big_int.num)) zoption = sail_call (fun r ->
+and zmaybe_aq_matches_prefix (zargz3 : (string)) : ((bool * Big_int.num)) zoption = sail_call (fun r ->
   begin
     match zargz3 with
     | z_s603z3 when (begin
@@ -13414,17 +13452,17 @@ and zmaybe_aq_matches_prefix (zargz3 : string) : ((bool * Big_int.num)) zoption 
     | _ -> ZNone ()
   end)
 
-and zmaybe_rl_forwards (zargz3 : bool) : string = sail_call (fun r ->
+and zmaybe_rl_forwards (zargz3 : (bool)) : string = sail_call (fun r ->
   begin
     match zargz3 with
     | zp0z3 when (eq_bool (zp0z3, true)) -> ".rl"
     | zp0z3 when (eq_bool (zp0z3, false)) -> ""
   end)
 
-and zmaybe_rl_backwards (zargz3 : string) : bool = sail_call (fun r ->
+and zmaybe_rl_backwards (zargz3 : (string)) : bool = sail_call (fun r ->
   begin match zargz3 with | ".rl" -> true | "" -> false end)
 
-and zmaybe_rl_forwards_matches (zargz3 : bool) : bool = sail_call (fun r ->
+and zmaybe_rl_forwards_matches (zargz3 : (bool)) : bool = sail_call (fun r ->
   begin
     match zargz3 with
     | zp0z3 when (eq_bool (zp0z3, true)) -> true
@@ -13432,10 +13470,10 @@ and zmaybe_rl_forwards_matches (zargz3 : bool) : bool = sail_call (fun r ->
     | _ -> false
   end)
 
-and zmaybe_rl_backwards_matches (zargz3 : string) : bool = sail_call (fun r ->
+and zmaybe_rl_backwards_matches (zargz3 : (string)) : bool = sail_call (fun r ->
   begin match zargz3 with | ".rl" -> true | "" -> true | _ -> false end)
 
-and z_s612z3 (z_s613z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s612z3 (z_s613z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s613z3 with
     | z_s614z3 when (string_startswith (z_s614z3, "")) ->
@@ -13447,7 +13485,7 @@ and z_s612z3 (z_s613z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s608z3 (z_s609z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s608z3 (z_s609z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s609z3 with
     | z_s610z3 when (string_startswith (z_s610z3, ".rl")) ->
@@ -13459,7 +13497,7 @@ and z_s608z3 (z_s609z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and zmaybe_rl_matches_prefix (zargz3 : string) : ((bool * Big_int.num)) zoption = sail_call (fun r ->
+and zmaybe_rl_matches_prefix (zargz3 : (string)) : ((bool * Big_int.num)) zoption = sail_call (fun r ->
   begin
     match zargz3 with
     | z_s611z3 when (begin
@@ -13479,17 +13517,17 @@ and zmaybe_rl_matches_prefix (zargz3 : string) : ((bool * Big_int.num)) zoption 
     | _ -> ZNone ()
   end)
 
-and zmaybe_u_forwards (zargz3 : bool) : string = sail_call (fun r ->
+and zmaybe_u_forwards (zargz3 : (bool)) : string = sail_call (fun r ->
   begin
     match zargz3 with
     | zp0z3 when (eq_bool (zp0z3, true)) -> "u"
     | zp0z3 when (eq_bool (zp0z3, false)) -> ""
   end)
 
-and zmaybe_u_backwards (zargz3 : string) : bool = sail_call (fun r ->
+and zmaybe_u_backwards (zargz3 : (string)) : bool = sail_call (fun r ->
   begin match zargz3 with | "u" -> true | "" -> false end)
 
-and zmaybe_u_forwards_matches (zargz3 : bool) : bool = sail_call (fun r ->
+and zmaybe_u_forwards_matches (zargz3 : (bool)) : bool = sail_call (fun r ->
   begin
     match zargz3 with
     | zp0z3 when (eq_bool (zp0z3, true)) -> true
@@ -13497,10 +13535,10 @@ and zmaybe_u_forwards_matches (zargz3 : bool) : bool = sail_call (fun r ->
     | _ -> false
   end)
 
-and zmaybe_u_backwards_matches (zargz3 : string) : bool = sail_call (fun r ->
+and zmaybe_u_backwards_matches (zargz3 : (string)) : bool = sail_call (fun r ->
   begin match zargz3 with | "u" -> true | "" -> true | _ -> false end)
 
-and z_s620z3 (z_s621z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s620z3 (z_s621z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s621z3 with
     | z_s622z3 when (string_startswith (z_s622z3, "")) ->
@@ -13512,7 +13550,7 @@ and z_s620z3 (z_s621z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s616z3 (z_s617z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s616z3 (z_s617z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s617z3 with
     | z_s618z3 when (string_startswith (z_s618z3, "u")) ->
@@ -13524,7 +13562,7 @@ and z_s616z3 (z_s617z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and zmaybe_u_matches_prefix (zargz3 : string) : ((bool * Big_int.num)) zoption = sail_call (fun r ->
+and zmaybe_u_matches_prefix (zargz3 : (string)) : ((bool * Big_int.num)) zoption = sail_call (fun r ->
   begin
     match zargz3 with
     | z_s619z3 when (begin
@@ -13544,7 +13582,7 @@ and zmaybe_u_matches_prefix (zargz3 : string) : ((bool * Big_int.num)) zoption =
     | _ -> ZNone ()
   end)
 
-and zshiftw_mnemonic_forwards (zargz3 : zsop) : string = sail_call (fun r ->
+and zshiftw_mnemonic_forwards (zargz3 : (zsop)) : string = sail_call (fun r ->
   begin
     match zargz3 with
     | ZRISCV_SLLI -> "slli"
@@ -13552,7 +13590,7 @@ and zshiftw_mnemonic_forwards (zargz3 : zsop) : string = sail_call (fun r ->
     | ZRISCV_SRAI -> "srai"
   end)
 
-and zshiftw_mnemonic_backwards (zargz3 : string) : zsop = sail_call (fun r ->
+and zshiftw_mnemonic_backwards (zargz3 : (string)) : zsop = sail_call (fun r ->
   begin
     match zargz3 with
     | "slli" -> ZRISCV_SLLI
@@ -13560,7 +13598,7 @@ and zshiftw_mnemonic_backwards (zargz3 : string) : zsop = sail_call (fun r ->
     | "srai" -> ZRISCV_SRAI
   end)
 
-and zshiftw_mnemonic_forwards_matches (zargz3 : zsop) : bool = sail_call (fun r ->
+and zshiftw_mnemonic_forwards_matches (zargz3 : (zsop)) : bool = sail_call (fun r ->
   begin
     match zargz3 with
     | ZRISCV_SLLI -> true
@@ -13569,7 +13607,7 @@ and zshiftw_mnemonic_forwards_matches (zargz3 : zsop) : bool = sail_call (fun r 
     | _ -> false
   end)
 
-and zshiftw_mnemonic_backwards_matches (zargz3 : string) : bool = sail_call (fun r ->
+and zshiftw_mnemonic_backwards_matches (zargz3 : (string)) : bool = sail_call (fun r ->
   begin
     match zargz3 with
     | "slli" -> true
@@ -13578,7 +13616,7 @@ and zshiftw_mnemonic_backwards_matches (zargz3 : string) : bool = sail_call (fun
     | _ -> false
   end)
 
-and z_s632z3 (z_s633z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s632z3 (z_s633z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s633z3 with
     | z_s634z3 when (string_startswith (z_s634z3, "srai")) ->
@@ -13590,7 +13628,7 @@ and z_s632z3 (z_s633z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s628z3 (z_s629z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s628z3 (z_s629z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s629z3 with
     | z_s630z3 when (string_startswith (z_s630z3, "srli")) ->
@@ -13602,7 +13640,7 @@ and z_s628z3 (z_s629z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s624z3 (z_s625z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s624z3 (z_s625z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s625z3 with
     | z_s626z3 when (string_startswith (z_s626z3, "slli")) ->
@@ -13614,7 +13652,7 @@ and z_s624z3 (z_s625z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and zshiftw_mnemonic_matches_prefix (zargz3 : string) : ((zsop * Big_int.num)) zoption = sail_call (fun r ->
+and zshiftw_mnemonic_matches_prefix (zargz3 : (string)) : ((zsop * Big_int.num)) zoption = sail_call (fun r ->
   begin
     match zargz3 with
     | z_s627z3 when (begin
@@ -13641,7 +13679,7 @@ and zshiftw_mnemonic_matches_prefix (zargz3 : string) : ((zsop * Big_int.num)) z
     | _ -> ZNone ()
   end)
 
-and zrtypew_mnemonic_forwards (zargz3 : zropw) : string = sail_call (fun r ->
+and zrtypew_mnemonic_forwards (zargz3 : (zropw)) : string = sail_call (fun r ->
   begin
     match zargz3 with
     | ZRISCV_ADDW -> "addw"
@@ -13651,7 +13689,7 @@ and zrtypew_mnemonic_forwards (zargz3 : zropw) : string = sail_call (fun r ->
     | ZRISCV_SRAW -> "sraw"
   end)
 
-and zrtypew_mnemonic_backwards (zargz3 : string) : zropw = sail_call (fun r ->
+and zrtypew_mnemonic_backwards (zargz3 : (string)) : zropw = sail_call (fun r ->
   begin
     match zargz3 with
     | "addw" -> ZRISCV_ADDW
@@ -13661,7 +13699,7 @@ and zrtypew_mnemonic_backwards (zargz3 : string) : zropw = sail_call (fun r ->
     | "sraw" -> ZRISCV_SRAW
   end)
 
-and zrtypew_mnemonic_forwards_matches (zargz3 : zropw) : bool = sail_call (fun r ->
+and zrtypew_mnemonic_forwards_matches (zargz3 : (zropw)) : bool = sail_call (fun r ->
   begin
     match zargz3 with
     | ZRISCV_ADDW -> true
@@ -13672,7 +13710,7 @@ and zrtypew_mnemonic_forwards_matches (zargz3 : zropw) : bool = sail_call (fun r
     | _ -> false
   end)
 
-and zrtypew_mnemonic_backwards_matches (zargz3 : string) : bool = sail_call (fun r ->
+and zrtypew_mnemonic_backwards_matches (zargz3 : (string)) : bool = sail_call (fun r ->
   begin
     match zargz3 with
     | "addw" -> true
@@ -13683,7 +13721,7 @@ and zrtypew_mnemonic_backwards_matches (zargz3 : string) : bool = sail_call (fun
     | _ -> false
   end)
 
-and z_s652z3 (z_s653z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s652z3 (z_s653z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s653z3 with
     | z_s654z3 when (string_startswith (z_s654z3, "sraw")) ->
@@ -13695,7 +13733,7 @@ and z_s652z3 (z_s653z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s648z3 (z_s649z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s648z3 (z_s649z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s649z3 with
     | z_s650z3 when (string_startswith (z_s650z3, "srlw")) ->
@@ -13707,7 +13745,7 @@ and z_s648z3 (z_s649z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s644z3 (z_s645z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s644z3 (z_s645z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s645z3 with
     | z_s646z3 when (string_startswith (z_s646z3, "sllw")) ->
@@ -13719,7 +13757,7 @@ and z_s644z3 (z_s645z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s640z3 (z_s641z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s640z3 (z_s641z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s641z3 with
     | z_s642z3 when (string_startswith (z_s642z3, "subw")) ->
@@ -13731,7 +13769,7 @@ and z_s640z3 (z_s641z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s636z3 (z_s637z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s636z3 (z_s637z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s637z3 with
     | z_s638z3 when (string_startswith (z_s638z3, "addw")) ->
@@ -13743,7 +13781,7 @@ and z_s636z3 (z_s637z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and zrtypew_mnemonic_matches_prefix (zargz3 : string) : ((zropw * Big_int.num)) zoption = sail_call (fun r ->
+and zrtypew_mnemonic_matches_prefix (zargz3 : (string)) : ((zropw * Big_int.num)) zoption = sail_call (fun r ->
   begin
     match zargz3 with
     | z_s639z3 when (begin
@@ -13784,7 +13822,7 @@ and zrtypew_mnemonic_matches_prefix (zargz3 : string) : ((zropw * Big_int.num)) 
     | _ -> ZNone ()
   end)
 
-and zshiftiwop_mnemonic_forwards (zargz3 : zsopw) : string = sail_call (fun r ->
+and zshiftiwop_mnemonic_forwards (zargz3 : (zsopw)) : string = sail_call (fun r ->
   begin
     match zargz3 with
     | ZRISCV_SLLIW -> "slliw"
@@ -13792,7 +13830,7 @@ and zshiftiwop_mnemonic_forwards (zargz3 : zsopw) : string = sail_call (fun r ->
     | ZRISCV_SRAIW -> "sraiw"
   end)
 
-and zshiftiwop_mnemonic_backwards (zargz3 : string) : zsopw = sail_call (fun r ->
+and zshiftiwop_mnemonic_backwards (zargz3 : (string)) : zsopw = sail_call (fun r ->
   begin
     match zargz3 with
     | "slliw" -> ZRISCV_SLLIW
@@ -13800,7 +13838,7 @@ and zshiftiwop_mnemonic_backwards (zargz3 : string) : zsopw = sail_call (fun r -
     | "sraiw" -> ZRISCV_SRAIW
   end)
 
-and zshiftiwop_mnemonic_forwards_matches (zargz3 : zsopw) : bool = sail_call (fun r ->
+and zshiftiwop_mnemonic_forwards_matches (zargz3 : (zsopw)) : bool = sail_call (fun r ->
   begin
     match zargz3 with
     | ZRISCV_SLLIW -> true
@@ -13809,7 +13847,7 @@ and zshiftiwop_mnemonic_forwards_matches (zargz3 : zsopw) : bool = sail_call (fu
     | _ -> false
   end)
 
-and zshiftiwop_mnemonic_backwards_matches (zargz3 : string) : bool = sail_call (fun r ->
+and zshiftiwop_mnemonic_backwards_matches (zargz3 : (string)) : bool = sail_call (fun r ->
   begin
     match zargz3 with
     | "slliw" -> true
@@ -13818,7 +13856,7 @@ and zshiftiwop_mnemonic_backwards_matches (zargz3 : string) : bool = sail_call (
     | _ -> false
   end)
 
-and z_s664z3 (z_s665z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s664z3 (z_s665z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s665z3 with
     | z_s666z3 when (string_startswith (z_s666z3, "sraiw")) ->
@@ -13830,7 +13868,7 @@ and z_s664z3 (z_s665z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s660z3 (z_s661z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s660z3 (z_s661z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s661z3 with
     | z_s662z3 when (string_startswith (z_s662z3, "srliw")) ->
@@ -13842,7 +13880,7 @@ and z_s660z3 (z_s661z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s656z3 (z_s657z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s656z3 (z_s657z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s657z3 with
     | z_s658z3 when (string_startswith (z_s658z3, "slliw")) ->
@@ -13854,7 +13892,7 @@ and z_s656z3 (z_s657z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and zshiftiwop_mnemonic_matches_prefix (zargz3 : string) : ((zsopw * Big_int.num)) zoption = sail_call (fun r ->
+and zshiftiwop_mnemonic_matches_prefix (zargz3 : (string)) : ((zsopw * Big_int.num)) zoption = sail_call (fun r ->
   begin
     match zargz3 with
     | z_s659z3 when (begin
@@ -13881,7 +13919,7 @@ and zshiftiwop_mnemonic_matches_prefix (zargz3 : string) : ((zsopw * Big_int.num
     | _ -> ZNone ()
   end)
 
-and zencdec_mul_op_forwards (zargz3 : (bool * bool * bool)) : (bit) list = sail_call (fun r ->
+and zencdec_mul_op_forwards (zargz3 : ((bool * bool * bool))) : (bit) list = sail_call (fun r ->
   begin
     match zargz3 with
     | (zp0z3, zp1z3, zp2z3) when (((eq_bool (zp2z3, true)) && (eq_bool (zp1z3, true))) && (eq_bool (zp0z3, false))) ->
@@ -13894,7 +13932,7 @@ and zencdec_mul_op_forwards (zargz3 : (bool * bool * bool)) : (bit) list = sail_
       [B0; B1; B1]
   end)
 
-and zencdec_mul_op_backwards (zargz3 : (bit) list) : (bool * bool * bool) = sail_call (fun r ->
+and zencdec_mul_op_backwards (zargz3 : ((bit) list)) : (bool * bool * bool) = sail_call (fun r ->
   begin
     match zargz3 with
     | zb__0 when (let zp0z3 = (access (zb__0, (Big_int.of_int (2)))) in
@@ -13919,7 +13957,7 @@ and zencdec_mul_op_backwards (zargz3 : (bit) list) : (bool * bool * bool) = sail
       (true, false, false)
   end)
 
-and zencdec_mul_op_forwards_matches (zargz3 : (bool * bool * bool)) : bool = sail_call (fun r ->
+and zencdec_mul_op_forwards_matches (zargz3 : ((bool * bool * bool))) : bool = sail_call (fun r ->
   begin
     match zargz3 with
     | (zp0z3, zp1z3, zp2z3) when (((eq_bool (zp2z3, true)) && (eq_bool (zp1z3, true))) && (eq_bool (zp0z3, false))) ->
@@ -13933,7 +13971,7 @@ and zencdec_mul_op_forwards_matches (zargz3 : (bool * bool * bool)) : bool = sai
     | _ -> false
   end)
 
-and zencdec_mul_op_backwards_matches (zargz3 : (bit) list) : bool = sail_call (fun r ->
+and zencdec_mul_op_backwards_matches (zargz3 : ((bit) list)) : bool = sail_call (fun r ->
   begin
     match zargz3 with
     | zb__0 when (let zp0z3 = (access (zb__0, (Big_int.of_int (2)))) in
@@ -13959,7 +13997,7 @@ and zencdec_mul_op_backwards_matches (zargz3 : (bit) list) : bool = sail_call (f
     | _ -> false
   end)
 
-and zmul_mnemonic_forwards (zargz3 : (bool * bool * bool)) : string = sail_call (fun r ->
+and zmul_mnemonic_forwards (zargz3 : ((bool * bool * bool))) : string = sail_call (fun r ->
   begin
     match zargz3 with
     | (zp0z3, zp1z3, zp2z3) when (((eq_bool (zp2z3, true)) && (eq_bool (zp1z3, true))) && (eq_bool (zp0z3, false))) ->
@@ -13972,7 +14010,7 @@ and zmul_mnemonic_forwards (zargz3 : (bool * bool * bool)) : string = sail_call 
       "mulhu"
   end)
 
-and zmul_mnemonic_backwards (zargz3 : string) : (bool * bool * bool) = sail_call (fun r ->
+and zmul_mnemonic_backwards (zargz3 : (string)) : (bool * bool * bool) = sail_call (fun r ->
   begin
     match zargz3 with
     | "mul" -> (false, true, true)
@@ -13981,7 +14019,7 @@ and zmul_mnemonic_backwards (zargz3 : string) : (bool * bool * bool) = sail_call
     | "mulhu" -> (true, false, false)
   end)
 
-and zmul_mnemonic_forwards_matches (zargz3 : (bool * bool * bool)) : bool = sail_call (fun r ->
+and zmul_mnemonic_forwards_matches (zargz3 : ((bool * bool * bool))) : bool = sail_call (fun r ->
   begin
     match zargz3 with
     | (zp0z3, zp1z3, zp2z3) when (((eq_bool (zp2z3, true)) && (eq_bool (zp1z3, true))) && (eq_bool (zp0z3, false))) ->
@@ -13995,7 +14033,7 @@ and zmul_mnemonic_forwards_matches (zargz3 : (bool * bool * bool)) : bool = sail
     | _ -> false
   end)
 
-and zmul_mnemonic_backwards_matches (zargz3 : string) : bool = sail_call (fun r ->
+and zmul_mnemonic_backwards_matches (zargz3 : (string)) : bool = sail_call (fun r ->
   begin
     match zargz3 with
     | "mul" -> true
@@ -14005,7 +14043,7 @@ and zmul_mnemonic_backwards_matches (zargz3 : string) : bool = sail_call (fun r 
     | _ -> false
   end)
 
-and z_s680z3 (z_s681z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s680z3 (z_s681z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s681z3 with
     | z_s682z3 when (string_startswith (z_s682z3, "mulhu")) ->
@@ -14017,7 +14055,7 @@ and z_s680z3 (z_s681z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s676z3 (z_s677z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s676z3 (z_s677z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s677z3 with
     | z_s678z3 when (string_startswith (z_s678z3, "mulhsu")) ->
@@ -14029,7 +14067,7 @@ and z_s676z3 (z_s677z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s672z3 (z_s673z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s672z3 (z_s673z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s673z3 with
     | z_s674z3 when (string_startswith (z_s674z3, "mulh")) ->
@@ -14041,7 +14079,7 @@ and z_s672z3 (z_s673z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s668z3 (z_s669z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s668z3 (z_s669z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s669z3 with
     | z_s670z3 when (string_startswith (z_s670z3, "mul")) ->
@@ -14053,7 +14091,7 @@ and z_s668z3 (z_s669z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and zmul_mnemonic_matches_prefix (zargz3 : string) : (((bool * bool * bool) * Big_int.num)) zoption = sail_call (fun r ->
+and zmul_mnemonic_matches_prefix (zargz3 : (string)) : (((bool * bool * bool) * Big_int.num)) zoption = sail_call (fun r ->
   begin
     match zargz3 with
     | z_s671z3 when (begin
@@ -14087,17 +14125,17 @@ and zmul_mnemonic_matches_prefix (zargz3 : string) : (((bool * bool * bool) * Bi
     | _ -> ZNone ()
   end)
 
-and zmaybe_not_u_forwards (zargz3 : bool) : string = sail_call (fun r ->
+and zmaybe_not_u_forwards (zargz3 : (bool)) : string = sail_call (fun r ->
   begin
     match zargz3 with
     | zp0z3 when (eq_bool (zp0z3, false)) -> "u"
     | zp0z3 when (eq_bool (zp0z3, true)) -> ""
   end)
 
-and zmaybe_not_u_backwards (zargz3 : string) : bool = sail_call (fun r ->
+and zmaybe_not_u_backwards (zargz3 : (string)) : bool = sail_call (fun r ->
   begin match zargz3 with | "u" -> false | "" -> true end)
 
-and zmaybe_not_u_forwards_matches (zargz3 : bool) : bool = sail_call (fun r ->
+and zmaybe_not_u_forwards_matches (zargz3 : (bool)) : bool = sail_call (fun r ->
   begin
     match zargz3 with
     | zp0z3 when (eq_bool (zp0z3, false)) -> true
@@ -14105,10 +14143,10 @@ and zmaybe_not_u_forwards_matches (zargz3 : bool) : bool = sail_call (fun r ->
     | _ -> false
   end)
 
-and zmaybe_not_u_backwards_matches (zargz3 : string) : bool = sail_call (fun r ->
+and zmaybe_not_u_backwards_matches (zargz3 : (string)) : bool = sail_call (fun r ->
   begin match zargz3 with | "u" -> true | "" -> true | _ -> false end)
 
-and z_s688z3 (z_s689z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s688z3 (z_s689z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s689z3 with
     | z_s690z3 when (string_startswith (z_s690z3, "")) ->
@@ -14120,7 +14158,7 @@ and z_s688z3 (z_s689z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s684z3 (z_s685z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s684z3 (z_s685z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s685z3 with
     | z_s686z3 when (string_startswith (z_s686z3, "u")) ->
@@ -14132,7 +14170,7 @@ and z_s684z3 (z_s685z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and zmaybe_not_u_matches_prefix (zargz3 : string) : ((bool * Big_int.num)) zoption = sail_call (fun r ->
+and zmaybe_not_u_matches_prefix (zargz3 : (string)) : ((bool * Big_int.num)) zoption = sail_call (fun r ->
   begin
     match zargz3 with
     | z_s687z3 when (begin
@@ -14152,7 +14190,7 @@ and zmaybe_not_u_matches_prefix (zargz3 : string) : ((bool * Big_int.num)) zopti
     | _ -> ZNone ()
   end)
 
-and zbit_maybe_r_forwards (zargz3 : (bit) list) : string = sail_call (fun r ->
+and zbit_maybe_r_forwards (zargz3 : ((bit) list)) : string = sail_call (fun r ->
   begin
     match zargz3 with
     | zb__0 when (let zp0z3 = (access (zb__0, Big_int.zero)) in
@@ -14163,10 +14201,10 @@ and zbit_maybe_r_forwards (zargz3 : (bit) list) : string = sail_call (fun r ->
       ""
   end)
 
-and zbit_maybe_r_backwards (zargz3 : string) : (bit) list = sail_call (fun r ->
+and zbit_maybe_r_backwards (zargz3 : (string)) : (bit) list = sail_call (fun r ->
   begin match zargz3 with | "r" -> [B1] | "" -> [B0] end)
 
-and zbit_maybe_r_forwards_matches (zargz3 : (bit) list) : bool = sail_call (fun r ->
+and zbit_maybe_r_forwards_matches (zargz3 : ((bit) list)) : bool = sail_call (fun r ->
   begin
     match zargz3 with
     | zb__0 when (let zp0z3 = (access (zb__0, Big_int.zero)) in
@@ -14178,10 +14216,10 @@ and zbit_maybe_r_forwards_matches (zargz3 : (bit) list) : bool = sail_call (fun 
     | _ -> false
   end)
 
-and zbit_maybe_r_backwards_matches (zargz3 : string) : bool = sail_call (fun r ->
+and zbit_maybe_r_backwards_matches (zargz3 : (string)) : bool = sail_call (fun r ->
   begin match zargz3 with | "r" -> true | "" -> true | _ -> false end)
 
-and z_s696z3 (z_s697z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s696z3 (z_s697z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s697z3 with
     | z_s698z3 when (string_startswith (z_s698z3, "")) ->
@@ -14193,7 +14231,7 @@ and z_s696z3 (z_s697z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s692z3 (z_s693z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s692z3 (z_s693z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s693z3 with
     | z_s694z3 when (string_startswith (z_s694z3, "r")) ->
@@ -14205,7 +14243,7 @@ and z_s692z3 (z_s693z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and zbit_maybe_r_matches_prefix (zargz3 : string) : (((bit) list * Big_int.num)) zoption = sail_call (fun r ->
+and zbit_maybe_r_matches_prefix (zargz3 : (string)) : (((bit) list * Big_int.num)) zoption = sail_call (fun r ->
   begin
     match zargz3 with
     | z_s695z3 when (begin
@@ -14225,7 +14263,7 @@ and zbit_maybe_r_matches_prefix (zargz3 : string) : (((bit) list * Big_int.num))
     | _ -> ZNone ()
   end)
 
-and zbit_maybe_w_forwards (zargz3 : (bit) list) : string = sail_call (fun r ->
+and zbit_maybe_w_forwards (zargz3 : ((bit) list)) : string = sail_call (fun r ->
   begin
     match zargz3 with
     | zb__0 when (let zp0z3 = (access (zb__0, Big_int.zero)) in
@@ -14236,10 +14274,10 @@ and zbit_maybe_w_forwards (zargz3 : (bit) list) : string = sail_call (fun r ->
       ""
   end)
 
-and zbit_maybe_w_backwards (zargz3 : string) : (bit) list = sail_call (fun r ->
+and zbit_maybe_w_backwards (zargz3 : (string)) : (bit) list = sail_call (fun r ->
   begin match zargz3 with | "w" -> [B1] | "" -> [B0] end)
 
-and zbit_maybe_w_forwards_matches (zargz3 : (bit) list) : bool = sail_call (fun r ->
+and zbit_maybe_w_forwards_matches (zargz3 : ((bit) list)) : bool = sail_call (fun r ->
   begin
     match zargz3 with
     | zb__0 when (let zp0z3 = (access (zb__0, Big_int.zero)) in
@@ -14251,10 +14289,10 @@ and zbit_maybe_w_forwards_matches (zargz3 : (bit) list) : bool = sail_call (fun 
     | _ -> false
   end)
 
-and zbit_maybe_w_backwards_matches (zargz3 : string) : bool = sail_call (fun r ->
+and zbit_maybe_w_backwards_matches (zargz3 : (string)) : bool = sail_call (fun r ->
   begin match zargz3 with | "w" -> true | "" -> true | _ -> false end)
 
-and z_s704z3 (z_s705z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s704z3 (z_s705z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s705z3 with
     | z_s706z3 when (string_startswith (z_s706z3, "")) ->
@@ -14266,7 +14304,7 @@ and z_s704z3 (z_s705z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s700z3 (z_s701z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s700z3 (z_s701z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s701z3 with
     | z_s702z3 when (string_startswith (z_s702z3, "w")) ->
@@ -14278,7 +14316,7 @@ and z_s700z3 (z_s701z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and zbit_maybe_w_matches_prefix (zargz3 : string) : (((bit) list * Big_int.num)) zoption = sail_call (fun r ->
+and zbit_maybe_w_matches_prefix (zargz3 : (string)) : (((bit) list * Big_int.num)) zoption = sail_call (fun r ->
   begin
     match zargz3 with
     | z_s703z3 when (begin
@@ -14298,7 +14336,7 @@ and zbit_maybe_w_matches_prefix (zargz3 : string) : (((bit) list * Big_int.num))
     | _ -> ZNone ()
   end)
 
-and zbit_maybe_i_forwards (zargz3 : (bit) list) : string = sail_call (fun r ->
+and zbit_maybe_i_forwards (zargz3 : ((bit) list)) : string = sail_call (fun r ->
   begin
     match zargz3 with
     | zb__0 when (let zp0z3 = (access (zb__0, Big_int.zero)) in
@@ -14309,10 +14347,10 @@ and zbit_maybe_i_forwards (zargz3 : (bit) list) : string = sail_call (fun r ->
       ""
   end)
 
-and zbit_maybe_i_backwards (zargz3 : string) : (bit) list = sail_call (fun r ->
+and zbit_maybe_i_backwards (zargz3 : (string)) : (bit) list = sail_call (fun r ->
   begin match zargz3 with | "i" -> [B1] | "" -> [B0] end)
 
-and zbit_maybe_i_forwards_matches (zargz3 : (bit) list) : bool = sail_call (fun r ->
+and zbit_maybe_i_forwards_matches (zargz3 : ((bit) list)) : bool = sail_call (fun r ->
   begin
     match zargz3 with
     | zb__0 when (let zp0z3 = (access (zb__0, Big_int.zero)) in
@@ -14324,10 +14362,10 @@ and zbit_maybe_i_forwards_matches (zargz3 : (bit) list) : bool = sail_call (fun 
     | _ -> false
   end)
 
-and zbit_maybe_i_backwards_matches (zargz3 : string) : bool = sail_call (fun r ->
+and zbit_maybe_i_backwards_matches (zargz3 : (string)) : bool = sail_call (fun r ->
   begin match zargz3 with | "i" -> true | "" -> true | _ -> false end)
 
-and z_s712z3 (z_s713z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s712z3 (z_s713z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s713z3 with
     | z_s714z3 when (string_startswith (z_s714z3, "")) ->
@@ -14339,7 +14377,7 @@ and z_s712z3 (z_s713z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s708z3 (z_s709z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s708z3 (z_s709z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s709z3 with
     | z_s710z3 when (string_startswith (z_s710z3, "i")) ->
@@ -14351,7 +14389,7 @@ and z_s708z3 (z_s709z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and zbit_maybe_i_matches_prefix (zargz3 : string) : (((bit) list * Big_int.num)) zoption = sail_call (fun r ->
+and zbit_maybe_i_matches_prefix (zargz3 : (string)) : (((bit) list * Big_int.num)) zoption = sail_call (fun r ->
   begin
     match zargz3 with
     | z_s711z3 when (begin
@@ -14371,7 +14409,7 @@ and zbit_maybe_i_matches_prefix (zargz3 : string) : (((bit) list * Big_int.num))
     | _ -> ZNone ()
   end)
 
-and zbit_maybe_o_forwards (zargz3 : (bit) list) : string = sail_call (fun r ->
+and zbit_maybe_o_forwards (zargz3 : ((bit) list)) : string = sail_call (fun r ->
   begin
     match zargz3 with
     | zb__0 when (let zp0z3 = (access (zb__0, Big_int.zero)) in
@@ -14382,10 +14420,10 @@ and zbit_maybe_o_forwards (zargz3 : (bit) list) : string = sail_call (fun r ->
       ""
   end)
 
-and zbit_maybe_o_backwards (zargz3 : string) : (bit) list = sail_call (fun r ->
+and zbit_maybe_o_backwards (zargz3 : (string)) : (bit) list = sail_call (fun r ->
   begin match zargz3 with | "o" -> [B1] | "" -> [B0] end)
 
-and zbit_maybe_o_forwards_matches (zargz3 : (bit) list) : bool = sail_call (fun r ->
+and zbit_maybe_o_forwards_matches (zargz3 : ((bit) list)) : bool = sail_call (fun r ->
   begin
     match zargz3 with
     | zb__0 when (let zp0z3 = (access (zb__0, Big_int.zero)) in
@@ -14397,10 +14435,10 @@ and zbit_maybe_o_forwards_matches (zargz3 : (bit) list) : bool = sail_call (fun 
     | _ -> false
   end)
 
-and zbit_maybe_o_backwards_matches (zargz3 : string) : bool = sail_call (fun r ->
+and zbit_maybe_o_backwards_matches (zargz3 : (string)) : bool = sail_call (fun r ->
   begin match zargz3 with | "o" -> true | "" -> true | _ -> false end)
 
-and z_s720z3 (z_s721z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s720z3 (z_s721z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s721z3 with
     | z_s722z3 when (string_startswith (z_s722z3, "")) ->
@@ -14412,7 +14450,7 @@ and z_s720z3 (z_s721z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s716z3 (z_s717z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s716z3 (z_s717z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s717z3 with
     | z_s718z3 when (string_startswith (z_s718z3, "o")) ->
@@ -14424,7 +14462,7 @@ and z_s716z3 (z_s717z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and zbit_maybe_o_matches_prefix (zargz3 : string) : (((bit) list * Big_int.num)) zoption = sail_call (fun r ->
+and zbit_maybe_o_matches_prefix (zargz3 : (string)) : (((bit) list * Big_int.num)) zoption = sail_call (fun r ->
   begin
     match zargz3 with
     | z_s719z3 when (begin
@@ -14444,7 +14482,7 @@ and zbit_maybe_o_matches_prefix (zargz3 : string) : (((bit) list * Big_int.num))
     | _ -> ZNone ()
   end)
 
-and zfence_bits_forwards (zargz3 : (bit) list) : string = sail_call (fun r ->
+and zfence_bits_forwards (zargz3 : ((bit) list)) : string = sail_call (fun r ->
   begin
     match zargz3 with
     | zv__0 ->
@@ -14456,7 +14494,7 @@ and zfence_bits_forwards (zargz3 : (bit) list) : string = sail_call (fun r ->
       string_append ((zbit_maybe_i_forwards zi), (string_append ((zbit_maybe_o_forwards zo), (string_append ((zbit_maybe_r_forwards zr), (string_append ((zbit_maybe_w_forwards zw), "")))))))
   end)
 
-and z_s724z3 (z_s725z3 : string) : (((bit) list * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s724z3 (z_s725z3 : (string)) : (((bit) list * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s725z3 with
     | z_s726z3 ->
@@ -14503,7 +14541,7 @@ and z_s724z3 (z_s725z3 : string) : (((bit) list * (bit) list * (bit) list * (bit
     | _ -> ZNone ()
   end)
 
-and zfence_bits_backwards (zargz3 : string) : (bit) list = sail_call (fun r ->
+and zfence_bits_backwards (zargz3 : (string)) : (bit) list = sail_call (fun r ->
   begin
     match zargz3 with
     | z_s734z3 when (begin
@@ -14515,10 +14553,10 @@ and zfence_bits_backwards (zargz3 : string) : (bit) list = sail_call (fun r ->
       append ((zi), (append ((zo), (append ((zr), (zw))))))
   end)
 
-and zfence_bits_forwards_matches (zargz3 : (bit) list) : bool = sail_call (fun r ->
+and zfence_bits_forwards_matches (zargz3 : ((bit) list)) : bool = sail_call (fun r ->
   begin match zargz3 with | zv__1 -> true | _ -> false end)
 
-and z_s735z3 (z_s736z3 : string) : (((bit) list * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s735z3 (z_s736z3 : (string)) : (((bit) list * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s736z3 with
     | z_s737z3 ->
@@ -14565,7 +14603,7 @@ and z_s735z3 (z_s736z3 : string) : (((bit) list * (bit) list * (bit) list * (bit
     | _ -> ZNone ()
   end)
 
-and zfence_bits_backwards_matches (zargz3 : string) : bool = sail_call (fun r ->
+and zfence_bits_backwards_matches (zargz3 : (string)) : bool = sail_call (fun r ->
   begin
     match zargz3 with
     | z_s745z3 when (begin
@@ -14577,7 +14615,7 @@ and zfence_bits_backwards_matches (zargz3 : string) : bool = sail_call (fun r ->
     | _ -> false
   end)
 
-and z_s746z3 (z_s747z3 : string) : (((bit) list * (bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s746z3 (z_s747z3 : (string)) : (((bit) list * (bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
     match z_s747z3 with
     | z_s748z3 ->
@@ -14624,7 +14662,7 @@ and z_s746z3 (z_s747z3 : string) : (((bit) list * (bit) list * (bit) list * (bit
     | _ -> ZNone ()
   end)
 
-and zfence_bits_matches_prefix (zargz3 : string) : (((bit) list * Big_int.num)) zoption = sail_call (fun r ->
+and zfence_bits_matches_prefix (zargz3 : (string)) : (((bit) list * Big_int.num)) zoption = sail_call (fun r ->
   begin
     match zargz3 with
     | z_s756z3 when (begin
@@ -14650,7 +14688,7 @@ and zaqrl_str ((zaq, zrl) : (bool * bool)) : string = sail_call (fun r ->
       ".aqrl"
   end)
 
-and zlrsc_width_str (zwidth : zword_width) : string = sail_call (fun r ->
+and zlrsc_width_str (zwidth : (zword_width)) : string = sail_call (fun r ->
   begin
     match zwidth with
     | ZBYTE -> ".b"
@@ -14659,7 +14697,7 @@ and zlrsc_width_str (zwidth : zword_width) : string = sail_call (fun r ->
     | ZDOUBLE -> ".d"
   end)
 
-and zprocess_loadres ((zrd, zaddr, zvalue, zis_unsigned) : (zregbits * zxlenbits * (zbits) zMemoryOpResult * bool)) : bool = sail_call (fun r ->
+and zprocess_loadres ((zrd, zaddr, zvalue, zis_unsigned) : ((bit) list * (bit) list * ((bit) list) zMemoryOpResult * bool)) : bool = sail_call (fun r ->
   begin
     match (zextend_value (zis_unsigned, zvalue)) with
     | ZMemValue (zresult) ->
@@ -14671,7 +14709,7 @@ and zprocess_loadres ((zrd, zaddr, zvalue, zis_unsigned) : (zregbits * zxlenbits
     | ZMemException (ze) -> begin zhandle_mem_exception (zaddr, ze); false end
   end)
 
-and zencdec_amoop_forwards (zargz3 : zamoop) : (bit) list = sail_call (fun r ->
+and zencdec_amoop_forwards (zargz3 : (zamoop)) : (bit) list = sail_call (fun r ->
   begin
     match zargz3 with
     | ZAMOSWAP -> [B0; B0; B0; B0; B1]
@@ -14685,7 +14723,7 @@ and zencdec_amoop_forwards (zargz3 : zamoop) : (bit) list = sail_call (fun r ->
     | ZAMOMAXU -> [B1; B1; B1; B0; B0]
   end)
 
-and zencdec_amoop_backwards (zargz3 : (bit) list) : zamoop = sail_call (fun r ->
+and zencdec_amoop_backwards (zargz3 : ((bit) list)) : zamoop = sail_call (fun r ->
   begin
     match zargz3 with
     | zb__0 when (let zp0z3 = (access (zb__0, (Big_int.of_int (4)))) in
@@ -14753,7 +14791,7 @@ and zencdec_amoop_backwards (zargz3 : (bit) list) : zamoop = sail_call (fun r ->
       ZAMOMAXU
   end)
 
-and zencdec_amoop_forwards_matches (zargz3 : zamoop) : bool = sail_call (fun r ->
+and zencdec_amoop_forwards_matches (zargz3 : (zamoop)) : bool = sail_call (fun r ->
   begin
     match zargz3 with
     | ZAMOSWAP -> true
@@ -14768,7 +14806,7 @@ and zencdec_amoop_forwards_matches (zargz3 : zamoop) : bool = sail_call (fun r -
     | _ -> false
   end)
 
-and zencdec_amoop_backwards_matches (zargz3 : (bit) list) : bool = sail_call (fun r ->
+and zencdec_amoop_backwards_matches (zargz3 : ((bit) list)) : bool = sail_call (fun r ->
   begin
     match zargz3 with
     | zb__0 when (let zp0z3 = (access (zb__0, (Big_int.of_int (4)))) in
@@ -14837,7 +14875,7 @@ and zencdec_amoop_backwards_matches (zargz3 : (bit) list) : bool = sail_call (fu
     | _ -> false
   end)
 
-and zamo_mnemonic_forwards (zargz3 : zamoop) : string = sail_call (fun r ->
+and zamo_mnemonic_forwards (zargz3 : (zamoop)) : string = sail_call (fun r ->
   begin
     match zargz3 with
     | ZAMOSWAP -> "amoswap"
@@ -14851,7 +14889,7 @@ and zamo_mnemonic_forwards (zargz3 : zamoop) : string = sail_call (fun r ->
     | ZAMOMAXU -> "amomaxu"
   end)
 
-and zamo_mnemonic_backwards (zargz3 : string) : zamoop = sail_call (fun r ->
+and zamo_mnemonic_backwards (zargz3 : (string)) : zamoop = sail_call (fun r ->
   begin
     match zargz3 with
     | "amoswap" -> ZAMOSWAP
@@ -14865,7 +14903,7 @@ and zamo_mnemonic_backwards (zargz3 : string) : zamoop = sail_call (fun r ->
     | "amomaxu" -> ZAMOMAXU
   end)
 
-and zamo_mnemonic_forwards_matches (zargz3 : zamoop) : bool = sail_call (fun r ->
+and zamo_mnemonic_forwards_matches (zargz3 : (zamoop)) : bool = sail_call (fun r ->
   begin
     match zargz3 with
     | ZAMOSWAP -> true
@@ -14880,7 +14918,7 @@ and zamo_mnemonic_forwards_matches (zargz3 : zamoop) : bool = sail_call (fun r -
     | _ -> false
   end)
 
-and zamo_mnemonic_backwards_matches (zargz3 : string) : bool = sail_call (fun r ->
+and zamo_mnemonic_backwards_matches (zargz3 : (string)) : bool = sail_call (fun r ->
   begin
     match zargz3 with
     | "amoswap" -> true
@@ -14895,7 +14933,7 @@ and zamo_mnemonic_backwards_matches (zargz3 : string) : bool = sail_call (fun r 
     | _ -> false
   end)
 
-and z_s789z3 (z_s790z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s789z3 (z_s790z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s790z3 with
     | z_s791z3 when (string_startswith (z_s791z3, "amomaxu")) ->
@@ -14907,7 +14945,7 @@ and z_s789z3 (z_s790z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s785z3 (z_s786z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s785z3 (z_s786z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s786z3 with
     | z_s787z3 when (string_startswith (z_s787z3, "amominu")) ->
@@ -14919,7 +14957,7 @@ and z_s785z3 (z_s786z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s781z3 (z_s782z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s781z3 (z_s782z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s782z3 with
     | z_s783z3 when (string_startswith (z_s783z3, "amomax")) ->
@@ -14931,7 +14969,7 @@ and z_s781z3 (z_s782z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s777z3 (z_s778z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s777z3 (z_s778z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s778z3 with
     | z_s779z3 when (string_startswith (z_s779z3, "amomin")) ->
@@ -14943,7 +14981,7 @@ and z_s777z3 (z_s778z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s773z3 (z_s774z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s773z3 (z_s774z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s774z3 with
     | z_s775z3 when (string_startswith (z_s775z3, "amoor")) ->
@@ -14955,7 +14993,7 @@ and z_s773z3 (z_s774z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s769z3 (z_s770z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s769z3 (z_s770z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s770z3 with
     | z_s771z3 when (string_startswith (z_s771z3, "amoand")) ->
@@ -14967,7 +15005,7 @@ and z_s769z3 (z_s770z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s765z3 (z_s766z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s765z3 (z_s766z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s766z3 with
     | z_s767z3 when (string_startswith (z_s767z3, "amoxor")) ->
@@ -14979,7 +15017,7 @@ and z_s765z3 (z_s766z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s761z3 (z_s762z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s761z3 (z_s762z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s762z3 with
     | z_s763z3 when (string_startswith (z_s763z3, "amoadd")) ->
@@ -14991,7 +15029,7 @@ and z_s761z3 (z_s762z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s757z3 (z_s758z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s757z3 (z_s758z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s758z3 with
     | z_s759z3 when (string_startswith (z_s759z3, "amoswap")) ->
@@ -15003,7 +15041,7 @@ and z_s757z3 (z_s758z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and zamo_mnemonic_matches_prefix (zargz3 : string) : ((zamoop * Big_int.num)) zoption = sail_call (fun r ->
+and zamo_mnemonic_matches_prefix (zargz3 : (string)) : ((zamoop * Big_int.num)) zoption = sail_call (fun r ->
   begin
     match zargz3 with
     | z_s760z3 when (begin
@@ -15072,7 +15110,7 @@ and zamo_mnemonic_matches_prefix (zargz3 : string) : ((zamoop * Big_int.num)) zo
     | _ -> ZNone ()
   end)
 
-and zencdec_csrop_forwards (zargz3 : zcsrop) : (bit) list = sail_call (fun r ->
+and zencdec_csrop_forwards (zargz3 : (zcsrop)) : (bit) list = sail_call (fun r ->
   begin
     match zargz3 with
     | ZCSRRW -> [B0; B1]
@@ -15080,7 +15118,7 @@ and zencdec_csrop_forwards (zargz3 : zcsrop) : (bit) list = sail_call (fun r ->
     | ZCSRRC -> [B1; B1]
   end)
 
-and zencdec_csrop_backwards (zargz3 : (bit) list) : zcsrop = sail_call (fun r ->
+and zencdec_csrop_backwards (zargz3 : ((bit) list)) : zcsrop = sail_call (fun r ->
   begin
     match zargz3 with
     | zb__0 when (let zp0z3 = (access (zb__0, (Big_int.of_int (1)))) in
@@ -15097,7 +15135,7 @@ and zencdec_csrop_backwards (zargz3 : (bit) list) : zcsrop = sail_call (fun r ->
       ZCSRRC
   end)
 
-and zencdec_csrop_forwards_matches (zargz3 : zcsrop) : bool = sail_call (fun r ->
+and zencdec_csrop_forwards_matches (zargz3 : (zcsrop)) : bool = sail_call (fun r ->
   begin
     match zargz3 with
     | ZCSRRW -> true
@@ -15106,7 +15144,7 @@ and zencdec_csrop_forwards_matches (zargz3 : zcsrop) : bool = sail_call (fun r -
     | _ -> false
   end)
 
-and zencdec_csrop_backwards_matches (zargz3 : (bit) list) : bool = sail_call (fun r ->
+and zencdec_csrop_backwards_matches (zargz3 : ((bit) list)) : bool = sail_call (fun r ->
   begin
     match zargz3 with
     | zb__0 when (let zp0z3 = (access (zb__0, (Big_int.of_int (1)))) in
@@ -15124,7 +15162,7 @@ and zencdec_csrop_backwards_matches (zargz3 : (bit) list) : bool = sail_call (fu
     | _ -> false
   end)
 
-and zreadCSR (zcsr : zcsreg) : zxlenbits = sail_call (fun r ->
+and zreadCSR (zcsr : ((bit) list)) : (bit) list = sail_call (fun r ->
   let zres = (begin
     match zcsr with
     | zb__0 when (let zp0z3 = (access (zb__0, (Big_int.of_int (11)))) in
@@ -15614,7 +15652,7 @@ and zreadCSR (zcsr : zcsreg) : zxlenbits = sail_call (fun r ->
     zres
   end)
 
-and zwriteCSR ((zcsr, zvalue) : (zcsreg * zxlenbits)) : unit = sail_call (fun r ->
+and zwriteCSR ((zcsr, zvalue) : ((bit) list * (bit) list)) : unit = sail_call (fun r ->
   let zres = (begin
     match zcsr with
     | zb__0 when (let zp0z3 = (access (zb__0, (Big_int.of_int (11)))) in
@@ -16086,17 +16124,17 @@ and zwriteCSR ((zcsr, zvalue) : (zcsreg * zxlenbits)) : unit = sail_call (fun r 
     | ZNone (()) -> print_bits ("unhandled write to CSR ", zcsr)
   end)
 
-and zmaybe_i_forwards (zargz3 : bool) : string = sail_call (fun r ->
+and zmaybe_i_forwards (zargz3 : (bool)) : string = sail_call (fun r ->
   begin
     match zargz3 with
     | zp0z3 when (eq_bool (zp0z3, true)) -> "i"
     | zp0z3 when (eq_bool (zp0z3, false)) -> ""
   end)
 
-and zmaybe_i_backwards (zargz3 : string) : bool = sail_call (fun r ->
+and zmaybe_i_backwards (zargz3 : (string)) : bool = sail_call (fun r ->
   begin match zargz3 with | "i" -> true | "" -> false end)
 
-and zmaybe_i_forwards_matches (zargz3 : bool) : bool = sail_call (fun r ->
+and zmaybe_i_forwards_matches (zargz3 : (bool)) : bool = sail_call (fun r ->
   begin
     match zargz3 with
     | zp0z3 when (eq_bool (zp0z3, true)) -> true
@@ -16104,10 +16142,10 @@ and zmaybe_i_forwards_matches (zargz3 : bool) : bool = sail_call (fun r ->
     | _ -> false
   end)
 
-and zmaybe_i_backwards_matches (zargz3 : string) : bool = sail_call (fun r ->
+and zmaybe_i_backwards_matches (zargz3 : (string)) : bool = sail_call (fun r ->
   begin match zargz3 with | "i" -> true | "" -> true | _ -> false end)
 
-and z_s797z3 (z_s798z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s797z3 (z_s798z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s798z3 with
     | z_s799z3 when (string_startswith (z_s799z3, "")) ->
@@ -16119,7 +16157,7 @@ and z_s797z3 (z_s798z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s793z3 (z_s794z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s793z3 (z_s794z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s794z3 with
     | z_s795z3 when (string_startswith (z_s795z3, "i")) ->
@@ -16131,7 +16169,7 @@ and z_s793z3 (z_s794z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and zmaybe_i_matches_prefix (zargz3 : string) : ((bool * Big_int.num)) zoption = sail_call (fun r ->
+and zmaybe_i_matches_prefix (zargz3 : (string)) : ((bool * Big_int.num)) zoption = sail_call (fun r ->
   begin
     match zargz3 with
     | z_s796z3 when (begin
@@ -16151,7 +16189,7 @@ and zmaybe_i_matches_prefix (zargz3 : string) : ((bool * Big_int.num)) zoption =
     | _ -> ZNone ()
   end)
 
-and zcsr_mnemonic_forwards (zargz3 : zcsrop) : string = sail_call (fun r ->
+and zcsr_mnemonic_forwards (zargz3 : (zcsrop)) : string = sail_call (fun r ->
   begin
     match zargz3 with
     | ZCSRRW -> "csrrw"
@@ -16159,7 +16197,7 @@ and zcsr_mnemonic_forwards (zargz3 : zcsrop) : string = sail_call (fun r ->
     | ZCSRRC -> "csrrc"
   end)
 
-and zcsr_mnemonic_backwards (zargz3 : string) : zcsrop = sail_call (fun r ->
+and zcsr_mnemonic_backwards (zargz3 : (string)) : zcsrop = sail_call (fun r ->
   begin
     match zargz3 with
     | "csrrw" -> ZCSRRW
@@ -16167,7 +16205,7 @@ and zcsr_mnemonic_backwards (zargz3 : string) : zcsrop = sail_call (fun r ->
     | "csrrc" -> ZCSRRC
   end)
 
-and zcsr_mnemonic_forwards_matches (zargz3 : zcsrop) : bool = sail_call (fun r ->
+and zcsr_mnemonic_forwards_matches (zargz3 : (zcsrop)) : bool = sail_call (fun r ->
   begin
     match zargz3 with
     | ZCSRRW -> true
@@ -16176,7 +16214,7 @@ and zcsr_mnemonic_forwards_matches (zargz3 : zcsrop) : bool = sail_call (fun r -
     | _ -> false
   end)
 
-and zcsr_mnemonic_backwards_matches (zargz3 : string) : bool = sail_call (fun r ->
+and zcsr_mnemonic_backwards_matches (zargz3 : (string)) : bool = sail_call (fun r ->
   begin
     match zargz3 with
     | "csrrw" -> true
@@ -16185,7 +16223,7 @@ and zcsr_mnemonic_backwards_matches (zargz3 : string) : bool = sail_call (fun r 
     | _ -> false
   end)
 
-and z_s809z3 (z_s810z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s809z3 (z_s810z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s810z3 with
     | z_s811z3 when (string_startswith (z_s811z3, "csrrc")) ->
@@ -16197,7 +16235,7 @@ and z_s809z3 (z_s810z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s805z3 (z_s806z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s805z3 (z_s806z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s806z3 with
     | z_s807z3 when (string_startswith (z_s807z3, "csrrs")) ->
@@ -16209,7 +16247,7 @@ and z_s805z3 (z_s806z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s801z3 (z_s802z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s801z3 (z_s802z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s802z3 with
     | z_s803z3 when (string_startswith (z_s803z3, "csrrw")) ->
@@ -16221,7 +16259,7 @@ and z_s801z3 (z_s802z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and zcsr_mnemonic_matches_prefix (zargz3 : string) : ((zcsrop * Big_int.num)) zoption = sail_call (fun r ->
+and zcsr_mnemonic_matches_prefix (zargz3 : (string)) : ((zcsrop * Big_int.num)) zoption = sail_call (fun r ->
   begin
     match zargz3 with
     | z_s804z3 when (begin
@@ -16248,8 +16286,8 @@ and zcsr_mnemonic_matches_prefix (zargz3 : string) : ((zcsrop * Big_int.num)) zo
     | _ -> ZNone ()
   end)
 
-and zexecute (gs4470 : zast) = sail_call (fun r ->
-  match gs4470 with
+and zexecute (gs5258 : (zast)) = sail_call (fun r ->
+  match gs5258 with
   | ZUTYPE (zimm, zrd, zop) ->
     let zoff = (zEXTS ((Big_int.of_int (64)), (append (zimm, [B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0])))) in
     let zret = (begin
@@ -16264,15 +16302,6 @@ and zexecute (gs4470 : zast) = sail_call (fun r ->
       zwX ((zregbits_to_regno zrd), !znextPC);
       let zoffset = (zEXTS ((Big_int.of_int (64)), zimm)) in
       begin znextPC := (add_vec (zpc, zoffset)); true end
-    end
-  | ZRISCV_JALR (zimm, zrs1, zrd) ->
-    begin
-      zwX ((zregbits_to_regno zrd), !znextPC);
-      let znewPC = (add_vec ((zrX (zregbits_to_regno zrs1)), (zEXTS ((Big_int.of_int (64)), zimm)))) in
-      begin
-        znextPC := (append ((subrange (znewPC, (Big_int.of_int (63)), (Big_int.of_int (1)))), [B0]));
-        true
-      end
     end
   | ZBTYPE (zimm, zrs2, zrs1, zop) ->
     let zrs1_val = (zrX (zregbits_to_regno zrs1)) in
@@ -16915,13 +16944,21 @@ and zexecute (gs4470 : zast) = sail_call (fun r ->
   | ZC_JALR (zrs1) ->
     zexecute (ZRISCV_JALR (zEXTZ ((Big_int.of_int (12)), [B0]), zrs1, zra))
   | ZC_MV (zrd, zrs2) -> zexecute (ZRTYPE (zrs2, zzzreg, zrd, ZRISCV_ADD))
+  | ZC_EBREAK (()) -> zexecute (ZEBREAK ())
   | ZC_ADD (zrsd, zrs2) -> zexecute (ZRTYPE (zrs2, zrsd, zrsd, ZRISCV_ADD))
   | ZSTOP_FETCHING (()) -> true
   | ZTHREAD_START (()) -> true
   | ZILLEGAL (zs) -> begin zhandle_illegal (); false end
-  | ZC_ILLEGAL (zs) -> begin zhandle_illegal (); false end)
+  | ZC_ILLEGAL (zs) -> begin zhandle_illegal (); false end
+  | ZRISCV_JALR (zimm, zrs1, zrd) ->
+    let znewPC = (add_vec ((zrX (zregbits_to_regno zrs1)), (zEXTS ((Big_int.of_int (64)), zimm)))) in
+    begin
+      zwX ((zregbits_to_regno zrd), !znextPC);
+      znextPC := (append ((subrange (znewPC, (Big_int.of_int (63)), (Big_int.of_int (1)))), [B0]));
+      true
+    end)
 
-and zassembly_forwards (zargz3 : zast) : string = sail_call (fun r ->
+and zassembly_forwards (zargz3 : (zast)) : string = sail_call (fun r ->
   begin
     match zargz3 with
     | ZUTYPE (zimm, zrd, zop) ->
@@ -16973,9 +17010,9 @@ and zassembly_forwards (zargz3 : zast) : string = sail_call (fun r ->
     | ZSFENCE_VMA (zrs1, zrs2) ->
       string_append ("sfence.vma", (string_append ((zspc_forwards ()), (string_append ((zreg_name_forwards zrs1), (string_append ((zsep_forwards ()), (string_append ((zreg_name_forwards zrs2), "")))))))))
     | ZLOADRES (zaq, zrl, zrs1, zsizze, zrd) ->
-      string_append ("lr.", (string_append ((zmaybe_aq_forwards zaq), (string_append ((zmaybe_rl_forwards zrl), (string_append ((zsizze_mnemonic_forwards zsizze), (string_append ((zspc_forwards ()), (string_append ((zreg_name_forwards zrd), (string_append ((zsep_forwards ()), (string_append ((zreg_name_forwards zrs1), "")))))))))))))))
+      string_append ("lr.", (string_append ((zsizze_mnemonic_forwards zsizze), (string_append ((zmaybe_aq_forwards zaq), (string_append ((zmaybe_rl_forwards zrl), (string_append ((zspc_forwards ()), (string_append ((zreg_name_forwards zrd), (string_append ((zsep_forwards ()), (string_append ((zreg_name_forwards zrs1), "")))))))))))))))
     | ZSTORECON (zaq, zrl, zrs2, zrs1, zsizze, zrd) ->
-      string_append ("sc.", (string_append ((zmaybe_aq_forwards zaq), (string_append ((zmaybe_rl_forwards zrl), (string_append ((zsizze_mnemonic_forwards zsizze), (string_append ((zspc_forwards ()), (string_append ((zreg_name_forwards zrd), (string_append ((zsep_forwards ()), (string_append ((zreg_name_forwards zrs1), (string_append ((zsep_forwards ()), (string_append ((zreg_name_forwards zrs2), "")))))))))))))))))))
+      string_append ("sc.", (string_append ((zsizze_mnemonic_forwards zsizze), (string_append ((zmaybe_aq_forwards zaq), (string_append ((zmaybe_rl_forwards zrl), (string_append ((zspc_forwards ()), (string_append ((zreg_name_forwards zrd), (string_append ((zsep_forwards ()), (string_append ((zreg_name_forwards zrs1), (string_append ((zsep_forwards ()), (string_append ((zreg_name_forwards zrs2), "")))))))))))))))))))
     | ZAMO (zop, zaq, zrl, zrs2, zrs1, zwidth, zrd) ->
       string_append ((zamo_mnemonic_forwards zop), (string_append (".", (string_append ((zsizze_mnemonic_forwards zwidth), (string_append ((zmaybe_aq_forwards zaq), (string_append ((zmaybe_rl_forwards zrl), (string_append ((zspc_forwards ()), (string_append ((zreg_name_forwards zrd), (string_append ((zsep_forwards ()), (string_append ((zreg_name_forwards zrs1), (string_append ((zsep_forwards ()), (string_append ((zreg_name_forwards zrs2), "")))))))))))))))))))))
     | ZCSR (zcsr, zrs1, zrd, zp0z3, zop) when (eq_bool (zp0z3, true)) ->
@@ -17045,6 +17082,7 @@ and zassembly_forwards (zargz3 : zast) : string = sail_call (fun r ->
       string_append ("c.jalr", (string_append ((zspc_forwards ()), (string_append ((zreg_name_forwards zrs1), "")))))
     | ZC_MV (zrd, zrs2) when ((zneq_atom ((zregbits_to_regno zrd), (zregbits_to_regno zzzreg))) && (zneq_atom ((zregbits_to_regno zrs2), (zregbits_to_regno zzzreg)))) ->
       string_append ("c.mv", (string_append ((zspc_forwards ()), (string_append ((zreg_name_forwards zrd), (string_append ((zsep_forwards ()), (string_append ((zreg_name_forwards zrs2), "")))))))))
+    | ZC_EBREAK (()) -> "c.ebreak"
     | ZC_ADD (zrsd, zrs2) when ((zneq_atom ((zregbits_to_regno zrsd), (zregbits_to_regno zzzreg))) && (zneq_atom ((zregbits_to_regno zrs2), (zregbits_to_regno zzzreg)))) ->
       string_append ("c.add", (string_append ((zspc_forwards ()), (string_append ((zreg_name_forwards zrsd), (string_append ((zsep_forwards ()), (string_append ((zreg_name_forwards zrs2), "")))))))))
     | ZSTOP_FETCHING (()) -> "stop_fetching"
@@ -17055,7 +17093,7 @@ and zassembly_forwards (zargz3 : zast) : string = sail_call (fun r ->
       string_append ("c.illegal", (string_append ((zspc_forwards ()), (string_append ((decimal_string_of_bits zs), "")))))
   end)
 
-and z_s1647z3 (z_s1648z3 : string) : ((bit) list) zoption = sail_call (fun r ->
+and z_s1647z3 (z_s1648z3 : (string)) : ((bit) list) zoption = sail_call (fun r ->
   begin
     match z_s1648z3 with
     | z_s1649z3 when (string_startswith (z_s1649z3, "c.illegal")) ->
@@ -17063,7 +17101,7 @@ and z_s1647z3 (z_s1648z3 : string) : ((bit) list) zoption = sail_call (fun r ->
         match (string_drop (z_s1649z3, (string_length "c.illegal"))) with
         | z_s1650z3 ->
           begin
-            match (spc_matches_prefix z_s1650z3) with
+            match (zspc_matches_prefix z_s1650z3) with
             | ZSome ((), z_s1651z3) ->
               begin
                 match (string_drop (z_s1650z3, z_s1651z3)) with
@@ -17087,7 +17125,7 @@ and z_s1647z3 (z_s1648z3 : string) : ((bit) list) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s1639z3 (z_s1640z3 : string) : ((bit) list) zoption = sail_call (fun r ->
+and z_s1639z3 (z_s1640z3 : (string)) : ((bit) list) zoption = sail_call (fun r ->
   begin
     match z_s1640z3 with
     | z_s1641z3 when (string_startswith (z_s1641z3, "illegal")) ->
@@ -17095,7 +17133,7 @@ and z_s1639z3 (z_s1640z3 : string) : ((bit) list) zoption = sail_call (fun r ->
         match (string_drop (z_s1641z3, (string_length "illegal"))) with
         | z_s1642z3 ->
           begin
-            match (spc_matches_prefix z_s1642z3) with
+            match (zspc_matches_prefix z_s1642z3) with
             | ZSome ((), z_s1643z3) ->
               begin
                 match (string_drop (z_s1642z3, z_s1643z3)) with
@@ -17119,7 +17157,7 @@ and z_s1639z3 (z_s1640z3 : string) : ((bit) list) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s1627z3 (z_s1628z3 : string) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1627z3 (z_s1628z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s1628z3 with
     | z_s1629z3 when (string_startswith (z_s1629z3, "c.add")) ->
@@ -17127,7 +17165,7 @@ and z_s1627z3 (z_s1628z3 : string) : (((bit) list * (bit) list)) zoption = sail_
         match (string_drop (z_s1629z3, (string_length "c.add"))) with
         | z_s1630z3 ->
           begin
-            match (spc_matches_prefix z_s1630z3) with
+            match (zspc_matches_prefix z_s1630z3) with
             | ZSome ((), z_s1631z3) ->
               begin
                 match (string_drop (z_s1630z3, z_s1631z3)) with
@@ -17171,7 +17209,7 @@ and z_s1627z3 (z_s1628z3 : string) : (((bit) list * (bit) list)) zoption = sail_
     | _ -> ZNone ()
   end)
 
-and z_s1615z3 (z_s1616z3 : string) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1615z3 (z_s1616z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s1616z3 with
     | z_s1617z3 when (string_startswith (z_s1617z3, "c.mv")) ->
@@ -17179,7 +17217,7 @@ and z_s1615z3 (z_s1616z3 : string) : (((bit) list * (bit) list)) zoption = sail_
         match (string_drop (z_s1617z3, (string_length "c.mv"))) with
         | z_s1618z3 ->
           begin
-            match (spc_matches_prefix z_s1618z3) with
+            match (zspc_matches_prefix z_s1618z3) with
             | ZSome ((), z_s1619z3) ->
               begin
                 match (string_drop (z_s1618z3, z_s1619z3)) with
@@ -17223,7 +17261,7 @@ and z_s1615z3 (z_s1616z3 : string) : (((bit) list * (bit) list)) zoption = sail_
     | _ -> ZNone ()
   end)
 
-and z_s1607z3 (z_s1608z3 : string) : ((bit) list) zoption = sail_call (fun r ->
+and z_s1607z3 (z_s1608z3 : (string)) : ((bit) list) zoption = sail_call (fun r ->
   begin
     match z_s1608z3 with
     | z_s1609z3 when (string_startswith (z_s1609z3, "c.jalr")) ->
@@ -17231,7 +17269,7 @@ and z_s1607z3 (z_s1608z3 : string) : ((bit) list) zoption = sail_call (fun r ->
         match (string_drop (z_s1609z3, (string_length "c.jalr"))) with
         | z_s1610z3 ->
           begin
-            match (spc_matches_prefix z_s1610z3) with
+            match (zspc_matches_prefix z_s1610z3) with
             | ZSome ((), z_s1611z3) ->
               begin
                 match (string_drop (z_s1610z3, z_s1611z3)) with
@@ -17255,7 +17293,7 @@ and z_s1607z3 (z_s1608z3 : string) : ((bit) list) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s1599z3 (z_s1600z3 : string) : ((bit) list) zoption = sail_call (fun r ->
+and z_s1599z3 (z_s1600z3 : (string)) : ((bit) list) zoption = sail_call (fun r ->
   begin
     match z_s1600z3 with
     | z_s1601z3 when (string_startswith (z_s1601z3, "c.jr")) ->
@@ -17263,7 +17301,7 @@ and z_s1599z3 (z_s1600z3 : string) : ((bit) list) zoption = sail_call (fun r ->
         match (string_drop (z_s1601z3, (string_length "c.jr"))) with
         | z_s1602z3 ->
           begin
-            match (spc_matches_prefix z_s1602z3) with
+            match (zspc_matches_prefix z_s1602z3) with
             | ZSome ((), z_s1603z3) ->
               begin
                 match (string_drop (z_s1602z3, z_s1603z3)) with
@@ -17287,7 +17325,7 @@ and z_s1599z3 (z_s1600z3 : string) : ((bit) list) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s1587z3 (z_s1588z3 : string) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1587z3 (z_s1588z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s1588z3 with
     | z_s1589z3 when (string_startswith (z_s1589z3, "c.sdsp")) ->
@@ -17295,7 +17333,7 @@ and z_s1587z3 (z_s1588z3 : string) : (((bit) list * (bit) list)) zoption = sail_
         match (string_drop (z_s1589z3, (string_length "c.sdsp"))) with
         | z_s1590z3 ->
           begin
-            match (spc_matches_prefix z_s1590z3) with
+            match (zspc_matches_prefix z_s1590z3) with
             | ZSome ((), z_s1591z3) ->
               begin
                 match (string_drop (z_s1590z3, z_s1591z3)) with
@@ -17339,7 +17377,7 @@ and z_s1587z3 (z_s1588z3 : string) : (((bit) list * (bit) list)) zoption = sail_
     | _ -> ZNone ()
   end)
 
-and z_s1575z3 (z_s1576z3 : string) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1575z3 (z_s1576z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s1576z3 with
     | z_s1577z3 when (string_startswith (z_s1577z3, "c.swsp")) ->
@@ -17347,7 +17385,7 @@ and z_s1575z3 (z_s1576z3 : string) : (((bit) list * (bit) list)) zoption = sail_
         match (string_drop (z_s1577z3, (string_length "c.swsp"))) with
         | z_s1578z3 ->
           begin
-            match (spc_matches_prefix z_s1578z3) with
+            match (zspc_matches_prefix z_s1578z3) with
             | ZSome ((), z_s1579z3) ->
               begin
                 match (string_drop (z_s1578z3, z_s1579z3)) with
@@ -17391,7 +17429,7 @@ and z_s1575z3 (z_s1576z3 : string) : (((bit) list * (bit) list)) zoption = sail_
     | _ -> ZNone ()
   end)
 
-and z_s1563z3 (z_s1564z3 : string) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1563z3 (z_s1564z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s1564z3 with
     | z_s1565z3 when (string_startswith (z_s1565z3, "c.ldsp")) ->
@@ -17399,7 +17437,7 @@ and z_s1563z3 (z_s1564z3 : string) : (((bit) list * (bit) list)) zoption = sail_
         match (string_drop (z_s1565z3, (string_length "c.ldsp"))) with
         | z_s1566z3 ->
           begin
-            match (spc_matches_prefix z_s1566z3) with
+            match (zspc_matches_prefix z_s1566z3) with
             | ZSome ((), z_s1567z3) ->
               begin
                 match (string_drop (z_s1566z3, z_s1567z3)) with
@@ -17443,7 +17481,7 @@ and z_s1563z3 (z_s1564z3 : string) : (((bit) list * (bit) list)) zoption = sail_
     | _ -> ZNone ()
   end)
 
-and z_s1551z3 (z_s1552z3 : string) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1551z3 (z_s1552z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s1552z3 with
     | z_s1553z3 when (string_startswith (z_s1553z3, "c.lwsp")) ->
@@ -17451,7 +17489,7 @@ and z_s1551z3 (z_s1552z3 : string) : (((bit) list * (bit) list)) zoption = sail_
         match (string_drop (z_s1553z3, (string_length "c.lwsp"))) with
         | z_s1554z3 ->
           begin
-            match (spc_matches_prefix z_s1554z3) with
+            match (zspc_matches_prefix z_s1554z3) with
             | ZSome ((), z_s1555z3) ->
               begin
                 match (string_drop (z_s1554z3, z_s1555z3)) with
@@ -17495,7 +17533,7 @@ and z_s1551z3 (z_s1552z3 : string) : (((bit) list * (bit) list)) zoption = sail_
     | _ -> ZNone ()
   end)
 
-and z_s1539z3 (z_s1540z3 : string) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1539z3 (z_s1540z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s1540z3 with
     | z_s1541z3 when (string_startswith (z_s1541z3, "c.slli")) ->
@@ -17503,7 +17541,7 @@ and z_s1539z3 (z_s1540z3 : string) : (((bit) list * (bit) list)) zoption = sail_
         match (string_drop (z_s1541z3, (string_length "c.slli"))) with
         | z_s1542z3 ->
           begin
-            match (spc_matches_prefix z_s1542z3) with
+            match (zspc_matches_prefix z_s1542z3) with
             | ZSome ((), z_s1543z3) ->
               begin
                 match (string_drop (z_s1542z3, z_s1543z3)) with
@@ -17547,7 +17585,7 @@ and z_s1539z3 (z_s1540z3 : string) : (((bit) list * (bit) list)) zoption = sail_
     | _ -> ZNone ()
   end)
 
-and z_s1527z3 (z_s1528z3 : string) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1527z3 (z_s1528z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s1528z3 with
     | z_s1529z3 when (string_startswith (z_s1529z3, "c.bnez")) ->
@@ -17555,7 +17593,7 @@ and z_s1527z3 (z_s1528z3 : string) : (((bit) list * (bit) list)) zoption = sail_
         match (string_drop (z_s1529z3, (string_length "c.bnez"))) with
         | z_s1530z3 ->
           begin
-            match (spc_matches_prefix z_s1530z3) with
+            match (zspc_matches_prefix z_s1530z3) with
             | ZSome ((), z_s1531z3) ->
               begin
                 match (string_drop (z_s1530z3, z_s1531z3)) with
@@ -17599,7 +17637,7 @@ and z_s1527z3 (z_s1528z3 : string) : (((bit) list * (bit) list)) zoption = sail_
     | _ -> ZNone ()
   end)
 
-and z_s1515z3 (z_s1516z3 : string) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1515z3 (z_s1516z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s1516z3 with
     | z_s1517z3 when (string_startswith (z_s1517z3, "c.beqz")) ->
@@ -17607,7 +17645,7 @@ and z_s1515z3 (z_s1516z3 : string) : (((bit) list * (bit) list)) zoption = sail_
         match (string_drop (z_s1517z3, (string_length "c.beqz"))) with
         | z_s1518z3 ->
           begin
-            match (spc_matches_prefix z_s1518z3) with
+            match (zspc_matches_prefix z_s1518z3) with
             | ZSome ((), z_s1519z3) ->
               begin
                 match (string_drop (z_s1518z3, z_s1519z3)) with
@@ -17651,7 +17689,7 @@ and z_s1515z3 (z_s1516z3 : string) : (((bit) list * (bit) list)) zoption = sail_
     | _ -> ZNone ()
   end)
 
-and z_s1507z3 (z_s1508z3 : string) : ((bit) list) zoption = sail_call (fun r ->
+and z_s1507z3 (z_s1508z3 : (string)) : ((bit) list) zoption = sail_call (fun r ->
   begin
     match z_s1508z3 with
     | z_s1509z3 when (string_startswith (z_s1509z3, "c.j")) ->
@@ -17659,7 +17697,7 @@ and z_s1507z3 (z_s1508z3 : string) : ((bit) list) zoption = sail_call (fun r ->
         match (string_drop (z_s1509z3, (string_length "c.j"))) with
         | z_s1510z3 ->
           begin
-            match (spc_matches_prefix z_s1510z3) with
+            match (zspc_matches_prefix z_s1510z3) with
             | ZSome ((), z_s1511z3) ->
               begin
                 match (string_drop (z_s1510z3, z_s1511z3)) with
@@ -17683,7 +17721,7 @@ and z_s1507z3 (z_s1508z3 : string) : ((bit) list) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s1495z3 (z_s1496z3 : string) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1495z3 (z_s1496z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s1496z3 with
     | z_s1497z3 when (string_startswith (z_s1497z3, "c.addw")) ->
@@ -17691,7 +17729,7 @@ and z_s1495z3 (z_s1496z3 : string) : (((bit) list * (bit) list)) zoption = sail_
         match (string_drop (z_s1497z3, (string_length "c.addw"))) with
         | z_s1498z3 ->
           begin
-            match (spc_matches_prefix z_s1498z3) with
+            match (zspc_matches_prefix z_s1498z3) with
             | ZSome ((), z_s1499z3) ->
               begin
                 match (string_drop (z_s1498z3, z_s1499z3)) with
@@ -17735,7 +17773,7 @@ and z_s1495z3 (z_s1496z3 : string) : (((bit) list * (bit) list)) zoption = sail_
     | _ -> ZNone ()
   end)
 
-and z_s1483z3 (z_s1484z3 : string) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1483z3 (z_s1484z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s1484z3 with
     | z_s1485z3 when (string_startswith (z_s1485z3, "c.subw")) ->
@@ -17743,7 +17781,7 @@ and z_s1483z3 (z_s1484z3 : string) : (((bit) list * (bit) list)) zoption = sail_
         match (string_drop (z_s1485z3, (string_length "c.subw"))) with
         | z_s1486z3 ->
           begin
-            match (spc_matches_prefix z_s1486z3) with
+            match (zspc_matches_prefix z_s1486z3) with
             | ZSome ((), z_s1487z3) ->
               begin
                 match (string_drop (z_s1486z3, z_s1487z3)) with
@@ -17787,7 +17825,7 @@ and z_s1483z3 (z_s1484z3 : string) : (((bit) list * (bit) list)) zoption = sail_
     | _ -> ZNone ()
   end)
 
-and z_s1471z3 (z_s1472z3 : string) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1471z3 (z_s1472z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s1472z3 with
     | z_s1473z3 when (string_startswith (z_s1473z3, "c.and")) ->
@@ -17795,7 +17833,7 @@ and z_s1471z3 (z_s1472z3 : string) : (((bit) list * (bit) list)) zoption = sail_
         match (string_drop (z_s1473z3, (string_length "c.and"))) with
         | z_s1474z3 ->
           begin
-            match (spc_matches_prefix z_s1474z3) with
+            match (zspc_matches_prefix z_s1474z3) with
             | ZSome ((), z_s1475z3) ->
               begin
                 match (string_drop (z_s1474z3, z_s1475z3)) with
@@ -17839,7 +17877,7 @@ and z_s1471z3 (z_s1472z3 : string) : (((bit) list * (bit) list)) zoption = sail_
     | _ -> ZNone ()
   end)
 
-and z_s1459z3 (z_s1460z3 : string) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1459z3 (z_s1460z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s1460z3 with
     | z_s1461z3 when (string_startswith (z_s1461z3, "c.or")) ->
@@ -17847,7 +17885,7 @@ and z_s1459z3 (z_s1460z3 : string) : (((bit) list * (bit) list)) zoption = sail_
         match (string_drop (z_s1461z3, (string_length "c.or"))) with
         | z_s1462z3 ->
           begin
-            match (spc_matches_prefix z_s1462z3) with
+            match (zspc_matches_prefix z_s1462z3) with
             | ZSome ((), z_s1463z3) ->
               begin
                 match (string_drop (z_s1462z3, z_s1463z3)) with
@@ -17891,7 +17929,7 @@ and z_s1459z3 (z_s1460z3 : string) : (((bit) list * (bit) list)) zoption = sail_
     | _ -> ZNone ()
   end)
 
-and z_s1447z3 (z_s1448z3 : string) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1447z3 (z_s1448z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s1448z3 with
     | z_s1449z3 when (string_startswith (z_s1449z3, "c.xor")) ->
@@ -17899,7 +17937,7 @@ and z_s1447z3 (z_s1448z3 : string) : (((bit) list * (bit) list)) zoption = sail_
         match (string_drop (z_s1449z3, (string_length "c.xor"))) with
         | z_s1450z3 ->
           begin
-            match (spc_matches_prefix z_s1450z3) with
+            match (zspc_matches_prefix z_s1450z3) with
             | ZSome ((), z_s1451z3) ->
               begin
                 match (string_drop (z_s1450z3, z_s1451z3)) with
@@ -17943,7 +17981,7 @@ and z_s1447z3 (z_s1448z3 : string) : (((bit) list * (bit) list)) zoption = sail_
     | _ -> ZNone ()
   end)
 
-and z_s1435z3 (z_s1436z3 : string) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1435z3 (z_s1436z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s1436z3 with
     | z_s1437z3 when (string_startswith (z_s1437z3, "c.sub")) ->
@@ -17951,7 +17989,7 @@ and z_s1435z3 (z_s1436z3 : string) : (((bit) list * (bit) list)) zoption = sail_
         match (string_drop (z_s1437z3, (string_length "c.sub"))) with
         | z_s1438z3 ->
           begin
-            match (spc_matches_prefix z_s1438z3) with
+            match (zspc_matches_prefix z_s1438z3) with
             | ZSome ((), z_s1439z3) ->
               begin
                 match (string_drop (z_s1438z3, z_s1439z3)) with
@@ -17995,7 +18033,7 @@ and z_s1435z3 (z_s1436z3 : string) : (((bit) list * (bit) list)) zoption = sail_
     | _ -> ZNone ()
   end)
 
-and z_s1423z3 (z_s1424z3 : string) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1423z3 (z_s1424z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s1424z3 with
     | z_s1425z3 when (string_startswith (z_s1425z3, "c.andi")) ->
@@ -18003,7 +18041,7 @@ and z_s1423z3 (z_s1424z3 : string) : (((bit) list * (bit) list)) zoption = sail_
         match (string_drop (z_s1425z3, (string_length "c.andi"))) with
         | z_s1426z3 ->
           begin
-            match (spc_matches_prefix z_s1426z3) with
+            match (zspc_matches_prefix z_s1426z3) with
             | ZSome ((), z_s1427z3) ->
               begin
                 match (string_drop (z_s1426z3, z_s1427z3)) with
@@ -18047,7 +18085,7 @@ and z_s1423z3 (z_s1424z3 : string) : (((bit) list * (bit) list)) zoption = sail_
     | _ -> ZNone ()
   end)
 
-and z_s1411z3 (z_s1412z3 : string) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1411z3 (z_s1412z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s1412z3 with
     | z_s1413z3 when (string_startswith (z_s1413z3, "c.srai")) ->
@@ -18055,7 +18093,7 @@ and z_s1411z3 (z_s1412z3 : string) : (((bit) list * (bit) list)) zoption = sail_
         match (string_drop (z_s1413z3, (string_length "c.srai"))) with
         | z_s1414z3 ->
           begin
-            match (spc_matches_prefix z_s1414z3) with
+            match (zspc_matches_prefix z_s1414z3) with
             | ZSome ((), z_s1415z3) ->
               begin
                 match (string_drop (z_s1414z3, z_s1415z3)) with
@@ -18099,7 +18137,7 @@ and z_s1411z3 (z_s1412z3 : string) : (((bit) list * (bit) list)) zoption = sail_
     | _ -> ZNone ()
   end)
 
-and z_s1399z3 (z_s1400z3 : string) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1399z3 (z_s1400z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s1400z3 with
     | z_s1401z3 when (string_startswith (z_s1401z3, "c.srli")) ->
@@ -18107,7 +18145,7 @@ and z_s1399z3 (z_s1400z3 : string) : (((bit) list * (bit) list)) zoption = sail_
         match (string_drop (z_s1401z3, (string_length "c.srli"))) with
         | z_s1402z3 ->
           begin
-            match (spc_matches_prefix z_s1402z3) with
+            match (zspc_matches_prefix z_s1402z3) with
             | ZSome ((), z_s1403z3) ->
               begin
                 match (string_drop (z_s1402z3, z_s1403z3)) with
@@ -18151,7 +18189,7 @@ and z_s1399z3 (z_s1400z3 : string) : (((bit) list * (bit) list)) zoption = sail_
     | _ -> ZNone ()
   end)
 
-and z_s1389z3 (z_s1390z3 : string) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1389z3 (z_s1390z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s1390z3 with
     | z_s1391z3 when (string_startswith (z_s1391z3, "c.lui")) ->
@@ -18193,7 +18231,7 @@ and z_s1389z3 (z_s1390z3 : string) : (((bit) list * (bit) list)) zoption = sail_
     | _ -> ZNone ()
   end)
 
-and z_s1381z3 (z_s1382z3 : string) : ((bit) list) zoption = sail_call (fun r ->
+and z_s1381z3 (z_s1382z3 : (string)) : ((bit) list) zoption = sail_call (fun r ->
   begin
     match z_s1382z3 with
     | z_s1383z3 when (string_startswith (z_s1383z3, "c.addi16sp")) ->
@@ -18201,7 +18239,7 @@ and z_s1381z3 (z_s1382z3 : string) : ((bit) list) zoption = sail_call (fun r ->
         match (string_drop (z_s1383z3, (string_length "c.addi16sp"))) with
         | z_s1384z3 ->
           begin
-            match (spc_matches_prefix z_s1384z3) with
+            match (zspc_matches_prefix z_s1384z3) with
             | ZSome ((), z_s1385z3) ->
               begin
                 match (string_drop (z_s1384z3, z_s1385z3)) with
@@ -18225,7 +18263,7 @@ and z_s1381z3 (z_s1382z3 : string) : ((bit) list) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s1369z3 (z_s1370z3 : string) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1369z3 (z_s1370z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s1370z3 with
     | z_s1371z3 when (string_startswith (z_s1371z3, "c.li")) ->
@@ -18233,7 +18271,7 @@ and z_s1369z3 (z_s1370z3 : string) : (((bit) list * (bit) list)) zoption = sail_
         match (string_drop (z_s1371z3, (string_length "c.li"))) with
         | z_s1372z3 ->
           begin
-            match (spc_matches_prefix z_s1372z3) with
+            match (zspc_matches_prefix z_s1372z3) with
             | ZSome ((), z_s1373z3) ->
               begin
                 match (string_drop (z_s1372z3, z_s1373z3)) with
@@ -18277,7 +18315,7 @@ and z_s1369z3 (z_s1370z3 : string) : (((bit) list * (bit) list)) zoption = sail_
     | _ -> ZNone ()
   end)
 
-and z_s1357z3 (z_s1358z3 : string) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1357z3 (z_s1358z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s1358z3 with
     | z_s1359z3 when (string_startswith (z_s1359z3, "c.addiw")) ->
@@ -18285,7 +18323,7 @@ and z_s1357z3 (z_s1358z3 : string) : (((bit) list * (bit) list)) zoption = sail_
         match (string_drop (z_s1359z3, (string_length "c.addiw"))) with
         | z_s1360z3 ->
           begin
-            match (spc_matches_prefix z_s1360z3) with
+            match (zspc_matches_prefix z_s1360z3) with
             | ZSome ((), z_s1361z3) ->
               begin
                 match (string_drop (z_s1360z3, z_s1361z3)) with
@@ -18329,7 +18367,7 @@ and z_s1357z3 (z_s1358z3 : string) : (((bit) list * (bit) list)) zoption = sail_
     | _ -> ZNone ()
   end)
 
-and z_s1349z3 (z_s1350z3 : string) : ((bit) list) zoption = sail_call (fun r ->
+and z_s1349z3 (z_s1350z3 : (string)) : ((bit) list) zoption = sail_call (fun r ->
   begin
     match z_s1350z3 with
     | z_s1351z3 when (string_startswith (z_s1351z3, "c.jal")) ->
@@ -18337,7 +18375,7 @@ and z_s1349z3 (z_s1350z3 : string) : ((bit) list) zoption = sail_call (fun r ->
         match (string_drop (z_s1351z3, (string_length "c.jal"))) with
         | z_s1352z3 ->
           begin
-            match (spc_matches_prefix z_s1352z3) with
+            match (zspc_matches_prefix z_s1352z3) with
             | ZSome ((), z_s1353z3) ->
               begin
                 match (string_drop (z_s1352z3, z_s1353z3)) with
@@ -18364,7 +18402,7 @@ and z_s1349z3 (z_s1350z3 : string) : ((bit) list) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s1337z3 (z_s1338z3 : string) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1337z3 (z_s1338z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s1338z3 with
     | z_s1339z3 when (string_startswith (z_s1339z3, "c.addi")) ->
@@ -18372,7 +18410,7 @@ and z_s1337z3 (z_s1338z3 : string) : (((bit) list * (bit) list)) zoption = sail_
         match (string_drop (z_s1339z3, (string_length "c.addi"))) with
         | z_s1340z3 ->
           begin
-            match (spc_matches_prefix z_s1340z3) with
+            match (zspc_matches_prefix z_s1340z3) with
             | ZSome ((), z_s1341z3) ->
               begin
                 match (string_drop (z_s1340z3, z_s1341z3)) with
@@ -18416,7 +18454,7 @@ and z_s1337z3 (z_s1338z3 : string) : (((bit) list * (bit) list)) zoption = sail_
     | _ -> ZNone ()
   end)
 
-and z_s1321z3 (z_s1322z3 : string) : (((bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1321z3 (z_s1322z3 : (string)) : (((bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s1322z3 with
     | z_s1323z3 when (string_startswith (z_s1323z3, "c.sd")) ->
@@ -18424,7 +18462,7 @@ and z_s1321z3 (z_s1322z3 : string) : (((bit) list * (bit) list * (bit) list)) zo
         match (string_drop (z_s1323z3, (string_length "c.sd"))) with
         | z_s1324z3 ->
           begin
-            match (spc_matches_prefix z_s1324z3) with
+            match (zspc_matches_prefix z_s1324z3) with
             | ZSome ((), z_s1325z3) ->
               begin
                 match (string_drop (z_s1324z3, z_s1325z3)) with
@@ -18494,7 +18532,7 @@ and z_s1321z3 (z_s1322z3 : string) : (((bit) list * (bit) list * (bit) list)) zo
     | _ -> ZNone ()
   end)
 
-and z_s1305z3 (z_s1306z3 : string) : (((bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1305z3 (z_s1306z3 : (string)) : (((bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s1306z3 with
     | z_s1307z3 when (string_startswith (z_s1307z3, "c.sw")) ->
@@ -18502,7 +18540,7 @@ and z_s1305z3 (z_s1306z3 : string) : (((bit) list * (bit) list * (bit) list)) zo
         match (string_drop (z_s1307z3, (string_length "c.sw"))) with
         | z_s1308z3 ->
           begin
-            match (spc_matches_prefix z_s1308z3) with
+            match (zspc_matches_prefix z_s1308z3) with
             | ZSome ((), z_s1309z3) ->
               begin
                 match (string_drop (z_s1308z3, z_s1309z3)) with
@@ -18571,7 +18609,7 @@ and z_s1305z3 (z_s1306z3 : string) : (((bit) list * (bit) list * (bit) list)) zo
     | _ -> ZNone ()
   end)
 
-and z_s1289z3 (z_s1290z3 : string) : (((bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1289z3 (z_s1290z3 : (string)) : (((bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s1290z3 with
     | z_s1291z3 when (string_startswith (z_s1291z3, "c.ld")) ->
@@ -18579,7 +18617,7 @@ and z_s1289z3 (z_s1290z3 : string) : (((bit) list * (bit) list * (bit) list)) zo
         match (string_drop (z_s1291z3, (string_length "c.ld"))) with
         | z_s1292z3 ->
           begin
-            match (spc_matches_prefix z_s1292z3) with
+            match (zspc_matches_prefix z_s1292z3) with
             | ZSome ((), z_s1293z3) ->
               begin
                 match (string_drop (z_s1292z3, z_s1293z3)) with
@@ -18649,7 +18687,7 @@ and z_s1289z3 (z_s1290z3 : string) : (((bit) list * (bit) list * (bit) list)) zo
     | _ -> ZNone ()
   end)
 
-and z_s1273z3 (z_s1274z3 : string) : (((bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1273z3 (z_s1274z3 : (string)) : (((bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s1274z3 with
     | z_s1275z3 when (string_startswith (z_s1275z3, "c.lw")) ->
@@ -18657,7 +18695,7 @@ and z_s1273z3 (z_s1274z3 : string) : (((bit) list * (bit) list * (bit) list)) zo
         match (string_drop (z_s1275z3, (string_length "c.lw"))) with
         | z_s1276z3 ->
           begin
-            match (spc_matches_prefix z_s1276z3) with
+            match (zspc_matches_prefix z_s1276z3) with
             | ZSome ((), z_s1277z3) ->
               begin
                 match (string_drop (z_s1276z3, z_s1277z3)) with
@@ -18726,7 +18764,7 @@ and z_s1273z3 (z_s1274z3 : string) : (((bit) list * (bit) list * (bit) list)) zo
     | _ -> ZNone ()
   end)
 
-and z_s1261z3 (z_s1262z3 : string) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1261z3 (z_s1262z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s1262z3 with
     | z_s1263z3 when (string_startswith (z_s1263z3, "c.addi4spn")) ->
@@ -18734,7 +18772,7 @@ and z_s1261z3 (z_s1262z3 : string) : (((bit) list * (bit) list)) zoption = sail_
         match (string_drop (z_s1263z3, (string_length "c.addi4spn"))) with
         | z_s1264z3 ->
           begin
-            match (spc_matches_prefix z_s1264z3) with
+            match (zspc_matches_prefix z_s1264z3) with
             | ZSome ((), z_s1265z3) ->
               begin
                 match (string_drop (z_s1264z3, z_s1265z3)) with
@@ -18782,7 +18820,7 @@ and z_s1261z3 (z_s1262z3 : string) : (((bit) list * (bit) list)) zoption = sail_
     | _ -> ZNone ()
   end)
 
-and z_s1244z3 (z_s1245z3 : string) : ((zcsrop * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1244z3 (z_s1245z3 : (string)) : ((zcsrop * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s1245z3 with
     | z_s1246z3 ->
@@ -18793,7 +18831,7 @@ and z_s1244z3 (z_s1245z3 : string) : ((zcsrop * (bit) list * (bit) list * (bit) 
             match (string_drop (z_s1246z3, z_s1247z3)) with
             | z_s1248z3 ->
               begin
-                match (spc_matches_prefix z_s1248z3) with
+                match (zspc_matches_prefix z_s1248z3) with
                 | ZSome ((), z_s1249z3) ->
                   begin
                     match (string_drop (z_s1248z3, z_s1249z3)) with
@@ -18860,7 +18898,7 @@ and z_s1244z3 (z_s1245z3 : string) : ((zcsrop * (bit) list * (bit) list * (bit) 
     | _ -> ZNone ()
   end)
 
-and z_s1226z3 (z_s1227z3 : string) : ((zcsrop * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1226z3 (z_s1227z3 : (string)) : ((zcsrop * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s1227z3 with
     | z_s1228z3 ->
@@ -18874,7 +18912,7 @@ and z_s1226z3 (z_s1227z3 : string) : ((zcsrop * (bit) list * (bit) list * (bit) 
                 match (string_drop (z_s1230z3, (string_length "i"))) with
                 | z_s1231z3 ->
                   begin
-                    match (spc_matches_prefix z_s1231z3) with
+                    match (zspc_matches_prefix z_s1231z3) with
                     | ZSome ((), z_s1232z3) ->
                       begin
                         match (string_drop (z_s1231z3, z_s1232z3)) with
@@ -18943,7 +18981,7 @@ and z_s1226z3 (z_s1227z3 : string) : ((zcsrop * (bit) list * (bit) list * (bit) 
     | _ -> ZNone ()
   end)
 
-and z_s1202z3 (z_s1203z3 : string) : ((zamoop * zword_width * bool * bool * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1202z3 (z_s1203z3 : (string)) : ((zamoop * zword_width * bool * bool * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s1203z3 with
     | z_s1204z3 ->
@@ -18975,7 +19013,7 @@ and z_s1202z3 (z_s1203z3 : string) : ((zamoop * zword_width * bool * bool * (bit
                                         match (string_drop (z_s1211z3, z_s1212z3)) with
                                         | z_s1213z3 ->
                                           begin
-                                            match (spc_matches_prefix z_s1213z3) with
+                                            match (zspc_matches_prefix z_s1213z3) with
                                             | ZSome ((), z_s1214z3) ->
                                               begin
                                                 match (string_drop (z_s1213z3, z_s1214z3)) with
@@ -19062,7 +19100,7 @@ and z_s1202z3 (z_s1203z3 : string) : ((zamoop * zword_width * bool * bool * (bit
     | _ -> ZNone ()
   end)
 
-and z_s1180z3 (z_s1181z3 : string) : ((bool * bool * zword_width * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1180z3 (z_s1181z3 : (string)) : ((zword_width * bool * bool * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s1181z3 with
     | z_s1182z3 when (string_startswith (z_s1182z3, "sc.")) ->
@@ -19070,25 +19108,25 @@ and z_s1180z3 (z_s1181z3 : string) : ((bool * bool * zword_width * (bit) list * 
         match (string_drop (z_s1182z3, (string_length "sc."))) with
         | z_s1183z3 ->
           begin
-            match (zmaybe_aq_matches_prefix z_s1183z3) with
-            | ZSome (zaq, z_s1184z3) ->
+            match (zsizze_mnemonic_matches_prefix z_s1183z3) with
+            | ZSome (zsizze, z_s1184z3) ->
               begin
                 match (string_drop (z_s1183z3, z_s1184z3)) with
                 | z_s1185z3 ->
                   begin
-                    match (zmaybe_rl_matches_prefix z_s1185z3) with
-                    | ZSome (zrl, z_s1186z3) ->
+                    match (zmaybe_aq_matches_prefix z_s1185z3) with
+                    | ZSome (zaq, z_s1186z3) ->
                       begin
                         match (string_drop (z_s1185z3, z_s1186z3)) with
                         | z_s1187z3 ->
                           begin
-                            match (zsizze_mnemonic_matches_prefix z_s1187z3) with
-                            | ZSome (zsizze, z_s1188z3) ->
+                            match (zmaybe_rl_matches_prefix z_s1187z3) with
+                            | ZSome (zrl, z_s1188z3) ->
                               begin
                                 match (string_drop (z_s1187z3, z_s1188z3)) with
                                 | z_s1189z3 ->
                                   begin
-                                    match (spc_matches_prefix z_s1189z3) with
+                                    match (zspc_matches_prefix z_s1189z3) with
                                     | ZSome ((), z_s1190z3) ->
                                       begin
                                         match (string_drop (z_s1189z3, z_s1190z3)) with
@@ -19123,7 +19161,7 @@ and z_s1180z3 (z_s1181z3 : string) : ((bool * bool * zword_width * (bit) list * 
                                                                               begin
                                                                                 match (string_drop (z_s1199z3, z_s1200z3)) with
                                                                                 | "" ->
-                                                                                  ZSome (zaq, zrl, zsizze, zrd, zrs1, zrs2)
+                                                                                  ZSome (zsizze, zaq, zrl, zrd, zrs1, zrs2)
                                                                                 | _ ->
                                                                                   ZNone ()
                                                                               end
@@ -19169,7 +19207,7 @@ and z_s1180z3 (z_s1181z3 : string) : ((bool * bool * zword_width * (bit) list * 
     | _ -> ZNone ()
   end)
 
-and z_s1162z3 (z_s1163z3 : string) : ((bool * bool * zword_width * (bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1162z3 (z_s1163z3 : (string)) : ((zword_width * bool * bool * (bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s1163z3 with
     | z_s1164z3 when (string_startswith (z_s1164z3, "lr.")) ->
@@ -19177,25 +19215,25 @@ and z_s1162z3 (z_s1163z3 : string) : ((bool * bool * zword_width * (bit) list * 
         match (string_drop (z_s1164z3, (string_length "lr."))) with
         | z_s1165z3 ->
           begin
-            match (zmaybe_aq_matches_prefix z_s1165z3) with
-            | ZSome (zaq, z_s1166z3) ->
+            match (zsizze_mnemonic_matches_prefix z_s1165z3) with
+            | ZSome (zsizze, z_s1166z3) ->
               begin
                 match (string_drop (z_s1165z3, z_s1166z3)) with
                 | z_s1167z3 ->
                   begin
-                    match (zmaybe_rl_matches_prefix z_s1167z3) with
-                    | ZSome (zrl, z_s1168z3) ->
+                    match (zmaybe_aq_matches_prefix z_s1167z3) with
+                    | ZSome (zaq, z_s1168z3) ->
                       begin
                         match (string_drop (z_s1167z3, z_s1168z3)) with
                         | z_s1169z3 ->
                           begin
-                            match (zsizze_mnemonic_matches_prefix z_s1169z3) with
-                            | ZSome (zsizze, z_s1170z3) ->
+                            match (zmaybe_rl_matches_prefix z_s1169z3) with
+                            | ZSome (zrl, z_s1170z3) ->
                               begin
                                 match (string_drop (z_s1169z3, z_s1170z3)) with
                                 | z_s1171z3 ->
                                   begin
-                                    match (spc_matches_prefix z_s1171z3) with
+                                    match (zspc_matches_prefix z_s1171z3) with
                                     | ZSome ((), z_s1172z3) ->
                                       begin
                                         match (string_drop (z_s1171z3, z_s1172z3)) with
@@ -19218,7 +19256,7 @@ and z_s1162z3 (z_s1163z3 : string) : ((bool * bool * zword_width * (bit) list * 
                                                               begin
                                                                 match (string_drop (z_s1177z3, z_s1178z3)) with
                                                                 | "" ->
-                                                                  ZSome (zaq, zrl, zsizze, zrd, zrs1)
+                                                                  ZSome (zsizze, zaq, zrl, zrd, zrs1)
                                                                 | _ -> ZNone ()
                                                               end
                                                             | _ -> ZNone ()
@@ -19252,7 +19290,7 @@ and z_s1162z3 (z_s1163z3 : string) : ((bool * bool * zword_width * (bit) list * 
     | _ -> ZNone ()
   end)
 
-and z_s1150z3 (z_s1151z3 : string) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1150z3 (z_s1151z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s1151z3 with
     | z_s1152z3 when (string_startswith (z_s1152z3, "sfence.vma")) ->
@@ -19260,7 +19298,7 @@ and z_s1150z3 (z_s1151z3 : string) : (((bit) list * (bit) list)) zoption = sail_
         match (string_drop (z_s1152z3, (string_length "sfence.vma"))) with
         | z_s1153z3 ->
           begin
-            match (spc_matches_prefix z_s1153z3) with
+            match (zspc_matches_prefix z_s1153z3) with
             | ZSome ((), z_s1154z3) ->
               begin
                 match (string_drop (z_s1153z3, z_s1154z3)) with
@@ -19304,7 +19342,7 @@ and z_s1150z3 (z_s1151z3 : string) : (((bit) list * (bit) list)) zoption = sail_
     | _ -> ZNone ()
   end)
 
-and z_s1138z3 (z_s1139z3 : string) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1138z3 (z_s1139z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s1139z3 with
     | z_s1140z3 when (string_startswith (z_s1140z3, "fence")) ->
@@ -19312,7 +19350,7 @@ and z_s1138z3 (z_s1139z3 : string) : (((bit) list * (bit) list)) zoption = sail_
         match (string_drop (z_s1140z3, (string_length "fence"))) with
         | z_s1141z3 ->
           begin
-            match (spc_matches_prefix z_s1141z3) with
+            match (zspc_matches_prefix z_s1141z3) with
             | ZSome ((), z_s1142z3) ->
               begin
                 match (string_drop (z_s1141z3, z_s1142z3)) with
@@ -19356,7 +19394,7 @@ and z_s1138z3 (z_s1139z3 : string) : (((bit) list * (bit) list)) zoption = sail_
     | _ -> ZNone ()
   end)
 
-and z_s1119z3 (z_s1120z3 : string) : ((bool * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1119z3 (z_s1120z3 : (string)) : ((bool * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s1120z3 with
     | z_s1121z3 when (string_startswith (z_s1121z3, "rem")) ->
@@ -19373,7 +19411,7 @@ and z_s1119z3 (z_s1120z3 : string) : ((bool * (bit) list * (bit) list * (bit) li
                     match (string_drop (z_s1124z3, (string_length "w"))) with
                     | z_s1125z3 ->
                       begin
-                        match (spc_matches_prefix z_s1125z3) with
+                        match (zspc_matches_prefix z_s1125z3) with
                         | ZSome ((), z_s1126z3) ->
                           begin
                             match (string_drop (z_s1125z3, z_s1126z3)) with
@@ -19445,7 +19483,7 @@ and z_s1119z3 (z_s1120z3 : string) : ((bool * (bit) list * (bit) list * (bit) li
     | _ -> ZNone ()
   end)
 
-and z_s1100z3 (z_s1101z3 : string) : ((bool * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1100z3 (z_s1101z3 : (string)) : ((bool * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s1101z3 with
     | z_s1102z3 when (string_startswith (z_s1102z3, "div")) ->
@@ -19462,7 +19500,7 @@ and z_s1100z3 (z_s1101z3 : string) : ((bool * (bit) list * (bit) list * (bit) li
                     match (string_drop (z_s1105z3, (string_length "w"))) with
                     | z_s1106z3 ->
                       begin
-                        match (spc_matches_prefix z_s1106z3) with
+                        match (zspc_matches_prefix z_s1106z3) with
                         | ZSome ((), z_s1107z3) ->
                           begin
                             match (string_drop (z_s1106z3, z_s1107z3)) with
@@ -19534,7 +19572,7 @@ and z_s1100z3 (z_s1101z3 : string) : ((bool * (bit) list * (bit) list * (bit) li
     | _ -> ZNone ()
   end)
 
-and z_s1084z3 (z_s1085z3 : string) : (((bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1084z3 (z_s1085z3 : (string)) : (((bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s1085z3 with
     | z_s1086z3 when (string_startswith (z_s1086z3, "mulw")) ->
@@ -19542,7 +19580,7 @@ and z_s1084z3 (z_s1085z3 : string) : (((bit) list * (bit) list * (bit) list)) zo
         match (string_drop (z_s1086z3, (string_length "mulw"))) with
         | z_s1087z3 ->
           begin
-            match (spc_matches_prefix z_s1087z3) with
+            match (zspc_matches_prefix z_s1087z3) with
             | ZSome ((), z_s1088z3) ->
               begin
                 match (string_drop (z_s1087z3, z_s1088z3)) with
@@ -19607,7 +19645,7 @@ and z_s1084z3 (z_s1085z3 : string) : (((bit) list * (bit) list * (bit) list)) zo
     | _ -> ZNone ()
   end)
 
-and z_s1066z3 (z_s1067z3 : string) : ((bool * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1066z3 (z_s1067z3 : (string)) : ((bool * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s1067z3 with
     | z_s1068z3 when (string_startswith (z_s1068z3, "rem")) ->
@@ -19621,7 +19659,7 @@ and z_s1066z3 (z_s1067z3 : string) : ((bool * (bit) list * (bit) list * (bit) li
                 match (string_drop (z_s1069z3, z_s1070z3)) with
                 | z_s1071z3 ->
                   begin
-                    match (spc_matches_prefix z_s1071z3) with
+                    match (zspc_matches_prefix z_s1071z3) with
                     | ZSome ((), z_s1072z3) ->
                       begin
                         match (string_drop (z_s1071z3, z_s1072z3)) with
@@ -19690,7 +19728,7 @@ and z_s1066z3 (z_s1067z3 : string) : ((bool * (bit) list * (bit) list * (bit) li
     | _ -> ZNone ()
   end)
 
-and z_s1048z3 (z_s1049z3 : string) : ((bool * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1048z3 (z_s1049z3 : (string)) : ((bool * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s1049z3 with
     | z_s1050z3 when (string_startswith (z_s1050z3, "div")) ->
@@ -19704,7 +19742,7 @@ and z_s1048z3 (z_s1049z3 : string) : ((bool * (bit) list * (bit) list * (bit) li
                 match (string_drop (z_s1051z3, z_s1052z3)) with
                 | z_s1053z3 ->
                   begin
-                    match (spc_matches_prefix z_s1053z3) with
+                    match (zspc_matches_prefix z_s1053z3) with
                     | ZSome ((), z_s1054z3) ->
                       begin
                         match (string_drop (z_s1053z3, z_s1054z3)) with
@@ -19773,7 +19811,7 @@ and z_s1048z3 (z_s1049z3 : string) : ((bool * (bit) list * (bit) list * (bit) li
     | _ -> ZNone ()
   end)
 
-and z_s1031z3 (z_s1032z3 : string) : ((bool * bool * bool * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1031z3 (z_s1032z3 : (string)) : ((bool * bool * bool * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s1032z3 with
     | z_s1033z3 ->
@@ -19784,7 +19822,7 @@ and z_s1031z3 (z_s1032z3 : string) : ((bool * bool * bool * (bit) list * (bit) l
             match (string_drop (z_s1033z3, z_s1034z3)) with
             | z_s1035z3 ->
               begin
-                match (spc_matches_prefix z_s1035z3) with
+                match (zspc_matches_prefix z_s1035z3) with
                 | ZSome ((), z_s1036z3) ->
                   begin
                     match (string_drop (z_s1035z3, z_s1036z3)) with
@@ -19851,7 +19889,7 @@ and z_s1031z3 (z_s1032z3 : string) : ((bool * bool * bool * (bit) list * (bit) l
     | _ -> ZNone ()
   end)
 
-and z_s1016z3 (z_s1017z3 : string) : ((zsopw * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1016z3 (z_s1017z3 : (string)) : ((zsopw * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s1017z3 with
     | z_s1018z3 ->
@@ -19862,7 +19900,7 @@ and z_s1016z3 (z_s1017z3 : string) : ((zsopw * (bit) list * (bit) list * (bit) l
             match (string_drop (z_s1018z3, z_s1019z3)) with
             | z_s1020z3 ->
               begin
-                match (spc_matches_prefix z_s1020z3) with
+                match (zspc_matches_prefix z_s1020z3) with
                 | ZSome ((), z_s1021z3) ->
                   begin
                     match (string_drop (z_s1020z3, z_s1021z3)) with
@@ -19919,7 +19957,7 @@ and z_s1016z3 (z_s1017z3 : string) : ((zsopw * (bit) list * (bit) list * (bit) l
     | _ -> ZNone ()
   end)
 
-and z_s999z3 (z_s1000z3 : string) : ((zropw * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s999z3 (z_s1000z3 : (string)) : ((zropw * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s1000z3 with
     | z_s1001z3 ->
@@ -19930,7 +19968,7 @@ and z_s999z3 (z_s1000z3 : string) : ((zropw * (bit) list * (bit) list * (bit) li
             match (string_drop (z_s1001z3, z_s1002z3)) with
             | z_s1003z3 ->
               begin
-                match (spc_matches_prefix z_s1003z3) with
+                match (zspc_matches_prefix z_s1003z3) with
                 | ZSome ((), z_s1004z3) ->
                   begin
                     match (string_drop (z_s1003z3, z_s1004z3)) with
@@ -19997,7 +20035,7 @@ and z_s999z3 (z_s1000z3 : string) : ((zropw * (bit) list * (bit) list * (bit) li
     | _ -> ZNone ()
   end)
 
-and z_s982z3 (z_s983z3 : string) : ((zsop * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s982z3 (z_s983z3 : (string)) : ((zsop * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s983z3 with
     | z_s984z3 ->
@@ -20008,7 +20046,7 @@ and z_s982z3 (z_s983z3 : string) : ((zsop * (bit) list * (bit) list * (bit) list
             match (string_drop (z_s984z3, z_s985z3)) with
             | z_s986z3 ->
               begin
-                match (spc_matches_prefix z_s986z3) with
+                match (zspc_matches_prefix z_s986z3) with
                 | ZSome ((), z_s987z3) ->
                   begin
                     match (string_drop (z_s986z3, z_s987z3)) with
@@ -20075,7 +20113,7 @@ and z_s982z3 (z_s983z3 : string) : ((zsop * (bit) list * (bit) list * (bit) list
     | _ -> ZNone ()
   end)
 
-and z_s966z3 (z_s967z3 : string) : (((bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s966z3 (z_s967z3 : (string)) : (((bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s967z3 with
     | z_s968z3 when (string_startswith (z_s968z3, "addiw")) ->
@@ -20083,7 +20121,7 @@ and z_s966z3 (z_s967z3 : string) : (((bit) list * (bit) list * (bit) list)) zopt
         match (string_drop (z_s968z3, (string_length "addiw"))) with
         | z_s969z3 ->
           begin
-            match (spc_matches_prefix z_s969z3) with
+            match (zspc_matches_prefix z_s969z3) with
             | ZSome ((), z_s970z3) ->
               begin
                 match (string_drop (z_s969z3, z_s970z3)) with
@@ -20148,7 +20186,7 @@ and z_s966z3 (z_s967z3 : string) : (((bit) list * (bit) list * (bit) list)) zopt
     | _ -> ZNone ()
   end)
 
-and z_s944z3 (z_s945z3 : string) : ((zword_width * bool * bool * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s944z3 (z_s945z3 : (string)) : ((zword_width * bool * bool * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s945z3 with
     | z_s946z3 when (string_startswith (z_s946z3, "s")) ->
@@ -20174,7 +20212,7 @@ and z_s944z3 (z_s945z3 : string) : ((zword_width * bool * bool * (bit) list * (b
                                 match (string_drop (z_s951z3, z_s952z3)) with
                                 | z_s953z3 ->
                                   begin
-                                    match (spc_matches_prefix z_s953z3) with
+                                    match (zspc_matches_prefix z_s953z3) with
                                     | ZSome ((), z_s954z3) ->
                                       begin
                                         match (string_drop (z_s953z3, z_s954z3)) with
@@ -20255,7 +20293,7 @@ and z_s944z3 (z_s945z3 : string) : ((zword_width * bool * bool * (bit) list * (b
     | _ -> ZNone ()
   end)
 
-and z_s920z3 (z_s921z3 : string) : ((zword_width * bool * bool * bool * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s920z3 (z_s921z3 : (string)) : ((zword_width * bool * bool * bool * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s921z3 with
     | z_s922z3 when (string_startswith (z_s922z3, "l")) ->
@@ -20287,7 +20325,7 @@ and z_s920z3 (z_s921z3 : string) : ((zword_width * bool * bool * bool * (bit) li
                                         match (string_drop (z_s929z3, z_s930z3)) with
                                         | z_s931z3 ->
                                           begin
-                                            match (spc_matches_prefix z_s931z3) with
+                                            match (zspc_matches_prefix z_s931z3) with
                                             | ZSome ((), z_s932z3) ->
                                               begin
                                                 match (string_drop (z_s931z3, z_s932z3)) with
@@ -20374,7 +20412,7 @@ and z_s920z3 (z_s921z3 : string) : ((zword_width * bool * bool * bool * (bit) li
     | _ -> ZNone ()
   end)
 
-and z_s903z3 (z_s904z3 : string) : ((zrop * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s903z3 (z_s904z3 : (string)) : ((zrop * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s904z3 with
     | z_s905z3 ->
@@ -20385,7 +20423,7 @@ and z_s903z3 (z_s904z3 : string) : ((zrop * (bit) list * (bit) list * (bit) list
             match (string_drop (z_s905z3, z_s906z3)) with
             | z_s907z3 ->
               begin
-                match (spc_matches_prefix z_s907z3) with
+                match (zspc_matches_prefix z_s907z3) with
                 | ZSome ((), z_s908z3) ->
                   begin
                     match (string_drop (z_s907z3, z_s908z3)) with
@@ -20452,7 +20490,7 @@ and z_s903z3 (z_s904z3 : string) : ((zrop * (bit) list * (bit) list * (bit) list
     | _ -> ZNone ()
   end)
 
-and z_s888z3 (z_s889z3 : string) : ((zsop * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s888z3 (z_s889z3 : (string)) : ((zsop * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s889z3 with
     | z_s890z3 ->
@@ -20463,7 +20501,7 @@ and z_s888z3 (z_s889z3 : string) : ((zsop * (bit) list * (bit) list * (bit) list
             match (string_drop (z_s890z3, z_s891z3)) with
             | z_s892z3 ->
               begin
-                match (spc_matches_prefix z_s892z3) with
+                match (zspc_matches_prefix z_s892z3) with
                 | ZSome ((), z_s893z3) ->
                   begin
                     match (string_drop (z_s892z3, z_s893z3)) with
@@ -20520,7 +20558,7 @@ and z_s888z3 (z_s889z3 : string) : ((zsop * (bit) list * (bit) list * (bit) list
     | _ -> ZNone ()
   end)
 
-and z_s871z3 (z_s872z3 : string) : ((ziop * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s871z3 (z_s872z3 : (string)) : ((ziop * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s872z3 with
     | z_s873z3 ->
@@ -20531,7 +20569,7 @@ and z_s871z3 (z_s872z3 : string) : ((ziop * (bit) list * (bit) list * (bit) list
             match (string_drop (z_s873z3, z_s874z3)) with
             | z_s875z3 ->
               begin
-                match (spc_matches_prefix z_s875z3) with
+                match (zspc_matches_prefix z_s875z3) with
                 | ZSome ((), z_s876z3) ->
                   begin
                     match (string_drop (z_s875z3, z_s876z3)) with
@@ -20598,7 +20636,7 @@ and z_s871z3 (z_s872z3 : string) : ((ziop * (bit) list * (bit) list * (bit) list
     | _ -> ZNone ()
   end)
 
-and z_s854z3 (z_s855z3 : string) : ((zbop * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s854z3 (z_s855z3 : (string)) : ((zbop * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s855z3 with
     | z_s856z3 ->
@@ -20609,7 +20647,7 @@ and z_s854z3 (z_s855z3 : string) : ((zbop * (bit) list * (bit) list * (bit) list
             match (string_drop (z_s856z3, z_s857z3)) with
             | z_s858z3 ->
               begin
-                match (spc_matches_prefix z_s858z3) with
+                match (zspc_matches_prefix z_s858z3) with
                 | ZSome ((), z_s859z3) ->
                   begin
                     match (string_drop (z_s858z3, z_s859z3)) with
@@ -20676,7 +20714,7 @@ and z_s854z3 (z_s855z3 : string) : ((zbop * (bit) list * (bit) list * (bit) list
     | _ -> ZNone ()
   end)
 
-and z_s838z3 (z_s839z3 : string) : (((bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s838z3 (z_s839z3 : (string)) : (((bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s839z3 with
     | z_s840z3 when (string_startswith (z_s840z3, "jalr")) ->
@@ -20684,7 +20722,7 @@ and z_s838z3 (z_s839z3 : string) : (((bit) list * (bit) list * (bit) list)) zopt
         match (string_drop (z_s840z3, (string_length "jalr"))) with
         | z_s841z3 ->
           begin
-            match (spc_matches_prefix z_s841z3) with
+            match (zspc_matches_prefix z_s841z3) with
             | ZSome ((), z_s842z3) ->
               begin
                 match (string_drop (z_s841z3, z_s842z3)) with
@@ -20749,7 +20787,7 @@ and z_s838z3 (z_s839z3 : string) : (((bit) list * (bit) list * (bit) list)) zopt
     | _ -> ZNone ()
   end)
 
-and z_s826z3 (z_s827z3 : string) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s826z3 (z_s827z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s827z3 with
     | z_s828z3 when (string_startswith (z_s828z3, "jal")) ->
@@ -20757,7 +20795,7 @@ and z_s826z3 (z_s827z3 : string) : (((bit) list * (bit) list)) zoption = sail_ca
         match (string_drop (z_s828z3, (string_length "jal"))) with
         | z_s829z3 ->
           begin
-            match (spc_matches_prefix z_s829z3) with
+            match (zspc_matches_prefix z_s829z3) with
             | ZSome ((), z_s830z3) ->
               begin
                 match (string_drop (z_s829z3, z_s830z3)) with
@@ -20801,7 +20839,7 @@ and z_s826z3 (z_s827z3 : string) : (((bit) list * (bit) list)) zoption = sail_ca
     | _ -> ZNone ()
   end)
 
-and z_s813z3 (z_s814z3 : string) : ((zuop * (bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s813z3 (z_s814z3 : (string)) : ((zuop * (bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s814z3 with
     | z_s815z3 ->
@@ -20812,7 +20850,7 @@ and z_s813z3 (z_s814z3 : string) : ((zuop * (bit) list * (bit) list)) zoption = 
             match (string_drop (z_s815z3, z_s816z3)) with
             | z_s817z3 ->
               begin
-                match (spc_matches_prefix z_s817z3) with
+                match (zspc_matches_prefix z_s817z3) with
                 | ZSome ((), z_s818z3) ->
                   begin
                     match (string_drop (z_s817z3, z_s818z3)) with
@@ -20858,7 +20896,7 @@ and z_s813z3 (z_s814z3 : string) : ((zuop * (bit) list * (bit) list)) zoption = 
     | _ -> ZNone ()
   end)
 
-and zassembly_backwards (zargz3 : string) : zast = sail_call (fun r ->
+and zassembly_backwards (zargz3 : (string)) : zast = sail_call (fun r ->
   begin
     match zargz3 with
     | z_s825z3 when (begin
@@ -21013,17 +21051,17 @@ and zassembly_backwards (zargz3 : string) : zast = sail_call (fun r ->
       let ZSome (zrs1, zrs2) = (z_s1150z3 z_s1161z3) in ZSFENCE_VMA (zrs1, zrs2)
     | z_s1179z3 when (begin
       match (z_s1162z3 z_s1179z3) with
-      | ZSome (zaq, zrl, zsizze, zrd, zrs1) -> true
+      | ZSome (zsizze, zaq, zrl, zrd, zrs1) -> true
       | _ -> false
     end) ->
-      let ZSome (zaq, zrl, zsizze, zrd, zrs1) = (z_s1162z3 z_s1179z3) in
+      let ZSome (zsizze, zaq, zrl, zrd, zrs1) = (z_s1162z3 z_s1179z3) in
       ZLOADRES (zaq, zrl, zrs1, zsizze, zrd)
     | z_s1201z3 when (begin
       match (z_s1180z3 z_s1201z3) with
-      | ZSome (zaq, zrl, zsizze, zrd, zrs1, zrs2) -> true
+      | ZSome (zsizze, zaq, zrl, zrd, zrs1, zrs2) -> true
       | _ -> false
     end) ->
-      let ZSome (zaq, zrl, zsizze, zrd, zrs1, zrs2) = (z_s1180z3 z_s1201z3) in
+      let ZSome (zsizze, zaq, zrl, zrd, zrs1, zrs2) = (z_s1180z3 z_s1201z3) in
       ZSTORECON (zaq, zrl, zrs2, zrs1, zsizze, zrd)
     | z_s1225z3 when (begin
       match (z_s1202z3 z_s1225z3) with
@@ -21248,6 +21286,7 @@ and zassembly_backwards (zargz3 : string) : zast = sail_call (fun r ->
       | _ -> false
     end) ->
       let ZSome (zrd, zrs2) = (z_s1615z3 z_s1626z3) in ZC_MV (zrd, zrs2)
+    | "c.ebreak" -> ZC_EBREAK ()
     | z_s1638z3 when (begin
       match (z_s1627z3 z_s1638z3) with
       | ZSome (zrsd, zrs2) ->
@@ -21271,7 +21310,7 @@ and zassembly_backwards (zargz3 : string) : zast = sail_call (fun r ->
       let ZSome (zs) = (z_s1647z3 z_s1654z3) in ZC_ILLEGAL zs
   end)
 
-and zassembly_forwards_matches (zargz3 : zast) : bool = sail_call (fun r ->
+and zassembly_forwards_matches (zargz3 : (zast)) : bool = sail_call (fun r ->
   begin
     match zargz3 with
     | ZUTYPE (zimm, zrd, zop) -> true
@@ -21351,6 +21390,7 @@ and zassembly_forwards_matches (zargz3 : zast) : bool = sail_call (fun r ->
       true
     | ZC_MV (zrd, zrs2) when ((zneq_atom ((zregbits_to_regno zrd), (zregbits_to_regno zzzreg))) && (zneq_atom ((zregbits_to_regno zrs2), (zregbits_to_regno zzzreg)))) ->
       true
+    | ZC_EBREAK (()) -> true
     | ZC_ADD (zrsd, zrs2) when ((zneq_atom ((zregbits_to_regno zrsd), (zregbits_to_regno zzzreg))) && (zneq_atom ((zregbits_to_regno zrs2), (zregbits_to_regno zzzreg)))) ->
       true
     | ZSTOP_FETCHING (()) -> true
@@ -21360,7 +21400,7 @@ and zassembly_forwards_matches (zargz3 : zast) : bool = sail_call (fun r ->
     | _ -> false
   end)
 
-and z_s2489z3 (z_s2490z3 : string) : ((bit) list) zoption = sail_call (fun r ->
+and z_s2489z3 (z_s2490z3 : (string)) : ((bit) list) zoption = sail_call (fun r ->
   begin
     match z_s2490z3 with
     | z_s2491z3 when (string_startswith (z_s2491z3, "c.illegal")) ->
@@ -21368,7 +21408,7 @@ and z_s2489z3 (z_s2490z3 : string) : ((bit) list) zoption = sail_call (fun r ->
         match (string_drop (z_s2491z3, (string_length "c.illegal"))) with
         | z_s2492z3 ->
           begin
-            match (spc_matches_prefix z_s2492z3) with
+            match (zspc_matches_prefix z_s2492z3) with
             | ZSome ((), z_s2493z3) ->
               begin
                 match (string_drop (z_s2492z3, z_s2493z3)) with
@@ -21392,7 +21432,7 @@ and z_s2489z3 (z_s2490z3 : string) : ((bit) list) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s2481z3 (z_s2482z3 : string) : ((bit) list) zoption = sail_call (fun r ->
+and z_s2481z3 (z_s2482z3 : (string)) : ((bit) list) zoption = sail_call (fun r ->
   begin
     match z_s2482z3 with
     | z_s2483z3 when (string_startswith (z_s2483z3, "illegal")) ->
@@ -21400,7 +21440,7 @@ and z_s2481z3 (z_s2482z3 : string) : ((bit) list) zoption = sail_call (fun r ->
         match (string_drop (z_s2483z3, (string_length "illegal"))) with
         | z_s2484z3 ->
           begin
-            match (spc_matches_prefix z_s2484z3) with
+            match (zspc_matches_prefix z_s2484z3) with
             | ZSome ((), z_s2485z3) ->
               begin
                 match (string_drop (z_s2484z3, z_s2485z3)) with
@@ -21424,7 +21464,7 @@ and z_s2481z3 (z_s2482z3 : string) : ((bit) list) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s2469z3 (z_s2470z3 : string) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s2469z3 (z_s2470z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s2470z3 with
     | z_s2471z3 when (string_startswith (z_s2471z3, "c.add")) ->
@@ -21432,7 +21472,7 @@ and z_s2469z3 (z_s2470z3 : string) : (((bit) list * (bit) list)) zoption = sail_
         match (string_drop (z_s2471z3, (string_length "c.add"))) with
         | z_s2472z3 ->
           begin
-            match (spc_matches_prefix z_s2472z3) with
+            match (zspc_matches_prefix z_s2472z3) with
             | ZSome ((), z_s2473z3) ->
               begin
                 match (string_drop (z_s2472z3, z_s2473z3)) with
@@ -21476,7 +21516,7 @@ and z_s2469z3 (z_s2470z3 : string) : (((bit) list * (bit) list)) zoption = sail_
     | _ -> ZNone ()
   end)
 
-and z_s2457z3 (z_s2458z3 : string) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s2457z3 (z_s2458z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s2458z3 with
     | z_s2459z3 when (string_startswith (z_s2459z3, "c.mv")) ->
@@ -21484,7 +21524,7 @@ and z_s2457z3 (z_s2458z3 : string) : (((bit) list * (bit) list)) zoption = sail_
         match (string_drop (z_s2459z3, (string_length "c.mv"))) with
         | z_s2460z3 ->
           begin
-            match (spc_matches_prefix z_s2460z3) with
+            match (zspc_matches_prefix z_s2460z3) with
             | ZSome ((), z_s2461z3) ->
               begin
                 match (string_drop (z_s2460z3, z_s2461z3)) with
@@ -21528,7 +21568,7 @@ and z_s2457z3 (z_s2458z3 : string) : (((bit) list * (bit) list)) zoption = sail_
     | _ -> ZNone ()
   end)
 
-and z_s2449z3 (z_s2450z3 : string) : ((bit) list) zoption = sail_call (fun r ->
+and z_s2449z3 (z_s2450z3 : (string)) : ((bit) list) zoption = sail_call (fun r ->
   begin
     match z_s2450z3 with
     | z_s2451z3 when (string_startswith (z_s2451z3, "c.jalr")) ->
@@ -21536,7 +21576,7 @@ and z_s2449z3 (z_s2450z3 : string) : ((bit) list) zoption = sail_call (fun r ->
         match (string_drop (z_s2451z3, (string_length "c.jalr"))) with
         | z_s2452z3 ->
           begin
-            match (spc_matches_prefix z_s2452z3) with
+            match (zspc_matches_prefix z_s2452z3) with
             | ZSome ((), z_s2453z3) ->
               begin
                 match (string_drop (z_s2452z3, z_s2453z3)) with
@@ -21560,7 +21600,7 @@ and z_s2449z3 (z_s2450z3 : string) : ((bit) list) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s2441z3 (z_s2442z3 : string) : ((bit) list) zoption = sail_call (fun r ->
+and z_s2441z3 (z_s2442z3 : (string)) : ((bit) list) zoption = sail_call (fun r ->
   begin
     match z_s2442z3 with
     | z_s2443z3 when (string_startswith (z_s2443z3, "c.jr")) ->
@@ -21568,7 +21608,7 @@ and z_s2441z3 (z_s2442z3 : string) : ((bit) list) zoption = sail_call (fun r ->
         match (string_drop (z_s2443z3, (string_length "c.jr"))) with
         | z_s2444z3 ->
           begin
-            match (spc_matches_prefix z_s2444z3) with
+            match (zspc_matches_prefix z_s2444z3) with
             | ZSome ((), z_s2445z3) ->
               begin
                 match (string_drop (z_s2444z3, z_s2445z3)) with
@@ -21592,7 +21632,7 @@ and z_s2441z3 (z_s2442z3 : string) : ((bit) list) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s2429z3 (z_s2430z3 : string) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s2429z3 (z_s2430z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s2430z3 with
     | z_s2431z3 when (string_startswith (z_s2431z3, "c.sdsp")) ->
@@ -21600,7 +21640,7 @@ and z_s2429z3 (z_s2430z3 : string) : (((bit) list * (bit) list)) zoption = sail_
         match (string_drop (z_s2431z3, (string_length "c.sdsp"))) with
         | z_s2432z3 ->
           begin
-            match (spc_matches_prefix z_s2432z3) with
+            match (zspc_matches_prefix z_s2432z3) with
             | ZSome ((), z_s2433z3) ->
               begin
                 match (string_drop (z_s2432z3, z_s2433z3)) with
@@ -21644,7 +21684,7 @@ and z_s2429z3 (z_s2430z3 : string) : (((bit) list * (bit) list)) zoption = sail_
     | _ -> ZNone ()
   end)
 
-and z_s2417z3 (z_s2418z3 : string) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s2417z3 (z_s2418z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s2418z3 with
     | z_s2419z3 when (string_startswith (z_s2419z3, "c.swsp")) ->
@@ -21652,7 +21692,7 @@ and z_s2417z3 (z_s2418z3 : string) : (((bit) list * (bit) list)) zoption = sail_
         match (string_drop (z_s2419z3, (string_length "c.swsp"))) with
         | z_s2420z3 ->
           begin
-            match (spc_matches_prefix z_s2420z3) with
+            match (zspc_matches_prefix z_s2420z3) with
             | ZSome ((), z_s2421z3) ->
               begin
                 match (string_drop (z_s2420z3, z_s2421z3)) with
@@ -21696,7 +21736,7 @@ and z_s2417z3 (z_s2418z3 : string) : (((bit) list * (bit) list)) zoption = sail_
     | _ -> ZNone ()
   end)
 
-and z_s2405z3 (z_s2406z3 : string) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s2405z3 (z_s2406z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s2406z3 with
     | z_s2407z3 when (string_startswith (z_s2407z3, "c.ldsp")) ->
@@ -21704,7 +21744,7 @@ and z_s2405z3 (z_s2406z3 : string) : (((bit) list * (bit) list)) zoption = sail_
         match (string_drop (z_s2407z3, (string_length "c.ldsp"))) with
         | z_s2408z3 ->
           begin
-            match (spc_matches_prefix z_s2408z3) with
+            match (zspc_matches_prefix z_s2408z3) with
             | ZSome ((), z_s2409z3) ->
               begin
                 match (string_drop (z_s2408z3, z_s2409z3)) with
@@ -21748,7 +21788,7 @@ and z_s2405z3 (z_s2406z3 : string) : (((bit) list * (bit) list)) zoption = sail_
     | _ -> ZNone ()
   end)
 
-and z_s2393z3 (z_s2394z3 : string) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s2393z3 (z_s2394z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s2394z3 with
     | z_s2395z3 when (string_startswith (z_s2395z3, "c.lwsp")) ->
@@ -21756,7 +21796,7 @@ and z_s2393z3 (z_s2394z3 : string) : (((bit) list * (bit) list)) zoption = sail_
         match (string_drop (z_s2395z3, (string_length "c.lwsp"))) with
         | z_s2396z3 ->
           begin
-            match (spc_matches_prefix z_s2396z3) with
+            match (zspc_matches_prefix z_s2396z3) with
             | ZSome ((), z_s2397z3) ->
               begin
                 match (string_drop (z_s2396z3, z_s2397z3)) with
@@ -21800,7 +21840,7 @@ and z_s2393z3 (z_s2394z3 : string) : (((bit) list * (bit) list)) zoption = sail_
     | _ -> ZNone ()
   end)
 
-and z_s2381z3 (z_s2382z3 : string) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s2381z3 (z_s2382z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s2382z3 with
     | z_s2383z3 when (string_startswith (z_s2383z3, "c.slli")) ->
@@ -21808,7 +21848,7 @@ and z_s2381z3 (z_s2382z3 : string) : (((bit) list * (bit) list)) zoption = sail_
         match (string_drop (z_s2383z3, (string_length "c.slli"))) with
         | z_s2384z3 ->
           begin
-            match (spc_matches_prefix z_s2384z3) with
+            match (zspc_matches_prefix z_s2384z3) with
             | ZSome ((), z_s2385z3) ->
               begin
                 match (string_drop (z_s2384z3, z_s2385z3)) with
@@ -21852,7 +21892,7 @@ and z_s2381z3 (z_s2382z3 : string) : (((bit) list * (bit) list)) zoption = sail_
     | _ -> ZNone ()
   end)
 
-and z_s2369z3 (z_s2370z3 : string) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s2369z3 (z_s2370z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s2370z3 with
     | z_s2371z3 when (string_startswith (z_s2371z3, "c.bnez")) ->
@@ -21860,7 +21900,7 @@ and z_s2369z3 (z_s2370z3 : string) : (((bit) list * (bit) list)) zoption = sail_
         match (string_drop (z_s2371z3, (string_length "c.bnez"))) with
         | z_s2372z3 ->
           begin
-            match (spc_matches_prefix z_s2372z3) with
+            match (zspc_matches_prefix z_s2372z3) with
             | ZSome ((), z_s2373z3) ->
               begin
                 match (string_drop (z_s2372z3, z_s2373z3)) with
@@ -21904,7 +21944,7 @@ and z_s2369z3 (z_s2370z3 : string) : (((bit) list * (bit) list)) zoption = sail_
     | _ -> ZNone ()
   end)
 
-and z_s2357z3 (z_s2358z3 : string) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s2357z3 (z_s2358z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s2358z3 with
     | z_s2359z3 when (string_startswith (z_s2359z3, "c.beqz")) ->
@@ -21912,7 +21952,7 @@ and z_s2357z3 (z_s2358z3 : string) : (((bit) list * (bit) list)) zoption = sail_
         match (string_drop (z_s2359z3, (string_length "c.beqz"))) with
         | z_s2360z3 ->
           begin
-            match (spc_matches_prefix z_s2360z3) with
+            match (zspc_matches_prefix z_s2360z3) with
             | ZSome ((), z_s2361z3) ->
               begin
                 match (string_drop (z_s2360z3, z_s2361z3)) with
@@ -21956,7 +21996,7 @@ and z_s2357z3 (z_s2358z3 : string) : (((bit) list * (bit) list)) zoption = sail_
     | _ -> ZNone ()
   end)
 
-and z_s2349z3 (z_s2350z3 : string) : ((bit) list) zoption = sail_call (fun r ->
+and z_s2349z3 (z_s2350z3 : (string)) : ((bit) list) zoption = sail_call (fun r ->
   begin
     match z_s2350z3 with
     | z_s2351z3 when (string_startswith (z_s2351z3, "c.j")) ->
@@ -21964,7 +22004,7 @@ and z_s2349z3 (z_s2350z3 : string) : ((bit) list) zoption = sail_call (fun r ->
         match (string_drop (z_s2351z3, (string_length "c.j"))) with
         | z_s2352z3 ->
           begin
-            match (spc_matches_prefix z_s2352z3) with
+            match (zspc_matches_prefix z_s2352z3) with
             | ZSome ((), z_s2353z3) ->
               begin
                 match (string_drop (z_s2352z3, z_s2353z3)) with
@@ -21988,7 +22028,7 @@ and z_s2349z3 (z_s2350z3 : string) : ((bit) list) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s2337z3 (z_s2338z3 : string) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s2337z3 (z_s2338z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s2338z3 with
     | z_s2339z3 when (string_startswith (z_s2339z3, "c.addw")) ->
@@ -21996,7 +22036,7 @@ and z_s2337z3 (z_s2338z3 : string) : (((bit) list * (bit) list)) zoption = sail_
         match (string_drop (z_s2339z3, (string_length "c.addw"))) with
         | z_s2340z3 ->
           begin
-            match (spc_matches_prefix z_s2340z3) with
+            match (zspc_matches_prefix z_s2340z3) with
             | ZSome ((), z_s2341z3) ->
               begin
                 match (string_drop (z_s2340z3, z_s2341z3)) with
@@ -22040,7 +22080,7 @@ and z_s2337z3 (z_s2338z3 : string) : (((bit) list * (bit) list)) zoption = sail_
     | _ -> ZNone ()
   end)
 
-and z_s2325z3 (z_s2326z3 : string) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s2325z3 (z_s2326z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s2326z3 with
     | z_s2327z3 when (string_startswith (z_s2327z3, "c.subw")) ->
@@ -22048,7 +22088,7 @@ and z_s2325z3 (z_s2326z3 : string) : (((bit) list * (bit) list)) zoption = sail_
         match (string_drop (z_s2327z3, (string_length "c.subw"))) with
         | z_s2328z3 ->
           begin
-            match (spc_matches_prefix z_s2328z3) with
+            match (zspc_matches_prefix z_s2328z3) with
             | ZSome ((), z_s2329z3) ->
               begin
                 match (string_drop (z_s2328z3, z_s2329z3)) with
@@ -22092,7 +22132,7 @@ and z_s2325z3 (z_s2326z3 : string) : (((bit) list * (bit) list)) zoption = sail_
     | _ -> ZNone ()
   end)
 
-and z_s2313z3 (z_s2314z3 : string) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s2313z3 (z_s2314z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s2314z3 with
     | z_s2315z3 when (string_startswith (z_s2315z3, "c.and")) ->
@@ -22100,7 +22140,7 @@ and z_s2313z3 (z_s2314z3 : string) : (((bit) list * (bit) list)) zoption = sail_
         match (string_drop (z_s2315z3, (string_length "c.and"))) with
         | z_s2316z3 ->
           begin
-            match (spc_matches_prefix z_s2316z3) with
+            match (zspc_matches_prefix z_s2316z3) with
             | ZSome ((), z_s2317z3) ->
               begin
                 match (string_drop (z_s2316z3, z_s2317z3)) with
@@ -22144,7 +22184,7 @@ and z_s2313z3 (z_s2314z3 : string) : (((bit) list * (bit) list)) zoption = sail_
     | _ -> ZNone ()
   end)
 
-and z_s2301z3 (z_s2302z3 : string) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s2301z3 (z_s2302z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s2302z3 with
     | z_s2303z3 when (string_startswith (z_s2303z3, "c.or")) ->
@@ -22152,7 +22192,7 @@ and z_s2301z3 (z_s2302z3 : string) : (((bit) list * (bit) list)) zoption = sail_
         match (string_drop (z_s2303z3, (string_length "c.or"))) with
         | z_s2304z3 ->
           begin
-            match (spc_matches_prefix z_s2304z3) with
+            match (zspc_matches_prefix z_s2304z3) with
             | ZSome ((), z_s2305z3) ->
               begin
                 match (string_drop (z_s2304z3, z_s2305z3)) with
@@ -22196,7 +22236,7 @@ and z_s2301z3 (z_s2302z3 : string) : (((bit) list * (bit) list)) zoption = sail_
     | _ -> ZNone ()
   end)
 
-and z_s2289z3 (z_s2290z3 : string) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s2289z3 (z_s2290z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s2290z3 with
     | z_s2291z3 when (string_startswith (z_s2291z3, "c.xor")) ->
@@ -22204,7 +22244,7 @@ and z_s2289z3 (z_s2290z3 : string) : (((bit) list * (bit) list)) zoption = sail_
         match (string_drop (z_s2291z3, (string_length "c.xor"))) with
         | z_s2292z3 ->
           begin
-            match (spc_matches_prefix z_s2292z3) with
+            match (zspc_matches_prefix z_s2292z3) with
             | ZSome ((), z_s2293z3) ->
               begin
                 match (string_drop (z_s2292z3, z_s2293z3)) with
@@ -22248,7 +22288,7 @@ and z_s2289z3 (z_s2290z3 : string) : (((bit) list * (bit) list)) zoption = sail_
     | _ -> ZNone ()
   end)
 
-and z_s2277z3 (z_s2278z3 : string) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s2277z3 (z_s2278z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s2278z3 with
     | z_s2279z3 when (string_startswith (z_s2279z3, "c.sub")) ->
@@ -22256,7 +22296,7 @@ and z_s2277z3 (z_s2278z3 : string) : (((bit) list * (bit) list)) zoption = sail_
         match (string_drop (z_s2279z3, (string_length "c.sub"))) with
         | z_s2280z3 ->
           begin
-            match (spc_matches_prefix z_s2280z3) with
+            match (zspc_matches_prefix z_s2280z3) with
             | ZSome ((), z_s2281z3) ->
               begin
                 match (string_drop (z_s2280z3, z_s2281z3)) with
@@ -22300,7 +22340,7 @@ and z_s2277z3 (z_s2278z3 : string) : (((bit) list * (bit) list)) zoption = sail_
     | _ -> ZNone ()
   end)
 
-and z_s2265z3 (z_s2266z3 : string) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s2265z3 (z_s2266z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s2266z3 with
     | z_s2267z3 when (string_startswith (z_s2267z3, "c.andi")) ->
@@ -22308,7 +22348,7 @@ and z_s2265z3 (z_s2266z3 : string) : (((bit) list * (bit) list)) zoption = sail_
         match (string_drop (z_s2267z3, (string_length "c.andi"))) with
         | z_s2268z3 ->
           begin
-            match (spc_matches_prefix z_s2268z3) with
+            match (zspc_matches_prefix z_s2268z3) with
             | ZSome ((), z_s2269z3) ->
               begin
                 match (string_drop (z_s2268z3, z_s2269z3)) with
@@ -22352,7 +22392,7 @@ and z_s2265z3 (z_s2266z3 : string) : (((bit) list * (bit) list)) zoption = sail_
     | _ -> ZNone ()
   end)
 
-and z_s2253z3 (z_s2254z3 : string) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s2253z3 (z_s2254z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s2254z3 with
     | z_s2255z3 when (string_startswith (z_s2255z3, "c.srai")) ->
@@ -22360,7 +22400,7 @@ and z_s2253z3 (z_s2254z3 : string) : (((bit) list * (bit) list)) zoption = sail_
         match (string_drop (z_s2255z3, (string_length "c.srai"))) with
         | z_s2256z3 ->
           begin
-            match (spc_matches_prefix z_s2256z3) with
+            match (zspc_matches_prefix z_s2256z3) with
             | ZSome ((), z_s2257z3) ->
               begin
                 match (string_drop (z_s2256z3, z_s2257z3)) with
@@ -22404,7 +22444,7 @@ and z_s2253z3 (z_s2254z3 : string) : (((bit) list * (bit) list)) zoption = sail_
     | _ -> ZNone ()
   end)
 
-and z_s2241z3 (z_s2242z3 : string) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s2241z3 (z_s2242z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s2242z3 with
     | z_s2243z3 when (string_startswith (z_s2243z3, "c.srli")) ->
@@ -22412,7 +22452,7 @@ and z_s2241z3 (z_s2242z3 : string) : (((bit) list * (bit) list)) zoption = sail_
         match (string_drop (z_s2243z3, (string_length "c.srli"))) with
         | z_s2244z3 ->
           begin
-            match (spc_matches_prefix z_s2244z3) with
+            match (zspc_matches_prefix z_s2244z3) with
             | ZSome ((), z_s2245z3) ->
               begin
                 match (string_drop (z_s2244z3, z_s2245z3)) with
@@ -22456,7 +22496,7 @@ and z_s2241z3 (z_s2242z3 : string) : (((bit) list * (bit) list)) zoption = sail_
     | _ -> ZNone ()
   end)
 
-and z_s2231z3 (z_s2232z3 : string) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s2231z3 (z_s2232z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s2232z3 with
     | z_s2233z3 when (string_startswith (z_s2233z3, "c.lui")) ->
@@ -22498,7 +22538,7 @@ and z_s2231z3 (z_s2232z3 : string) : (((bit) list * (bit) list)) zoption = sail_
     | _ -> ZNone ()
   end)
 
-and z_s2223z3 (z_s2224z3 : string) : ((bit) list) zoption = sail_call (fun r ->
+and z_s2223z3 (z_s2224z3 : (string)) : ((bit) list) zoption = sail_call (fun r ->
   begin
     match z_s2224z3 with
     | z_s2225z3 when (string_startswith (z_s2225z3, "c.addi16sp")) ->
@@ -22506,7 +22546,7 @@ and z_s2223z3 (z_s2224z3 : string) : ((bit) list) zoption = sail_call (fun r ->
         match (string_drop (z_s2225z3, (string_length "c.addi16sp"))) with
         | z_s2226z3 ->
           begin
-            match (spc_matches_prefix z_s2226z3) with
+            match (zspc_matches_prefix z_s2226z3) with
             | ZSome ((), z_s2227z3) ->
               begin
                 match (string_drop (z_s2226z3, z_s2227z3)) with
@@ -22530,7 +22570,7 @@ and z_s2223z3 (z_s2224z3 : string) : ((bit) list) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s2211z3 (z_s2212z3 : string) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s2211z3 (z_s2212z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s2212z3 with
     | z_s2213z3 when (string_startswith (z_s2213z3, "c.li")) ->
@@ -22538,7 +22578,7 @@ and z_s2211z3 (z_s2212z3 : string) : (((bit) list * (bit) list)) zoption = sail_
         match (string_drop (z_s2213z3, (string_length "c.li"))) with
         | z_s2214z3 ->
           begin
-            match (spc_matches_prefix z_s2214z3) with
+            match (zspc_matches_prefix z_s2214z3) with
             | ZSome ((), z_s2215z3) ->
               begin
                 match (string_drop (z_s2214z3, z_s2215z3)) with
@@ -22582,7 +22622,7 @@ and z_s2211z3 (z_s2212z3 : string) : (((bit) list * (bit) list)) zoption = sail_
     | _ -> ZNone ()
   end)
 
-and z_s2199z3 (z_s2200z3 : string) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s2199z3 (z_s2200z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s2200z3 with
     | z_s2201z3 when (string_startswith (z_s2201z3, "c.addiw")) ->
@@ -22590,7 +22630,7 @@ and z_s2199z3 (z_s2200z3 : string) : (((bit) list * (bit) list)) zoption = sail_
         match (string_drop (z_s2201z3, (string_length "c.addiw"))) with
         | z_s2202z3 ->
           begin
-            match (spc_matches_prefix z_s2202z3) with
+            match (zspc_matches_prefix z_s2202z3) with
             | ZSome ((), z_s2203z3) ->
               begin
                 match (string_drop (z_s2202z3, z_s2203z3)) with
@@ -22634,7 +22674,7 @@ and z_s2199z3 (z_s2200z3 : string) : (((bit) list * (bit) list)) zoption = sail_
     | _ -> ZNone ()
   end)
 
-and z_s2191z3 (z_s2192z3 : string) : ((bit) list) zoption = sail_call (fun r ->
+and z_s2191z3 (z_s2192z3 : (string)) : ((bit) list) zoption = sail_call (fun r ->
   begin
     match z_s2192z3 with
     | z_s2193z3 when (string_startswith (z_s2193z3, "c.jal")) ->
@@ -22642,7 +22682,7 @@ and z_s2191z3 (z_s2192z3 : string) : ((bit) list) zoption = sail_call (fun r ->
         match (string_drop (z_s2193z3, (string_length "c.jal"))) with
         | z_s2194z3 ->
           begin
-            match (spc_matches_prefix z_s2194z3) with
+            match (zspc_matches_prefix z_s2194z3) with
             | ZSome ((), z_s2195z3) ->
               begin
                 match (string_drop (z_s2194z3, z_s2195z3)) with
@@ -22669,7 +22709,7 @@ and z_s2191z3 (z_s2192z3 : string) : ((bit) list) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s2179z3 (z_s2180z3 : string) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s2179z3 (z_s2180z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s2180z3 with
     | z_s2181z3 when (string_startswith (z_s2181z3, "c.addi")) ->
@@ -22677,7 +22717,7 @@ and z_s2179z3 (z_s2180z3 : string) : (((bit) list * (bit) list)) zoption = sail_
         match (string_drop (z_s2181z3, (string_length "c.addi"))) with
         | z_s2182z3 ->
           begin
-            match (spc_matches_prefix z_s2182z3) with
+            match (zspc_matches_prefix z_s2182z3) with
             | ZSome ((), z_s2183z3) ->
               begin
                 match (string_drop (z_s2182z3, z_s2183z3)) with
@@ -22721,7 +22761,7 @@ and z_s2179z3 (z_s2180z3 : string) : (((bit) list * (bit) list)) zoption = sail_
     | _ -> ZNone ()
   end)
 
-and z_s2163z3 (z_s2164z3 : string) : (((bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s2163z3 (z_s2164z3 : (string)) : (((bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s2164z3 with
     | z_s2165z3 when (string_startswith (z_s2165z3, "c.sd")) ->
@@ -22729,7 +22769,7 @@ and z_s2163z3 (z_s2164z3 : string) : (((bit) list * (bit) list * (bit) list)) zo
         match (string_drop (z_s2165z3, (string_length "c.sd"))) with
         | z_s2166z3 ->
           begin
-            match (spc_matches_prefix z_s2166z3) with
+            match (zspc_matches_prefix z_s2166z3) with
             | ZSome ((), z_s2167z3) ->
               begin
                 match (string_drop (z_s2166z3, z_s2167z3)) with
@@ -22799,7 +22839,7 @@ and z_s2163z3 (z_s2164z3 : string) : (((bit) list * (bit) list * (bit) list)) zo
     | _ -> ZNone ()
   end)
 
-and z_s2147z3 (z_s2148z3 : string) : (((bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s2147z3 (z_s2148z3 : (string)) : (((bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s2148z3 with
     | z_s2149z3 when (string_startswith (z_s2149z3, "c.sw")) ->
@@ -22807,7 +22847,7 @@ and z_s2147z3 (z_s2148z3 : string) : (((bit) list * (bit) list * (bit) list)) zo
         match (string_drop (z_s2149z3, (string_length "c.sw"))) with
         | z_s2150z3 ->
           begin
-            match (spc_matches_prefix z_s2150z3) with
+            match (zspc_matches_prefix z_s2150z3) with
             | ZSome ((), z_s2151z3) ->
               begin
                 match (string_drop (z_s2150z3, z_s2151z3)) with
@@ -22876,7 +22916,7 @@ and z_s2147z3 (z_s2148z3 : string) : (((bit) list * (bit) list * (bit) list)) zo
     | _ -> ZNone ()
   end)
 
-and z_s2131z3 (z_s2132z3 : string) : (((bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s2131z3 (z_s2132z3 : (string)) : (((bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s2132z3 with
     | z_s2133z3 when (string_startswith (z_s2133z3, "c.ld")) ->
@@ -22884,7 +22924,7 @@ and z_s2131z3 (z_s2132z3 : string) : (((bit) list * (bit) list * (bit) list)) zo
         match (string_drop (z_s2133z3, (string_length "c.ld"))) with
         | z_s2134z3 ->
           begin
-            match (spc_matches_prefix z_s2134z3) with
+            match (zspc_matches_prefix z_s2134z3) with
             | ZSome ((), z_s2135z3) ->
               begin
                 match (string_drop (z_s2134z3, z_s2135z3)) with
@@ -22954,7 +22994,7 @@ and z_s2131z3 (z_s2132z3 : string) : (((bit) list * (bit) list * (bit) list)) zo
     | _ -> ZNone ()
   end)
 
-and z_s2115z3 (z_s2116z3 : string) : (((bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s2115z3 (z_s2116z3 : (string)) : (((bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s2116z3 with
     | z_s2117z3 when (string_startswith (z_s2117z3, "c.lw")) ->
@@ -22962,7 +23002,7 @@ and z_s2115z3 (z_s2116z3 : string) : (((bit) list * (bit) list * (bit) list)) zo
         match (string_drop (z_s2117z3, (string_length "c.lw"))) with
         | z_s2118z3 ->
           begin
-            match (spc_matches_prefix z_s2118z3) with
+            match (zspc_matches_prefix z_s2118z3) with
             | ZSome ((), z_s2119z3) ->
               begin
                 match (string_drop (z_s2118z3, z_s2119z3)) with
@@ -23031,7 +23071,7 @@ and z_s2115z3 (z_s2116z3 : string) : (((bit) list * (bit) list * (bit) list)) zo
     | _ -> ZNone ()
   end)
 
-and z_s2103z3 (z_s2104z3 : string) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s2103z3 (z_s2104z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s2104z3 with
     | z_s2105z3 when (string_startswith (z_s2105z3, "c.addi4spn")) ->
@@ -23039,7 +23079,7 @@ and z_s2103z3 (z_s2104z3 : string) : (((bit) list * (bit) list)) zoption = sail_
         match (string_drop (z_s2105z3, (string_length "c.addi4spn"))) with
         | z_s2106z3 ->
           begin
-            match (spc_matches_prefix z_s2106z3) with
+            match (zspc_matches_prefix z_s2106z3) with
             | ZSome ((), z_s2107z3) ->
               begin
                 match (string_drop (z_s2106z3, z_s2107z3)) with
@@ -23087,7 +23127,7 @@ and z_s2103z3 (z_s2104z3 : string) : (((bit) list * (bit) list)) zoption = sail_
     | _ -> ZNone ()
   end)
 
-and z_s2086z3 (z_s2087z3 : string) : ((zcsrop * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s2086z3 (z_s2087z3 : (string)) : ((zcsrop * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s2087z3 with
     | z_s2088z3 ->
@@ -23098,7 +23138,7 @@ and z_s2086z3 (z_s2087z3 : string) : ((zcsrop * (bit) list * (bit) list * (bit) 
             match (string_drop (z_s2088z3, z_s2089z3)) with
             | z_s2090z3 ->
               begin
-                match (spc_matches_prefix z_s2090z3) with
+                match (zspc_matches_prefix z_s2090z3) with
                 | ZSome ((), z_s2091z3) ->
                   begin
                     match (string_drop (z_s2090z3, z_s2091z3)) with
@@ -23165,7 +23205,7 @@ and z_s2086z3 (z_s2087z3 : string) : ((zcsrop * (bit) list * (bit) list * (bit) 
     | _ -> ZNone ()
   end)
 
-and z_s2068z3 (z_s2069z3 : string) : ((zcsrop * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s2068z3 (z_s2069z3 : (string)) : ((zcsrop * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s2069z3 with
     | z_s2070z3 ->
@@ -23179,7 +23219,7 @@ and z_s2068z3 (z_s2069z3 : string) : ((zcsrop * (bit) list * (bit) list * (bit) 
                 match (string_drop (z_s2072z3, (string_length "i"))) with
                 | z_s2073z3 ->
                   begin
-                    match (spc_matches_prefix z_s2073z3) with
+                    match (zspc_matches_prefix z_s2073z3) with
                     | ZSome ((), z_s2074z3) ->
                       begin
                         match (string_drop (z_s2073z3, z_s2074z3)) with
@@ -23248,7 +23288,7 @@ and z_s2068z3 (z_s2069z3 : string) : ((zcsrop * (bit) list * (bit) list * (bit) 
     | _ -> ZNone ()
   end)
 
-and z_s2044z3 (z_s2045z3 : string) : ((zamoop * zword_width * bool * bool * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s2044z3 (z_s2045z3 : (string)) : ((zamoop * zword_width * bool * bool * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s2045z3 with
     | z_s2046z3 ->
@@ -23280,7 +23320,7 @@ and z_s2044z3 (z_s2045z3 : string) : ((zamoop * zword_width * bool * bool * (bit
                                         match (string_drop (z_s2053z3, z_s2054z3)) with
                                         | z_s2055z3 ->
                                           begin
-                                            match (spc_matches_prefix z_s2055z3) with
+                                            match (zspc_matches_prefix z_s2055z3) with
                                             | ZSome ((), z_s2056z3) ->
                                               begin
                                                 match (string_drop (z_s2055z3, z_s2056z3)) with
@@ -23367,7 +23407,7 @@ and z_s2044z3 (z_s2045z3 : string) : ((zamoop * zword_width * bool * bool * (bit
     | _ -> ZNone ()
   end)
 
-and z_s2022z3 (z_s2023z3 : string) : ((bool * bool * zword_width * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s2022z3 (z_s2023z3 : (string)) : ((zword_width * bool * bool * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s2023z3 with
     | z_s2024z3 when (string_startswith (z_s2024z3, "sc.")) ->
@@ -23375,25 +23415,25 @@ and z_s2022z3 (z_s2023z3 : string) : ((bool * bool * zword_width * (bit) list * 
         match (string_drop (z_s2024z3, (string_length "sc."))) with
         | z_s2025z3 ->
           begin
-            match (zmaybe_aq_matches_prefix z_s2025z3) with
-            | ZSome (zaq, z_s2026z3) ->
+            match (zsizze_mnemonic_matches_prefix z_s2025z3) with
+            | ZSome (zsizze, z_s2026z3) ->
               begin
                 match (string_drop (z_s2025z3, z_s2026z3)) with
                 | z_s2027z3 ->
                   begin
-                    match (zmaybe_rl_matches_prefix z_s2027z3) with
-                    | ZSome (zrl, z_s2028z3) ->
+                    match (zmaybe_aq_matches_prefix z_s2027z3) with
+                    | ZSome (zaq, z_s2028z3) ->
                       begin
                         match (string_drop (z_s2027z3, z_s2028z3)) with
                         | z_s2029z3 ->
                           begin
-                            match (zsizze_mnemonic_matches_prefix z_s2029z3) with
-                            | ZSome (zsizze, z_s2030z3) ->
+                            match (zmaybe_rl_matches_prefix z_s2029z3) with
+                            | ZSome (zrl, z_s2030z3) ->
                               begin
                                 match (string_drop (z_s2029z3, z_s2030z3)) with
                                 | z_s2031z3 ->
                                   begin
-                                    match (spc_matches_prefix z_s2031z3) with
+                                    match (zspc_matches_prefix z_s2031z3) with
                                     | ZSome ((), z_s2032z3) ->
                                       begin
                                         match (string_drop (z_s2031z3, z_s2032z3)) with
@@ -23428,7 +23468,7 @@ and z_s2022z3 (z_s2023z3 : string) : ((bool * bool * zword_width * (bit) list * 
                                                                               begin
                                                                                 match (string_drop (z_s2041z3, z_s2042z3)) with
                                                                                 | "" ->
-                                                                                  ZSome (zaq, zrl, zsizze, zrd, zrs1, zrs2)
+                                                                                  ZSome (zsizze, zaq, zrl, zrd, zrs1, zrs2)
                                                                                 | _ ->
                                                                                   ZNone ()
                                                                               end
@@ -23474,7 +23514,7 @@ and z_s2022z3 (z_s2023z3 : string) : ((bool * bool * zword_width * (bit) list * 
     | _ -> ZNone ()
   end)
 
-and z_s2004z3 (z_s2005z3 : string) : ((bool * bool * zword_width * (bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s2004z3 (z_s2005z3 : (string)) : ((zword_width * bool * bool * (bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s2005z3 with
     | z_s2006z3 when (string_startswith (z_s2006z3, "lr.")) ->
@@ -23482,25 +23522,25 @@ and z_s2004z3 (z_s2005z3 : string) : ((bool * bool * zword_width * (bit) list * 
         match (string_drop (z_s2006z3, (string_length "lr."))) with
         | z_s2007z3 ->
           begin
-            match (zmaybe_aq_matches_prefix z_s2007z3) with
-            | ZSome (zaq, z_s2008z3) ->
+            match (zsizze_mnemonic_matches_prefix z_s2007z3) with
+            | ZSome (zsizze, z_s2008z3) ->
               begin
                 match (string_drop (z_s2007z3, z_s2008z3)) with
                 | z_s2009z3 ->
                   begin
-                    match (zmaybe_rl_matches_prefix z_s2009z3) with
-                    | ZSome (zrl, z_s2010z3) ->
+                    match (zmaybe_aq_matches_prefix z_s2009z3) with
+                    | ZSome (zaq, z_s2010z3) ->
                       begin
                         match (string_drop (z_s2009z3, z_s2010z3)) with
                         | z_s2011z3 ->
                           begin
-                            match (zsizze_mnemonic_matches_prefix z_s2011z3) with
-                            | ZSome (zsizze, z_s2012z3) ->
+                            match (zmaybe_rl_matches_prefix z_s2011z3) with
+                            | ZSome (zrl, z_s2012z3) ->
                               begin
                                 match (string_drop (z_s2011z3, z_s2012z3)) with
                                 | z_s2013z3 ->
                                   begin
-                                    match (spc_matches_prefix z_s2013z3) with
+                                    match (zspc_matches_prefix z_s2013z3) with
                                     | ZSome ((), z_s2014z3) ->
                                       begin
                                         match (string_drop (z_s2013z3, z_s2014z3)) with
@@ -23523,7 +23563,7 @@ and z_s2004z3 (z_s2005z3 : string) : ((bool * bool * zword_width * (bit) list * 
                                                               begin
                                                                 match (string_drop (z_s2019z3, z_s2020z3)) with
                                                                 | "" ->
-                                                                  ZSome (zaq, zrl, zsizze, zrd, zrs1)
+                                                                  ZSome (zsizze, zaq, zrl, zrd, zrs1)
                                                                 | _ -> ZNone ()
                                                               end
                                                             | _ -> ZNone ()
@@ -23557,7 +23597,7 @@ and z_s2004z3 (z_s2005z3 : string) : ((bool * bool * zword_width * (bit) list * 
     | _ -> ZNone ()
   end)
 
-and z_s1992z3 (z_s1993z3 : string) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1992z3 (z_s1993z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s1993z3 with
     | z_s1994z3 when (string_startswith (z_s1994z3, "sfence.vma")) ->
@@ -23565,7 +23605,7 @@ and z_s1992z3 (z_s1993z3 : string) : (((bit) list * (bit) list)) zoption = sail_
         match (string_drop (z_s1994z3, (string_length "sfence.vma"))) with
         | z_s1995z3 ->
           begin
-            match (spc_matches_prefix z_s1995z3) with
+            match (zspc_matches_prefix z_s1995z3) with
             | ZSome ((), z_s1996z3) ->
               begin
                 match (string_drop (z_s1995z3, z_s1996z3)) with
@@ -23609,7 +23649,7 @@ and z_s1992z3 (z_s1993z3 : string) : (((bit) list * (bit) list)) zoption = sail_
     | _ -> ZNone ()
   end)
 
-and z_s1980z3 (z_s1981z3 : string) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1980z3 (z_s1981z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s1981z3 with
     | z_s1982z3 when (string_startswith (z_s1982z3, "fence")) ->
@@ -23617,7 +23657,7 @@ and z_s1980z3 (z_s1981z3 : string) : (((bit) list * (bit) list)) zoption = sail_
         match (string_drop (z_s1982z3, (string_length "fence"))) with
         | z_s1983z3 ->
           begin
-            match (spc_matches_prefix z_s1983z3) with
+            match (zspc_matches_prefix z_s1983z3) with
             | ZSome ((), z_s1984z3) ->
               begin
                 match (string_drop (z_s1983z3, z_s1984z3)) with
@@ -23661,7 +23701,7 @@ and z_s1980z3 (z_s1981z3 : string) : (((bit) list * (bit) list)) zoption = sail_
     | _ -> ZNone ()
   end)
 
-and z_s1961z3 (z_s1962z3 : string) : ((bool * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1961z3 (z_s1962z3 : (string)) : ((bool * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s1962z3 with
     | z_s1963z3 when (string_startswith (z_s1963z3, "rem")) ->
@@ -23678,7 +23718,7 @@ and z_s1961z3 (z_s1962z3 : string) : ((bool * (bit) list * (bit) list * (bit) li
                     match (string_drop (z_s1966z3, (string_length "w"))) with
                     | z_s1967z3 ->
                       begin
-                        match (spc_matches_prefix z_s1967z3) with
+                        match (zspc_matches_prefix z_s1967z3) with
                         | ZSome ((), z_s1968z3) ->
                           begin
                             match (string_drop (z_s1967z3, z_s1968z3)) with
@@ -23750,7 +23790,7 @@ and z_s1961z3 (z_s1962z3 : string) : ((bool * (bit) list * (bit) list * (bit) li
     | _ -> ZNone ()
   end)
 
-and z_s1942z3 (z_s1943z3 : string) : ((bool * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1942z3 (z_s1943z3 : (string)) : ((bool * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s1943z3 with
     | z_s1944z3 when (string_startswith (z_s1944z3, "div")) ->
@@ -23767,7 +23807,7 @@ and z_s1942z3 (z_s1943z3 : string) : ((bool * (bit) list * (bit) list * (bit) li
                     match (string_drop (z_s1947z3, (string_length "w"))) with
                     | z_s1948z3 ->
                       begin
-                        match (spc_matches_prefix z_s1948z3) with
+                        match (zspc_matches_prefix z_s1948z3) with
                         | ZSome ((), z_s1949z3) ->
                           begin
                             match (string_drop (z_s1948z3, z_s1949z3)) with
@@ -23839,7 +23879,7 @@ and z_s1942z3 (z_s1943z3 : string) : ((bool * (bit) list * (bit) list * (bit) li
     | _ -> ZNone ()
   end)
 
-and z_s1926z3 (z_s1927z3 : string) : (((bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1926z3 (z_s1927z3 : (string)) : (((bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s1927z3 with
     | z_s1928z3 when (string_startswith (z_s1928z3, "mulw")) ->
@@ -23847,7 +23887,7 @@ and z_s1926z3 (z_s1927z3 : string) : (((bit) list * (bit) list * (bit) list)) zo
         match (string_drop (z_s1928z3, (string_length "mulw"))) with
         | z_s1929z3 ->
           begin
-            match (spc_matches_prefix z_s1929z3) with
+            match (zspc_matches_prefix z_s1929z3) with
             | ZSome ((), z_s1930z3) ->
               begin
                 match (string_drop (z_s1929z3, z_s1930z3)) with
@@ -23912,7 +23952,7 @@ and z_s1926z3 (z_s1927z3 : string) : (((bit) list * (bit) list * (bit) list)) zo
     | _ -> ZNone ()
   end)
 
-and z_s1908z3 (z_s1909z3 : string) : ((bool * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1908z3 (z_s1909z3 : (string)) : ((bool * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s1909z3 with
     | z_s1910z3 when (string_startswith (z_s1910z3, "rem")) ->
@@ -23926,7 +23966,7 @@ and z_s1908z3 (z_s1909z3 : string) : ((bool * (bit) list * (bit) list * (bit) li
                 match (string_drop (z_s1911z3, z_s1912z3)) with
                 | z_s1913z3 ->
                   begin
-                    match (spc_matches_prefix z_s1913z3) with
+                    match (zspc_matches_prefix z_s1913z3) with
                     | ZSome ((), z_s1914z3) ->
                       begin
                         match (string_drop (z_s1913z3, z_s1914z3)) with
@@ -23995,7 +24035,7 @@ and z_s1908z3 (z_s1909z3 : string) : ((bool * (bit) list * (bit) list * (bit) li
     | _ -> ZNone ()
   end)
 
-and z_s1890z3 (z_s1891z3 : string) : ((bool * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1890z3 (z_s1891z3 : (string)) : ((bool * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s1891z3 with
     | z_s1892z3 when (string_startswith (z_s1892z3, "div")) ->
@@ -24009,7 +24049,7 @@ and z_s1890z3 (z_s1891z3 : string) : ((bool * (bit) list * (bit) list * (bit) li
                 match (string_drop (z_s1893z3, z_s1894z3)) with
                 | z_s1895z3 ->
                   begin
-                    match (spc_matches_prefix z_s1895z3) with
+                    match (zspc_matches_prefix z_s1895z3) with
                     | ZSome ((), z_s1896z3) ->
                       begin
                         match (string_drop (z_s1895z3, z_s1896z3)) with
@@ -24078,7 +24118,7 @@ and z_s1890z3 (z_s1891z3 : string) : ((bool * (bit) list * (bit) list * (bit) li
     | _ -> ZNone ()
   end)
 
-and z_s1873z3 (z_s1874z3 : string) : ((bool * bool * bool * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1873z3 (z_s1874z3 : (string)) : ((bool * bool * bool * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s1874z3 with
     | z_s1875z3 ->
@@ -24089,7 +24129,7 @@ and z_s1873z3 (z_s1874z3 : string) : ((bool * bool * bool * (bit) list * (bit) l
             match (string_drop (z_s1875z3, z_s1876z3)) with
             | z_s1877z3 ->
               begin
-                match (spc_matches_prefix z_s1877z3) with
+                match (zspc_matches_prefix z_s1877z3) with
                 | ZSome ((), z_s1878z3) ->
                   begin
                     match (string_drop (z_s1877z3, z_s1878z3)) with
@@ -24156,7 +24196,7 @@ and z_s1873z3 (z_s1874z3 : string) : ((bool * bool * bool * (bit) list * (bit) l
     | _ -> ZNone ()
   end)
 
-and z_s1858z3 (z_s1859z3 : string) : ((zsopw * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1858z3 (z_s1859z3 : (string)) : ((zsopw * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s1859z3 with
     | z_s1860z3 ->
@@ -24167,7 +24207,7 @@ and z_s1858z3 (z_s1859z3 : string) : ((zsopw * (bit) list * (bit) list * (bit) l
             match (string_drop (z_s1860z3, z_s1861z3)) with
             | z_s1862z3 ->
               begin
-                match (spc_matches_prefix z_s1862z3) with
+                match (zspc_matches_prefix z_s1862z3) with
                 | ZSome ((), z_s1863z3) ->
                   begin
                     match (string_drop (z_s1862z3, z_s1863z3)) with
@@ -24224,7 +24264,7 @@ and z_s1858z3 (z_s1859z3 : string) : ((zsopw * (bit) list * (bit) list * (bit) l
     | _ -> ZNone ()
   end)
 
-and z_s1841z3 (z_s1842z3 : string) : ((zropw * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1841z3 (z_s1842z3 : (string)) : ((zropw * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s1842z3 with
     | z_s1843z3 ->
@@ -24235,7 +24275,7 @@ and z_s1841z3 (z_s1842z3 : string) : ((zropw * (bit) list * (bit) list * (bit) l
             match (string_drop (z_s1843z3, z_s1844z3)) with
             | z_s1845z3 ->
               begin
-                match (spc_matches_prefix z_s1845z3) with
+                match (zspc_matches_prefix z_s1845z3) with
                 | ZSome ((), z_s1846z3) ->
                   begin
                     match (string_drop (z_s1845z3, z_s1846z3)) with
@@ -24302,7 +24342,7 @@ and z_s1841z3 (z_s1842z3 : string) : ((zropw * (bit) list * (bit) list * (bit) l
     | _ -> ZNone ()
   end)
 
-and z_s1824z3 (z_s1825z3 : string) : ((zsop * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1824z3 (z_s1825z3 : (string)) : ((zsop * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s1825z3 with
     | z_s1826z3 ->
@@ -24313,7 +24353,7 @@ and z_s1824z3 (z_s1825z3 : string) : ((zsop * (bit) list * (bit) list * (bit) li
             match (string_drop (z_s1826z3, z_s1827z3)) with
             | z_s1828z3 ->
               begin
-                match (spc_matches_prefix z_s1828z3) with
+                match (zspc_matches_prefix z_s1828z3) with
                 | ZSome ((), z_s1829z3) ->
                   begin
                     match (string_drop (z_s1828z3, z_s1829z3)) with
@@ -24380,7 +24420,7 @@ and z_s1824z3 (z_s1825z3 : string) : ((zsop * (bit) list * (bit) list * (bit) li
     | _ -> ZNone ()
   end)
 
-and z_s1808z3 (z_s1809z3 : string) : (((bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1808z3 (z_s1809z3 : (string)) : (((bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s1809z3 with
     | z_s1810z3 when (string_startswith (z_s1810z3, "addiw")) ->
@@ -24388,7 +24428,7 @@ and z_s1808z3 (z_s1809z3 : string) : (((bit) list * (bit) list * (bit) list)) zo
         match (string_drop (z_s1810z3, (string_length "addiw"))) with
         | z_s1811z3 ->
           begin
-            match (spc_matches_prefix z_s1811z3) with
+            match (zspc_matches_prefix z_s1811z3) with
             | ZSome ((), z_s1812z3) ->
               begin
                 match (string_drop (z_s1811z3, z_s1812z3)) with
@@ -24453,7 +24493,7 @@ and z_s1808z3 (z_s1809z3 : string) : (((bit) list * (bit) list * (bit) list)) zo
     | _ -> ZNone ()
   end)
 
-and z_s1786z3 (z_s1787z3 : string) : ((zword_width * bool * bool * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1786z3 (z_s1787z3 : (string)) : ((zword_width * bool * bool * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s1787z3 with
     | z_s1788z3 when (string_startswith (z_s1788z3, "s")) ->
@@ -24479,7 +24519,7 @@ and z_s1786z3 (z_s1787z3 : string) : ((zword_width * bool * bool * (bit) list * 
                                 match (string_drop (z_s1793z3, z_s1794z3)) with
                                 | z_s1795z3 ->
                                   begin
-                                    match (spc_matches_prefix z_s1795z3) with
+                                    match (zspc_matches_prefix z_s1795z3) with
                                     | ZSome ((), z_s1796z3) ->
                                       begin
                                         match (string_drop (z_s1795z3, z_s1796z3)) with
@@ -24560,7 +24600,7 @@ and z_s1786z3 (z_s1787z3 : string) : ((zword_width * bool * bool * (bit) list * 
     | _ -> ZNone ()
   end)
 
-and z_s1762z3 (z_s1763z3 : string) : ((zword_width * bool * bool * bool * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1762z3 (z_s1763z3 : (string)) : ((zword_width * bool * bool * bool * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s1763z3 with
     | z_s1764z3 when (string_startswith (z_s1764z3, "l")) ->
@@ -24592,7 +24632,7 @@ and z_s1762z3 (z_s1763z3 : string) : ((zword_width * bool * bool * bool * (bit) 
                                         match (string_drop (z_s1771z3, z_s1772z3)) with
                                         | z_s1773z3 ->
                                           begin
-                                            match (spc_matches_prefix z_s1773z3) with
+                                            match (zspc_matches_prefix z_s1773z3) with
                                             | ZSome ((), z_s1774z3) ->
                                               begin
                                                 match (string_drop (z_s1773z3, z_s1774z3)) with
@@ -24679,7 +24719,7 @@ and z_s1762z3 (z_s1763z3 : string) : ((zword_width * bool * bool * bool * (bit) 
     | _ -> ZNone ()
   end)
 
-and z_s1745z3 (z_s1746z3 : string) : ((zrop * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1745z3 (z_s1746z3 : (string)) : ((zrop * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s1746z3 with
     | z_s1747z3 ->
@@ -24690,7 +24730,7 @@ and z_s1745z3 (z_s1746z3 : string) : ((zrop * (bit) list * (bit) list * (bit) li
             match (string_drop (z_s1747z3, z_s1748z3)) with
             | z_s1749z3 ->
               begin
-                match (spc_matches_prefix z_s1749z3) with
+                match (zspc_matches_prefix z_s1749z3) with
                 | ZSome ((), z_s1750z3) ->
                   begin
                     match (string_drop (z_s1749z3, z_s1750z3)) with
@@ -24757,7 +24797,7 @@ and z_s1745z3 (z_s1746z3 : string) : ((zrop * (bit) list * (bit) list * (bit) li
     | _ -> ZNone ()
   end)
 
-and z_s1730z3 (z_s1731z3 : string) : ((zsop * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1730z3 (z_s1731z3 : (string)) : ((zsop * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s1731z3 with
     | z_s1732z3 ->
@@ -24768,7 +24808,7 @@ and z_s1730z3 (z_s1731z3 : string) : ((zsop * (bit) list * (bit) list * (bit) li
             match (string_drop (z_s1732z3, z_s1733z3)) with
             | z_s1734z3 ->
               begin
-                match (spc_matches_prefix z_s1734z3) with
+                match (zspc_matches_prefix z_s1734z3) with
                 | ZSome ((), z_s1735z3) ->
                   begin
                     match (string_drop (z_s1734z3, z_s1735z3)) with
@@ -24825,7 +24865,7 @@ and z_s1730z3 (z_s1731z3 : string) : ((zsop * (bit) list * (bit) list * (bit) li
     | _ -> ZNone ()
   end)
 
-and z_s1713z3 (z_s1714z3 : string) : ((ziop * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1713z3 (z_s1714z3 : (string)) : ((ziop * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s1714z3 with
     | z_s1715z3 ->
@@ -24836,7 +24876,7 @@ and z_s1713z3 (z_s1714z3 : string) : ((ziop * (bit) list * (bit) list * (bit) li
             match (string_drop (z_s1715z3, z_s1716z3)) with
             | z_s1717z3 ->
               begin
-                match (spc_matches_prefix z_s1717z3) with
+                match (zspc_matches_prefix z_s1717z3) with
                 | ZSome ((), z_s1718z3) ->
                   begin
                     match (string_drop (z_s1717z3, z_s1718z3)) with
@@ -24903,7 +24943,7 @@ and z_s1713z3 (z_s1714z3 : string) : ((ziop * (bit) list * (bit) list * (bit) li
     | _ -> ZNone ()
   end)
 
-and z_s1696z3 (z_s1697z3 : string) : ((zbop * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1696z3 (z_s1697z3 : (string)) : ((zbop * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s1697z3 with
     | z_s1698z3 ->
@@ -24914,7 +24954,7 @@ and z_s1696z3 (z_s1697z3 : string) : ((zbop * (bit) list * (bit) list * (bit) li
             match (string_drop (z_s1698z3, z_s1699z3)) with
             | z_s1700z3 ->
               begin
-                match (spc_matches_prefix z_s1700z3) with
+                match (zspc_matches_prefix z_s1700z3) with
                 | ZSome ((), z_s1701z3) ->
                   begin
                     match (string_drop (z_s1700z3, z_s1701z3)) with
@@ -24981,7 +25021,7 @@ and z_s1696z3 (z_s1697z3 : string) : ((zbop * (bit) list * (bit) list * (bit) li
     | _ -> ZNone ()
   end)
 
-and z_s1680z3 (z_s1681z3 : string) : (((bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1680z3 (z_s1681z3 : (string)) : (((bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s1681z3 with
     | z_s1682z3 when (string_startswith (z_s1682z3, "jalr")) ->
@@ -24989,7 +25029,7 @@ and z_s1680z3 (z_s1681z3 : string) : (((bit) list * (bit) list * (bit) list)) zo
         match (string_drop (z_s1682z3, (string_length "jalr"))) with
         | z_s1683z3 ->
           begin
-            match (spc_matches_prefix z_s1683z3) with
+            match (zspc_matches_prefix z_s1683z3) with
             | ZSome ((), z_s1684z3) ->
               begin
                 match (string_drop (z_s1683z3, z_s1684z3)) with
@@ -25054,7 +25094,7 @@ and z_s1680z3 (z_s1681z3 : string) : (((bit) list * (bit) list * (bit) list)) zo
     | _ -> ZNone ()
   end)
 
-and z_s1668z3 (z_s1669z3 : string) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1668z3 (z_s1669z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s1669z3 with
     | z_s1670z3 when (string_startswith (z_s1670z3, "jal")) ->
@@ -25062,7 +25102,7 @@ and z_s1668z3 (z_s1669z3 : string) : (((bit) list * (bit) list)) zoption = sail_
         match (string_drop (z_s1670z3, (string_length "jal"))) with
         | z_s1671z3 ->
           begin
-            match (spc_matches_prefix z_s1671z3) with
+            match (zspc_matches_prefix z_s1671z3) with
             | ZSome ((), z_s1672z3) ->
               begin
                 match (string_drop (z_s1671z3, z_s1672z3)) with
@@ -25106,7 +25146,7 @@ and z_s1668z3 (z_s1669z3 : string) : (((bit) list * (bit) list)) zoption = sail_
     | _ -> ZNone ()
   end)
 
-and z_s1655z3 (z_s1656z3 : string) : ((zuop * (bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1655z3 (z_s1656z3 : (string)) : ((zuop * (bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
     match z_s1656z3 with
     | z_s1657z3 ->
@@ -25117,7 +25157,7 @@ and z_s1655z3 (z_s1656z3 : string) : ((zuop * (bit) list * (bit) list)) zoption 
             match (string_drop (z_s1657z3, z_s1658z3)) with
             | z_s1659z3 ->
               begin
-                match (spc_matches_prefix z_s1659z3) with
+                match (zspc_matches_prefix z_s1659z3) with
                 | ZSome ((), z_s1660z3) ->
                   begin
                     match (string_drop (z_s1659z3, z_s1660z3)) with
@@ -25163,7 +25203,7 @@ and z_s1655z3 (z_s1656z3 : string) : ((zuop * (bit) list * (bit) list)) zoption 
     | _ -> ZNone ()
   end)
 
-and zassembly_backwards_matches (zargz3 : string) : bool = sail_call (fun r ->
+and zassembly_backwards_matches (zargz3 : (string)) : bool = sail_call (fun r ->
   begin
     match zargz3 with
     | z_s1667z3 when (begin
@@ -25303,16 +25343,16 @@ and zassembly_backwards_matches (zargz3 : string) : bool = sail_call (fun r ->
       let ZSome (zrs1, zrs2) = (z_s1992z3 z_s2003z3) in true
     | z_s2021z3 when (begin
       match (z_s2004z3 z_s2021z3) with
-      | ZSome (zaq, zrl, zsizze, zrd, zrs1) -> true
+      | ZSome (zsizze, zaq, zrl, zrd, zrs1) -> true
       | _ -> false
     end) ->
-      let ZSome (zaq, zrl, zsizze, zrd, zrs1) = (z_s2004z3 z_s2021z3) in true
+      let ZSome (zsizze, zaq, zrl, zrd, zrs1) = (z_s2004z3 z_s2021z3) in true
     | z_s2043z3 when (begin
       match (z_s2022z3 z_s2043z3) with
-      | ZSome (zaq, zrl, zsizze, zrd, zrs1, zrs2) -> true
+      | ZSome (zsizze, zaq, zrl, zrd, zrs1, zrs2) -> true
       | _ -> false
     end) ->
-      let ZSome (zaq, zrl, zsizze, zrd, zrs1, zrs2) = (z_s2022z3 z_s2043z3) in
+      let ZSome (zsizze, zaq, zrl, zrd, zrs1, zrs2) = (z_s2022z3 z_s2043z3) in
       true
     | z_s2067z3 when (begin
       match (z_s2044z3 z_s2067z3) with
@@ -25530,6 +25570,7 @@ and zassembly_backwards_matches (zargz3 : string) : bool = sail_call (fun r ->
       | _ -> false
     end) ->
       let ZSome (zrd, zrs2) = (z_s2457z3 z_s2468z3) in true
+    | "c.ebreak" -> true
     | z_s2480z3 when (begin
       match (z_s2469z3 z_s2480z3) with
       | ZSome (zrsd, zrs2) ->
@@ -25554,24 +25595,24 @@ and zassembly_backwards_matches (zargz3 : string) : bool = sail_call (fun r ->
     | _ -> false
   end)
 
-and z_s3367z3 (z_s3368z3 : string) : (((bit) list * string)) zoption = sail_call (fun r ->
+and z_s3371z3 (z_s3372z3 : (string)) : (((bit) list * string)) zoption = sail_call (fun r ->
   begin
-    match z_s3368z3 with
-    | z_s3369z3 when (string_startswith (z_s3369z3, "c.illegal")) ->
+    match z_s3372z3 with
+    | z_s3373z3 when (string_startswith (z_s3373z3, "c.illegal")) ->
       begin
-        match (string_drop (z_s3369z3, (string_length "c.illegal"))) with
-        | z_s3370z3 ->
+        match (string_drop (z_s3373z3, (string_length "c.illegal"))) with
+        | z_s3374z3 ->
           begin
-            match (spc_matches_prefix z_s3370z3) with
-            | ZSome ((), z_s3371z3) ->
+            match (zspc_matches_prefix z_s3374z3) with
+            | ZSome ((), z_s3375z3) ->
               begin
-                match (string_drop (z_s3370z3, z_s3371z3)) with
-                | z_s3372z3 ->
+                match (string_drop (z_s3374z3, z_s3375z3)) with
+                | z_s3376z3 ->
                   begin
-                    match (hex_bits_16_matches_prefix z_s3372z3) with
-                    | ZSome (zs, z_s3373z3) ->
+                    match (hex_bits_16_matches_prefix z_s3376z3) with
+                    | ZSome (zs, z_s3377z3) ->
                       begin
-                        match (string_drop (z_s3372z3, z_s3373z3)) with
+                        match (string_drop (z_s3376z3, z_s3377z3)) with
                         | zsz3 -> ZSome (zs, zsz3)
                         | _ -> ZNone ()
                       end
@@ -25586,92 +25627,92 @@ and z_s3367z3 (z_s3368z3 : string) : (((bit) list * string)) zoption = sail_call
     | _ -> ZNone ()
   end)
 
-and z_s3359z3 (z_s3360z3 : string) : (((bit) list * string)) zoption = sail_call (fun r ->
+and z_s3363z3 (z_s3364z3 : (string)) : (((bit) list * string)) zoption = sail_call (fun r ->
+  begin
+    match z_s3364z3 with
+    | z_s3365z3 when (string_startswith (z_s3365z3, "illegal")) ->
+      begin
+        match (string_drop (z_s3365z3, (string_length "illegal"))) with
+        | z_s3366z3 ->
+          begin
+            match (zspc_matches_prefix z_s3366z3) with
+            | ZSome ((), z_s3367z3) ->
+              begin
+                match (string_drop (z_s3366z3, z_s3367z3)) with
+                | z_s3368z3 ->
+                  begin
+                    match (hex_bits_32_matches_prefix z_s3368z3) with
+                    | ZSome (zs, z_s3369z3) ->
+                      begin
+                        match (string_drop (z_s3368z3, z_s3369z3)) with
+                        | zsz3 -> ZSome (zs, zsz3)
+                        | _ -> ZNone ()
+                      end
+                    | _ -> ZNone ()
+                  end
+                | _ -> ZNone ()
+              end
+            | _ -> ZNone ()
+          end
+        | _ -> ZNone ()
+      end
+    | _ -> ZNone ()
+  end)
+
+and z_s3359z3 (z_s3360z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s3360z3 with
-    | z_s3361z3 when (string_startswith (z_s3361z3, "illegal")) ->
+    | z_s3361z3 when (string_startswith (z_s3361z3, "thread_start")) ->
       begin
-        match (string_drop (z_s3361z3, (string_length "illegal"))) with
-        | z_s3362z3 ->
-          begin
-            match (spc_matches_prefix z_s3362z3) with
-            | ZSome ((), z_s3363z3) ->
-              begin
-                match (string_drop (z_s3362z3, z_s3363z3)) with
-                | z_s3364z3 ->
-                  begin
-                    match (hex_bits_32_matches_prefix z_s3364z3) with
-                    | ZSome (zs, z_s3365z3) ->
-                      begin
-                        match (string_drop (z_s3364z3, z_s3365z3)) with
-                        | zsz3 -> ZSome (zs, zsz3)
-                        | _ -> ZNone ()
-                      end
-                    | _ -> ZNone ()
-                  end
-                | _ -> ZNone ()
-              end
-            | _ -> ZNone ()
-          end
+        match (string_drop (z_s3361z3, (string_length "thread_start"))) with
+        | zsz3 -> ZSome zsz3
         | _ -> ZNone ()
       end
     | _ -> ZNone ()
   end)
 
-and z_s3355z3 (z_s3356z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s3355z3 (z_s3356z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s3356z3 with
-    | z_s3357z3 when (string_startswith (z_s3357z3, "thread_start")) ->
+    | z_s3357z3 when (string_startswith (z_s3357z3, "stop_fetching")) ->
       begin
-        match (string_drop (z_s3357z3, (string_length "thread_start"))) with
+        match (string_drop (z_s3357z3, (string_length "stop_fetching"))) with
         | zsz3 -> ZSome zsz3
         | _ -> ZNone ()
       end
     | _ -> ZNone ()
   end)
 
-and z_s3351z3 (z_s3352z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s3343z3 (z_s3344z3 : (string)) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
-    match z_s3352z3 with
-    | z_s3353z3 when (string_startswith (z_s3353z3, "stop_fetching")) ->
+    match z_s3344z3 with
+    | z_s3345z3 when (string_startswith (z_s3345z3, "c.add")) ->
       begin
-        match (string_drop (z_s3353z3, (string_length "stop_fetching"))) with
-        | zsz3 -> ZSome zsz3
-        | _ -> ZNone ()
-      end
-    | _ -> ZNone ()
-  end)
-
-and z_s3339z3 (z_s3340z3 : string) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
-  begin
-    match z_s3340z3 with
-    | z_s3341z3 when (string_startswith (z_s3341z3, "c.add")) ->
-      begin
-        match (string_drop (z_s3341z3, (string_length "c.add"))) with
-        | z_s3342z3 ->
+        match (string_drop (z_s3345z3, (string_length "c.add"))) with
+        | z_s3346z3 ->
           begin
-            match (spc_matches_prefix z_s3342z3) with
-            | ZSome ((), z_s3343z3) ->
+            match (zspc_matches_prefix z_s3346z3) with
+            | ZSome ((), z_s3347z3) ->
               begin
-                match (string_drop (z_s3342z3, z_s3343z3)) with
-                | z_s3344z3 ->
+                match (string_drop (z_s3346z3, z_s3347z3)) with
+                | z_s3348z3 ->
                   begin
-                    match (zreg_name_matches_prefix z_s3344z3) with
-                    | ZSome (zrsd, z_s3345z3) ->
+                    match (zreg_name_matches_prefix z_s3348z3) with
+                    | ZSome (zrsd, z_s3349z3) ->
                       begin
-                        match (string_drop (z_s3344z3, z_s3345z3)) with
-                        | z_s3346z3 ->
+                        match (string_drop (z_s3348z3, z_s3349z3)) with
+                        | z_s3350z3 ->
                           begin
-                            match (zsep_matches_prefix z_s3346z3) with
-                            | ZSome ((), z_s3347z3) ->
+                            match (zsep_matches_prefix z_s3350z3) with
+                            | ZSome ((), z_s3351z3) ->
                               begin
-                                match (string_drop (z_s3346z3, z_s3347z3)) with
-                                | z_s3348z3 ->
+                                match (string_drop (z_s3350z3, z_s3351z3)) with
+                                | z_s3352z3 ->
                                   begin
-                                    match (zreg_name_matches_prefix z_s3348z3) with
-                                    | ZSome (zrs2, z_s3349z3) ->
+                                    match (zreg_name_matches_prefix z_s3352z3) with
+                                    | ZSome (zrs2, z_s3353z3) ->
                                       begin
-                                        match (string_drop (z_s3348z3, z_s3349z3)) with
+                                        match (string_drop (z_s3352z3, z_s3353z3)) with
                                         | zsz3 -> ZSome (zrsd, zrs2, zsz3)
                                         | _ -> ZNone ()
                                       end
@@ -25694,7 +25735,19 @@ and z_s3339z3 (z_s3340z3 : string) : (((bit) list * (bit) list * string)) zoptio
     | _ -> ZNone ()
   end)
 
-and z_s3327z3 (z_s3328z3 : string) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s3339z3 (z_s3340z3 : (string)) : (string) zoption = sail_call (fun r ->
+  begin
+    match z_s3340z3 with
+    | z_s3341z3 when (string_startswith (z_s3341z3, "c.ebreak")) ->
+      begin
+        match (string_drop (z_s3341z3, (string_length "c.ebreak"))) with
+        | zsz3 -> ZSome zsz3
+        | _ -> ZNone ()
+      end
+    | _ -> ZNone ()
+  end)
+
+and z_s3327z3 (z_s3328z3 : (string)) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
     match z_s3328z3 with
     | z_s3329z3 when (string_startswith (z_s3329z3, "c.mv")) ->
@@ -25702,7 +25755,7 @@ and z_s3327z3 (z_s3328z3 : string) : (((bit) list * (bit) list * string)) zoptio
         match (string_drop (z_s3329z3, (string_length "c.mv"))) with
         | z_s3330z3 ->
           begin
-            match (spc_matches_prefix z_s3330z3) with
+            match (zspc_matches_prefix z_s3330z3) with
             | ZSome ((), z_s3331z3) ->
               begin
                 match (string_drop (z_s3330z3, z_s3331z3)) with
@@ -25746,7 +25799,7 @@ and z_s3327z3 (z_s3328z3 : string) : (((bit) list * (bit) list * string)) zoptio
     | _ -> ZNone ()
   end)
 
-and z_s3319z3 (z_s3320z3 : string) : (((bit) list * string)) zoption = sail_call (fun r ->
+and z_s3319z3 (z_s3320z3 : (string)) : (((bit) list * string)) zoption = sail_call (fun r ->
   begin
     match z_s3320z3 with
     | z_s3321z3 when (string_startswith (z_s3321z3, "c.jalr")) ->
@@ -25754,7 +25807,7 @@ and z_s3319z3 (z_s3320z3 : string) : (((bit) list * string)) zoption = sail_call
         match (string_drop (z_s3321z3, (string_length "c.jalr"))) with
         | z_s3322z3 ->
           begin
-            match (spc_matches_prefix z_s3322z3) with
+            match (zspc_matches_prefix z_s3322z3) with
             | ZSome ((), z_s3323z3) ->
               begin
                 match (string_drop (z_s3322z3, z_s3323z3)) with
@@ -25778,7 +25831,7 @@ and z_s3319z3 (z_s3320z3 : string) : (((bit) list * string)) zoption = sail_call
     | _ -> ZNone ()
   end)
 
-and z_s3311z3 (z_s3312z3 : string) : (((bit) list * string)) zoption = sail_call (fun r ->
+and z_s3311z3 (z_s3312z3 : (string)) : (((bit) list * string)) zoption = sail_call (fun r ->
   begin
     match z_s3312z3 with
     | z_s3313z3 when (string_startswith (z_s3313z3, "c.jr")) ->
@@ -25786,7 +25839,7 @@ and z_s3311z3 (z_s3312z3 : string) : (((bit) list * string)) zoption = sail_call
         match (string_drop (z_s3313z3, (string_length "c.jr"))) with
         | z_s3314z3 ->
           begin
-            match (spc_matches_prefix z_s3314z3) with
+            match (zspc_matches_prefix z_s3314z3) with
             | ZSome ((), z_s3315z3) ->
               begin
                 match (string_drop (z_s3314z3, z_s3315z3)) with
@@ -25810,7 +25863,7 @@ and z_s3311z3 (z_s3312z3 : string) : (((bit) list * string)) zoption = sail_call
     | _ -> ZNone ()
   end)
 
-and z_s3299z3 (z_s3300z3 : string) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s3299z3 (z_s3300z3 : (string)) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
     match z_s3300z3 with
     | z_s3301z3 when (string_startswith (z_s3301z3, "c.sdsp")) ->
@@ -25818,7 +25871,7 @@ and z_s3299z3 (z_s3300z3 : string) : (((bit) list * (bit) list * string)) zoptio
         match (string_drop (z_s3301z3, (string_length "c.sdsp"))) with
         | z_s3302z3 ->
           begin
-            match (spc_matches_prefix z_s3302z3) with
+            match (zspc_matches_prefix z_s3302z3) with
             | ZSome ((), z_s3303z3) ->
               begin
                 match (string_drop (z_s3302z3, z_s3303z3)) with
@@ -25862,7 +25915,7 @@ and z_s3299z3 (z_s3300z3 : string) : (((bit) list * (bit) list * string)) zoptio
     | _ -> ZNone ()
   end)
 
-and z_s3287z3 (z_s3288z3 : string) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s3287z3 (z_s3288z3 : (string)) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
     match z_s3288z3 with
     | z_s3289z3 when (string_startswith (z_s3289z3, "c.swsp")) ->
@@ -25870,7 +25923,7 @@ and z_s3287z3 (z_s3288z3 : string) : (((bit) list * (bit) list * string)) zoptio
         match (string_drop (z_s3289z3, (string_length "c.swsp"))) with
         | z_s3290z3 ->
           begin
-            match (spc_matches_prefix z_s3290z3) with
+            match (zspc_matches_prefix z_s3290z3) with
             | ZSome ((), z_s3291z3) ->
               begin
                 match (string_drop (z_s3290z3, z_s3291z3)) with
@@ -25914,7 +25967,7 @@ and z_s3287z3 (z_s3288z3 : string) : (((bit) list * (bit) list * string)) zoptio
     | _ -> ZNone ()
   end)
 
-and z_s3275z3 (z_s3276z3 : string) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s3275z3 (z_s3276z3 : (string)) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
     match z_s3276z3 with
     | z_s3277z3 when (string_startswith (z_s3277z3, "c.ldsp")) ->
@@ -25922,7 +25975,7 @@ and z_s3275z3 (z_s3276z3 : string) : (((bit) list * (bit) list * string)) zoptio
         match (string_drop (z_s3277z3, (string_length "c.ldsp"))) with
         | z_s3278z3 ->
           begin
-            match (spc_matches_prefix z_s3278z3) with
+            match (zspc_matches_prefix z_s3278z3) with
             | ZSome ((), z_s3279z3) ->
               begin
                 match (string_drop (z_s3278z3, z_s3279z3)) with
@@ -25966,7 +26019,7 @@ and z_s3275z3 (z_s3276z3 : string) : (((bit) list * (bit) list * string)) zoptio
     | _ -> ZNone ()
   end)
 
-and z_s3263z3 (z_s3264z3 : string) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s3263z3 (z_s3264z3 : (string)) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
     match z_s3264z3 with
     | z_s3265z3 when (string_startswith (z_s3265z3, "c.lwsp")) ->
@@ -25974,7 +26027,7 @@ and z_s3263z3 (z_s3264z3 : string) : (((bit) list * (bit) list * string)) zoptio
         match (string_drop (z_s3265z3, (string_length "c.lwsp"))) with
         | z_s3266z3 ->
           begin
-            match (spc_matches_prefix z_s3266z3) with
+            match (zspc_matches_prefix z_s3266z3) with
             | ZSome ((), z_s3267z3) ->
               begin
                 match (string_drop (z_s3266z3, z_s3267z3)) with
@@ -26018,7 +26071,7 @@ and z_s3263z3 (z_s3264z3 : string) : (((bit) list * (bit) list * string)) zoptio
     | _ -> ZNone ()
   end)
 
-and z_s3251z3 (z_s3252z3 : string) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s3251z3 (z_s3252z3 : (string)) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
     match z_s3252z3 with
     | z_s3253z3 when (string_startswith (z_s3253z3, "c.slli")) ->
@@ -26026,7 +26079,7 @@ and z_s3251z3 (z_s3252z3 : string) : (((bit) list * (bit) list * string)) zoptio
         match (string_drop (z_s3253z3, (string_length "c.slli"))) with
         | z_s3254z3 ->
           begin
-            match (spc_matches_prefix z_s3254z3) with
+            match (zspc_matches_prefix z_s3254z3) with
             | ZSome ((), z_s3255z3) ->
               begin
                 match (string_drop (z_s3254z3, z_s3255z3)) with
@@ -26070,7 +26123,7 @@ and z_s3251z3 (z_s3252z3 : string) : (((bit) list * (bit) list * string)) zoptio
     | _ -> ZNone ()
   end)
 
-and z_s3239z3 (z_s3240z3 : string) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s3239z3 (z_s3240z3 : (string)) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
     match z_s3240z3 with
     | z_s3241z3 when (string_startswith (z_s3241z3, "c.bnez")) ->
@@ -26078,7 +26131,7 @@ and z_s3239z3 (z_s3240z3 : string) : (((bit) list * (bit) list * string)) zoptio
         match (string_drop (z_s3241z3, (string_length "c.bnez"))) with
         | z_s3242z3 ->
           begin
-            match (spc_matches_prefix z_s3242z3) with
+            match (zspc_matches_prefix z_s3242z3) with
             | ZSome ((), z_s3243z3) ->
               begin
                 match (string_drop (z_s3242z3, z_s3243z3)) with
@@ -26122,7 +26175,7 @@ and z_s3239z3 (z_s3240z3 : string) : (((bit) list * (bit) list * string)) zoptio
     | _ -> ZNone ()
   end)
 
-and z_s3227z3 (z_s3228z3 : string) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s3227z3 (z_s3228z3 : (string)) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
     match z_s3228z3 with
     | z_s3229z3 when (string_startswith (z_s3229z3, "c.beqz")) ->
@@ -26130,7 +26183,7 @@ and z_s3227z3 (z_s3228z3 : string) : (((bit) list * (bit) list * string)) zoptio
         match (string_drop (z_s3229z3, (string_length "c.beqz"))) with
         | z_s3230z3 ->
           begin
-            match (spc_matches_prefix z_s3230z3) with
+            match (zspc_matches_prefix z_s3230z3) with
             | ZSome ((), z_s3231z3) ->
               begin
                 match (string_drop (z_s3230z3, z_s3231z3)) with
@@ -26174,7 +26227,7 @@ and z_s3227z3 (z_s3228z3 : string) : (((bit) list * (bit) list * string)) zoptio
     | _ -> ZNone ()
   end)
 
-and z_s3219z3 (z_s3220z3 : string) : (((bit) list * string)) zoption = sail_call (fun r ->
+and z_s3219z3 (z_s3220z3 : (string)) : (((bit) list * string)) zoption = sail_call (fun r ->
   begin
     match z_s3220z3 with
     | z_s3221z3 when (string_startswith (z_s3221z3, "c.j")) ->
@@ -26182,7 +26235,7 @@ and z_s3219z3 (z_s3220z3 : string) : (((bit) list * string)) zoption = sail_call
         match (string_drop (z_s3221z3, (string_length "c.j"))) with
         | z_s3222z3 ->
           begin
-            match (spc_matches_prefix z_s3222z3) with
+            match (zspc_matches_prefix z_s3222z3) with
             | ZSome ((), z_s3223z3) ->
               begin
                 match (string_drop (z_s3222z3, z_s3223z3)) with
@@ -26206,7 +26259,7 @@ and z_s3219z3 (z_s3220z3 : string) : (((bit) list * string)) zoption = sail_call
     | _ -> ZNone ()
   end)
 
-and z_s3207z3 (z_s3208z3 : string) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s3207z3 (z_s3208z3 : (string)) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
     match z_s3208z3 with
     | z_s3209z3 when (string_startswith (z_s3209z3, "c.addw")) ->
@@ -26214,7 +26267,7 @@ and z_s3207z3 (z_s3208z3 : string) : (((bit) list * (bit) list * string)) zoptio
         match (string_drop (z_s3209z3, (string_length "c.addw"))) with
         | z_s3210z3 ->
           begin
-            match (spc_matches_prefix z_s3210z3) with
+            match (zspc_matches_prefix z_s3210z3) with
             | ZSome ((), z_s3211z3) ->
               begin
                 match (string_drop (z_s3210z3, z_s3211z3)) with
@@ -26258,7 +26311,7 @@ and z_s3207z3 (z_s3208z3 : string) : (((bit) list * (bit) list * string)) zoptio
     | _ -> ZNone ()
   end)
 
-and z_s3195z3 (z_s3196z3 : string) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s3195z3 (z_s3196z3 : (string)) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
     match z_s3196z3 with
     | z_s3197z3 when (string_startswith (z_s3197z3, "c.subw")) ->
@@ -26266,7 +26319,7 @@ and z_s3195z3 (z_s3196z3 : string) : (((bit) list * (bit) list * string)) zoptio
         match (string_drop (z_s3197z3, (string_length "c.subw"))) with
         | z_s3198z3 ->
           begin
-            match (spc_matches_prefix z_s3198z3) with
+            match (zspc_matches_prefix z_s3198z3) with
             | ZSome ((), z_s3199z3) ->
               begin
                 match (string_drop (z_s3198z3, z_s3199z3)) with
@@ -26310,7 +26363,7 @@ and z_s3195z3 (z_s3196z3 : string) : (((bit) list * (bit) list * string)) zoptio
     | _ -> ZNone ()
   end)
 
-and z_s3183z3 (z_s3184z3 : string) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s3183z3 (z_s3184z3 : (string)) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
     match z_s3184z3 with
     | z_s3185z3 when (string_startswith (z_s3185z3, "c.and")) ->
@@ -26318,7 +26371,7 @@ and z_s3183z3 (z_s3184z3 : string) : (((bit) list * (bit) list * string)) zoptio
         match (string_drop (z_s3185z3, (string_length "c.and"))) with
         | z_s3186z3 ->
           begin
-            match (spc_matches_prefix z_s3186z3) with
+            match (zspc_matches_prefix z_s3186z3) with
             | ZSome ((), z_s3187z3) ->
               begin
                 match (string_drop (z_s3186z3, z_s3187z3)) with
@@ -26362,7 +26415,7 @@ and z_s3183z3 (z_s3184z3 : string) : (((bit) list * (bit) list * string)) zoptio
     | _ -> ZNone ()
   end)
 
-and z_s3171z3 (z_s3172z3 : string) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s3171z3 (z_s3172z3 : (string)) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
     match z_s3172z3 with
     | z_s3173z3 when (string_startswith (z_s3173z3, "c.or")) ->
@@ -26370,7 +26423,7 @@ and z_s3171z3 (z_s3172z3 : string) : (((bit) list * (bit) list * string)) zoptio
         match (string_drop (z_s3173z3, (string_length "c.or"))) with
         | z_s3174z3 ->
           begin
-            match (spc_matches_prefix z_s3174z3) with
+            match (zspc_matches_prefix z_s3174z3) with
             | ZSome ((), z_s3175z3) ->
               begin
                 match (string_drop (z_s3174z3, z_s3175z3)) with
@@ -26414,7 +26467,7 @@ and z_s3171z3 (z_s3172z3 : string) : (((bit) list * (bit) list * string)) zoptio
     | _ -> ZNone ()
   end)
 
-and z_s3159z3 (z_s3160z3 : string) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s3159z3 (z_s3160z3 : (string)) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
     match z_s3160z3 with
     | z_s3161z3 when (string_startswith (z_s3161z3, "c.xor")) ->
@@ -26422,7 +26475,7 @@ and z_s3159z3 (z_s3160z3 : string) : (((bit) list * (bit) list * string)) zoptio
         match (string_drop (z_s3161z3, (string_length "c.xor"))) with
         | z_s3162z3 ->
           begin
-            match (spc_matches_prefix z_s3162z3) with
+            match (zspc_matches_prefix z_s3162z3) with
             | ZSome ((), z_s3163z3) ->
               begin
                 match (string_drop (z_s3162z3, z_s3163z3)) with
@@ -26466,7 +26519,7 @@ and z_s3159z3 (z_s3160z3 : string) : (((bit) list * (bit) list * string)) zoptio
     | _ -> ZNone ()
   end)
 
-and z_s3147z3 (z_s3148z3 : string) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s3147z3 (z_s3148z3 : (string)) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
     match z_s3148z3 with
     | z_s3149z3 when (string_startswith (z_s3149z3, "c.sub")) ->
@@ -26474,7 +26527,7 @@ and z_s3147z3 (z_s3148z3 : string) : (((bit) list * (bit) list * string)) zoptio
         match (string_drop (z_s3149z3, (string_length "c.sub"))) with
         | z_s3150z3 ->
           begin
-            match (spc_matches_prefix z_s3150z3) with
+            match (zspc_matches_prefix z_s3150z3) with
             | ZSome ((), z_s3151z3) ->
               begin
                 match (string_drop (z_s3150z3, z_s3151z3)) with
@@ -26518,7 +26571,7 @@ and z_s3147z3 (z_s3148z3 : string) : (((bit) list * (bit) list * string)) zoptio
     | _ -> ZNone ()
   end)
 
-and z_s3135z3 (z_s3136z3 : string) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s3135z3 (z_s3136z3 : (string)) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
     match z_s3136z3 with
     | z_s3137z3 when (string_startswith (z_s3137z3, "c.andi")) ->
@@ -26526,7 +26579,7 @@ and z_s3135z3 (z_s3136z3 : string) : (((bit) list * (bit) list * string)) zoptio
         match (string_drop (z_s3137z3, (string_length "c.andi"))) with
         | z_s3138z3 ->
           begin
-            match (spc_matches_prefix z_s3138z3) with
+            match (zspc_matches_prefix z_s3138z3) with
             | ZSome ((), z_s3139z3) ->
               begin
                 match (string_drop (z_s3138z3, z_s3139z3)) with
@@ -26570,7 +26623,7 @@ and z_s3135z3 (z_s3136z3 : string) : (((bit) list * (bit) list * string)) zoptio
     | _ -> ZNone ()
   end)
 
-and z_s3123z3 (z_s3124z3 : string) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s3123z3 (z_s3124z3 : (string)) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
     match z_s3124z3 with
     | z_s3125z3 when (string_startswith (z_s3125z3, "c.srai")) ->
@@ -26578,7 +26631,7 @@ and z_s3123z3 (z_s3124z3 : string) : (((bit) list * (bit) list * string)) zoptio
         match (string_drop (z_s3125z3, (string_length "c.srai"))) with
         | z_s3126z3 ->
           begin
-            match (spc_matches_prefix z_s3126z3) with
+            match (zspc_matches_prefix z_s3126z3) with
             | ZSome ((), z_s3127z3) ->
               begin
                 match (string_drop (z_s3126z3, z_s3127z3)) with
@@ -26622,7 +26675,7 @@ and z_s3123z3 (z_s3124z3 : string) : (((bit) list * (bit) list * string)) zoptio
     | _ -> ZNone ()
   end)
 
-and z_s3111z3 (z_s3112z3 : string) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s3111z3 (z_s3112z3 : (string)) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
     match z_s3112z3 with
     | z_s3113z3 when (string_startswith (z_s3113z3, "c.srli")) ->
@@ -26630,7 +26683,7 @@ and z_s3111z3 (z_s3112z3 : string) : (((bit) list * (bit) list * string)) zoptio
         match (string_drop (z_s3113z3, (string_length "c.srli"))) with
         | z_s3114z3 ->
           begin
-            match (spc_matches_prefix z_s3114z3) with
+            match (zspc_matches_prefix z_s3114z3) with
             | ZSome ((), z_s3115z3) ->
               begin
                 match (string_drop (z_s3114z3, z_s3115z3)) with
@@ -26674,7 +26727,7 @@ and z_s3111z3 (z_s3112z3 : string) : (((bit) list * (bit) list * string)) zoptio
     | _ -> ZNone ()
   end)
 
-and z_s3101z3 (z_s3102z3 : string) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s3101z3 (z_s3102z3 : (string)) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
     match z_s3102z3 with
     | z_s3103z3 when (string_startswith (z_s3103z3, "c.lui")) ->
@@ -26716,7 +26769,7 @@ and z_s3101z3 (z_s3102z3 : string) : (((bit) list * (bit) list * string)) zoptio
     | _ -> ZNone ()
   end)
 
-and z_s3093z3 (z_s3094z3 : string) : (((bit) list * string)) zoption = sail_call (fun r ->
+and z_s3093z3 (z_s3094z3 : (string)) : (((bit) list * string)) zoption = sail_call (fun r ->
   begin
     match z_s3094z3 with
     | z_s3095z3 when (string_startswith (z_s3095z3, "c.addi16sp")) ->
@@ -26724,7 +26777,7 @@ and z_s3093z3 (z_s3094z3 : string) : (((bit) list * string)) zoption = sail_call
         match (string_drop (z_s3095z3, (string_length "c.addi16sp"))) with
         | z_s3096z3 ->
           begin
-            match (spc_matches_prefix z_s3096z3) with
+            match (zspc_matches_prefix z_s3096z3) with
             | ZSome ((), z_s3097z3) ->
               begin
                 match (string_drop (z_s3096z3, z_s3097z3)) with
@@ -26748,7 +26801,7 @@ and z_s3093z3 (z_s3094z3 : string) : (((bit) list * string)) zoption = sail_call
     | _ -> ZNone ()
   end)
 
-and z_s3081z3 (z_s3082z3 : string) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s3081z3 (z_s3082z3 : (string)) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
     match z_s3082z3 with
     | z_s3083z3 when (string_startswith (z_s3083z3, "c.li")) ->
@@ -26756,7 +26809,7 @@ and z_s3081z3 (z_s3082z3 : string) : (((bit) list * (bit) list * string)) zoptio
         match (string_drop (z_s3083z3, (string_length "c.li"))) with
         | z_s3084z3 ->
           begin
-            match (spc_matches_prefix z_s3084z3) with
+            match (zspc_matches_prefix z_s3084z3) with
             | ZSome ((), z_s3085z3) ->
               begin
                 match (string_drop (z_s3084z3, z_s3085z3)) with
@@ -26800,7 +26853,7 @@ and z_s3081z3 (z_s3082z3 : string) : (((bit) list * (bit) list * string)) zoptio
     | _ -> ZNone ()
   end)
 
-and z_s3069z3 (z_s3070z3 : string) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s3069z3 (z_s3070z3 : (string)) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
     match z_s3070z3 with
     | z_s3071z3 when (string_startswith (z_s3071z3, "c.addiw")) ->
@@ -26808,7 +26861,7 @@ and z_s3069z3 (z_s3070z3 : string) : (((bit) list * (bit) list * string)) zoptio
         match (string_drop (z_s3071z3, (string_length "c.addiw"))) with
         | z_s3072z3 ->
           begin
-            match (spc_matches_prefix z_s3072z3) with
+            match (zspc_matches_prefix z_s3072z3) with
             | ZSome ((), z_s3073z3) ->
               begin
                 match (string_drop (z_s3072z3, z_s3073z3)) with
@@ -26852,7 +26905,7 @@ and z_s3069z3 (z_s3070z3 : string) : (((bit) list * (bit) list * string)) zoptio
     | _ -> ZNone ()
   end)
 
-and z_s3061z3 (z_s3062z3 : string) : (((bit) list * string)) zoption = sail_call (fun r ->
+and z_s3061z3 (z_s3062z3 : (string)) : (((bit) list * string)) zoption = sail_call (fun r ->
   begin
     match z_s3062z3 with
     | z_s3063z3 when (string_startswith (z_s3063z3, "c.jal")) ->
@@ -26860,7 +26913,7 @@ and z_s3061z3 (z_s3062z3 : string) : (((bit) list * string)) zoption = sail_call
         match (string_drop (z_s3063z3, (string_length "c.jal"))) with
         | z_s3064z3 ->
           begin
-            match (spc_matches_prefix z_s3064z3) with
+            match (zspc_matches_prefix z_s3064z3) with
             | ZSome ((), z_s3065z3) ->
               begin
                 match (string_drop (z_s3064z3, z_s3065z3)) with
@@ -26887,7 +26940,7 @@ and z_s3061z3 (z_s3062z3 : string) : (((bit) list * string)) zoption = sail_call
     | _ -> ZNone ()
   end)
 
-and z_s3049z3 (z_s3050z3 : string) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s3049z3 (z_s3050z3 : (string)) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
     match z_s3050z3 with
     | z_s3051z3 when (string_startswith (z_s3051z3, "c.addi")) ->
@@ -26895,7 +26948,7 @@ and z_s3049z3 (z_s3050z3 : string) : (((bit) list * (bit) list * string)) zoptio
         match (string_drop (z_s3051z3, (string_length "c.addi"))) with
         | z_s3052z3 ->
           begin
-            match (spc_matches_prefix z_s3052z3) with
+            match (zspc_matches_prefix z_s3052z3) with
             | ZSome ((), z_s3053z3) ->
               begin
                 match (string_drop (z_s3052z3, z_s3053z3)) with
@@ -26939,7 +26992,7 @@ and z_s3049z3 (z_s3050z3 : string) : (((bit) list * (bit) list * string)) zoptio
     | _ -> ZNone ()
   end)
 
-and z_s3033z3 (z_s3034z3 : string) : (((bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s3033z3 (z_s3034z3 : (string)) : (((bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
     match z_s3034z3 with
     | z_s3035z3 when (string_startswith (z_s3035z3, "c.sd")) ->
@@ -26947,7 +27000,7 @@ and z_s3033z3 (z_s3034z3 : string) : (((bit) list * (bit) list * (bit) list * st
         match (string_drop (z_s3035z3, (string_length "c.sd"))) with
         | z_s3036z3 ->
           begin
-            match (spc_matches_prefix z_s3036z3) with
+            match (zspc_matches_prefix z_s3036z3) with
             | ZSome ((), z_s3037z3) ->
               begin
                 match (string_drop (z_s3036z3, z_s3037z3)) with
@@ -27017,7 +27070,7 @@ and z_s3033z3 (z_s3034z3 : string) : (((bit) list * (bit) list * (bit) list * st
     | _ -> ZNone ()
   end)
 
-and z_s3017z3 (z_s3018z3 : string) : (((bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s3017z3 (z_s3018z3 : (string)) : (((bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
     match z_s3018z3 with
     | z_s3019z3 when (string_startswith (z_s3019z3, "c.sw")) ->
@@ -27025,7 +27078,7 @@ and z_s3017z3 (z_s3018z3 : string) : (((bit) list * (bit) list * (bit) list * st
         match (string_drop (z_s3019z3, (string_length "c.sw"))) with
         | z_s3020z3 ->
           begin
-            match (spc_matches_prefix z_s3020z3) with
+            match (zspc_matches_prefix z_s3020z3) with
             | ZSome ((), z_s3021z3) ->
               begin
                 match (string_drop (z_s3020z3, z_s3021z3)) with
@@ -27094,7 +27147,7 @@ and z_s3017z3 (z_s3018z3 : string) : (((bit) list * (bit) list * (bit) list * st
     | _ -> ZNone ()
   end)
 
-and z_s3001z3 (z_s3002z3 : string) : (((bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s3001z3 (z_s3002z3 : (string)) : (((bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
     match z_s3002z3 with
     | z_s3003z3 when (string_startswith (z_s3003z3, "c.ld")) ->
@@ -27102,7 +27155,7 @@ and z_s3001z3 (z_s3002z3 : string) : (((bit) list * (bit) list * (bit) list * st
         match (string_drop (z_s3003z3, (string_length "c.ld"))) with
         | z_s3004z3 ->
           begin
-            match (spc_matches_prefix z_s3004z3) with
+            match (zspc_matches_prefix z_s3004z3) with
             | ZSome ((), z_s3005z3) ->
               begin
                 match (string_drop (z_s3004z3, z_s3005z3)) with
@@ -27172,7 +27225,7 @@ and z_s3001z3 (z_s3002z3 : string) : (((bit) list * (bit) list * (bit) list * st
     | _ -> ZNone ()
   end)
 
-and z_s2985z3 (z_s2986z3 : string) : (((bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s2985z3 (z_s2986z3 : (string)) : (((bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
     match z_s2986z3 with
     | z_s2987z3 when (string_startswith (z_s2987z3, "c.lw")) ->
@@ -27180,7 +27233,7 @@ and z_s2985z3 (z_s2986z3 : string) : (((bit) list * (bit) list * (bit) list * st
         match (string_drop (z_s2987z3, (string_length "c.lw"))) with
         | z_s2988z3 ->
           begin
-            match (spc_matches_prefix z_s2988z3) with
+            match (zspc_matches_prefix z_s2988z3) with
             | ZSome ((), z_s2989z3) ->
               begin
                 match (string_drop (z_s2988z3, z_s2989z3)) with
@@ -27249,7 +27302,7 @@ and z_s2985z3 (z_s2986z3 : string) : (((bit) list * (bit) list * (bit) list * st
     | _ -> ZNone ()
   end)
 
-and z_s2973z3 (z_s2974z3 : string) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s2973z3 (z_s2974z3 : (string)) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
     match z_s2974z3 with
     | z_s2975z3 when (string_startswith (z_s2975z3, "c.addi4spn")) ->
@@ -27257,7 +27310,7 @@ and z_s2973z3 (z_s2974z3 : string) : (((bit) list * (bit) list * string)) zoptio
         match (string_drop (z_s2975z3, (string_length "c.addi4spn"))) with
         | z_s2976z3 ->
           begin
-            match (spc_matches_prefix z_s2976z3) with
+            match (zspc_matches_prefix z_s2976z3) with
             | ZSome ((), z_s2977z3) ->
               begin
                 match (string_drop (z_s2976z3, z_s2977z3)) with
@@ -27305,7 +27358,7 @@ and z_s2973z3 (z_s2974z3 : string) : (((bit) list * (bit) list * string)) zoptio
     | _ -> ZNone ()
   end)
 
-and z_s2969z3 (z_s2970z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s2969z3 (z_s2970z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s2970z3 with
     | z_s2971z3 when (string_startswith (z_s2971z3, "c.nop")) ->
@@ -27317,7 +27370,7 @@ and z_s2969z3 (z_s2970z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s2952z3 (z_s2953z3 : string) : ((zcsrop * (bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s2952z3 (z_s2953z3 : (string)) : ((zcsrop * (bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
     match z_s2953z3 with
     | z_s2954z3 ->
@@ -27328,7 +27381,7 @@ and z_s2952z3 (z_s2953z3 : string) : ((zcsrop * (bit) list * (bit) list * (bit) 
             match (string_drop (z_s2954z3, z_s2955z3)) with
             | z_s2956z3 ->
               begin
-                match (spc_matches_prefix z_s2956z3) with
+                match (zspc_matches_prefix z_s2956z3) with
                 | ZSome ((), z_s2957z3) ->
                   begin
                     match (string_drop (z_s2956z3, z_s2957z3)) with
@@ -27395,7 +27448,7 @@ and z_s2952z3 (z_s2953z3 : string) : ((zcsrop * (bit) list * (bit) list * (bit) 
     | _ -> ZNone ()
   end)
 
-and z_s2934z3 (z_s2935z3 : string) : ((zcsrop * (bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s2934z3 (z_s2935z3 : (string)) : ((zcsrop * (bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
     match z_s2935z3 with
     | z_s2936z3 ->
@@ -27409,7 +27462,7 @@ and z_s2934z3 (z_s2935z3 : string) : ((zcsrop * (bit) list * (bit) list * (bit) 
                 match (string_drop (z_s2938z3, (string_length "i"))) with
                 | z_s2939z3 ->
                   begin
-                    match (spc_matches_prefix z_s2939z3) with
+                    match (zspc_matches_prefix z_s2939z3) with
                     | ZSome ((), z_s2940z3) ->
                       begin
                         match (string_drop (z_s2939z3, z_s2940z3)) with
@@ -27478,7 +27531,7 @@ and z_s2934z3 (z_s2935z3 : string) : ((zcsrop * (bit) list * (bit) list * (bit) 
     | _ -> ZNone ()
   end)
 
-and z_s2910z3 (z_s2911z3 : string) : ((zamoop * zword_width * bool * bool * (bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s2910z3 (z_s2911z3 : (string)) : ((zamoop * zword_width * bool * bool * (bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
     match z_s2911z3 with
     | z_s2912z3 ->
@@ -27510,7 +27563,7 @@ and z_s2910z3 (z_s2911z3 : string) : ((zamoop * zword_width * bool * bool * (bit
                                         match (string_drop (z_s2919z3, z_s2920z3)) with
                                         | z_s2921z3 ->
                                           begin
-                                            match (spc_matches_prefix z_s2921z3) with
+                                            match (zspc_matches_prefix z_s2921z3) with
                                             | ZSome ((), z_s2922z3) ->
                                               begin
                                                 match (string_drop (z_s2921z3, z_s2922z3)) with
@@ -27597,7 +27650,7 @@ and z_s2910z3 (z_s2911z3 : string) : ((zamoop * zword_width * bool * bool * (bit
     | _ -> ZNone ()
   end)
 
-and z_s2888z3 (z_s2889z3 : string) : ((bool * bool * zword_width * (bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s2888z3 (z_s2889z3 : (string)) : ((zword_width * bool * bool * (bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
     match z_s2889z3 with
     | z_s2890z3 when (string_startswith (z_s2890z3, "sc.")) ->
@@ -27605,25 +27658,25 @@ and z_s2888z3 (z_s2889z3 : string) : ((bool * bool * zword_width * (bit) list * 
         match (string_drop (z_s2890z3, (string_length "sc."))) with
         | z_s2891z3 ->
           begin
-            match (zmaybe_aq_matches_prefix z_s2891z3) with
-            | ZSome (zaq, z_s2892z3) ->
+            match (zsizze_mnemonic_matches_prefix z_s2891z3) with
+            | ZSome (zsizze, z_s2892z3) ->
               begin
                 match (string_drop (z_s2891z3, z_s2892z3)) with
                 | z_s2893z3 ->
                   begin
-                    match (zmaybe_rl_matches_prefix z_s2893z3) with
-                    | ZSome (zrl, z_s2894z3) ->
+                    match (zmaybe_aq_matches_prefix z_s2893z3) with
+                    | ZSome (zaq, z_s2894z3) ->
                       begin
                         match (string_drop (z_s2893z3, z_s2894z3)) with
                         | z_s2895z3 ->
                           begin
-                            match (zsizze_mnemonic_matches_prefix z_s2895z3) with
-                            | ZSome (zsizze, z_s2896z3) ->
+                            match (zmaybe_rl_matches_prefix z_s2895z3) with
+                            | ZSome (zrl, z_s2896z3) ->
                               begin
                                 match (string_drop (z_s2895z3, z_s2896z3)) with
                                 | z_s2897z3 ->
                                   begin
-                                    match (spc_matches_prefix z_s2897z3) with
+                                    match (zspc_matches_prefix z_s2897z3) with
                                     | ZSome ((), z_s2898z3) ->
                                       begin
                                         match (string_drop (z_s2897z3, z_s2898z3)) with
@@ -27658,7 +27711,7 @@ and z_s2888z3 (z_s2889z3 : string) : ((bool * bool * zword_width * (bit) list * 
                                                                               begin
                                                                                 match (string_drop (z_s2907z3, z_s2908z3)) with
                                                                                 | zsz3 ->
-                                                                                  ZSome (zaq, zrl, zsizze, zrd, zrs1, zrs2, zsz3)
+                                                                                  ZSome (zsizze, zaq, zrl, zrd, zrs1, zrs2, zsz3)
                                                                                 | _ ->
                                                                                   ZNone ()
                                                                               end
@@ -27704,7 +27757,7 @@ and z_s2888z3 (z_s2889z3 : string) : ((bool * bool * zword_width * (bit) list * 
     | _ -> ZNone ()
   end)
 
-and z_s2870z3 (z_s2871z3 : string) : ((bool * bool * zword_width * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s2870z3 (z_s2871z3 : (string)) : ((zword_width * bool * bool * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
     match z_s2871z3 with
     | z_s2872z3 when (string_startswith (z_s2872z3, "lr.")) ->
@@ -27712,25 +27765,25 @@ and z_s2870z3 (z_s2871z3 : string) : ((bool * bool * zword_width * (bit) list * 
         match (string_drop (z_s2872z3, (string_length "lr."))) with
         | z_s2873z3 ->
           begin
-            match (zmaybe_aq_matches_prefix z_s2873z3) with
-            | ZSome (zaq, z_s2874z3) ->
+            match (zsizze_mnemonic_matches_prefix z_s2873z3) with
+            | ZSome (zsizze, z_s2874z3) ->
               begin
                 match (string_drop (z_s2873z3, z_s2874z3)) with
                 | z_s2875z3 ->
                   begin
-                    match (zmaybe_rl_matches_prefix z_s2875z3) with
-                    | ZSome (zrl, z_s2876z3) ->
+                    match (zmaybe_aq_matches_prefix z_s2875z3) with
+                    | ZSome (zaq, z_s2876z3) ->
                       begin
                         match (string_drop (z_s2875z3, z_s2876z3)) with
                         | z_s2877z3 ->
                           begin
-                            match (zsizze_mnemonic_matches_prefix z_s2877z3) with
-                            | ZSome (zsizze, z_s2878z3) ->
+                            match (zmaybe_rl_matches_prefix z_s2877z3) with
+                            | ZSome (zrl, z_s2878z3) ->
                               begin
                                 match (string_drop (z_s2877z3, z_s2878z3)) with
                                 | z_s2879z3 ->
                                   begin
-                                    match (spc_matches_prefix z_s2879z3) with
+                                    match (zspc_matches_prefix z_s2879z3) with
                                     | ZSome ((), z_s2880z3) ->
                                       begin
                                         match (string_drop (z_s2879z3, z_s2880z3)) with
@@ -27753,7 +27806,7 @@ and z_s2870z3 (z_s2871z3 : string) : ((bool * bool * zword_width * (bit) list * 
                                                               begin
                                                                 match (string_drop (z_s2885z3, z_s2886z3)) with
                                                                 | zsz3 ->
-                                                                  ZSome (zaq, zrl, zsizze, zrd, zrs1, zsz3)
+                                                                  ZSome (zsizze, zaq, zrl, zrd, zrs1, zsz3)
                                                                 | _ -> ZNone ()
                                                               end
                                                             | _ -> ZNone ()
@@ -27787,7 +27840,7 @@ and z_s2870z3 (z_s2871z3 : string) : ((bool * bool * zword_width * (bit) list * 
     | _ -> ZNone ()
   end)
 
-and z_s2858z3 (z_s2859z3 : string) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s2858z3 (z_s2859z3 : (string)) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
     match z_s2859z3 with
     | z_s2860z3 when (string_startswith (z_s2860z3, "sfence.vma")) ->
@@ -27795,7 +27848,7 @@ and z_s2858z3 (z_s2859z3 : string) : (((bit) list * (bit) list * string)) zoptio
         match (string_drop (z_s2860z3, (string_length "sfence.vma"))) with
         | z_s2861z3 ->
           begin
-            match (spc_matches_prefix z_s2861z3) with
+            match (zspc_matches_prefix z_s2861z3) with
             | ZSome ((), z_s2862z3) ->
               begin
                 match (string_drop (z_s2861z3, z_s2862z3)) with
@@ -27839,7 +27892,7 @@ and z_s2858z3 (z_s2859z3 : string) : (((bit) list * (bit) list * string)) zoptio
     | _ -> ZNone ()
   end)
 
-and z_s2854z3 (z_s2855z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s2854z3 (z_s2855z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s2855z3 with
     | z_s2856z3 when (string_startswith (z_s2856z3, "wfi")) ->
@@ -27851,7 +27904,7 @@ and z_s2854z3 (z_s2855z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s2850z3 (z_s2851z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s2850z3 (z_s2851z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s2851z3 with
     | z_s2852z3 when (string_startswith (z_s2852z3, "ebreak")) ->
@@ -27863,7 +27916,7 @@ and z_s2850z3 (z_s2851z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s2846z3 (z_s2847z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s2846z3 (z_s2847z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s2847z3 with
     | z_s2848z3 when (string_startswith (z_s2848z3, "sret")) ->
@@ -27875,7 +27928,7 @@ and z_s2846z3 (z_s2847z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s2842z3 (z_s2843z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s2842z3 (z_s2843z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s2843z3 with
     | z_s2844z3 when (string_startswith (z_s2844z3, "mret")) ->
@@ -27887,7 +27940,7 @@ and z_s2842z3 (z_s2843z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s2838z3 (z_s2839z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s2838z3 (z_s2839z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s2839z3 with
     | z_s2840z3 when (string_startswith (z_s2840z3, "ecall")) ->
@@ -27899,7 +27952,7 @@ and z_s2838z3 (z_s2839z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s2834z3 (z_s2835z3 : string) : (string) zoption = sail_call (fun r ->
+and z_s2834z3 (z_s2835z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s2835z3 with
     | z_s2836z3 when (string_startswith (z_s2836z3, "fence.i")) ->
@@ -27911,7 +27964,7 @@ and z_s2834z3 (z_s2835z3 : string) : (string) zoption = sail_call (fun r ->
     | _ -> ZNone ()
   end)
 
-and z_s2822z3 (z_s2823z3 : string) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s2822z3 (z_s2823z3 : (string)) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
     match z_s2823z3 with
     | z_s2824z3 when (string_startswith (z_s2824z3, "fence")) ->
@@ -27919,7 +27972,7 @@ and z_s2822z3 (z_s2823z3 : string) : (((bit) list * (bit) list * string)) zoptio
         match (string_drop (z_s2824z3, (string_length "fence"))) with
         | z_s2825z3 ->
           begin
-            match (spc_matches_prefix z_s2825z3) with
+            match (zspc_matches_prefix z_s2825z3) with
             | ZSome ((), z_s2826z3) ->
               begin
                 match (string_drop (z_s2825z3, z_s2826z3)) with
@@ -27963,7 +28016,7 @@ and z_s2822z3 (z_s2823z3 : string) : (((bit) list * (bit) list * string)) zoptio
     | _ -> ZNone ()
   end)
 
-and z_s2803z3 (z_s2804z3 : string) : ((bool * (bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s2803z3 (z_s2804z3 : (string)) : ((bool * (bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
     match z_s2804z3 with
     | z_s2805z3 when (string_startswith (z_s2805z3, "rem")) ->
@@ -27980,7 +28033,7 @@ and z_s2803z3 (z_s2804z3 : string) : ((bool * (bit) list * (bit) list * (bit) li
                     match (string_drop (z_s2808z3, (string_length "w"))) with
                     | z_s2809z3 ->
                       begin
-                        match (spc_matches_prefix z_s2809z3) with
+                        match (zspc_matches_prefix z_s2809z3) with
                         | ZSome ((), z_s2810z3) ->
                           begin
                             match (string_drop (z_s2809z3, z_s2810z3)) with
@@ -28052,7 +28105,7 @@ and z_s2803z3 (z_s2804z3 : string) : ((bool * (bit) list * (bit) list * (bit) li
     | _ -> ZNone ()
   end)
 
-and z_s2784z3 (z_s2785z3 : string) : ((bool * (bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s2784z3 (z_s2785z3 : (string)) : ((bool * (bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
     match z_s2785z3 with
     | z_s2786z3 when (string_startswith (z_s2786z3, "div")) ->
@@ -28069,7 +28122,7 @@ and z_s2784z3 (z_s2785z3 : string) : ((bool * (bit) list * (bit) list * (bit) li
                     match (string_drop (z_s2789z3, (string_length "w"))) with
                     | z_s2790z3 ->
                       begin
-                        match (spc_matches_prefix z_s2790z3) with
+                        match (zspc_matches_prefix z_s2790z3) with
                         | ZSome ((), z_s2791z3) ->
                           begin
                             match (string_drop (z_s2790z3, z_s2791z3)) with
@@ -28141,7 +28194,7 @@ and z_s2784z3 (z_s2785z3 : string) : ((bool * (bit) list * (bit) list * (bit) li
     | _ -> ZNone ()
   end)
 
-and z_s2768z3 (z_s2769z3 : string) : (((bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s2768z3 (z_s2769z3 : (string)) : (((bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
     match z_s2769z3 with
     | z_s2770z3 when (string_startswith (z_s2770z3, "mulw")) ->
@@ -28149,7 +28202,7 @@ and z_s2768z3 (z_s2769z3 : string) : (((bit) list * (bit) list * (bit) list * st
         match (string_drop (z_s2770z3, (string_length "mulw"))) with
         | z_s2771z3 ->
           begin
-            match (spc_matches_prefix z_s2771z3) with
+            match (zspc_matches_prefix z_s2771z3) with
             | ZSome ((), z_s2772z3) ->
               begin
                 match (string_drop (z_s2771z3, z_s2772z3)) with
@@ -28214,7 +28267,7 @@ and z_s2768z3 (z_s2769z3 : string) : (((bit) list * (bit) list * (bit) list * st
     | _ -> ZNone ()
   end)
 
-and z_s2750z3 (z_s2751z3 : string) : ((bool * (bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s2750z3 (z_s2751z3 : (string)) : ((bool * (bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
     match z_s2751z3 with
     | z_s2752z3 when (string_startswith (z_s2752z3, "rem")) ->
@@ -28228,7 +28281,7 @@ and z_s2750z3 (z_s2751z3 : string) : ((bool * (bit) list * (bit) list * (bit) li
                 match (string_drop (z_s2753z3, z_s2754z3)) with
                 | z_s2755z3 ->
                   begin
-                    match (spc_matches_prefix z_s2755z3) with
+                    match (zspc_matches_prefix z_s2755z3) with
                     | ZSome ((), z_s2756z3) ->
                       begin
                         match (string_drop (z_s2755z3, z_s2756z3)) with
@@ -28297,7 +28350,7 @@ and z_s2750z3 (z_s2751z3 : string) : ((bool * (bit) list * (bit) list * (bit) li
     | _ -> ZNone ()
   end)
 
-and z_s2732z3 (z_s2733z3 : string) : ((bool * (bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s2732z3 (z_s2733z3 : (string)) : ((bool * (bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
     match z_s2733z3 with
     | z_s2734z3 when (string_startswith (z_s2734z3, "div")) ->
@@ -28311,7 +28364,7 @@ and z_s2732z3 (z_s2733z3 : string) : ((bool * (bit) list * (bit) list * (bit) li
                 match (string_drop (z_s2735z3, z_s2736z3)) with
                 | z_s2737z3 ->
                   begin
-                    match (spc_matches_prefix z_s2737z3) with
+                    match (zspc_matches_prefix z_s2737z3) with
                     | ZSome ((), z_s2738z3) ->
                       begin
                         match (string_drop (z_s2737z3, z_s2738z3)) with
@@ -28380,7 +28433,7 @@ and z_s2732z3 (z_s2733z3 : string) : ((bool * (bit) list * (bit) list * (bit) li
     | _ -> ZNone ()
   end)
 
-and z_s2715z3 (z_s2716z3 : string) : ((bool * bool * bool * (bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s2715z3 (z_s2716z3 : (string)) : ((bool * bool * bool * (bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
     match z_s2716z3 with
     | z_s2717z3 ->
@@ -28391,7 +28444,7 @@ and z_s2715z3 (z_s2716z3 : string) : ((bool * bool * bool * (bit) list * (bit) l
             match (string_drop (z_s2717z3, z_s2718z3)) with
             | z_s2719z3 ->
               begin
-                match (spc_matches_prefix z_s2719z3) with
+                match (zspc_matches_prefix z_s2719z3) with
                 | ZSome ((), z_s2720z3) ->
                   begin
                     match (string_drop (z_s2719z3, z_s2720z3)) with
@@ -28458,7 +28511,7 @@ and z_s2715z3 (z_s2716z3 : string) : ((bool * bool * bool * (bit) list * (bit) l
     | _ -> ZNone ()
   end)
 
-and z_s2700z3 (z_s2701z3 : string) : ((zsopw * (bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s2700z3 (z_s2701z3 : (string)) : ((zsopw * (bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
     match z_s2701z3 with
     | z_s2702z3 ->
@@ -28469,7 +28522,7 @@ and z_s2700z3 (z_s2701z3 : string) : ((zsopw * (bit) list * (bit) list * (bit) l
             match (string_drop (z_s2702z3, z_s2703z3)) with
             | z_s2704z3 ->
               begin
-                match (spc_matches_prefix z_s2704z3) with
+                match (zspc_matches_prefix z_s2704z3) with
                 | ZSome ((), z_s2705z3) ->
                   begin
                     match (string_drop (z_s2704z3, z_s2705z3)) with
@@ -28526,7 +28579,7 @@ and z_s2700z3 (z_s2701z3 : string) : ((zsopw * (bit) list * (bit) list * (bit) l
     | _ -> ZNone ()
   end)
 
-and z_s2683z3 (z_s2684z3 : string) : ((zropw * (bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s2683z3 (z_s2684z3 : (string)) : ((zropw * (bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
     match z_s2684z3 with
     | z_s2685z3 ->
@@ -28537,7 +28590,7 @@ and z_s2683z3 (z_s2684z3 : string) : ((zropw * (bit) list * (bit) list * (bit) l
             match (string_drop (z_s2685z3, z_s2686z3)) with
             | z_s2687z3 ->
               begin
-                match (spc_matches_prefix z_s2687z3) with
+                match (zspc_matches_prefix z_s2687z3) with
                 | ZSome ((), z_s2688z3) ->
                   begin
                     match (string_drop (z_s2687z3, z_s2688z3)) with
@@ -28604,7 +28657,7 @@ and z_s2683z3 (z_s2684z3 : string) : ((zropw * (bit) list * (bit) list * (bit) l
     | _ -> ZNone ()
   end)
 
-and z_s2666z3 (z_s2667z3 : string) : ((zsop * (bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s2666z3 (z_s2667z3 : (string)) : ((zsop * (bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
     match z_s2667z3 with
     | z_s2668z3 ->
@@ -28615,7 +28668,7 @@ and z_s2666z3 (z_s2667z3 : string) : ((zsop * (bit) list * (bit) list * (bit) li
             match (string_drop (z_s2668z3, z_s2669z3)) with
             | z_s2670z3 ->
               begin
-                match (spc_matches_prefix z_s2670z3) with
+                match (zspc_matches_prefix z_s2670z3) with
                 | ZSome ((), z_s2671z3) ->
                   begin
                     match (string_drop (z_s2670z3, z_s2671z3)) with
@@ -28682,7 +28735,7 @@ and z_s2666z3 (z_s2667z3 : string) : ((zsop * (bit) list * (bit) list * (bit) li
     | _ -> ZNone ()
   end)
 
-and z_s2650z3 (z_s2651z3 : string) : (((bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s2650z3 (z_s2651z3 : (string)) : (((bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
     match z_s2651z3 with
     | z_s2652z3 when (string_startswith (z_s2652z3, "addiw")) ->
@@ -28690,7 +28743,7 @@ and z_s2650z3 (z_s2651z3 : string) : (((bit) list * (bit) list * (bit) list * st
         match (string_drop (z_s2652z3, (string_length "addiw"))) with
         | z_s2653z3 ->
           begin
-            match (spc_matches_prefix z_s2653z3) with
+            match (zspc_matches_prefix z_s2653z3) with
             | ZSome ((), z_s2654z3) ->
               begin
                 match (string_drop (z_s2653z3, z_s2654z3)) with
@@ -28755,7 +28808,7 @@ and z_s2650z3 (z_s2651z3 : string) : (((bit) list * (bit) list * (bit) list * st
     | _ -> ZNone ()
   end)
 
-and z_s2628z3 (z_s2629z3 : string) : ((zword_width * bool * bool * (bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s2628z3 (z_s2629z3 : (string)) : ((zword_width * bool * bool * (bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
     match z_s2629z3 with
     | z_s2630z3 when (string_startswith (z_s2630z3, "s")) ->
@@ -28781,7 +28834,7 @@ and z_s2628z3 (z_s2629z3 : string) : ((zword_width * bool * bool * (bit) list * 
                                 match (string_drop (z_s2635z3, z_s2636z3)) with
                                 | z_s2637z3 ->
                                   begin
-                                    match (spc_matches_prefix z_s2637z3) with
+                                    match (zspc_matches_prefix z_s2637z3) with
                                     | ZSome ((), z_s2638z3) ->
                                       begin
                                         match (string_drop (z_s2637z3, z_s2638z3)) with
@@ -28862,7 +28915,7 @@ and z_s2628z3 (z_s2629z3 : string) : ((zword_width * bool * bool * (bit) list * 
     | _ -> ZNone ()
   end)
 
-and z_s2604z3 (z_s2605z3 : string) : ((zword_width * bool * bool * bool * (bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s2604z3 (z_s2605z3 : (string)) : ((zword_width * bool * bool * bool * (bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
     match z_s2605z3 with
     | z_s2606z3 when (string_startswith (z_s2606z3, "l")) ->
@@ -28894,7 +28947,7 @@ and z_s2604z3 (z_s2605z3 : string) : ((zword_width * bool * bool * bool * (bit) 
                                         match (string_drop (z_s2613z3, z_s2614z3)) with
                                         | z_s2615z3 ->
                                           begin
-                                            match (spc_matches_prefix z_s2615z3) with
+                                            match (zspc_matches_prefix z_s2615z3) with
                                             | ZSome ((), z_s2616z3) ->
                                               begin
                                                 match (string_drop (z_s2615z3, z_s2616z3)) with
@@ -28981,7 +29034,7 @@ and z_s2604z3 (z_s2605z3 : string) : ((zword_width * bool * bool * bool * (bit) 
     | _ -> ZNone ()
   end)
 
-and z_s2587z3 (z_s2588z3 : string) : ((zrop * (bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s2587z3 (z_s2588z3 : (string)) : ((zrop * (bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
     match z_s2588z3 with
     | z_s2589z3 ->
@@ -28992,7 +29045,7 @@ and z_s2587z3 (z_s2588z3 : string) : ((zrop * (bit) list * (bit) list * (bit) li
             match (string_drop (z_s2589z3, z_s2590z3)) with
             | z_s2591z3 ->
               begin
-                match (spc_matches_prefix z_s2591z3) with
+                match (zspc_matches_prefix z_s2591z3) with
                 | ZSome ((), z_s2592z3) ->
                   begin
                     match (string_drop (z_s2591z3, z_s2592z3)) with
@@ -29059,7 +29112,7 @@ and z_s2587z3 (z_s2588z3 : string) : ((zrop * (bit) list * (bit) list * (bit) li
     | _ -> ZNone ()
   end)
 
-and z_s2572z3 (z_s2573z3 : string) : ((zsop * (bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s2572z3 (z_s2573z3 : (string)) : ((zsop * (bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
     match z_s2573z3 with
     | z_s2574z3 ->
@@ -29070,7 +29123,7 @@ and z_s2572z3 (z_s2573z3 : string) : ((zsop * (bit) list * (bit) list * (bit) li
             match (string_drop (z_s2574z3, z_s2575z3)) with
             | z_s2576z3 ->
               begin
-                match (spc_matches_prefix z_s2576z3) with
+                match (zspc_matches_prefix z_s2576z3) with
                 | ZSome ((), z_s2577z3) ->
                   begin
                     match (string_drop (z_s2576z3, z_s2577z3)) with
@@ -29127,7 +29180,7 @@ and z_s2572z3 (z_s2573z3 : string) : ((zsop * (bit) list * (bit) list * (bit) li
     | _ -> ZNone ()
   end)
 
-and z_s2555z3 (z_s2556z3 : string) : ((ziop * (bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s2555z3 (z_s2556z3 : (string)) : ((ziop * (bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
     match z_s2556z3 with
     | z_s2557z3 ->
@@ -29138,7 +29191,7 @@ and z_s2555z3 (z_s2556z3 : string) : ((ziop * (bit) list * (bit) list * (bit) li
             match (string_drop (z_s2557z3, z_s2558z3)) with
             | z_s2559z3 ->
               begin
-                match (spc_matches_prefix z_s2559z3) with
+                match (zspc_matches_prefix z_s2559z3) with
                 | ZSome ((), z_s2560z3) ->
                   begin
                     match (string_drop (z_s2559z3, z_s2560z3)) with
@@ -29205,7 +29258,7 @@ and z_s2555z3 (z_s2556z3 : string) : ((ziop * (bit) list * (bit) list * (bit) li
     | _ -> ZNone ()
   end)
 
-and z_s2538z3 (z_s2539z3 : string) : ((zbop * (bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s2538z3 (z_s2539z3 : (string)) : ((zbop * (bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
     match z_s2539z3 with
     | z_s2540z3 ->
@@ -29216,7 +29269,7 @@ and z_s2538z3 (z_s2539z3 : string) : ((zbop * (bit) list * (bit) list * (bit) li
             match (string_drop (z_s2540z3, z_s2541z3)) with
             | z_s2542z3 ->
               begin
-                match (spc_matches_prefix z_s2542z3) with
+                match (zspc_matches_prefix z_s2542z3) with
                 | ZSome ((), z_s2543z3) ->
                   begin
                     match (string_drop (z_s2542z3, z_s2543z3)) with
@@ -29283,7 +29336,7 @@ and z_s2538z3 (z_s2539z3 : string) : ((zbop * (bit) list * (bit) list * (bit) li
     | _ -> ZNone ()
   end)
 
-and z_s2522z3 (z_s2523z3 : string) : (((bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s2522z3 (z_s2523z3 : (string)) : (((bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
     match z_s2523z3 with
     | z_s2524z3 when (string_startswith (z_s2524z3, "jalr")) ->
@@ -29291,7 +29344,7 @@ and z_s2522z3 (z_s2523z3 : string) : (((bit) list * (bit) list * (bit) list * st
         match (string_drop (z_s2524z3, (string_length "jalr"))) with
         | z_s2525z3 ->
           begin
-            match (spc_matches_prefix z_s2525z3) with
+            match (zspc_matches_prefix z_s2525z3) with
             | ZSome ((), z_s2526z3) ->
               begin
                 match (string_drop (z_s2525z3, z_s2526z3)) with
@@ -29356,7 +29409,7 @@ and z_s2522z3 (z_s2523z3 : string) : (((bit) list * (bit) list * (bit) list * st
     | _ -> ZNone ()
   end)
 
-and z_s2510z3 (z_s2511z3 : string) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s2510z3 (z_s2511z3 : (string)) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
     match z_s2511z3 with
     | z_s2512z3 when (string_startswith (z_s2512z3, "jal")) ->
@@ -29364,7 +29417,7 @@ and z_s2510z3 (z_s2511z3 : string) : (((bit) list * (bit) list * string)) zoptio
         match (string_drop (z_s2512z3, (string_length "jal"))) with
         | z_s2513z3 ->
           begin
-            match (spc_matches_prefix z_s2513z3) with
+            match (zspc_matches_prefix z_s2513z3) with
             | ZSome ((), z_s2514z3) ->
               begin
                 match (string_drop (z_s2513z3, z_s2514z3)) with
@@ -29408,7 +29461,7 @@ and z_s2510z3 (z_s2511z3 : string) : (((bit) list * (bit) list * string)) zoptio
     | _ -> ZNone ()
   end)
 
-and z_s2497z3 (z_s2498z3 : string) : ((zuop * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s2497z3 (z_s2498z3 : (string)) : ((zuop * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
     match z_s2498z3 with
     | z_s2499z3 ->
@@ -29419,7 +29472,7 @@ and z_s2497z3 (z_s2498z3 : string) : ((zuop * (bit) list * (bit) list * string))
             match (string_drop (z_s2499z3, z_s2500z3)) with
             | z_s2501z3 ->
               begin
-                match (spc_matches_prefix z_s2501z3) with
+                match (zspc_matches_prefix z_s2501z3) with
                 | ZSome ((), z_s2502z3) ->
                   begin
                     match (string_drop (z_s2501z3, z_s2502z3)) with
@@ -29466,7 +29519,7 @@ and z_s2497z3 (z_s2498z3 : string) : ((zuop * (bit) list * (bit) list * string))
     | _ -> ZNone ()
   end)
 
-and zassembly_matches_prefix (zargz3 : string) : ((zast * Big_int.num)) zoption = sail_call (fun r ->
+and zassembly_matches_prefix (zargz3 : (string)) : ((zast * Big_int.num)) zoption = sail_call (fun r ->
   begin
     match zargz3 with
     | z_s2509z3 when (begin
@@ -29660,17 +29713,17 @@ and zassembly_matches_prefix (zargz3 : string) : ((zast * Big_int.num)) zoption 
       ZSome (ZSFENCE_VMA (zrs1, zrs2), (fun (x,y) -> let n = sub_int (x,y) in if Big_int.less_equal n Big_int.zero then Big_int.zero else n) ((string_length zargz3), (string_length zsz3)))
     | z_s2887z3 when (begin
       match (z_s2870z3 z_s2887z3) with
-      | ZSome (zaq, zrl, zsizze, zrd, zrs1, zsz3) -> true
+      | ZSome (zsizze, zaq, zrl, zrd, zrs1, zsz3) -> true
       | _ -> false
     end) ->
-      let ZSome (zaq, zrl, zsizze, zrd, zrs1, zsz3) = (z_s2870z3 z_s2887z3) in
+      let ZSome (zsizze, zaq, zrl, zrd, zrs1, zsz3) = (z_s2870z3 z_s2887z3) in
       ZSome (ZLOADRES (zaq, zrl, zrs1, zsizze, zrd), (fun (x,y) -> let n = sub_int (x,y) in if Big_int.less_equal n Big_int.zero then Big_int.zero else n) ((string_length zargz3), (string_length zsz3)))
     | z_s2909z3 when (begin
       match (z_s2888z3 z_s2909z3) with
-      | ZSome (zaq, zrl, zsizze, zrd, zrs1, zrs2, zsz3) -> true
+      | ZSome (zsizze, zaq, zrl, zrd, zrs1, zrs2, zsz3) -> true
       | _ -> false
     end) ->
-      let ZSome (zaq, zrl, zsizze, zrd, zrs1, zrs2, zsz3) = (z_s2888z3 z_s2909z3) in
+      let ZSome (zsizze, zaq, zrl, zrd, zrs1, zrs2, zsz3) = (z_s2888z3 z_s2909z3) in
       ZSome (ZSTORECON (zaq, zrl, zrs2, zrs1, zsizze, zrd), (fun (x,y) -> let n = sub_int (x,y) in if Big_int.less_equal n Big_int.zero then Big_int.zero else n) ((string_length zargz3), (string_length zsz3)))
     | z_s2933z3 when (begin
       match (z_s2910z3 z_s2933z3) with
@@ -29929,46 +29982,53 @@ and zassembly_matches_prefix (zargz3 : string) : ((zast * Big_int.num)) zoption 
     end) ->
       let ZSome (zrd, zrs2, zsz3) = (z_s3327z3 z_s3338z3) in
       ZSome (ZC_MV (zrd, zrs2), (fun (x,y) -> let n = sub_int (x,y) in if Big_int.less_equal n Big_int.zero then Big_int.zero else n) ((string_length zargz3), (string_length zsz3)))
-    | z_s3350z3 when (begin
-      match (z_s3339z3 z_s3350z3) with
+    | z_s3342z3 when (begin
+      match (z_s3339z3 z_s3342z3) with
+      | ZSome (zsz3) -> true
+      | _ -> false
+    end) ->
+      let ZSome (zsz3) = (z_s3339z3 z_s3342z3) in
+      ZSome (ZC_EBREAK (), (fun (x,y) -> let n = sub_int (x,y) in if Big_int.less_equal n Big_int.zero then Big_int.zero else n) ((string_length zargz3), (string_length zsz3)))
+    | z_s3354z3 when (begin
+      match (z_s3343z3 z_s3354z3) with
       | ZSome (zrsd, zrs2, zsz3) ->
         (zneq_atom ((zregbits_to_regno zrsd), (zregbits_to_regno zzzreg))) && (zneq_atom ((zregbits_to_regno zrs2), (zregbits_to_regno zzzreg)))
       | _ -> false
     end) ->
-      let ZSome (zrsd, zrs2, zsz3) = (z_s3339z3 z_s3350z3) in
+      let ZSome (zrsd, zrs2, zsz3) = (z_s3343z3 z_s3354z3) in
       ZSome (ZC_ADD (zrsd, zrs2), (fun (x,y) -> let n = sub_int (x,y) in if Big_int.less_equal n Big_int.zero then Big_int.zero else n) ((string_length zargz3), (string_length zsz3)))
-    | z_s3354z3 when (begin
-      match (z_s3351z3 z_s3354z3) with
-      | ZSome (zsz3) -> true
-      | _ -> false
-    end) ->
-      let ZSome (zsz3) = (z_s3351z3 z_s3354z3) in
-      ZSome (ZSTOP_FETCHING (), (fun (x,y) -> let n = sub_int (x,y) in if Big_int.less_equal n Big_int.zero then Big_int.zero else n) ((string_length zargz3), (string_length zsz3)))
     | z_s3358z3 when (begin
       match (z_s3355z3 z_s3358z3) with
       | ZSome (zsz3) -> true
       | _ -> false
     end) ->
       let ZSome (zsz3) = (z_s3355z3 z_s3358z3) in
+      ZSome (ZSTOP_FETCHING (), (fun (x,y) -> let n = sub_int (x,y) in if Big_int.less_equal n Big_int.zero then Big_int.zero else n) ((string_length zargz3), (string_length zsz3)))
+    | z_s3362z3 when (begin
+      match (z_s3359z3 z_s3362z3) with
+      | ZSome (zsz3) -> true
+      | _ -> false
+    end) ->
+      let ZSome (zsz3) = (z_s3359z3 z_s3362z3) in
       ZSome (ZTHREAD_START (), (fun (x,y) -> let n = sub_int (x,y) in if Big_int.less_equal n Big_int.zero then Big_int.zero else n) ((string_length zargz3), (string_length zsz3)))
-    | z_s3366z3 when (begin
-      match (z_s3359z3 z_s3366z3) with
+    | z_s3370z3 when (begin
+      match (z_s3363z3 z_s3370z3) with
       | ZSome (zs, zsz3) -> true
       | _ -> false
     end) ->
-      let ZSome (zs, zsz3) = (z_s3359z3 z_s3366z3) in
+      let ZSome (zs, zsz3) = (z_s3363z3 z_s3370z3) in
       ZSome (ZILLEGAL zs, (fun (x,y) -> let n = sub_int (x,y) in if Big_int.less_equal n Big_int.zero then Big_int.zero else n) ((string_length zargz3), (string_length zsz3)))
-    | z_s3374z3 when (begin
-      match (z_s3367z3 z_s3374z3) with
+    | z_s3378z3 when (begin
+      match (z_s3371z3 z_s3378z3) with
       | ZSome (zs, zsz3) -> true
       | _ -> false
     end) ->
-      let ZSome (zs, zsz3) = (z_s3367z3 z_s3374z3) in
+      let ZSome (zs, zsz3) = (z_s3371z3 z_s3378z3) in
       ZSome (ZC_ILLEGAL zs, (fun (x,y) -> let n = sub_int (x,y) in if Big_int.less_equal n Big_int.zero then Big_int.zero else n) ((string_length zargz3), (string_length zsz3)))
     | _ -> ZNone ()
   end)
 
-and zencdec_forwards (zargz3 : zast) : (bit) list = sail_call (fun r ->
+and zencdec_forwards (zargz3 : (zast)) : (bit) list = sail_call (fun r ->
   begin
     match zargz3 with
     | ZUTYPE (zimm, zrd, zop) ->
@@ -30094,7 +30154,7 @@ and zencdec_forwards (zargz3 : zast) : (bit) list = sail_call (fun r ->
     | ZILLEGAL (zs) -> zs
   end)
 
-and zencdec_backwards (zargz3 : (bit) list) : zast = sail_call (fun r ->
+and zencdec_backwards (zargz3 : ((bit) list)) : zast = sail_call (fun r ->
   begin
     match zargz3 with
     | zv__83 when (let z_mappingpatterns_23z3 = (subrange (zv__83, (Big_int.of_int (6)), Big_int.zero)) in
@@ -31346,7 +31406,7 @@ and zencdec_backwards (zargz3 : (bit) list) : zast = sail_call (fun r ->
     | zs -> ZILLEGAL zs
   end)
 
-and zencdec_forwards_matches (zargz3 : zast) : bool = sail_call (fun r ->
+and zencdec_forwards_matches (zargz3 : (zast)) : bool = sail_call (fun r ->
   begin
     match zargz3 with
     | ZUTYPE (zimm, zrd, zop) -> true
@@ -31411,7 +31471,7 @@ and zencdec_forwards_matches (zargz3 : zast) : bool = sail_call (fun r ->
     | _ -> false
   end)
 
-and zencdec_backwards_matches (zargz3 : (bit) list) : bool = sail_call (fun r ->
+and zencdec_backwards_matches (zargz3 : ((bit) list)) : bool = sail_call (fun r ->
   begin
     match zargz3 with
     | zv__302 when (let z_mappingpatterns_0z3 = (subrange (zv__302, (Big_int.of_int (6)), Big_int.zero)) in
@@ -32520,7 +32580,7 @@ and zencdec_backwards_matches (zargz3 : (bit) list) : bool = sail_call (fun r ->
     | _ -> false
   end)
 
-and zencdec_compressed_forwards (zargz3 : zast) : (bit) list = sail_call (fun r ->
+and zencdec_compressed_forwards (zargz3 : (zast)) : (bit) list = sail_call (fun r ->
   begin
     match zargz3 with
     | ZC_NOP (()) ->
@@ -32692,12 +32752,14 @@ and zencdec_compressed_forwards (zargz3 : zast) : (bit) list = sail_call (fun r 
       append ([B1; B0; B0], (append ([B1], (append ((zrs1), (append ([B0; B0; B0; B0; B0], [B1; B0])))))))
     | ZC_MV (zrd, zrs2) when ((zneq_atom ((zregbits_to_regno zrd), (zregbits_to_regno zzzreg))) && (zneq_atom ((zregbits_to_regno zrs2), (zregbits_to_regno zzzreg)))) ->
       append ([B1; B0; B0], (append ([B0], (append ((zrd), (append ((zrs2), [B1; B0])))))))
+    | ZC_EBREAK (()) ->
+      append ([B1; B0; B0], (append ([B1], (append ([B0; B0; B0; B0; B0], (append ([B0; B0; B0; B0; B0], [B1; B0])))))))
     | ZC_ADD (zrsd, zrs2) when ((zneq_atom ((zregbits_to_regno zrsd), (zregbits_to_regno zzzreg))) && (zneq_atom ((zregbits_to_regno zrs2), (zregbits_to_regno zzzreg)))) ->
       append ([B1; B0; B0], (append ([B1], (append ((zrsd), (append ((zrs2), [B1; B0])))))))
     | ZC_ILLEGAL (zs) -> zs
   end)
 
-and zencdec_compressed_backwards (zargz3 : (bit) list) : zast = sail_call (fun r ->
+and zencdec_compressed_backwards (zargz3 : ((bit) list)) : zast = sail_call (fun r ->
   begin
     match zargz3 with
     | zv__537 when (let zp0z3 = (access (zv__537, (Big_int.of_int (15)))) in
@@ -33115,245 +33177,252 @@ and zencdec_compressed_backwards (zargz3 : (bit) list) : zast = sail_call (fun r
     let zp1z3 = (access (zv__660, (Big_int.of_int (14)))) in
     let zp2z3 = (access (zv__660, (Big_int.of_int (13)))) in
     let zp3z3 = (access (zv__660, (Big_int.of_int (12)))) in
-    let zp4z3 = (access (zv__660, (Big_int.of_int (1)))) in
-    let zp5z3 = (access (zv__660, Big_int.zero)) in
-    let zrsd = (subrange (zv__660, (Big_int.of_int (11)), (Big_int.of_int (7)))) in
-    let zrs2 = (subrange (zv__660, (Big_int.of_int (6)), (Big_int.of_int (2)))) in
+    let zp4z3 = (access (zv__660, (Big_int.of_int (11)))) in
+    let zp5z3 = (access (zv__660, (Big_int.of_int (10)))) in
+    let zp6z3 = (access (zv__660, (Big_int.of_int (9)))) in
+    let zp7z3 = (access (zv__660, (Big_int.of_int (8)))) in
+    let zp8z3 = (access (zv__660, (Big_int.of_int (7)))) in
+    let zp9z3 = (access (zv__660, (Big_int.of_int (6)))) in
+    let zp10z3 = (access (zv__660, (Big_int.of_int (5)))) in
+    let zp11z3 = (access (zv__660, (Big_int.of_int (4)))) in
+    let zp12z3 = (access (zv__660, (Big_int.of_int (3)))) in
+    let zp13z3 = (access (zv__660, (Big_int.of_int (2)))) in
+    let zp14z3 = (access (zv__660, (Big_int.of_int (1)))) in
+    let zp15z3 = (access (zv__660, Big_int.zero)) in
+    (((((((((((((((eq_bit (zp15z3, B0)) && (eq_bit (zp14z3, B1))) && (eq_bit (zp13z3, B0))) && (eq_bit (zp12z3, B0))) && (eq_bit (zp11z3, B0))) && (eq_bit (zp10z3, B0))) && (eq_bit (zp9z3, B0))) && (eq_bit (zp8z3, B0))) && (eq_bit (zp7z3, B0))) && (eq_bit (zp6z3, B0))) && (eq_bit (zp5z3, B0))) && (eq_bit (zp4z3, B0))) && (eq_bit (zp3z3, B1))) && (eq_bit (zp2z3, B0))) && (eq_bit (zp1z3, B0))) && (eq_bit (zp0z3, B1))) ->
+      ZC_EBREAK ()
+    | zv__666 when (let zp0z3 = (access (zv__666, (Big_int.of_int (15)))) in
+    let zp1z3 = (access (zv__666, (Big_int.of_int (14)))) in
+    let zp2z3 = (access (zv__666, (Big_int.of_int (13)))) in
+    let zp3z3 = (access (zv__666, (Big_int.of_int (12)))) in
+    let zp4z3 = (access (zv__666, (Big_int.of_int (1)))) in
+    let zp5z3 = (access (zv__666, Big_int.zero)) in
+    let zrsd = (subrange (zv__666, (Big_int.of_int (11)), (Big_int.of_int (7)))) in
+    let zrs2 = (subrange (zv__666, (Big_int.of_int (6)), (Big_int.of_int (2)))) in
     (((((((zneq_atom ((zregbits_to_regno zrsd), (zregbits_to_regno zzzreg))) && (zneq_atom ((zregbits_to_regno zrs2), (zregbits_to_regno zzzreg)))) && (eq_bit (zp5z3, B0))) && (eq_bit (zp4z3, B1))) && (eq_bit (zp3z3, B1))) && (eq_bit (zp2z3, B0))) && (eq_bit (zp1z3, B0))) && (eq_bit (zp0z3, B1))) ->
-      let zrsd = (subrange (zv__660, (Big_int.of_int (11)), (Big_int.of_int (7)))) in
-      let zrs2 = (subrange (zv__660, (Big_int.of_int (6)), (Big_int.of_int (2)))) in
+      let zrsd = (subrange (zv__666, (Big_int.of_int (11)), (Big_int.of_int (7)))) in
+      let zrs2 = (subrange (zv__666, (Big_int.of_int (6)), (Big_int.of_int (2)))) in
       ZC_ADD (zrsd, zrs2)
     | zs -> ZC_ILLEGAL zs
   end)
 
-and zencdec_compressed_forwards_matches (zargz3 : zast) : bool = sail_call (fun r ->
+and zencdec_compressed_forwards_matches (zargz3 : (zast)) : bool = sail_call (fun r ->
   begin
     match zargz3 with
     | ZC_NOP (()) -> true
-    | ZC_ADDI4SPN (zrd, zv__664) when (let znzz96 = (subrange (zv__664, (Big_int.of_int (7)), (Big_int.of_int (4)))) in
-    let znzz96 = (subrange (zv__664, (Big_int.of_int (7)), (Big_int.of_int (4)))) in
-    let znzz54 = (subrange (zv__664, (Big_int.of_int (3)), (Big_int.of_int (2)))) in
-    let znzz3 = (subrange (zv__664, (Big_int.of_int (1)), (Big_int.of_int (1)))) in
-    let znzz2 = (subrange (zv__664, Big_int.zero, Big_int.zero)) in
+    | ZC_ADDI4SPN (zrd, zv__670) when (let znzz96 = (subrange (zv__670, (Big_int.of_int (7)), (Big_int.of_int (4)))) in
+    let znzz96 = (subrange (zv__670, (Big_int.of_int (7)), (Big_int.of_int (4)))) in
+    let znzz54 = (subrange (zv__670, (Big_int.of_int (3)), (Big_int.of_int (2)))) in
+    let znzz3 = (subrange (zv__670, (Big_int.of_int (1)), (Big_int.of_int (1)))) in
+    let znzz2 = (subrange (zv__670, Big_int.zero, Big_int.zero)) in
     zneq_vec ((append (znzz96, (append (znzz54, (append (znzz3, znzz2)))))), [B0; B0; B0; B0; B0; B0; B0; B0])) ->
       true
-    | ZC_LW (zv__665, zrs1, zrd) -> true
-    | ZC_LD (zv__666, zrs1, zrd) -> true
-    | ZC_SW (zv__667, zrs1, zrs2) -> true
-    | ZC_SD (zv__668, zrs1, zrs2) -> true
-    | ZC_ADDI (zv__669, zrsd) when (let znzzi5 = (subrange (zv__669, (Big_int.of_int (5)), (Big_int.of_int (5)))) in
-    let znzzi5 = (subrange (zv__669, (Big_int.of_int (5)), (Big_int.of_int (5)))) in
-    let znzzi40 = (subrange (zv__669, (Big_int.of_int (4)), Big_int.zero)) in
+    | ZC_LW (zv__671, zrs1, zrd) -> true
+    | ZC_LD (zv__672, zrs1, zrd) -> true
+    | ZC_SW (zv__673, zrs1, zrs2) -> true
+    | ZC_SD (zv__674, zrs1, zrs2) -> true
+    | ZC_ADDI (zv__675, zrsd) when (let znzzi5 = (subrange (zv__675, (Big_int.of_int (5)), (Big_int.of_int (5)))) in
+    let znzzi5 = (subrange (zv__675, (Big_int.of_int (5)), (Big_int.of_int (5)))) in
+    let znzzi40 = (subrange (zv__675, (Big_int.of_int (4)), Big_int.zero)) in
     (zneq_vec ((append (znzzi5, znzzi40)), [B0; B0; B0; B0; B0; B0])) && (zneq_atom ((zregbits_to_regno zrsd), (zregbits_to_regno zzzreg)))) ->
       true
-    | ZC_ADDIW (zv__670, zrsd) -> true
-    | ZC_LI (zv__671, zrd) when (zneq_atom ((zregbits_to_regno zrd), (zregbits_to_regno zzzreg))) ->
+    | ZC_ADDIW (zv__676, zrsd) -> true
+    | ZC_LI (zv__677, zrd) when (zneq_atom ((zregbits_to_regno zrd), (zregbits_to_regno zzzreg))) ->
       true
-    | ZC_ADDI16SP (zv__672) when (let znzzi9 = (subrange (zv__672, (Big_int.of_int (5)), (Big_int.of_int (5)))) in
-    let znzzi9 = (subrange (zv__672, (Big_int.of_int (5)), (Big_int.of_int (5)))) in
-    let znzzi87 = (subrange (zv__672, (Big_int.of_int (4)), (Big_int.of_int (3)))) in
-    let znzzi6 = (subrange (zv__672, (Big_int.of_int (2)), (Big_int.of_int (2)))) in
-    let znzzi5 = (subrange (zv__672, (Big_int.of_int (1)), (Big_int.of_int (1)))) in
-    let znzzi4 = (subrange (zv__672, Big_int.zero, Big_int.zero)) in
+    | ZC_ADDI16SP (zv__678) when (let znzzi9 = (subrange (zv__678, (Big_int.of_int (5)), (Big_int.of_int (5)))) in
+    let znzzi9 = (subrange (zv__678, (Big_int.of_int (5)), (Big_int.of_int (5)))) in
+    let znzzi87 = (subrange (zv__678, (Big_int.of_int (4)), (Big_int.of_int (3)))) in
+    let znzzi6 = (subrange (zv__678, (Big_int.of_int (2)), (Big_int.of_int (2)))) in
+    let znzzi5 = (subrange (zv__678, (Big_int.of_int (1)), (Big_int.of_int (1)))) in
+    let znzzi4 = (subrange (zv__678, Big_int.zero, Big_int.zero)) in
     zneq_vec ((append (znzzi9, (append (znzzi87, (append (znzzi6, (append (znzzi5, znzzi4)))))))), [B0; B0; B0; B0; B0; B0])) ->
       true
-    | ZC_LUI (zv__673, zrd) when ((zneq_atom ((zregbits_to_regno zrd), (zregbits_to_regno zzzreg))) && (zneq_atom ((zregbits_to_regno zrd), (zregbits_to_regno zsp)))) ->
+    | ZC_LUI (zv__679, zrd) when ((zneq_atom ((zregbits_to_regno zrd), (zregbits_to_regno zzzreg))) && (zneq_atom ((zregbits_to_regno zrd), (zregbits_to_regno zsp)))) ->
       true
-    | ZC_SRLI (zv__674, zrsd) when (let znzzui5 = (subrange (zv__674, (Big_int.of_int (5)), (Big_int.of_int (5)))) in
-    let znzzui5 = (subrange (zv__674, (Big_int.of_int (5)), (Big_int.of_int (5)))) in
-    let znzzui40 = (subrange (zv__674, (Big_int.of_int (4)), Big_int.zero)) in
+    | ZC_SRLI (zv__680, zrsd) when (let znzzui5 = (subrange (zv__680, (Big_int.of_int (5)), (Big_int.of_int (5)))) in
+    let znzzui5 = (subrange (zv__680, (Big_int.of_int (5)), (Big_int.of_int (5)))) in
+    let znzzui40 = (subrange (zv__680, (Big_int.of_int (4)), Big_int.zero)) in
     zneq_vec ((append (znzzui5, znzzui40)), [B0; B0; B0; B0; B0; B0])) ->
       true
-    | ZC_SRAI (zv__675, zrsd) when (let znzzui5 = (subrange (zv__675, (Big_int.of_int (5)), (Big_int.of_int (5)))) in
-    let znzzui5 = (subrange (zv__675, (Big_int.of_int (5)), (Big_int.of_int (5)))) in
-    let znzzui40 = (subrange (zv__675, (Big_int.of_int (4)), Big_int.zero)) in
+    | ZC_SRAI (zv__681, zrsd) when (let znzzui5 = (subrange (zv__681, (Big_int.of_int (5)), (Big_int.of_int (5)))) in
+    let znzzui5 = (subrange (zv__681, (Big_int.of_int (5)), (Big_int.of_int (5)))) in
+    let znzzui40 = (subrange (zv__681, (Big_int.of_int (4)), Big_int.zero)) in
     zneq_vec ((append (znzzui5, znzzui40)), [B0; B0; B0; B0; B0; B0])) ->
       true
-    | ZC_ANDI (zv__676, zrsd) -> true
+    | ZC_ANDI (zv__682, zrsd) -> true
     | ZC_SUB (zrsd, zrs2) -> true
     | ZC_XOR (zrsd, zrs2) -> true
     | ZC_OR (zrsd, zrs2) -> true
     | ZC_AND (zrsd, zrs2) -> true
     | ZC_SUBW (zrsd, zrs2) -> true
     | ZC_ADDW (zrsd, zrs2) -> true
-    | ZC_J (zv__677) -> true
-    | ZC_BEQZ (zv__678, zrs) -> true
-    | ZC_BNEZ (zv__679, zrs) -> true
-    | ZC_SLLI (zv__680, zrsd) when (let znzzui5 = (subrange (zv__680, (Big_int.of_int (5)), (Big_int.of_int (5)))) in
-    let znzzui5 = (subrange (zv__680, (Big_int.of_int (5)), (Big_int.of_int (5)))) in
-    let znzzui40 = (subrange (zv__680, (Big_int.of_int (4)), Big_int.zero)) in
+    | ZC_J (zv__683) -> true
+    | ZC_BEQZ (zv__684, zrs) -> true
+    | ZC_BNEZ (zv__685, zrs) -> true
+    | ZC_SLLI (zv__686, zrsd) when (let znzzui5 = (subrange (zv__686, (Big_int.of_int (5)), (Big_int.of_int (5)))) in
+    let znzzui5 = (subrange (zv__686, (Big_int.of_int (5)), (Big_int.of_int (5)))) in
+    let znzzui40 = (subrange (zv__686, (Big_int.of_int (4)), Big_int.zero)) in
     (zneq_vec ((append (znzzui5, znzzui40)), [B0; B0; B0; B0; B0; B0])) && (zneq_atom ((zregbits_to_regno zrsd), (zregbits_to_regno zzzreg)))) ->
       true
-    | ZC_LWSP (zv__681, zrd) when (zneq_atom ((zregbits_to_regno zrd), (zregbits_to_regno zzzreg))) ->
+    | ZC_LWSP (zv__687, zrd) when (zneq_atom ((zregbits_to_regno zrd), (zregbits_to_regno zzzreg))) ->
       true
-    | ZC_LDSP (zv__682, zrd) when (zneq_atom ((zregbits_to_regno zrd), (zregbits_to_regno zzzreg))) ->
+    | ZC_LDSP (zv__688, zrd) when (zneq_atom ((zregbits_to_regno zrd), (zregbits_to_regno zzzreg))) ->
       true
-    | ZC_SWSP (zv__683, zrs2) -> true
-    | ZC_SDSP (zv__684, zrs2) -> true
+    | ZC_SWSP (zv__689, zrs2) -> true
+    | ZC_SDSP (zv__690, zrs2) -> true
     | ZC_JR (zrs1) when (zneq_atom ((zregbits_to_regno zrs1), (zregbits_to_regno zzzreg))) ->
       true
     | ZC_JALR (zrs1) when (zneq_atom ((zregbits_to_regno zrs1), (zregbits_to_regno zzzreg))) ->
       true
     | ZC_MV (zrd, zrs2) when ((zneq_atom ((zregbits_to_regno zrd), (zregbits_to_regno zzzreg))) && (zneq_atom ((zregbits_to_regno zrs2), (zregbits_to_regno zzzreg)))) ->
       true
+    | ZC_EBREAK (()) -> true
     | ZC_ADD (zrsd, zrs2) when ((zneq_atom ((zregbits_to_regno zrsd), (zregbits_to_regno zzzreg))) && (zneq_atom ((zregbits_to_regno zrs2), (zregbits_to_regno zzzreg)))) ->
       true
     | ZC_ILLEGAL (zs) -> true
     | _ -> false
   end)
 
-and zencdec_compressed_backwards_matches (zargz3 : (bit) list) : bool = sail_call (fun r ->
+and zencdec_compressed_backwards_matches (zargz3 : ((bit) list)) : bool = sail_call (fun r ->
   begin
     match zargz3 with
-    | zv__685 when (let zp0z3 = (access (zv__685, (Big_int.of_int (15)))) in
-    let zp1z3 = (access (zv__685, (Big_int.of_int (14)))) in
-    let zp2z3 = (access (zv__685, (Big_int.of_int (13)))) in
-    let zp3z3 = (access (zv__685, (Big_int.of_int (12)))) in
-    let zp4z3 = (access (zv__685, (Big_int.of_int (11)))) in
-    let zp5z3 = (access (zv__685, (Big_int.of_int (10)))) in
-    let zp6z3 = (access (zv__685, (Big_int.of_int (9)))) in
-    let zp7z3 = (access (zv__685, (Big_int.of_int (8)))) in
-    let zp8z3 = (access (zv__685, (Big_int.of_int (7)))) in
-    let zp9z3 = (access (zv__685, (Big_int.of_int (6)))) in
-    let zp10z3 = (access (zv__685, (Big_int.of_int (5)))) in
-    let zp11z3 = (access (zv__685, (Big_int.of_int (4)))) in
-    let zp12z3 = (access (zv__685, (Big_int.of_int (3)))) in
-    let zp13z3 = (access (zv__685, (Big_int.of_int (2)))) in
-    let zp14z3 = (access (zv__685, (Big_int.of_int (1)))) in
-    let zp15z3 = (access (zv__685, Big_int.zero)) in
-    (((((((((((((((eq_bit (zp15z3, B1)) && (eq_bit (zp14z3, B0))) && (eq_bit (zp13z3, B0))) && (eq_bit (zp12z3, B0))) && (eq_bit (zp11z3, B0))) && (eq_bit (zp10z3, B0))) && (eq_bit (zp9z3, B0))) && (eq_bit (zp8z3, B0))) && (eq_bit (zp7z3, B0))) && (eq_bit (zp6z3, B0))) && (eq_bit (zp5z3, B0))) && (eq_bit (zp4z3, B0))) && (eq_bit (zp3z3, B0))) && (eq_bit (zp2z3, B0))) && (eq_bit (zp1z3, B0))) && (eq_bit (zp0z3, B0))) ->
-      true
     | zv__691 when (let zp0z3 = (access (zv__691, (Big_int.of_int (15)))) in
     let zp1z3 = (access (zv__691, (Big_int.of_int (14)))) in
     let zp2z3 = (access (zv__691, (Big_int.of_int (13)))) in
-    let zp3z3 = (access (zv__691, (Big_int.of_int (1)))) in
-    let zp4z3 = (access (zv__691, Big_int.zero)) in
-    let znzz96 = (subrange (zv__691, (Big_int.of_int (10)), (Big_int.of_int (7)))) in
-    let znzz54 = (subrange (zv__691, (Big_int.of_int (12)), (Big_int.of_int (11)))) in
-    let znzz3 = (subrange (zv__691, (Big_int.of_int (5)), (Big_int.of_int (5)))) in
-    let znzz2 = (subrange (zv__691, (Big_int.of_int (6)), (Big_int.of_int (6)))) in
-    (((((zneq_vec ((append (znzz96, (append (znzz54, (append (znzz3, znzz2)))))), [B0; B0; B0; B0; B0; B0; B0; B0])) && (eq_bit (zp4z3, B0))) && (eq_bit (zp3z3, B0))) && (eq_bit (zp2z3, B0))) && (eq_bit (zp1z3, B0))) && (eq_bit (zp0z3, B0))) ->
-      true
-    | zv__694 when (let zp0z3 = (access (zv__694, (Big_int.of_int (15)))) in
-    let zp1z3 = (access (zv__694, (Big_int.of_int (14)))) in
-    let zp2z3 = (access (zv__694, (Big_int.of_int (13)))) in
-    let zp3z3 = (access (zv__694, (Big_int.of_int (1)))) in
-    let zp4z3 = (access (zv__694, Big_int.zero)) in
-    ((((eq_bit (zp4z3, B0)) && (eq_bit (zp3z3, B0))) && (eq_bit (zp2z3, B0))) && (eq_bit (zp1z3, B1))) && (eq_bit (zp0z3, B0))) ->
+    let zp3z3 = (access (zv__691, (Big_int.of_int (12)))) in
+    let zp4z3 = (access (zv__691, (Big_int.of_int (11)))) in
+    let zp5z3 = (access (zv__691, (Big_int.of_int (10)))) in
+    let zp6z3 = (access (zv__691, (Big_int.of_int (9)))) in
+    let zp7z3 = (access (zv__691, (Big_int.of_int (8)))) in
+    let zp8z3 = (access (zv__691, (Big_int.of_int (7)))) in
+    let zp9z3 = (access (zv__691, (Big_int.of_int (6)))) in
+    let zp10z3 = (access (zv__691, (Big_int.of_int (5)))) in
+    let zp11z3 = (access (zv__691, (Big_int.of_int (4)))) in
+    let zp12z3 = (access (zv__691, (Big_int.of_int (3)))) in
+    let zp13z3 = (access (zv__691, (Big_int.of_int (2)))) in
+    let zp14z3 = (access (zv__691, (Big_int.of_int (1)))) in
+    let zp15z3 = (access (zv__691, Big_int.zero)) in
+    (((((((((((((((eq_bit (zp15z3, B1)) && (eq_bit (zp14z3, B0))) && (eq_bit (zp13z3, B0))) && (eq_bit (zp12z3, B0))) && (eq_bit (zp11z3, B0))) && (eq_bit (zp10z3, B0))) && (eq_bit (zp9z3, B0))) && (eq_bit (zp8z3, B0))) && (eq_bit (zp7z3, B0))) && (eq_bit (zp6z3, B0))) && (eq_bit (zp5z3, B0))) && (eq_bit (zp4z3, B0))) && (eq_bit (zp3z3, B0))) && (eq_bit (zp2z3, B0))) && (eq_bit (zp1z3, B0))) && (eq_bit (zp0z3, B0))) ->
       true
     | zv__697 when (let zp0z3 = (access (zv__697, (Big_int.of_int (15)))) in
     let zp1z3 = (access (zv__697, (Big_int.of_int (14)))) in
     let zp2z3 = (access (zv__697, (Big_int.of_int (13)))) in
     let zp3z3 = (access (zv__697, (Big_int.of_int (1)))) in
     let zp4z3 = (access (zv__697, Big_int.zero)) in
-    ((((eq_bit (zp4z3, B0)) && (eq_bit (zp3z3, B0))) && (eq_bit (zp2z3, B1))) && (eq_bit (zp1z3, B1))) && (eq_bit (zp0z3, B0))) ->
+    let znzz96 = (subrange (zv__697, (Big_int.of_int (10)), (Big_int.of_int (7)))) in
+    let znzz54 = (subrange (zv__697, (Big_int.of_int (12)), (Big_int.of_int (11)))) in
+    let znzz3 = (subrange (zv__697, (Big_int.of_int (5)), (Big_int.of_int (5)))) in
+    let znzz2 = (subrange (zv__697, (Big_int.of_int (6)), (Big_int.of_int (6)))) in
+    (((((zneq_vec ((append (znzz96, (append (znzz54, (append (znzz3, znzz2)))))), [B0; B0; B0; B0; B0; B0; B0; B0])) && (eq_bit (zp4z3, B0))) && (eq_bit (zp3z3, B0))) && (eq_bit (zp2z3, B0))) && (eq_bit (zp1z3, B0))) && (eq_bit (zp0z3, B0))) ->
       true
     | zv__700 when (let zp0z3 = (access (zv__700, (Big_int.of_int (15)))) in
     let zp1z3 = (access (zv__700, (Big_int.of_int (14)))) in
     let zp2z3 = (access (zv__700, (Big_int.of_int (13)))) in
     let zp3z3 = (access (zv__700, (Big_int.of_int (1)))) in
     let zp4z3 = (access (zv__700, Big_int.zero)) in
-    ((((eq_bit (zp4z3, B0)) && (eq_bit (zp3z3, B0))) && (eq_bit (zp2z3, B0))) && (eq_bit (zp1z3, B1))) && (eq_bit (zp0z3, B1))) ->
+    ((((eq_bit (zp4z3, B0)) && (eq_bit (zp3z3, B0))) && (eq_bit (zp2z3, B0))) && (eq_bit (zp1z3, B1))) && (eq_bit (zp0z3, B0))) ->
       true
     | zv__703 when (let zp0z3 = (access (zv__703, (Big_int.of_int (15)))) in
     let zp1z3 = (access (zv__703, (Big_int.of_int (14)))) in
     let zp2z3 = (access (zv__703, (Big_int.of_int (13)))) in
     let zp3z3 = (access (zv__703, (Big_int.of_int (1)))) in
     let zp4z3 = (access (zv__703, Big_int.zero)) in
-    ((((eq_bit (zp4z3, B0)) && (eq_bit (zp3z3, B0))) && (eq_bit (zp2z3, B1))) && (eq_bit (zp1z3, B1))) && (eq_bit (zp0z3, B1))) ->
+    ((((eq_bit (zp4z3, B0)) && (eq_bit (zp3z3, B0))) && (eq_bit (zp2z3, B1))) && (eq_bit (zp1z3, B1))) && (eq_bit (zp0z3, B0))) ->
       true
     | zv__706 when (let zp0z3 = (access (zv__706, (Big_int.of_int (15)))) in
     let zp1z3 = (access (zv__706, (Big_int.of_int (14)))) in
     let zp2z3 = (access (zv__706, (Big_int.of_int (13)))) in
     let zp3z3 = (access (zv__706, (Big_int.of_int (1)))) in
     let zp4z3 = (access (zv__706, Big_int.zero)) in
-    let zrsd = (subrange (zv__706, (Big_int.of_int (11)), (Big_int.of_int (7)))) in
-    let znzzi5 = (subrange (zv__706, (Big_int.of_int (12)), (Big_int.of_int (12)))) in
-    let znzzi40 = (subrange (zv__706, (Big_int.of_int (6)), (Big_int.of_int (2)))) in
-    ((((((zneq_vec ((append (znzzi5, znzzi40)), [B0; B0; B0; B0; B0; B0])) && (zneq_atom ((zregbits_to_regno zrsd), (zregbits_to_regno zzzreg)))) && (eq_bit (zp4z3, B1))) && (eq_bit (zp3z3, B0))) && (eq_bit (zp2z3, B0))) && (eq_bit (zp1z3, B0))) && (eq_bit (zp0z3, B0))) ->
+    ((((eq_bit (zp4z3, B0)) && (eq_bit (zp3z3, B0))) && (eq_bit (zp2z3, B0))) && (eq_bit (zp1z3, B1))) && (eq_bit (zp0z3, B1))) ->
       true
     | zv__709 when (let zp0z3 = (access (zv__709, (Big_int.of_int (15)))) in
     let zp1z3 = (access (zv__709, (Big_int.of_int (14)))) in
     let zp2z3 = (access (zv__709, (Big_int.of_int (13)))) in
     let zp3z3 = (access (zv__709, (Big_int.of_int (1)))) in
     let zp4z3 = (access (zv__709, Big_int.zero)) in
-    ((((eq_bit (zp4z3, B1)) && (eq_bit (zp3z3, B0))) && (eq_bit (zp2z3, B1))) && (eq_bit (zp1z3, B0))) && (eq_bit (zp0z3, B0))) ->
+    ((((eq_bit (zp4z3, B0)) && (eq_bit (zp3z3, B0))) && (eq_bit (zp2z3, B1))) && (eq_bit (zp1z3, B1))) && (eq_bit (zp0z3, B1))) ->
       true
     | zv__712 when (let zp0z3 = (access (zv__712, (Big_int.of_int (15)))) in
     let zp1z3 = (access (zv__712, (Big_int.of_int (14)))) in
     let zp2z3 = (access (zv__712, (Big_int.of_int (13)))) in
     let zp3z3 = (access (zv__712, (Big_int.of_int (1)))) in
     let zp4z3 = (access (zv__712, Big_int.zero)) in
-    let zrd = (subrange (zv__712, (Big_int.of_int (11)), (Big_int.of_int (7)))) in
-    (((((zneq_atom ((zregbits_to_regno zrd), (zregbits_to_regno zzzreg))) && (eq_bit (zp4z3, B1))) && (eq_bit (zp3z3, B0))) && (eq_bit (zp2z3, B0))) && (eq_bit (zp1z3, B1))) && (eq_bit (zp0z3, B0))) ->
+    let zrsd = (subrange (zv__712, (Big_int.of_int (11)), (Big_int.of_int (7)))) in
+    let znzzi5 = (subrange (zv__712, (Big_int.of_int (12)), (Big_int.of_int (12)))) in
+    let znzzi40 = (subrange (zv__712, (Big_int.of_int (6)), (Big_int.of_int (2)))) in
+    ((((((zneq_vec ((append (znzzi5, znzzi40)), [B0; B0; B0; B0; B0; B0])) && (zneq_atom ((zregbits_to_regno zrsd), (zregbits_to_regno zzzreg)))) && (eq_bit (zp4z3, B1))) && (eq_bit (zp3z3, B0))) && (eq_bit (zp2z3, B0))) && (eq_bit (zp1z3, B0))) && (eq_bit (zp0z3, B0))) ->
       true
     | zv__715 when (let zp0z3 = (access (zv__715, (Big_int.of_int (15)))) in
     let zp1z3 = (access (zv__715, (Big_int.of_int (14)))) in
     let zp2z3 = (access (zv__715, (Big_int.of_int (13)))) in
-    let zp3z3 = (access (zv__715, (Big_int.of_int (11)))) in
-    let zp4z3 = (access (zv__715, (Big_int.of_int (10)))) in
-    let zp5z3 = (access (zv__715, (Big_int.of_int (9)))) in
-    let zp6z3 = (access (zv__715, (Big_int.of_int (8)))) in
-    let zp7z3 = (access (zv__715, (Big_int.of_int (7)))) in
-    let zp8z3 = (access (zv__715, (Big_int.of_int (1)))) in
-    let zp9z3 = (access (zv__715, Big_int.zero)) in
-    let znzzi9 = (subrange (zv__715, (Big_int.of_int (12)), (Big_int.of_int (12)))) in
-    let znzzi87 = (subrange (zv__715, (Big_int.of_int (4)), (Big_int.of_int (3)))) in
-    let znzzi6 = (subrange (zv__715, (Big_int.of_int (5)), (Big_int.of_int (5)))) in
-    let znzzi5 = (subrange (zv__715, (Big_int.of_int (2)), (Big_int.of_int (2)))) in
-    let znzzi4 = (subrange (zv__715, (Big_int.of_int (6)), (Big_int.of_int (6)))) in
+    let zp3z3 = (access (zv__715, (Big_int.of_int (1)))) in
+    let zp4z3 = (access (zv__715, Big_int.zero)) in
+    ((((eq_bit (zp4z3, B1)) && (eq_bit (zp3z3, B0))) && (eq_bit (zp2z3, B1))) && (eq_bit (zp1z3, B0))) && (eq_bit (zp0z3, B0))) ->
+      true
+    | zv__718 when (let zp0z3 = (access (zv__718, (Big_int.of_int (15)))) in
+    let zp1z3 = (access (zv__718, (Big_int.of_int (14)))) in
+    let zp2z3 = (access (zv__718, (Big_int.of_int (13)))) in
+    let zp3z3 = (access (zv__718, (Big_int.of_int (1)))) in
+    let zp4z3 = (access (zv__718, Big_int.zero)) in
+    let zrd = (subrange (zv__718, (Big_int.of_int (11)), (Big_int.of_int (7)))) in
+    (((((zneq_atom ((zregbits_to_regno zrd), (zregbits_to_regno zzzreg))) && (eq_bit (zp4z3, B1))) && (eq_bit (zp3z3, B0))) && (eq_bit (zp2z3, B0))) && (eq_bit (zp1z3, B1))) && (eq_bit (zp0z3, B0))) ->
+      true
+    | zv__721 when (let zp0z3 = (access (zv__721, (Big_int.of_int (15)))) in
+    let zp1z3 = (access (zv__721, (Big_int.of_int (14)))) in
+    let zp2z3 = (access (zv__721, (Big_int.of_int (13)))) in
+    let zp3z3 = (access (zv__721, (Big_int.of_int (11)))) in
+    let zp4z3 = (access (zv__721, (Big_int.of_int (10)))) in
+    let zp5z3 = (access (zv__721, (Big_int.of_int (9)))) in
+    let zp6z3 = (access (zv__721, (Big_int.of_int (8)))) in
+    let zp7z3 = (access (zv__721, (Big_int.of_int (7)))) in
+    let zp8z3 = (access (zv__721, (Big_int.of_int (1)))) in
+    let zp9z3 = (access (zv__721, Big_int.zero)) in
+    let znzzi9 = (subrange (zv__721, (Big_int.of_int (12)), (Big_int.of_int (12)))) in
+    let znzzi87 = (subrange (zv__721, (Big_int.of_int (4)), (Big_int.of_int (3)))) in
+    let znzzi6 = (subrange (zv__721, (Big_int.of_int (5)), (Big_int.of_int (5)))) in
+    let znzzi5 = (subrange (zv__721, (Big_int.of_int (2)), (Big_int.of_int (2)))) in
+    let znzzi4 = (subrange (zv__721, (Big_int.of_int (6)), (Big_int.of_int (6)))) in
     ((((((((((zneq_vec ((append (znzzi9, (append (znzzi87, (append (znzzi6, (append (znzzi5, znzzi4)))))))), [B0; B0; B0; B0; B0; B0])) && (eq_bit (zp9z3, B1))) && (eq_bit (zp8z3, B0))) && (eq_bit (zp7z3, B0))) && (eq_bit (zp6z3, B1))) && (eq_bit (zp5z3, B0))) && (eq_bit (zp4z3, B0))) && (eq_bit (zp3z3, B0))) && (eq_bit (zp2z3, B1))) && (eq_bit (zp1z3, B1))) && (eq_bit (zp0z3, B0))) ->
       true
-    | zv__719 when (let zp0z3 = (access (zv__719, (Big_int.of_int (15)))) in
-    let zp1z3 = (access (zv__719, (Big_int.of_int (14)))) in
-    let zp2z3 = (access (zv__719, (Big_int.of_int (13)))) in
-    let zp3z3 = (access (zv__719, (Big_int.of_int (1)))) in
-    let zp4z3 = (access (zv__719, Big_int.zero)) in
-    let zrd = (subrange (zv__719, (Big_int.of_int (11)), (Big_int.of_int (7)))) in
+    | zv__725 when (let zp0z3 = (access (zv__725, (Big_int.of_int (15)))) in
+    let zp1z3 = (access (zv__725, (Big_int.of_int (14)))) in
+    let zp2z3 = (access (zv__725, (Big_int.of_int (13)))) in
+    let zp3z3 = (access (zv__725, (Big_int.of_int (1)))) in
+    let zp4z3 = (access (zv__725, Big_int.zero)) in
+    let zrd = (subrange (zv__725, (Big_int.of_int (11)), (Big_int.of_int (7)))) in
     ((((((zneq_atom ((zregbits_to_regno zrd), (zregbits_to_regno zzzreg))) && (zneq_atom ((zregbits_to_regno zrd), (zregbits_to_regno zsp)))) && (eq_bit (zp4z3, B1))) && (eq_bit (zp3z3, B0))) && (eq_bit (zp2z3, B1))) && (eq_bit (zp1z3, B1))) && (eq_bit (zp0z3, B0))) ->
       true
-    | zv__722 when (let zp0z3 = (access (zv__722, (Big_int.of_int (15)))) in
-    let zp1z3 = (access (zv__722, (Big_int.of_int (14)))) in
-    let zp2z3 = (access (zv__722, (Big_int.of_int (13)))) in
-    let zp3z3 = (access (zv__722, (Big_int.of_int (11)))) in
-    let zp4z3 = (access (zv__722, (Big_int.of_int (10)))) in
-    let zp5z3 = (access (zv__722, (Big_int.of_int (1)))) in
-    let zp6z3 = (access (zv__722, Big_int.zero)) in
-    let znzzui5 = (subrange (zv__722, (Big_int.of_int (12)), (Big_int.of_int (12)))) in
-    let znzzui40 = (subrange (zv__722, (Big_int.of_int (6)), (Big_int.of_int (2)))) in
+    | zv__728 when (let zp0z3 = (access (zv__728, (Big_int.of_int (15)))) in
+    let zp1z3 = (access (zv__728, (Big_int.of_int (14)))) in
+    let zp2z3 = (access (zv__728, (Big_int.of_int (13)))) in
+    let zp3z3 = (access (zv__728, (Big_int.of_int (11)))) in
+    let zp4z3 = (access (zv__728, (Big_int.of_int (10)))) in
+    let zp5z3 = (access (zv__728, (Big_int.of_int (1)))) in
+    let zp6z3 = (access (zv__728, Big_int.zero)) in
+    let znzzui5 = (subrange (zv__728, (Big_int.of_int (12)), (Big_int.of_int (12)))) in
+    let znzzui40 = (subrange (zv__728, (Big_int.of_int (6)), (Big_int.of_int (2)))) in
     (((((((zneq_vec ((append (znzzui5, znzzui40)), [B0; B0; B0; B0; B0; B0])) && (eq_bit (zp6z3, B1))) && (eq_bit (zp5z3, B0))) && (eq_bit (zp4z3, B0))) && (eq_bit (zp3z3, B0))) && (eq_bit (zp2z3, B0))) && (eq_bit (zp1z3, B0))) && (eq_bit (zp0z3, B1))) ->
       true
-    | zv__726 when (let zp0z3 = (access (zv__726, (Big_int.of_int (15)))) in
-    let zp1z3 = (access (zv__726, (Big_int.of_int (14)))) in
-    let zp2z3 = (access (zv__726, (Big_int.of_int (13)))) in
-    let zp3z3 = (access (zv__726, (Big_int.of_int (11)))) in
-    let zp4z3 = (access (zv__726, (Big_int.of_int (10)))) in
-    let zp5z3 = (access (zv__726, (Big_int.of_int (1)))) in
-    let zp6z3 = (access (zv__726, Big_int.zero)) in
-    let znzzui5 = (subrange (zv__726, (Big_int.of_int (12)), (Big_int.of_int (12)))) in
-    let znzzui40 = (subrange (zv__726, (Big_int.of_int (6)), (Big_int.of_int (2)))) in
+    | zv__732 when (let zp0z3 = (access (zv__732, (Big_int.of_int (15)))) in
+    let zp1z3 = (access (zv__732, (Big_int.of_int (14)))) in
+    let zp2z3 = (access (zv__732, (Big_int.of_int (13)))) in
+    let zp3z3 = (access (zv__732, (Big_int.of_int (11)))) in
+    let zp4z3 = (access (zv__732, (Big_int.of_int (10)))) in
+    let zp5z3 = (access (zv__732, (Big_int.of_int (1)))) in
+    let zp6z3 = (access (zv__732, Big_int.zero)) in
+    let znzzui5 = (subrange (zv__732, (Big_int.of_int (12)), (Big_int.of_int (12)))) in
+    let znzzui40 = (subrange (zv__732, (Big_int.of_int (6)), (Big_int.of_int (2)))) in
     (((((((zneq_vec ((append (znzzui5, znzzui40)), [B0; B0; B0; B0; B0; B0])) && (eq_bit (zp6z3, B1))) && (eq_bit (zp5z3, B0))) && (eq_bit (zp4z3, B1))) && (eq_bit (zp3z3, B0))) && (eq_bit (zp2z3, B0))) && (eq_bit (zp1z3, B0))) && (eq_bit (zp0z3, B1))) ->
       true
-    | zv__730 when (let zp0z3 = (access (zv__730, (Big_int.of_int (15)))) in
-    let zp1z3 = (access (zv__730, (Big_int.of_int (14)))) in
-    let zp2z3 = (access (zv__730, (Big_int.of_int (13)))) in
-    let zp3z3 = (access (zv__730, (Big_int.of_int (11)))) in
-    let zp4z3 = (access (zv__730, (Big_int.of_int (10)))) in
-    let zp5z3 = (access (zv__730, (Big_int.of_int (1)))) in
-    let zp6z3 = (access (zv__730, Big_int.zero)) in
+    | zv__736 when (let zp0z3 = (access (zv__736, (Big_int.of_int (15)))) in
+    let zp1z3 = (access (zv__736, (Big_int.of_int (14)))) in
+    let zp2z3 = (access (zv__736, (Big_int.of_int (13)))) in
+    let zp3z3 = (access (zv__736, (Big_int.of_int (11)))) in
+    let zp4z3 = (access (zv__736, (Big_int.of_int (10)))) in
+    let zp5z3 = (access (zv__736, (Big_int.of_int (1)))) in
+    let zp6z3 = (access (zv__736, Big_int.zero)) in
     ((((((eq_bit (zp6z3, B1)) && (eq_bit (zp5z3, B0))) && (eq_bit (zp4z3, B0))) && (eq_bit (zp3z3, B1))) && (eq_bit (zp2z3, B0))) && (eq_bit (zp1z3, B0))) && (eq_bit (zp0z3, B1))) ->
-      true
-    | zv__734 when (let zp0z3 = (access (zv__734, (Big_int.of_int (15)))) in
-    let zp1z3 = (access (zv__734, (Big_int.of_int (14)))) in
-    let zp2z3 = (access (zv__734, (Big_int.of_int (13)))) in
-    let zp3z3 = (access (zv__734, (Big_int.of_int (12)))) in
-    let zp4z3 = (access (zv__734, (Big_int.of_int (11)))) in
-    let zp5z3 = (access (zv__734, (Big_int.of_int (10)))) in
-    let zp6z3 = (access (zv__734, (Big_int.of_int (6)))) in
-    let zp7z3 = (access (zv__734, (Big_int.of_int (5)))) in
-    let zp8z3 = (access (zv__734, (Big_int.of_int (1)))) in
-    let zp9z3 = (access (zv__734, Big_int.zero)) in
-    (((((((((eq_bit (zp9z3, B1)) && (eq_bit (zp8z3, B0))) && (eq_bit (zp7z3, B0))) && (eq_bit (zp6z3, B0))) && (eq_bit (zp5z3, B1))) && (eq_bit (zp4z3, B1))) && (eq_bit (zp3z3, B0))) && (eq_bit (zp2z3, B0))) && (eq_bit (zp1z3, B0))) && (eq_bit (zp0z3, B1))) ->
       true
     | zv__740 when (let zp0z3 = (access (zv__740, (Big_int.of_int (15)))) in
     let zp1z3 = (access (zv__740, (Big_int.of_int (14)))) in
@@ -33365,7 +33434,7 @@ and zencdec_compressed_backwards_matches (zargz3 : (bit) list) : bool = sail_cal
     let zp7z3 = (access (zv__740, (Big_int.of_int (5)))) in
     let zp8z3 = (access (zv__740, (Big_int.of_int (1)))) in
     let zp9z3 = (access (zv__740, Big_int.zero)) in
-    (((((((((eq_bit (zp9z3, B1)) && (eq_bit (zp8z3, B0))) && (eq_bit (zp7z3, B1))) && (eq_bit (zp6z3, B0))) && (eq_bit (zp5z3, B1))) && (eq_bit (zp4z3, B1))) && (eq_bit (zp3z3, B0))) && (eq_bit (zp2z3, B0))) && (eq_bit (zp1z3, B0))) && (eq_bit (zp0z3, B1))) ->
+    (((((((((eq_bit (zp9z3, B1)) && (eq_bit (zp8z3, B0))) && (eq_bit (zp7z3, B0))) && (eq_bit (zp6z3, B0))) && (eq_bit (zp5z3, B1))) && (eq_bit (zp4z3, B1))) && (eq_bit (zp3z3, B0))) && (eq_bit (zp2z3, B0))) && (eq_bit (zp1z3, B0))) && (eq_bit (zp0z3, B1))) ->
       true
     | zv__746 when (let zp0z3 = (access (zv__746, (Big_int.of_int (15)))) in
     let zp1z3 = (access (zv__746, (Big_int.of_int (14)))) in
@@ -33377,7 +33446,7 @@ and zencdec_compressed_backwards_matches (zargz3 : (bit) list) : bool = sail_cal
     let zp7z3 = (access (zv__746, (Big_int.of_int (5)))) in
     let zp8z3 = (access (zv__746, (Big_int.of_int (1)))) in
     let zp9z3 = (access (zv__746, Big_int.zero)) in
-    (((((((((eq_bit (zp9z3, B1)) && (eq_bit (zp8z3, B0))) && (eq_bit (zp7z3, B0))) && (eq_bit (zp6z3, B1))) && (eq_bit (zp5z3, B1))) && (eq_bit (zp4z3, B1))) && (eq_bit (zp3z3, B0))) && (eq_bit (zp2z3, B0))) && (eq_bit (zp1z3, B0))) && (eq_bit (zp0z3, B1))) ->
+    (((((((((eq_bit (zp9z3, B1)) && (eq_bit (zp8z3, B0))) && (eq_bit (zp7z3, B1))) && (eq_bit (zp6z3, B0))) && (eq_bit (zp5z3, B1))) && (eq_bit (zp4z3, B1))) && (eq_bit (zp3z3, B0))) && (eq_bit (zp2z3, B0))) && (eq_bit (zp1z3, B0))) && (eq_bit (zp0z3, B1))) ->
       true
     | zv__752 when (let zp0z3 = (access (zv__752, (Big_int.of_int (15)))) in
     let zp1z3 = (access (zv__752, (Big_int.of_int (14)))) in
@@ -33389,7 +33458,7 @@ and zencdec_compressed_backwards_matches (zargz3 : (bit) list) : bool = sail_cal
     let zp7z3 = (access (zv__752, (Big_int.of_int (5)))) in
     let zp8z3 = (access (zv__752, (Big_int.of_int (1)))) in
     let zp9z3 = (access (zv__752, Big_int.zero)) in
-    (((((((((eq_bit (zp9z3, B1)) && (eq_bit (zp8z3, B0))) && (eq_bit (zp7z3, B1))) && (eq_bit (zp6z3, B1))) && (eq_bit (zp5z3, B1))) && (eq_bit (zp4z3, B1))) && (eq_bit (zp3z3, B0))) && (eq_bit (zp2z3, B0))) && (eq_bit (zp1z3, B0))) && (eq_bit (zp0z3, B1))) ->
+    (((((((((eq_bit (zp9z3, B1)) && (eq_bit (zp8z3, B0))) && (eq_bit (zp7z3, B0))) && (eq_bit (zp6z3, B1))) && (eq_bit (zp5z3, B1))) && (eq_bit (zp4z3, B1))) && (eq_bit (zp3z3, B0))) && (eq_bit (zp2z3, B0))) && (eq_bit (zp1z3, B0))) && (eq_bit (zp0z3, B1))) ->
       true
     | zv__758 when (let zp0z3 = (access (zv__758, (Big_int.of_int (15)))) in
     let zp1z3 = (access (zv__758, (Big_int.of_int (14)))) in
@@ -33401,7 +33470,7 @@ and zencdec_compressed_backwards_matches (zargz3 : (bit) list) : bool = sail_cal
     let zp7z3 = (access (zv__758, (Big_int.of_int (5)))) in
     let zp8z3 = (access (zv__758, (Big_int.of_int (1)))) in
     let zp9z3 = (access (zv__758, Big_int.zero)) in
-    (((((((((eq_bit (zp9z3, B1)) && (eq_bit (zp8z3, B0))) && (eq_bit (zp7z3, B0))) && (eq_bit (zp6z3, B0))) && (eq_bit (zp5z3, B1))) && (eq_bit (zp4z3, B1))) && (eq_bit (zp3z3, B1))) && (eq_bit (zp2z3, B0))) && (eq_bit (zp1z3, B0))) && (eq_bit (zp0z3, B1))) ->
+    (((((((((eq_bit (zp9z3, B1)) && (eq_bit (zp8z3, B0))) && (eq_bit (zp7z3, B1))) && (eq_bit (zp6z3, B1))) && (eq_bit (zp5z3, B1))) && (eq_bit (zp4z3, B1))) && (eq_bit (zp3z3, B0))) && (eq_bit (zp2z3, B0))) && (eq_bit (zp1z3, B0))) && (eq_bit (zp0z3, B1))) ->
       true
     | zv__764 when (let zp0z3 = (access (zv__764, (Big_int.of_int (15)))) in
     let zp1z3 = (access (zv__764, (Big_int.of_int (14)))) in
@@ -33413,129 +33482,159 @@ and zencdec_compressed_backwards_matches (zargz3 : (bit) list) : bool = sail_cal
     let zp7z3 = (access (zv__764, (Big_int.of_int (5)))) in
     let zp8z3 = (access (zv__764, (Big_int.of_int (1)))) in
     let zp9z3 = (access (zv__764, Big_int.zero)) in
-    (((((((((eq_bit (zp9z3, B1)) && (eq_bit (zp8z3, B0))) && (eq_bit (zp7z3, B1))) && (eq_bit (zp6z3, B0))) && (eq_bit (zp5z3, B1))) && (eq_bit (zp4z3, B1))) && (eq_bit (zp3z3, B1))) && (eq_bit (zp2z3, B0))) && (eq_bit (zp1z3, B0))) && (eq_bit (zp0z3, B1))) ->
+    (((((((((eq_bit (zp9z3, B1)) && (eq_bit (zp8z3, B0))) && (eq_bit (zp7z3, B0))) && (eq_bit (zp6z3, B0))) && (eq_bit (zp5z3, B1))) && (eq_bit (zp4z3, B1))) && (eq_bit (zp3z3, B1))) && (eq_bit (zp2z3, B0))) && (eq_bit (zp1z3, B0))) && (eq_bit (zp0z3, B1))) ->
       true
     | zv__770 when (let zp0z3 = (access (zv__770, (Big_int.of_int (15)))) in
     let zp1z3 = (access (zv__770, (Big_int.of_int (14)))) in
     let zp2z3 = (access (zv__770, (Big_int.of_int (13)))) in
-    let zp3z3 = (access (zv__770, (Big_int.of_int (1)))) in
-    let zp4z3 = (access (zv__770, Big_int.zero)) in
-    ((((eq_bit (zp4z3, B1)) && (eq_bit (zp3z3, B0))) && (eq_bit (zp2z3, B1))) && (eq_bit (zp1z3, B0))) && (eq_bit (zp0z3, B1))) ->
-      true
-    | zv__773 when (let zp0z3 = (access (zv__773, (Big_int.of_int (15)))) in
-    let zp1z3 = (access (zv__773, (Big_int.of_int (14)))) in
-    let zp2z3 = (access (zv__773, (Big_int.of_int (13)))) in
-    let zp3z3 = (access (zv__773, (Big_int.of_int (1)))) in
-    let zp4z3 = (access (zv__773, Big_int.zero)) in
-    ((((eq_bit (zp4z3, B1)) && (eq_bit (zp3z3, B0))) && (eq_bit (zp2z3, B0))) && (eq_bit (zp1z3, B1))) && (eq_bit (zp0z3, B1))) ->
+    let zp3z3 = (access (zv__770, (Big_int.of_int (12)))) in
+    let zp4z3 = (access (zv__770, (Big_int.of_int (11)))) in
+    let zp5z3 = (access (zv__770, (Big_int.of_int (10)))) in
+    let zp6z3 = (access (zv__770, (Big_int.of_int (6)))) in
+    let zp7z3 = (access (zv__770, (Big_int.of_int (5)))) in
+    let zp8z3 = (access (zv__770, (Big_int.of_int (1)))) in
+    let zp9z3 = (access (zv__770, Big_int.zero)) in
+    (((((((((eq_bit (zp9z3, B1)) && (eq_bit (zp8z3, B0))) && (eq_bit (zp7z3, B1))) && (eq_bit (zp6z3, B0))) && (eq_bit (zp5z3, B1))) && (eq_bit (zp4z3, B1))) && (eq_bit (zp3z3, B1))) && (eq_bit (zp2z3, B0))) && (eq_bit (zp1z3, B0))) && (eq_bit (zp0z3, B1))) ->
       true
     | zv__776 when (let zp0z3 = (access (zv__776, (Big_int.of_int (15)))) in
     let zp1z3 = (access (zv__776, (Big_int.of_int (14)))) in
     let zp2z3 = (access (zv__776, (Big_int.of_int (13)))) in
     let zp3z3 = (access (zv__776, (Big_int.of_int (1)))) in
     let zp4z3 = (access (zv__776, Big_int.zero)) in
-    ((((eq_bit (zp4z3, B1)) && (eq_bit (zp3z3, B0))) && (eq_bit (zp2z3, B1))) && (eq_bit (zp1z3, B1))) && (eq_bit (zp0z3, B1))) ->
+    ((((eq_bit (zp4z3, B1)) && (eq_bit (zp3z3, B0))) && (eq_bit (zp2z3, B1))) && (eq_bit (zp1z3, B0))) && (eq_bit (zp0z3, B1))) ->
       true
     | zv__779 when (let zp0z3 = (access (zv__779, (Big_int.of_int (15)))) in
     let zp1z3 = (access (zv__779, (Big_int.of_int (14)))) in
     let zp2z3 = (access (zv__779, (Big_int.of_int (13)))) in
     let zp3z3 = (access (zv__779, (Big_int.of_int (1)))) in
     let zp4z3 = (access (zv__779, Big_int.zero)) in
-    let zrsd = (subrange (zv__779, (Big_int.of_int (11)), (Big_int.of_int (7)))) in
-    let znzzui5 = (subrange (zv__779, (Big_int.of_int (12)), (Big_int.of_int (12)))) in
-    let znzzui40 = (subrange (zv__779, (Big_int.of_int (6)), (Big_int.of_int (2)))) in
-    ((((((zneq_vec ((append (znzzui5, znzzui40)), [B0; B0; B0; B0; B0; B0])) && (zneq_atom ((zregbits_to_regno zrsd), (zregbits_to_regno zzzreg)))) && (eq_bit (zp4z3, B0))) && (eq_bit (zp3z3, B1))) && (eq_bit (zp2z3, B0))) && (eq_bit (zp1z3, B0))) && (eq_bit (zp0z3, B0))) ->
+    ((((eq_bit (zp4z3, B1)) && (eq_bit (zp3z3, B0))) && (eq_bit (zp2z3, B0))) && (eq_bit (zp1z3, B1))) && (eq_bit (zp0z3, B1))) ->
       true
     | zv__782 when (let zp0z3 = (access (zv__782, (Big_int.of_int (15)))) in
     let zp1z3 = (access (zv__782, (Big_int.of_int (14)))) in
     let zp2z3 = (access (zv__782, (Big_int.of_int (13)))) in
     let zp3z3 = (access (zv__782, (Big_int.of_int (1)))) in
     let zp4z3 = (access (zv__782, Big_int.zero)) in
-    let zrd = (subrange (zv__782, (Big_int.of_int (11)), (Big_int.of_int (7)))) in
-    (((((zneq_atom ((zregbits_to_regno zrd), (zregbits_to_regno zzzreg))) && (eq_bit (zp4z3, B0))) && (eq_bit (zp3z3, B1))) && (eq_bit (zp2z3, B0))) && (eq_bit (zp1z3, B1))) && (eq_bit (zp0z3, B0))) ->
+    ((((eq_bit (zp4z3, B1)) && (eq_bit (zp3z3, B0))) && (eq_bit (zp2z3, B1))) && (eq_bit (zp1z3, B1))) && (eq_bit (zp0z3, B1))) ->
       true
     | zv__785 when (let zp0z3 = (access (zv__785, (Big_int.of_int (15)))) in
     let zp1z3 = (access (zv__785, (Big_int.of_int (14)))) in
     let zp2z3 = (access (zv__785, (Big_int.of_int (13)))) in
     let zp3z3 = (access (zv__785, (Big_int.of_int (1)))) in
     let zp4z3 = (access (zv__785, Big_int.zero)) in
-    let zrd = (subrange (zv__785, (Big_int.of_int (11)), (Big_int.of_int (7)))) in
-    (((((zneq_atom ((zregbits_to_regno zrd), (zregbits_to_regno zzzreg))) && (eq_bit (zp4z3, B0))) && (eq_bit (zp3z3, B1))) && (eq_bit (zp2z3, B1))) && (eq_bit (zp1z3, B1))) && (eq_bit (zp0z3, B0))) ->
+    let zrsd = (subrange (zv__785, (Big_int.of_int (11)), (Big_int.of_int (7)))) in
+    let znzzui5 = (subrange (zv__785, (Big_int.of_int (12)), (Big_int.of_int (12)))) in
+    let znzzui40 = (subrange (zv__785, (Big_int.of_int (6)), (Big_int.of_int (2)))) in
+    ((((((zneq_vec ((append (znzzui5, znzzui40)), [B0; B0; B0; B0; B0; B0])) && (zneq_atom ((zregbits_to_regno zrsd), (zregbits_to_regno zzzreg)))) && (eq_bit (zp4z3, B0))) && (eq_bit (zp3z3, B1))) && (eq_bit (zp2z3, B0))) && (eq_bit (zp1z3, B0))) && (eq_bit (zp0z3, B0))) ->
       true
     | zv__788 when (let zp0z3 = (access (zv__788, (Big_int.of_int (15)))) in
     let zp1z3 = (access (zv__788, (Big_int.of_int (14)))) in
     let zp2z3 = (access (zv__788, (Big_int.of_int (13)))) in
     let zp3z3 = (access (zv__788, (Big_int.of_int (1)))) in
     let zp4z3 = (access (zv__788, Big_int.zero)) in
-    ((((eq_bit (zp4z3, B0)) && (eq_bit (zp3z3, B1))) && (eq_bit (zp2z3, B0))) && (eq_bit (zp1z3, B1))) && (eq_bit (zp0z3, B1))) ->
+    let zrd = (subrange (zv__788, (Big_int.of_int (11)), (Big_int.of_int (7)))) in
+    (((((zneq_atom ((zregbits_to_regno zrd), (zregbits_to_regno zzzreg))) && (eq_bit (zp4z3, B0))) && (eq_bit (zp3z3, B1))) && (eq_bit (zp2z3, B0))) && (eq_bit (zp1z3, B1))) && (eq_bit (zp0z3, B0))) ->
       true
     | zv__791 when (let zp0z3 = (access (zv__791, (Big_int.of_int (15)))) in
     let zp1z3 = (access (zv__791, (Big_int.of_int (14)))) in
     let zp2z3 = (access (zv__791, (Big_int.of_int (13)))) in
     let zp3z3 = (access (zv__791, (Big_int.of_int (1)))) in
     let zp4z3 = (access (zv__791, Big_int.zero)) in
-    ((((eq_bit (zp4z3, B0)) && (eq_bit (zp3z3, B1))) && (eq_bit (zp2z3, B1))) && (eq_bit (zp1z3, B1))) && (eq_bit (zp0z3, B1))) ->
+    let zrd = (subrange (zv__791, (Big_int.of_int (11)), (Big_int.of_int (7)))) in
+    (((((zneq_atom ((zregbits_to_regno zrd), (zregbits_to_regno zzzreg))) && (eq_bit (zp4z3, B0))) && (eq_bit (zp3z3, B1))) && (eq_bit (zp2z3, B1))) && (eq_bit (zp1z3, B1))) && (eq_bit (zp0z3, B0))) ->
       true
     | zv__794 when (let zp0z3 = (access (zv__794, (Big_int.of_int (15)))) in
     let zp1z3 = (access (zv__794, (Big_int.of_int (14)))) in
     let zp2z3 = (access (zv__794, (Big_int.of_int (13)))) in
-    let zp3z3 = (access (zv__794, (Big_int.of_int (12)))) in
-    let zp4z3 = (access (zv__794, (Big_int.of_int (6)))) in
-    let zp5z3 = (access (zv__794, (Big_int.of_int (5)))) in
-    let zp6z3 = (access (zv__794, (Big_int.of_int (4)))) in
-    let zp7z3 = (access (zv__794, (Big_int.of_int (3)))) in
-    let zp8z3 = (access (zv__794, (Big_int.of_int (2)))) in
-    let zp9z3 = (access (zv__794, (Big_int.of_int (1)))) in
-    let zp10z3 = (access (zv__794, Big_int.zero)) in
-    let zrs1 = (subrange (zv__794, (Big_int.of_int (11)), (Big_int.of_int (7)))) in
+    let zp3z3 = (access (zv__794, (Big_int.of_int (1)))) in
+    let zp4z3 = (access (zv__794, Big_int.zero)) in
+    ((((eq_bit (zp4z3, B0)) && (eq_bit (zp3z3, B1))) && (eq_bit (zp2z3, B0))) && (eq_bit (zp1z3, B1))) && (eq_bit (zp0z3, B1))) ->
+      true
+    | zv__797 when (let zp0z3 = (access (zv__797, (Big_int.of_int (15)))) in
+    let zp1z3 = (access (zv__797, (Big_int.of_int (14)))) in
+    let zp2z3 = (access (zv__797, (Big_int.of_int (13)))) in
+    let zp3z3 = (access (zv__797, (Big_int.of_int (1)))) in
+    let zp4z3 = (access (zv__797, Big_int.zero)) in
+    ((((eq_bit (zp4z3, B0)) && (eq_bit (zp3z3, B1))) && (eq_bit (zp2z3, B1))) && (eq_bit (zp1z3, B1))) && (eq_bit (zp0z3, B1))) ->
+      true
+    | zv__800 when (let zp0z3 = (access (zv__800, (Big_int.of_int (15)))) in
+    let zp1z3 = (access (zv__800, (Big_int.of_int (14)))) in
+    let zp2z3 = (access (zv__800, (Big_int.of_int (13)))) in
+    let zp3z3 = (access (zv__800, (Big_int.of_int (12)))) in
+    let zp4z3 = (access (zv__800, (Big_int.of_int (6)))) in
+    let zp5z3 = (access (zv__800, (Big_int.of_int (5)))) in
+    let zp6z3 = (access (zv__800, (Big_int.of_int (4)))) in
+    let zp7z3 = (access (zv__800, (Big_int.of_int (3)))) in
+    let zp8z3 = (access (zv__800, (Big_int.of_int (2)))) in
+    let zp9z3 = (access (zv__800, (Big_int.of_int (1)))) in
+    let zp10z3 = (access (zv__800, Big_int.zero)) in
+    let zrs1 = (subrange (zv__800, (Big_int.of_int (11)), (Big_int.of_int (7)))) in
     (((((((((((zneq_atom ((zregbits_to_regno zrs1), (zregbits_to_regno zzzreg))) && (eq_bit (zp10z3, B0))) && (eq_bit (zp9z3, B1))) && (eq_bit (zp8z3, B0))) && (eq_bit (zp7z3, B0))) && (eq_bit (zp6z3, B0))) && (eq_bit (zp5z3, B0))) && (eq_bit (zp4z3, B0))) && (eq_bit (zp3z3, B0))) && (eq_bit (zp2z3, B0))) && (eq_bit (zp1z3, B0))) && (eq_bit (zp0z3, B1))) ->
       true
-    | zv__799 when (let zp0z3 = (access (zv__799, (Big_int.of_int (15)))) in
-    let zp1z3 = (access (zv__799, (Big_int.of_int (14)))) in
-    let zp2z3 = (access (zv__799, (Big_int.of_int (13)))) in
-    let zp3z3 = (access (zv__799, (Big_int.of_int (12)))) in
-    let zp4z3 = (access (zv__799, (Big_int.of_int (6)))) in
-    let zp5z3 = (access (zv__799, (Big_int.of_int (5)))) in
-    let zp6z3 = (access (zv__799, (Big_int.of_int (4)))) in
-    let zp7z3 = (access (zv__799, (Big_int.of_int (3)))) in
-    let zp8z3 = (access (zv__799, (Big_int.of_int (2)))) in
-    let zp9z3 = (access (zv__799, (Big_int.of_int (1)))) in
-    let zp10z3 = (access (zv__799, Big_int.zero)) in
-    let zrs1 = (subrange (zv__799, (Big_int.of_int (11)), (Big_int.of_int (7)))) in
+    | zv__805 when (let zp0z3 = (access (zv__805, (Big_int.of_int (15)))) in
+    let zp1z3 = (access (zv__805, (Big_int.of_int (14)))) in
+    let zp2z3 = (access (zv__805, (Big_int.of_int (13)))) in
+    let zp3z3 = (access (zv__805, (Big_int.of_int (12)))) in
+    let zp4z3 = (access (zv__805, (Big_int.of_int (6)))) in
+    let zp5z3 = (access (zv__805, (Big_int.of_int (5)))) in
+    let zp6z3 = (access (zv__805, (Big_int.of_int (4)))) in
+    let zp7z3 = (access (zv__805, (Big_int.of_int (3)))) in
+    let zp8z3 = (access (zv__805, (Big_int.of_int (2)))) in
+    let zp9z3 = (access (zv__805, (Big_int.of_int (1)))) in
+    let zp10z3 = (access (zv__805, Big_int.zero)) in
+    let zrs1 = (subrange (zv__805, (Big_int.of_int (11)), (Big_int.of_int (7)))) in
     (((((((((((zneq_atom ((zregbits_to_regno zrs1), (zregbits_to_regno zzzreg))) && (eq_bit (zp10z3, B0))) && (eq_bit (zp9z3, B1))) && (eq_bit (zp8z3, B0))) && (eq_bit (zp7z3, B0))) && (eq_bit (zp6z3, B0))) && (eq_bit (zp5z3, B0))) && (eq_bit (zp4z3, B0))) && (eq_bit (zp3z3, B1))) && (eq_bit (zp2z3, B0))) && (eq_bit (zp1z3, B0))) && (eq_bit (zp0z3, B1))) ->
       true
-    | zv__804 when (let zp0z3 = (access (zv__804, (Big_int.of_int (15)))) in
-    let zp1z3 = (access (zv__804, (Big_int.of_int (14)))) in
-    let zp2z3 = (access (zv__804, (Big_int.of_int (13)))) in
-    let zp3z3 = (access (zv__804, (Big_int.of_int (12)))) in
-    let zp4z3 = (access (zv__804, (Big_int.of_int (1)))) in
-    let zp5z3 = (access (zv__804, Big_int.zero)) in
-    let zrs2 = (subrange (zv__804, (Big_int.of_int (6)), (Big_int.of_int (2)))) in
-    let zrd = (subrange (zv__804, (Big_int.of_int (11)), (Big_int.of_int (7)))) in
+    | zv__810 when (let zp0z3 = (access (zv__810, (Big_int.of_int (15)))) in
+    let zp1z3 = (access (zv__810, (Big_int.of_int (14)))) in
+    let zp2z3 = (access (zv__810, (Big_int.of_int (13)))) in
+    let zp3z3 = (access (zv__810, (Big_int.of_int (12)))) in
+    let zp4z3 = (access (zv__810, (Big_int.of_int (1)))) in
+    let zp5z3 = (access (zv__810, Big_int.zero)) in
+    let zrs2 = (subrange (zv__810, (Big_int.of_int (6)), (Big_int.of_int (2)))) in
+    let zrd = (subrange (zv__810, (Big_int.of_int (11)), (Big_int.of_int (7)))) in
     (((((((zneq_atom ((zregbits_to_regno zrd), (zregbits_to_regno zzzreg))) && (zneq_atom ((zregbits_to_regno zrs2), (zregbits_to_regno zzzreg)))) && (eq_bit (zp5z3, B0))) && (eq_bit (zp4z3, B1))) && (eq_bit (zp3z3, B0))) && (eq_bit (zp2z3, B0))) && (eq_bit (zp1z3, B0))) && (eq_bit (zp0z3, B1))) ->
       true
-    | zv__808 when (let zp0z3 = (access (zv__808, (Big_int.of_int (15)))) in
-    let zp1z3 = (access (zv__808, (Big_int.of_int (14)))) in
-    let zp2z3 = (access (zv__808, (Big_int.of_int (13)))) in
-    let zp3z3 = (access (zv__808, (Big_int.of_int (12)))) in
-    let zp4z3 = (access (zv__808, (Big_int.of_int (1)))) in
-    let zp5z3 = (access (zv__808, Big_int.zero)) in
-    let zrsd = (subrange (zv__808, (Big_int.of_int (11)), (Big_int.of_int (7)))) in
-    let zrs2 = (subrange (zv__808, (Big_int.of_int (6)), (Big_int.of_int (2)))) in
+    | zv__814 when (let zp0z3 = (access (zv__814, (Big_int.of_int (15)))) in
+    let zp1z3 = (access (zv__814, (Big_int.of_int (14)))) in
+    let zp2z3 = (access (zv__814, (Big_int.of_int (13)))) in
+    let zp3z3 = (access (zv__814, (Big_int.of_int (12)))) in
+    let zp4z3 = (access (zv__814, (Big_int.of_int (11)))) in
+    let zp5z3 = (access (zv__814, (Big_int.of_int (10)))) in
+    let zp6z3 = (access (zv__814, (Big_int.of_int (9)))) in
+    let zp7z3 = (access (zv__814, (Big_int.of_int (8)))) in
+    let zp8z3 = (access (zv__814, (Big_int.of_int (7)))) in
+    let zp9z3 = (access (zv__814, (Big_int.of_int (6)))) in
+    let zp10z3 = (access (zv__814, (Big_int.of_int (5)))) in
+    let zp11z3 = (access (zv__814, (Big_int.of_int (4)))) in
+    let zp12z3 = (access (zv__814, (Big_int.of_int (3)))) in
+    let zp13z3 = (access (zv__814, (Big_int.of_int (2)))) in
+    let zp14z3 = (access (zv__814, (Big_int.of_int (1)))) in
+    let zp15z3 = (access (zv__814, Big_int.zero)) in
+    (((((((((((((((eq_bit (zp15z3, B0)) && (eq_bit (zp14z3, B1))) && (eq_bit (zp13z3, B0))) && (eq_bit (zp12z3, B0))) && (eq_bit (zp11z3, B0))) && (eq_bit (zp10z3, B0))) && (eq_bit (zp9z3, B0))) && (eq_bit (zp8z3, B0))) && (eq_bit (zp7z3, B0))) && (eq_bit (zp6z3, B0))) && (eq_bit (zp5z3, B0))) && (eq_bit (zp4z3, B0))) && (eq_bit (zp3z3, B1))) && (eq_bit (zp2z3, B0))) && (eq_bit (zp1z3, B0))) && (eq_bit (zp0z3, B1))) ->
+      true
+    | zv__820 when (let zp0z3 = (access (zv__820, (Big_int.of_int (15)))) in
+    let zp1z3 = (access (zv__820, (Big_int.of_int (14)))) in
+    let zp2z3 = (access (zv__820, (Big_int.of_int (13)))) in
+    let zp3z3 = (access (zv__820, (Big_int.of_int (12)))) in
+    let zp4z3 = (access (zv__820, (Big_int.of_int (1)))) in
+    let zp5z3 = (access (zv__820, Big_int.zero)) in
+    let zrsd = (subrange (zv__820, (Big_int.of_int (11)), (Big_int.of_int (7)))) in
+    let zrs2 = (subrange (zv__820, (Big_int.of_int (6)), (Big_int.of_int (2)))) in
     (((((((zneq_atom ((zregbits_to_regno zrsd), (zregbits_to_regno zzzreg))) && (zneq_atom ((zregbits_to_regno zrs2), (zregbits_to_regno zzzreg)))) && (eq_bit (zp5z3, B0))) && (eq_bit (zp4z3, B1))) && (eq_bit (zp3z3, B1))) && (eq_bit (zp2z3, B0))) && (eq_bit (zp1z3, B0))) && (eq_bit (zp0z3, B1))) ->
       true
     | zs -> true
     | _ -> false
   end)
 
-and zdecode (zbv : zbits) : (zast) zoption = sail_call (fun r ->
+and zprint_insn (zinsn : (zast)) : string = sail_call (fun r ->
+  zassembly_forwards zinsn)
+
+and zdecode (zbv : ((bit) list)) : (zast) zoption = sail_call (fun r ->
   ZSome (zencdec_backwards zbv))
 
-and zdecodeCompressed (zbv : zbits) : (zast) zoption = sail_call (fun r ->
+and zdecodeCompressed (zbv : ((bit) list)) : (zast) zoption = sail_call (fun r ->
   ZSome (zencdec_compressed_backwards zbv))
-
-and zprint_insn (zinsn : zast) : string = sail_call (fun r ->
-  zassembly_forwards zinsn)
 
 type  zFetchResult =
   | ZF_Base of zword
@@ -33544,23 +33643,23 @@ type  zFetchResult =
 
 let string_of_zFetchResult _ = "VARIANT";;
 
-let rec zundefined_FetchResult (() : unit) : zFetchResult = sail_call (fun r ->
+let rec zundefined_FetchResult (() : (unit)) : zFetchResult = sail_call (fun r ->
   let zu_0 = (zundefined_ExceptionType ()) in
   let zu_1 = (undefined_vector ((Big_int.of_int (16)), (undefined_bit ()))) in
   let zu_2 = (undefined_vector ((Big_int.of_int (32)), (undefined_bit ()))) in
   let zu_3 = (undefined_vector ((Big_int.of_int (64)), (undefined_bit ()))) in
   internal_pick [ZF_Base zu_2; ZF_RVC zu_1; ZF_Error (zu_0, zu_3)])
 
-and zisRVC (zh : zhalf) : bool = sail_call (fun r ->
+and zisRVC (zh : ((bit) list)) : bool = sail_call (fun r ->
   not (eq_list ((subrange (zh, (Big_int.of_int (1)), Big_int.zero)), [B1; B1])))
 
-and zfetch (() : unit) : zFetchResult = sail_call (fun r ->
+and zfetch (() : (unit)) : zFetchResult = sail_call (fun r ->
   if ((zneq_vec ((zcast_unit_vec (access (!zPC, Big_int.zero))), [B0])) || ((zneq_vec ((zcast_unit_vec (access (!zPC, (Big_int.of_int (1))))), [B0])) && (not (zhaveRVC ())))) then (ZF_Error (ZE_Fetch_Addr_Align, !zPC)) else (begin
     match (ztranslateAddr (!zPC, ZExecute, ZInstruction)) with
     | ZTR_Failure (ze) -> ZF_Error (ze, !zPC)
     | ZTR_Address (zppclo) ->
       begin
-        match (zchecked_mem_read (ZInstruction, zppclo, (Big_int.of_int (2)))) with
+        match (zchecked_mem_read (ZInstruction, zppclo, (Big_int.of_int (2)), false, false, false)) with
         | ZMemException (ze) -> ZF_Error (ZE_Fetch_Access_Fault, !zPC)
         | ZMemValue (zilo) ->
           if (zisRVC zilo) then (ZF_RVC zilo) else (let zPChi = ref ((add_vec_int (!zPC, (Big_int.of_int (2)))) : (bit) list) in
@@ -33569,7 +33668,7 @@ and zfetch (() : unit) : zFetchResult = sail_call (fun r ->
             | ZTR_Failure (ze) -> ZF_Error (ze, !zPChi)
             | ZTR_Address (zppchi) ->
               begin
-                match (zchecked_mem_read (ZInstruction, zppchi, (Big_int.of_int (2)))) with
+                match (zchecked_mem_read (ZInstruction, zppchi, (Big_int.of_int (2)), false, false, false)) with
                 | ZMemException (ze) -> ZF_Error (ZE_Fetch_Access_Fault, !zPChi)
                 | ZMemValue (zihi) -> ZF_Base (append (zihi, zilo))
               end
@@ -33577,7 +33676,7 @@ and zfetch (() : unit) : zFetchResult = sail_call (fun r ->
       end
   end))
 
-and zstep (zstep_no : Big_int.num) : bool = sail_call (fun r ->
+and zstep (zstep_no : (Big_int.num)) : bool = sail_call (fun r ->
   begin
     zminstret_written := false;
     let (zretired, zstepped) = (begin
@@ -33599,7 +33698,8 @@ and zstep (zstep_no : Big_int.num) : bool = sail_call (fun r ->
               | ZNone (()) ->
                 begin
                   print_endline (concat_str ("[", (concat_str ((string_of_int zstep_no), (concat_str ("] [", (concat_str ((zprivLevel_to_str !zcur_privilege), (concat_str ("]: ", (concat_str ((string_of_bits !zPC), (concat_str (" (", (concat_str ((string_of_bits zh), ") <no-decode>"))))))))))))))));
-                  zhandle_decode_exception (zEXTZ ((Big_int.of_int (64)), zh));
+                  zinstbits := (zEXTZ ((Big_int.of_int (64)), zh));
+                  zhandle_illegal ();
                   (false, true)
                 end
               | ZSome (zast) ->
@@ -33615,7 +33715,8 @@ and zstep (zstep_no : Big_int.num) : bool = sail_call (fun r ->
               | ZNone (()) ->
                 begin
                   print_endline (concat_str ("[", (concat_str ((string_of_int zstep_no), (concat_str ("] [", (concat_str ((zprivLevel_to_str !zcur_privilege), (concat_str ("]: ", (concat_str ((string_of_bits !zPC), (concat_str (" (", (concat_str ((string_of_bits zw), ") <no-decode>"))))))))))))))));
-                  zhandle_decode_exception (zEXTZ ((Big_int.of_int (64)), zw));
+                  zinstbits := (zEXTZ ((Big_int.of_int (64)), zw));
+                  zhandle_illegal ();
                   (false, true)
                 end
               | ZSome (zast) ->
@@ -33634,21 +33735,21 @@ and zstep (zstep_no : Big_int.num) : bool = sail_call (fun r ->
     end
   end)
 
-and zloop (() : unit) : unit = sail_call (fun r ->
+and zloop (() : (unit)) : unit = sail_call (fun r ->
   let zinsns_per_tick = (Platform.insns_per_tick ()) in
   let zi = ref (Big_int.zero : Big_int.num) in
   let zstep_no = ref (Big_int.zero : Big_int.num) in
   let rec loop () =
     if (not !zhtif_done) then ((let zstepped = (zstep !zstep_no) in
     begin
-      if zstepped then (zstep_no := add_int ((zex_int !zstep_no), (Big_int.of_int (1)))) else ();
+      if zstepped then (zstep_no := (add_int ((zex_int !zstep_no), (Big_int.of_int (1))))) else ();
       if !zhtif_done then (let zexit_val = (uint !zhtif_exit_code) in
       if (eq_int (zexit_val, Big_int.zero)) then (print_endline "SUCCESS") else (print_int ("FAILURE: ", zexit_val))) else (begin
-        zi := add_int ((zex_int !zi), (Big_int.of_int (1)));
+        zi := (add_int ((zex_int !zi), (Big_int.of_int (1))));
         if (eq_int ((zex_int !zi), zinsns_per_tick)) then (begin
           ztick_clock ();
           ztick_platform ();
-          zi := Big_int.zero
+          zi := (Big_int.zero)
         end) else ()
       end)
     end); loop ()) else ()
@@ -33663,7 +33764,7 @@ type  zregfp =
 
 let string_of_zregfp _ = "VARIANT";;
 
-let rec zundefined_regfp (() : unit) : zregfp = sail_call (fun r ->
+let rec zundefined_regfp (() : (unit)) : zregfp = sail_call (fun r ->
   let zu_1 = (undefined_nat ()) in
   let zu_0 = (undefined_nat ()) in
   let zu_3 = (undefined_string ()) in
@@ -33672,8 +33773,8 @@ let rec zundefined_regfp (() : unit) : zregfp = sail_call (fun r ->
 
 type  zregfps = (zregfp) list;;
 
-let string_of_zregfps (gs5117 : zregfps) =
-  string_of_list ", " (fun gs5118 -> string_of_zregfp gs5118) gs5117;;
+let string_of_zregfps (gs6123 : zregfps) =
+  string_of_list ", " (fun gs6124 -> string_of_zregfp gs6124) gs6123;;
 
 type  zniafp =
   | ZNIAFP_successor of unit
@@ -33682,15 +33783,15 @@ type  zniafp =
 
 let string_of_zniafp _ = "VARIANT";;
 
-let rec zundefined_niafp (() : unit) : zniafp = sail_call (fun r ->
+let rec zundefined_niafp (() : (unit)) : zniafp = sail_call (fun r ->
   let zu_0 = (undefined_unit ()) in
   let zu_1 = (undefined_vector ((Big_int.of_int (64)), (undefined_bit ()))) in
   internal_pick [ZNIAFP_successor zu_0; ZNIAFP_concrete_address zu_1; ZNIAFP_indirect_address zu_0])
 
 type  zniafps = (zniafp) list;;
 
-let string_of_zniafps (gs5122 : zniafps) =
-  string_of_list ", " (fun gs5123 -> string_of_zniafp gs5123) gs5122;;
+let string_of_zniafps (gs6129 : zniafps) =
+  string_of_list ", " (fun gs6130 -> string_of_zniafp gs6130) gs6129;;
 
 type  zdiafp =
   | ZDIAFP_none of unit
@@ -33699,7 +33800,7 @@ type  zdiafp =
 
 let string_of_zdiafp _ = "VARIANT";;
 
-let rec zundefined_diafp (() : unit) : zdiafp = sail_call (fun r ->
+let rec zundefined_diafp (() : (unit)) : zdiafp = sail_call (fun r ->
   let zu_0 = (zundefined_regfp ()) in
   let zu_1 = (undefined_unit ()) in
   let zu_2 = (undefined_vector ((Big_int.of_int (64)), (undefined_bit ()))) in
@@ -33733,7 +33834,7 @@ let string_of_zread_kind = function
   | ZRead_RISCV_reserved_strong_acquire -> "Read_RISCV_reserved_strong_acquire"
   | ZRead_X86_locked -> "Read_X86_locked";;
 
-let rec zread_kind_of_num (zargz3 : Big_int.num) : zread_kind = sail_call (fun r ->
+let rec zread_kind_of_num (zargz3 : (Big_int.num)) : zread_kind = sail_call (fun r ->
   begin
     match zargz3 with
     | zl__34 when (eq_int (zl__34, Big_int.zero)) -> ZRead_plain
@@ -33755,7 +33856,7 @@ let rec zread_kind_of_num (zargz3 : Big_int.num) : zread_kind = sail_call (fun r
     | _ -> ZRead_X86_locked
   end)
 
-and znum_of_read_kind (zargz3 : zread_kind) : Big_int.num = sail_call (fun r ->
+and znum_of_read_kind (zargz3 : (zread_kind)) : Big_int.num = sail_call (fun r ->
   begin
     match zargz3 with
     | ZRead_plain -> Big_int.zero
@@ -33772,7 +33873,7 @@ and znum_of_read_kind (zargz3 : zread_kind) : Big_int.num = sail_call (fun r ->
     | ZRead_X86_locked -> (Big_int.of_int (11))
   end)
 
-and zundefined_read_kind (() : unit) : zread_kind = sail_call (fun r ->
+and zundefined_read_kind (() : (unit)) : zread_kind = sail_call (fun r ->
   internal_pick [ZRead_plain; ZRead_reserve; ZRead_acquire; ZRead_exclusive; ZRead_exclusive_acquire; ZRead_stream; ZRead_RISCV_acquire; ZRead_RISCV_strong_acquire; ZRead_RISCV_reserved; ZRead_RISCV_reserved_acquire; ZRead_RISCV_reserved_strong_acquire; ZRead_X86_locked])
 
 type zwrite_kind =
@@ -33801,7 +33902,7 @@ let string_of_zwrite_kind = function
   | ZWrite_RISCV_conditional_strong_release -> "Write_RISCV_conditional_strong_release"
   | ZWrite_X86_locked -> "Write_X86_locked";;
 
-let rec zwrite_kind_of_num (zargz3 : Big_int.num) : zwrite_kind = sail_call (fun r ->
+let rec zwrite_kind_of_num (zargz3 : (Big_int.num)) : zwrite_kind = sail_call (fun r ->
   begin
     match zargz3 with
     | zl__24 when (eq_int (zl__24, Big_int.zero)) -> ZWrite_plain
@@ -33823,7 +33924,7 @@ let rec zwrite_kind_of_num (zargz3 : Big_int.num) : zwrite_kind = sail_call (fun
     | _ -> ZWrite_X86_locked
   end)
 
-and znum_of_write_kind (zargz3 : zwrite_kind) : Big_int.num = sail_call (fun r ->
+and znum_of_write_kind (zargz3 : (zwrite_kind)) : Big_int.num = sail_call (fun r ->
   begin
     match zargz3 with
     | ZWrite_plain -> Big_int.zero
@@ -33839,7 +33940,7 @@ and znum_of_write_kind (zargz3 : zwrite_kind) : Big_int.num = sail_call (fun r -
     | ZWrite_X86_locked -> (Big_int.of_int (10))
   end)
 
-and zundefined_write_kind (() : unit) : zwrite_kind = sail_call (fun r ->
+and zundefined_write_kind (() : (unit)) : zwrite_kind = sail_call (fun r ->
   internal_pick [ZWrite_plain; ZWrite_conditional; ZWrite_release; ZWrite_exclusive; ZWrite_exclusive_release; ZWrite_RISCV_release; ZWrite_RISCV_strong_release; ZWrite_RISCV_conditional; ZWrite_RISCV_conditional_release; ZWrite_RISCV_conditional_strong_release; ZWrite_X86_locked])
 
 type zbarrier_kind =
@@ -33892,7 +33993,7 @@ let string_of_zbarrier_kind = function
   | ZBarrier_RISCV_i -> "Barrier_RISCV_i"
   | ZBarrier_x86_MFENCE -> "Barrier_x86_MFENCE";;
 
-let rec zbarrier_kind_of_num (zargz3 : Big_int.num) : zbarrier_kind = sail_call (fun r ->
+let rec zbarrier_kind_of_num (zargz3 : (Big_int.num)) : zbarrier_kind = sail_call (fun r ->
   begin
     match zargz3 with
     | zl__2 when (eq_int (zl__2, Big_int.zero)) -> ZBarrier_Sync
@@ -33925,7 +34026,7 @@ let rec zbarrier_kind_of_num (zargz3 : Big_int.num) : zbarrier_kind = sail_call 
     | _ -> ZBarrier_x86_MFENCE
   end)
 
-and znum_of_barrier_kind (zargz3 : zbarrier_kind) : Big_int.num = sail_call (fun r ->
+and znum_of_barrier_kind (zargz3 : (zbarrier_kind)) : Big_int.num = sail_call (fun r ->
   begin
     match zargz3 with
     | ZBarrier_Sync -> Big_int.zero
@@ -33953,7 +34054,7 @@ and znum_of_barrier_kind (zargz3 : zbarrier_kind) : Big_int.num = sail_call (fun
     | ZBarrier_x86_MFENCE -> (Big_int.of_int (22))
   end)
 
-and zundefined_barrier_kind (() : unit) : zbarrier_kind = sail_call (fun r ->
+and zundefined_barrier_kind (() : (unit)) : zbarrier_kind = sail_call (fun r ->
   internal_pick [ZBarrier_Sync; ZBarrier_LwSync; ZBarrier_Eieio; ZBarrier_Isync; ZBarrier_DMB; ZBarrier_DMB_ST; ZBarrier_DMB_LD; ZBarrier_DSB; ZBarrier_DSB_ST; ZBarrier_DSB_LD; ZBarrier_ISB; ZBarrier_MIPS_SYNC; ZBarrier_RISCV_rw_rw; ZBarrier_RISCV_r_rw; ZBarrier_RISCV_r_r; ZBarrier_RISCV_rw_w; ZBarrier_RISCV_w_w; ZBarrier_RISCV_w_rw; ZBarrier_RISCV_rw_r; ZBarrier_RISCV_r_w; ZBarrier_RISCV_w_r; ZBarrier_RISCV_i; ZBarrier_x86_MFENCE])
 
 type ztrans_kind =
@@ -33966,7 +34067,7 @@ let string_of_ztrans_kind = function
   | ZTransaction_commit -> "Transaction_commit"
   | ZTransaction_abort -> "Transaction_abort";;
 
-let rec ztrans_kind_of_num (zargz3 : Big_int.num) : ztrans_kind = sail_call (fun r ->
+let rec ztrans_kind_of_num (zargz3 : (Big_int.num)) : ztrans_kind = sail_call (fun r ->
   begin
     match zargz3 with
     | zl__0 when (eq_int (zl__0, Big_int.zero)) -> ZTransaction_start
@@ -33974,7 +34075,7 @@ let rec ztrans_kind_of_num (zargz3 : Big_int.num) : ztrans_kind = sail_call (fun
     | _ -> ZTransaction_abort
   end)
 
-and znum_of_trans_kind (zargz3 : ztrans_kind) : Big_int.num = sail_call (fun r ->
+and znum_of_trans_kind (zargz3 : (ztrans_kind)) : Big_int.num = sail_call (fun r ->
   begin
     match zargz3 with
     | ZTransaction_start -> Big_int.zero
@@ -33982,7 +34083,7 @@ and znum_of_trans_kind (zargz3 : ztrans_kind) : Big_int.num = sail_call (fun r -
     | ZTransaction_abort -> (Big_int.of_int (2))
   end)
 
-and zundefined_trans_kind (() : unit) : ztrans_kind = sail_call (fun r ->
+and zundefined_trans_kind (() : (unit)) : ztrans_kind = sail_call (fun r ->
   internal_pick [ZTransaction_start; ZTransaction_commit; ZTransaction_abort])
 
 type  zinstruction_kind =
@@ -33996,7 +34097,7 @@ type  zinstruction_kind =
 
 let string_of_zinstruction_kind _ = "VARIANT";;
 
-let rec zundefined_instruction_kind (() : unit) : zinstruction_kind = sail_call (fun r ->
+let rec zundefined_instruction_kind (() : (unit)) : zinstruction_kind = sail_call (fun r ->
   let zu_0 = (zundefined_barrier_kind ()) in
   let zu_1 = (zundefined_read_kind ()) in
   let zu_2 = (zundefined_trans_kind ()) in
@@ -34010,7 +34111,7 @@ let zCIA_fp = (ZRFull "CIA");;
 
 let zNIA_fp = (ZRFull "NIA");;
 
-let rec zinitial_analysis (zinstr : zast) : (zregfps * zregfps * zregfps * zniafps * zdiafp * zinstruction_kind) = sail_call (fun r ->
+let rec zinitial_analysis (zinstr : (zast)) : ((zregfp) list * (zregfp) list * (zregfp) list * (zniafp) list * zdiafp * zinstruction_kind) = sail_call (fun r ->
   let ziR = ref (([]) : zregfps) in
   let zoR = ref (([]) : zregfps) in
   let zaR = ref (([]) : zregfps) in
@@ -34022,45 +34123,45 @@ let rec zinitial_analysis (zinstr : zast) : (zregfps * zregfps * zregfps * zniaf
       match zinstr with
       | ZEBREAK (()) -> ()
       | ZUTYPE (zimm, zrd, zop) ->
-        if (eq_int ((zregbits_to_regno zrd), Big_int.zero)) then () else (zoR := ZRFull (access (zGPRstr, (zregbits_to_regno zrd))) :: !zoR)
+        if (eq_int ((zregbits_to_regno zrd), Big_int.zero)) then () else (zoR := (ZRFull (access (zGPRstr, (zregbits_to_regno zrd))) :: !zoR))
       | ZRISCV_JAL (zimm, zrd) ->
         begin
-          if (eq_int ((zregbits_to_regno zrd), Big_int.zero)) then () else (zoR := ZRFull (access (zGPRstr, (zregbits_to_regno zrd))) :: !zoR);
+          if (eq_int ((zregbits_to_regno zrd), Big_int.zero)) then () else (zoR := (ZRFull (access (zGPRstr, (zregbits_to_regno zrd))) :: !zoR));
           let zoffset = (zEXTS ((Big_int.of_int (64)), zimm)) in
-          zNias := [ZNIAFP_concrete_address (add_vec (!zPC, zoffset))];
-          zik := ZIK_branch ()
+          zNias := ([ZNIAFP_concrete_address (add_vec (!zPC, zoffset))]);
+          zik := (ZIK_branch ())
         end
       | ZRISCV_JALR (zimm, zrs, zrd) ->
         begin
-          if (eq_int ((zregbits_to_regno zrs), Big_int.zero)) then () else (ziR := ZRFull (access (zGPRstr, (zregbits_to_regno zrs))) :: !ziR);
-          if (eq_int ((zregbits_to_regno zrd), Big_int.zero)) then () else (zoR := ZRFull (access (zGPRstr, (zregbits_to_regno zrd))) :: !zoR);
+          if (eq_int ((zregbits_to_regno zrs), Big_int.zero)) then () else (ziR := (ZRFull (access (zGPRstr, (zregbits_to_regno zrs))) :: !ziR));
+          if (eq_int ((zregbits_to_regno zrd), Big_int.zero)) then () else (zoR := (ZRFull (access (zGPRstr, (zregbits_to_regno zrd))) :: !zoR));
           let zoffset = (zEXTS ((Big_int.of_int (64)), zimm)) in
-          zNias := [ZNIAFP_indirect_address ()];
-          zik := ZIK_branch ()
+          zNias := ([ZNIAFP_indirect_address ()]);
+          zik := (ZIK_branch ())
         end
       | ZBTYPE (zimm, zrs2, zrs1, zop) ->
         begin
-          if (eq_int ((zregbits_to_regno zrs2), Big_int.zero)) then () else (ziR := ZRFull (access (zGPRstr, (zregbits_to_regno zrs2))) :: !ziR);
-          if (eq_int ((zregbits_to_regno zrs1), Big_int.zero)) then () else (ziR := ZRFull (access (zGPRstr, (zregbits_to_regno zrs1))) :: !ziR);
-          zik := ZIK_branch ();
+          if (eq_int ((zregbits_to_regno zrs2), Big_int.zero)) then () else (ziR := (ZRFull (access (zGPRstr, (zregbits_to_regno zrs2))) :: !ziR));
+          if (eq_int ((zregbits_to_regno zrs1), Big_int.zero)) then () else (ziR := (ZRFull (access (zGPRstr, (zregbits_to_regno zrs1))) :: !ziR));
+          zik := (ZIK_branch ());
           let zoffset = (zEXTS ((Big_int.of_int (64)), zimm)) in
-          zNias := [ZNIAFP_concrete_address (add_vec (!zPC, zoffset)); ZNIAFP_successor ()]
+          zNias := ([ZNIAFP_concrete_address (add_vec (!zPC, zoffset)); ZNIAFP_successor ()])
         end
       | ZITYPE (zimm, zrs, zrd, zop) ->
         begin
-          if (eq_int ((zregbits_to_regno zrs), Big_int.zero)) then () else (ziR := ZRFull (access (zGPRstr, (zregbits_to_regno zrs))) :: !ziR);
-          if (eq_int ((zregbits_to_regno zrd), Big_int.zero)) then () else (zoR := ZRFull (access (zGPRstr, (zregbits_to_regno zrd))) :: !zoR)
+          if (eq_int ((zregbits_to_regno zrs), Big_int.zero)) then () else (ziR := (ZRFull (access (zGPRstr, (zregbits_to_regno zrs))) :: !ziR));
+          if (eq_int ((zregbits_to_regno zrd), Big_int.zero)) then () else (zoR := (ZRFull (access (zGPRstr, (zregbits_to_regno zrd))) :: !zoR))
         end
       | ZSHIFTIOP (zimm, zrs, zrd, zop) ->
         begin
-          if (eq_int ((zregbits_to_regno zrs), Big_int.zero)) then () else (ziR := ZRFull (access (zGPRstr, (zregbits_to_regno zrs))) :: !ziR);
-          if (eq_int ((zregbits_to_regno zrd), Big_int.zero)) then () else (zoR := ZRFull (access (zGPRstr, (zregbits_to_regno zrd))) :: !zoR)
+          if (eq_int ((zregbits_to_regno zrs), Big_int.zero)) then () else (ziR := (ZRFull (access (zGPRstr, (zregbits_to_regno zrs))) :: !ziR));
+          if (eq_int ((zregbits_to_regno zrd), Big_int.zero)) then () else (zoR := (ZRFull (access (zGPRstr, (zregbits_to_regno zrd))) :: !zoR))
         end
       | ZRTYPE (zrs2, zrs1, zrd, zop) ->
         begin
-          if (eq_int ((zregbits_to_regno zrs2), Big_int.zero)) then () else (ziR := ZRFull (access (zGPRstr, (zregbits_to_regno zrs2))) :: !ziR);
-          if (eq_int ((zregbits_to_regno zrs1), Big_int.zero)) then () else (ziR := ZRFull (access (zGPRstr, (zregbits_to_regno zrs1))) :: !ziR);
-          if (eq_int ((zregbits_to_regno zrd), Big_int.zero)) then () else (zoR := ZRFull (access (zGPRstr, (zregbits_to_regno zrd))) :: !zoR)
+          if (eq_int ((zregbits_to_regno zrs2), Big_int.zero)) then () else (ziR := (ZRFull (access (zGPRstr, (zregbits_to_regno zrs2))) :: !ziR));
+          if (eq_int ((zregbits_to_regno zrs1), Big_int.zero)) then () else (ziR := (ZRFull (access (zGPRstr, (zregbits_to_regno zrs1))) :: !ziR));
+          if (eq_int ((zregbits_to_regno zrd), Big_int.zero)) then () else (zoR := (ZRFull (access (zGPRstr, (zregbits_to_regno zrd))) :: !zoR))
         end
       | ZCSR (zcsr, zrs1, zrd, zis_imm, zop) ->
         let zisWrite = (begin
@@ -34070,17 +34171,17 @@ let rec zinitial_analysis (zinstr : zast) : (zregfps * zregfps * zregfps * zniaf
             if zis_imm then (zneq_range ((uint zrs1), Big_int.zero)) else (zneq_range ((uint zrs1), Big_int.zero))
         end) in
         begin
-          ziR := ZRFull (zcsr_name zcsr) :: !ziR;
-          if (not zis_imm) then (ziR := ZRFull (access (zGPRstr, (zregbits_to_regno zrs1))) :: !ziR) else ();
-          if zisWrite then (zoR := ZRFull (zcsr_name zcsr) :: !zoR) else ();
-          zoR := ZRFull (access (zGPRstr, (zregbits_to_regno zrd))) :: !zoR
+          ziR := (ZRFull (zcsr_name zcsr) :: !ziR);
+          if (not zis_imm) then (ziR := (ZRFull (access (zGPRstr, (zregbits_to_regno zrs1))) :: !ziR)) else ();
+          if zisWrite then (zoR := (ZRFull (zcsr_name zcsr) :: !zoR)) else ();
+          zoR := (ZRFull (access (zGPRstr, (zregbits_to_regno zrd))) :: !zoR)
         end
       | ZLOAD (zimm, zrs, zrd, zunsign, zwidth, zaq, zrl) ->
         begin
-          if (eq_int ((zregbits_to_regno zrs), Big_int.zero)) then () else (ziR := ZRFull (access (zGPRstr, (zregbits_to_regno zrs))) :: !ziR);
-          if (eq_int ((zregbits_to_regno zrd), Big_int.zero)) then () else (zoR := ZRFull (access (zGPRstr, (zregbits_to_regno zrd))) :: !zoR);
-          zaR := !ziR;
-          zik := begin
+          if (eq_int ((zregbits_to_regno zrs), Big_int.zero)) then () else (ziR := (ZRFull (access (zGPRstr, (zregbits_to_regno zrs))) :: !ziR));
+          if (eq_int ((zregbits_to_regno zrd), Big_int.zero)) then () else (zoR := (ZRFull (access (zGPRstr, (zregbits_to_regno zrd))) :: !zoR));
+          zaR := (!ziR);
+          zik := (begin
             match (zaq, zrl) with
             | (zp0z3, zp1z3) when ((eq_bool (zp1z3, false)) && (eq_bool (zp0z3, false))) ->
               ZIK_mem_read ZRead_plain
@@ -34090,14 +34191,14 @@ let rec zinitial_analysis (zinstr : zast) : (zregfps * zregfps * zregfps * zniaf
               ZIK_mem_read ZRead_RISCV_strong_acquire
             | _ ->
               zinternal_error "LOAD type not implemented in initial_analysis"
-          end
+          end)
         end
       | ZSTORE (zimm, zrs2, zrs1, zwidth, zaq, zrl) ->
         begin
-          if (eq_int ((zregbits_to_regno zrs2), Big_int.zero)) then () else (ziR := ZRFull (access (zGPRstr, (zregbits_to_regno zrs2))) :: !ziR);
-          if (eq_int ((zregbits_to_regno zrs1), Big_int.zero)) then () else (ziR := ZRFull (access (zGPRstr, (zregbits_to_regno zrs1))) :: !ziR);
-          if (eq_int ((zregbits_to_regno zrs1), Big_int.zero)) then () else (zaR := ZRFull (access (zGPRstr, (zregbits_to_regno zrs1))) :: !zaR);
-          zik := begin
+          if (eq_int ((zregbits_to_regno zrs2), Big_int.zero)) then () else (ziR := (ZRFull (access (zGPRstr, (zregbits_to_regno zrs2))) :: !ziR));
+          if (eq_int ((zregbits_to_regno zrs1), Big_int.zero)) then () else (ziR := (ZRFull (access (zGPRstr, (zregbits_to_regno zrs1))) :: !ziR));
+          if (eq_int ((zregbits_to_regno zrs1), Big_int.zero)) then () else (zaR := (ZRFull (access (zGPRstr, (zregbits_to_regno zrs1))) :: !zaR));
+          zik := (begin
             match (zaq, zrl) with
             | (zp0z3, zp1z3) when ((eq_bool (zp1z3, false)) && (eq_bool (zp0z3, false))) ->
               ZIK_mem_write ZWrite_plain
@@ -34107,97 +34208,97 @@ let rec zinitial_analysis (zinstr : zast) : (zregfps * zregfps * zregfps * zniaf
               ZIK_mem_write ZWrite_RISCV_strong_release
             | _ ->
               zinternal_error "STORE type not implemented in initial_analysis"
-          end
+          end)
         end
       | ZADDIW (zimm, zrs, zrd) ->
         begin
-          if (eq_int ((zregbits_to_regno zrs), Big_int.zero)) then () else (ziR := ZRFull (access (zGPRstr, (zregbits_to_regno zrs))) :: !ziR);
-          if (eq_int ((zregbits_to_regno zrd), Big_int.zero)) then () else (zoR := ZRFull (access (zGPRstr, (zregbits_to_regno zrd))) :: !zoR)
+          if (eq_int ((zregbits_to_regno zrs), Big_int.zero)) then () else (ziR := (ZRFull (access (zGPRstr, (zregbits_to_regno zrs))) :: !ziR));
+          if (eq_int ((zregbits_to_regno zrd), Big_int.zero)) then () else (zoR := (ZRFull (access (zGPRstr, (zregbits_to_regno zrd))) :: !zoR))
         end
       | ZSHIFTW (zimm, zrs, zrd, zop) ->
         begin
-          if (eq_int ((zregbits_to_regno zrs), Big_int.zero)) then () else (ziR := ZRFull (access (zGPRstr, (zregbits_to_regno zrs))) :: !ziR);
-          if (eq_int ((zregbits_to_regno zrd), Big_int.zero)) then () else (zoR := ZRFull (access (zGPRstr, (zregbits_to_regno zrd))) :: !zoR)
+          if (eq_int ((zregbits_to_regno zrs), Big_int.zero)) then () else (ziR := (ZRFull (access (zGPRstr, (zregbits_to_regno zrs))) :: !ziR));
+          if (eq_int ((zregbits_to_regno zrd), Big_int.zero)) then () else (zoR := (ZRFull (access (zGPRstr, (zregbits_to_regno zrd))) :: !zoR))
         end
       | ZRTYPEW (zrs2, zrs1, zrd, zop) ->
         begin
-          if (eq_int ((zregbits_to_regno zrs2), Big_int.zero)) then () else (ziR := ZRFull (access (zGPRstr, (zregbits_to_regno zrs2))) :: !ziR);
-          if (eq_int ((zregbits_to_regno zrs1), Big_int.zero)) then () else (ziR := ZRFull (access (zGPRstr, (zregbits_to_regno zrs1))) :: !ziR);
-          if (eq_int ((zregbits_to_regno zrd), Big_int.zero)) then () else (zoR := ZRFull (access (zGPRstr, (zregbits_to_regno zrd))) :: !zoR)
+          if (eq_int ((zregbits_to_regno zrs2), Big_int.zero)) then () else (ziR := (ZRFull (access (zGPRstr, (zregbits_to_regno zrs2))) :: !ziR));
+          if (eq_int ((zregbits_to_regno zrs1), Big_int.zero)) then () else (ziR := (ZRFull (access (zGPRstr, (zregbits_to_regno zrs1))) :: !ziR));
+          if (eq_int ((zregbits_to_regno zrd), Big_int.zero)) then () else (zoR := (ZRFull (access (zGPRstr, (zregbits_to_regno zrd))) :: !zoR))
         end
       | ZFENCE (zpred, zsucc) ->
-        zik := begin
+        zik := (begin
           match (zpred, zsucc) with
-          | (zv__812, zv__813) when (let zp0z3 = (access (zv__812, (Big_int.of_int (1)))) in
-          let zp1z3 = (access (zv__812, Big_int.zero)) in
-          let zp2z3 = (access (zv__813, (Big_int.of_int (1)))) in
-          let zp3z3 = (access (zv__813, Big_int.zero)) in
-          (((eq_bit (zp3z3, B1)) && (eq_bit (zp2z3, B1))) && (eq_bit (zp1z3, B1))) && (eq_bit (zp0z3, B1))) ->
-            ZIK_barrier ZBarrier_RISCV_rw_rw
-          | (zv__816, zv__817) when (let zp0z3 = (access (zv__816, (Big_int.of_int (1)))) in
-          let zp1z3 = (access (zv__816, Big_int.zero)) in
-          let zp2z3 = (access (zv__817, (Big_int.of_int (1)))) in
-          let zp3z3 = (access (zv__817, Big_int.zero)) in
-          (((eq_bit (zp3z3, B1)) && (eq_bit (zp2z3, B1))) && (eq_bit (zp1z3, B0))) && (eq_bit (zp0z3, B1))) ->
-            ZIK_barrier ZBarrier_RISCV_r_rw
-          | (zv__820, zv__821) when (let zp0z3 = (access (zv__820, (Big_int.of_int (1)))) in
-          let zp1z3 = (access (zv__820, Big_int.zero)) in
-          let zp2z3 = (access (zv__821, (Big_int.of_int (1)))) in
-          let zp3z3 = (access (zv__821, Big_int.zero)) in
-          (((eq_bit (zp3z3, B0)) && (eq_bit (zp2z3, B1))) && (eq_bit (zp1z3, B0))) && (eq_bit (zp0z3, B1))) ->
-            ZIK_barrier ZBarrier_RISCV_r_r
           | (zv__824, zv__825) when (let zp0z3 = (access (zv__824, (Big_int.of_int (1)))) in
           let zp1z3 = (access (zv__824, Big_int.zero)) in
           let zp2z3 = (access (zv__825, (Big_int.of_int (1)))) in
           let zp3z3 = (access (zv__825, Big_int.zero)) in
-          (((eq_bit (zp3z3, B1)) && (eq_bit (zp2z3, B0))) && (eq_bit (zp1z3, B1))) && (eq_bit (zp0z3, B1))) ->
-            ZIK_barrier ZBarrier_RISCV_rw_w
+          (((eq_bit (zp3z3, B1)) && (eq_bit (zp2z3, B1))) && (eq_bit (zp1z3, B1))) && (eq_bit (zp0z3, B1))) ->
+            ZIK_barrier ZBarrier_RISCV_rw_rw
           | (zv__828, zv__829) when (let zp0z3 = (access (zv__828, (Big_int.of_int (1)))) in
           let zp1z3 = (access (zv__828, Big_int.zero)) in
           let zp2z3 = (access (zv__829, (Big_int.of_int (1)))) in
           let zp3z3 = (access (zv__829, Big_int.zero)) in
-          (((eq_bit (zp3z3, B1)) && (eq_bit (zp2z3, B0))) && (eq_bit (zp1z3, B1))) && (eq_bit (zp0z3, B0))) ->
-            ZIK_barrier ZBarrier_RISCV_w_w
+          (((eq_bit (zp3z3, B1)) && (eq_bit (zp2z3, B1))) && (eq_bit (zp1z3, B0))) && (eq_bit (zp0z3, B1))) ->
+            ZIK_barrier ZBarrier_RISCV_r_rw
           | (zv__832, zv__833) when (let zp0z3 = (access (zv__832, (Big_int.of_int (1)))) in
           let zp1z3 = (access (zv__832, Big_int.zero)) in
           let zp2z3 = (access (zv__833, (Big_int.of_int (1)))) in
           let zp3z3 = (access (zv__833, Big_int.zero)) in
-          (((eq_bit (zp3z3, B1)) && (eq_bit (zp2z3, B1))) && (eq_bit (zp1z3, B1))) && (eq_bit (zp0z3, B0))) ->
-            ZIK_barrier ZBarrier_RISCV_w_rw
+          (((eq_bit (zp3z3, B0)) && (eq_bit (zp2z3, B1))) && (eq_bit (zp1z3, B0))) && (eq_bit (zp0z3, B1))) ->
+            ZIK_barrier ZBarrier_RISCV_r_r
           | (zv__836, zv__837) when (let zp0z3 = (access (zv__836, (Big_int.of_int (1)))) in
           let zp1z3 = (access (zv__836, Big_int.zero)) in
           let zp2z3 = (access (zv__837, (Big_int.of_int (1)))) in
           let zp3z3 = (access (zv__837, Big_int.zero)) in
-          (((eq_bit (zp3z3, B0)) && (eq_bit (zp2z3, B1))) && (eq_bit (zp1z3, B1))) && (eq_bit (zp0z3, B1))) ->
-            ZIK_barrier ZBarrier_RISCV_rw_r
+          (((eq_bit (zp3z3, B1)) && (eq_bit (zp2z3, B0))) && (eq_bit (zp1z3, B1))) && (eq_bit (zp0z3, B1))) ->
+            ZIK_barrier ZBarrier_RISCV_rw_w
           | (zv__840, zv__841) when (let zp0z3 = (access (zv__840, (Big_int.of_int (1)))) in
           let zp1z3 = (access (zv__840, Big_int.zero)) in
           let zp2z3 = (access (zv__841, (Big_int.of_int (1)))) in
           let zp3z3 = (access (zv__841, Big_int.zero)) in
-          (((eq_bit (zp3z3, B1)) && (eq_bit (zp2z3, B0))) && (eq_bit (zp1z3, B0))) && (eq_bit (zp0z3, B1))) ->
-            ZIK_barrier ZBarrier_RISCV_r_w
+          (((eq_bit (zp3z3, B1)) && (eq_bit (zp2z3, B0))) && (eq_bit (zp1z3, B1))) && (eq_bit (zp0z3, B0))) ->
+            ZIK_barrier ZBarrier_RISCV_w_w
           | (zv__844, zv__845) when (let zp0z3 = (access (zv__844, (Big_int.of_int (1)))) in
           let zp1z3 = (access (zv__844, Big_int.zero)) in
           let zp2z3 = (access (zv__845, (Big_int.of_int (1)))) in
           let zp3z3 = (access (zv__845, Big_int.zero)) in
-          (((eq_bit (zp3z3, B0)) && (eq_bit (zp2z3, B1))) && (eq_bit (zp1z3, B1))) && (eq_bit (zp0z3, B0))) ->
-            ZIK_barrier ZBarrier_RISCV_w_r
+          (((eq_bit (zp3z3, B1)) && (eq_bit (zp2z3, B1))) && (eq_bit (zp1z3, B1))) && (eq_bit (zp0z3, B0))) ->
+            ZIK_barrier ZBarrier_RISCV_w_rw
           | (zv__848, zv__849) when (let zp0z3 = (access (zv__848, (Big_int.of_int (1)))) in
           let zp1z3 = (access (zv__848, Big_int.zero)) in
           let zp2z3 = (access (zv__849, (Big_int.of_int (1)))) in
           let zp3z3 = (access (zv__849, Big_int.zero)) in
+          (((eq_bit (zp3z3, B0)) && (eq_bit (zp2z3, B1))) && (eq_bit (zp1z3, B1))) && (eq_bit (zp0z3, B1))) ->
+            ZIK_barrier ZBarrier_RISCV_rw_r
+          | (zv__852, zv__853) when (let zp0z3 = (access (zv__852, (Big_int.of_int (1)))) in
+          let zp1z3 = (access (zv__852, Big_int.zero)) in
+          let zp2z3 = (access (zv__853, (Big_int.of_int (1)))) in
+          let zp3z3 = (access (zv__853, Big_int.zero)) in
+          (((eq_bit (zp3z3, B1)) && (eq_bit (zp2z3, B0))) && (eq_bit (zp1z3, B0))) && (eq_bit (zp0z3, B1))) ->
+            ZIK_barrier ZBarrier_RISCV_r_w
+          | (zv__856, zv__857) when (let zp0z3 = (access (zv__856, (Big_int.of_int (1)))) in
+          let zp1z3 = (access (zv__856, Big_int.zero)) in
+          let zp2z3 = (access (zv__857, (Big_int.of_int (1)))) in
+          let zp3z3 = (access (zv__857, Big_int.zero)) in
+          (((eq_bit (zp3z3, B0)) && (eq_bit (zp2z3, B1))) && (eq_bit (zp1z3, B1))) && (eq_bit (zp0z3, B0))) ->
+            ZIK_barrier ZBarrier_RISCV_w_r
+          | (zv__860, zv__861) when (let zp0z3 = (access (zv__860, (Big_int.of_int (1)))) in
+          let zp1z3 = (access (zv__860, Big_int.zero)) in
+          let zp2z3 = (access (zv__861, (Big_int.of_int (1)))) in
+          let zp3z3 = (access (zv__861, Big_int.zero)) in
           (((eq_bit (zp3z3, B0)) && (eq_bit (zp2z3, B0))) && (eq_bit (zp1z3, B0))) && (eq_bit (zp0z3, B0))) ->
             ZIK_simple ()
           | _ ->
             zinternal_error "barrier type not implemented in initial_analysis"
-        end
-      | ZFENCEI (()) -> zik := ZIK_simple ()
+        end)
+      | ZFENCEI (()) -> zik := (ZIK_simple ())
       | ZLOADRES (zaq, zrl, zrs1, zwidth, zrd) ->
         begin
-          if (eq_int ((zregbits_to_regno zrs1), Big_int.zero)) then () else (ziR := ZRFull (access (zGPRstr, (zregbits_to_regno zrs1))) :: !ziR);
-          if (eq_int ((zregbits_to_regno zrd), Big_int.zero)) then () else (zoR := ZRFull (access (zGPRstr, (zregbits_to_regno zrd))) :: !zoR);
-          zaR := !ziR;
-          zik := begin
+          if (eq_int ((zregbits_to_regno zrs1), Big_int.zero)) then () else (ziR := (ZRFull (access (zGPRstr, (zregbits_to_regno zrs1))) :: !ziR));
+          if (eq_int ((zregbits_to_regno zrd), Big_int.zero)) then () else (zoR := (ZRFull (access (zGPRstr, (zregbits_to_regno zrd))) :: !zoR));
+          zaR := (!ziR);
+          zik := (begin
             match (zaq, zrl) with
             | (zp0z3, zp1z3) when ((eq_bool (zp1z3, false)) && (eq_bool (zp0z3, false))) ->
               ZIK_mem_read ZRead_RISCV_reserved
@@ -34207,15 +34308,15 @@ let rec zinitial_analysis (zinstr : zast) : (zregfps * zregfps * zregfps * zniaf
               ZIK_mem_read ZRead_RISCV_reserved_strong_acquire
             | (zp0z3, zp1z3) when ((eq_bool (zp1z3, true)) && (eq_bool (zp0z3, false))) ->
               zinternal_error "LOADRES type not implemented in initial_analysis"
-          end
+          end)
         end
       | ZSTORECON (zaq, zrl, zrs2, zrs1, zwidth, zrd) ->
         begin
-          if (eq_int ((zregbits_to_regno zrs2), Big_int.zero)) then () else (ziR := ZRFull (access (zGPRstr, (zregbits_to_regno zrs2))) :: !ziR);
-          if (eq_int ((zregbits_to_regno zrs1), Big_int.zero)) then () else (ziR := ZRFull (access (zGPRstr, (zregbits_to_regno zrs1))) :: !ziR);
-          if (eq_int ((zregbits_to_regno zrs1), Big_int.zero)) then () else (zaR := ZRFull (access (zGPRstr, (zregbits_to_regno zrs1))) :: !zaR);
-          if (eq_int ((zregbits_to_regno zrd), Big_int.zero)) then () else (zoR := ZRFull (access (zGPRstr, (zregbits_to_regno zrd))) :: !zoR);
-          zik := begin
+          if (eq_int ((zregbits_to_regno zrs2), Big_int.zero)) then () else (ziR := (ZRFull (access (zGPRstr, (zregbits_to_regno zrs2))) :: !ziR));
+          if (eq_int ((zregbits_to_regno zrs1), Big_int.zero)) then () else (ziR := (ZRFull (access (zGPRstr, (zregbits_to_regno zrs1))) :: !ziR));
+          if (eq_int ((zregbits_to_regno zrs1), Big_int.zero)) then () else (zaR := (ZRFull (access (zGPRstr, (zregbits_to_regno zrs1))) :: !zaR));
+          if (eq_int ((zregbits_to_regno zrd), Big_int.zero)) then () else (zoR := (ZRFull (access (zGPRstr, (zregbits_to_regno zrd))) :: !zoR));
+          zik := (begin
             match (zaq, zrl) with
             | (zp0z3, zp1z3) when ((eq_bool (zp1z3, false)) && (eq_bool (zp0z3, false))) ->
               ZIK_mem_write ZWrite_RISCV_conditional
@@ -34225,15 +34326,15 @@ let rec zinitial_analysis (zinstr : zast) : (zregfps * zregfps * zregfps * zniaf
               ZIK_mem_write ZWrite_RISCV_conditional_strong_release
             | (zp0z3, zp1z3) when ((eq_bool (zp1z3, false)) && (eq_bool (zp0z3, true))) ->
               zinternal_error "STORECON type not implemented in initial_analysis"
-          end
+          end)
         end
       | ZAMO (zop, zaq, zrl, zrs2, zrs1, zwidth, zrd) ->
         begin
-          if (eq_int ((zregbits_to_regno zrs2), Big_int.zero)) then () else (ziR := ZRFull (access (zGPRstr, (zregbits_to_regno zrs2))) :: !ziR);
-          if (eq_int ((zregbits_to_regno zrs1), Big_int.zero)) then () else (ziR := ZRFull (access (zGPRstr, (zregbits_to_regno zrs1))) :: !ziR);
-          if (eq_int ((zregbits_to_regno zrs1), Big_int.zero)) then () else (zaR := ZRFull (access (zGPRstr, (zregbits_to_regno zrs1))) :: !zaR);
-          if (eq_int ((zregbits_to_regno zrd), Big_int.zero)) then () else (zoR := ZRFull (access (zGPRstr, (zregbits_to_regno zrd))) :: !zoR);
-          zik := begin
+          if (eq_int ((zregbits_to_regno zrs2), Big_int.zero)) then () else (ziR := (ZRFull (access (zGPRstr, (zregbits_to_regno zrs2))) :: !ziR));
+          if (eq_int ((zregbits_to_regno zrs1), Big_int.zero)) then () else (ziR := (ZRFull (access (zGPRstr, (zregbits_to_regno zrs1))) :: !ziR));
+          if (eq_int ((zregbits_to_regno zrs1), Big_int.zero)) then () else (zaR := (ZRFull (access (zGPRstr, (zregbits_to_regno zrs1))) :: !zaR));
+          if (eq_int ((zregbits_to_regno zrd), Big_int.zero)) then () else (zoR := (ZRFull (access (zGPRstr, (zregbits_to_regno zrd))) :: !zoR));
+          zik := (begin
             match (zaq, zrl) with
             | (zp0z3, zp1z3) when ((eq_bool (zp1z3, false)) && (eq_bool (zp0z3, false))) ->
               ZIK_mem_rmw (ZRead_RISCV_reserved, ZWrite_RISCV_conditional)
@@ -34243,17 +34344,18 @@ let rec zinitial_analysis (zinstr : zast) : (zregfps * zregfps * zregfps * zniaf
               ZIK_mem_rmw (ZRead_RISCV_reserved_acquire, ZWrite_RISCV_conditional)
             | (zp0z3, zp1z3) when ((eq_bool (zp1z3, true)) && (eq_bool (zp0z3, true))) ->
               ZIK_mem_rmw (ZRead_RISCV_reserved_acquire, ZWrite_RISCV_conditional_release)
-          end
+          end)
         end
       | _ -> ()
     end;
     (!ziR, !zoR, !zaR, !zNias, !zDia, !zik)
   end)
 
-and zinitializze_registers (() : unit) : unit = sail_call (fun r ->
+and zinitializze_registers (() : (unit)) : unit = sail_call (fun r ->
   begin
     zPC := (undefined_vector ((Big_int.of_int (64)), (undefined_bit ())));
     znextPC := (undefined_vector ((Big_int.of_int (64)), (undefined_bit ())));
+    zinstbits := (undefined_vector ((Big_int.of_int (64)), (undefined_bit ())));
     zXs := (undefined_vector ((Big_int.of_int (32)), (undefined_vector ((Big_int.of_int (64)), (undefined_bit ())))));
     zx1 := (undefined_vector ((Big_int.of_int (64)), (undefined_bit ())));
     zx2 := (undefined_vector ((Big_int.of_int (64)), (undefined_bit ())));
@@ -34449,6 +34551,7 @@ let rand_zast g =
     (fun g -> ZC_JR (g.gen_zregbits g));
     (fun g -> ZC_JALR (g.gen_zregbits g));
     (fun g -> ZC_MV (g.gen_zregbits g, g.gen_zregbits g));
+    (fun g -> ZC_EBREAK (g.gen_zunit g));
     (fun g -> ZC_ADD (g.gen_zregbits g, g.gen_zregbits g));
     (fun g -> ZSTOP_FETCHING (g.gen_zunit g));
     (fun g -> ZTHREAD_START (g.gen_zunit g));
@@ -34519,6 +34622,7 @@ let constructors_zast = [
   "C_JR";
   "C_JALR";
   "C_MV";
+  "C_EBREAK";
   "C_ADD";
   "STOP_FETCHING";
   "THREAD_START";
@@ -34589,6 +34693,7 @@ let build_zast g c = match c with
   | "C_JR" -> ZC_JR (g.gen_zregbits g)
   | "C_JALR" -> ZC_JALR (g.gen_zregbits g)
   | "C_MV" -> ZC_MV (g.gen_zregbits g, g.gen_zregbits g)
+  | "C_EBREAK" -> ZC_EBREAK (g.gen_zunit g)
   | "C_ADD" -> ZC_ADD (g.gen_zregbits g, g.gen_zregbits g)
   | "STOP_FETCHING" -> ZSTOP_FETCHING (g.gen_zunit g)
   | "THREAD_START" -> ZTHREAD_START (g.gen_zunit g)
