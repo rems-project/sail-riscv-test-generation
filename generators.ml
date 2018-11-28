@@ -29,13 +29,13 @@ let startswith s s' =
 
 let unsupported = [
     (* Arbitrary nonsense *)
-    String.equal "ILLEGAL";
+    String.equal "ILLEGAL"; String.equal "C_ILLEGAL";
     (* AMO *)
     startswith "AMO"; String.equal "LOADRES"; String.equal "STORECON";
     (* RMEM sentinels *)
     String.equal "STOP_FETCHING"; String.equal "THREAD_START";
-    (* Not sure what different sims do with WFI, but spike is diff to sail *)
-    String.equal "WFI"
+    (* CSR are expected to be different *)
+    String.equal "CSR"
   ]
 
 let remove_unsupported g =
