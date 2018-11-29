@@ -1051,6 +1051,9 @@ let rec zrX (zr : (Big_int.num)) : (bit) list = sail_call (fun r ->
     | zl__191 when (eq_int (zl__191, (Big_int.of_int (31)))) -> !zx31
   end)
 
+and zrvfi_wX ((zr, zv) : (Big_int.num * (bit) list)) : unit = sail_call (fun r ->
+  ())
+
 and zwX ((zr, zv) : (Big_int.num * (bit) list)) : unit = sail_call (fun r ->
   begin
     begin
@@ -1088,7 +1091,10 @@ and zwX ((zr, zv) : (Big_int.num * (bit) list)) : unit = sail_call (fun r ->
       | zl__158 when (eq_int (zl__158, (Big_int.of_int (30)))) -> zx30 := zv
       | zl__159 when (eq_int (zl__159, (Big_int.of_int (31)))) -> zx31 := zv
     end;
-    if (zneq_atom (zr, Big_int.zero)) then (print_endline (concat_str ("x", (concat_str ((string_of_int zr), (concat_str (" <- ", (string_of_bits zv)))))))) else ()
+    if (zneq_atom (zr, Big_int.zero)) then (begin
+      zrvfi_wX (zr, zv);
+      print_endline (concat_str ("x", (concat_str ((string_of_int zr), (concat_str (" <- ", (string_of_bits zv)))))))
+    end) else ()
   end)
 
 and zreg_name_abi (zr : ((bit) list)) : string = sail_call (fun r ->
@@ -1322,19 +1328,19 @@ and zreg_name_abi (zr : ((bit) list)) : string = sail_call (fun r ->
 
 type  zopcode = zbits;;
 
-let string_of_zopcode (gs657 : zopcode) = string_of_zbits gs657;;
+let string_of_zopcode (gs662 : zopcode) = string_of_zbits gs662;;
 
 type  zimm12 = zbits;;
 
-let string_of_zimm12 (gs658 : zimm12) = string_of_zbits gs658;;
+let string_of_zimm12 (gs663 : zimm12) = string_of_zbits gs663;;
 
 type  zimm20 = zbits;;
 
-let string_of_zimm20 (gs659 : zimm20) = string_of_zbits gs659;;
+let string_of_zimm20 (gs664 : zimm20) = string_of_zbits gs664;;
 
 type  zamo = zbits;;
 
-let string_of_zamo (gs660 : zamo) = string_of_zbits gs660;;
+let string_of_zamo (gs665 : zamo) = string_of_zbits gs665;;
 
 type zArchitecture = | ZRV32 | ZRV64 | ZRV128;;
 
@@ -1364,7 +1370,7 @@ and zundefined_Architecture (() : (unit)) : zArchitecture = sail_call (fun r ->
 
 type  zarch_xlen = zbits;;
 
-let string_of_zarch_xlen (gs673 : zarch_xlen) = string_of_zbits gs673;;
+let string_of_zarch_xlen (gs678 : zarch_xlen) = string_of_zbits gs678;;
 
 let rec zarchitecture (za : ((bit) list)) : (zArchitecture) zoption = sail_call (fun r ->
   begin
@@ -1394,7 +1400,7 @@ and zarch_to_bits (za : (zArchitecture)) : (bit) list = sail_call (fun r ->
 
 type  zpriv_level = zbits;;
 
-let string_of_zpriv_level (gs682 : zpriv_level) = string_of_zbits gs682;;
+let string_of_zpriv_level (gs687 : zpriv_level) = string_of_zbits gs687;;
 
 type zPrivilege = | ZUser | ZSupervisor | ZMachine;;
 
@@ -1545,7 +1551,7 @@ and zundefined_word_width (() : (unit)) : zword_width = sail_call (fun r ->
 
 type  zexc_code = zbits;;
 
-let string_of_zexc_code (gs751 : zexc_code) = string_of_zbits gs751;;
+let string_of_zexc_code (gs756 : zexc_code) = string_of_zbits gs756;;
 
 type zInterruptType =
   | ZI_U_Software
@@ -1759,7 +1765,7 @@ and zinternal_error : 'za. (string) -> 'za = fun zs -> sail_call (fun r ->
 
 type  ztv_mode = zbits;;
 
-let string_of_ztv_mode (gs800 : ztv_mode) = string_of_zbits gs800;;
+let string_of_ztv_mode (gs805 : ztv_mode) = string_of_zbits gs805;;
 
 type zTrapVectorMode = | ZTV_Direct | ZTV_Vector | ZTV_Reserved;;
 
@@ -1803,7 +1809,7 @@ and ztrapVectorMode_of_bits (zm : ((bit) list)) : zTrapVectorMode = sail_call (f
 
 type  zext_status = zbits;;
 
-let string_of_zext_status (gs817 : zext_status) = string_of_zbits gs817;;
+let string_of_zext_status (gs822 : zext_status) = string_of_zbits gs822;;
 
 type zExtStatus = | ZOff | ZInitial | ZClean | ZDirty;;
 
@@ -1866,7 +1872,7 @@ and zextStatus_of_bits (ze : ((bit) list)) : zExtStatus = sail_call (fun r ->
 
 type  zsatp_mode = zbits;;
 
-let string_of_zsatp_mode (gs838 : zsatp_mode) = string_of_zbits gs838;;
+let string_of_zsatp_mode (gs843 : zsatp_mode) = string_of_zbits gs843;;
 
 type zSATPMode = | ZSbare | ZSv32 | ZSv39;;
 
@@ -1920,7 +1926,7 @@ and zsatpMode_of_bits ((za, zm) : (zArchitecture * (bit) list)) : (zSATPMode) zo
 
 type  zcsrRW = zbits;;
 
-let string_of_zcsrRW (gs856 : zcsrRW) = string_of_zbits gs856;;
+let string_of_zcsrRW (gs861 : zcsrRW) = string_of_zbits gs861;;
 
 type zuop = | ZRISCV_LUI | ZRISCV_AUIPC;;
 
@@ -4083,8 +4089,8 @@ let zcur_inst : (zxlenbits) ref = ref (undefined_vector ((Big_int.of_int (64)), 
 type  zMisa = { zMisa_chunk_0 : (bit) list
 };;
 
-let string_of_zMisa (gs1281 : zMisa) =
-  "{Misa_chunk_0 = " ^ string_of_bits gs1281.zMisa_chunk_0 ^ "}";;
+let string_of_zMisa (gs1286 : zMisa) =
+  "{Misa_chunk_0 = " ^ string_of_bits gs1286.zMisa_chunk_0 ^ "}";;
 
 let rec zundefined_Misa (() : (unit)) : zMisa = sail_call (fun r ->
   {zMisa_chunk_0 = undefined_vector ((Big_int.of_int (64)), (undefined_bit ()))})
@@ -4109,8 +4115,8 @@ and z_update_Misa_bits ((zv, zx) : (zMisa * (bit) list)) : zMisa = sail_call (fu
 type  zSV39_PTE = { zSV39_PTE_chunk_0 : (bit) list
 };;
 
-let string_of_zSV39_PTE (gs1304 : zSV39_PTE) =
-  "{SV39_PTE_chunk_0 = " ^ string_of_bits gs1304.zSV39_PTE_chunk_0 ^ "}";;
+let string_of_zSV39_PTE (gs1309 : zSV39_PTE) =
+  "{SV39_PTE_chunk_0 = " ^ string_of_bits gs1309.zSV39_PTE_chunk_0 ^ "}";;
 
 let rec z_get_Misa_MXL (zv : (zMisa)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zMisa_chunk_0), (Big_int.of_int (63)), (Big_int.of_int (62))))
@@ -4171,8 +4177,8 @@ and z_update_Misa_X ((zv, zx) : (zMisa * (bit) list)) : zMisa = sail_call (fun r
 type  zPTE_Bits = { zPTE_Bits_chunk_0 : (bit) list
 };;
 
-let string_of_zPTE_Bits (gs1361 : zPTE_Bits) =
-  "{PTE_Bits_chunk_0 = " ^ string_of_bits gs1361.zPTE_Bits_chunk_0 ^ "}";;
+let string_of_zPTE_Bits (gs1366 : zPTE_Bits) =
+  "{PTE_Bits_chunk_0 = " ^ string_of_bits gs1366.zPTE_Bits_chunk_0 ^ "}";;
 
 let rec z_get_Misa_W (zv : (zMisa)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zMisa_chunk_0), (Big_int.of_int (22)), (Big_int.of_int (22))))
@@ -4505,8 +4511,8 @@ let rec zlegalizze_misa ((zm, zv) : (zMisa * (bit) list)) : zMisa = sail_call (f
 type  zMstatus = { zMstatus_chunk_0 : (bit) list
 };;
 
-let string_of_zMstatus (gs1689 : zMstatus) =
-  "{Mstatus_chunk_0 = " ^ string_of_bits gs1689.zMstatus_chunk_0 ^ "}";;
+let string_of_zMstatus (gs1694 : zMstatus) =
+  "{Mstatus_chunk_0 = " ^ string_of_bits gs1694.zMstatus_chunk_0 ^ "}";;
 
 let rec zundefined_Mstatus (() : (unit)) : zMstatus = sail_call (fun r ->
   {zMstatus_chunk_0 = undefined_vector ((Big_int.of_int (64)), (undefined_bit ()))})
@@ -4545,8 +4551,8 @@ and z_update_Mstatus_SD ((zv, zx) : (zMstatus * (bit) list)) : zMstatus = sail_c
 type  zSstatus = { zSstatus_chunk_0 : (bit) list
 };;
 
-let string_of_zSstatus (gs1726 : zSstatus) =
-  "{Sstatus_chunk_0 = " ^ string_of_bits gs1726.zSstatus_chunk_0 ^ "}";;
+let string_of_zSstatus (gs1731 : zSstatus) =
+  "{Sstatus_chunk_0 = " ^ string_of_bits gs1731.zSstatus_chunk_0 ^ "}";;
 
 let rec z_get_Mstatus_SXL (zv : (zMstatus)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zMstatus_chunk_0), (Big_int.of_int (35)), (Big_int.of_int (34))))
@@ -4805,6 +4811,7 @@ let zmstatus : (zMstatus) ref = ref (zundefined_Mstatus ());;
 let rec zlegalizze_mstatus ((zo, zv) : (zMstatus * (bit) list)) : zMstatus = sail_call (fun r ->
   let zm = (zMk_Mstatus zv) in
   let zm = (z_update_Mstatus_XS (zm, (zextStatus_to_bits ZOff))) in
+  let zm = (z_update_Mstatus_FS (zm, (zextStatus_to_bits ZOff))) in
   let zm = (z_update_Mstatus_SD (zm, (zbool_to_bits ((eq_list ((zextStatus_to_bits (zextStatus_of_bits (z_get_Mstatus_FS zm))), (zextStatus_to_bits ZDirty))) || (eq_list ((zextStatus_to_bits (zextStatus_of_bits (z_get_Mstatus_XS zm))), (zextStatus_to_bits ZDirty))))))) in
   let zm = (z_update_Mstatus_SXL (zm, (z_get_Mstatus_SXL zo))) in
   let zm = (z_update_Mstatus_UXL (zm, (z_get_Mstatus_UXL zo))) in
@@ -4843,8 +4850,8 @@ and zhaveFP (() : (unit)) : bool = sail_call (fun r ->
 type  zMinterrupts = { zMinterrupts_chunk_0 : (bit) list
 };;
 
-let string_of_zMinterrupts (gs2008 : zMinterrupts) =
-  "{Minterrupts_chunk_0 = " ^ string_of_bits gs2008.zMinterrupts_chunk_0 ^ "}";;
+let string_of_zMinterrupts (gs2013 : zMinterrupts) =
+  "{Minterrupts_chunk_0 = " ^ string_of_bits gs2013.zMinterrupts_chunk_0 ^ "}";;
 
 let rec zundefined_Minterrupts (() : (unit)) : zMinterrupts = sail_call (fun r ->
   {zMinterrupts_chunk_0 = undefined_vector ((Big_int.of_int (64)), (undefined_bit ()))})
@@ -4897,8 +4904,8 @@ and z_update_Minterrupts_SEI ((zv, zx) : (zMinterrupts * (bit) list)) : zMinterr
 type  zSinterrupts = { zSinterrupts_chunk_0 : (bit) list
 };;
 
-let string_of_zSinterrupts (gs2059 : zSinterrupts) =
-  "{Sinterrupts_chunk_0 = " ^ string_of_bits gs2059.zSinterrupts_chunk_0 ^ "}";;
+let string_of_zSinterrupts (gs2064 : zSinterrupts) =
+  "{Sinterrupts_chunk_0 = " ^ string_of_bits gs2064.zSinterrupts_chunk_0 ^ "}";;
 
 let rec z_get_Minterrupts_UEI (zv : (zMinterrupts)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zMinterrupts_chunk_0), (Big_int.of_int (8)), (Big_int.of_int (8))))
@@ -5031,8 +5038,8 @@ and zlegalizze_mideleg ((zo, zv) : (zMinterrupts * (bit) list)) : zMinterrupts =
 type  zMedeleg = { zMedeleg_chunk_0 : (bit) list
 };;
 
-let string_of_zMedeleg (gs2173 : zMedeleg) =
-  "{Medeleg_chunk_0 = " ^ string_of_bits gs2173.zMedeleg_chunk_0 ^ "}";;
+let string_of_zMedeleg (gs2178 : zMedeleg) =
+  "{Medeleg_chunk_0 = " ^ string_of_bits gs2178.zMedeleg_chunk_0 ^ "}";;
 
 let rec zundefined_Medeleg (() : (unit)) : zMedeleg = sail_call (fun r ->
   {zMedeleg_chunk_0 = undefined_vector ((Big_int.of_int (64)), (undefined_bit ()))})
@@ -5141,8 +5148,8 @@ and z_update_Medeleg_UEnvCall ((zv, zx) : (zMedeleg * (bit) list)) : zMedeleg = 
 type  zSedeleg = { zSedeleg_chunk_0 : (bit) list
 };;
 
-let string_of_zSedeleg (gs2280 : zSedeleg) =
-  "{Sedeleg_chunk_0 = " ^ string_of_bits gs2280.zSedeleg_chunk_0 ^ "}";;
+let string_of_zSedeleg (gs2285 : zSedeleg) =
+  "{Sedeleg_chunk_0 = " ^ string_of_bits gs2285.zSedeleg_chunk_0 ^ "}";;
 
 let rec z_get_Medeleg_SAMO_Access_Fault (zv : (zMedeleg)) : (bit) list = sail_call (fun r ->
   subrange ((zv.zMedeleg_chunk_0), (Big_int.of_int (7)), (Big_int.of_int (7))))
@@ -5266,8 +5273,8 @@ let rec zlegalizze_medeleg ((zo, zv) : (zMedeleg * (bit) list)) : zMedeleg = sai
 type  zMtvec = { zMtvec_chunk_0 : (bit) list
 };;
 
-let string_of_zMtvec (gs2398 : zMtvec) =
-  "{Mtvec_chunk_0 = " ^ string_of_bits gs2398.zMtvec_chunk_0 ^ "}";;
+let string_of_zMtvec (gs2403 : zMtvec) =
+  "{Mtvec_chunk_0 = " ^ string_of_bits gs2403.zMtvec_chunk_0 ^ "}";;
 
 let rec zundefined_Mtvec (() : (unit)) : zMtvec = sail_call (fun r ->
   {zMtvec_chunk_0 = undefined_vector ((Big_int.of_int (64)), (undefined_bit ()))})
@@ -5320,8 +5327,8 @@ and z_update_Mtvec_Mode ((zv, zx) : (zMtvec * (bit) list)) : zMtvec = sail_call 
 type  zSatp64 = { zSatp64_chunk_0 : (bit) list
 };;
 
-let string_of_zSatp64 (gs2449 : zSatp64) =
-  "{Satp64_chunk_0 = " ^ string_of_bits gs2449.zSatp64_chunk_0 ^ "}";;
+let string_of_zSatp64 (gs2454 : zSatp64) =
+  "{Satp64_chunk_0 = " ^ string_of_bits gs2454.zSatp64_chunk_0 ^ "}";;
 
 let zmtvec : (zMtvec) ref = ref (zundefined_Mtvec ());;
 
@@ -5337,8 +5344,8 @@ let rec zlegalizze_tvec ((zo, zv) : (zMtvec * (bit) list)) : zMtvec = sail_call 
 type  zMcause = { zMcause_chunk_0 : (bit) list
 };;
 
-let string_of_zMcause (gs2455 : zMcause) =
-  "{Mcause_chunk_0 = " ^ string_of_bits gs2455.zMcause_chunk_0 ^ "}";;
+let string_of_zMcause (gs2460 : zMcause) =
+  "{Mcause_chunk_0 = " ^ string_of_bits gs2460.zMcause_chunk_0 ^ "}";;
 
 let rec zundefined_Mcause (() : (unit)) : zMcause = sail_call (fun r ->
   {zMcause_chunk_0 = undefined_vector ((Big_int.of_int (64)), (undefined_bit ()))})
@@ -5415,8 +5422,8 @@ let zmscratch : (zxlenbits) ref = ref (undefined_vector ((Big_int.of_int (64)), 
 type  zCounteren = { zCounteren_chunk_0 : (bit) list
 };;
 
-let string_of_zCounteren (gs2519 : zCounteren) =
-  "{Counteren_chunk_0 = " ^ string_of_bits gs2519.zCounteren_chunk_0 ^ "}";;
+let string_of_zCounteren (gs2524 : zCounteren) =
+  "{Counteren_chunk_0 = " ^ string_of_bits gs2524.zCounteren_chunk_0 ^ "}";;
 
 let rec zundefined_Counteren (() : (unit)) : zCounteren = sail_call (fun r ->
   {zCounteren_chunk_0 = undefined_vector ((Big_int.of_int (32)), (undefined_bit ()))})
@@ -10981,8 +10988,8 @@ and zcurInterrupt ((zpriv, zpend, zenbl, zdelg) : (zPrivilege * zMinterrupts * z
 type  zsync_exception = { ztrap : zExceptionType; zexcinfo : (zxlenbits) zoption
 };;
 
-let string_of_zsync_exception (gs3535 : zsync_exception) =
-  "{trap = " ^ string_of_zExceptionType gs3535.ztrap
+let string_of_zsync_exception (gs3540 : zsync_exception) =
+  "{trap = " ^ string_of_zExceptionType gs3540.ztrap
   ^ ", excinfo = " ^ "APP" ^ "}";;
 
 let rec zundefined_sync_exception (() : (unit)) : zsync_exception = sail_call (fun r ->
@@ -11008,8 +11015,11 @@ let rec zundefined_ctl_result (() : (unit)) : zctl_result = sail_call (fun r ->
   let zu_1 = (undefined_unit ()) in
   internal_pick [ZCTL_TRAP zu_0; ZCTL_SRET zu_1; ZCTL_MRET zu_1])
 
+and zrvfi_trap (() : (unit)) : unit = sail_call (fun r -> ())
+
 and zhandle_trap ((zdel_priv, zintr, zc, zpc, zinfo) : (zPrivilege * bool * (bit) list * (bit) list * ((bit) list) zoption)) : (bit) list = sail_call (fun r ->
   begin
+    zrvfi_trap ();
     print_endline (concat_str ("handling ", (concat_str ((if zintr then "int#" else "exc#"), (concat_str ((string_of_bits zc), (concat_str (" at priv ", (concat_str ((zprivLevel_to_str zdel_priv), (concat_str (" with tval ", (string_of_bits (ztval zinfo))))))))))))));
     begin
       match zdel_priv with
@@ -11227,8 +11237,8 @@ and ztick_clock (() : (unit)) : unit = sail_call (fun r ->
 type  zhtif_cmd = { zhtif_cmd_chunk_0 : (bit) list
 };;
 
-let string_of_zhtif_cmd (gs3648 : zhtif_cmd) =
-  "{htif_cmd_chunk_0 = " ^ string_of_bits gs3648.zhtif_cmd_chunk_0 ^ "}";;
+let string_of_zhtif_cmd (gs3657 : zhtif_cmd) =
+  "{htif_cmd_chunk_0 = " ^ string_of_bits gs3657.zhtif_cmd_chunk_0 ^ "}";;
 
 let rec zundefined_htif_cmd (() : (unit)) : zhtif_cmd = sail_call (fun r ->
   {zhtif_cmd_chunk_0 = undefined_vector ((Big_int.of_int (64)), (undefined_bit ()))})
@@ -11452,8 +11462,11 @@ and zMEMr_reserved_acquire ((zaddr, zwidth) : ((bit) list * Big_int.num)) : ((bi
 and zMEMr_reserved_strong_acquire ((zaddr, zwidth) : ((bit) list * Big_int.num)) : ((bit) list) zMemoryOpResult = sail_call (fun r ->
   zchecked_mem_read (ZData, zaddr, zwidth, true, true, true))
 
+and zrvfi_read ((zaddr, zwidth, zvalue) : ((bit) list * Big_int.num * ((bit) list) zMemoryOpResult)) : unit = sail_call (fun r ->
+  ())
+
 and zmem_read ((zaddr, zwidth, zaq, zrl, zres) : ((bit) list * Big_int.num * bool * bool * bool)) : ((bit) list) zMemoryOpResult = sail_call (fun r ->
-  if ((zaq || zres) && (not (zis_aligned_addr (zaddr, zwidth)))) then (ZMemException ZE_Load_Addr_Align) else (begin
+  let zresult = (if ((zaq || zres) && (not (zis_aligned_addr (zaddr, zwidth)))) then (ZMemException ZE_Load_Addr_Align) else (begin
     match (zaq, zrl, zres) with
     | (zp0z3, zp1z3, zp2z3) when (((eq_bool (zp2z3, false)) && (eq_bool (zp1z3, false))) && (eq_bool (zp0z3, false))) ->
       zchecked_mem_read (ZData, zaddr, zwidth, false, false, false)
@@ -11471,7 +11484,8 @@ and zmem_read ((zaddr, zwidth, zaq, zrl, zres) : ((bit) list * Big_int.num * boo
       raise (ZError_not_implemented "lr.rl")
     | (zp0z3, zp1z3, zp2z3) when (((eq_bool (zp2z3, true)) && (eq_bool (zp1z3, true))) && (eq_bool (zp0z3, true))) ->
       zMEMr_reserved_strong_acquire (zaddr, zwidth)
-  end))
+  end)) in
+  begin zrvfi_read (zaddr, zwidth, zresult); zresult end)
 
 and zmem_write_ea ((zaddr, zwidth, zaq, zrl, zcon) : ((bit) list * Big_int.num * bool * bool * bool)) : (unit) zMemoryOpResult = sail_call (fun r ->
   if ((zrl || zcon) && (not (zis_aligned_addr (zaddr, zwidth)))) then (ZMemException ZE_SAMO_Addr_Align) else (begin
@@ -11521,32 +11535,38 @@ and zMEMval_conditional_release ((zaddr, zwidth, zdata) : ((bit) list * Big_int.
 and zMEMval_conditional_strong_release ((zaddr, zwidth, zdata) : ((bit) list * Big_int.num * (bit) list)) : (bool) zMemoryOpResult = sail_call (fun r ->
   zchecked_mem_write (zaddr, zwidth, zdata))
 
+and zrvfi_write ((zaddr, zwidth, zvalue) : ((bit) list * Big_int.num * (bit) list)) : unit = sail_call (fun r ->
+  ())
+
 and zmem_write_value ((zaddr, zwidth, zvalue, zaq, zrl, zcon) : ((bit) list * Big_int.num * (bit) list * bool * bool * bool)) : (bool) zMemoryOpResult = sail_call (fun r ->
-  if ((zrl || zcon) && (not (zis_aligned_addr (zaddr, zwidth)))) then (ZMemException ZE_SAMO_Addr_Align) else (begin
-    match (zaq, zrl, zcon) with
-    | (zp0z3, zp1z3, zp2z3) when (((eq_bool (zp2z3, false)) && (eq_bool (zp1z3, false))) && (eq_bool (zp0z3, false))) ->
-      zchecked_mem_write (zaddr, zwidth, zvalue)
-    | (zp0z3, zp1z3, zp2z3) when (((eq_bool (zp2z3, false)) && (eq_bool (zp1z3, true))) && (eq_bool (zp0z3, false))) ->
-      zMEMval_release (zaddr, zwidth, zvalue)
-    | (zp0z3, zp1z3, zp2z3) when (((eq_bool (zp2z3, true)) && (eq_bool (zp1z3, false))) && (eq_bool (zp0z3, false))) ->
-      zMEMval_conditional (zaddr, zwidth, zvalue)
-    | (zp0z3, zp1z3, zp2z3) when (((eq_bool (zp2z3, true)) && (eq_bool (zp1z3, true))) && (eq_bool (zp0z3, false))) ->
-      zMEMval_conditional_release (zaddr, zwidth, zvalue)
-    | (zp0z3, zp1z3, zp2z3) when (((eq_bool (zp2z3, false)) && (eq_bool (zp1z3, false))) && (eq_bool (zp0z3, true))) ->
-      raise (ZError_not_implemented "store.aq")
-    | (zp0z3, zp1z3, zp2z3) when (((eq_bool (zp2z3, false)) && (eq_bool (zp1z3, true))) && (eq_bool (zp0z3, true))) ->
-      zMEMval_strong_release (zaddr, zwidth, zvalue)
-    | (zp0z3, zp1z3, zp2z3) when (((eq_bool (zp2z3, true)) && (eq_bool (zp1z3, false))) && (eq_bool (zp0z3, true))) ->
-      raise (ZError_not_implemented "sc.aq")
-    | (zp0z3, zp1z3, zp2z3) when (((eq_bool (zp2z3, true)) && (eq_bool (zp1z3, true))) && (eq_bool (zp0z3, true))) ->
-      zMEMval_conditional_strong_release (zaddr, zwidth, zvalue)
-  end))
+  begin
+    zrvfi_write (zaddr, zwidth, zvalue);
+    if ((zrl || zcon) && (not (zis_aligned_addr (zaddr, zwidth)))) then (ZMemException ZE_SAMO_Addr_Align) else (begin
+      match (zaq, zrl, zcon) with
+      | (zp0z3, zp1z3, zp2z3) when (((eq_bool (zp2z3, false)) && (eq_bool (zp1z3, false))) && (eq_bool (zp0z3, false))) ->
+        zchecked_mem_write (zaddr, zwidth, zvalue)
+      | (zp0z3, zp1z3, zp2z3) when (((eq_bool (zp2z3, false)) && (eq_bool (zp1z3, true))) && (eq_bool (zp0z3, false))) ->
+        zMEMval_release (zaddr, zwidth, zvalue)
+      | (zp0z3, zp1z3, zp2z3) when (((eq_bool (zp2z3, true)) && (eq_bool (zp1z3, false))) && (eq_bool (zp0z3, false))) ->
+        zMEMval_conditional (zaddr, zwidth, zvalue)
+      | (zp0z3, zp1z3, zp2z3) when (((eq_bool (zp2z3, true)) && (eq_bool (zp1z3, true))) && (eq_bool (zp0z3, false))) ->
+        zMEMval_conditional_release (zaddr, zwidth, zvalue)
+      | (zp0z3, zp1z3, zp2z3) when (((eq_bool (zp2z3, false)) && (eq_bool (zp1z3, false))) && (eq_bool (zp0z3, true))) ->
+        raise (ZError_not_implemented "store.aq")
+      | (zp0z3, zp1z3, zp2z3) when (((eq_bool (zp2z3, false)) && (eq_bool (zp1z3, true))) && (eq_bool (zp0z3, true))) ->
+        zMEMval_strong_release (zaddr, zwidth, zvalue)
+      | (zp0z3, zp1z3, zp2z3) when (((eq_bool (zp2z3, true)) && (eq_bool (zp1z3, false))) && (eq_bool (zp0z3, true))) ->
+        raise (ZError_not_implemented "sc.aq")
+      | (zp0z3, zp1z3, zp2z3) when (((eq_bool (zp2z3, true)) && (eq_bool (zp1z3, true))) && (eq_bool (zp0z3, true))) ->
+        zMEMval_conditional_strong_release (zaddr, zwidth, zvalue)
+    end)
+  end)
 
 let zPAGESIZE_BITS = (Big_int.of_int (12));;
 
 type  zpteAttribs = zbits;;
 
-let string_of_zpteAttribs (gs3895 : zpteAttribs) = string_of_zbits gs3895;;
+let string_of_zpteAttribs (gs3916 : zpteAttribs) = string_of_zbits gs3916;;
 
 let rec zundefined_PTE_Bits (() : (unit)) : zPTE_Bits = sail_call (fun r ->
   {zPTE_Bits_chunk_0 = undefined_vector ((Big_int.of_int (8)), (undefined_bit ()))})
@@ -11788,21 +11808,21 @@ let zPTE39_SIZE = (Big_int.of_int (8));;
 
 type  zvaddr39 = zbits;;
 
-let string_of_zvaddr39 (gs4072 : zvaddr39) = string_of_zbits gs4072;;
+let string_of_zvaddr39 (gs4093 : zvaddr39) = string_of_zbits gs4093;;
 
 type  zpaddr39 = zbits;;
 
-let string_of_zpaddr39 (gs4073 : zpaddr39) = string_of_zbits gs4073;;
+let string_of_zpaddr39 (gs4094 : zpaddr39) = string_of_zbits gs4094;;
 
 type  zpte39 = zxlenbits;;
 
-let string_of_zpte39 (gs4074 : zpte39) = string_of_zxlenbits gs4074;;
+let string_of_zpte39 (gs4095 : zpte39) = string_of_zxlenbits gs4095;;
 
 type  zSV39_Vaddr = { zSV39_Vaddr_chunk_0 : (bit) list
 };;
 
-let string_of_zSV39_Vaddr (gs4075 : zSV39_Vaddr) =
-  "{SV39_Vaddr_chunk_0 = " ^ string_of_bits gs4075.zSV39_Vaddr_chunk_0 ^ "}";;
+let string_of_zSV39_Vaddr (gs4096 : zSV39_Vaddr) =
+  "{SV39_Vaddr_chunk_0 = " ^ string_of_bits gs4096.zSV39_Vaddr_chunk_0 ^ "}";;
 
 let rec zundefined_SV39_Vaddr (() : (unit)) : zSV39_Vaddr = sail_call (fun r ->
   {zSV39_Vaddr_chunk_0 = undefined_vector ((Big_int.of_int (39)), (undefined_bit ()))})
@@ -11855,8 +11875,8 @@ and z_update_SV39_Vaddr_PgOfs ((zv, zx) : (zSV39_Vaddr * (bit) list)) : zSV39_Va
 type  zSV39_Paddr = { zSV39_Paddr_chunk_0 : (bit) list
 };;
 
-let string_of_zSV39_Paddr (gs4126 : zSV39_Paddr) =
-  "{SV39_Paddr_chunk_0 = " ^ string_of_bits gs4126.zSV39_Paddr_chunk_0 ^ "}";;
+let string_of_zSV39_Paddr (gs4147 : zSV39_Paddr) =
+  "{SV39_Paddr_chunk_0 = " ^ string_of_bits gs4147.zSV39_Paddr_chunk_0 ^ "}";;
 
 let rec zundefined_SV39_Paddr (() : (unit)) : zSV39_Paddr = sail_call (fun r ->
   {zSV39_Paddr_chunk_0 = undefined_vector ((Big_int.of_int (56)), (undefined_bit ()))})
@@ -11970,7 +11990,7 @@ and z_update_SV39_PTE_BITS ((zv, zx) : (zSV39_PTE * (bit) list)) : zSV39_PTE = s
 
 type  zasid64 = zbits;;
 
-let string_of_zasid64 (gs4241 : zasid64) = string_of_zbits gs4241;;
+let string_of_zasid64 (gs4262 : zasid64) = string_of_zbits gs4262;;
 
 let rec zcurAsid64 (() : (unit)) : (bit) list = sail_call (fun r ->
   let zsatp64 = (zMk_Satp64 !zsatp) in
@@ -12024,16 +12044,16 @@ type  zTLB39_Entry = {
   zage : zxlenbits
 };;
 
-let string_of_zTLB39_Entry (gs4265 : zTLB39_Entry) =
-  "{asid = " ^ string_of_zasid64 gs4265.zasid
-  ^ ", global = " ^ string_of_zbool gs4265.zglobal
-  ^ ", vAddr = " ^ string_of_zvaddr39 gs4265.zvAddr
-  ^ ", pAddr = " ^ string_of_zpaddr39 gs4265.zpAddr
-  ^ ", vMatchMask = " ^ string_of_zvaddr39 gs4265.zvMatchMask
-  ^ ", vAddrMask = " ^ string_of_zvaddr39 gs4265.zvAddrMask
-  ^ ", pte = " ^ string_of_zSV39_PTE gs4265.zpte
-  ^ ", pteAddr = " ^ string_of_zpaddr39 gs4265.zpteAddr
-  ^ ", age = " ^ string_of_zxlenbits gs4265.zage ^ "}";;
+let string_of_zTLB39_Entry (gs4286 : zTLB39_Entry) =
+  "{asid = " ^ string_of_zasid64 gs4286.zasid
+  ^ ", global = " ^ string_of_zbool gs4286.zglobal
+  ^ ", vAddr = " ^ string_of_zvaddr39 gs4286.zvAddr
+  ^ ", pAddr = " ^ string_of_zpaddr39 gs4286.zpAddr
+  ^ ", vMatchMask = " ^ string_of_zvaddr39 gs4286.zvMatchMask
+  ^ ", vAddrMask = " ^ string_of_zvaddr39 gs4286.zvAddrMask
+  ^ ", pte = " ^ string_of_zSV39_PTE gs4286.zpte
+  ^ ", pteAddr = " ^ string_of_zpaddr39 gs4286.zpteAddr
+  ^ ", age = " ^ string_of_zxlenbits gs4286.zage ^ "}";;
 
 let rec zundefined_TLB39_Entry (() : (unit)) : zTLB39_Entry = sail_call (fun r ->
   {zasid = undefined_vector ((Big_int.of_int (16)), (undefined_bit ()));
@@ -16286,8 +16306,8 @@ and zcsr_mnemonic_matches_prefix (zargz3 : (string)) : ((zcsrop * Big_int.num)) 
     | _ -> ZNone ()
   end)
 
-and zexecute (gs5258 : (zast)) = sail_call (fun r ->
-  match gs5258 with
+and zexecute (gs5279 : (zast)) = sail_call (fun r ->
+  match gs5279 with
   | ZUTYPE (zimm, zrd, zop) ->
     let zoff = (zEXTS ((Big_int.of_int (64)), (append (zimm, [B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0; B0])))) in
     let zret = (begin
@@ -16298,11 +16318,15 @@ and zexecute (gs5258 : (zast)) = sail_call (fun r ->
     begin zwX ((zregbits_to_regno zrd), zret); true end
   | ZRISCV_JAL (zimm, zrd) ->
     let zpc = !zPC in
-    begin
+    let znewPC = (add_vec (zpc, (zEXTS ((Big_int.of_int (64)), zimm)))) in
+    if ((zbit_to_bool (access (znewPC, (Big_int.of_int (1))))) && (not (zhaveRVC ()))) then (begin
+      zhandle_mem_exception (znewPC, ZE_Fetch_Addr_Align);
+      false
+    end) else (begin
       zwX ((zregbits_to_regno zrd), !znextPC);
-      let zoffset = (zEXTS ((Big_int.of_int (64)), zimm)) in
-      begin znextPC := (add_vec (zpc, zoffset)); true end
-    end
+      znextPC := znewPC;
+      true
+    end)
   | ZBTYPE (zimm, zrs2, zrs1, zop) ->
     let zrs1_val = (zrX (zregbits_to_regno zrs1)) in
     let zrs2_val = (zrX (zregbits_to_regno zrs2)) in
@@ -16315,10 +16339,11 @@ and zexecute (gs5258 : (zast)) = sail_call (fun r ->
       | ZRISCV_BLTU -> zz8operatorz0zI_uz9 (zrs1_val, zrs2_val)
       | ZRISCV_BGEU -> zz8operatorz0zKzJ_uz9 (zrs1_val, zrs2_val)
     end) in
-    begin
-      if ztaken then (znextPC := (add_vec (!zPC, (zEXTS ((Big_int.of_int (64)), zimm))))) else ();
-      true
-    end
+    let znewPC = (add_vec (!zPC, (zEXTS ((Big_int.of_int (64)), zimm)))) in
+    if ztaken then (if ((zbit_to_bool (access (znewPC, (Big_int.of_int (1))))) && (not (zhaveRVC ()))) then (begin
+      zhandle_mem_exception (znewPC, ZE_Fetch_Addr_Align);
+      false
+    end) else (begin znextPC := znewPC; true end)) else true
   | ZITYPE (zimm, zrs1, zrd, zop) ->
     let zrs1_val = (zrX (zregbits_to_regno zrs1)) in
     let zimmext = (zEXTS ((Big_int.of_int (64)), zimm)) in
@@ -16951,12 +16976,15 @@ and zexecute (gs5258 : (zast)) = sail_call (fun r ->
   | ZILLEGAL (zs) -> begin zhandle_illegal (); false end
   | ZC_ILLEGAL (zs) -> begin zhandle_illegal (); false end
   | ZRISCV_JALR (zimm, zrs1, zrd) ->
-    let znewPC = (add_vec ((zrX (zregbits_to_regno zrs1)), (zEXTS ((Big_int.of_int (64)), zimm)))) in
-    begin
+    let znewPC = (append ((subrange ((add_vec ((zrX (zregbits_to_regno zrs1)), (zEXTS ((Big_int.of_int (64)), zimm)))), (Big_int.of_int (63)), (Big_int.of_int (1)))), [B0])) in
+    if ((zbit_to_bool (access (znewPC, (Big_int.of_int (1))))) && (not (zhaveRVC ()))) then (begin
+      zhandle_mem_exception (znewPC, ZE_Fetch_Addr_Align);
+      false
+    end) else (begin
       zwX ((zregbits_to_regno zrd), !znextPC);
-      znextPC := (append ((subrange (znewPC, (Big_int.of_int (63)), (Big_int.of_int (1)))), [B0]));
+      znextPC := znewPC;
       true
-    end)
+    end))
 
 and zassembly_forwards (zargz3 : (zast)) : string = sail_call (fun r ->
   begin
@@ -17040,8 +17068,8 @@ and zassembly_forwards (zargz3 : (zast)) : string = sail_call (fun r ->
       string_append ("c.li", (string_append ((zspc_forwards ()), (string_append ((zreg_name_forwards zrd), (string_append ((zsep_forwards ()), (string_append ((decimal_string_of_bits zimm), "")))))))))
     | ZC_ADDI16SP (zimm) when (zneq_vec (zimm, [B0; B0; B0; B0; B0; B0])) ->
       string_append ("c.addi16sp", (string_append ((zspc_forwards ()), (string_append ((decimal_string_of_bits zimm), "")))))
-    | ZC_LUI (zimm, zrd) when ((zneq_atom ((zregbits_to_regno zrd), (zregbits_to_regno zzzreg))) && (zneq_atom ((zregbits_to_regno zrd), (zregbits_to_regno zsp)))) ->
-      string_append ("c.lui", (string_append ((zreg_name_forwards zrd), (string_append ((zsep_forwards ()), (string_append ((decimal_string_of_bits zimm), "")))))))
+    | ZC_LUI (zimm, zrd) when ((zneq_atom ((zregbits_to_regno zrd), (zregbits_to_regno zzzreg))) && ((zneq_atom ((zregbits_to_regno zrd), (zregbits_to_regno zsp))) && (zneq_vec (zimm, [B0; B0; B0; B0; B0; B0])))) ->
+      string_append ("c.lui", (string_append ((zspc_forwards ()), (string_append ((zreg_name_forwards zrd), (string_append ((zsep_forwards ()), (string_append ((decimal_string_of_bits zimm), "")))))))))
     | ZC_SRLI (zshamt, zrsd) when (zneq_vec (zshamt, [B0; B0; B0; B0; B0; B0])) ->
       string_append ("c.srli", (string_append ((zspc_forwards ()), (string_append ((zcreg_name_forwards zrsd), (string_append ((zsep_forwards ()), (string_append ((decimal_string_of_bits zshamt), "")))))))))
     | ZC_SRAI (zshamt, zrsd) when (zneq_vec (zshamt, [B0; B0; B0; B0; B0; B0])) ->
@@ -17093,24 +17121,24 @@ and zassembly_forwards (zargz3 : (zast)) : string = sail_call (fun r ->
       string_append ("c.illegal", (string_append ((zspc_forwards ()), (string_append ((decimal_string_of_bits zs), "")))))
   end)
 
-and z_s1647z3 (z_s1648z3 : (string)) : ((bit) list) zoption = sail_call (fun r ->
+and z_s1649z3 (z_s1650z3 : (string)) : ((bit) list) zoption = sail_call (fun r ->
   begin
-    match z_s1648z3 with
-    | z_s1649z3 when (string_startswith (z_s1649z3, "c.illegal")) ->
+    match z_s1650z3 with
+    | z_s1651z3 when (string_startswith (z_s1651z3, "c.illegal")) ->
       begin
-        match (string_drop (z_s1649z3, (string_length "c.illegal"))) with
-        | z_s1650z3 ->
+        match (string_drop (z_s1651z3, (string_length "c.illegal"))) with
+        | z_s1652z3 ->
           begin
-            match (zspc_matches_prefix z_s1650z3) with
-            | ZSome ((), z_s1651z3) ->
+            match (zspc_matches_prefix z_s1652z3) with
+            | ZSome ((), z_s1653z3) ->
               begin
-                match (string_drop (z_s1650z3, z_s1651z3)) with
-                | z_s1652z3 ->
+                match (string_drop (z_s1652z3, z_s1653z3)) with
+                | z_s1654z3 ->
                   begin
-                    match (hex_bits_16_matches_prefix z_s1652z3) with
-                    | ZSome (zs, z_s1653z3) ->
+                    match (hex_bits_16_matches_prefix z_s1654z3) with
+                    | ZSome (zs, z_s1655z3) ->
                       begin
-                        match (string_drop (z_s1652z3, z_s1653z3)) with
+                        match (string_drop (z_s1654z3, z_s1655z3)) with
                         | "" -> ZSome zs
                         | _ -> ZNone ()
                       end
@@ -17125,24 +17153,24 @@ and z_s1647z3 (z_s1648z3 : (string)) : ((bit) list) zoption = sail_call (fun r -
     | _ -> ZNone ()
   end)
 
-and z_s1639z3 (z_s1640z3 : (string)) : ((bit) list) zoption = sail_call (fun r ->
+and z_s1641z3 (z_s1642z3 : (string)) : ((bit) list) zoption = sail_call (fun r ->
   begin
-    match z_s1640z3 with
-    | z_s1641z3 when (string_startswith (z_s1641z3, "illegal")) ->
+    match z_s1642z3 with
+    | z_s1643z3 when (string_startswith (z_s1643z3, "illegal")) ->
       begin
-        match (string_drop (z_s1641z3, (string_length "illegal"))) with
-        | z_s1642z3 ->
+        match (string_drop (z_s1643z3, (string_length "illegal"))) with
+        | z_s1644z3 ->
           begin
-            match (zspc_matches_prefix z_s1642z3) with
-            | ZSome ((), z_s1643z3) ->
+            match (zspc_matches_prefix z_s1644z3) with
+            | ZSome ((), z_s1645z3) ->
               begin
-                match (string_drop (z_s1642z3, z_s1643z3)) with
-                | z_s1644z3 ->
+                match (string_drop (z_s1644z3, z_s1645z3)) with
+                | z_s1646z3 ->
                   begin
-                    match (hex_bits_32_matches_prefix z_s1644z3) with
-                    | ZSome (zs, z_s1645z3) ->
+                    match (hex_bits_32_matches_prefix z_s1646z3) with
+                    | ZSome (zs, z_s1647z3) ->
                       begin
-                        match (string_drop (z_s1644z3, z_s1645z3)) with
+                        match (string_drop (z_s1646z3, z_s1647z3)) with
                         | "" -> ZSome zs
                         | _ -> ZNone ()
                       end
@@ -17157,36 +17185,36 @@ and z_s1639z3 (z_s1640z3 : (string)) : ((bit) list) zoption = sail_call (fun r -
     | _ -> ZNone ()
   end)
 
-and z_s1627z3 (z_s1628z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1629z3 (z_s1630z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
-    match z_s1628z3 with
-    | z_s1629z3 when (string_startswith (z_s1629z3, "c.add")) ->
+    match z_s1630z3 with
+    | z_s1631z3 when (string_startswith (z_s1631z3, "c.add")) ->
       begin
-        match (string_drop (z_s1629z3, (string_length "c.add"))) with
-        | z_s1630z3 ->
+        match (string_drop (z_s1631z3, (string_length "c.add"))) with
+        | z_s1632z3 ->
           begin
-            match (zspc_matches_prefix z_s1630z3) with
-            | ZSome ((), z_s1631z3) ->
+            match (zspc_matches_prefix z_s1632z3) with
+            | ZSome ((), z_s1633z3) ->
               begin
-                match (string_drop (z_s1630z3, z_s1631z3)) with
-                | z_s1632z3 ->
+                match (string_drop (z_s1632z3, z_s1633z3)) with
+                | z_s1634z3 ->
                   begin
-                    match (zreg_name_matches_prefix z_s1632z3) with
-                    | ZSome (zrsd, z_s1633z3) ->
+                    match (zreg_name_matches_prefix z_s1634z3) with
+                    | ZSome (zrsd, z_s1635z3) ->
                       begin
-                        match (string_drop (z_s1632z3, z_s1633z3)) with
-                        | z_s1634z3 ->
+                        match (string_drop (z_s1634z3, z_s1635z3)) with
+                        | z_s1636z3 ->
                           begin
-                            match (zsep_matches_prefix z_s1634z3) with
-                            | ZSome ((), z_s1635z3) ->
+                            match (zsep_matches_prefix z_s1636z3) with
+                            | ZSome ((), z_s1637z3) ->
                               begin
-                                match (string_drop (z_s1634z3, z_s1635z3)) with
-                                | z_s1636z3 ->
+                                match (string_drop (z_s1636z3, z_s1637z3)) with
+                                | z_s1638z3 ->
                                   begin
-                                    match (zreg_name_matches_prefix z_s1636z3) with
-                                    | ZSome (zrs2, z_s1637z3) ->
+                                    match (zreg_name_matches_prefix z_s1638z3) with
+                                    | ZSome (zrs2, z_s1639z3) ->
                                       begin
-                                        match (string_drop (z_s1636z3, z_s1637z3)) with
+                                        match (string_drop (z_s1638z3, z_s1639z3)) with
                                         | "" -> ZSome (zrsd, zrs2)
                                         | _ -> ZNone ()
                                       end
@@ -17209,36 +17237,36 @@ and z_s1627z3 (z_s1628z3 : (string)) : (((bit) list * (bit) list)) zoption = sai
     | _ -> ZNone ()
   end)
 
-and z_s1615z3 (z_s1616z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1617z3 (z_s1618z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
-    match z_s1616z3 with
-    | z_s1617z3 when (string_startswith (z_s1617z3, "c.mv")) ->
+    match z_s1618z3 with
+    | z_s1619z3 when (string_startswith (z_s1619z3, "c.mv")) ->
       begin
-        match (string_drop (z_s1617z3, (string_length "c.mv"))) with
-        | z_s1618z3 ->
+        match (string_drop (z_s1619z3, (string_length "c.mv"))) with
+        | z_s1620z3 ->
           begin
-            match (zspc_matches_prefix z_s1618z3) with
-            | ZSome ((), z_s1619z3) ->
+            match (zspc_matches_prefix z_s1620z3) with
+            | ZSome ((), z_s1621z3) ->
               begin
-                match (string_drop (z_s1618z3, z_s1619z3)) with
-                | z_s1620z3 ->
+                match (string_drop (z_s1620z3, z_s1621z3)) with
+                | z_s1622z3 ->
                   begin
-                    match (zreg_name_matches_prefix z_s1620z3) with
-                    | ZSome (zrd, z_s1621z3) ->
+                    match (zreg_name_matches_prefix z_s1622z3) with
+                    | ZSome (zrd, z_s1623z3) ->
                       begin
-                        match (string_drop (z_s1620z3, z_s1621z3)) with
-                        | z_s1622z3 ->
+                        match (string_drop (z_s1622z3, z_s1623z3)) with
+                        | z_s1624z3 ->
                           begin
-                            match (zsep_matches_prefix z_s1622z3) with
-                            | ZSome ((), z_s1623z3) ->
+                            match (zsep_matches_prefix z_s1624z3) with
+                            | ZSome ((), z_s1625z3) ->
                               begin
-                                match (string_drop (z_s1622z3, z_s1623z3)) with
-                                | z_s1624z3 ->
+                                match (string_drop (z_s1624z3, z_s1625z3)) with
+                                | z_s1626z3 ->
                                   begin
-                                    match (zreg_name_matches_prefix z_s1624z3) with
-                                    | ZSome (zrs2, z_s1625z3) ->
+                                    match (zreg_name_matches_prefix z_s1626z3) with
+                                    | ZSome (zrs2, z_s1627z3) ->
                                       begin
-                                        match (string_drop (z_s1624z3, z_s1625z3)) with
+                                        match (string_drop (z_s1626z3, z_s1627z3)) with
                                         | "" -> ZSome (zrd, zrs2)
                                         | _ -> ZNone ()
                                       end
@@ -17261,24 +17289,24 @@ and z_s1615z3 (z_s1616z3 : (string)) : (((bit) list * (bit) list)) zoption = sai
     | _ -> ZNone ()
   end)
 
-and z_s1607z3 (z_s1608z3 : (string)) : ((bit) list) zoption = sail_call (fun r ->
+and z_s1609z3 (z_s1610z3 : (string)) : ((bit) list) zoption = sail_call (fun r ->
   begin
-    match z_s1608z3 with
-    | z_s1609z3 when (string_startswith (z_s1609z3, "c.jalr")) ->
+    match z_s1610z3 with
+    | z_s1611z3 when (string_startswith (z_s1611z3, "c.jalr")) ->
       begin
-        match (string_drop (z_s1609z3, (string_length "c.jalr"))) with
-        | z_s1610z3 ->
+        match (string_drop (z_s1611z3, (string_length "c.jalr"))) with
+        | z_s1612z3 ->
           begin
-            match (zspc_matches_prefix z_s1610z3) with
-            | ZSome ((), z_s1611z3) ->
+            match (zspc_matches_prefix z_s1612z3) with
+            | ZSome ((), z_s1613z3) ->
               begin
-                match (string_drop (z_s1610z3, z_s1611z3)) with
-                | z_s1612z3 ->
+                match (string_drop (z_s1612z3, z_s1613z3)) with
+                | z_s1614z3 ->
                   begin
-                    match (zreg_name_matches_prefix z_s1612z3) with
-                    | ZSome (zrs1, z_s1613z3) ->
+                    match (zreg_name_matches_prefix z_s1614z3) with
+                    | ZSome (zrs1, z_s1615z3) ->
                       begin
-                        match (string_drop (z_s1612z3, z_s1613z3)) with
+                        match (string_drop (z_s1614z3, z_s1615z3)) with
                         | "" -> ZSome zrs1
                         | _ -> ZNone ()
                       end
@@ -17293,24 +17321,24 @@ and z_s1607z3 (z_s1608z3 : (string)) : ((bit) list) zoption = sail_call (fun r -
     | _ -> ZNone ()
   end)
 
-and z_s1599z3 (z_s1600z3 : (string)) : ((bit) list) zoption = sail_call (fun r ->
+and z_s1601z3 (z_s1602z3 : (string)) : ((bit) list) zoption = sail_call (fun r ->
   begin
-    match z_s1600z3 with
-    | z_s1601z3 when (string_startswith (z_s1601z3, "c.jr")) ->
+    match z_s1602z3 with
+    | z_s1603z3 when (string_startswith (z_s1603z3, "c.jr")) ->
       begin
-        match (string_drop (z_s1601z3, (string_length "c.jr"))) with
-        | z_s1602z3 ->
+        match (string_drop (z_s1603z3, (string_length "c.jr"))) with
+        | z_s1604z3 ->
           begin
-            match (zspc_matches_prefix z_s1602z3) with
-            | ZSome ((), z_s1603z3) ->
+            match (zspc_matches_prefix z_s1604z3) with
+            | ZSome ((), z_s1605z3) ->
               begin
-                match (string_drop (z_s1602z3, z_s1603z3)) with
-                | z_s1604z3 ->
+                match (string_drop (z_s1604z3, z_s1605z3)) with
+                | z_s1606z3 ->
                   begin
-                    match (zreg_name_matches_prefix z_s1604z3) with
-                    | ZSome (zrs1, z_s1605z3) ->
+                    match (zreg_name_matches_prefix z_s1606z3) with
+                    | ZSome (zrs1, z_s1607z3) ->
                       begin
-                        match (string_drop (z_s1604z3, z_s1605z3)) with
+                        match (string_drop (z_s1606z3, z_s1607z3)) with
                         | "" -> ZSome zrs1
                         | _ -> ZNone ()
                       end
@@ -17325,36 +17353,36 @@ and z_s1599z3 (z_s1600z3 : (string)) : ((bit) list) zoption = sail_call (fun r -
     | _ -> ZNone ()
   end)
 
-and z_s1587z3 (z_s1588z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1589z3 (z_s1590z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
-    match z_s1588z3 with
-    | z_s1589z3 when (string_startswith (z_s1589z3, "c.sdsp")) ->
+    match z_s1590z3 with
+    | z_s1591z3 when (string_startswith (z_s1591z3, "c.sdsp")) ->
       begin
-        match (string_drop (z_s1589z3, (string_length "c.sdsp"))) with
-        | z_s1590z3 ->
+        match (string_drop (z_s1591z3, (string_length "c.sdsp"))) with
+        | z_s1592z3 ->
           begin
-            match (zspc_matches_prefix z_s1590z3) with
-            | ZSome ((), z_s1591z3) ->
+            match (zspc_matches_prefix z_s1592z3) with
+            | ZSome ((), z_s1593z3) ->
               begin
-                match (string_drop (z_s1590z3, z_s1591z3)) with
-                | z_s1592z3 ->
+                match (string_drop (z_s1592z3, z_s1593z3)) with
+                | z_s1594z3 ->
                   begin
-                    match (zreg_name_matches_prefix z_s1592z3) with
-                    | ZSome (zrs2, z_s1593z3) ->
+                    match (zreg_name_matches_prefix z_s1594z3) with
+                    | ZSome (zrs2, z_s1595z3) ->
                       begin
-                        match (string_drop (z_s1592z3, z_s1593z3)) with
-                        | z_s1594z3 ->
+                        match (string_drop (z_s1594z3, z_s1595z3)) with
+                        | z_s1596z3 ->
                           begin
-                            match (zsep_matches_prefix z_s1594z3) with
-                            | ZSome ((), z_s1595z3) ->
+                            match (zsep_matches_prefix z_s1596z3) with
+                            | ZSome ((), z_s1597z3) ->
                               begin
-                                match (string_drop (z_s1594z3, z_s1595z3)) with
-                                | z_s1596z3 ->
+                                match (string_drop (z_s1596z3, z_s1597z3)) with
+                                | z_s1598z3 ->
                                   begin
-                                    match (hex_bits_6_matches_prefix z_s1596z3) with
-                                    | ZSome (zuimm, z_s1597z3) ->
+                                    match (hex_bits_6_matches_prefix z_s1598z3) with
+                                    | ZSome (zuimm, z_s1599z3) ->
                                       begin
-                                        match (string_drop (z_s1596z3, z_s1597z3)) with
+                                        match (string_drop (z_s1598z3, z_s1599z3)) with
                                         | "" -> ZSome (zrs2, zuimm)
                                         | _ -> ZNone ()
                                       end
@@ -17377,36 +17405,36 @@ and z_s1587z3 (z_s1588z3 : (string)) : (((bit) list * (bit) list)) zoption = sai
     | _ -> ZNone ()
   end)
 
-and z_s1575z3 (z_s1576z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1577z3 (z_s1578z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
-    match z_s1576z3 with
-    | z_s1577z3 when (string_startswith (z_s1577z3, "c.swsp")) ->
+    match z_s1578z3 with
+    | z_s1579z3 when (string_startswith (z_s1579z3, "c.swsp")) ->
       begin
-        match (string_drop (z_s1577z3, (string_length "c.swsp"))) with
-        | z_s1578z3 ->
+        match (string_drop (z_s1579z3, (string_length "c.swsp"))) with
+        | z_s1580z3 ->
           begin
-            match (zspc_matches_prefix z_s1578z3) with
-            | ZSome ((), z_s1579z3) ->
+            match (zspc_matches_prefix z_s1580z3) with
+            | ZSome ((), z_s1581z3) ->
               begin
-                match (string_drop (z_s1578z3, z_s1579z3)) with
-                | z_s1580z3 ->
+                match (string_drop (z_s1580z3, z_s1581z3)) with
+                | z_s1582z3 ->
                   begin
-                    match (zreg_name_matches_prefix z_s1580z3) with
-                    | ZSome (zrd, z_s1581z3) ->
+                    match (zreg_name_matches_prefix z_s1582z3) with
+                    | ZSome (zrd, z_s1583z3) ->
                       begin
-                        match (string_drop (z_s1580z3, z_s1581z3)) with
-                        | z_s1582z3 ->
+                        match (string_drop (z_s1582z3, z_s1583z3)) with
+                        | z_s1584z3 ->
                           begin
-                            match (zsep_matches_prefix z_s1582z3) with
-                            | ZSome ((), z_s1583z3) ->
+                            match (zsep_matches_prefix z_s1584z3) with
+                            | ZSome ((), z_s1585z3) ->
                               begin
-                                match (string_drop (z_s1582z3, z_s1583z3)) with
-                                | z_s1584z3 ->
+                                match (string_drop (z_s1584z3, z_s1585z3)) with
+                                | z_s1586z3 ->
                                   begin
-                                    match (hex_bits_6_matches_prefix z_s1584z3) with
-                                    | ZSome (zuimm, z_s1585z3) ->
+                                    match (hex_bits_6_matches_prefix z_s1586z3) with
+                                    | ZSome (zuimm, z_s1587z3) ->
                                       begin
-                                        match (string_drop (z_s1584z3, z_s1585z3)) with
+                                        match (string_drop (z_s1586z3, z_s1587z3)) with
                                         | "" -> ZSome (zrd, zuimm)
                                         | _ -> ZNone ()
                                       end
@@ -17429,36 +17457,36 @@ and z_s1575z3 (z_s1576z3 : (string)) : (((bit) list * (bit) list)) zoption = sai
     | _ -> ZNone ()
   end)
 
-and z_s1563z3 (z_s1564z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1565z3 (z_s1566z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
-    match z_s1564z3 with
-    | z_s1565z3 when (string_startswith (z_s1565z3, "c.ldsp")) ->
+    match z_s1566z3 with
+    | z_s1567z3 when (string_startswith (z_s1567z3, "c.ldsp")) ->
       begin
-        match (string_drop (z_s1565z3, (string_length "c.ldsp"))) with
-        | z_s1566z3 ->
+        match (string_drop (z_s1567z3, (string_length "c.ldsp"))) with
+        | z_s1568z3 ->
           begin
-            match (zspc_matches_prefix z_s1566z3) with
-            | ZSome ((), z_s1567z3) ->
+            match (zspc_matches_prefix z_s1568z3) with
+            | ZSome ((), z_s1569z3) ->
               begin
-                match (string_drop (z_s1566z3, z_s1567z3)) with
-                | z_s1568z3 ->
+                match (string_drop (z_s1568z3, z_s1569z3)) with
+                | z_s1570z3 ->
                   begin
-                    match (zreg_name_matches_prefix z_s1568z3) with
-                    | ZSome (zrd, z_s1569z3) ->
+                    match (zreg_name_matches_prefix z_s1570z3) with
+                    | ZSome (zrd, z_s1571z3) ->
                       begin
-                        match (string_drop (z_s1568z3, z_s1569z3)) with
-                        | z_s1570z3 ->
+                        match (string_drop (z_s1570z3, z_s1571z3)) with
+                        | z_s1572z3 ->
                           begin
-                            match (zsep_matches_prefix z_s1570z3) with
-                            | ZSome ((), z_s1571z3) ->
+                            match (zsep_matches_prefix z_s1572z3) with
+                            | ZSome ((), z_s1573z3) ->
                               begin
-                                match (string_drop (z_s1570z3, z_s1571z3)) with
-                                | z_s1572z3 ->
+                                match (string_drop (z_s1572z3, z_s1573z3)) with
+                                | z_s1574z3 ->
                                   begin
-                                    match (hex_bits_6_matches_prefix z_s1572z3) with
-                                    | ZSome (zuimm, z_s1573z3) ->
+                                    match (hex_bits_6_matches_prefix z_s1574z3) with
+                                    | ZSome (zuimm, z_s1575z3) ->
                                       begin
-                                        match (string_drop (z_s1572z3, z_s1573z3)) with
+                                        match (string_drop (z_s1574z3, z_s1575z3)) with
                                         | "" -> ZSome (zrd, zuimm)
                                         | _ -> ZNone ()
                                       end
@@ -17481,36 +17509,36 @@ and z_s1563z3 (z_s1564z3 : (string)) : (((bit) list * (bit) list)) zoption = sai
     | _ -> ZNone ()
   end)
 
-and z_s1551z3 (z_s1552z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1553z3 (z_s1554z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
-    match z_s1552z3 with
-    | z_s1553z3 when (string_startswith (z_s1553z3, "c.lwsp")) ->
+    match z_s1554z3 with
+    | z_s1555z3 when (string_startswith (z_s1555z3, "c.lwsp")) ->
       begin
-        match (string_drop (z_s1553z3, (string_length "c.lwsp"))) with
-        | z_s1554z3 ->
+        match (string_drop (z_s1555z3, (string_length "c.lwsp"))) with
+        | z_s1556z3 ->
           begin
-            match (zspc_matches_prefix z_s1554z3) with
-            | ZSome ((), z_s1555z3) ->
+            match (zspc_matches_prefix z_s1556z3) with
+            | ZSome ((), z_s1557z3) ->
               begin
-                match (string_drop (z_s1554z3, z_s1555z3)) with
-                | z_s1556z3 ->
+                match (string_drop (z_s1556z3, z_s1557z3)) with
+                | z_s1558z3 ->
                   begin
-                    match (zreg_name_matches_prefix z_s1556z3) with
-                    | ZSome (zrd, z_s1557z3) ->
+                    match (zreg_name_matches_prefix z_s1558z3) with
+                    | ZSome (zrd, z_s1559z3) ->
                       begin
-                        match (string_drop (z_s1556z3, z_s1557z3)) with
-                        | z_s1558z3 ->
+                        match (string_drop (z_s1558z3, z_s1559z3)) with
+                        | z_s1560z3 ->
                           begin
-                            match (zsep_matches_prefix z_s1558z3) with
-                            | ZSome ((), z_s1559z3) ->
+                            match (zsep_matches_prefix z_s1560z3) with
+                            | ZSome ((), z_s1561z3) ->
                               begin
-                                match (string_drop (z_s1558z3, z_s1559z3)) with
-                                | z_s1560z3 ->
+                                match (string_drop (z_s1560z3, z_s1561z3)) with
+                                | z_s1562z3 ->
                                   begin
-                                    match (hex_bits_6_matches_prefix z_s1560z3) with
-                                    | ZSome (zuimm, z_s1561z3) ->
+                                    match (hex_bits_6_matches_prefix z_s1562z3) with
+                                    | ZSome (zuimm, z_s1563z3) ->
                                       begin
-                                        match (string_drop (z_s1560z3, z_s1561z3)) with
+                                        match (string_drop (z_s1562z3, z_s1563z3)) with
                                         | "" -> ZSome (zrd, zuimm)
                                         | _ -> ZNone ()
                                       end
@@ -17533,36 +17561,36 @@ and z_s1551z3 (z_s1552z3 : (string)) : (((bit) list * (bit) list)) zoption = sai
     | _ -> ZNone ()
   end)
 
-and z_s1539z3 (z_s1540z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1541z3 (z_s1542z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
-    match z_s1540z3 with
-    | z_s1541z3 when (string_startswith (z_s1541z3, "c.slli")) ->
+    match z_s1542z3 with
+    | z_s1543z3 when (string_startswith (z_s1543z3, "c.slli")) ->
       begin
-        match (string_drop (z_s1541z3, (string_length "c.slli"))) with
-        | z_s1542z3 ->
+        match (string_drop (z_s1543z3, (string_length "c.slli"))) with
+        | z_s1544z3 ->
           begin
-            match (zspc_matches_prefix z_s1542z3) with
-            | ZSome ((), z_s1543z3) ->
+            match (zspc_matches_prefix z_s1544z3) with
+            | ZSome ((), z_s1545z3) ->
               begin
-                match (string_drop (z_s1542z3, z_s1543z3)) with
-                | z_s1544z3 ->
+                match (string_drop (z_s1544z3, z_s1545z3)) with
+                | z_s1546z3 ->
                   begin
-                    match (zreg_name_matches_prefix z_s1544z3) with
-                    | ZSome (zrsd, z_s1545z3) ->
+                    match (zreg_name_matches_prefix z_s1546z3) with
+                    | ZSome (zrsd, z_s1547z3) ->
                       begin
-                        match (string_drop (z_s1544z3, z_s1545z3)) with
-                        | z_s1546z3 ->
+                        match (string_drop (z_s1546z3, z_s1547z3)) with
+                        | z_s1548z3 ->
                           begin
-                            match (zsep_matches_prefix z_s1546z3) with
-                            | ZSome ((), z_s1547z3) ->
+                            match (zsep_matches_prefix z_s1548z3) with
+                            | ZSome ((), z_s1549z3) ->
                               begin
-                                match (string_drop (z_s1546z3, z_s1547z3)) with
-                                | z_s1548z3 ->
+                                match (string_drop (z_s1548z3, z_s1549z3)) with
+                                | z_s1550z3 ->
                                   begin
-                                    match (hex_bits_6_matches_prefix z_s1548z3) with
-                                    | ZSome (zshamt, z_s1549z3) ->
+                                    match (hex_bits_6_matches_prefix z_s1550z3) with
+                                    | ZSome (zshamt, z_s1551z3) ->
                                       begin
-                                        match (string_drop (z_s1548z3, z_s1549z3)) with
+                                        match (string_drop (z_s1550z3, z_s1551z3)) with
                                         | "" -> ZSome (zrsd, zshamt)
                                         | _ -> ZNone ()
                                       end
@@ -17585,36 +17613,36 @@ and z_s1539z3 (z_s1540z3 : (string)) : (((bit) list * (bit) list)) zoption = sai
     | _ -> ZNone ()
   end)
 
-and z_s1527z3 (z_s1528z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1529z3 (z_s1530z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
-    match z_s1528z3 with
-    | z_s1529z3 when (string_startswith (z_s1529z3, "c.bnez")) ->
+    match z_s1530z3 with
+    | z_s1531z3 when (string_startswith (z_s1531z3, "c.bnez")) ->
       begin
-        match (string_drop (z_s1529z3, (string_length "c.bnez"))) with
-        | z_s1530z3 ->
+        match (string_drop (z_s1531z3, (string_length "c.bnez"))) with
+        | z_s1532z3 ->
           begin
-            match (zspc_matches_prefix z_s1530z3) with
-            | ZSome ((), z_s1531z3) ->
+            match (zspc_matches_prefix z_s1532z3) with
+            | ZSome ((), z_s1533z3) ->
               begin
-                match (string_drop (z_s1530z3, z_s1531z3)) with
-                | z_s1532z3 ->
+                match (string_drop (z_s1532z3, z_s1533z3)) with
+                | z_s1534z3 ->
                   begin
-                    match (zcreg_name_matches_prefix z_s1532z3) with
-                    | ZSome (zrs, z_s1533z3) ->
+                    match (zcreg_name_matches_prefix z_s1534z3) with
+                    | ZSome (zrs, z_s1535z3) ->
                       begin
-                        match (string_drop (z_s1532z3, z_s1533z3)) with
-                        | z_s1534z3 ->
+                        match (string_drop (z_s1534z3, z_s1535z3)) with
+                        | z_s1536z3 ->
                           begin
-                            match (zsep_matches_prefix z_s1534z3) with
-                            | ZSome ((), z_s1535z3) ->
+                            match (zsep_matches_prefix z_s1536z3) with
+                            | ZSome ((), z_s1537z3) ->
                               begin
-                                match (string_drop (z_s1534z3, z_s1535z3)) with
-                                | z_s1536z3 ->
+                                match (string_drop (z_s1536z3, z_s1537z3)) with
+                                | z_s1538z3 ->
                                   begin
-                                    match (hex_bits_8_matches_prefix z_s1536z3) with
-                                    | ZSome (zimm, z_s1537z3) ->
+                                    match (hex_bits_8_matches_prefix z_s1538z3) with
+                                    | ZSome (zimm, z_s1539z3) ->
                                       begin
-                                        match (string_drop (z_s1536z3, z_s1537z3)) with
+                                        match (string_drop (z_s1538z3, z_s1539z3)) with
                                         | "" -> ZSome (zrs, zimm)
                                         | _ -> ZNone ()
                                       end
@@ -17637,36 +17665,36 @@ and z_s1527z3 (z_s1528z3 : (string)) : (((bit) list * (bit) list)) zoption = sai
     | _ -> ZNone ()
   end)
 
-and z_s1515z3 (z_s1516z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1517z3 (z_s1518z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
-    match z_s1516z3 with
-    | z_s1517z3 when (string_startswith (z_s1517z3, "c.beqz")) ->
+    match z_s1518z3 with
+    | z_s1519z3 when (string_startswith (z_s1519z3, "c.beqz")) ->
       begin
-        match (string_drop (z_s1517z3, (string_length "c.beqz"))) with
-        | z_s1518z3 ->
+        match (string_drop (z_s1519z3, (string_length "c.beqz"))) with
+        | z_s1520z3 ->
           begin
-            match (zspc_matches_prefix z_s1518z3) with
-            | ZSome ((), z_s1519z3) ->
+            match (zspc_matches_prefix z_s1520z3) with
+            | ZSome ((), z_s1521z3) ->
               begin
-                match (string_drop (z_s1518z3, z_s1519z3)) with
-                | z_s1520z3 ->
+                match (string_drop (z_s1520z3, z_s1521z3)) with
+                | z_s1522z3 ->
                   begin
-                    match (zcreg_name_matches_prefix z_s1520z3) with
-                    | ZSome (zrs, z_s1521z3) ->
+                    match (zcreg_name_matches_prefix z_s1522z3) with
+                    | ZSome (zrs, z_s1523z3) ->
                       begin
-                        match (string_drop (z_s1520z3, z_s1521z3)) with
-                        | z_s1522z3 ->
+                        match (string_drop (z_s1522z3, z_s1523z3)) with
+                        | z_s1524z3 ->
                           begin
-                            match (zsep_matches_prefix z_s1522z3) with
-                            | ZSome ((), z_s1523z3) ->
+                            match (zsep_matches_prefix z_s1524z3) with
+                            | ZSome ((), z_s1525z3) ->
                               begin
-                                match (string_drop (z_s1522z3, z_s1523z3)) with
-                                | z_s1524z3 ->
+                                match (string_drop (z_s1524z3, z_s1525z3)) with
+                                | z_s1526z3 ->
                                   begin
-                                    match (hex_bits_8_matches_prefix z_s1524z3) with
-                                    | ZSome (zimm, z_s1525z3) ->
+                                    match (hex_bits_8_matches_prefix z_s1526z3) with
+                                    | ZSome (zimm, z_s1527z3) ->
                                       begin
-                                        match (string_drop (z_s1524z3, z_s1525z3)) with
+                                        match (string_drop (z_s1526z3, z_s1527z3)) with
                                         | "" -> ZSome (zrs, zimm)
                                         | _ -> ZNone ()
                                       end
@@ -17689,24 +17717,24 @@ and z_s1515z3 (z_s1516z3 : (string)) : (((bit) list * (bit) list)) zoption = sai
     | _ -> ZNone ()
   end)
 
-and z_s1507z3 (z_s1508z3 : (string)) : ((bit) list) zoption = sail_call (fun r ->
+and z_s1509z3 (z_s1510z3 : (string)) : ((bit) list) zoption = sail_call (fun r ->
   begin
-    match z_s1508z3 with
-    | z_s1509z3 when (string_startswith (z_s1509z3, "c.j")) ->
+    match z_s1510z3 with
+    | z_s1511z3 when (string_startswith (z_s1511z3, "c.j")) ->
       begin
-        match (string_drop (z_s1509z3, (string_length "c.j"))) with
-        | z_s1510z3 ->
+        match (string_drop (z_s1511z3, (string_length "c.j"))) with
+        | z_s1512z3 ->
           begin
-            match (zspc_matches_prefix z_s1510z3) with
-            | ZSome ((), z_s1511z3) ->
+            match (zspc_matches_prefix z_s1512z3) with
+            | ZSome ((), z_s1513z3) ->
               begin
-                match (string_drop (z_s1510z3, z_s1511z3)) with
-                | z_s1512z3 ->
+                match (string_drop (z_s1512z3, z_s1513z3)) with
+                | z_s1514z3 ->
                   begin
-                    match (hex_bits_11_matches_prefix z_s1512z3) with
-                    | ZSome (zimm, z_s1513z3) ->
+                    match (hex_bits_11_matches_prefix z_s1514z3) with
+                    | ZSome (zimm, z_s1515z3) ->
                       begin
-                        match (string_drop (z_s1512z3, z_s1513z3)) with
+                        match (string_drop (z_s1514z3, z_s1515z3)) with
                         | "" -> ZSome zimm
                         | _ -> ZNone ()
                       end
@@ -17721,36 +17749,36 @@ and z_s1507z3 (z_s1508z3 : (string)) : ((bit) list) zoption = sail_call (fun r -
     | _ -> ZNone ()
   end)
 
-and z_s1495z3 (z_s1496z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1497z3 (z_s1498z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
-    match z_s1496z3 with
-    | z_s1497z3 when (string_startswith (z_s1497z3, "c.addw")) ->
+    match z_s1498z3 with
+    | z_s1499z3 when (string_startswith (z_s1499z3, "c.addw")) ->
       begin
-        match (string_drop (z_s1497z3, (string_length "c.addw"))) with
-        | z_s1498z3 ->
+        match (string_drop (z_s1499z3, (string_length "c.addw"))) with
+        | z_s1500z3 ->
           begin
-            match (zspc_matches_prefix z_s1498z3) with
-            | ZSome ((), z_s1499z3) ->
+            match (zspc_matches_prefix z_s1500z3) with
+            | ZSome ((), z_s1501z3) ->
               begin
-                match (string_drop (z_s1498z3, z_s1499z3)) with
-                | z_s1500z3 ->
+                match (string_drop (z_s1500z3, z_s1501z3)) with
+                | z_s1502z3 ->
                   begin
-                    match (zcreg_name_matches_prefix z_s1500z3) with
-                    | ZSome (zrsd, z_s1501z3) ->
+                    match (zcreg_name_matches_prefix z_s1502z3) with
+                    | ZSome (zrsd, z_s1503z3) ->
                       begin
-                        match (string_drop (z_s1500z3, z_s1501z3)) with
-                        | z_s1502z3 ->
+                        match (string_drop (z_s1502z3, z_s1503z3)) with
+                        | z_s1504z3 ->
                           begin
-                            match (zsep_matches_prefix z_s1502z3) with
-                            | ZSome ((), z_s1503z3) ->
+                            match (zsep_matches_prefix z_s1504z3) with
+                            | ZSome ((), z_s1505z3) ->
                               begin
-                                match (string_drop (z_s1502z3, z_s1503z3)) with
-                                | z_s1504z3 ->
+                                match (string_drop (z_s1504z3, z_s1505z3)) with
+                                | z_s1506z3 ->
                                   begin
-                                    match (zcreg_name_matches_prefix z_s1504z3) with
-                                    | ZSome (zrs2, z_s1505z3) ->
+                                    match (zcreg_name_matches_prefix z_s1506z3) with
+                                    | ZSome (zrs2, z_s1507z3) ->
                                       begin
-                                        match (string_drop (z_s1504z3, z_s1505z3)) with
+                                        match (string_drop (z_s1506z3, z_s1507z3)) with
                                         | "" -> ZSome (zrsd, zrs2)
                                         | _ -> ZNone ()
                                       end
@@ -17773,36 +17801,36 @@ and z_s1495z3 (z_s1496z3 : (string)) : (((bit) list * (bit) list)) zoption = sai
     | _ -> ZNone ()
   end)
 
-and z_s1483z3 (z_s1484z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1485z3 (z_s1486z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
-    match z_s1484z3 with
-    | z_s1485z3 when (string_startswith (z_s1485z3, "c.subw")) ->
+    match z_s1486z3 with
+    | z_s1487z3 when (string_startswith (z_s1487z3, "c.subw")) ->
       begin
-        match (string_drop (z_s1485z3, (string_length "c.subw"))) with
-        | z_s1486z3 ->
+        match (string_drop (z_s1487z3, (string_length "c.subw"))) with
+        | z_s1488z3 ->
           begin
-            match (zspc_matches_prefix z_s1486z3) with
-            | ZSome ((), z_s1487z3) ->
+            match (zspc_matches_prefix z_s1488z3) with
+            | ZSome ((), z_s1489z3) ->
               begin
-                match (string_drop (z_s1486z3, z_s1487z3)) with
-                | z_s1488z3 ->
+                match (string_drop (z_s1488z3, z_s1489z3)) with
+                | z_s1490z3 ->
                   begin
-                    match (zcreg_name_matches_prefix z_s1488z3) with
-                    | ZSome (zrsd, z_s1489z3) ->
+                    match (zcreg_name_matches_prefix z_s1490z3) with
+                    | ZSome (zrsd, z_s1491z3) ->
                       begin
-                        match (string_drop (z_s1488z3, z_s1489z3)) with
-                        | z_s1490z3 ->
+                        match (string_drop (z_s1490z3, z_s1491z3)) with
+                        | z_s1492z3 ->
                           begin
-                            match (zsep_matches_prefix z_s1490z3) with
-                            | ZSome ((), z_s1491z3) ->
+                            match (zsep_matches_prefix z_s1492z3) with
+                            | ZSome ((), z_s1493z3) ->
                               begin
-                                match (string_drop (z_s1490z3, z_s1491z3)) with
-                                | z_s1492z3 ->
+                                match (string_drop (z_s1492z3, z_s1493z3)) with
+                                | z_s1494z3 ->
                                   begin
-                                    match (zcreg_name_matches_prefix z_s1492z3) with
-                                    | ZSome (zrs2, z_s1493z3) ->
+                                    match (zcreg_name_matches_prefix z_s1494z3) with
+                                    | ZSome (zrs2, z_s1495z3) ->
                                       begin
-                                        match (string_drop (z_s1492z3, z_s1493z3)) with
+                                        match (string_drop (z_s1494z3, z_s1495z3)) with
                                         | "" -> ZSome (zrsd, zrs2)
                                         | _ -> ZNone ()
                                       end
@@ -17825,36 +17853,36 @@ and z_s1483z3 (z_s1484z3 : (string)) : (((bit) list * (bit) list)) zoption = sai
     | _ -> ZNone ()
   end)
 
-and z_s1471z3 (z_s1472z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1473z3 (z_s1474z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
-    match z_s1472z3 with
-    | z_s1473z3 when (string_startswith (z_s1473z3, "c.and")) ->
+    match z_s1474z3 with
+    | z_s1475z3 when (string_startswith (z_s1475z3, "c.and")) ->
       begin
-        match (string_drop (z_s1473z3, (string_length "c.and"))) with
-        | z_s1474z3 ->
+        match (string_drop (z_s1475z3, (string_length "c.and"))) with
+        | z_s1476z3 ->
           begin
-            match (zspc_matches_prefix z_s1474z3) with
-            | ZSome ((), z_s1475z3) ->
+            match (zspc_matches_prefix z_s1476z3) with
+            | ZSome ((), z_s1477z3) ->
               begin
-                match (string_drop (z_s1474z3, z_s1475z3)) with
-                | z_s1476z3 ->
+                match (string_drop (z_s1476z3, z_s1477z3)) with
+                | z_s1478z3 ->
                   begin
-                    match (zcreg_name_matches_prefix z_s1476z3) with
-                    | ZSome (zrsd, z_s1477z3) ->
+                    match (zcreg_name_matches_prefix z_s1478z3) with
+                    | ZSome (zrsd, z_s1479z3) ->
                       begin
-                        match (string_drop (z_s1476z3, z_s1477z3)) with
-                        | z_s1478z3 ->
+                        match (string_drop (z_s1478z3, z_s1479z3)) with
+                        | z_s1480z3 ->
                           begin
-                            match (zsep_matches_prefix z_s1478z3) with
-                            | ZSome ((), z_s1479z3) ->
+                            match (zsep_matches_prefix z_s1480z3) with
+                            | ZSome ((), z_s1481z3) ->
                               begin
-                                match (string_drop (z_s1478z3, z_s1479z3)) with
-                                | z_s1480z3 ->
+                                match (string_drop (z_s1480z3, z_s1481z3)) with
+                                | z_s1482z3 ->
                                   begin
-                                    match (zcreg_name_matches_prefix z_s1480z3) with
-                                    | ZSome (zrs2, z_s1481z3) ->
+                                    match (zcreg_name_matches_prefix z_s1482z3) with
+                                    | ZSome (zrs2, z_s1483z3) ->
                                       begin
-                                        match (string_drop (z_s1480z3, z_s1481z3)) with
+                                        match (string_drop (z_s1482z3, z_s1483z3)) with
                                         | "" -> ZSome (zrsd, zrs2)
                                         | _ -> ZNone ()
                                       end
@@ -17877,36 +17905,36 @@ and z_s1471z3 (z_s1472z3 : (string)) : (((bit) list * (bit) list)) zoption = sai
     | _ -> ZNone ()
   end)
 
-and z_s1459z3 (z_s1460z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1461z3 (z_s1462z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
-    match z_s1460z3 with
-    | z_s1461z3 when (string_startswith (z_s1461z3, "c.or")) ->
+    match z_s1462z3 with
+    | z_s1463z3 when (string_startswith (z_s1463z3, "c.or")) ->
       begin
-        match (string_drop (z_s1461z3, (string_length "c.or"))) with
-        | z_s1462z3 ->
+        match (string_drop (z_s1463z3, (string_length "c.or"))) with
+        | z_s1464z3 ->
           begin
-            match (zspc_matches_prefix z_s1462z3) with
-            | ZSome ((), z_s1463z3) ->
+            match (zspc_matches_prefix z_s1464z3) with
+            | ZSome ((), z_s1465z3) ->
               begin
-                match (string_drop (z_s1462z3, z_s1463z3)) with
-                | z_s1464z3 ->
+                match (string_drop (z_s1464z3, z_s1465z3)) with
+                | z_s1466z3 ->
                   begin
-                    match (zcreg_name_matches_prefix z_s1464z3) with
-                    | ZSome (zrsd, z_s1465z3) ->
+                    match (zcreg_name_matches_prefix z_s1466z3) with
+                    | ZSome (zrsd, z_s1467z3) ->
                       begin
-                        match (string_drop (z_s1464z3, z_s1465z3)) with
-                        | z_s1466z3 ->
+                        match (string_drop (z_s1466z3, z_s1467z3)) with
+                        | z_s1468z3 ->
                           begin
-                            match (zsep_matches_prefix z_s1466z3) with
-                            | ZSome ((), z_s1467z3) ->
+                            match (zsep_matches_prefix z_s1468z3) with
+                            | ZSome ((), z_s1469z3) ->
                               begin
-                                match (string_drop (z_s1466z3, z_s1467z3)) with
-                                | z_s1468z3 ->
+                                match (string_drop (z_s1468z3, z_s1469z3)) with
+                                | z_s1470z3 ->
                                   begin
-                                    match (zcreg_name_matches_prefix z_s1468z3) with
-                                    | ZSome (zrs2, z_s1469z3) ->
+                                    match (zcreg_name_matches_prefix z_s1470z3) with
+                                    | ZSome (zrs2, z_s1471z3) ->
                                       begin
-                                        match (string_drop (z_s1468z3, z_s1469z3)) with
+                                        match (string_drop (z_s1470z3, z_s1471z3)) with
                                         | "" -> ZSome (zrsd, zrs2)
                                         | _ -> ZNone ()
                                       end
@@ -17929,36 +17957,36 @@ and z_s1459z3 (z_s1460z3 : (string)) : (((bit) list * (bit) list)) zoption = sai
     | _ -> ZNone ()
   end)
 
-and z_s1447z3 (z_s1448z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1449z3 (z_s1450z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
-    match z_s1448z3 with
-    | z_s1449z3 when (string_startswith (z_s1449z3, "c.xor")) ->
+    match z_s1450z3 with
+    | z_s1451z3 when (string_startswith (z_s1451z3, "c.xor")) ->
       begin
-        match (string_drop (z_s1449z3, (string_length "c.xor"))) with
-        | z_s1450z3 ->
+        match (string_drop (z_s1451z3, (string_length "c.xor"))) with
+        | z_s1452z3 ->
           begin
-            match (zspc_matches_prefix z_s1450z3) with
-            | ZSome ((), z_s1451z3) ->
+            match (zspc_matches_prefix z_s1452z3) with
+            | ZSome ((), z_s1453z3) ->
               begin
-                match (string_drop (z_s1450z3, z_s1451z3)) with
-                | z_s1452z3 ->
+                match (string_drop (z_s1452z3, z_s1453z3)) with
+                | z_s1454z3 ->
                   begin
-                    match (zcreg_name_matches_prefix z_s1452z3) with
-                    | ZSome (zrsd, z_s1453z3) ->
+                    match (zcreg_name_matches_prefix z_s1454z3) with
+                    | ZSome (zrsd, z_s1455z3) ->
                       begin
-                        match (string_drop (z_s1452z3, z_s1453z3)) with
-                        | z_s1454z3 ->
+                        match (string_drop (z_s1454z3, z_s1455z3)) with
+                        | z_s1456z3 ->
                           begin
-                            match (zsep_matches_prefix z_s1454z3) with
-                            | ZSome ((), z_s1455z3) ->
+                            match (zsep_matches_prefix z_s1456z3) with
+                            | ZSome ((), z_s1457z3) ->
                               begin
-                                match (string_drop (z_s1454z3, z_s1455z3)) with
-                                | z_s1456z3 ->
+                                match (string_drop (z_s1456z3, z_s1457z3)) with
+                                | z_s1458z3 ->
                                   begin
-                                    match (zcreg_name_matches_prefix z_s1456z3) with
-                                    | ZSome (zrs2, z_s1457z3) ->
+                                    match (zcreg_name_matches_prefix z_s1458z3) with
+                                    | ZSome (zrs2, z_s1459z3) ->
                                       begin
-                                        match (string_drop (z_s1456z3, z_s1457z3)) with
+                                        match (string_drop (z_s1458z3, z_s1459z3)) with
                                         | "" -> ZSome (zrsd, zrs2)
                                         | _ -> ZNone ()
                                       end
@@ -17981,36 +18009,36 @@ and z_s1447z3 (z_s1448z3 : (string)) : (((bit) list * (bit) list)) zoption = sai
     | _ -> ZNone ()
   end)
 
-and z_s1435z3 (z_s1436z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1437z3 (z_s1438z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
-    match z_s1436z3 with
-    | z_s1437z3 when (string_startswith (z_s1437z3, "c.sub")) ->
+    match z_s1438z3 with
+    | z_s1439z3 when (string_startswith (z_s1439z3, "c.sub")) ->
       begin
-        match (string_drop (z_s1437z3, (string_length "c.sub"))) with
-        | z_s1438z3 ->
+        match (string_drop (z_s1439z3, (string_length "c.sub"))) with
+        | z_s1440z3 ->
           begin
-            match (zspc_matches_prefix z_s1438z3) with
-            | ZSome ((), z_s1439z3) ->
+            match (zspc_matches_prefix z_s1440z3) with
+            | ZSome ((), z_s1441z3) ->
               begin
-                match (string_drop (z_s1438z3, z_s1439z3)) with
-                | z_s1440z3 ->
+                match (string_drop (z_s1440z3, z_s1441z3)) with
+                | z_s1442z3 ->
                   begin
-                    match (zcreg_name_matches_prefix z_s1440z3) with
-                    | ZSome (zrsd, z_s1441z3) ->
+                    match (zcreg_name_matches_prefix z_s1442z3) with
+                    | ZSome (zrsd, z_s1443z3) ->
                       begin
-                        match (string_drop (z_s1440z3, z_s1441z3)) with
-                        | z_s1442z3 ->
+                        match (string_drop (z_s1442z3, z_s1443z3)) with
+                        | z_s1444z3 ->
                           begin
-                            match (zsep_matches_prefix z_s1442z3) with
-                            | ZSome ((), z_s1443z3) ->
+                            match (zsep_matches_prefix z_s1444z3) with
+                            | ZSome ((), z_s1445z3) ->
                               begin
-                                match (string_drop (z_s1442z3, z_s1443z3)) with
-                                | z_s1444z3 ->
+                                match (string_drop (z_s1444z3, z_s1445z3)) with
+                                | z_s1446z3 ->
                                   begin
-                                    match (zcreg_name_matches_prefix z_s1444z3) with
-                                    | ZSome (zrs2, z_s1445z3) ->
+                                    match (zcreg_name_matches_prefix z_s1446z3) with
+                                    | ZSome (zrs2, z_s1447z3) ->
                                       begin
-                                        match (string_drop (z_s1444z3, z_s1445z3)) with
+                                        match (string_drop (z_s1446z3, z_s1447z3)) with
                                         | "" -> ZSome (zrsd, zrs2)
                                         | _ -> ZNone ()
                                       end
@@ -18033,36 +18061,36 @@ and z_s1435z3 (z_s1436z3 : (string)) : (((bit) list * (bit) list)) zoption = sai
     | _ -> ZNone ()
   end)
 
-and z_s1423z3 (z_s1424z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1425z3 (z_s1426z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
-    match z_s1424z3 with
-    | z_s1425z3 when (string_startswith (z_s1425z3, "c.andi")) ->
+    match z_s1426z3 with
+    | z_s1427z3 when (string_startswith (z_s1427z3, "c.andi")) ->
       begin
-        match (string_drop (z_s1425z3, (string_length "c.andi"))) with
-        | z_s1426z3 ->
+        match (string_drop (z_s1427z3, (string_length "c.andi"))) with
+        | z_s1428z3 ->
           begin
-            match (zspc_matches_prefix z_s1426z3) with
-            | ZSome ((), z_s1427z3) ->
+            match (zspc_matches_prefix z_s1428z3) with
+            | ZSome ((), z_s1429z3) ->
               begin
-                match (string_drop (z_s1426z3, z_s1427z3)) with
-                | z_s1428z3 ->
+                match (string_drop (z_s1428z3, z_s1429z3)) with
+                | z_s1430z3 ->
                   begin
-                    match (zcreg_name_matches_prefix z_s1428z3) with
-                    | ZSome (zrsd, z_s1429z3) ->
+                    match (zcreg_name_matches_prefix z_s1430z3) with
+                    | ZSome (zrsd, z_s1431z3) ->
                       begin
-                        match (string_drop (z_s1428z3, z_s1429z3)) with
-                        | z_s1430z3 ->
+                        match (string_drop (z_s1430z3, z_s1431z3)) with
+                        | z_s1432z3 ->
                           begin
-                            match (zsep_matches_prefix z_s1430z3) with
-                            | ZSome ((), z_s1431z3) ->
+                            match (zsep_matches_prefix z_s1432z3) with
+                            | ZSome ((), z_s1433z3) ->
                               begin
-                                match (string_drop (z_s1430z3, z_s1431z3)) with
-                                | z_s1432z3 ->
+                                match (string_drop (z_s1432z3, z_s1433z3)) with
+                                | z_s1434z3 ->
                                   begin
-                                    match (hex_bits_6_matches_prefix z_s1432z3) with
-                                    | ZSome (zimm, z_s1433z3) ->
+                                    match (hex_bits_6_matches_prefix z_s1434z3) with
+                                    | ZSome (zimm, z_s1435z3) ->
                                       begin
-                                        match (string_drop (z_s1432z3, z_s1433z3)) with
+                                        match (string_drop (z_s1434z3, z_s1435z3)) with
                                         | "" -> ZSome (zrsd, zimm)
                                         | _ -> ZNone ()
                                       end
@@ -18085,36 +18113,36 @@ and z_s1423z3 (z_s1424z3 : (string)) : (((bit) list * (bit) list)) zoption = sai
     | _ -> ZNone ()
   end)
 
-and z_s1411z3 (z_s1412z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1413z3 (z_s1414z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
-    match z_s1412z3 with
-    | z_s1413z3 when (string_startswith (z_s1413z3, "c.srai")) ->
+    match z_s1414z3 with
+    | z_s1415z3 when (string_startswith (z_s1415z3, "c.srai")) ->
       begin
-        match (string_drop (z_s1413z3, (string_length "c.srai"))) with
-        | z_s1414z3 ->
+        match (string_drop (z_s1415z3, (string_length "c.srai"))) with
+        | z_s1416z3 ->
           begin
-            match (zspc_matches_prefix z_s1414z3) with
-            | ZSome ((), z_s1415z3) ->
+            match (zspc_matches_prefix z_s1416z3) with
+            | ZSome ((), z_s1417z3) ->
               begin
-                match (string_drop (z_s1414z3, z_s1415z3)) with
-                | z_s1416z3 ->
+                match (string_drop (z_s1416z3, z_s1417z3)) with
+                | z_s1418z3 ->
                   begin
-                    match (zcreg_name_matches_prefix z_s1416z3) with
-                    | ZSome (zrsd, z_s1417z3) ->
+                    match (zcreg_name_matches_prefix z_s1418z3) with
+                    | ZSome (zrsd, z_s1419z3) ->
                       begin
-                        match (string_drop (z_s1416z3, z_s1417z3)) with
-                        | z_s1418z3 ->
+                        match (string_drop (z_s1418z3, z_s1419z3)) with
+                        | z_s1420z3 ->
                           begin
-                            match (zsep_matches_prefix z_s1418z3) with
-                            | ZSome ((), z_s1419z3) ->
+                            match (zsep_matches_prefix z_s1420z3) with
+                            | ZSome ((), z_s1421z3) ->
                               begin
-                                match (string_drop (z_s1418z3, z_s1419z3)) with
-                                | z_s1420z3 ->
+                                match (string_drop (z_s1420z3, z_s1421z3)) with
+                                | z_s1422z3 ->
                                   begin
-                                    match (hex_bits_6_matches_prefix z_s1420z3) with
-                                    | ZSome (zshamt, z_s1421z3) ->
+                                    match (hex_bits_6_matches_prefix z_s1422z3) with
+                                    | ZSome (zshamt, z_s1423z3) ->
                                       begin
-                                        match (string_drop (z_s1420z3, z_s1421z3)) with
+                                        match (string_drop (z_s1422z3, z_s1423z3)) with
                                         | "" -> ZSome (zrsd, zshamt)
                                         | _ -> ZNone ()
                                       end
@@ -18137,36 +18165,36 @@ and z_s1411z3 (z_s1412z3 : (string)) : (((bit) list * (bit) list)) zoption = sai
     | _ -> ZNone ()
   end)
 
-and z_s1399z3 (z_s1400z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1401z3 (z_s1402z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
-    match z_s1400z3 with
-    | z_s1401z3 when (string_startswith (z_s1401z3, "c.srli")) ->
+    match z_s1402z3 with
+    | z_s1403z3 when (string_startswith (z_s1403z3, "c.srli")) ->
       begin
-        match (string_drop (z_s1401z3, (string_length "c.srli"))) with
-        | z_s1402z3 ->
+        match (string_drop (z_s1403z3, (string_length "c.srli"))) with
+        | z_s1404z3 ->
           begin
-            match (zspc_matches_prefix z_s1402z3) with
-            | ZSome ((), z_s1403z3) ->
+            match (zspc_matches_prefix z_s1404z3) with
+            | ZSome ((), z_s1405z3) ->
               begin
-                match (string_drop (z_s1402z3, z_s1403z3)) with
-                | z_s1404z3 ->
+                match (string_drop (z_s1404z3, z_s1405z3)) with
+                | z_s1406z3 ->
                   begin
-                    match (zcreg_name_matches_prefix z_s1404z3) with
-                    | ZSome (zrsd, z_s1405z3) ->
+                    match (zcreg_name_matches_prefix z_s1406z3) with
+                    | ZSome (zrsd, z_s1407z3) ->
                       begin
-                        match (string_drop (z_s1404z3, z_s1405z3)) with
-                        | z_s1406z3 ->
+                        match (string_drop (z_s1406z3, z_s1407z3)) with
+                        | z_s1408z3 ->
                           begin
-                            match (zsep_matches_prefix z_s1406z3) with
-                            | ZSome ((), z_s1407z3) ->
+                            match (zsep_matches_prefix z_s1408z3) with
+                            | ZSome ((), z_s1409z3) ->
                               begin
-                                match (string_drop (z_s1406z3, z_s1407z3)) with
-                                | z_s1408z3 ->
+                                match (string_drop (z_s1408z3, z_s1409z3)) with
+                                | z_s1410z3 ->
                                   begin
-                                    match (hex_bits_6_matches_prefix z_s1408z3) with
-                                    | ZSome (zshamt, z_s1409z3) ->
+                                    match (hex_bits_6_matches_prefix z_s1410z3) with
+                                    | ZSome (zshamt, z_s1411z3) ->
                                       begin
-                                        match (string_drop (z_s1408z3, z_s1409z3)) with
+                                        match (string_drop (z_s1410z3, z_s1411z3)) with
                                         | "" -> ZSome (zrsd, zshamt)
                                         | _ -> ZNone ()
                                       end
@@ -18197,23 +18225,33 @@ and z_s1389z3 (z_s1390z3 : (string)) : (((bit) list * (bit) list)) zoption = sai
         match (string_drop (z_s1391z3, (string_length "c.lui"))) with
         | z_s1392z3 ->
           begin
-            match (zreg_name_matches_prefix z_s1392z3) with
-            | ZSome (zrd, z_s1393z3) ->
+            match (zspc_matches_prefix z_s1392z3) with
+            | ZSome ((), z_s1393z3) ->
               begin
                 match (string_drop (z_s1392z3, z_s1393z3)) with
                 | z_s1394z3 ->
                   begin
-                    match (zsep_matches_prefix z_s1394z3) with
-                    | ZSome ((), z_s1395z3) ->
+                    match (zreg_name_matches_prefix z_s1394z3) with
+                    | ZSome (zrd, z_s1395z3) ->
                       begin
                         match (string_drop (z_s1394z3, z_s1395z3)) with
                         | z_s1396z3 ->
                           begin
-                            match (hex_bits_6_matches_prefix z_s1396z3) with
-                            | ZSome (zimm, z_s1397z3) ->
+                            match (zsep_matches_prefix z_s1396z3) with
+                            | ZSome ((), z_s1397z3) ->
                               begin
                                 match (string_drop (z_s1396z3, z_s1397z3)) with
-                                | "" -> ZSome (zrd, zimm)
+                                | z_s1398z3 ->
+                                  begin
+                                    match (hex_bits_6_matches_prefix z_s1398z3) with
+                                    | ZSome (zimm, z_s1399z3) ->
+                                      begin
+                                        match (string_drop (z_s1398z3, z_s1399z3)) with
+                                        | "" -> ZSome (zrd, zimm)
+                                        | _ -> ZNone ()
+                                      end
+                                    | _ -> ZNone ()
+                                  end
                                 | _ -> ZNone ()
                               end
                             | _ -> ZNone ()
@@ -21153,161 +21191,161 @@ and zassembly_backwards (zargz3 : (string)) : zast = sail_call (fun r ->
       | _ -> false
     end) ->
       let ZSome (zimm) = (z_s1381z3 z_s1388z3) in ZC_ADDI16SP zimm
-    | z_s1398z3 when (begin
-      match (z_s1389z3 z_s1398z3) with
+    | z_s1400z3 when (begin
+      match (z_s1389z3 z_s1400z3) with
       | ZSome (zrd, zimm) ->
-        (zneq_atom ((zregbits_to_regno zrd), (zregbits_to_regno zzzreg))) && (zneq_atom ((zregbits_to_regno zrd), (zregbits_to_regno zsp)))
+        (zneq_atom ((zregbits_to_regno zrd), (zregbits_to_regno zzzreg))) && ((zneq_atom ((zregbits_to_regno zrd), (zregbits_to_regno zsp))) && (zneq_vec (zimm, [B0; B0; B0; B0; B0; B0])))
       | _ -> false
     end) ->
-      let ZSome (zrd, zimm) = (z_s1389z3 z_s1398z3) in ZC_LUI (zimm, zrd)
-    | z_s1410z3 when (begin
-      match (z_s1399z3 z_s1410z3) with
+      let ZSome (zrd, zimm) = (z_s1389z3 z_s1400z3) in ZC_LUI (zimm, zrd)
+    | z_s1412z3 when (begin
+      match (z_s1401z3 z_s1412z3) with
       | ZSome (zrsd, zshamt) -> zneq_vec (zshamt, [B0; B0; B0; B0; B0; B0])
       | _ -> false
     end) ->
-      let ZSome (zrsd, zshamt) = (z_s1399z3 z_s1410z3) in ZC_SRLI (zshamt, zrsd)
-    | z_s1422z3 when (begin
-      match (z_s1411z3 z_s1422z3) with
+      let ZSome (zrsd, zshamt) = (z_s1401z3 z_s1412z3) in ZC_SRLI (zshamt, zrsd)
+    | z_s1424z3 when (begin
+      match (z_s1413z3 z_s1424z3) with
       | ZSome (zrsd, zshamt) -> zneq_vec (zshamt, [B0; B0; B0; B0; B0; B0])
       | _ -> false
     end) ->
-      let ZSome (zrsd, zshamt) = (z_s1411z3 z_s1422z3) in ZC_SRAI (zshamt, zrsd)
-    | z_s1434z3 when (begin
-      match (z_s1423z3 z_s1434z3) with
+      let ZSome (zrsd, zshamt) = (z_s1413z3 z_s1424z3) in ZC_SRAI (zshamt, zrsd)
+    | z_s1436z3 when (begin
+      match (z_s1425z3 z_s1436z3) with
       | ZSome (zrsd, zimm) -> true
       | _ -> false
     end) ->
-      let ZSome (zrsd, zimm) = (z_s1423z3 z_s1434z3) in ZC_ANDI (zimm, zrsd)
-    | z_s1446z3 when (begin
-      match (z_s1435z3 z_s1446z3) with
+      let ZSome (zrsd, zimm) = (z_s1425z3 z_s1436z3) in ZC_ANDI (zimm, zrsd)
+    | z_s1448z3 when (begin
+      match (z_s1437z3 z_s1448z3) with
       | ZSome (zrsd, zrs2) -> true
       | _ -> false
     end) ->
-      let ZSome (zrsd, zrs2) = (z_s1435z3 z_s1446z3) in ZC_SUB (zrsd, zrs2)
-    | z_s1458z3 when (begin
-      match (z_s1447z3 z_s1458z3) with
+      let ZSome (zrsd, zrs2) = (z_s1437z3 z_s1448z3) in ZC_SUB (zrsd, zrs2)
+    | z_s1460z3 when (begin
+      match (z_s1449z3 z_s1460z3) with
       | ZSome (zrsd, zrs2) -> true
       | _ -> false
     end) ->
-      let ZSome (zrsd, zrs2) = (z_s1447z3 z_s1458z3) in ZC_XOR (zrsd, zrs2)
-    | z_s1470z3 when (begin
-      match (z_s1459z3 z_s1470z3) with
+      let ZSome (zrsd, zrs2) = (z_s1449z3 z_s1460z3) in ZC_XOR (zrsd, zrs2)
+    | z_s1472z3 when (begin
+      match (z_s1461z3 z_s1472z3) with
       | ZSome (zrsd, zrs2) -> true
       | _ -> false
     end) ->
-      let ZSome (zrsd, zrs2) = (z_s1459z3 z_s1470z3) in ZC_OR (zrsd, zrs2)
-    | z_s1482z3 when (begin
-      match (z_s1471z3 z_s1482z3) with
+      let ZSome (zrsd, zrs2) = (z_s1461z3 z_s1472z3) in ZC_OR (zrsd, zrs2)
+    | z_s1484z3 when (begin
+      match (z_s1473z3 z_s1484z3) with
       | ZSome (zrsd, zrs2) -> true
       | _ -> false
     end) ->
-      let ZSome (zrsd, zrs2) = (z_s1471z3 z_s1482z3) in ZC_AND (zrsd, zrs2)
-    | z_s1494z3 when (begin
-      match (z_s1483z3 z_s1494z3) with
+      let ZSome (zrsd, zrs2) = (z_s1473z3 z_s1484z3) in ZC_AND (zrsd, zrs2)
+    | z_s1496z3 when (begin
+      match (z_s1485z3 z_s1496z3) with
       | ZSome (zrsd, zrs2) -> true
       | _ -> false
     end) ->
-      let ZSome (zrsd, zrs2) = (z_s1483z3 z_s1494z3) in ZC_SUBW (zrsd, zrs2)
-    | z_s1506z3 when (begin
-      match (z_s1495z3 z_s1506z3) with
+      let ZSome (zrsd, zrs2) = (z_s1485z3 z_s1496z3) in ZC_SUBW (zrsd, zrs2)
+    | z_s1508z3 when (begin
+      match (z_s1497z3 z_s1508z3) with
       | ZSome (zrsd, zrs2) -> true
       | _ -> false
     end) ->
-      let ZSome (zrsd, zrs2) = (z_s1495z3 z_s1506z3) in ZC_ADDW (zrsd, zrs2)
-    | z_s1514z3 when (begin
-      match (z_s1507z3 z_s1514z3) with
+      let ZSome (zrsd, zrs2) = (z_s1497z3 z_s1508z3) in ZC_ADDW (zrsd, zrs2)
+    | z_s1516z3 when (begin
+      match (z_s1509z3 z_s1516z3) with
       | ZSome (zimm) -> true
       | _ -> false
     end) ->
-      let ZSome (zimm) = (z_s1507z3 z_s1514z3) in ZC_J zimm
-    | z_s1526z3 when (begin
-      match (z_s1515z3 z_s1526z3) with
+      let ZSome (zimm) = (z_s1509z3 z_s1516z3) in ZC_J zimm
+    | z_s1528z3 when (begin
+      match (z_s1517z3 z_s1528z3) with
       | ZSome (zrs, zimm) -> true
       | _ -> false
     end) ->
-      let ZSome (zrs, zimm) = (z_s1515z3 z_s1526z3) in ZC_BEQZ (zimm, zrs)
-    | z_s1538z3 when (begin
-      match (z_s1527z3 z_s1538z3) with
+      let ZSome (zrs, zimm) = (z_s1517z3 z_s1528z3) in ZC_BEQZ (zimm, zrs)
+    | z_s1540z3 when (begin
+      match (z_s1529z3 z_s1540z3) with
       | ZSome (zrs, zimm) -> true
       | _ -> false
     end) ->
-      let ZSome (zrs, zimm) = (z_s1527z3 z_s1538z3) in ZC_BNEZ (zimm, zrs)
-    | z_s1550z3 when (begin
-      match (z_s1539z3 z_s1550z3) with
+      let ZSome (zrs, zimm) = (z_s1529z3 z_s1540z3) in ZC_BNEZ (zimm, zrs)
+    | z_s1552z3 when (begin
+      match (z_s1541z3 z_s1552z3) with
       | ZSome (zrsd, zshamt) ->
         (zneq_vec (zshamt, [B0; B0; B0; B0; B0; B0])) && (zneq_atom ((zregbits_to_regno zrsd), (zregbits_to_regno zzzreg)))
       | _ -> false
     end) ->
-      let ZSome (zrsd, zshamt) = (z_s1539z3 z_s1550z3) in ZC_SLLI (zshamt, zrsd)
-    | z_s1562z3 when (begin
-      match (z_s1551z3 z_s1562z3) with
+      let ZSome (zrsd, zshamt) = (z_s1541z3 z_s1552z3) in ZC_SLLI (zshamt, zrsd)
+    | z_s1564z3 when (begin
+      match (z_s1553z3 z_s1564z3) with
       | ZSome (zrd, zuimm) ->
         zneq_atom ((zregbits_to_regno zrd), (zregbits_to_regno zzzreg))
       | _ -> false
     end) ->
-      let ZSome (zrd, zuimm) = (z_s1551z3 z_s1562z3) in ZC_LWSP (zuimm, zrd)
-    | z_s1574z3 when (begin
-      match (z_s1563z3 z_s1574z3) with
+      let ZSome (zrd, zuimm) = (z_s1553z3 z_s1564z3) in ZC_LWSP (zuimm, zrd)
+    | z_s1576z3 when (begin
+      match (z_s1565z3 z_s1576z3) with
       | ZSome (zrd, zuimm) ->
         zneq_atom ((zregbits_to_regno zrd), (zregbits_to_regno zzzreg))
       | _ -> false
     end) ->
-      let ZSome (zrd, zuimm) = (z_s1563z3 z_s1574z3) in ZC_LDSP (zuimm, zrd)
-    | z_s1586z3 when (begin
-      match (z_s1575z3 z_s1586z3) with
+      let ZSome (zrd, zuimm) = (z_s1565z3 z_s1576z3) in ZC_LDSP (zuimm, zrd)
+    | z_s1588z3 when (begin
+      match (z_s1577z3 z_s1588z3) with
       | ZSome (zrd, zuimm) -> true
       | _ -> false
     end) ->
-      let ZSome (zrd, zuimm) = (z_s1575z3 z_s1586z3) in ZC_SWSP (zuimm, zrd)
-    | z_s1598z3 when (begin
-      match (z_s1587z3 z_s1598z3) with
+      let ZSome (zrd, zuimm) = (z_s1577z3 z_s1588z3) in ZC_SWSP (zuimm, zrd)
+    | z_s1600z3 when (begin
+      match (z_s1589z3 z_s1600z3) with
       | ZSome (zrs2, zuimm) -> true
       | _ -> false
     end) ->
-      let ZSome (zrs2, zuimm) = (z_s1587z3 z_s1598z3) in ZC_SDSP (zuimm, zrs2)
-    | z_s1606z3 when (begin
-      match (z_s1599z3 z_s1606z3) with
+      let ZSome (zrs2, zuimm) = (z_s1589z3 z_s1600z3) in ZC_SDSP (zuimm, zrs2)
+    | z_s1608z3 when (begin
+      match (z_s1601z3 z_s1608z3) with
       | ZSome (zrs1) ->
         zneq_atom ((zregbits_to_regno zrs1), (zregbits_to_regno zzzreg))
       | _ -> false
     end) ->
-      let ZSome (zrs1) = (z_s1599z3 z_s1606z3) in ZC_JR zrs1
-    | z_s1614z3 when (begin
-      match (z_s1607z3 z_s1614z3) with
+      let ZSome (zrs1) = (z_s1601z3 z_s1608z3) in ZC_JR zrs1
+    | z_s1616z3 when (begin
+      match (z_s1609z3 z_s1616z3) with
       | ZSome (zrs1) ->
         zneq_atom ((zregbits_to_regno zrs1), (zregbits_to_regno zzzreg))
       | _ -> false
     end) ->
-      let ZSome (zrs1) = (z_s1607z3 z_s1614z3) in ZC_JALR zrs1
-    | z_s1626z3 when (begin
-      match (z_s1615z3 z_s1626z3) with
+      let ZSome (zrs1) = (z_s1609z3 z_s1616z3) in ZC_JALR zrs1
+    | z_s1628z3 when (begin
+      match (z_s1617z3 z_s1628z3) with
       | ZSome (zrd, zrs2) ->
         (zneq_atom ((zregbits_to_regno zrd), (zregbits_to_regno zzzreg))) && (zneq_atom ((zregbits_to_regno zrs2), (zregbits_to_regno zzzreg)))
       | _ -> false
     end) ->
-      let ZSome (zrd, zrs2) = (z_s1615z3 z_s1626z3) in ZC_MV (zrd, zrs2)
+      let ZSome (zrd, zrs2) = (z_s1617z3 z_s1628z3) in ZC_MV (zrd, zrs2)
     | "c.ebreak" -> ZC_EBREAK ()
-    | z_s1638z3 when (begin
-      match (z_s1627z3 z_s1638z3) with
+    | z_s1640z3 when (begin
+      match (z_s1629z3 z_s1640z3) with
       | ZSome (zrsd, zrs2) ->
         (zneq_atom ((zregbits_to_regno zrsd), (zregbits_to_regno zzzreg))) && (zneq_atom ((zregbits_to_regno zrs2), (zregbits_to_regno zzzreg)))
       | _ -> false
     end) ->
-      let ZSome (zrsd, zrs2) = (z_s1627z3 z_s1638z3) in ZC_ADD (zrsd, zrs2)
+      let ZSome (zrsd, zrs2) = (z_s1629z3 z_s1640z3) in ZC_ADD (zrsd, zrs2)
     | "stop_fetching" -> ZSTOP_FETCHING ()
     | "thread_start" -> ZTHREAD_START ()
-    | z_s1646z3 when (begin
-      match (z_s1639z3 z_s1646z3) with
+    | z_s1648z3 when (begin
+      match (z_s1641z3 z_s1648z3) with
       | ZSome (zs) -> true
       | _ -> false
     end) ->
-      let ZSome (zs) = (z_s1639z3 z_s1646z3) in ZILLEGAL zs
-    | z_s1654z3 when (begin
-      match (z_s1647z3 z_s1654z3) with
+      let ZSome (zs) = (z_s1641z3 z_s1648z3) in ZILLEGAL zs
+    | z_s1656z3 when (begin
+      match (z_s1649z3 z_s1656z3) with
       | ZSome (zs) -> true
       | _ -> false
     end) ->
-      let ZSome (zs) = (z_s1647z3 z_s1654z3) in ZC_ILLEGAL zs
+      let ZSome (zs) = (z_s1649z3 z_s1656z3) in ZC_ILLEGAL zs
   end)
 
 and zassembly_forwards_matches (zargz3 : (zast)) : bool = sail_call (fun r ->
@@ -21360,7 +21398,7 @@ and zassembly_forwards_matches (zargz3 : (zast)) : bool = sail_call (fun r ->
       true
     | ZC_ADDI16SP (zimm) when (zneq_vec (zimm, [B0; B0; B0; B0; B0; B0])) ->
       true
-    | ZC_LUI (zimm, zrd) when ((zneq_atom ((zregbits_to_regno zrd), (zregbits_to_regno zzzreg))) && (zneq_atom ((zregbits_to_regno zrd), (zregbits_to_regno zsp)))) ->
+    | ZC_LUI (zimm, zrd) when ((zneq_atom ((zregbits_to_regno zrd), (zregbits_to_regno zzzreg))) && ((zneq_atom ((zregbits_to_regno zrd), (zregbits_to_regno zsp))) && (zneq_vec (zimm, [B0; B0; B0; B0; B0; B0])))) ->
       true
     | ZC_SRLI (zshamt, zrsd) when (zneq_vec (zshamt, [B0; B0; B0; B0; B0; B0])) ->
       true
@@ -21400,24 +21438,24 @@ and zassembly_forwards_matches (zargz3 : (zast)) : bool = sail_call (fun r ->
     | _ -> false
   end)
 
-and z_s2489z3 (z_s2490z3 : (string)) : ((bit) list) zoption = sail_call (fun r ->
+and z_s2493z3 (z_s2494z3 : (string)) : ((bit) list) zoption = sail_call (fun r ->
   begin
-    match z_s2490z3 with
-    | z_s2491z3 when (string_startswith (z_s2491z3, "c.illegal")) ->
+    match z_s2494z3 with
+    | z_s2495z3 when (string_startswith (z_s2495z3, "c.illegal")) ->
       begin
-        match (string_drop (z_s2491z3, (string_length "c.illegal"))) with
-        | z_s2492z3 ->
+        match (string_drop (z_s2495z3, (string_length "c.illegal"))) with
+        | z_s2496z3 ->
           begin
-            match (zspc_matches_prefix z_s2492z3) with
-            | ZSome ((), z_s2493z3) ->
+            match (zspc_matches_prefix z_s2496z3) with
+            | ZSome ((), z_s2497z3) ->
               begin
-                match (string_drop (z_s2492z3, z_s2493z3)) with
-                | z_s2494z3 ->
+                match (string_drop (z_s2496z3, z_s2497z3)) with
+                | z_s2498z3 ->
                   begin
-                    match (hex_bits_16_matches_prefix z_s2494z3) with
-                    | ZSome (zs, z_s2495z3) ->
+                    match (hex_bits_16_matches_prefix z_s2498z3) with
+                    | ZSome (zs, z_s2499z3) ->
                       begin
-                        match (string_drop (z_s2494z3, z_s2495z3)) with
+                        match (string_drop (z_s2498z3, z_s2499z3)) with
                         | "" -> ZSome zs
                         | _ -> ZNone ()
                       end
@@ -21432,24 +21470,24 @@ and z_s2489z3 (z_s2490z3 : (string)) : ((bit) list) zoption = sail_call (fun r -
     | _ -> ZNone ()
   end)
 
-and z_s2481z3 (z_s2482z3 : (string)) : ((bit) list) zoption = sail_call (fun r ->
+and z_s2485z3 (z_s2486z3 : (string)) : ((bit) list) zoption = sail_call (fun r ->
   begin
-    match z_s2482z3 with
-    | z_s2483z3 when (string_startswith (z_s2483z3, "illegal")) ->
+    match z_s2486z3 with
+    | z_s2487z3 when (string_startswith (z_s2487z3, "illegal")) ->
       begin
-        match (string_drop (z_s2483z3, (string_length "illegal"))) with
-        | z_s2484z3 ->
+        match (string_drop (z_s2487z3, (string_length "illegal"))) with
+        | z_s2488z3 ->
           begin
-            match (zspc_matches_prefix z_s2484z3) with
-            | ZSome ((), z_s2485z3) ->
+            match (zspc_matches_prefix z_s2488z3) with
+            | ZSome ((), z_s2489z3) ->
               begin
-                match (string_drop (z_s2484z3, z_s2485z3)) with
-                | z_s2486z3 ->
+                match (string_drop (z_s2488z3, z_s2489z3)) with
+                | z_s2490z3 ->
                   begin
-                    match (hex_bits_32_matches_prefix z_s2486z3) with
-                    | ZSome (zs, z_s2487z3) ->
+                    match (hex_bits_32_matches_prefix z_s2490z3) with
+                    | ZSome (zs, z_s2491z3) ->
                       begin
-                        match (string_drop (z_s2486z3, z_s2487z3)) with
+                        match (string_drop (z_s2490z3, z_s2491z3)) with
                         | "" -> ZSome zs
                         | _ -> ZNone ()
                       end
@@ -21464,36 +21502,36 @@ and z_s2481z3 (z_s2482z3 : (string)) : ((bit) list) zoption = sail_call (fun r -
     | _ -> ZNone ()
   end)
 
-and z_s2469z3 (z_s2470z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s2473z3 (z_s2474z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
-    match z_s2470z3 with
-    | z_s2471z3 when (string_startswith (z_s2471z3, "c.add")) ->
+    match z_s2474z3 with
+    | z_s2475z3 when (string_startswith (z_s2475z3, "c.add")) ->
       begin
-        match (string_drop (z_s2471z3, (string_length "c.add"))) with
-        | z_s2472z3 ->
+        match (string_drop (z_s2475z3, (string_length "c.add"))) with
+        | z_s2476z3 ->
           begin
-            match (zspc_matches_prefix z_s2472z3) with
-            | ZSome ((), z_s2473z3) ->
+            match (zspc_matches_prefix z_s2476z3) with
+            | ZSome ((), z_s2477z3) ->
               begin
-                match (string_drop (z_s2472z3, z_s2473z3)) with
-                | z_s2474z3 ->
+                match (string_drop (z_s2476z3, z_s2477z3)) with
+                | z_s2478z3 ->
                   begin
-                    match (zreg_name_matches_prefix z_s2474z3) with
-                    | ZSome (zrsd, z_s2475z3) ->
+                    match (zreg_name_matches_prefix z_s2478z3) with
+                    | ZSome (zrsd, z_s2479z3) ->
                       begin
-                        match (string_drop (z_s2474z3, z_s2475z3)) with
-                        | z_s2476z3 ->
+                        match (string_drop (z_s2478z3, z_s2479z3)) with
+                        | z_s2480z3 ->
                           begin
-                            match (zsep_matches_prefix z_s2476z3) with
-                            | ZSome ((), z_s2477z3) ->
+                            match (zsep_matches_prefix z_s2480z3) with
+                            | ZSome ((), z_s2481z3) ->
                               begin
-                                match (string_drop (z_s2476z3, z_s2477z3)) with
-                                | z_s2478z3 ->
+                                match (string_drop (z_s2480z3, z_s2481z3)) with
+                                | z_s2482z3 ->
                                   begin
-                                    match (zreg_name_matches_prefix z_s2478z3) with
-                                    | ZSome (zrs2, z_s2479z3) ->
+                                    match (zreg_name_matches_prefix z_s2482z3) with
+                                    | ZSome (zrs2, z_s2483z3) ->
                                       begin
-                                        match (string_drop (z_s2478z3, z_s2479z3)) with
+                                        match (string_drop (z_s2482z3, z_s2483z3)) with
                                         | "" -> ZSome (zrsd, zrs2)
                                         | _ -> ZNone ()
                                       end
@@ -21516,36 +21554,36 @@ and z_s2469z3 (z_s2470z3 : (string)) : (((bit) list * (bit) list)) zoption = sai
     | _ -> ZNone ()
   end)
 
-and z_s2457z3 (z_s2458z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s2461z3 (z_s2462z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
-    match z_s2458z3 with
-    | z_s2459z3 when (string_startswith (z_s2459z3, "c.mv")) ->
+    match z_s2462z3 with
+    | z_s2463z3 when (string_startswith (z_s2463z3, "c.mv")) ->
       begin
-        match (string_drop (z_s2459z3, (string_length "c.mv"))) with
-        | z_s2460z3 ->
+        match (string_drop (z_s2463z3, (string_length "c.mv"))) with
+        | z_s2464z3 ->
           begin
-            match (zspc_matches_prefix z_s2460z3) with
-            | ZSome ((), z_s2461z3) ->
+            match (zspc_matches_prefix z_s2464z3) with
+            | ZSome ((), z_s2465z3) ->
               begin
-                match (string_drop (z_s2460z3, z_s2461z3)) with
-                | z_s2462z3 ->
+                match (string_drop (z_s2464z3, z_s2465z3)) with
+                | z_s2466z3 ->
                   begin
-                    match (zreg_name_matches_prefix z_s2462z3) with
-                    | ZSome (zrd, z_s2463z3) ->
+                    match (zreg_name_matches_prefix z_s2466z3) with
+                    | ZSome (zrd, z_s2467z3) ->
                       begin
-                        match (string_drop (z_s2462z3, z_s2463z3)) with
-                        | z_s2464z3 ->
+                        match (string_drop (z_s2466z3, z_s2467z3)) with
+                        | z_s2468z3 ->
                           begin
-                            match (zsep_matches_prefix z_s2464z3) with
-                            | ZSome ((), z_s2465z3) ->
+                            match (zsep_matches_prefix z_s2468z3) with
+                            | ZSome ((), z_s2469z3) ->
                               begin
-                                match (string_drop (z_s2464z3, z_s2465z3)) with
-                                | z_s2466z3 ->
+                                match (string_drop (z_s2468z3, z_s2469z3)) with
+                                | z_s2470z3 ->
                                   begin
-                                    match (zreg_name_matches_prefix z_s2466z3) with
-                                    | ZSome (zrs2, z_s2467z3) ->
+                                    match (zreg_name_matches_prefix z_s2470z3) with
+                                    | ZSome (zrs2, z_s2471z3) ->
                                       begin
-                                        match (string_drop (z_s2466z3, z_s2467z3)) with
+                                        match (string_drop (z_s2470z3, z_s2471z3)) with
                                         | "" -> ZSome (zrd, zrs2)
                                         | _ -> ZNone ()
                                       end
@@ -21568,24 +21606,24 @@ and z_s2457z3 (z_s2458z3 : (string)) : (((bit) list * (bit) list)) zoption = sai
     | _ -> ZNone ()
   end)
 
-and z_s2449z3 (z_s2450z3 : (string)) : ((bit) list) zoption = sail_call (fun r ->
+and z_s2453z3 (z_s2454z3 : (string)) : ((bit) list) zoption = sail_call (fun r ->
   begin
-    match z_s2450z3 with
-    | z_s2451z3 when (string_startswith (z_s2451z3, "c.jalr")) ->
+    match z_s2454z3 with
+    | z_s2455z3 when (string_startswith (z_s2455z3, "c.jalr")) ->
       begin
-        match (string_drop (z_s2451z3, (string_length "c.jalr"))) with
-        | z_s2452z3 ->
+        match (string_drop (z_s2455z3, (string_length "c.jalr"))) with
+        | z_s2456z3 ->
           begin
-            match (zspc_matches_prefix z_s2452z3) with
-            | ZSome ((), z_s2453z3) ->
+            match (zspc_matches_prefix z_s2456z3) with
+            | ZSome ((), z_s2457z3) ->
               begin
-                match (string_drop (z_s2452z3, z_s2453z3)) with
-                | z_s2454z3 ->
+                match (string_drop (z_s2456z3, z_s2457z3)) with
+                | z_s2458z3 ->
                   begin
-                    match (zreg_name_matches_prefix z_s2454z3) with
-                    | ZSome (zrs1, z_s2455z3) ->
+                    match (zreg_name_matches_prefix z_s2458z3) with
+                    | ZSome (zrs1, z_s2459z3) ->
                       begin
-                        match (string_drop (z_s2454z3, z_s2455z3)) with
+                        match (string_drop (z_s2458z3, z_s2459z3)) with
                         | "" -> ZSome zrs1
                         | _ -> ZNone ()
                       end
@@ -21600,24 +21638,24 @@ and z_s2449z3 (z_s2450z3 : (string)) : ((bit) list) zoption = sail_call (fun r -
     | _ -> ZNone ()
   end)
 
-and z_s2441z3 (z_s2442z3 : (string)) : ((bit) list) zoption = sail_call (fun r ->
+and z_s2445z3 (z_s2446z3 : (string)) : ((bit) list) zoption = sail_call (fun r ->
   begin
-    match z_s2442z3 with
-    | z_s2443z3 when (string_startswith (z_s2443z3, "c.jr")) ->
+    match z_s2446z3 with
+    | z_s2447z3 when (string_startswith (z_s2447z3, "c.jr")) ->
       begin
-        match (string_drop (z_s2443z3, (string_length "c.jr"))) with
-        | z_s2444z3 ->
+        match (string_drop (z_s2447z3, (string_length "c.jr"))) with
+        | z_s2448z3 ->
           begin
-            match (zspc_matches_prefix z_s2444z3) with
-            | ZSome ((), z_s2445z3) ->
+            match (zspc_matches_prefix z_s2448z3) with
+            | ZSome ((), z_s2449z3) ->
               begin
-                match (string_drop (z_s2444z3, z_s2445z3)) with
-                | z_s2446z3 ->
+                match (string_drop (z_s2448z3, z_s2449z3)) with
+                | z_s2450z3 ->
                   begin
-                    match (zreg_name_matches_prefix z_s2446z3) with
-                    | ZSome (zrs1, z_s2447z3) ->
+                    match (zreg_name_matches_prefix z_s2450z3) with
+                    | ZSome (zrs1, z_s2451z3) ->
                       begin
-                        match (string_drop (z_s2446z3, z_s2447z3)) with
+                        match (string_drop (z_s2450z3, z_s2451z3)) with
                         | "" -> ZSome zrs1
                         | _ -> ZNone ()
                       end
@@ -21632,36 +21670,36 @@ and z_s2441z3 (z_s2442z3 : (string)) : ((bit) list) zoption = sail_call (fun r -
     | _ -> ZNone ()
   end)
 
-and z_s2429z3 (z_s2430z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s2433z3 (z_s2434z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
-    match z_s2430z3 with
-    | z_s2431z3 when (string_startswith (z_s2431z3, "c.sdsp")) ->
+    match z_s2434z3 with
+    | z_s2435z3 when (string_startswith (z_s2435z3, "c.sdsp")) ->
       begin
-        match (string_drop (z_s2431z3, (string_length "c.sdsp"))) with
-        | z_s2432z3 ->
+        match (string_drop (z_s2435z3, (string_length "c.sdsp"))) with
+        | z_s2436z3 ->
           begin
-            match (zspc_matches_prefix z_s2432z3) with
-            | ZSome ((), z_s2433z3) ->
+            match (zspc_matches_prefix z_s2436z3) with
+            | ZSome ((), z_s2437z3) ->
               begin
-                match (string_drop (z_s2432z3, z_s2433z3)) with
-                | z_s2434z3 ->
+                match (string_drop (z_s2436z3, z_s2437z3)) with
+                | z_s2438z3 ->
                   begin
-                    match (zreg_name_matches_prefix z_s2434z3) with
-                    | ZSome (zrs2, z_s2435z3) ->
+                    match (zreg_name_matches_prefix z_s2438z3) with
+                    | ZSome (zrs2, z_s2439z3) ->
                       begin
-                        match (string_drop (z_s2434z3, z_s2435z3)) with
-                        | z_s2436z3 ->
+                        match (string_drop (z_s2438z3, z_s2439z3)) with
+                        | z_s2440z3 ->
                           begin
-                            match (zsep_matches_prefix z_s2436z3) with
-                            | ZSome ((), z_s2437z3) ->
+                            match (zsep_matches_prefix z_s2440z3) with
+                            | ZSome ((), z_s2441z3) ->
                               begin
-                                match (string_drop (z_s2436z3, z_s2437z3)) with
-                                | z_s2438z3 ->
+                                match (string_drop (z_s2440z3, z_s2441z3)) with
+                                | z_s2442z3 ->
                                   begin
-                                    match (hex_bits_6_matches_prefix z_s2438z3) with
-                                    | ZSome (zuimm, z_s2439z3) ->
+                                    match (hex_bits_6_matches_prefix z_s2442z3) with
+                                    | ZSome (zuimm, z_s2443z3) ->
                                       begin
-                                        match (string_drop (z_s2438z3, z_s2439z3)) with
+                                        match (string_drop (z_s2442z3, z_s2443z3)) with
                                         | "" -> ZSome (zrs2, zuimm)
                                         | _ -> ZNone ()
                                       end
@@ -21684,36 +21722,36 @@ and z_s2429z3 (z_s2430z3 : (string)) : (((bit) list * (bit) list)) zoption = sai
     | _ -> ZNone ()
   end)
 
-and z_s2417z3 (z_s2418z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s2421z3 (z_s2422z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
-    match z_s2418z3 with
-    | z_s2419z3 when (string_startswith (z_s2419z3, "c.swsp")) ->
+    match z_s2422z3 with
+    | z_s2423z3 when (string_startswith (z_s2423z3, "c.swsp")) ->
       begin
-        match (string_drop (z_s2419z3, (string_length "c.swsp"))) with
-        | z_s2420z3 ->
+        match (string_drop (z_s2423z3, (string_length "c.swsp"))) with
+        | z_s2424z3 ->
           begin
-            match (zspc_matches_prefix z_s2420z3) with
-            | ZSome ((), z_s2421z3) ->
+            match (zspc_matches_prefix z_s2424z3) with
+            | ZSome ((), z_s2425z3) ->
               begin
-                match (string_drop (z_s2420z3, z_s2421z3)) with
-                | z_s2422z3 ->
+                match (string_drop (z_s2424z3, z_s2425z3)) with
+                | z_s2426z3 ->
                   begin
-                    match (zreg_name_matches_prefix z_s2422z3) with
-                    | ZSome (zrd, z_s2423z3) ->
+                    match (zreg_name_matches_prefix z_s2426z3) with
+                    | ZSome (zrd, z_s2427z3) ->
                       begin
-                        match (string_drop (z_s2422z3, z_s2423z3)) with
-                        | z_s2424z3 ->
+                        match (string_drop (z_s2426z3, z_s2427z3)) with
+                        | z_s2428z3 ->
                           begin
-                            match (zsep_matches_prefix z_s2424z3) with
-                            | ZSome ((), z_s2425z3) ->
+                            match (zsep_matches_prefix z_s2428z3) with
+                            | ZSome ((), z_s2429z3) ->
                               begin
-                                match (string_drop (z_s2424z3, z_s2425z3)) with
-                                | z_s2426z3 ->
+                                match (string_drop (z_s2428z3, z_s2429z3)) with
+                                | z_s2430z3 ->
                                   begin
-                                    match (hex_bits_6_matches_prefix z_s2426z3) with
-                                    | ZSome (zuimm, z_s2427z3) ->
+                                    match (hex_bits_6_matches_prefix z_s2430z3) with
+                                    | ZSome (zuimm, z_s2431z3) ->
                                       begin
-                                        match (string_drop (z_s2426z3, z_s2427z3)) with
+                                        match (string_drop (z_s2430z3, z_s2431z3)) with
                                         | "" -> ZSome (zrd, zuimm)
                                         | _ -> ZNone ()
                                       end
@@ -21736,36 +21774,36 @@ and z_s2417z3 (z_s2418z3 : (string)) : (((bit) list * (bit) list)) zoption = sai
     | _ -> ZNone ()
   end)
 
-and z_s2405z3 (z_s2406z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s2409z3 (z_s2410z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
-    match z_s2406z3 with
-    | z_s2407z3 when (string_startswith (z_s2407z3, "c.ldsp")) ->
+    match z_s2410z3 with
+    | z_s2411z3 when (string_startswith (z_s2411z3, "c.ldsp")) ->
       begin
-        match (string_drop (z_s2407z3, (string_length "c.ldsp"))) with
-        | z_s2408z3 ->
+        match (string_drop (z_s2411z3, (string_length "c.ldsp"))) with
+        | z_s2412z3 ->
           begin
-            match (zspc_matches_prefix z_s2408z3) with
-            | ZSome ((), z_s2409z3) ->
+            match (zspc_matches_prefix z_s2412z3) with
+            | ZSome ((), z_s2413z3) ->
               begin
-                match (string_drop (z_s2408z3, z_s2409z3)) with
-                | z_s2410z3 ->
+                match (string_drop (z_s2412z3, z_s2413z3)) with
+                | z_s2414z3 ->
                   begin
-                    match (zreg_name_matches_prefix z_s2410z3) with
-                    | ZSome (zrd, z_s2411z3) ->
+                    match (zreg_name_matches_prefix z_s2414z3) with
+                    | ZSome (zrd, z_s2415z3) ->
                       begin
-                        match (string_drop (z_s2410z3, z_s2411z3)) with
-                        | z_s2412z3 ->
+                        match (string_drop (z_s2414z3, z_s2415z3)) with
+                        | z_s2416z3 ->
                           begin
-                            match (zsep_matches_prefix z_s2412z3) with
-                            | ZSome ((), z_s2413z3) ->
+                            match (zsep_matches_prefix z_s2416z3) with
+                            | ZSome ((), z_s2417z3) ->
                               begin
-                                match (string_drop (z_s2412z3, z_s2413z3)) with
-                                | z_s2414z3 ->
+                                match (string_drop (z_s2416z3, z_s2417z3)) with
+                                | z_s2418z3 ->
                                   begin
-                                    match (hex_bits_6_matches_prefix z_s2414z3) with
-                                    | ZSome (zuimm, z_s2415z3) ->
+                                    match (hex_bits_6_matches_prefix z_s2418z3) with
+                                    | ZSome (zuimm, z_s2419z3) ->
                                       begin
-                                        match (string_drop (z_s2414z3, z_s2415z3)) with
+                                        match (string_drop (z_s2418z3, z_s2419z3)) with
                                         | "" -> ZSome (zrd, zuimm)
                                         | _ -> ZNone ()
                                       end
@@ -21788,36 +21826,36 @@ and z_s2405z3 (z_s2406z3 : (string)) : (((bit) list * (bit) list)) zoption = sai
     | _ -> ZNone ()
   end)
 
-and z_s2393z3 (z_s2394z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s2397z3 (z_s2398z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
-    match z_s2394z3 with
-    | z_s2395z3 when (string_startswith (z_s2395z3, "c.lwsp")) ->
+    match z_s2398z3 with
+    | z_s2399z3 when (string_startswith (z_s2399z3, "c.lwsp")) ->
       begin
-        match (string_drop (z_s2395z3, (string_length "c.lwsp"))) with
-        | z_s2396z3 ->
+        match (string_drop (z_s2399z3, (string_length "c.lwsp"))) with
+        | z_s2400z3 ->
           begin
-            match (zspc_matches_prefix z_s2396z3) with
-            | ZSome ((), z_s2397z3) ->
+            match (zspc_matches_prefix z_s2400z3) with
+            | ZSome ((), z_s2401z3) ->
               begin
-                match (string_drop (z_s2396z3, z_s2397z3)) with
-                | z_s2398z3 ->
+                match (string_drop (z_s2400z3, z_s2401z3)) with
+                | z_s2402z3 ->
                   begin
-                    match (zreg_name_matches_prefix z_s2398z3) with
-                    | ZSome (zrd, z_s2399z3) ->
+                    match (zreg_name_matches_prefix z_s2402z3) with
+                    | ZSome (zrd, z_s2403z3) ->
                       begin
-                        match (string_drop (z_s2398z3, z_s2399z3)) with
-                        | z_s2400z3 ->
+                        match (string_drop (z_s2402z3, z_s2403z3)) with
+                        | z_s2404z3 ->
                           begin
-                            match (zsep_matches_prefix z_s2400z3) with
-                            | ZSome ((), z_s2401z3) ->
+                            match (zsep_matches_prefix z_s2404z3) with
+                            | ZSome ((), z_s2405z3) ->
                               begin
-                                match (string_drop (z_s2400z3, z_s2401z3)) with
-                                | z_s2402z3 ->
+                                match (string_drop (z_s2404z3, z_s2405z3)) with
+                                | z_s2406z3 ->
                                   begin
-                                    match (hex_bits_6_matches_prefix z_s2402z3) with
-                                    | ZSome (zuimm, z_s2403z3) ->
+                                    match (hex_bits_6_matches_prefix z_s2406z3) with
+                                    | ZSome (zuimm, z_s2407z3) ->
                                       begin
-                                        match (string_drop (z_s2402z3, z_s2403z3)) with
+                                        match (string_drop (z_s2406z3, z_s2407z3)) with
                                         | "" -> ZSome (zrd, zuimm)
                                         | _ -> ZNone ()
                                       end
@@ -21840,36 +21878,36 @@ and z_s2393z3 (z_s2394z3 : (string)) : (((bit) list * (bit) list)) zoption = sai
     | _ -> ZNone ()
   end)
 
-and z_s2381z3 (z_s2382z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s2385z3 (z_s2386z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
-    match z_s2382z3 with
-    | z_s2383z3 when (string_startswith (z_s2383z3, "c.slli")) ->
+    match z_s2386z3 with
+    | z_s2387z3 when (string_startswith (z_s2387z3, "c.slli")) ->
       begin
-        match (string_drop (z_s2383z3, (string_length "c.slli"))) with
-        | z_s2384z3 ->
+        match (string_drop (z_s2387z3, (string_length "c.slli"))) with
+        | z_s2388z3 ->
           begin
-            match (zspc_matches_prefix z_s2384z3) with
-            | ZSome ((), z_s2385z3) ->
+            match (zspc_matches_prefix z_s2388z3) with
+            | ZSome ((), z_s2389z3) ->
               begin
-                match (string_drop (z_s2384z3, z_s2385z3)) with
-                | z_s2386z3 ->
+                match (string_drop (z_s2388z3, z_s2389z3)) with
+                | z_s2390z3 ->
                   begin
-                    match (zreg_name_matches_prefix z_s2386z3) with
-                    | ZSome (zrsd, z_s2387z3) ->
+                    match (zreg_name_matches_prefix z_s2390z3) with
+                    | ZSome (zrsd, z_s2391z3) ->
                       begin
-                        match (string_drop (z_s2386z3, z_s2387z3)) with
-                        | z_s2388z3 ->
+                        match (string_drop (z_s2390z3, z_s2391z3)) with
+                        | z_s2392z3 ->
                           begin
-                            match (zsep_matches_prefix z_s2388z3) with
-                            | ZSome ((), z_s2389z3) ->
+                            match (zsep_matches_prefix z_s2392z3) with
+                            | ZSome ((), z_s2393z3) ->
                               begin
-                                match (string_drop (z_s2388z3, z_s2389z3)) with
-                                | z_s2390z3 ->
+                                match (string_drop (z_s2392z3, z_s2393z3)) with
+                                | z_s2394z3 ->
                                   begin
-                                    match (hex_bits_6_matches_prefix z_s2390z3) with
-                                    | ZSome (zshamt, z_s2391z3) ->
+                                    match (hex_bits_6_matches_prefix z_s2394z3) with
+                                    | ZSome (zshamt, z_s2395z3) ->
                                       begin
-                                        match (string_drop (z_s2390z3, z_s2391z3)) with
+                                        match (string_drop (z_s2394z3, z_s2395z3)) with
                                         | "" -> ZSome (zrsd, zshamt)
                                         | _ -> ZNone ()
                                       end
@@ -21892,36 +21930,36 @@ and z_s2381z3 (z_s2382z3 : (string)) : (((bit) list * (bit) list)) zoption = sai
     | _ -> ZNone ()
   end)
 
-and z_s2369z3 (z_s2370z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s2373z3 (z_s2374z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
-    match z_s2370z3 with
-    | z_s2371z3 when (string_startswith (z_s2371z3, "c.bnez")) ->
+    match z_s2374z3 with
+    | z_s2375z3 when (string_startswith (z_s2375z3, "c.bnez")) ->
       begin
-        match (string_drop (z_s2371z3, (string_length "c.bnez"))) with
-        | z_s2372z3 ->
+        match (string_drop (z_s2375z3, (string_length "c.bnez"))) with
+        | z_s2376z3 ->
           begin
-            match (zspc_matches_prefix z_s2372z3) with
-            | ZSome ((), z_s2373z3) ->
+            match (zspc_matches_prefix z_s2376z3) with
+            | ZSome ((), z_s2377z3) ->
               begin
-                match (string_drop (z_s2372z3, z_s2373z3)) with
-                | z_s2374z3 ->
+                match (string_drop (z_s2376z3, z_s2377z3)) with
+                | z_s2378z3 ->
                   begin
-                    match (zcreg_name_matches_prefix z_s2374z3) with
-                    | ZSome (zrs, z_s2375z3) ->
+                    match (zcreg_name_matches_prefix z_s2378z3) with
+                    | ZSome (zrs, z_s2379z3) ->
                       begin
-                        match (string_drop (z_s2374z3, z_s2375z3)) with
-                        | z_s2376z3 ->
+                        match (string_drop (z_s2378z3, z_s2379z3)) with
+                        | z_s2380z3 ->
                           begin
-                            match (zsep_matches_prefix z_s2376z3) with
-                            | ZSome ((), z_s2377z3) ->
+                            match (zsep_matches_prefix z_s2380z3) with
+                            | ZSome ((), z_s2381z3) ->
                               begin
-                                match (string_drop (z_s2376z3, z_s2377z3)) with
-                                | z_s2378z3 ->
+                                match (string_drop (z_s2380z3, z_s2381z3)) with
+                                | z_s2382z3 ->
                                   begin
-                                    match (hex_bits_8_matches_prefix z_s2378z3) with
-                                    | ZSome (zimm, z_s2379z3) ->
+                                    match (hex_bits_8_matches_prefix z_s2382z3) with
+                                    | ZSome (zimm, z_s2383z3) ->
                                       begin
-                                        match (string_drop (z_s2378z3, z_s2379z3)) with
+                                        match (string_drop (z_s2382z3, z_s2383z3)) with
                                         | "" -> ZSome (zrs, zimm)
                                         | _ -> ZNone ()
                                       end
@@ -21944,36 +21982,36 @@ and z_s2369z3 (z_s2370z3 : (string)) : (((bit) list * (bit) list)) zoption = sai
     | _ -> ZNone ()
   end)
 
-and z_s2357z3 (z_s2358z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s2361z3 (z_s2362z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
-    match z_s2358z3 with
-    | z_s2359z3 when (string_startswith (z_s2359z3, "c.beqz")) ->
+    match z_s2362z3 with
+    | z_s2363z3 when (string_startswith (z_s2363z3, "c.beqz")) ->
       begin
-        match (string_drop (z_s2359z3, (string_length "c.beqz"))) with
-        | z_s2360z3 ->
+        match (string_drop (z_s2363z3, (string_length "c.beqz"))) with
+        | z_s2364z3 ->
           begin
-            match (zspc_matches_prefix z_s2360z3) with
-            | ZSome ((), z_s2361z3) ->
+            match (zspc_matches_prefix z_s2364z3) with
+            | ZSome ((), z_s2365z3) ->
               begin
-                match (string_drop (z_s2360z3, z_s2361z3)) with
-                | z_s2362z3 ->
+                match (string_drop (z_s2364z3, z_s2365z3)) with
+                | z_s2366z3 ->
                   begin
-                    match (zcreg_name_matches_prefix z_s2362z3) with
-                    | ZSome (zrs, z_s2363z3) ->
+                    match (zcreg_name_matches_prefix z_s2366z3) with
+                    | ZSome (zrs, z_s2367z3) ->
                       begin
-                        match (string_drop (z_s2362z3, z_s2363z3)) with
-                        | z_s2364z3 ->
+                        match (string_drop (z_s2366z3, z_s2367z3)) with
+                        | z_s2368z3 ->
                           begin
-                            match (zsep_matches_prefix z_s2364z3) with
-                            | ZSome ((), z_s2365z3) ->
+                            match (zsep_matches_prefix z_s2368z3) with
+                            | ZSome ((), z_s2369z3) ->
                               begin
-                                match (string_drop (z_s2364z3, z_s2365z3)) with
-                                | z_s2366z3 ->
+                                match (string_drop (z_s2368z3, z_s2369z3)) with
+                                | z_s2370z3 ->
                                   begin
-                                    match (hex_bits_8_matches_prefix z_s2366z3) with
-                                    | ZSome (zimm, z_s2367z3) ->
+                                    match (hex_bits_8_matches_prefix z_s2370z3) with
+                                    | ZSome (zimm, z_s2371z3) ->
                                       begin
-                                        match (string_drop (z_s2366z3, z_s2367z3)) with
+                                        match (string_drop (z_s2370z3, z_s2371z3)) with
                                         | "" -> ZSome (zrs, zimm)
                                         | _ -> ZNone ()
                                       end
@@ -21996,24 +22034,24 @@ and z_s2357z3 (z_s2358z3 : (string)) : (((bit) list * (bit) list)) zoption = sai
     | _ -> ZNone ()
   end)
 
-and z_s2349z3 (z_s2350z3 : (string)) : ((bit) list) zoption = sail_call (fun r ->
+and z_s2353z3 (z_s2354z3 : (string)) : ((bit) list) zoption = sail_call (fun r ->
   begin
-    match z_s2350z3 with
-    | z_s2351z3 when (string_startswith (z_s2351z3, "c.j")) ->
+    match z_s2354z3 with
+    | z_s2355z3 when (string_startswith (z_s2355z3, "c.j")) ->
       begin
-        match (string_drop (z_s2351z3, (string_length "c.j"))) with
-        | z_s2352z3 ->
+        match (string_drop (z_s2355z3, (string_length "c.j"))) with
+        | z_s2356z3 ->
           begin
-            match (zspc_matches_prefix z_s2352z3) with
-            | ZSome ((), z_s2353z3) ->
+            match (zspc_matches_prefix z_s2356z3) with
+            | ZSome ((), z_s2357z3) ->
               begin
-                match (string_drop (z_s2352z3, z_s2353z3)) with
-                | z_s2354z3 ->
+                match (string_drop (z_s2356z3, z_s2357z3)) with
+                | z_s2358z3 ->
                   begin
-                    match (hex_bits_11_matches_prefix z_s2354z3) with
-                    | ZSome (zimm, z_s2355z3) ->
+                    match (hex_bits_11_matches_prefix z_s2358z3) with
+                    | ZSome (zimm, z_s2359z3) ->
                       begin
-                        match (string_drop (z_s2354z3, z_s2355z3)) with
+                        match (string_drop (z_s2358z3, z_s2359z3)) with
                         | "" -> ZSome zimm
                         | _ -> ZNone ()
                       end
@@ -22028,36 +22066,36 @@ and z_s2349z3 (z_s2350z3 : (string)) : ((bit) list) zoption = sail_call (fun r -
     | _ -> ZNone ()
   end)
 
-and z_s2337z3 (z_s2338z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s2341z3 (z_s2342z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
-    match z_s2338z3 with
-    | z_s2339z3 when (string_startswith (z_s2339z3, "c.addw")) ->
+    match z_s2342z3 with
+    | z_s2343z3 when (string_startswith (z_s2343z3, "c.addw")) ->
       begin
-        match (string_drop (z_s2339z3, (string_length "c.addw"))) with
-        | z_s2340z3 ->
+        match (string_drop (z_s2343z3, (string_length "c.addw"))) with
+        | z_s2344z3 ->
           begin
-            match (zspc_matches_prefix z_s2340z3) with
-            | ZSome ((), z_s2341z3) ->
+            match (zspc_matches_prefix z_s2344z3) with
+            | ZSome ((), z_s2345z3) ->
               begin
-                match (string_drop (z_s2340z3, z_s2341z3)) with
-                | z_s2342z3 ->
+                match (string_drop (z_s2344z3, z_s2345z3)) with
+                | z_s2346z3 ->
                   begin
-                    match (zcreg_name_matches_prefix z_s2342z3) with
-                    | ZSome (zrsd, z_s2343z3) ->
+                    match (zcreg_name_matches_prefix z_s2346z3) with
+                    | ZSome (zrsd, z_s2347z3) ->
                       begin
-                        match (string_drop (z_s2342z3, z_s2343z3)) with
-                        | z_s2344z3 ->
+                        match (string_drop (z_s2346z3, z_s2347z3)) with
+                        | z_s2348z3 ->
                           begin
-                            match (zsep_matches_prefix z_s2344z3) with
-                            | ZSome ((), z_s2345z3) ->
+                            match (zsep_matches_prefix z_s2348z3) with
+                            | ZSome ((), z_s2349z3) ->
                               begin
-                                match (string_drop (z_s2344z3, z_s2345z3)) with
-                                | z_s2346z3 ->
+                                match (string_drop (z_s2348z3, z_s2349z3)) with
+                                | z_s2350z3 ->
                                   begin
-                                    match (zcreg_name_matches_prefix z_s2346z3) with
-                                    | ZSome (zrs2, z_s2347z3) ->
+                                    match (zcreg_name_matches_prefix z_s2350z3) with
+                                    | ZSome (zrs2, z_s2351z3) ->
                                       begin
-                                        match (string_drop (z_s2346z3, z_s2347z3)) with
+                                        match (string_drop (z_s2350z3, z_s2351z3)) with
                                         | "" -> ZSome (zrsd, zrs2)
                                         | _ -> ZNone ()
                                       end
@@ -22080,36 +22118,36 @@ and z_s2337z3 (z_s2338z3 : (string)) : (((bit) list * (bit) list)) zoption = sai
     | _ -> ZNone ()
   end)
 
-and z_s2325z3 (z_s2326z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s2329z3 (z_s2330z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
-    match z_s2326z3 with
-    | z_s2327z3 when (string_startswith (z_s2327z3, "c.subw")) ->
+    match z_s2330z3 with
+    | z_s2331z3 when (string_startswith (z_s2331z3, "c.subw")) ->
       begin
-        match (string_drop (z_s2327z3, (string_length "c.subw"))) with
-        | z_s2328z3 ->
+        match (string_drop (z_s2331z3, (string_length "c.subw"))) with
+        | z_s2332z3 ->
           begin
-            match (zspc_matches_prefix z_s2328z3) with
-            | ZSome ((), z_s2329z3) ->
+            match (zspc_matches_prefix z_s2332z3) with
+            | ZSome ((), z_s2333z3) ->
               begin
-                match (string_drop (z_s2328z3, z_s2329z3)) with
-                | z_s2330z3 ->
+                match (string_drop (z_s2332z3, z_s2333z3)) with
+                | z_s2334z3 ->
                   begin
-                    match (zcreg_name_matches_prefix z_s2330z3) with
-                    | ZSome (zrsd, z_s2331z3) ->
+                    match (zcreg_name_matches_prefix z_s2334z3) with
+                    | ZSome (zrsd, z_s2335z3) ->
                       begin
-                        match (string_drop (z_s2330z3, z_s2331z3)) with
-                        | z_s2332z3 ->
+                        match (string_drop (z_s2334z3, z_s2335z3)) with
+                        | z_s2336z3 ->
                           begin
-                            match (zsep_matches_prefix z_s2332z3) with
-                            | ZSome ((), z_s2333z3) ->
+                            match (zsep_matches_prefix z_s2336z3) with
+                            | ZSome ((), z_s2337z3) ->
                               begin
-                                match (string_drop (z_s2332z3, z_s2333z3)) with
-                                | z_s2334z3 ->
+                                match (string_drop (z_s2336z3, z_s2337z3)) with
+                                | z_s2338z3 ->
                                   begin
-                                    match (zcreg_name_matches_prefix z_s2334z3) with
-                                    | ZSome (zrs2, z_s2335z3) ->
+                                    match (zcreg_name_matches_prefix z_s2338z3) with
+                                    | ZSome (zrs2, z_s2339z3) ->
                                       begin
-                                        match (string_drop (z_s2334z3, z_s2335z3)) with
+                                        match (string_drop (z_s2338z3, z_s2339z3)) with
                                         | "" -> ZSome (zrsd, zrs2)
                                         | _ -> ZNone ()
                                       end
@@ -22132,36 +22170,36 @@ and z_s2325z3 (z_s2326z3 : (string)) : (((bit) list * (bit) list)) zoption = sai
     | _ -> ZNone ()
   end)
 
-and z_s2313z3 (z_s2314z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s2317z3 (z_s2318z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
-    match z_s2314z3 with
-    | z_s2315z3 when (string_startswith (z_s2315z3, "c.and")) ->
+    match z_s2318z3 with
+    | z_s2319z3 when (string_startswith (z_s2319z3, "c.and")) ->
       begin
-        match (string_drop (z_s2315z3, (string_length "c.and"))) with
-        | z_s2316z3 ->
+        match (string_drop (z_s2319z3, (string_length "c.and"))) with
+        | z_s2320z3 ->
           begin
-            match (zspc_matches_prefix z_s2316z3) with
-            | ZSome ((), z_s2317z3) ->
+            match (zspc_matches_prefix z_s2320z3) with
+            | ZSome ((), z_s2321z3) ->
               begin
-                match (string_drop (z_s2316z3, z_s2317z3)) with
-                | z_s2318z3 ->
+                match (string_drop (z_s2320z3, z_s2321z3)) with
+                | z_s2322z3 ->
                   begin
-                    match (zcreg_name_matches_prefix z_s2318z3) with
-                    | ZSome (zrsd, z_s2319z3) ->
+                    match (zcreg_name_matches_prefix z_s2322z3) with
+                    | ZSome (zrsd, z_s2323z3) ->
                       begin
-                        match (string_drop (z_s2318z3, z_s2319z3)) with
-                        | z_s2320z3 ->
+                        match (string_drop (z_s2322z3, z_s2323z3)) with
+                        | z_s2324z3 ->
                           begin
-                            match (zsep_matches_prefix z_s2320z3) with
-                            | ZSome ((), z_s2321z3) ->
+                            match (zsep_matches_prefix z_s2324z3) with
+                            | ZSome ((), z_s2325z3) ->
                               begin
-                                match (string_drop (z_s2320z3, z_s2321z3)) with
-                                | z_s2322z3 ->
+                                match (string_drop (z_s2324z3, z_s2325z3)) with
+                                | z_s2326z3 ->
                                   begin
-                                    match (zcreg_name_matches_prefix z_s2322z3) with
-                                    | ZSome (zrs2, z_s2323z3) ->
+                                    match (zcreg_name_matches_prefix z_s2326z3) with
+                                    | ZSome (zrs2, z_s2327z3) ->
                                       begin
-                                        match (string_drop (z_s2322z3, z_s2323z3)) with
+                                        match (string_drop (z_s2326z3, z_s2327z3)) with
                                         | "" -> ZSome (zrsd, zrs2)
                                         | _ -> ZNone ()
                                       end
@@ -22184,36 +22222,36 @@ and z_s2313z3 (z_s2314z3 : (string)) : (((bit) list * (bit) list)) zoption = sai
     | _ -> ZNone ()
   end)
 
-and z_s2301z3 (z_s2302z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s2305z3 (z_s2306z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
-    match z_s2302z3 with
-    | z_s2303z3 when (string_startswith (z_s2303z3, "c.or")) ->
+    match z_s2306z3 with
+    | z_s2307z3 when (string_startswith (z_s2307z3, "c.or")) ->
       begin
-        match (string_drop (z_s2303z3, (string_length "c.or"))) with
-        | z_s2304z3 ->
+        match (string_drop (z_s2307z3, (string_length "c.or"))) with
+        | z_s2308z3 ->
           begin
-            match (zspc_matches_prefix z_s2304z3) with
-            | ZSome ((), z_s2305z3) ->
+            match (zspc_matches_prefix z_s2308z3) with
+            | ZSome ((), z_s2309z3) ->
               begin
-                match (string_drop (z_s2304z3, z_s2305z3)) with
-                | z_s2306z3 ->
+                match (string_drop (z_s2308z3, z_s2309z3)) with
+                | z_s2310z3 ->
                   begin
-                    match (zcreg_name_matches_prefix z_s2306z3) with
-                    | ZSome (zrsd, z_s2307z3) ->
+                    match (zcreg_name_matches_prefix z_s2310z3) with
+                    | ZSome (zrsd, z_s2311z3) ->
                       begin
-                        match (string_drop (z_s2306z3, z_s2307z3)) with
-                        | z_s2308z3 ->
+                        match (string_drop (z_s2310z3, z_s2311z3)) with
+                        | z_s2312z3 ->
                           begin
-                            match (zsep_matches_prefix z_s2308z3) with
-                            | ZSome ((), z_s2309z3) ->
+                            match (zsep_matches_prefix z_s2312z3) with
+                            | ZSome ((), z_s2313z3) ->
                               begin
-                                match (string_drop (z_s2308z3, z_s2309z3)) with
-                                | z_s2310z3 ->
+                                match (string_drop (z_s2312z3, z_s2313z3)) with
+                                | z_s2314z3 ->
                                   begin
-                                    match (zcreg_name_matches_prefix z_s2310z3) with
-                                    | ZSome (zrs2, z_s2311z3) ->
+                                    match (zcreg_name_matches_prefix z_s2314z3) with
+                                    | ZSome (zrs2, z_s2315z3) ->
                                       begin
-                                        match (string_drop (z_s2310z3, z_s2311z3)) with
+                                        match (string_drop (z_s2314z3, z_s2315z3)) with
                                         | "" -> ZSome (zrsd, zrs2)
                                         | _ -> ZNone ()
                                       end
@@ -22236,36 +22274,36 @@ and z_s2301z3 (z_s2302z3 : (string)) : (((bit) list * (bit) list)) zoption = sai
     | _ -> ZNone ()
   end)
 
-and z_s2289z3 (z_s2290z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s2293z3 (z_s2294z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
-    match z_s2290z3 with
-    | z_s2291z3 when (string_startswith (z_s2291z3, "c.xor")) ->
+    match z_s2294z3 with
+    | z_s2295z3 when (string_startswith (z_s2295z3, "c.xor")) ->
       begin
-        match (string_drop (z_s2291z3, (string_length "c.xor"))) with
-        | z_s2292z3 ->
+        match (string_drop (z_s2295z3, (string_length "c.xor"))) with
+        | z_s2296z3 ->
           begin
-            match (zspc_matches_prefix z_s2292z3) with
-            | ZSome ((), z_s2293z3) ->
+            match (zspc_matches_prefix z_s2296z3) with
+            | ZSome ((), z_s2297z3) ->
               begin
-                match (string_drop (z_s2292z3, z_s2293z3)) with
-                | z_s2294z3 ->
+                match (string_drop (z_s2296z3, z_s2297z3)) with
+                | z_s2298z3 ->
                   begin
-                    match (zcreg_name_matches_prefix z_s2294z3) with
-                    | ZSome (zrsd, z_s2295z3) ->
+                    match (zcreg_name_matches_prefix z_s2298z3) with
+                    | ZSome (zrsd, z_s2299z3) ->
                       begin
-                        match (string_drop (z_s2294z3, z_s2295z3)) with
-                        | z_s2296z3 ->
+                        match (string_drop (z_s2298z3, z_s2299z3)) with
+                        | z_s2300z3 ->
                           begin
-                            match (zsep_matches_prefix z_s2296z3) with
-                            | ZSome ((), z_s2297z3) ->
+                            match (zsep_matches_prefix z_s2300z3) with
+                            | ZSome ((), z_s2301z3) ->
                               begin
-                                match (string_drop (z_s2296z3, z_s2297z3)) with
-                                | z_s2298z3 ->
+                                match (string_drop (z_s2300z3, z_s2301z3)) with
+                                | z_s2302z3 ->
                                   begin
-                                    match (zcreg_name_matches_prefix z_s2298z3) with
-                                    | ZSome (zrs2, z_s2299z3) ->
+                                    match (zcreg_name_matches_prefix z_s2302z3) with
+                                    | ZSome (zrs2, z_s2303z3) ->
                                       begin
-                                        match (string_drop (z_s2298z3, z_s2299z3)) with
+                                        match (string_drop (z_s2302z3, z_s2303z3)) with
                                         | "" -> ZSome (zrsd, zrs2)
                                         | _ -> ZNone ()
                                       end
@@ -22288,36 +22326,36 @@ and z_s2289z3 (z_s2290z3 : (string)) : (((bit) list * (bit) list)) zoption = sai
     | _ -> ZNone ()
   end)
 
-and z_s2277z3 (z_s2278z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s2281z3 (z_s2282z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
-    match z_s2278z3 with
-    | z_s2279z3 when (string_startswith (z_s2279z3, "c.sub")) ->
+    match z_s2282z3 with
+    | z_s2283z3 when (string_startswith (z_s2283z3, "c.sub")) ->
       begin
-        match (string_drop (z_s2279z3, (string_length "c.sub"))) with
-        | z_s2280z3 ->
+        match (string_drop (z_s2283z3, (string_length "c.sub"))) with
+        | z_s2284z3 ->
           begin
-            match (zspc_matches_prefix z_s2280z3) with
-            | ZSome ((), z_s2281z3) ->
+            match (zspc_matches_prefix z_s2284z3) with
+            | ZSome ((), z_s2285z3) ->
               begin
-                match (string_drop (z_s2280z3, z_s2281z3)) with
-                | z_s2282z3 ->
+                match (string_drop (z_s2284z3, z_s2285z3)) with
+                | z_s2286z3 ->
                   begin
-                    match (zcreg_name_matches_prefix z_s2282z3) with
-                    | ZSome (zrsd, z_s2283z3) ->
+                    match (zcreg_name_matches_prefix z_s2286z3) with
+                    | ZSome (zrsd, z_s2287z3) ->
                       begin
-                        match (string_drop (z_s2282z3, z_s2283z3)) with
-                        | z_s2284z3 ->
+                        match (string_drop (z_s2286z3, z_s2287z3)) with
+                        | z_s2288z3 ->
                           begin
-                            match (zsep_matches_prefix z_s2284z3) with
-                            | ZSome ((), z_s2285z3) ->
+                            match (zsep_matches_prefix z_s2288z3) with
+                            | ZSome ((), z_s2289z3) ->
                               begin
-                                match (string_drop (z_s2284z3, z_s2285z3)) with
-                                | z_s2286z3 ->
+                                match (string_drop (z_s2288z3, z_s2289z3)) with
+                                | z_s2290z3 ->
                                   begin
-                                    match (zcreg_name_matches_prefix z_s2286z3) with
-                                    | ZSome (zrs2, z_s2287z3) ->
+                                    match (zcreg_name_matches_prefix z_s2290z3) with
+                                    | ZSome (zrs2, z_s2291z3) ->
                                       begin
-                                        match (string_drop (z_s2286z3, z_s2287z3)) with
+                                        match (string_drop (z_s2290z3, z_s2291z3)) with
                                         | "" -> ZSome (zrsd, zrs2)
                                         | _ -> ZNone ()
                                       end
@@ -22340,36 +22378,36 @@ and z_s2277z3 (z_s2278z3 : (string)) : (((bit) list * (bit) list)) zoption = sai
     | _ -> ZNone ()
   end)
 
-and z_s2265z3 (z_s2266z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s2269z3 (z_s2270z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
-    match z_s2266z3 with
-    | z_s2267z3 when (string_startswith (z_s2267z3, "c.andi")) ->
+    match z_s2270z3 with
+    | z_s2271z3 when (string_startswith (z_s2271z3, "c.andi")) ->
       begin
-        match (string_drop (z_s2267z3, (string_length "c.andi"))) with
-        | z_s2268z3 ->
+        match (string_drop (z_s2271z3, (string_length "c.andi"))) with
+        | z_s2272z3 ->
           begin
-            match (zspc_matches_prefix z_s2268z3) with
-            | ZSome ((), z_s2269z3) ->
+            match (zspc_matches_prefix z_s2272z3) with
+            | ZSome ((), z_s2273z3) ->
               begin
-                match (string_drop (z_s2268z3, z_s2269z3)) with
-                | z_s2270z3 ->
+                match (string_drop (z_s2272z3, z_s2273z3)) with
+                | z_s2274z3 ->
                   begin
-                    match (zcreg_name_matches_prefix z_s2270z3) with
-                    | ZSome (zrsd, z_s2271z3) ->
+                    match (zcreg_name_matches_prefix z_s2274z3) with
+                    | ZSome (zrsd, z_s2275z3) ->
                       begin
-                        match (string_drop (z_s2270z3, z_s2271z3)) with
-                        | z_s2272z3 ->
+                        match (string_drop (z_s2274z3, z_s2275z3)) with
+                        | z_s2276z3 ->
                           begin
-                            match (zsep_matches_prefix z_s2272z3) with
-                            | ZSome ((), z_s2273z3) ->
+                            match (zsep_matches_prefix z_s2276z3) with
+                            | ZSome ((), z_s2277z3) ->
                               begin
-                                match (string_drop (z_s2272z3, z_s2273z3)) with
-                                | z_s2274z3 ->
+                                match (string_drop (z_s2276z3, z_s2277z3)) with
+                                | z_s2278z3 ->
                                   begin
-                                    match (hex_bits_6_matches_prefix z_s2274z3) with
-                                    | ZSome (zimm, z_s2275z3) ->
+                                    match (hex_bits_6_matches_prefix z_s2278z3) with
+                                    | ZSome (zimm, z_s2279z3) ->
                                       begin
-                                        match (string_drop (z_s2274z3, z_s2275z3)) with
+                                        match (string_drop (z_s2278z3, z_s2279z3)) with
                                         | "" -> ZSome (zrsd, zimm)
                                         | _ -> ZNone ()
                                       end
@@ -22392,36 +22430,36 @@ and z_s2265z3 (z_s2266z3 : (string)) : (((bit) list * (bit) list)) zoption = sai
     | _ -> ZNone ()
   end)
 
-and z_s2253z3 (z_s2254z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s2257z3 (z_s2258z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
-    match z_s2254z3 with
-    | z_s2255z3 when (string_startswith (z_s2255z3, "c.srai")) ->
+    match z_s2258z3 with
+    | z_s2259z3 when (string_startswith (z_s2259z3, "c.srai")) ->
       begin
-        match (string_drop (z_s2255z3, (string_length "c.srai"))) with
-        | z_s2256z3 ->
+        match (string_drop (z_s2259z3, (string_length "c.srai"))) with
+        | z_s2260z3 ->
           begin
-            match (zspc_matches_prefix z_s2256z3) with
-            | ZSome ((), z_s2257z3) ->
+            match (zspc_matches_prefix z_s2260z3) with
+            | ZSome ((), z_s2261z3) ->
               begin
-                match (string_drop (z_s2256z3, z_s2257z3)) with
-                | z_s2258z3 ->
+                match (string_drop (z_s2260z3, z_s2261z3)) with
+                | z_s2262z3 ->
                   begin
-                    match (zcreg_name_matches_prefix z_s2258z3) with
-                    | ZSome (zrsd, z_s2259z3) ->
+                    match (zcreg_name_matches_prefix z_s2262z3) with
+                    | ZSome (zrsd, z_s2263z3) ->
                       begin
-                        match (string_drop (z_s2258z3, z_s2259z3)) with
-                        | z_s2260z3 ->
+                        match (string_drop (z_s2262z3, z_s2263z3)) with
+                        | z_s2264z3 ->
                           begin
-                            match (zsep_matches_prefix z_s2260z3) with
-                            | ZSome ((), z_s2261z3) ->
+                            match (zsep_matches_prefix z_s2264z3) with
+                            | ZSome ((), z_s2265z3) ->
                               begin
-                                match (string_drop (z_s2260z3, z_s2261z3)) with
-                                | z_s2262z3 ->
+                                match (string_drop (z_s2264z3, z_s2265z3)) with
+                                | z_s2266z3 ->
                                   begin
-                                    match (hex_bits_6_matches_prefix z_s2262z3) with
-                                    | ZSome (zshamt, z_s2263z3) ->
+                                    match (hex_bits_6_matches_prefix z_s2266z3) with
+                                    | ZSome (zshamt, z_s2267z3) ->
                                       begin
-                                        match (string_drop (z_s2262z3, z_s2263z3)) with
+                                        match (string_drop (z_s2266z3, z_s2267z3)) with
                                         | "" -> ZSome (zrsd, zshamt)
                                         | _ -> ZNone ()
                                       end
@@ -22444,36 +22482,36 @@ and z_s2253z3 (z_s2254z3 : (string)) : (((bit) list * (bit) list)) zoption = sai
     | _ -> ZNone ()
   end)
 
-and z_s2241z3 (z_s2242z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s2245z3 (z_s2246z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
-    match z_s2242z3 with
-    | z_s2243z3 when (string_startswith (z_s2243z3, "c.srli")) ->
+    match z_s2246z3 with
+    | z_s2247z3 when (string_startswith (z_s2247z3, "c.srli")) ->
       begin
-        match (string_drop (z_s2243z3, (string_length "c.srli"))) with
-        | z_s2244z3 ->
+        match (string_drop (z_s2247z3, (string_length "c.srli"))) with
+        | z_s2248z3 ->
           begin
-            match (zspc_matches_prefix z_s2244z3) with
-            | ZSome ((), z_s2245z3) ->
+            match (zspc_matches_prefix z_s2248z3) with
+            | ZSome ((), z_s2249z3) ->
               begin
-                match (string_drop (z_s2244z3, z_s2245z3)) with
-                | z_s2246z3 ->
+                match (string_drop (z_s2248z3, z_s2249z3)) with
+                | z_s2250z3 ->
                   begin
-                    match (zcreg_name_matches_prefix z_s2246z3) with
-                    | ZSome (zrsd, z_s2247z3) ->
+                    match (zcreg_name_matches_prefix z_s2250z3) with
+                    | ZSome (zrsd, z_s2251z3) ->
                       begin
-                        match (string_drop (z_s2246z3, z_s2247z3)) with
-                        | z_s2248z3 ->
+                        match (string_drop (z_s2250z3, z_s2251z3)) with
+                        | z_s2252z3 ->
                           begin
-                            match (zsep_matches_prefix z_s2248z3) with
-                            | ZSome ((), z_s2249z3) ->
+                            match (zsep_matches_prefix z_s2252z3) with
+                            | ZSome ((), z_s2253z3) ->
                               begin
-                                match (string_drop (z_s2248z3, z_s2249z3)) with
-                                | z_s2250z3 ->
+                                match (string_drop (z_s2252z3, z_s2253z3)) with
+                                | z_s2254z3 ->
                                   begin
-                                    match (hex_bits_6_matches_prefix z_s2250z3) with
-                                    | ZSome (zshamt, z_s2251z3) ->
+                                    match (hex_bits_6_matches_prefix z_s2254z3) with
+                                    | ZSome (zshamt, z_s2255z3) ->
                                       begin
-                                        match (string_drop (z_s2250z3, z_s2251z3)) with
+                                        match (string_drop (z_s2254z3, z_s2255z3)) with
                                         | "" -> ZSome (zrsd, zshamt)
                                         | _ -> ZNone ()
                                       end
@@ -22496,110 +22534,36 @@ and z_s2241z3 (z_s2242z3 : (string)) : (((bit) list * (bit) list)) zoption = sai
     | _ -> ZNone ()
   end)
 
-and z_s2231z3 (z_s2232z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s2233z3 (z_s2234z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
-    match z_s2232z3 with
-    | z_s2233z3 when (string_startswith (z_s2233z3, "c.lui")) ->
+    match z_s2234z3 with
+    | z_s2235z3 when (string_startswith (z_s2235z3, "c.lui")) ->
       begin
-        match (string_drop (z_s2233z3, (string_length "c.lui"))) with
-        | z_s2234z3 ->
+        match (string_drop (z_s2235z3, (string_length "c.lui"))) with
+        | z_s2236z3 ->
           begin
-            match (zreg_name_matches_prefix z_s2234z3) with
-            | ZSome (zrd, z_s2235z3) ->
+            match (zspc_matches_prefix z_s2236z3) with
+            | ZSome ((), z_s2237z3) ->
               begin
-                match (string_drop (z_s2234z3, z_s2235z3)) with
-                | z_s2236z3 ->
+                match (string_drop (z_s2236z3, z_s2237z3)) with
+                | z_s2238z3 ->
                   begin
-                    match (zsep_matches_prefix z_s2236z3) with
-                    | ZSome ((), z_s2237z3) ->
+                    match (zreg_name_matches_prefix z_s2238z3) with
+                    | ZSome (zrd, z_s2239z3) ->
                       begin
-                        match (string_drop (z_s2236z3, z_s2237z3)) with
-                        | z_s2238z3 ->
+                        match (string_drop (z_s2238z3, z_s2239z3)) with
+                        | z_s2240z3 ->
                           begin
-                            match (hex_bits_6_matches_prefix z_s2238z3) with
-                            | ZSome (zimm, z_s2239z3) ->
+                            match (zsep_matches_prefix z_s2240z3) with
+                            | ZSome ((), z_s2241z3) ->
                               begin
-                                match (string_drop (z_s2238z3, z_s2239z3)) with
-                                | "" -> ZSome (zrd, zimm)
-                                | _ -> ZNone ()
-                              end
-                            | _ -> ZNone ()
-                          end
-                        | _ -> ZNone ()
-                      end
-                    | _ -> ZNone ()
-                  end
-                | _ -> ZNone ()
-              end
-            | _ -> ZNone ()
-          end
-        | _ -> ZNone ()
-      end
-    | _ -> ZNone ()
-  end)
-
-and z_s2223z3 (z_s2224z3 : (string)) : ((bit) list) zoption = sail_call (fun r ->
-  begin
-    match z_s2224z3 with
-    | z_s2225z3 when (string_startswith (z_s2225z3, "c.addi16sp")) ->
-      begin
-        match (string_drop (z_s2225z3, (string_length "c.addi16sp"))) with
-        | z_s2226z3 ->
-          begin
-            match (zspc_matches_prefix z_s2226z3) with
-            | ZSome ((), z_s2227z3) ->
-              begin
-                match (string_drop (z_s2226z3, z_s2227z3)) with
-                | z_s2228z3 ->
-                  begin
-                    match (hex_bits_6_matches_prefix z_s2228z3) with
-                    | ZSome (zimm, z_s2229z3) ->
-                      begin
-                        match (string_drop (z_s2228z3, z_s2229z3)) with
-                        | "" -> ZSome zimm
-                        | _ -> ZNone ()
-                      end
-                    | _ -> ZNone ()
-                  end
-                | _ -> ZNone ()
-              end
-            | _ -> ZNone ()
-          end
-        | _ -> ZNone ()
-      end
-    | _ -> ZNone ()
-  end)
-
-and z_s2211z3 (z_s2212z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
-  begin
-    match z_s2212z3 with
-    | z_s2213z3 when (string_startswith (z_s2213z3, "c.li")) ->
-      begin
-        match (string_drop (z_s2213z3, (string_length "c.li"))) with
-        | z_s2214z3 ->
-          begin
-            match (zspc_matches_prefix z_s2214z3) with
-            | ZSome ((), z_s2215z3) ->
-              begin
-                match (string_drop (z_s2214z3, z_s2215z3)) with
-                | z_s2216z3 ->
-                  begin
-                    match (zreg_name_matches_prefix z_s2216z3) with
-                    | ZSome (zrd, z_s2217z3) ->
-                      begin
-                        match (string_drop (z_s2216z3, z_s2217z3)) with
-                        | z_s2218z3 ->
-                          begin
-                            match (zsep_matches_prefix z_s2218z3) with
-                            | ZSome ((), z_s2219z3) ->
-                              begin
-                                match (string_drop (z_s2218z3, z_s2219z3)) with
-                                | z_s2220z3 ->
+                                match (string_drop (z_s2240z3, z_s2241z3)) with
+                                | z_s2242z3 ->
                                   begin
-                                    match (hex_bits_6_matches_prefix z_s2220z3) with
-                                    | ZSome (zimm, z_s2221z3) ->
+                                    match (hex_bits_6_matches_prefix z_s2242z3) with
+                                    | ZSome (zimm, z_s2243z3) ->
                                       begin
-                                        match (string_drop (z_s2220z3, z_s2221z3)) with
+                                        match (string_drop (z_s2242z3, z_s2243z3)) with
                                         | "" -> ZSome (zrd, zimm)
                                         | _ -> ZNone ()
                                       end
@@ -22622,36 +22586,120 @@ and z_s2211z3 (z_s2212z3 : (string)) : (((bit) list * (bit) list)) zoption = sai
     | _ -> ZNone ()
   end)
 
-and z_s2199z3 (z_s2200z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s2225z3 (z_s2226z3 : (string)) : ((bit) list) zoption = sail_call (fun r ->
   begin
-    match z_s2200z3 with
-    | z_s2201z3 when (string_startswith (z_s2201z3, "c.addiw")) ->
+    match z_s2226z3 with
+    | z_s2227z3 when (string_startswith (z_s2227z3, "c.addi16sp")) ->
       begin
-        match (string_drop (z_s2201z3, (string_length "c.addiw"))) with
-        | z_s2202z3 ->
+        match (string_drop (z_s2227z3, (string_length "c.addi16sp"))) with
+        | z_s2228z3 ->
           begin
-            match (zspc_matches_prefix z_s2202z3) with
-            | ZSome ((), z_s2203z3) ->
+            match (zspc_matches_prefix z_s2228z3) with
+            | ZSome ((), z_s2229z3) ->
               begin
-                match (string_drop (z_s2202z3, z_s2203z3)) with
-                | z_s2204z3 ->
+                match (string_drop (z_s2228z3, z_s2229z3)) with
+                | z_s2230z3 ->
                   begin
-                    match (zreg_name_matches_prefix z_s2204z3) with
-                    | ZSome (zrsd, z_s2205z3) ->
+                    match (hex_bits_6_matches_prefix z_s2230z3) with
+                    | ZSome (zimm, z_s2231z3) ->
                       begin
-                        match (string_drop (z_s2204z3, z_s2205z3)) with
-                        | z_s2206z3 ->
+                        match (string_drop (z_s2230z3, z_s2231z3)) with
+                        | "" -> ZSome zimm
+                        | _ -> ZNone ()
+                      end
+                    | _ -> ZNone ()
+                  end
+                | _ -> ZNone ()
+              end
+            | _ -> ZNone ()
+          end
+        | _ -> ZNone ()
+      end
+    | _ -> ZNone ()
+  end)
+
+and z_s2213z3 (z_s2214z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
+  begin
+    match z_s2214z3 with
+    | z_s2215z3 when (string_startswith (z_s2215z3, "c.li")) ->
+      begin
+        match (string_drop (z_s2215z3, (string_length "c.li"))) with
+        | z_s2216z3 ->
+          begin
+            match (zspc_matches_prefix z_s2216z3) with
+            | ZSome ((), z_s2217z3) ->
+              begin
+                match (string_drop (z_s2216z3, z_s2217z3)) with
+                | z_s2218z3 ->
+                  begin
+                    match (zreg_name_matches_prefix z_s2218z3) with
+                    | ZSome (zrd, z_s2219z3) ->
+                      begin
+                        match (string_drop (z_s2218z3, z_s2219z3)) with
+                        | z_s2220z3 ->
                           begin
-                            match (zsep_matches_prefix z_s2206z3) with
-                            | ZSome ((), z_s2207z3) ->
+                            match (zsep_matches_prefix z_s2220z3) with
+                            | ZSome ((), z_s2221z3) ->
                               begin
-                                match (string_drop (z_s2206z3, z_s2207z3)) with
-                                | z_s2208z3 ->
+                                match (string_drop (z_s2220z3, z_s2221z3)) with
+                                | z_s2222z3 ->
                                   begin
-                                    match (hex_bits_6_matches_prefix z_s2208z3) with
-                                    | ZSome (zimm, z_s2209z3) ->
+                                    match (hex_bits_6_matches_prefix z_s2222z3) with
+                                    | ZSome (zimm, z_s2223z3) ->
                                       begin
-                                        match (string_drop (z_s2208z3, z_s2209z3)) with
+                                        match (string_drop (z_s2222z3, z_s2223z3)) with
+                                        | "" -> ZSome (zrd, zimm)
+                                        | _ -> ZNone ()
+                                      end
+                                    | _ -> ZNone ()
+                                  end
+                                | _ -> ZNone ()
+                              end
+                            | _ -> ZNone ()
+                          end
+                        | _ -> ZNone ()
+                      end
+                    | _ -> ZNone ()
+                  end
+                | _ -> ZNone ()
+              end
+            | _ -> ZNone ()
+          end
+        | _ -> ZNone ()
+      end
+    | _ -> ZNone ()
+  end)
+
+and z_s2201z3 (z_s2202z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
+  begin
+    match z_s2202z3 with
+    | z_s2203z3 when (string_startswith (z_s2203z3, "c.addiw")) ->
+      begin
+        match (string_drop (z_s2203z3, (string_length "c.addiw"))) with
+        | z_s2204z3 ->
+          begin
+            match (zspc_matches_prefix z_s2204z3) with
+            | ZSome ((), z_s2205z3) ->
+              begin
+                match (string_drop (z_s2204z3, z_s2205z3)) with
+                | z_s2206z3 ->
+                  begin
+                    match (zreg_name_matches_prefix z_s2206z3) with
+                    | ZSome (zrsd, z_s2207z3) ->
+                      begin
+                        match (string_drop (z_s2206z3, z_s2207z3)) with
+                        | z_s2208z3 ->
+                          begin
+                            match (zsep_matches_prefix z_s2208z3) with
+                            | ZSome ((), z_s2209z3) ->
+                              begin
+                                match (string_drop (z_s2208z3, z_s2209z3)) with
+                                | z_s2210z3 ->
+                                  begin
+                                    match (hex_bits_6_matches_prefix z_s2210z3) with
+                                    | ZSome (zimm, z_s2211z3) ->
+                                      begin
+                                        match (string_drop (z_s2210z3, z_s2211z3)) with
                                         | "" -> ZSome (zrsd, zimm)
                                         | _ -> ZNone ()
                                       end
@@ -22674,27 +22722,27 @@ and z_s2199z3 (z_s2200z3 : (string)) : (((bit) list * (bit) list)) zoption = sai
     | _ -> ZNone ()
   end)
 
-and z_s2191z3 (z_s2192z3 : (string)) : ((bit) list) zoption = sail_call (fun r ->
+and z_s2193z3 (z_s2194z3 : (string)) : ((bit) list) zoption = sail_call (fun r ->
   begin
-    match z_s2192z3 with
-    | z_s2193z3 when (string_startswith (z_s2193z3, "c.jal")) ->
+    match z_s2194z3 with
+    | z_s2195z3 when (string_startswith (z_s2195z3, "c.jal")) ->
       begin
-        match (string_drop (z_s2193z3, (string_length "c.jal"))) with
-        | z_s2194z3 ->
+        match (string_drop (z_s2195z3, (string_length "c.jal"))) with
+        | z_s2196z3 ->
           begin
-            match (zspc_matches_prefix z_s2194z3) with
-            | ZSome ((), z_s2195z3) ->
+            match (zspc_matches_prefix z_s2196z3) with
+            | ZSome ((), z_s2197z3) ->
               begin
-                match (string_drop (z_s2194z3, z_s2195z3)) with
-                | z_s2196z3 ->
+                match (string_drop (z_s2196z3, z_s2197z3)) with
+                | z_s2198z3 ->
                   begin
-                    match (hex_bits_12_matches_prefix z_s2196z3) with
-                    | ZSome (zv__54, z_s2197z3) when (let zp0z3 = (access (zv__54, Big_int.zero)) in
+                    match (hex_bits_12_matches_prefix z_s2198z3) with
+                    | ZSome (zv__54, z_s2199z3) when (let zp0z3 = (access (zv__54, Big_int.zero)) in
                     eq_bit (zp0z3, B0)) ->
                       let zimm = (subrange (zv__54, (Big_int.of_int (11)), (Big_int.of_int (1)))) in
                       let zimm = (subrange (zv__54, (Big_int.of_int (11)), (Big_int.of_int (1)))) in
                       begin
-                        match (string_drop (z_s2196z3, z_s2197z3)) with
+                        match (string_drop (z_s2198z3, z_s2199z3)) with
                         | "" -> ZSome zimm
                         | _ -> ZNone ()
                       end
@@ -22709,36 +22757,36 @@ and z_s2191z3 (z_s2192z3 : (string)) : ((bit) list) zoption = sail_call (fun r -
     | _ -> ZNone ()
   end)
 
-and z_s2179z3 (z_s2180z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s2181z3 (z_s2182z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
-    match z_s2180z3 with
-    | z_s2181z3 when (string_startswith (z_s2181z3, "c.addi")) ->
+    match z_s2182z3 with
+    | z_s2183z3 when (string_startswith (z_s2183z3, "c.addi")) ->
       begin
-        match (string_drop (z_s2181z3, (string_length "c.addi"))) with
-        | z_s2182z3 ->
+        match (string_drop (z_s2183z3, (string_length "c.addi"))) with
+        | z_s2184z3 ->
           begin
-            match (zspc_matches_prefix z_s2182z3) with
-            | ZSome ((), z_s2183z3) ->
+            match (zspc_matches_prefix z_s2184z3) with
+            | ZSome ((), z_s2185z3) ->
               begin
-                match (string_drop (z_s2182z3, z_s2183z3)) with
-                | z_s2184z3 ->
+                match (string_drop (z_s2184z3, z_s2185z3)) with
+                | z_s2186z3 ->
                   begin
-                    match (zreg_name_matches_prefix z_s2184z3) with
-                    | ZSome (zrsd, z_s2185z3) ->
+                    match (zreg_name_matches_prefix z_s2186z3) with
+                    | ZSome (zrsd, z_s2187z3) ->
                       begin
-                        match (string_drop (z_s2184z3, z_s2185z3)) with
-                        | z_s2186z3 ->
+                        match (string_drop (z_s2186z3, z_s2187z3)) with
+                        | z_s2188z3 ->
                           begin
-                            match (zsep_matches_prefix z_s2186z3) with
-                            | ZSome ((), z_s2187z3) ->
+                            match (zsep_matches_prefix z_s2188z3) with
+                            | ZSome ((), z_s2189z3) ->
                               begin
-                                match (string_drop (z_s2186z3, z_s2187z3)) with
-                                | z_s2188z3 ->
+                                match (string_drop (z_s2188z3, z_s2189z3)) with
+                                | z_s2190z3 ->
                                   begin
-                                    match (hex_bits_6_matches_prefix z_s2188z3) with
-                                    | ZSome (znzzi, z_s2189z3) ->
+                                    match (hex_bits_6_matches_prefix z_s2190z3) with
+                                    | ZSome (znzzi, z_s2191z3) ->
                                       begin
-                                        match (string_drop (z_s2188z3, z_s2189z3)) with
+                                        match (string_drop (z_s2190z3, z_s2191z3)) with
                                         | "" -> ZSome (zrsd, znzzi)
                                         | _ -> ZNone ()
                                       end
@@ -22761,53 +22809,53 @@ and z_s2179z3 (z_s2180z3 : (string)) : (((bit) list * (bit) list)) zoption = sai
     | _ -> ZNone ()
   end)
 
-and z_s2163z3 (z_s2164z3 : (string)) : (((bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s2165z3 (z_s2166z3 : (string)) : (((bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
-    match z_s2164z3 with
-    | z_s2165z3 when (string_startswith (z_s2165z3, "c.sd")) ->
+    match z_s2166z3 with
+    | z_s2167z3 when (string_startswith (z_s2167z3, "c.sd")) ->
       begin
-        match (string_drop (z_s2165z3, (string_length "c.sd"))) with
-        | z_s2166z3 ->
+        match (string_drop (z_s2167z3, (string_length "c.sd"))) with
+        | z_s2168z3 ->
           begin
-            match (zspc_matches_prefix z_s2166z3) with
-            | ZSome ((), z_s2167z3) ->
+            match (zspc_matches_prefix z_s2168z3) with
+            | ZSome ((), z_s2169z3) ->
               begin
-                match (string_drop (z_s2166z3, z_s2167z3)) with
-                | z_s2168z3 ->
+                match (string_drop (z_s2168z3, z_s2169z3)) with
+                | z_s2170z3 ->
                   begin
-                    match (zcreg_name_matches_prefix z_s2168z3) with
-                    | ZSome (zrsc1, z_s2169z3) ->
+                    match (zcreg_name_matches_prefix z_s2170z3) with
+                    | ZSome (zrsc1, z_s2171z3) ->
                       begin
-                        match (string_drop (z_s2168z3, z_s2169z3)) with
-                        | z_s2170z3 ->
+                        match (string_drop (z_s2170z3, z_s2171z3)) with
+                        | z_s2172z3 ->
                           begin
-                            match (zsep_matches_prefix z_s2170z3) with
-                            | ZSome ((), z_s2171z3) ->
+                            match (zsep_matches_prefix z_s2172z3) with
+                            | ZSome ((), z_s2173z3) ->
                               begin
-                                match (string_drop (z_s2170z3, z_s2171z3)) with
-                                | z_s2172z3 ->
+                                match (string_drop (z_s2172z3, z_s2173z3)) with
+                                | z_s2174z3 ->
                                   begin
-                                    match (zcreg_name_matches_prefix z_s2172z3) with
-                                    | ZSome (zrsc2, z_s2173z3) ->
+                                    match (zcreg_name_matches_prefix z_s2174z3) with
+                                    | ZSome (zrsc2, z_s2175z3) ->
                                       begin
-                                        match (string_drop (z_s2172z3, z_s2173z3)) with
-                                        | z_s2174z3 ->
+                                        match (string_drop (z_s2174z3, z_s2175z3)) with
+                                        | z_s2176z3 ->
                                           begin
-                                            match (zsep_matches_prefix z_s2174z3) with
-                                            | ZSome ((), z_s2175z3) ->
+                                            match (zsep_matches_prefix z_s2176z3) with
+                                            | ZSome ((), z_s2177z3) ->
                                               begin
-                                                match (string_drop (z_s2174z3, z_s2175z3)) with
-                                                | z_s2176z3 ->
+                                                match (string_drop (z_s2176z3, z_s2177z3)) with
+                                                | z_s2178z3 ->
                                                   begin
-                                                    match (hex_bits_8_matches_prefix z_s2176z3) with
-                                                    | ZSome (zv__56, z_s2177z3) when (let zp0z3 = (access (zv__56, (Big_int.of_int (2)))) in
+                                                    match (hex_bits_8_matches_prefix z_s2178z3) with
+                                                    | ZSome (zv__56, z_s2179z3) when (let zp0z3 = (access (zv__56, (Big_int.of_int (2)))) in
                                                     let zp1z3 = (access (zv__56, (Big_int.of_int (1)))) in
                                                     let zp2z3 = (access (zv__56, Big_int.zero)) in
                                                     ((eq_bit (zp2z3, B0)) && (eq_bit (zp1z3, B0))) && (eq_bit (zp0z3, B0))) ->
                                                       let zuimm = (subrange (zv__56, (Big_int.of_int (7)), (Big_int.of_int (3)))) in
                                                       let zuimm = (subrange (zv__56, (Big_int.of_int (7)), (Big_int.of_int (3)))) in
                                                       begin
-                                                        match (string_drop (z_s2176z3, z_s2177z3)) with
+                                                        match (string_drop (z_s2178z3, z_s2179z3)) with
                                                         | "" ->
                                                           ZSome (zrsc1, zrsc2, zuimm)
                                                         | _ -> ZNone ()
@@ -22839,52 +22887,52 @@ and z_s2163z3 (z_s2164z3 : (string)) : (((bit) list * (bit) list * (bit) list)) 
     | _ -> ZNone ()
   end)
 
-and z_s2147z3 (z_s2148z3 : (string)) : (((bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s2149z3 (z_s2150z3 : (string)) : (((bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
-    match z_s2148z3 with
-    | z_s2149z3 when (string_startswith (z_s2149z3, "c.sw")) ->
+    match z_s2150z3 with
+    | z_s2151z3 when (string_startswith (z_s2151z3, "c.sw")) ->
       begin
-        match (string_drop (z_s2149z3, (string_length "c.sw"))) with
-        | z_s2150z3 ->
+        match (string_drop (z_s2151z3, (string_length "c.sw"))) with
+        | z_s2152z3 ->
           begin
-            match (zspc_matches_prefix z_s2150z3) with
-            | ZSome ((), z_s2151z3) ->
+            match (zspc_matches_prefix z_s2152z3) with
+            | ZSome ((), z_s2153z3) ->
               begin
-                match (string_drop (z_s2150z3, z_s2151z3)) with
-                | z_s2152z3 ->
+                match (string_drop (z_s2152z3, z_s2153z3)) with
+                | z_s2154z3 ->
                   begin
-                    match (zcreg_name_matches_prefix z_s2152z3) with
-                    | ZSome (zrsc1, z_s2153z3) ->
+                    match (zcreg_name_matches_prefix z_s2154z3) with
+                    | ZSome (zrsc1, z_s2155z3) ->
                       begin
-                        match (string_drop (z_s2152z3, z_s2153z3)) with
-                        | z_s2154z3 ->
+                        match (string_drop (z_s2154z3, z_s2155z3)) with
+                        | z_s2156z3 ->
                           begin
-                            match (zsep_matches_prefix z_s2154z3) with
-                            | ZSome ((), z_s2155z3) ->
+                            match (zsep_matches_prefix z_s2156z3) with
+                            | ZSome ((), z_s2157z3) ->
                               begin
-                                match (string_drop (z_s2154z3, z_s2155z3)) with
-                                | z_s2156z3 ->
+                                match (string_drop (z_s2156z3, z_s2157z3)) with
+                                | z_s2158z3 ->
                                   begin
-                                    match (zcreg_name_matches_prefix z_s2156z3) with
-                                    | ZSome (zrsc2, z_s2157z3) ->
+                                    match (zcreg_name_matches_prefix z_s2158z3) with
+                                    | ZSome (zrsc2, z_s2159z3) ->
                                       begin
-                                        match (string_drop (z_s2156z3, z_s2157z3)) with
-                                        | z_s2158z3 ->
+                                        match (string_drop (z_s2158z3, z_s2159z3)) with
+                                        | z_s2160z3 ->
                                           begin
-                                            match (zsep_matches_prefix z_s2158z3) with
-                                            | ZSome ((), z_s2159z3) ->
+                                            match (zsep_matches_prefix z_s2160z3) with
+                                            | ZSome ((), z_s2161z3) ->
                                               begin
-                                                match (string_drop (z_s2158z3, z_s2159z3)) with
-                                                | z_s2160z3 ->
+                                                match (string_drop (z_s2160z3, z_s2161z3)) with
+                                                | z_s2162z3 ->
                                                   begin
-                                                    match (hex_bits_7_matches_prefix z_s2160z3) with
-                                                    | ZSome (zv__58, z_s2161z3) when (let zp0z3 = (access (zv__58, (Big_int.of_int (1)))) in
+                                                    match (hex_bits_7_matches_prefix z_s2162z3) with
+                                                    | ZSome (zv__58, z_s2163z3) when (let zp0z3 = (access (zv__58, (Big_int.of_int (1)))) in
                                                     let zp1z3 = (access (zv__58, Big_int.zero)) in
                                                     (eq_bit (zp1z3, B0)) && (eq_bit (zp0z3, B0))) ->
                                                       let zuimm = (subrange (zv__58, (Big_int.of_int (6)), (Big_int.of_int (2)))) in
                                                       let zuimm = (subrange (zv__58, (Big_int.of_int (6)), (Big_int.of_int (2)))) in
                                                       begin
-                                                        match (string_drop (z_s2160z3, z_s2161z3)) with
+                                                        match (string_drop (z_s2162z3, z_s2163z3)) with
                                                         | "" ->
                                                           ZSome (zrsc1, zrsc2, zuimm)
                                                         | _ -> ZNone ()
@@ -22916,53 +22964,53 @@ and z_s2147z3 (z_s2148z3 : (string)) : (((bit) list * (bit) list * (bit) list)) 
     | _ -> ZNone ()
   end)
 
-and z_s2131z3 (z_s2132z3 : (string)) : (((bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s2133z3 (z_s2134z3 : (string)) : (((bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
-    match z_s2132z3 with
-    | z_s2133z3 when (string_startswith (z_s2133z3, "c.ld")) ->
+    match z_s2134z3 with
+    | z_s2135z3 when (string_startswith (z_s2135z3, "c.ld")) ->
       begin
-        match (string_drop (z_s2133z3, (string_length "c.ld"))) with
-        | z_s2134z3 ->
+        match (string_drop (z_s2135z3, (string_length "c.ld"))) with
+        | z_s2136z3 ->
           begin
-            match (zspc_matches_prefix z_s2134z3) with
-            | ZSome ((), z_s2135z3) ->
+            match (zspc_matches_prefix z_s2136z3) with
+            | ZSome ((), z_s2137z3) ->
               begin
-                match (string_drop (z_s2134z3, z_s2135z3)) with
-                | z_s2136z3 ->
+                match (string_drop (z_s2136z3, z_s2137z3)) with
+                | z_s2138z3 ->
                   begin
-                    match (zcreg_name_matches_prefix z_s2136z3) with
-                    | ZSome (zrdc, z_s2137z3) ->
+                    match (zcreg_name_matches_prefix z_s2138z3) with
+                    | ZSome (zrdc, z_s2139z3) ->
                       begin
-                        match (string_drop (z_s2136z3, z_s2137z3)) with
-                        | z_s2138z3 ->
+                        match (string_drop (z_s2138z3, z_s2139z3)) with
+                        | z_s2140z3 ->
                           begin
-                            match (zsep_matches_prefix z_s2138z3) with
-                            | ZSome ((), z_s2139z3) ->
+                            match (zsep_matches_prefix z_s2140z3) with
+                            | ZSome ((), z_s2141z3) ->
                               begin
-                                match (string_drop (z_s2138z3, z_s2139z3)) with
-                                | z_s2140z3 ->
+                                match (string_drop (z_s2140z3, z_s2141z3)) with
+                                | z_s2142z3 ->
                                   begin
-                                    match (zcreg_name_matches_prefix z_s2140z3) with
-                                    | ZSome (zrsc, z_s2141z3) ->
+                                    match (zcreg_name_matches_prefix z_s2142z3) with
+                                    | ZSome (zrsc, z_s2143z3) ->
                                       begin
-                                        match (string_drop (z_s2140z3, z_s2141z3)) with
-                                        | z_s2142z3 ->
+                                        match (string_drop (z_s2142z3, z_s2143z3)) with
+                                        | z_s2144z3 ->
                                           begin
-                                            match (zsep_matches_prefix z_s2142z3) with
-                                            | ZSome ((), z_s2143z3) ->
+                                            match (zsep_matches_prefix z_s2144z3) with
+                                            | ZSome ((), z_s2145z3) ->
                                               begin
-                                                match (string_drop (z_s2142z3, z_s2143z3)) with
-                                                | z_s2144z3 ->
+                                                match (string_drop (z_s2144z3, z_s2145z3)) with
+                                                | z_s2146z3 ->
                                                   begin
-                                                    match (hex_bits_8_matches_prefix z_s2144z3) with
-                                                    | ZSome (zv__60, z_s2145z3) when (let zp0z3 = (access (zv__60, (Big_int.of_int (2)))) in
+                                                    match (hex_bits_8_matches_prefix z_s2146z3) with
+                                                    | ZSome (zv__60, z_s2147z3) when (let zp0z3 = (access (zv__60, (Big_int.of_int (2)))) in
                                                     let zp1z3 = (access (zv__60, (Big_int.of_int (1)))) in
                                                     let zp2z3 = (access (zv__60, Big_int.zero)) in
                                                     ((eq_bit (zp2z3, B0)) && (eq_bit (zp1z3, B0))) && (eq_bit (zp0z3, B0))) ->
                                                       let zuimm = (subrange (zv__60, (Big_int.of_int (7)), (Big_int.of_int (3)))) in
                                                       let zuimm = (subrange (zv__60, (Big_int.of_int (7)), (Big_int.of_int (3)))) in
                                                       begin
-                                                        match (string_drop (z_s2144z3, z_s2145z3)) with
+                                                        match (string_drop (z_s2146z3, z_s2147z3)) with
                                                         | "" ->
                                                           ZSome (zrdc, zrsc, zuimm)
                                                         | _ -> ZNone ()
@@ -22994,52 +23042,52 @@ and z_s2131z3 (z_s2132z3 : (string)) : (((bit) list * (bit) list * (bit) list)) 
     | _ -> ZNone ()
   end)
 
-and z_s2115z3 (z_s2116z3 : (string)) : (((bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s2117z3 (z_s2118z3 : (string)) : (((bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
-    match z_s2116z3 with
-    | z_s2117z3 when (string_startswith (z_s2117z3, "c.lw")) ->
+    match z_s2118z3 with
+    | z_s2119z3 when (string_startswith (z_s2119z3, "c.lw")) ->
       begin
-        match (string_drop (z_s2117z3, (string_length "c.lw"))) with
-        | z_s2118z3 ->
+        match (string_drop (z_s2119z3, (string_length "c.lw"))) with
+        | z_s2120z3 ->
           begin
-            match (zspc_matches_prefix z_s2118z3) with
-            | ZSome ((), z_s2119z3) ->
+            match (zspc_matches_prefix z_s2120z3) with
+            | ZSome ((), z_s2121z3) ->
               begin
-                match (string_drop (z_s2118z3, z_s2119z3)) with
-                | z_s2120z3 ->
+                match (string_drop (z_s2120z3, z_s2121z3)) with
+                | z_s2122z3 ->
                   begin
-                    match (zcreg_name_matches_prefix z_s2120z3) with
-                    | ZSome (zrdc, z_s2121z3) ->
+                    match (zcreg_name_matches_prefix z_s2122z3) with
+                    | ZSome (zrdc, z_s2123z3) ->
                       begin
-                        match (string_drop (z_s2120z3, z_s2121z3)) with
-                        | z_s2122z3 ->
+                        match (string_drop (z_s2122z3, z_s2123z3)) with
+                        | z_s2124z3 ->
                           begin
-                            match (zsep_matches_prefix z_s2122z3) with
-                            | ZSome ((), z_s2123z3) ->
+                            match (zsep_matches_prefix z_s2124z3) with
+                            | ZSome ((), z_s2125z3) ->
                               begin
-                                match (string_drop (z_s2122z3, z_s2123z3)) with
-                                | z_s2124z3 ->
+                                match (string_drop (z_s2124z3, z_s2125z3)) with
+                                | z_s2126z3 ->
                                   begin
-                                    match (zcreg_name_matches_prefix z_s2124z3) with
-                                    | ZSome (zrsc, z_s2125z3) ->
+                                    match (zcreg_name_matches_prefix z_s2126z3) with
+                                    | ZSome (zrsc, z_s2127z3) ->
                                       begin
-                                        match (string_drop (z_s2124z3, z_s2125z3)) with
-                                        | z_s2126z3 ->
+                                        match (string_drop (z_s2126z3, z_s2127z3)) with
+                                        | z_s2128z3 ->
                                           begin
-                                            match (zsep_matches_prefix z_s2126z3) with
-                                            | ZSome ((), z_s2127z3) ->
+                                            match (zsep_matches_prefix z_s2128z3) with
+                                            | ZSome ((), z_s2129z3) ->
                                               begin
-                                                match (string_drop (z_s2126z3, z_s2127z3)) with
-                                                | z_s2128z3 ->
+                                                match (string_drop (z_s2128z3, z_s2129z3)) with
+                                                | z_s2130z3 ->
                                                   begin
-                                                    match (hex_bits_7_matches_prefix z_s2128z3) with
-                                                    | ZSome (zv__62, z_s2129z3) when (let zp0z3 = (access (zv__62, (Big_int.of_int (1)))) in
+                                                    match (hex_bits_7_matches_prefix z_s2130z3) with
+                                                    | ZSome (zv__62, z_s2131z3) when (let zp0z3 = (access (zv__62, (Big_int.of_int (1)))) in
                                                     let zp1z3 = (access (zv__62, Big_int.zero)) in
                                                     (eq_bit (zp1z3, B0)) && (eq_bit (zp0z3, B0))) ->
                                                       let zuimm = (subrange (zv__62, (Big_int.of_int (6)), (Big_int.of_int (2)))) in
                                                       let zuimm = (subrange (zv__62, (Big_int.of_int (6)), (Big_int.of_int (2)))) in
                                                       begin
-                                                        match (string_drop (z_s2128z3, z_s2129z3)) with
+                                                        match (string_drop (z_s2130z3, z_s2131z3)) with
                                                         | "" ->
                                                           ZSome (zrdc, zrsc, zuimm)
                                                         | _ -> ZNone ()
@@ -23071,40 +23119,40 @@ and z_s2115z3 (z_s2116z3 : (string)) : (((bit) list * (bit) list * (bit) list)) 
     | _ -> ZNone ()
   end)
 
-and z_s2103z3 (z_s2104z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s2105z3 (z_s2106z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
-    match z_s2104z3 with
-    | z_s2105z3 when (string_startswith (z_s2105z3, "c.addi4spn")) ->
+    match z_s2106z3 with
+    | z_s2107z3 when (string_startswith (z_s2107z3, "c.addi4spn")) ->
       begin
-        match (string_drop (z_s2105z3, (string_length "c.addi4spn"))) with
-        | z_s2106z3 ->
+        match (string_drop (z_s2107z3, (string_length "c.addi4spn"))) with
+        | z_s2108z3 ->
           begin
-            match (zspc_matches_prefix z_s2106z3) with
-            | ZSome ((), z_s2107z3) ->
+            match (zspc_matches_prefix z_s2108z3) with
+            | ZSome ((), z_s2109z3) ->
               begin
-                match (string_drop (z_s2106z3, z_s2107z3)) with
-                | z_s2108z3 ->
+                match (string_drop (z_s2108z3, z_s2109z3)) with
+                | z_s2110z3 ->
                   begin
-                    match (zcreg_name_matches_prefix z_s2108z3) with
-                    | ZSome (zrdc, z_s2109z3) ->
+                    match (zcreg_name_matches_prefix z_s2110z3) with
+                    | ZSome (zrdc, z_s2111z3) ->
                       begin
-                        match (string_drop (z_s2108z3, z_s2109z3)) with
-                        | z_s2110z3 ->
+                        match (string_drop (z_s2110z3, z_s2111z3)) with
+                        | z_s2112z3 ->
                           begin
-                            match (zsep_matches_prefix z_s2110z3) with
-                            | ZSome ((), z_s2111z3) ->
+                            match (zsep_matches_prefix z_s2112z3) with
+                            | ZSome ((), z_s2113z3) ->
                               begin
-                                match (string_drop (z_s2110z3, z_s2111z3)) with
-                                | z_s2112z3 ->
+                                match (string_drop (z_s2112z3, z_s2113z3)) with
+                                | z_s2114z3 ->
                                   begin
-                                    match (hex_bits_10_matches_prefix z_s2112z3) with
-                                    | ZSome (zv__64, z_s2113z3) when (let zp0z3 = (access (zv__64, (Big_int.of_int (1)))) in
+                                    match (hex_bits_10_matches_prefix z_s2114z3) with
+                                    | ZSome (zv__64, z_s2115z3) when (let zp0z3 = (access (zv__64, (Big_int.of_int (1)))) in
                                     let zp1z3 = (access (zv__64, Big_int.zero)) in
                                     (eq_bit (zp1z3, B0)) && (eq_bit (zp0z3, B0))) ->
                                       let znzzimm = (subrange (zv__64, (Big_int.of_int (9)), (Big_int.of_int (2)))) in
                                       let znzzimm = (subrange (zv__64, (Big_int.of_int (9)), (Big_int.of_int (2)))) in
                                       begin
-                                        match (string_drop (z_s2112z3, z_s2113z3)) with
+                                        match (string_drop (z_s2114z3, z_s2115z3)) with
                                         | "" -> ZSome (zrdc, znzzimm)
                                         | _ -> ZNone ()
                                       end
@@ -23127,51 +23175,51 @@ and z_s2103z3 (z_s2104z3 : (string)) : (((bit) list * (bit) list)) zoption = sai
     | _ -> ZNone ()
   end)
 
-and z_s2086z3 (z_s2087z3 : (string)) : ((zcsrop * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s2088z3 (z_s2089z3 : (string)) : ((zcsrop * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
-    match z_s2087z3 with
-    | z_s2088z3 ->
+    match z_s2089z3 with
+    | z_s2090z3 ->
       begin
-        match (zcsr_mnemonic_matches_prefix z_s2088z3) with
-        | ZSome (zop, z_s2089z3) ->
+        match (zcsr_mnemonic_matches_prefix z_s2090z3) with
+        | ZSome (zop, z_s2091z3) ->
           begin
-            match (string_drop (z_s2088z3, z_s2089z3)) with
-            | z_s2090z3 ->
+            match (string_drop (z_s2090z3, z_s2091z3)) with
+            | z_s2092z3 ->
               begin
-                match (zspc_matches_prefix z_s2090z3) with
-                | ZSome ((), z_s2091z3) ->
+                match (zspc_matches_prefix z_s2092z3) with
+                | ZSome ((), z_s2093z3) ->
                   begin
-                    match (string_drop (z_s2090z3, z_s2091z3)) with
-                    | z_s2092z3 ->
+                    match (string_drop (z_s2092z3, z_s2093z3)) with
+                    | z_s2094z3 ->
                       begin
-                        match (zreg_name_matches_prefix z_s2092z3) with
-                        | ZSome (zrd, z_s2093z3) ->
+                        match (zreg_name_matches_prefix z_s2094z3) with
+                        | ZSome (zrd, z_s2095z3) ->
                           begin
-                            match (string_drop (z_s2092z3, z_s2093z3)) with
-                            | z_s2094z3 ->
+                            match (string_drop (z_s2094z3, z_s2095z3)) with
+                            | z_s2096z3 ->
                               begin
-                                match (zsep_matches_prefix z_s2094z3) with
-                                | ZSome ((), z_s2095z3) ->
+                                match (zsep_matches_prefix z_s2096z3) with
+                                | ZSome ((), z_s2097z3) ->
                                   begin
-                                    match (string_drop (z_s2094z3, z_s2095z3)) with
-                                    | z_s2096z3 ->
+                                    match (string_drop (z_s2096z3, z_s2097z3)) with
+                                    | z_s2098z3 ->
                                       begin
-                                        match (zreg_name_matches_prefix z_s2096z3) with
-                                        | ZSome (zrs1, z_s2097z3) ->
+                                        match (zreg_name_matches_prefix z_s2098z3) with
+                                        | ZSome (zrs1, z_s2099z3) ->
                                           begin
-                                            match (string_drop (z_s2096z3, z_s2097z3)) with
-                                            | z_s2098z3 ->
+                                            match (string_drop (z_s2098z3, z_s2099z3)) with
+                                            | z_s2100z3 ->
                                               begin
-                                                match (zsep_matches_prefix z_s2098z3) with
-                                                | ZSome ((), z_s2099z3) ->
+                                                match (zsep_matches_prefix z_s2100z3) with
+                                                | ZSome ((), z_s2101z3) ->
                                                   begin
-                                                    match (string_drop (z_s2098z3, z_s2099z3)) with
-                                                    | z_s2100z3 ->
+                                                    match (string_drop (z_s2100z3, z_s2101z3)) with
+                                                    | z_s2102z3 ->
                                                       begin
-                                                        match (zcsr_name_map_matches_prefix z_s2100z3) with
-                                                        | ZSome (zcsr, z_s2101z3) ->
+                                                        match (zcsr_name_map_matches_prefix z_s2102z3) with
+                                                        | ZSome (zcsr, z_s2103z3) ->
                                                           begin
-                                                            match (string_drop (z_s2100z3, z_s2101z3)) with
+                                                            match (string_drop (z_s2102z3, z_s2103z3)) with
                                                             | "" ->
                                                               ZSome (zop, zrd, zrs1, zcsr)
                                                             | _ -> ZNone ()
@@ -23205,54 +23253,54 @@ and z_s2086z3 (z_s2087z3 : (string)) : ((zcsrop * (bit) list * (bit) list * (bit
     | _ -> ZNone ()
   end)
 
-and z_s2068z3 (z_s2069z3 : (string)) : ((zcsrop * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s2070z3 (z_s2071z3 : (string)) : ((zcsrop * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
-    match z_s2069z3 with
-    | z_s2070z3 ->
+    match z_s2071z3 with
+    | z_s2072z3 ->
       begin
-        match (zcsr_mnemonic_matches_prefix z_s2070z3) with
-        | ZSome (zop, z_s2071z3) ->
+        match (zcsr_mnemonic_matches_prefix z_s2072z3) with
+        | ZSome (zop, z_s2073z3) ->
           begin
-            match (string_drop (z_s2070z3, z_s2071z3)) with
-            | z_s2072z3 when (string_startswith (z_s2072z3, "i")) ->
+            match (string_drop (z_s2072z3, z_s2073z3)) with
+            | z_s2074z3 when (string_startswith (z_s2074z3, "i")) ->
               begin
-                match (string_drop (z_s2072z3, (string_length "i"))) with
-                | z_s2073z3 ->
+                match (string_drop (z_s2074z3, (string_length "i"))) with
+                | z_s2075z3 ->
                   begin
-                    match (zspc_matches_prefix z_s2073z3) with
-                    | ZSome ((), z_s2074z3) ->
+                    match (zspc_matches_prefix z_s2075z3) with
+                    | ZSome ((), z_s2076z3) ->
                       begin
-                        match (string_drop (z_s2073z3, z_s2074z3)) with
-                        | z_s2075z3 ->
+                        match (string_drop (z_s2075z3, z_s2076z3)) with
+                        | z_s2077z3 ->
                           begin
-                            match (zreg_name_matches_prefix z_s2075z3) with
-                            | ZSome (zrd, z_s2076z3) ->
+                            match (zreg_name_matches_prefix z_s2077z3) with
+                            | ZSome (zrd, z_s2078z3) ->
                               begin
-                                match (string_drop (z_s2075z3, z_s2076z3)) with
-                                | z_s2077z3 ->
+                                match (string_drop (z_s2077z3, z_s2078z3)) with
+                                | z_s2079z3 ->
                                   begin
-                                    match (zsep_matches_prefix z_s2077z3) with
-                                    | ZSome ((), z_s2078z3) ->
+                                    match (zsep_matches_prefix z_s2079z3) with
+                                    | ZSome ((), z_s2080z3) ->
                                       begin
-                                        match (string_drop (z_s2077z3, z_s2078z3)) with
-                                        | z_s2079z3 ->
+                                        match (string_drop (z_s2079z3, z_s2080z3)) with
+                                        | z_s2081z3 ->
                                           begin
-                                            match (hex_bits_5_matches_prefix z_s2079z3) with
-                                            | ZSome (zrs1, z_s2080z3) ->
+                                            match (hex_bits_5_matches_prefix z_s2081z3) with
+                                            | ZSome (zrs1, z_s2082z3) ->
                                               begin
-                                                match (string_drop (z_s2079z3, z_s2080z3)) with
-                                                | z_s2081z3 ->
+                                                match (string_drop (z_s2081z3, z_s2082z3)) with
+                                                | z_s2083z3 ->
                                                   begin
-                                                    match (zsep_matches_prefix z_s2081z3) with
-                                                    | ZSome ((), z_s2082z3) ->
+                                                    match (zsep_matches_prefix z_s2083z3) with
+                                                    | ZSome ((), z_s2084z3) ->
                                                       begin
-                                                        match (string_drop (z_s2081z3, z_s2082z3)) with
-                                                        | z_s2083z3 ->
+                                                        match (string_drop (z_s2083z3, z_s2084z3)) with
+                                                        | z_s2085z3 ->
                                                           begin
-                                                            match (zcsr_name_map_matches_prefix z_s2083z3) with
-                                                            | ZSome (zcsr, z_s2084z3) ->
+                                                            match (zcsr_name_map_matches_prefix z_s2085z3) with
+                                                            | ZSome (zcsr, z_s2086z3) ->
                                                               begin
-                                                                match (string_drop (z_s2083z3, z_s2084z3)) with
+                                                                match (string_drop (z_s2085z3, z_s2086z3)) with
                                                                 | "" ->
                                                                   ZSome (zop, zrd, zrs1, zcsr)
                                                                 | _ -> ZNone ()
@@ -23288,72 +23336,72 @@ and z_s2068z3 (z_s2069z3 : (string)) : ((zcsrop * (bit) list * (bit) list * (bit
     | _ -> ZNone ()
   end)
 
-and z_s2044z3 (z_s2045z3 : (string)) : ((zamoop * zword_width * bool * bool * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s2046z3 (z_s2047z3 : (string)) : ((zamoop * zword_width * bool * bool * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
-    match z_s2045z3 with
-    | z_s2046z3 ->
+    match z_s2047z3 with
+    | z_s2048z3 ->
       begin
-        match (zamo_mnemonic_matches_prefix z_s2046z3) with
-        | ZSome (zop, z_s2047z3) ->
+        match (zamo_mnemonic_matches_prefix z_s2048z3) with
+        | ZSome (zop, z_s2049z3) ->
           begin
-            match (string_drop (z_s2046z3, z_s2047z3)) with
-            | z_s2048z3 when (string_startswith (z_s2048z3, ".")) ->
+            match (string_drop (z_s2048z3, z_s2049z3)) with
+            | z_s2050z3 when (string_startswith (z_s2050z3, ".")) ->
               begin
-                match (string_drop (z_s2048z3, (string_length "."))) with
-                | z_s2049z3 ->
+                match (string_drop (z_s2050z3, (string_length "."))) with
+                | z_s2051z3 ->
                   begin
-                    match (zsizze_mnemonic_matches_prefix z_s2049z3) with
-                    | ZSome (zwidth, z_s2050z3) ->
+                    match (zsizze_mnemonic_matches_prefix z_s2051z3) with
+                    | ZSome (zwidth, z_s2052z3) ->
                       begin
-                        match (string_drop (z_s2049z3, z_s2050z3)) with
-                        | z_s2051z3 ->
+                        match (string_drop (z_s2051z3, z_s2052z3)) with
+                        | z_s2053z3 ->
                           begin
-                            match (zmaybe_aq_matches_prefix z_s2051z3) with
-                            | ZSome (zaq, z_s2052z3) ->
+                            match (zmaybe_aq_matches_prefix z_s2053z3) with
+                            | ZSome (zaq, z_s2054z3) ->
                               begin
-                                match (string_drop (z_s2051z3, z_s2052z3)) with
-                                | z_s2053z3 ->
+                                match (string_drop (z_s2053z3, z_s2054z3)) with
+                                | z_s2055z3 ->
                                   begin
-                                    match (zmaybe_rl_matches_prefix z_s2053z3) with
-                                    | ZSome (zrl, z_s2054z3) ->
+                                    match (zmaybe_rl_matches_prefix z_s2055z3) with
+                                    | ZSome (zrl, z_s2056z3) ->
                                       begin
-                                        match (string_drop (z_s2053z3, z_s2054z3)) with
-                                        | z_s2055z3 ->
+                                        match (string_drop (z_s2055z3, z_s2056z3)) with
+                                        | z_s2057z3 ->
                                           begin
-                                            match (zspc_matches_prefix z_s2055z3) with
-                                            | ZSome ((), z_s2056z3) ->
+                                            match (zspc_matches_prefix z_s2057z3) with
+                                            | ZSome ((), z_s2058z3) ->
                                               begin
-                                                match (string_drop (z_s2055z3, z_s2056z3)) with
-                                                | z_s2057z3 ->
+                                                match (string_drop (z_s2057z3, z_s2058z3)) with
+                                                | z_s2059z3 ->
                                                   begin
-                                                    match (zreg_name_matches_prefix z_s2057z3) with
-                                                    | ZSome (zrd, z_s2058z3) ->
+                                                    match (zreg_name_matches_prefix z_s2059z3) with
+                                                    | ZSome (zrd, z_s2060z3) ->
                                                       begin
-                                                        match (string_drop (z_s2057z3, z_s2058z3)) with
-                                                        | z_s2059z3 ->
+                                                        match (string_drop (z_s2059z3, z_s2060z3)) with
+                                                        | z_s2061z3 ->
                                                           begin
-                                                            match (zsep_matches_prefix z_s2059z3) with
-                                                            | ZSome ((), z_s2060z3) ->
+                                                            match (zsep_matches_prefix z_s2061z3) with
+                                                            | ZSome ((), z_s2062z3) ->
                                                               begin
-                                                                match (string_drop (z_s2059z3, z_s2060z3)) with
-                                                                | z_s2061z3 ->
+                                                                match (string_drop (z_s2061z3, z_s2062z3)) with
+                                                                | z_s2063z3 ->
                                                                   begin
-                                                                    match (zreg_name_matches_prefix z_s2061z3) with
-                                                                    | ZSome (zrs1, z_s2062z3) ->
+                                                                    match (zreg_name_matches_prefix z_s2063z3) with
+                                                                    | ZSome (zrs1, z_s2064z3) ->
                                                                       begin
-                                                                        match (string_drop (z_s2061z3, z_s2062z3)) with
-                                                                        | z_s2063z3 ->
+                                                                        match (string_drop (z_s2063z3, z_s2064z3)) with
+                                                                        | z_s2065z3 ->
                                                                           begin
-                                                                            match (zsep_matches_prefix z_s2063z3) with
-                                                                            | ZSome ((), z_s2064z3) ->
+                                                                            match (zsep_matches_prefix z_s2065z3) with
+                                                                            | ZSome ((), z_s2066z3) ->
                                                                               begin
-                                                                                match (string_drop (z_s2063z3, z_s2064z3)) with
-                                                                                | z_s2065z3 ->
+                                                                                match (string_drop (z_s2065z3, z_s2066z3)) with
+                                                                                | z_s2067z3 ->
                                                                                   begin
-                                                                                    match (zreg_name_matches_prefix z_s2065z3) with
-                                                                                    | ZSome (zrs2, z_s2066z3) ->
+                                                                                    match (zreg_name_matches_prefix z_s2067z3) with
+                                                                                    | ZSome (zrs2, z_s2068z3) ->
                                                                                       begin
-                                                                                        match (string_drop (z_s2065z3, z_s2066z3)) with
+                                                                                        match (string_drop (z_s2067z3, z_s2068z3)) with
                                                                                         | "" ->
                                                                                           ZSome (zop, zwidth, zaq, zrl, zrd, zrs1, zrs2)
                                                                                         | _ ->
@@ -23407,66 +23455,66 @@ and z_s2044z3 (z_s2045z3 : (string)) : ((zamoop * zword_width * bool * bool * (b
     | _ -> ZNone ()
   end)
 
-and z_s2022z3 (z_s2023z3 : (string)) : ((zword_width * bool * bool * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s2024z3 (z_s2025z3 : (string)) : ((zword_width * bool * bool * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
-    match z_s2023z3 with
-    | z_s2024z3 when (string_startswith (z_s2024z3, "sc.")) ->
+    match z_s2025z3 with
+    | z_s2026z3 when (string_startswith (z_s2026z3, "sc.")) ->
       begin
-        match (string_drop (z_s2024z3, (string_length "sc."))) with
-        | z_s2025z3 ->
+        match (string_drop (z_s2026z3, (string_length "sc."))) with
+        | z_s2027z3 ->
           begin
-            match (zsizze_mnemonic_matches_prefix z_s2025z3) with
-            | ZSome (zsizze, z_s2026z3) ->
+            match (zsizze_mnemonic_matches_prefix z_s2027z3) with
+            | ZSome (zsizze, z_s2028z3) ->
               begin
-                match (string_drop (z_s2025z3, z_s2026z3)) with
-                | z_s2027z3 ->
+                match (string_drop (z_s2027z3, z_s2028z3)) with
+                | z_s2029z3 ->
                   begin
-                    match (zmaybe_aq_matches_prefix z_s2027z3) with
-                    | ZSome (zaq, z_s2028z3) ->
+                    match (zmaybe_aq_matches_prefix z_s2029z3) with
+                    | ZSome (zaq, z_s2030z3) ->
                       begin
-                        match (string_drop (z_s2027z3, z_s2028z3)) with
-                        | z_s2029z3 ->
+                        match (string_drop (z_s2029z3, z_s2030z3)) with
+                        | z_s2031z3 ->
                           begin
-                            match (zmaybe_rl_matches_prefix z_s2029z3) with
-                            | ZSome (zrl, z_s2030z3) ->
+                            match (zmaybe_rl_matches_prefix z_s2031z3) with
+                            | ZSome (zrl, z_s2032z3) ->
                               begin
-                                match (string_drop (z_s2029z3, z_s2030z3)) with
-                                | z_s2031z3 ->
+                                match (string_drop (z_s2031z3, z_s2032z3)) with
+                                | z_s2033z3 ->
                                   begin
-                                    match (zspc_matches_prefix z_s2031z3) with
-                                    | ZSome ((), z_s2032z3) ->
+                                    match (zspc_matches_prefix z_s2033z3) with
+                                    | ZSome ((), z_s2034z3) ->
                                       begin
-                                        match (string_drop (z_s2031z3, z_s2032z3)) with
-                                        | z_s2033z3 ->
+                                        match (string_drop (z_s2033z3, z_s2034z3)) with
+                                        | z_s2035z3 ->
                                           begin
-                                            match (zreg_name_matches_prefix z_s2033z3) with
-                                            | ZSome (zrd, z_s2034z3) ->
+                                            match (zreg_name_matches_prefix z_s2035z3) with
+                                            | ZSome (zrd, z_s2036z3) ->
                                               begin
-                                                match (string_drop (z_s2033z3, z_s2034z3)) with
-                                                | z_s2035z3 ->
+                                                match (string_drop (z_s2035z3, z_s2036z3)) with
+                                                | z_s2037z3 ->
                                                   begin
-                                                    match (zsep_matches_prefix z_s2035z3) with
-                                                    | ZSome ((), z_s2036z3) ->
+                                                    match (zsep_matches_prefix z_s2037z3) with
+                                                    | ZSome ((), z_s2038z3) ->
                                                       begin
-                                                        match (string_drop (z_s2035z3, z_s2036z3)) with
-                                                        | z_s2037z3 ->
+                                                        match (string_drop (z_s2037z3, z_s2038z3)) with
+                                                        | z_s2039z3 ->
                                                           begin
-                                                            match (zreg_name_matches_prefix z_s2037z3) with
-                                                            | ZSome (zrs1, z_s2038z3) ->
+                                                            match (zreg_name_matches_prefix z_s2039z3) with
+                                                            | ZSome (zrs1, z_s2040z3) ->
                                                               begin
-                                                                match (string_drop (z_s2037z3, z_s2038z3)) with
-                                                                | z_s2039z3 ->
+                                                                match (string_drop (z_s2039z3, z_s2040z3)) with
+                                                                | z_s2041z3 ->
                                                                   begin
-                                                                    match (zsep_matches_prefix z_s2039z3) with
-                                                                    | ZSome ((), z_s2040z3) ->
+                                                                    match (zsep_matches_prefix z_s2041z3) with
+                                                                    | ZSome ((), z_s2042z3) ->
                                                                       begin
-                                                                        match (string_drop (z_s2039z3, z_s2040z3)) with
-                                                                        | z_s2041z3 ->
+                                                                        match (string_drop (z_s2041z3, z_s2042z3)) with
+                                                                        | z_s2043z3 ->
                                                                           begin
-                                                                            match (zreg_name_matches_prefix z_s2041z3) with
-                                                                            | ZSome (zrs2, z_s2042z3) ->
+                                                                            match (zreg_name_matches_prefix z_s2043z3) with
+                                                                            | ZSome (zrs2, z_s2044z3) ->
                                                                               begin
-                                                                                match (string_drop (z_s2041z3, z_s2042z3)) with
+                                                                                match (string_drop (z_s2043z3, z_s2044z3)) with
                                                                                 | "" ->
                                                                                   ZSome (zsizze, zaq, zrl, zrd, zrs1, zrs2)
                                                                                 | _ ->
@@ -23514,54 +23562,54 @@ and z_s2022z3 (z_s2023z3 : (string)) : ((zword_width * bool * bool * (bit) list 
     | _ -> ZNone ()
   end)
 
-and z_s2004z3 (z_s2005z3 : (string)) : ((zword_width * bool * bool * (bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s2006z3 (z_s2007z3 : (string)) : ((zword_width * bool * bool * (bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
-    match z_s2005z3 with
-    | z_s2006z3 when (string_startswith (z_s2006z3, "lr.")) ->
+    match z_s2007z3 with
+    | z_s2008z3 when (string_startswith (z_s2008z3, "lr.")) ->
       begin
-        match (string_drop (z_s2006z3, (string_length "lr."))) with
-        | z_s2007z3 ->
+        match (string_drop (z_s2008z3, (string_length "lr."))) with
+        | z_s2009z3 ->
           begin
-            match (zsizze_mnemonic_matches_prefix z_s2007z3) with
-            | ZSome (zsizze, z_s2008z3) ->
+            match (zsizze_mnemonic_matches_prefix z_s2009z3) with
+            | ZSome (zsizze, z_s2010z3) ->
               begin
-                match (string_drop (z_s2007z3, z_s2008z3)) with
-                | z_s2009z3 ->
+                match (string_drop (z_s2009z3, z_s2010z3)) with
+                | z_s2011z3 ->
                   begin
-                    match (zmaybe_aq_matches_prefix z_s2009z3) with
-                    | ZSome (zaq, z_s2010z3) ->
+                    match (zmaybe_aq_matches_prefix z_s2011z3) with
+                    | ZSome (zaq, z_s2012z3) ->
                       begin
-                        match (string_drop (z_s2009z3, z_s2010z3)) with
-                        | z_s2011z3 ->
+                        match (string_drop (z_s2011z3, z_s2012z3)) with
+                        | z_s2013z3 ->
                           begin
-                            match (zmaybe_rl_matches_prefix z_s2011z3) with
-                            | ZSome (zrl, z_s2012z3) ->
+                            match (zmaybe_rl_matches_prefix z_s2013z3) with
+                            | ZSome (zrl, z_s2014z3) ->
                               begin
-                                match (string_drop (z_s2011z3, z_s2012z3)) with
-                                | z_s2013z3 ->
+                                match (string_drop (z_s2013z3, z_s2014z3)) with
+                                | z_s2015z3 ->
                                   begin
-                                    match (zspc_matches_prefix z_s2013z3) with
-                                    | ZSome ((), z_s2014z3) ->
+                                    match (zspc_matches_prefix z_s2015z3) with
+                                    | ZSome ((), z_s2016z3) ->
                                       begin
-                                        match (string_drop (z_s2013z3, z_s2014z3)) with
-                                        | z_s2015z3 ->
+                                        match (string_drop (z_s2015z3, z_s2016z3)) with
+                                        | z_s2017z3 ->
                                           begin
-                                            match (zreg_name_matches_prefix z_s2015z3) with
-                                            | ZSome (zrd, z_s2016z3) ->
+                                            match (zreg_name_matches_prefix z_s2017z3) with
+                                            | ZSome (zrd, z_s2018z3) ->
                                               begin
-                                                match (string_drop (z_s2015z3, z_s2016z3)) with
-                                                | z_s2017z3 ->
+                                                match (string_drop (z_s2017z3, z_s2018z3)) with
+                                                | z_s2019z3 ->
                                                   begin
-                                                    match (zsep_matches_prefix z_s2017z3) with
-                                                    | ZSome ((), z_s2018z3) ->
+                                                    match (zsep_matches_prefix z_s2019z3) with
+                                                    | ZSome ((), z_s2020z3) ->
                                                       begin
-                                                        match (string_drop (z_s2017z3, z_s2018z3)) with
-                                                        | z_s2019z3 ->
+                                                        match (string_drop (z_s2019z3, z_s2020z3)) with
+                                                        | z_s2021z3 ->
                                                           begin
-                                                            match (zreg_name_matches_prefix z_s2019z3) with
-                                                            | ZSome (zrs1, z_s2020z3) ->
+                                                            match (zreg_name_matches_prefix z_s2021z3) with
+                                                            | ZSome (zrs1, z_s2022z3) ->
                                                               begin
-                                                                match (string_drop (z_s2019z3, z_s2020z3)) with
+                                                                match (string_drop (z_s2021z3, z_s2022z3)) with
                                                                 | "" ->
                                                                   ZSome (zsizze, zaq, zrl, zrd, zrs1)
                                                                 | _ -> ZNone ()
@@ -23597,36 +23645,36 @@ and z_s2004z3 (z_s2005z3 : (string)) : ((zword_width * bool * bool * (bit) list 
     | _ -> ZNone ()
   end)
 
-and z_s1992z3 (z_s1993z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1994z3 (z_s1995z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
-    match z_s1993z3 with
-    | z_s1994z3 when (string_startswith (z_s1994z3, "sfence.vma")) ->
+    match z_s1995z3 with
+    | z_s1996z3 when (string_startswith (z_s1996z3, "sfence.vma")) ->
       begin
-        match (string_drop (z_s1994z3, (string_length "sfence.vma"))) with
-        | z_s1995z3 ->
+        match (string_drop (z_s1996z3, (string_length "sfence.vma"))) with
+        | z_s1997z3 ->
           begin
-            match (zspc_matches_prefix z_s1995z3) with
-            | ZSome ((), z_s1996z3) ->
+            match (zspc_matches_prefix z_s1997z3) with
+            | ZSome ((), z_s1998z3) ->
               begin
-                match (string_drop (z_s1995z3, z_s1996z3)) with
-                | z_s1997z3 ->
+                match (string_drop (z_s1997z3, z_s1998z3)) with
+                | z_s1999z3 ->
                   begin
-                    match (zreg_name_matches_prefix z_s1997z3) with
-                    | ZSome (zrs1, z_s1998z3) ->
+                    match (zreg_name_matches_prefix z_s1999z3) with
+                    | ZSome (zrs1, z_s2000z3) ->
                       begin
-                        match (string_drop (z_s1997z3, z_s1998z3)) with
-                        | z_s1999z3 ->
+                        match (string_drop (z_s1999z3, z_s2000z3)) with
+                        | z_s2001z3 ->
                           begin
-                            match (zsep_matches_prefix z_s1999z3) with
-                            | ZSome ((), z_s2000z3) ->
+                            match (zsep_matches_prefix z_s2001z3) with
+                            | ZSome ((), z_s2002z3) ->
                               begin
-                                match (string_drop (z_s1999z3, z_s2000z3)) with
-                                | z_s2001z3 ->
+                                match (string_drop (z_s2001z3, z_s2002z3)) with
+                                | z_s2003z3 ->
                                   begin
-                                    match (zreg_name_matches_prefix z_s2001z3) with
-                                    | ZSome (zrs2, z_s2002z3) ->
+                                    match (zreg_name_matches_prefix z_s2003z3) with
+                                    | ZSome (zrs2, z_s2004z3) ->
                                       begin
-                                        match (string_drop (z_s2001z3, z_s2002z3)) with
+                                        match (string_drop (z_s2003z3, z_s2004z3)) with
                                         | "" -> ZSome (zrs1, zrs2)
                                         | _ -> ZNone ()
                                       end
@@ -23649,36 +23697,36 @@ and z_s1992z3 (z_s1993z3 : (string)) : (((bit) list * (bit) list)) zoption = sai
     | _ -> ZNone ()
   end)
 
-and z_s1980z3 (z_s1981z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1982z3 (z_s1983z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
-    match z_s1981z3 with
-    | z_s1982z3 when (string_startswith (z_s1982z3, "fence")) ->
+    match z_s1983z3 with
+    | z_s1984z3 when (string_startswith (z_s1984z3, "fence")) ->
       begin
-        match (string_drop (z_s1982z3, (string_length "fence"))) with
-        | z_s1983z3 ->
+        match (string_drop (z_s1984z3, (string_length "fence"))) with
+        | z_s1985z3 ->
           begin
-            match (zspc_matches_prefix z_s1983z3) with
-            | ZSome ((), z_s1984z3) ->
+            match (zspc_matches_prefix z_s1985z3) with
+            | ZSome ((), z_s1986z3) ->
               begin
-                match (string_drop (z_s1983z3, z_s1984z3)) with
-                | z_s1985z3 ->
+                match (string_drop (z_s1985z3, z_s1986z3)) with
+                | z_s1987z3 ->
                   begin
-                    match (zfence_bits_matches_prefix z_s1985z3) with
-                    | ZSome (zpred, z_s1986z3) ->
+                    match (zfence_bits_matches_prefix z_s1987z3) with
+                    | ZSome (zpred, z_s1988z3) ->
                       begin
-                        match (string_drop (z_s1985z3, z_s1986z3)) with
-                        | z_s1987z3 ->
+                        match (string_drop (z_s1987z3, z_s1988z3)) with
+                        | z_s1989z3 ->
                           begin
-                            match (zsep_matches_prefix z_s1987z3) with
-                            | ZSome ((), z_s1988z3) ->
+                            match (zsep_matches_prefix z_s1989z3) with
+                            | ZSome ((), z_s1990z3) ->
                               begin
-                                match (string_drop (z_s1987z3, z_s1988z3)) with
-                                | z_s1989z3 ->
+                                match (string_drop (z_s1989z3, z_s1990z3)) with
+                                | z_s1991z3 ->
                                   begin
-                                    match (zfence_bits_matches_prefix z_s1989z3) with
-                                    | ZSome (zsucc, z_s1990z3) ->
+                                    match (zfence_bits_matches_prefix z_s1991z3) with
+                                    | ZSome (zsucc, z_s1992z3) ->
                                       begin
-                                        match (string_drop (z_s1989z3, z_s1990z3)) with
+                                        match (string_drop (z_s1991z3, z_s1992z3)) with
                                         | "" -> ZSome (zpred, zsucc)
                                         | _ -> ZNone ()
                                       end
@@ -23701,57 +23749,57 @@ and z_s1980z3 (z_s1981z3 : (string)) : (((bit) list * (bit) list)) zoption = sai
     | _ -> ZNone ()
   end)
 
-and z_s1961z3 (z_s1962z3 : (string)) : ((bool * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1963z3 (z_s1964z3 : (string)) : ((bool * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
-    match z_s1962z3 with
-    | z_s1963z3 when (string_startswith (z_s1963z3, "rem")) ->
+    match z_s1964z3 with
+    | z_s1965z3 when (string_startswith (z_s1965z3, "rem")) ->
       begin
-        match (string_drop (z_s1963z3, (string_length "rem"))) with
-        | z_s1964z3 ->
+        match (string_drop (z_s1965z3, (string_length "rem"))) with
+        | z_s1966z3 ->
           begin
-            match (zmaybe_not_u_matches_prefix z_s1964z3) with
-            | ZSome (zs, z_s1965z3) ->
+            match (zmaybe_not_u_matches_prefix z_s1966z3) with
+            | ZSome (zs, z_s1967z3) ->
               begin
-                match (string_drop (z_s1964z3, z_s1965z3)) with
-                | z_s1966z3 when (string_startswith (z_s1966z3, "w")) ->
+                match (string_drop (z_s1966z3, z_s1967z3)) with
+                | z_s1968z3 when (string_startswith (z_s1968z3, "w")) ->
                   begin
-                    match (string_drop (z_s1966z3, (string_length "w"))) with
-                    | z_s1967z3 ->
+                    match (string_drop (z_s1968z3, (string_length "w"))) with
+                    | z_s1969z3 ->
                       begin
-                        match (zspc_matches_prefix z_s1967z3) with
-                        | ZSome ((), z_s1968z3) ->
+                        match (zspc_matches_prefix z_s1969z3) with
+                        | ZSome ((), z_s1970z3) ->
                           begin
-                            match (string_drop (z_s1967z3, z_s1968z3)) with
-                            | z_s1969z3 ->
+                            match (string_drop (z_s1969z3, z_s1970z3)) with
+                            | z_s1971z3 ->
                               begin
-                                match (zreg_name_matches_prefix z_s1969z3) with
-                                | ZSome (zrd, z_s1970z3) ->
+                                match (zreg_name_matches_prefix z_s1971z3) with
+                                | ZSome (zrd, z_s1972z3) ->
                                   begin
-                                    match (string_drop (z_s1969z3, z_s1970z3)) with
-                                    | z_s1971z3 ->
+                                    match (string_drop (z_s1971z3, z_s1972z3)) with
+                                    | z_s1973z3 ->
                                       begin
-                                        match (zsep_matches_prefix z_s1971z3) with
-                                        | ZSome ((), z_s1972z3) ->
+                                        match (zsep_matches_prefix z_s1973z3) with
+                                        | ZSome ((), z_s1974z3) ->
                                           begin
-                                            match (string_drop (z_s1971z3, z_s1972z3)) with
-                                            | z_s1973z3 ->
+                                            match (string_drop (z_s1973z3, z_s1974z3)) with
+                                            | z_s1975z3 ->
                                               begin
-                                                match (zreg_name_matches_prefix z_s1973z3) with
-                                                | ZSome (zrs1, z_s1974z3) ->
+                                                match (zreg_name_matches_prefix z_s1975z3) with
+                                                | ZSome (zrs1, z_s1976z3) ->
                                                   begin
-                                                    match (string_drop (z_s1973z3, z_s1974z3)) with
-                                                    | z_s1975z3 ->
+                                                    match (string_drop (z_s1975z3, z_s1976z3)) with
+                                                    | z_s1977z3 ->
                                                       begin
-                                                        match (zsep_matches_prefix z_s1975z3) with
-                                                        | ZSome ((), z_s1976z3) ->
+                                                        match (zsep_matches_prefix z_s1977z3) with
+                                                        | ZSome ((), z_s1978z3) ->
                                                           begin
-                                                            match (string_drop (z_s1975z3, z_s1976z3)) with
-                                                            | z_s1977z3 ->
+                                                            match (string_drop (z_s1977z3, z_s1978z3)) with
+                                                            | z_s1979z3 ->
                                                               begin
-                                                                match (zreg_name_matches_prefix z_s1977z3) with
-                                                                | ZSome (zrs2, z_s1978z3) ->
+                                                                match (zreg_name_matches_prefix z_s1979z3) with
+                                                                | ZSome (zrs2, z_s1980z3) ->
                                                                   begin
-                                                                    match (string_drop (z_s1977z3, z_s1978z3)) with
+                                                                    match (string_drop (z_s1979z3, z_s1980z3)) with
                                                                     | "" ->
                                                                       ZSome (zs, zrd, zrs1, zrs2)
                                                                     | _ ->
@@ -23790,57 +23838,57 @@ and z_s1961z3 (z_s1962z3 : (string)) : ((bool * (bit) list * (bit) list * (bit) 
     | _ -> ZNone ()
   end)
 
-and z_s1942z3 (z_s1943z3 : (string)) : ((bool * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1944z3 (z_s1945z3 : (string)) : ((bool * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
-    match z_s1943z3 with
-    | z_s1944z3 when (string_startswith (z_s1944z3, "div")) ->
+    match z_s1945z3 with
+    | z_s1946z3 when (string_startswith (z_s1946z3, "div")) ->
       begin
-        match (string_drop (z_s1944z3, (string_length "div"))) with
-        | z_s1945z3 ->
+        match (string_drop (z_s1946z3, (string_length "div"))) with
+        | z_s1947z3 ->
           begin
-            match (zmaybe_not_u_matches_prefix z_s1945z3) with
-            | ZSome (zs, z_s1946z3) ->
+            match (zmaybe_not_u_matches_prefix z_s1947z3) with
+            | ZSome (zs, z_s1948z3) ->
               begin
-                match (string_drop (z_s1945z3, z_s1946z3)) with
-                | z_s1947z3 when (string_startswith (z_s1947z3, "w")) ->
+                match (string_drop (z_s1947z3, z_s1948z3)) with
+                | z_s1949z3 when (string_startswith (z_s1949z3, "w")) ->
                   begin
-                    match (string_drop (z_s1947z3, (string_length "w"))) with
-                    | z_s1948z3 ->
+                    match (string_drop (z_s1949z3, (string_length "w"))) with
+                    | z_s1950z3 ->
                       begin
-                        match (zspc_matches_prefix z_s1948z3) with
-                        | ZSome ((), z_s1949z3) ->
+                        match (zspc_matches_prefix z_s1950z3) with
+                        | ZSome ((), z_s1951z3) ->
                           begin
-                            match (string_drop (z_s1948z3, z_s1949z3)) with
-                            | z_s1950z3 ->
+                            match (string_drop (z_s1950z3, z_s1951z3)) with
+                            | z_s1952z3 ->
                               begin
-                                match (zreg_name_matches_prefix z_s1950z3) with
-                                | ZSome (zrd, z_s1951z3) ->
+                                match (zreg_name_matches_prefix z_s1952z3) with
+                                | ZSome (zrd, z_s1953z3) ->
                                   begin
-                                    match (string_drop (z_s1950z3, z_s1951z3)) with
-                                    | z_s1952z3 ->
+                                    match (string_drop (z_s1952z3, z_s1953z3)) with
+                                    | z_s1954z3 ->
                                       begin
-                                        match (zsep_matches_prefix z_s1952z3) with
-                                        | ZSome ((), z_s1953z3) ->
+                                        match (zsep_matches_prefix z_s1954z3) with
+                                        | ZSome ((), z_s1955z3) ->
                                           begin
-                                            match (string_drop (z_s1952z3, z_s1953z3)) with
-                                            | z_s1954z3 ->
+                                            match (string_drop (z_s1954z3, z_s1955z3)) with
+                                            | z_s1956z3 ->
                                               begin
-                                                match (zreg_name_matches_prefix z_s1954z3) with
-                                                | ZSome (zrs1, z_s1955z3) ->
+                                                match (zreg_name_matches_prefix z_s1956z3) with
+                                                | ZSome (zrs1, z_s1957z3) ->
                                                   begin
-                                                    match (string_drop (z_s1954z3, z_s1955z3)) with
-                                                    | z_s1956z3 ->
+                                                    match (string_drop (z_s1956z3, z_s1957z3)) with
+                                                    | z_s1958z3 ->
                                                       begin
-                                                        match (zsep_matches_prefix z_s1956z3) with
-                                                        | ZSome ((), z_s1957z3) ->
+                                                        match (zsep_matches_prefix z_s1958z3) with
+                                                        | ZSome ((), z_s1959z3) ->
                                                           begin
-                                                            match (string_drop (z_s1956z3, z_s1957z3)) with
-                                                            | z_s1958z3 ->
+                                                            match (string_drop (z_s1958z3, z_s1959z3)) with
+                                                            | z_s1960z3 ->
                                                               begin
-                                                                match (zreg_name_matches_prefix z_s1958z3) with
-                                                                | ZSome (zrs2, z_s1959z3) ->
+                                                                match (zreg_name_matches_prefix z_s1960z3) with
+                                                                | ZSome (zrs2, z_s1961z3) ->
                                                                   begin
-                                                                    match (string_drop (z_s1958z3, z_s1959z3)) with
+                                                                    match (string_drop (z_s1960z3, z_s1961z3)) with
                                                                     | "" ->
                                                                       ZSome (zs, zrd, zrs1, zrs2)
                                                                     | _ ->
@@ -23879,48 +23927,48 @@ and z_s1942z3 (z_s1943z3 : (string)) : ((bool * (bit) list * (bit) list * (bit) 
     | _ -> ZNone ()
   end)
 
-and z_s1926z3 (z_s1927z3 : (string)) : (((bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1928z3 (z_s1929z3 : (string)) : (((bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
-    match z_s1927z3 with
-    | z_s1928z3 when (string_startswith (z_s1928z3, "mulw")) ->
+    match z_s1929z3 with
+    | z_s1930z3 when (string_startswith (z_s1930z3, "mulw")) ->
       begin
-        match (string_drop (z_s1928z3, (string_length "mulw"))) with
-        | z_s1929z3 ->
+        match (string_drop (z_s1930z3, (string_length "mulw"))) with
+        | z_s1931z3 ->
           begin
-            match (zspc_matches_prefix z_s1929z3) with
-            | ZSome ((), z_s1930z3) ->
+            match (zspc_matches_prefix z_s1931z3) with
+            | ZSome ((), z_s1932z3) ->
               begin
-                match (string_drop (z_s1929z3, z_s1930z3)) with
-                | z_s1931z3 ->
+                match (string_drop (z_s1931z3, z_s1932z3)) with
+                | z_s1933z3 ->
                   begin
-                    match (zreg_name_matches_prefix z_s1931z3) with
-                    | ZSome (zrd, z_s1932z3) ->
+                    match (zreg_name_matches_prefix z_s1933z3) with
+                    | ZSome (zrd, z_s1934z3) ->
                       begin
-                        match (string_drop (z_s1931z3, z_s1932z3)) with
-                        | z_s1933z3 ->
+                        match (string_drop (z_s1933z3, z_s1934z3)) with
+                        | z_s1935z3 ->
                           begin
-                            match (zsep_matches_prefix z_s1933z3) with
-                            | ZSome ((), z_s1934z3) ->
+                            match (zsep_matches_prefix z_s1935z3) with
+                            | ZSome ((), z_s1936z3) ->
                               begin
-                                match (string_drop (z_s1933z3, z_s1934z3)) with
-                                | z_s1935z3 ->
+                                match (string_drop (z_s1935z3, z_s1936z3)) with
+                                | z_s1937z3 ->
                                   begin
-                                    match (zreg_name_matches_prefix z_s1935z3) with
-                                    | ZSome (zrs1, z_s1936z3) ->
+                                    match (zreg_name_matches_prefix z_s1937z3) with
+                                    | ZSome (zrs1, z_s1938z3) ->
                                       begin
-                                        match (string_drop (z_s1935z3, z_s1936z3)) with
-                                        | z_s1937z3 ->
+                                        match (string_drop (z_s1937z3, z_s1938z3)) with
+                                        | z_s1939z3 ->
                                           begin
-                                            match (zsep_matches_prefix z_s1937z3) with
-                                            | ZSome ((), z_s1938z3) ->
+                                            match (zsep_matches_prefix z_s1939z3) with
+                                            | ZSome ((), z_s1940z3) ->
                                               begin
-                                                match (string_drop (z_s1937z3, z_s1938z3)) with
-                                                | z_s1939z3 ->
+                                                match (string_drop (z_s1939z3, z_s1940z3)) with
+                                                | z_s1941z3 ->
                                                   begin
-                                                    match (zreg_name_matches_prefix z_s1939z3) with
-                                                    | ZSome (zrs2, z_s1940z3) ->
+                                                    match (zreg_name_matches_prefix z_s1941z3) with
+                                                    | ZSome (zrs2, z_s1942z3) ->
                                                       begin
-                                                        match (string_drop (z_s1939z3, z_s1940z3)) with
+                                                        match (string_drop (z_s1941z3, z_s1942z3)) with
                                                         | "" ->
                                                           ZSome (zrd, zrs1, zrs2)
                                                         | _ -> ZNone ()
@@ -23952,54 +24000,54 @@ and z_s1926z3 (z_s1927z3 : (string)) : (((bit) list * (bit) list * (bit) list)) 
     | _ -> ZNone ()
   end)
 
-and z_s1908z3 (z_s1909z3 : (string)) : ((bool * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1910z3 (z_s1911z3 : (string)) : ((bool * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
-    match z_s1909z3 with
-    | z_s1910z3 when (string_startswith (z_s1910z3, "rem")) ->
+    match z_s1911z3 with
+    | z_s1912z3 when (string_startswith (z_s1912z3, "rem")) ->
       begin
-        match (string_drop (z_s1910z3, (string_length "rem"))) with
-        | z_s1911z3 ->
+        match (string_drop (z_s1912z3, (string_length "rem"))) with
+        | z_s1913z3 ->
           begin
-            match (zmaybe_not_u_matches_prefix z_s1911z3) with
-            | ZSome (zs, z_s1912z3) ->
+            match (zmaybe_not_u_matches_prefix z_s1913z3) with
+            | ZSome (zs, z_s1914z3) ->
               begin
-                match (string_drop (z_s1911z3, z_s1912z3)) with
-                | z_s1913z3 ->
+                match (string_drop (z_s1913z3, z_s1914z3)) with
+                | z_s1915z3 ->
                   begin
-                    match (zspc_matches_prefix z_s1913z3) with
-                    | ZSome ((), z_s1914z3) ->
+                    match (zspc_matches_prefix z_s1915z3) with
+                    | ZSome ((), z_s1916z3) ->
                       begin
-                        match (string_drop (z_s1913z3, z_s1914z3)) with
-                        | z_s1915z3 ->
+                        match (string_drop (z_s1915z3, z_s1916z3)) with
+                        | z_s1917z3 ->
                           begin
-                            match (zreg_name_matches_prefix z_s1915z3) with
-                            | ZSome (zrd, z_s1916z3) ->
+                            match (zreg_name_matches_prefix z_s1917z3) with
+                            | ZSome (zrd, z_s1918z3) ->
                               begin
-                                match (string_drop (z_s1915z3, z_s1916z3)) with
-                                | z_s1917z3 ->
+                                match (string_drop (z_s1917z3, z_s1918z3)) with
+                                | z_s1919z3 ->
                                   begin
-                                    match (zsep_matches_prefix z_s1917z3) with
-                                    | ZSome ((), z_s1918z3) ->
+                                    match (zsep_matches_prefix z_s1919z3) with
+                                    | ZSome ((), z_s1920z3) ->
                                       begin
-                                        match (string_drop (z_s1917z3, z_s1918z3)) with
-                                        | z_s1919z3 ->
+                                        match (string_drop (z_s1919z3, z_s1920z3)) with
+                                        | z_s1921z3 ->
                                           begin
-                                            match (zreg_name_matches_prefix z_s1919z3) with
-                                            | ZSome (zrs1, z_s1920z3) ->
+                                            match (zreg_name_matches_prefix z_s1921z3) with
+                                            | ZSome (zrs1, z_s1922z3) ->
                                               begin
-                                                match (string_drop (z_s1919z3, z_s1920z3)) with
-                                                | z_s1921z3 ->
+                                                match (string_drop (z_s1921z3, z_s1922z3)) with
+                                                | z_s1923z3 ->
                                                   begin
-                                                    match (zsep_matches_prefix z_s1921z3) with
-                                                    | ZSome ((), z_s1922z3) ->
+                                                    match (zsep_matches_prefix z_s1923z3) with
+                                                    | ZSome ((), z_s1924z3) ->
                                                       begin
-                                                        match (string_drop (z_s1921z3, z_s1922z3)) with
-                                                        | z_s1923z3 ->
+                                                        match (string_drop (z_s1923z3, z_s1924z3)) with
+                                                        | z_s1925z3 ->
                                                           begin
-                                                            match (zreg_name_matches_prefix z_s1923z3) with
-                                                            | ZSome (zrs2, z_s1924z3) ->
+                                                            match (zreg_name_matches_prefix z_s1925z3) with
+                                                            | ZSome (zrs2, z_s1926z3) ->
                                                               begin
-                                                                match (string_drop (z_s1923z3, z_s1924z3)) with
+                                                                match (string_drop (z_s1925z3, z_s1926z3)) with
                                                                 | "" ->
                                                                   ZSome (zs, zrd, zrs1, zrs2)
                                                                 | _ -> ZNone ()
@@ -24035,54 +24083,54 @@ and z_s1908z3 (z_s1909z3 : (string)) : ((bool * (bit) list * (bit) list * (bit) 
     | _ -> ZNone ()
   end)
 
-and z_s1890z3 (z_s1891z3 : (string)) : ((bool * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1892z3 (z_s1893z3 : (string)) : ((bool * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
-    match z_s1891z3 with
-    | z_s1892z3 when (string_startswith (z_s1892z3, "div")) ->
+    match z_s1893z3 with
+    | z_s1894z3 when (string_startswith (z_s1894z3, "div")) ->
       begin
-        match (string_drop (z_s1892z3, (string_length "div"))) with
-        | z_s1893z3 ->
+        match (string_drop (z_s1894z3, (string_length "div"))) with
+        | z_s1895z3 ->
           begin
-            match (zmaybe_not_u_matches_prefix z_s1893z3) with
-            | ZSome (zs, z_s1894z3) ->
+            match (zmaybe_not_u_matches_prefix z_s1895z3) with
+            | ZSome (zs, z_s1896z3) ->
               begin
-                match (string_drop (z_s1893z3, z_s1894z3)) with
-                | z_s1895z3 ->
+                match (string_drop (z_s1895z3, z_s1896z3)) with
+                | z_s1897z3 ->
                   begin
-                    match (zspc_matches_prefix z_s1895z3) with
-                    | ZSome ((), z_s1896z3) ->
+                    match (zspc_matches_prefix z_s1897z3) with
+                    | ZSome ((), z_s1898z3) ->
                       begin
-                        match (string_drop (z_s1895z3, z_s1896z3)) with
-                        | z_s1897z3 ->
+                        match (string_drop (z_s1897z3, z_s1898z3)) with
+                        | z_s1899z3 ->
                           begin
-                            match (zreg_name_matches_prefix z_s1897z3) with
-                            | ZSome (zrd, z_s1898z3) ->
+                            match (zreg_name_matches_prefix z_s1899z3) with
+                            | ZSome (zrd, z_s1900z3) ->
                               begin
-                                match (string_drop (z_s1897z3, z_s1898z3)) with
-                                | z_s1899z3 ->
+                                match (string_drop (z_s1899z3, z_s1900z3)) with
+                                | z_s1901z3 ->
                                   begin
-                                    match (zsep_matches_prefix z_s1899z3) with
-                                    | ZSome ((), z_s1900z3) ->
+                                    match (zsep_matches_prefix z_s1901z3) with
+                                    | ZSome ((), z_s1902z3) ->
                                       begin
-                                        match (string_drop (z_s1899z3, z_s1900z3)) with
-                                        | z_s1901z3 ->
+                                        match (string_drop (z_s1901z3, z_s1902z3)) with
+                                        | z_s1903z3 ->
                                           begin
-                                            match (zreg_name_matches_prefix z_s1901z3) with
-                                            | ZSome (zrs1, z_s1902z3) ->
+                                            match (zreg_name_matches_prefix z_s1903z3) with
+                                            | ZSome (zrs1, z_s1904z3) ->
                                               begin
-                                                match (string_drop (z_s1901z3, z_s1902z3)) with
-                                                | z_s1903z3 ->
+                                                match (string_drop (z_s1903z3, z_s1904z3)) with
+                                                | z_s1905z3 ->
                                                   begin
-                                                    match (zsep_matches_prefix z_s1903z3) with
-                                                    | ZSome ((), z_s1904z3) ->
+                                                    match (zsep_matches_prefix z_s1905z3) with
+                                                    | ZSome ((), z_s1906z3) ->
                                                       begin
-                                                        match (string_drop (z_s1903z3, z_s1904z3)) with
-                                                        | z_s1905z3 ->
+                                                        match (string_drop (z_s1905z3, z_s1906z3)) with
+                                                        | z_s1907z3 ->
                                                           begin
-                                                            match (zreg_name_matches_prefix z_s1905z3) with
-                                                            | ZSome (zrs2, z_s1906z3) ->
+                                                            match (zreg_name_matches_prefix z_s1907z3) with
+                                                            | ZSome (zrs2, z_s1908z3) ->
                                                               begin
-                                                                match (string_drop (z_s1905z3, z_s1906z3)) with
+                                                                match (string_drop (z_s1907z3, z_s1908z3)) with
                                                                 | "" ->
                                                                   ZSome (zs, zrd, zrs1, zrs2)
                                                                 | _ -> ZNone ()
@@ -24118,51 +24166,51 @@ and z_s1890z3 (z_s1891z3 : (string)) : ((bool * (bit) list * (bit) list * (bit) 
     | _ -> ZNone ()
   end)
 
-and z_s1873z3 (z_s1874z3 : (string)) : ((bool * bool * bool * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1875z3 (z_s1876z3 : (string)) : ((bool * bool * bool * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
-    match z_s1874z3 with
-    | z_s1875z3 ->
+    match z_s1876z3 with
+    | z_s1877z3 ->
       begin
-        match (zmul_mnemonic_matches_prefix z_s1875z3) with
-        | ZSome ((zhigh, zsigned1, zsigned2), z_s1876z3) ->
+        match (zmul_mnemonic_matches_prefix z_s1877z3) with
+        | ZSome ((zhigh, zsigned1, zsigned2), z_s1878z3) ->
           begin
-            match (string_drop (z_s1875z3, z_s1876z3)) with
-            | z_s1877z3 ->
+            match (string_drop (z_s1877z3, z_s1878z3)) with
+            | z_s1879z3 ->
               begin
-                match (zspc_matches_prefix z_s1877z3) with
-                | ZSome ((), z_s1878z3) ->
+                match (zspc_matches_prefix z_s1879z3) with
+                | ZSome ((), z_s1880z3) ->
                   begin
-                    match (string_drop (z_s1877z3, z_s1878z3)) with
-                    | z_s1879z3 ->
+                    match (string_drop (z_s1879z3, z_s1880z3)) with
+                    | z_s1881z3 ->
                       begin
-                        match (zreg_name_matches_prefix z_s1879z3) with
-                        | ZSome (zrd, z_s1880z3) ->
+                        match (zreg_name_matches_prefix z_s1881z3) with
+                        | ZSome (zrd, z_s1882z3) ->
                           begin
-                            match (string_drop (z_s1879z3, z_s1880z3)) with
-                            | z_s1881z3 ->
+                            match (string_drop (z_s1881z3, z_s1882z3)) with
+                            | z_s1883z3 ->
                               begin
-                                match (zsep_matches_prefix z_s1881z3) with
-                                | ZSome ((), z_s1882z3) ->
+                                match (zsep_matches_prefix z_s1883z3) with
+                                | ZSome ((), z_s1884z3) ->
                                   begin
-                                    match (string_drop (z_s1881z3, z_s1882z3)) with
-                                    | z_s1883z3 ->
+                                    match (string_drop (z_s1883z3, z_s1884z3)) with
+                                    | z_s1885z3 ->
                                       begin
-                                        match (zreg_name_matches_prefix z_s1883z3) with
-                                        | ZSome (zrs1, z_s1884z3) ->
+                                        match (zreg_name_matches_prefix z_s1885z3) with
+                                        | ZSome (zrs1, z_s1886z3) ->
                                           begin
-                                            match (string_drop (z_s1883z3, z_s1884z3)) with
-                                            | z_s1885z3 ->
+                                            match (string_drop (z_s1885z3, z_s1886z3)) with
+                                            | z_s1887z3 ->
                                               begin
-                                                match (zsep_matches_prefix z_s1885z3) with
-                                                | ZSome ((), z_s1886z3) ->
+                                                match (zsep_matches_prefix z_s1887z3) with
+                                                | ZSome ((), z_s1888z3) ->
                                                   begin
-                                                    match (string_drop (z_s1885z3, z_s1886z3)) with
-                                                    | z_s1887z3 ->
+                                                    match (string_drop (z_s1887z3, z_s1888z3)) with
+                                                    | z_s1889z3 ->
                                                       begin
-                                                        match (zreg_name_matches_prefix z_s1887z3) with
-                                                        | ZSome (zrs2, z_s1888z3) ->
+                                                        match (zreg_name_matches_prefix z_s1889z3) with
+                                                        | ZSome (zrs2, z_s1890z3) ->
                                                           begin
-                                                            match (string_drop (z_s1887z3, z_s1888z3)) with
+                                                            match (string_drop (z_s1889z3, z_s1890z3)) with
                                                             | "" ->
                                                               ZSome (zhigh, zsigned1, zsigned2, zrd, zrs1, zrs2)
                                                             | _ -> ZNone ()
@@ -24196,45 +24244,45 @@ and z_s1873z3 (z_s1874z3 : (string)) : ((bool * bool * bool * (bit) list * (bit)
     | _ -> ZNone ()
   end)
 
-and z_s1858z3 (z_s1859z3 : (string)) : ((zsopw * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1860z3 (z_s1861z3 : (string)) : ((zsopw * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
-    match z_s1859z3 with
-    | z_s1860z3 ->
+    match z_s1861z3 with
+    | z_s1862z3 ->
       begin
-        match (zshiftiwop_mnemonic_matches_prefix z_s1860z3) with
-        | ZSome (zop, z_s1861z3) ->
+        match (zshiftiwop_mnemonic_matches_prefix z_s1862z3) with
+        | ZSome (zop, z_s1863z3) ->
           begin
-            match (string_drop (z_s1860z3, z_s1861z3)) with
-            | z_s1862z3 ->
+            match (string_drop (z_s1862z3, z_s1863z3)) with
+            | z_s1864z3 ->
               begin
-                match (zspc_matches_prefix z_s1862z3) with
-                | ZSome ((), z_s1863z3) ->
+                match (zspc_matches_prefix z_s1864z3) with
+                | ZSome ((), z_s1865z3) ->
                   begin
-                    match (string_drop (z_s1862z3, z_s1863z3)) with
-                    | z_s1864z3 ->
+                    match (string_drop (z_s1864z3, z_s1865z3)) with
+                    | z_s1866z3 ->
                       begin
-                        match (zreg_name_matches_prefix z_s1864z3) with
-                        | ZSome (zrd, z_s1865z3) ->
+                        match (zreg_name_matches_prefix z_s1866z3) with
+                        | ZSome (zrd, z_s1867z3) ->
                           begin
-                            match (string_drop (z_s1864z3, z_s1865z3)) with
-                            | z_s1866z3 ->
+                            match (string_drop (z_s1866z3, z_s1867z3)) with
+                            | z_s1868z3 ->
                               begin
-                                match (zsep_matches_prefix z_s1866z3) with
-                                | ZSome ((), z_s1867z3) ->
+                                match (zsep_matches_prefix z_s1868z3) with
+                                | ZSome ((), z_s1869z3) ->
                                   begin
-                                    match (string_drop (z_s1866z3, z_s1867z3)) with
-                                    | z_s1868z3 ->
+                                    match (string_drop (z_s1868z3, z_s1869z3)) with
+                                    | z_s1870z3 ->
                                       begin
-                                        match (zreg_name_matches_prefix z_s1868z3) with
-                                        | ZSome (zrs1, z_s1869z3) ->
+                                        match (zreg_name_matches_prefix z_s1870z3) with
+                                        | ZSome (zrs1, z_s1871z3) ->
                                           begin
-                                            match (string_drop (z_s1868z3, z_s1869z3)) with
-                                            | z_s1870z3 ->
+                                            match (string_drop (z_s1870z3, z_s1871z3)) with
+                                            | z_s1872z3 ->
                                               begin
-                                                match (hex_bits_5_matches_prefix z_s1870z3) with
-                                                | ZSome (zshamt, z_s1871z3) ->
+                                                match (hex_bits_5_matches_prefix z_s1872z3) with
+                                                | ZSome (zshamt, z_s1873z3) ->
                                                   begin
-                                                    match (string_drop (z_s1870z3, z_s1871z3)) with
+                                                    match (string_drop (z_s1872z3, z_s1873z3)) with
                                                     | "" ->
                                                       ZSome (zop, zrd, zrs1, zshamt)
                                                     | _ -> ZNone ()
@@ -24264,51 +24312,51 @@ and z_s1858z3 (z_s1859z3 : (string)) : ((zsopw * (bit) list * (bit) list * (bit)
     | _ -> ZNone ()
   end)
 
-and z_s1841z3 (z_s1842z3 : (string)) : ((zropw * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1843z3 (z_s1844z3 : (string)) : ((zropw * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
-    match z_s1842z3 with
-    | z_s1843z3 ->
+    match z_s1844z3 with
+    | z_s1845z3 ->
       begin
-        match (zrtypew_mnemonic_matches_prefix z_s1843z3) with
-        | ZSome (zop, z_s1844z3) ->
+        match (zrtypew_mnemonic_matches_prefix z_s1845z3) with
+        | ZSome (zop, z_s1846z3) ->
           begin
-            match (string_drop (z_s1843z3, z_s1844z3)) with
-            | z_s1845z3 ->
+            match (string_drop (z_s1845z3, z_s1846z3)) with
+            | z_s1847z3 ->
               begin
-                match (zspc_matches_prefix z_s1845z3) with
-                | ZSome ((), z_s1846z3) ->
+                match (zspc_matches_prefix z_s1847z3) with
+                | ZSome ((), z_s1848z3) ->
                   begin
-                    match (string_drop (z_s1845z3, z_s1846z3)) with
-                    | z_s1847z3 ->
+                    match (string_drop (z_s1847z3, z_s1848z3)) with
+                    | z_s1849z3 ->
                       begin
-                        match (zreg_name_matches_prefix z_s1847z3) with
-                        | ZSome (zrd, z_s1848z3) ->
+                        match (zreg_name_matches_prefix z_s1849z3) with
+                        | ZSome (zrd, z_s1850z3) ->
                           begin
-                            match (string_drop (z_s1847z3, z_s1848z3)) with
-                            | z_s1849z3 ->
+                            match (string_drop (z_s1849z3, z_s1850z3)) with
+                            | z_s1851z3 ->
                               begin
-                                match (zsep_matches_prefix z_s1849z3) with
-                                | ZSome ((), z_s1850z3) ->
+                                match (zsep_matches_prefix z_s1851z3) with
+                                | ZSome ((), z_s1852z3) ->
                                   begin
-                                    match (string_drop (z_s1849z3, z_s1850z3)) with
-                                    | z_s1851z3 ->
+                                    match (string_drop (z_s1851z3, z_s1852z3)) with
+                                    | z_s1853z3 ->
                                       begin
-                                        match (zreg_name_matches_prefix z_s1851z3) with
-                                        | ZSome (zrs1, z_s1852z3) ->
+                                        match (zreg_name_matches_prefix z_s1853z3) with
+                                        | ZSome (zrs1, z_s1854z3) ->
                                           begin
-                                            match (string_drop (z_s1851z3, z_s1852z3)) with
-                                            | z_s1853z3 ->
+                                            match (string_drop (z_s1853z3, z_s1854z3)) with
+                                            | z_s1855z3 ->
                                               begin
-                                                match (zsep_matches_prefix z_s1853z3) with
-                                                | ZSome ((), z_s1854z3) ->
+                                                match (zsep_matches_prefix z_s1855z3) with
+                                                | ZSome ((), z_s1856z3) ->
                                                   begin
-                                                    match (string_drop (z_s1853z3, z_s1854z3)) with
-                                                    | z_s1855z3 ->
+                                                    match (string_drop (z_s1855z3, z_s1856z3)) with
+                                                    | z_s1857z3 ->
                                                       begin
-                                                        match (zreg_name_matches_prefix z_s1855z3) with
-                                                        | ZSome (zrs2, z_s1856z3) ->
+                                                        match (zreg_name_matches_prefix z_s1857z3) with
+                                                        | ZSome (zrs2, z_s1858z3) ->
                                                           begin
-                                                            match (string_drop (z_s1855z3, z_s1856z3)) with
+                                                            match (string_drop (z_s1857z3, z_s1858z3)) with
                                                             | "" ->
                                                               ZSome (zop, zrd, zrs1, zrs2)
                                                             | _ -> ZNone ()
@@ -24342,51 +24390,51 @@ and z_s1841z3 (z_s1842z3 : (string)) : ((zropw * (bit) list * (bit) list * (bit)
     | _ -> ZNone ()
   end)
 
-and z_s1824z3 (z_s1825z3 : (string)) : ((zsop * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1826z3 (z_s1827z3 : (string)) : ((zsop * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
-    match z_s1825z3 with
-    | z_s1826z3 ->
+    match z_s1827z3 with
+    | z_s1828z3 ->
       begin
-        match (zshiftw_mnemonic_matches_prefix z_s1826z3) with
-        | ZSome (zop, z_s1827z3) ->
+        match (zshiftw_mnemonic_matches_prefix z_s1828z3) with
+        | ZSome (zop, z_s1829z3) ->
           begin
-            match (string_drop (z_s1826z3, z_s1827z3)) with
-            | z_s1828z3 ->
+            match (string_drop (z_s1828z3, z_s1829z3)) with
+            | z_s1830z3 ->
               begin
-                match (zspc_matches_prefix z_s1828z3) with
-                | ZSome ((), z_s1829z3) ->
+                match (zspc_matches_prefix z_s1830z3) with
+                | ZSome ((), z_s1831z3) ->
                   begin
-                    match (string_drop (z_s1828z3, z_s1829z3)) with
-                    | z_s1830z3 ->
+                    match (string_drop (z_s1830z3, z_s1831z3)) with
+                    | z_s1832z3 ->
                       begin
-                        match (zreg_name_matches_prefix z_s1830z3) with
-                        | ZSome (zrd, z_s1831z3) ->
+                        match (zreg_name_matches_prefix z_s1832z3) with
+                        | ZSome (zrd, z_s1833z3) ->
                           begin
-                            match (string_drop (z_s1830z3, z_s1831z3)) with
-                            | z_s1832z3 ->
+                            match (string_drop (z_s1832z3, z_s1833z3)) with
+                            | z_s1834z3 ->
                               begin
-                                match (zsep_matches_prefix z_s1832z3) with
-                                | ZSome ((), z_s1833z3) ->
+                                match (zsep_matches_prefix z_s1834z3) with
+                                | ZSome ((), z_s1835z3) ->
                                   begin
-                                    match (string_drop (z_s1832z3, z_s1833z3)) with
-                                    | z_s1834z3 ->
+                                    match (string_drop (z_s1834z3, z_s1835z3)) with
+                                    | z_s1836z3 ->
                                       begin
-                                        match (zreg_name_matches_prefix z_s1834z3) with
-                                        | ZSome (zrs1, z_s1835z3) ->
+                                        match (zreg_name_matches_prefix z_s1836z3) with
+                                        | ZSome (zrs1, z_s1837z3) ->
                                           begin
-                                            match (string_drop (z_s1834z3, z_s1835z3)) with
-                                            | z_s1836z3 ->
+                                            match (string_drop (z_s1836z3, z_s1837z3)) with
+                                            | z_s1838z3 ->
                                               begin
-                                                match (zsep_matches_prefix z_s1836z3) with
-                                                | ZSome ((), z_s1837z3) ->
+                                                match (zsep_matches_prefix z_s1838z3) with
+                                                | ZSome ((), z_s1839z3) ->
                                                   begin
-                                                    match (string_drop (z_s1836z3, z_s1837z3)) with
-                                                    | z_s1838z3 ->
+                                                    match (string_drop (z_s1838z3, z_s1839z3)) with
+                                                    | z_s1840z3 ->
                                                       begin
-                                                        match (hex_bits_5_matches_prefix z_s1838z3) with
-                                                        | ZSome (zshamt, z_s1839z3) ->
+                                                        match (hex_bits_5_matches_prefix z_s1840z3) with
+                                                        | ZSome (zshamt, z_s1841z3) ->
                                                           begin
-                                                            match (string_drop (z_s1838z3, z_s1839z3)) with
+                                                            match (string_drop (z_s1840z3, z_s1841z3)) with
                                                             | "" ->
                                                               ZSome (zop, zrd, zrs1, zshamt)
                                                             | _ -> ZNone ()
@@ -24420,48 +24468,48 @@ and z_s1824z3 (z_s1825z3 : (string)) : ((zsop * (bit) list * (bit) list * (bit) 
     | _ -> ZNone ()
   end)
 
-and z_s1808z3 (z_s1809z3 : (string)) : (((bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1810z3 (z_s1811z3 : (string)) : (((bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
-    match z_s1809z3 with
-    | z_s1810z3 when (string_startswith (z_s1810z3, "addiw")) ->
+    match z_s1811z3 with
+    | z_s1812z3 when (string_startswith (z_s1812z3, "addiw")) ->
       begin
-        match (string_drop (z_s1810z3, (string_length "addiw"))) with
-        | z_s1811z3 ->
+        match (string_drop (z_s1812z3, (string_length "addiw"))) with
+        | z_s1813z3 ->
           begin
-            match (zspc_matches_prefix z_s1811z3) with
-            | ZSome ((), z_s1812z3) ->
+            match (zspc_matches_prefix z_s1813z3) with
+            | ZSome ((), z_s1814z3) ->
               begin
-                match (string_drop (z_s1811z3, z_s1812z3)) with
-                | z_s1813z3 ->
+                match (string_drop (z_s1813z3, z_s1814z3)) with
+                | z_s1815z3 ->
                   begin
-                    match (zreg_name_matches_prefix z_s1813z3) with
-                    | ZSome (zrd, z_s1814z3) ->
+                    match (zreg_name_matches_prefix z_s1815z3) with
+                    | ZSome (zrd, z_s1816z3) ->
                       begin
-                        match (string_drop (z_s1813z3, z_s1814z3)) with
-                        | z_s1815z3 ->
+                        match (string_drop (z_s1815z3, z_s1816z3)) with
+                        | z_s1817z3 ->
                           begin
-                            match (zsep_matches_prefix z_s1815z3) with
-                            | ZSome ((), z_s1816z3) ->
+                            match (zsep_matches_prefix z_s1817z3) with
+                            | ZSome ((), z_s1818z3) ->
                               begin
-                                match (string_drop (z_s1815z3, z_s1816z3)) with
-                                | z_s1817z3 ->
+                                match (string_drop (z_s1817z3, z_s1818z3)) with
+                                | z_s1819z3 ->
                                   begin
-                                    match (zreg_name_matches_prefix z_s1817z3) with
-                                    | ZSome (zrs1, z_s1818z3) ->
+                                    match (zreg_name_matches_prefix z_s1819z3) with
+                                    | ZSome (zrs1, z_s1820z3) ->
                                       begin
-                                        match (string_drop (z_s1817z3, z_s1818z3)) with
-                                        | z_s1819z3 ->
+                                        match (string_drop (z_s1819z3, z_s1820z3)) with
+                                        | z_s1821z3 ->
                                           begin
-                                            match (zsep_matches_prefix z_s1819z3) with
-                                            | ZSome ((), z_s1820z3) ->
+                                            match (zsep_matches_prefix z_s1821z3) with
+                                            | ZSome ((), z_s1822z3) ->
                                               begin
-                                                match (string_drop (z_s1819z3, z_s1820z3)) with
-                                                | z_s1821z3 ->
+                                                match (string_drop (z_s1821z3, z_s1822z3)) with
+                                                | z_s1823z3 ->
                                                   begin
-                                                    match (hex_bits_12_matches_prefix z_s1821z3) with
-                                                    | ZSome (zimm, z_s1822z3) ->
+                                                    match (hex_bits_12_matches_prefix z_s1823z3) with
+                                                    | ZSome (zimm, z_s1824z3) ->
                                                       begin
-                                                        match (string_drop (z_s1821z3, z_s1822z3)) with
+                                                        match (string_drop (z_s1823z3, z_s1824z3)) with
                                                         | "" ->
                                                           ZSome (zrd, zrs1, zimm)
                                                         | _ -> ZNone ()
@@ -24493,66 +24541,66 @@ and z_s1808z3 (z_s1809z3 : (string)) : (((bit) list * (bit) list * (bit) list)) 
     | _ -> ZNone ()
   end)
 
-and z_s1786z3 (z_s1787z3 : (string)) : ((zword_width * bool * bool * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1788z3 (z_s1789z3 : (string)) : ((zword_width * bool * bool * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
-    match z_s1787z3 with
-    | z_s1788z3 when (string_startswith (z_s1788z3, "s")) ->
+    match z_s1789z3 with
+    | z_s1790z3 when (string_startswith (z_s1790z3, "s")) ->
       begin
-        match (string_drop (z_s1788z3, (string_length "s"))) with
-        | z_s1789z3 ->
+        match (string_drop (z_s1790z3, (string_length "s"))) with
+        | z_s1791z3 ->
           begin
-            match (zsizze_mnemonic_matches_prefix z_s1789z3) with
-            | ZSome (zsizze, z_s1790z3) ->
+            match (zsizze_mnemonic_matches_prefix z_s1791z3) with
+            | ZSome (zsizze, z_s1792z3) ->
               begin
-                match (string_drop (z_s1789z3, z_s1790z3)) with
-                | z_s1791z3 ->
+                match (string_drop (z_s1791z3, z_s1792z3)) with
+                | z_s1793z3 ->
                   begin
-                    match (zmaybe_aq_matches_prefix z_s1791z3) with
-                    | ZSome (zaq, z_s1792z3) ->
+                    match (zmaybe_aq_matches_prefix z_s1793z3) with
+                    | ZSome (zaq, z_s1794z3) ->
                       begin
-                        match (string_drop (z_s1791z3, z_s1792z3)) with
-                        | z_s1793z3 ->
+                        match (string_drop (z_s1793z3, z_s1794z3)) with
+                        | z_s1795z3 ->
                           begin
-                            match (zmaybe_rl_matches_prefix z_s1793z3) with
-                            | ZSome (zrl, z_s1794z3) ->
+                            match (zmaybe_rl_matches_prefix z_s1795z3) with
+                            | ZSome (zrl, z_s1796z3) ->
                               begin
-                                match (string_drop (z_s1793z3, z_s1794z3)) with
-                                | z_s1795z3 ->
+                                match (string_drop (z_s1795z3, z_s1796z3)) with
+                                | z_s1797z3 ->
                                   begin
-                                    match (zspc_matches_prefix z_s1795z3) with
-                                    | ZSome ((), z_s1796z3) ->
+                                    match (zspc_matches_prefix z_s1797z3) with
+                                    | ZSome ((), z_s1798z3) ->
                                       begin
-                                        match (string_drop (z_s1795z3, z_s1796z3)) with
-                                        | z_s1797z3 ->
+                                        match (string_drop (z_s1797z3, z_s1798z3)) with
+                                        | z_s1799z3 ->
                                           begin
-                                            match (zreg_name_matches_prefix z_s1797z3) with
-                                            | ZSome (zrd, z_s1798z3) ->
+                                            match (zreg_name_matches_prefix z_s1799z3) with
+                                            | ZSome (zrd, z_s1800z3) ->
                                               begin
-                                                match (string_drop (z_s1797z3, z_s1798z3)) with
-                                                | z_s1799z3 ->
+                                                match (string_drop (z_s1799z3, z_s1800z3)) with
+                                                | z_s1801z3 ->
                                                   begin
-                                                    match (zsep_matches_prefix z_s1799z3) with
-                                                    | ZSome ((), z_s1800z3) ->
+                                                    match (zsep_matches_prefix z_s1801z3) with
+                                                    | ZSome ((), z_s1802z3) ->
                                                       begin
-                                                        match (string_drop (z_s1799z3, z_s1800z3)) with
-                                                        | z_s1801z3 ->
+                                                        match (string_drop (z_s1801z3, z_s1802z3)) with
+                                                        | z_s1803z3 ->
                                                           begin
-                                                            match (zreg_name_matches_prefix z_s1801z3) with
-                                                            | ZSome (zrs1, z_s1802z3) ->
+                                                            match (zreg_name_matches_prefix z_s1803z3) with
+                                                            | ZSome (zrs1, z_s1804z3) ->
                                                               begin
-                                                                match (string_drop (z_s1801z3, z_s1802z3)) with
-                                                                | z_s1803z3 ->
+                                                                match (string_drop (z_s1803z3, z_s1804z3)) with
+                                                                | z_s1805z3 ->
                                                                   begin
-                                                                    match (zsep_matches_prefix z_s1803z3) with
-                                                                    | ZSome ((), z_s1804z3) ->
+                                                                    match (zsep_matches_prefix z_s1805z3) with
+                                                                    | ZSome ((), z_s1806z3) ->
                                                                       begin
-                                                                        match (string_drop (z_s1803z3, z_s1804z3)) with
-                                                                        | z_s1805z3 ->
+                                                                        match (string_drop (z_s1805z3, z_s1806z3)) with
+                                                                        | z_s1807z3 ->
                                                                           begin
-                                                                            match (hex_bits_12_matches_prefix z_s1805z3) with
-                                                                            | ZSome (zimm, z_s1806z3) ->
+                                                                            match (hex_bits_12_matches_prefix z_s1807z3) with
+                                                                            | ZSome (zimm, z_s1808z3) ->
                                                                               begin
-                                                                                match (string_drop (z_s1805z3, z_s1806z3)) with
+                                                                                match (string_drop (z_s1807z3, z_s1808z3)) with
                                                                                 | "" ->
                                                                                   ZSome (zsizze, zaq, zrl, zrd, zrs1, zimm)
                                                                                 | _ ->
@@ -24600,72 +24648,72 @@ and z_s1786z3 (z_s1787z3 : (string)) : ((zword_width * bool * bool * (bit) list 
     | _ -> ZNone ()
   end)
 
-and z_s1762z3 (z_s1763z3 : (string)) : ((zword_width * bool * bool * bool * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1764z3 (z_s1765z3 : (string)) : ((zword_width * bool * bool * bool * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
-    match z_s1763z3 with
-    | z_s1764z3 when (string_startswith (z_s1764z3, "l")) ->
+    match z_s1765z3 with
+    | z_s1766z3 when (string_startswith (z_s1766z3, "l")) ->
       begin
-        match (string_drop (z_s1764z3, (string_length "l"))) with
-        | z_s1765z3 ->
+        match (string_drop (z_s1766z3, (string_length "l"))) with
+        | z_s1767z3 ->
           begin
-            match (zsizze_mnemonic_matches_prefix z_s1765z3) with
-            | ZSome (zsizze, z_s1766z3) ->
+            match (zsizze_mnemonic_matches_prefix z_s1767z3) with
+            | ZSome (zsizze, z_s1768z3) ->
               begin
-                match (string_drop (z_s1765z3, z_s1766z3)) with
-                | z_s1767z3 ->
+                match (string_drop (z_s1767z3, z_s1768z3)) with
+                | z_s1769z3 ->
                   begin
-                    match (zmaybe_u_matches_prefix z_s1767z3) with
-                    | ZSome (zis_unsigned, z_s1768z3) ->
+                    match (zmaybe_u_matches_prefix z_s1769z3) with
+                    | ZSome (zis_unsigned, z_s1770z3) ->
                       begin
-                        match (string_drop (z_s1767z3, z_s1768z3)) with
-                        | z_s1769z3 ->
+                        match (string_drop (z_s1769z3, z_s1770z3)) with
+                        | z_s1771z3 ->
                           begin
-                            match (zmaybe_aq_matches_prefix z_s1769z3) with
-                            | ZSome (zaq, z_s1770z3) ->
+                            match (zmaybe_aq_matches_prefix z_s1771z3) with
+                            | ZSome (zaq, z_s1772z3) ->
                               begin
-                                match (string_drop (z_s1769z3, z_s1770z3)) with
-                                | z_s1771z3 ->
+                                match (string_drop (z_s1771z3, z_s1772z3)) with
+                                | z_s1773z3 ->
                                   begin
-                                    match (zmaybe_rl_matches_prefix z_s1771z3) with
-                                    | ZSome (zrl, z_s1772z3) ->
+                                    match (zmaybe_rl_matches_prefix z_s1773z3) with
+                                    | ZSome (zrl, z_s1774z3) ->
                                       begin
-                                        match (string_drop (z_s1771z3, z_s1772z3)) with
-                                        | z_s1773z3 ->
+                                        match (string_drop (z_s1773z3, z_s1774z3)) with
+                                        | z_s1775z3 ->
                                           begin
-                                            match (zspc_matches_prefix z_s1773z3) with
-                                            | ZSome ((), z_s1774z3) ->
+                                            match (zspc_matches_prefix z_s1775z3) with
+                                            | ZSome ((), z_s1776z3) ->
                                               begin
-                                                match (string_drop (z_s1773z3, z_s1774z3)) with
-                                                | z_s1775z3 ->
+                                                match (string_drop (z_s1775z3, z_s1776z3)) with
+                                                | z_s1777z3 ->
                                                   begin
-                                                    match (zreg_name_matches_prefix z_s1775z3) with
-                                                    | ZSome (zrd, z_s1776z3) ->
+                                                    match (zreg_name_matches_prefix z_s1777z3) with
+                                                    | ZSome (zrd, z_s1778z3) ->
                                                       begin
-                                                        match (string_drop (z_s1775z3, z_s1776z3)) with
-                                                        | z_s1777z3 ->
+                                                        match (string_drop (z_s1777z3, z_s1778z3)) with
+                                                        | z_s1779z3 ->
                                                           begin
-                                                            match (zsep_matches_prefix z_s1777z3) with
-                                                            | ZSome ((), z_s1778z3) ->
+                                                            match (zsep_matches_prefix z_s1779z3) with
+                                                            | ZSome ((), z_s1780z3) ->
                                                               begin
-                                                                match (string_drop (z_s1777z3, z_s1778z3)) with
-                                                                | z_s1779z3 ->
+                                                                match (string_drop (z_s1779z3, z_s1780z3)) with
+                                                                | z_s1781z3 ->
                                                                   begin
-                                                                    match (zreg_name_matches_prefix z_s1779z3) with
-                                                                    | ZSome (zrs1, z_s1780z3) ->
+                                                                    match (zreg_name_matches_prefix z_s1781z3) with
+                                                                    | ZSome (zrs1, z_s1782z3) ->
                                                                       begin
-                                                                        match (string_drop (z_s1779z3, z_s1780z3)) with
-                                                                        | z_s1781z3 ->
+                                                                        match (string_drop (z_s1781z3, z_s1782z3)) with
+                                                                        | z_s1783z3 ->
                                                                           begin
-                                                                            match (zsep_matches_prefix z_s1781z3) with
-                                                                            | ZSome ((), z_s1782z3) ->
+                                                                            match (zsep_matches_prefix z_s1783z3) with
+                                                                            | ZSome ((), z_s1784z3) ->
                                                                               begin
-                                                                                match (string_drop (z_s1781z3, z_s1782z3)) with
-                                                                                | z_s1783z3 ->
+                                                                                match (string_drop (z_s1783z3, z_s1784z3)) with
+                                                                                | z_s1785z3 ->
                                                                                   begin
-                                                                                    match (hex_bits_12_matches_prefix z_s1783z3) with
-                                                                                    | ZSome (zimm, z_s1784z3) ->
+                                                                                    match (hex_bits_12_matches_prefix z_s1785z3) with
+                                                                                    | ZSome (zimm, z_s1786z3) ->
                                                                                       begin
-                                                                                        match (string_drop (z_s1783z3, z_s1784z3)) with
+                                                                                        match (string_drop (z_s1785z3, z_s1786z3)) with
                                                                                         | "" ->
                                                                                           ZSome (zsizze, zis_unsigned, zaq, zrl, zrd, zrs1, zimm)
                                                                                         | _ ->
@@ -24719,51 +24767,51 @@ and z_s1762z3 (z_s1763z3 : (string)) : ((zword_width * bool * bool * bool * (bit
     | _ -> ZNone ()
   end)
 
-and z_s1745z3 (z_s1746z3 : (string)) : ((zrop * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1747z3 (z_s1748z3 : (string)) : ((zrop * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
-    match z_s1746z3 with
-    | z_s1747z3 ->
+    match z_s1748z3 with
+    | z_s1749z3 ->
       begin
-        match (zrtype_mnemonic_matches_prefix z_s1747z3) with
-        | ZSome (zop, z_s1748z3) ->
+        match (zrtype_mnemonic_matches_prefix z_s1749z3) with
+        | ZSome (zop, z_s1750z3) ->
           begin
-            match (string_drop (z_s1747z3, z_s1748z3)) with
-            | z_s1749z3 ->
+            match (string_drop (z_s1749z3, z_s1750z3)) with
+            | z_s1751z3 ->
               begin
-                match (zspc_matches_prefix z_s1749z3) with
-                | ZSome ((), z_s1750z3) ->
+                match (zspc_matches_prefix z_s1751z3) with
+                | ZSome ((), z_s1752z3) ->
                   begin
-                    match (string_drop (z_s1749z3, z_s1750z3)) with
-                    | z_s1751z3 ->
+                    match (string_drop (z_s1751z3, z_s1752z3)) with
+                    | z_s1753z3 ->
                       begin
-                        match (zreg_name_matches_prefix z_s1751z3) with
-                        | ZSome (zrd, z_s1752z3) ->
+                        match (zreg_name_matches_prefix z_s1753z3) with
+                        | ZSome (zrd, z_s1754z3) ->
                           begin
-                            match (string_drop (z_s1751z3, z_s1752z3)) with
-                            | z_s1753z3 ->
+                            match (string_drop (z_s1753z3, z_s1754z3)) with
+                            | z_s1755z3 ->
                               begin
-                                match (zsep_matches_prefix z_s1753z3) with
-                                | ZSome ((), z_s1754z3) ->
+                                match (zsep_matches_prefix z_s1755z3) with
+                                | ZSome ((), z_s1756z3) ->
                                   begin
-                                    match (string_drop (z_s1753z3, z_s1754z3)) with
-                                    | z_s1755z3 ->
+                                    match (string_drop (z_s1755z3, z_s1756z3)) with
+                                    | z_s1757z3 ->
                                       begin
-                                        match (zreg_name_matches_prefix z_s1755z3) with
-                                        | ZSome (zrs1, z_s1756z3) ->
+                                        match (zreg_name_matches_prefix z_s1757z3) with
+                                        | ZSome (zrs1, z_s1758z3) ->
                                           begin
-                                            match (string_drop (z_s1755z3, z_s1756z3)) with
-                                            | z_s1757z3 ->
+                                            match (string_drop (z_s1757z3, z_s1758z3)) with
+                                            | z_s1759z3 ->
                                               begin
-                                                match (zsep_matches_prefix z_s1757z3) with
-                                                | ZSome ((), z_s1758z3) ->
+                                                match (zsep_matches_prefix z_s1759z3) with
+                                                | ZSome ((), z_s1760z3) ->
                                                   begin
-                                                    match (string_drop (z_s1757z3, z_s1758z3)) with
-                                                    | z_s1759z3 ->
+                                                    match (string_drop (z_s1759z3, z_s1760z3)) with
+                                                    | z_s1761z3 ->
                                                       begin
-                                                        match (zreg_name_matches_prefix z_s1759z3) with
-                                                        | ZSome (zrs2, z_s1760z3) ->
+                                                        match (zreg_name_matches_prefix z_s1761z3) with
+                                                        | ZSome (zrs2, z_s1762z3) ->
                                                           begin
-                                                            match (string_drop (z_s1759z3, z_s1760z3)) with
+                                                            match (string_drop (z_s1761z3, z_s1762z3)) with
                                                             | "" ->
                                                               ZSome (zop, zrd, zrs1, zrs2)
                                                             | _ -> ZNone ()
@@ -24797,45 +24845,45 @@ and z_s1745z3 (z_s1746z3 : (string)) : ((zrop * (bit) list * (bit) list * (bit) 
     | _ -> ZNone ()
   end)
 
-and z_s1730z3 (z_s1731z3 : (string)) : ((zsop * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1732z3 (z_s1733z3 : (string)) : ((zsop * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
-    match z_s1731z3 with
-    | z_s1732z3 ->
+    match z_s1733z3 with
+    | z_s1734z3 ->
       begin
-        match (zshiftiop_mnemonic_matches_prefix z_s1732z3) with
-        | ZSome (zop, z_s1733z3) ->
+        match (zshiftiop_mnemonic_matches_prefix z_s1734z3) with
+        | ZSome (zop, z_s1735z3) ->
           begin
-            match (string_drop (z_s1732z3, z_s1733z3)) with
-            | z_s1734z3 ->
+            match (string_drop (z_s1734z3, z_s1735z3)) with
+            | z_s1736z3 ->
               begin
-                match (zspc_matches_prefix z_s1734z3) with
-                | ZSome ((), z_s1735z3) ->
+                match (zspc_matches_prefix z_s1736z3) with
+                | ZSome ((), z_s1737z3) ->
                   begin
-                    match (string_drop (z_s1734z3, z_s1735z3)) with
-                    | z_s1736z3 ->
+                    match (string_drop (z_s1736z3, z_s1737z3)) with
+                    | z_s1738z3 ->
                       begin
-                        match (zreg_name_matches_prefix z_s1736z3) with
-                        | ZSome (zrd, z_s1737z3) ->
+                        match (zreg_name_matches_prefix z_s1738z3) with
+                        | ZSome (zrd, z_s1739z3) ->
                           begin
-                            match (string_drop (z_s1736z3, z_s1737z3)) with
-                            | z_s1738z3 ->
+                            match (string_drop (z_s1738z3, z_s1739z3)) with
+                            | z_s1740z3 ->
                               begin
-                                match (zsep_matches_prefix z_s1738z3) with
-                                | ZSome ((), z_s1739z3) ->
+                                match (zsep_matches_prefix z_s1740z3) with
+                                | ZSome ((), z_s1741z3) ->
                                   begin
-                                    match (string_drop (z_s1738z3, z_s1739z3)) with
-                                    | z_s1740z3 ->
+                                    match (string_drop (z_s1740z3, z_s1741z3)) with
+                                    | z_s1742z3 ->
                                       begin
-                                        match (zreg_name_matches_prefix z_s1740z3) with
-                                        | ZSome (zrs1, z_s1741z3) ->
+                                        match (zreg_name_matches_prefix z_s1742z3) with
+                                        | ZSome (zrs1, z_s1743z3) ->
                                           begin
-                                            match (string_drop (z_s1740z3, z_s1741z3)) with
-                                            | z_s1742z3 ->
+                                            match (string_drop (z_s1742z3, z_s1743z3)) with
+                                            | z_s1744z3 ->
                                               begin
-                                                match (hex_bits_6_matches_prefix z_s1742z3) with
-                                                | ZSome (zshamt, z_s1743z3) ->
+                                                match (hex_bits_6_matches_prefix z_s1744z3) with
+                                                | ZSome (zshamt, z_s1745z3) ->
                                                   begin
-                                                    match (string_drop (z_s1742z3, z_s1743z3)) with
+                                                    match (string_drop (z_s1744z3, z_s1745z3)) with
                                                     | "" ->
                                                       ZSome (zop, zrd, zrs1, zshamt)
                                                     | _ -> ZNone ()
@@ -24865,51 +24913,51 @@ and z_s1730z3 (z_s1731z3 : (string)) : ((zsop * (bit) list * (bit) list * (bit) 
     | _ -> ZNone ()
   end)
 
-and z_s1713z3 (z_s1714z3 : (string)) : ((ziop * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1715z3 (z_s1716z3 : (string)) : ((ziop * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
-    match z_s1714z3 with
-    | z_s1715z3 ->
+    match z_s1716z3 with
+    | z_s1717z3 ->
       begin
-        match (zitype_mnemonic_matches_prefix z_s1715z3) with
-        | ZSome (zop, z_s1716z3) ->
+        match (zitype_mnemonic_matches_prefix z_s1717z3) with
+        | ZSome (zop, z_s1718z3) ->
           begin
-            match (string_drop (z_s1715z3, z_s1716z3)) with
-            | z_s1717z3 ->
+            match (string_drop (z_s1717z3, z_s1718z3)) with
+            | z_s1719z3 ->
               begin
-                match (zspc_matches_prefix z_s1717z3) with
-                | ZSome ((), z_s1718z3) ->
+                match (zspc_matches_prefix z_s1719z3) with
+                | ZSome ((), z_s1720z3) ->
                   begin
-                    match (string_drop (z_s1717z3, z_s1718z3)) with
-                    | z_s1719z3 ->
+                    match (string_drop (z_s1719z3, z_s1720z3)) with
+                    | z_s1721z3 ->
                       begin
-                        match (zreg_name_matches_prefix z_s1719z3) with
-                        | ZSome (zrd, z_s1720z3) ->
+                        match (zreg_name_matches_prefix z_s1721z3) with
+                        | ZSome (zrd, z_s1722z3) ->
                           begin
-                            match (string_drop (z_s1719z3, z_s1720z3)) with
-                            | z_s1721z3 ->
+                            match (string_drop (z_s1721z3, z_s1722z3)) with
+                            | z_s1723z3 ->
                               begin
-                                match (zsep_matches_prefix z_s1721z3) with
-                                | ZSome ((), z_s1722z3) ->
+                                match (zsep_matches_prefix z_s1723z3) with
+                                | ZSome ((), z_s1724z3) ->
                                   begin
-                                    match (string_drop (z_s1721z3, z_s1722z3)) with
-                                    | z_s1723z3 ->
+                                    match (string_drop (z_s1723z3, z_s1724z3)) with
+                                    | z_s1725z3 ->
                                       begin
-                                        match (zreg_name_matches_prefix z_s1723z3) with
-                                        | ZSome (zrs1, z_s1724z3) ->
+                                        match (zreg_name_matches_prefix z_s1725z3) with
+                                        | ZSome (zrs1, z_s1726z3) ->
                                           begin
-                                            match (string_drop (z_s1723z3, z_s1724z3)) with
-                                            | z_s1725z3 ->
+                                            match (string_drop (z_s1725z3, z_s1726z3)) with
+                                            | z_s1727z3 ->
                                               begin
-                                                match (zsep_matches_prefix z_s1725z3) with
-                                                | ZSome ((), z_s1726z3) ->
+                                                match (zsep_matches_prefix z_s1727z3) with
+                                                | ZSome ((), z_s1728z3) ->
                                                   begin
-                                                    match (string_drop (z_s1725z3, z_s1726z3)) with
-                                                    | z_s1727z3 ->
+                                                    match (string_drop (z_s1727z3, z_s1728z3)) with
+                                                    | z_s1729z3 ->
                                                       begin
-                                                        match (hex_bits_12_matches_prefix z_s1727z3) with
-                                                        | ZSome (zimm, z_s1728z3) ->
+                                                        match (hex_bits_12_matches_prefix z_s1729z3) with
+                                                        | ZSome (zimm, z_s1730z3) ->
                                                           begin
-                                                            match (string_drop (z_s1727z3, z_s1728z3)) with
+                                                            match (string_drop (z_s1729z3, z_s1730z3)) with
                                                             | "" ->
                                                               ZSome (zop, zrd, zrs1, zimm)
                                                             | _ -> ZNone ()
@@ -24943,51 +24991,51 @@ and z_s1713z3 (z_s1714z3 : (string)) : ((ziop * (bit) list * (bit) list * (bit) 
     | _ -> ZNone ()
   end)
 
-and z_s1696z3 (z_s1697z3 : (string)) : ((zbop * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1698z3 (z_s1699z3 : (string)) : ((zbop * (bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
-    match z_s1697z3 with
-    | z_s1698z3 ->
+    match z_s1699z3 with
+    | z_s1700z3 ->
       begin
-        match (zbtype_mnemonic_matches_prefix z_s1698z3) with
-        | ZSome (zop, z_s1699z3) ->
+        match (zbtype_mnemonic_matches_prefix z_s1700z3) with
+        | ZSome (zop, z_s1701z3) ->
           begin
-            match (string_drop (z_s1698z3, z_s1699z3)) with
-            | z_s1700z3 ->
+            match (string_drop (z_s1700z3, z_s1701z3)) with
+            | z_s1702z3 ->
               begin
-                match (zspc_matches_prefix z_s1700z3) with
-                | ZSome ((), z_s1701z3) ->
+                match (zspc_matches_prefix z_s1702z3) with
+                | ZSome ((), z_s1703z3) ->
                   begin
-                    match (string_drop (z_s1700z3, z_s1701z3)) with
-                    | z_s1702z3 ->
+                    match (string_drop (z_s1702z3, z_s1703z3)) with
+                    | z_s1704z3 ->
                       begin
-                        match (zreg_name_matches_prefix z_s1702z3) with
-                        | ZSome (zrs1, z_s1703z3) ->
+                        match (zreg_name_matches_prefix z_s1704z3) with
+                        | ZSome (zrs1, z_s1705z3) ->
                           begin
-                            match (string_drop (z_s1702z3, z_s1703z3)) with
-                            | z_s1704z3 ->
+                            match (string_drop (z_s1704z3, z_s1705z3)) with
+                            | z_s1706z3 ->
                               begin
-                                match (zsep_matches_prefix z_s1704z3) with
-                                | ZSome ((), z_s1705z3) ->
+                                match (zsep_matches_prefix z_s1706z3) with
+                                | ZSome ((), z_s1707z3) ->
                                   begin
-                                    match (string_drop (z_s1704z3, z_s1705z3)) with
-                                    | z_s1706z3 ->
+                                    match (string_drop (z_s1706z3, z_s1707z3)) with
+                                    | z_s1708z3 ->
                                       begin
-                                        match (zreg_name_matches_prefix z_s1706z3) with
-                                        | ZSome (zrs2, z_s1707z3) ->
+                                        match (zreg_name_matches_prefix z_s1708z3) with
+                                        | ZSome (zrs2, z_s1709z3) ->
                                           begin
-                                            match (string_drop (z_s1706z3, z_s1707z3)) with
-                                            | z_s1708z3 ->
+                                            match (string_drop (z_s1708z3, z_s1709z3)) with
+                                            | z_s1710z3 ->
                                               begin
-                                                match (zsep_matches_prefix z_s1708z3) with
-                                                | ZSome ((), z_s1709z3) ->
+                                                match (zsep_matches_prefix z_s1710z3) with
+                                                | ZSome ((), z_s1711z3) ->
                                                   begin
-                                                    match (string_drop (z_s1708z3, z_s1709z3)) with
-                                                    | z_s1710z3 ->
+                                                    match (string_drop (z_s1710z3, z_s1711z3)) with
+                                                    | z_s1712z3 ->
                                                       begin
-                                                        match (hex_bits_13_matches_prefix z_s1710z3) with
-                                                        | ZSome (zimm, z_s1711z3) ->
+                                                        match (hex_bits_13_matches_prefix z_s1712z3) with
+                                                        | ZSome (zimm, z_s1713z3) ->
                                                           begin
-                                                            match (string_drop (z_s1710z3, z_s1711z3)) with
+                                                            match (string_drop (z_s1712z3, z_s1713z3)) with
                                                             | "" ->
                                                               ZSome (zop, zrs1, zrs2, zimm)
                                                             | _ -> ZNone ()
@@ -25021,48 +25069,48 @@ and z_s1696z3 (z_s1697z3 : (string)) : ((zbop * (bit) list * (bit) list * (bit) 
     | _ -> ZNone ()
   end)
 
-and z_s1680z3 (z_s1681z3 : (string)) : (((bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1682z3 (z_s1683z3 : (string)) : (((bit) list * (bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
-    match z_s1681z3 with
-    | z_s1682z3 when (string_startswith (z_s1682z3, "jalr")) ->
+    match z_s1683z3 with
+    | z_s1684z3 when (string_startswith (z_s1684z3, "jalr")) ->
       begin
-        match (string_drop (z_s1682z3, (string_length "jalr"))) with
-        | z_s1683z3 ->
+        match (string_drop (z_s1684z3, (string_length "jalr"))) with
+        | z_s1685z3 ->
           begin
-            match (zspc_matches_prefix z_s1683z3) with
-            | ZSome ((), z_s1684z3) ->
+            match (zspc_matches_prefix z_s1685z3) with
+            | ZSome ((), z_s1686z3) ->
               begin
-                match (string_drop (z_s1683z3, z_s1684z3)) with
-                | z_s1685z3 ->
+                match (string_drop (z_s1685z3, z_s1686z3)) with
+                | z_s1687z3 ->
                   begin
-                    match (zreg_name_matches_prefix z_s1685z3) with
-                    | ZSome (zrd, z_s1686z3) ->
+                    match (zreg_name_matches_prefix z_s1687z3) with
+                    | ZSome (zrd, z_s1688z3) ->
                       begin
-                        match (string_drop (z_s1685z3, z_s1686z3)) with
-                        | z_s1687z3 ->
+                        match (string_drop (z_s1687z3, z_s1688z3)) with
+                        | z_s1689z3 ->
                           begin
-                            match (zsep_matches_prefix z_s1687z3) with
-                            | ZSome ((), z_s1688z3) ->
+                            match (zsep_matches_prefix z_s1689z3) with
+                            | ZSome ((), z_s1690z3) ->
                               begin
-                                match (string_drop (z_s1687z3, z_s1688z3)) with
-                                | z_s1689z3 ->
+                                match (string_drop (z_s1689z3, z_s1690z3)) with
+                                | z_s1691z3 ->
                                   begin
-                                    match (zreg_name_matches_prefix z_s1689z3) with
-                                    | ZSome (zrs1, z_s1690z3) ->
+                                    match (zreg_name_matches_prefix z_s1691z3) with
+                                    | ZSome (zrs1, z_s1692z3) ->
                                       begin
-                                        match (string_drop (z_s1689z3, z_s1690z3)) with
-                                        | z_s1691z3 ->
+                                        match (string_drop (z_s1691z3, z_s1692z3)) with
+                                        | z_s1693z3 ->
                                           begin
-                                            match (zsep_matches_prefix z_s1691z3) with
-                                            | ZSome ((), z_s1692z3) ->
+                                            match (zsep_matches_prefix z_s1693z3) with
+                                            | ZSome ((), z_s1694z3) ->
                                               begin
-                                                match (string_drop (z_s1691z3, z_s1692z3)) with
-                                                | z_s1693z3 ->
+                                                match (string_drop (z_s1693z3, z_s1694z3)) with
+                                                | z_s1695z3 ->
                                                   begin
-                                                    match (hex_bits_12_matches_prefix z_s1693z3) with
-                                                    | ZSome (zimm, z_s1694z3) ->
+                                                    match (hex_bits_12_matches_prefix z_s1695z3) with
+                                                    | ZSome (zimm, z_s1696z3) ->
                                                       begin
-                                                        match (string_drop (z_s1693z3, z_s1694z3)) with
+                                                        match (string_drop (z_s1695z3, z_s1696z3)) with
                                                         | "" ->
                                                           ZSome (zrd, zrs1, zimm)
                                                         | _ -> ZNone ()
@@ -25094,36 +25142,36 @@ and z_s1680z3 (z_s1681z3 : (string)) : (((bit) list * (bit) list * (bit) list)) 
     | _ -> ZNone ()
   end)
 
-and z_s1668z3 (z_s1669z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1670z3 (z_s1671z3 : (string)) : (((bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
-    match z_s1669z3 with
-    | z_s1670z3 when (string_startswith (z_s1670z3, "jal")) ->
+    match z_s1671z3 with
+    | z_s1672z3 when (string_startswith (z_s1672z3, "jal")) ->
       begin
-        match (string_drop (z_s1670z3, (string_length "jal"))) with
-        | z_s1671z3 ->
+        match (string_drop (z_s1672z3, (string_length "jal"))) with
+        | z_s1673z3 ->
           begin
-            match (zspc_matches_prefix z_s1671z3) with
-            | ZSome ((), z_s1672z3) ->
+            match (zspc_matches_prefix z_s1673z3) with
+            | ZSome ((), z_s1674z3) ->
               begin
-                match (string_drop (z_s1671z3, z_s1672z3)) with
-                | z_s1673z3 ->
+                match (string_drop (z_s1673z3, z_s1674z3)) with
+                | z_s1675z3 ->
                   begin
-                    match (zreg_name_matches_prefix z_s1673z3) with
-                    | ZSome (zrd, z_s1674z3) ->
+                    match (zreg_name_matches_prefix z_s1675z3) with
+                    | ZSome (zrd, z_s1676z3) ->
                       begin
-                        match (string_drop (z_s1673z3, z_s1674z3)) with
-                        | z_s1675z3 ->
+                        match (string_drop (z_s1675z3, z_s1676z3)) with
+                        | z_s1677z3 ->
                           begin
-                            match (zsep_matches_prefix z_s1675z3) with
-                            | ZSome ((), z_s1676z3) ->
+                            match (zsep_matches_prefix z_s1677z3) with
+                            | ZSome ((), z_s1678z3) ->
                               begin
-                                match (string_drop (z_s1675z3, z_s1676z3)) with
-                                | z_s1677z3 ->
+                                match (string_drop (z_s1677z3, z_s1678z3)) with
+                                | z_s1679z3 ->
                                   begin
-                                    match (hex_bits_21_matches_prefix z_s1677z3) with
-                                    | ZSome (zimm, z_s1678z3) ->
+                                    match (hex_bits_21_matches_prefix z_s1679z3) with
+                                    | ZSome (zimm, z_s1680z3) ->
                                       begin
-                                        match (string_drop (z_s1677z3, z_s1678z3)) with
+                                        match (string_drop (z_s1679z3, z_s1680z3)) with
                                         | "" -> ZSome (zrd, zimm)
                                         | _ -> ZNone ()
                                       end
@@ -25146,39 +25194,39 @@ and z_s1668z3 (z_s1669z3 : (string)) : (((bit) list * (bit) list)) zoption = sai
     | _ -> ZNone ()
   end)
 
-and z_s1655z3 (z_s1656z3 : (string)) : ((zuop * (bit) list * (bit) list)) zoption = sail_call (fun r ->
+and z_s1657z3 (z_s1658z3 : (string)) : ((zuop * (bit) list * (bit) list)) zoption = sail_call (fun r ->
   begin
-    match z_s1656z3 with
-    | z_s1657z3 ->
+    match z_s1658z3 with
+    | z_s1659z3 ->
       begin
-        match (zutype_mnemonic_matches_prefix z_s1657z3) with
-        | ZSome (zop, z_s1658z3) ->
+        match (zutype_mnemonic_matches_prefix z_s1659z3) with
+        | ZSome (zop, z_s1660z3) ->
           begin
-            match (string_drop (z_s1657z3, z_s1658z3)) with
-            | z_s1659z3 ->
+            match (string_drop (z_s1659z3, z_s1660z3)) with
+            | z_s1661z3 ->
               begin
-                match (zspc_matches_prefix z_s1659z3) with
-                | ZSome ((), z_s1660z3) ->
+                match (zspc_matches_prefix z_s1661z3) with
+                | ZSome ((), z_s1662z3) ->
                   begin
-                    match (string_drop (z_s1659z3, z_s1660z3)) with
-                    | z_s1661z3 ->
+                    match (string_drop (z_s1661z3, z_s1662z3)) with
+                    | z_s1663z3 ->
                       begin
-                        match (zreg_name_matches_prefix z_s1661z3) with
-                        | ZSome (zrd, z_s1662z3) ->
+                        match (zreg_name_matches_prefix z_s1663z3) with
+                        | ZSome (zrd, z_s1664z3) ->
                           begin
-                            match (string_drop (z_s1661z3, z_s1662z3)) with
-                            | z_s1663z3 ->
+                            match (string_drop (z_s1663z3, z_s1664z3)) with
+                            | z_s1665z3 ->
                               begin
-                                match (zsep_matches_prefix z_s1663z3) with
-                                | ZSome ((), z_s1664z3) ->
+                                match (zsep_matches_prefix z_s1665z3) with
+                                | ZSome ((), z_s1666z3) ->
                                   begin
-                                    match (string_drop (z_s1663z3, z_s1664z3)) with
-                                    | z_s1665z3 ->
+                                    match (string_drop (z_s1665z3, z_s1666z3)) with
+                                    | z_s1667z3 ->
                                       begin
-                                        match (hex_bits_20_matches_prefix z_s1665z3) with
-                                        | ZSome (zimm, z_s1666z3) ->
+                                        match (hex_bits_20_matches_prefix z_s1667z3) with
+                                        | ZSome (zimm, z_s1668z3) ->
                                           begin
-                                            match (string_drop (z_s1665z3, z_s1666z3)) with
+                                            match (string_drop (z_s1667z3, z_s1668z3)) with
                                             | "" -> ZSome (zop, zrd, zimm)
                                             | _ -> ZNone ()
                                           end
@@ -25206,413 +25254,413 @@ and z_s1655z3 (z_s1656z3 : (string)) : ((zuop * (bit) list * (bit) list)) zoptio
 and zassembly_backwards_matches (zargz3 : (string)) : bool = sail_call (fun r ->
   begin
     match zargz3 with
-    | z_s1667z3 when (begin
-      match (z_s1655z3 z_s1667z3) with
+    | z_s1669z3 when (begin
+      match (z_s1657z3 z_s1669z3) with
       | ZSome (zop, zrd, zimm) -> true
       | _ -> false
     end) ->
-      let ZSome (zop, zrd, zimm) = (z_s1655z3 z_s1667z3) in true
-    | z_s1679z3 when (begin
-      match (z_s1668z3 z_s1679z3) with
+      let ZSome (zop, zrd, zimm) = (z_s1657z3 z_s1669z3) in true
+    | z_s1681z3 when (begin
+      match (z_s1670z3 z_s1681z3) with
       | ZSome (zrd, zimm) -> true
       | _ -> false
     end) ->
-      let ZSome (zrd, zimm) = (z_s1668z3 z_s1679z3) in true
-    | z_s1695z3 when (begin
-      match (z_s1680z3 z_s1695z3) with
+      let ZSome (zrd, zimm) = (z_s1670z3 z_s1681z3) in true
+    | z_s1697z3 when (begin
+      match (z_s1682z3 z_s1697z3) with
       | ZSome (zrd, zrs1, zimm) -> true
       | _ -> false
     end) ->
-      let ZSome (zrd, zrs1, zimm) = (z_s1680z3 z_s1695z3) in true
-    | z_s1712z3 when (begin
-      match (z_s1696z3 z_s1712z3) with
+      let ZSome (zrd, zrs1, zimm) = (z_s1682z3 z_s1697z3) in true
+    | z_s1714z3 when (begin
+      match (z_s1698z3 z_s1714z3) with
       | ZSome (zop, zrs1, zrs2, zimm) -> true
       | _ -> false
     end) ->
-      let ZSome (zop, zrs1, zrs2, zimm) = (z_s1696z3 z_s1712z3) in true
-    | z_s1729z3 when (begin
-      match (z_s1713z3 z_s1729z3) with
+      let ZSome (zop, zrs1, zrs2, zimm) = (z_s1698z3 z_s1714z3) in true
+    | z_s1731z3 when (begin
+      match (z_s1715z3 z_s1731z3) with
       | ZSome (zop, zrd, zrs1, zimm) -> true
       | _ -> false
     end) ->
-      let ZSome (zop, zrd, zrs1, zimm) = (z_s1713z3 z_s1729z3) in true
-    | z_s1744z3 when (begin
-      match (z_s1730z3 z_s1744z3) with
+      let ZSome (zop, zrd, zrs1, zimm) = (z_s1715z3 z_s1731z3) in true
+    | z_s1746z3 when (begin
+      match (z_s1732z3 z_s1746z3) with
       | ZSome (zop, zrd, zrs1, zshamt) -> true
       | _ -> false
     end) ->
-      let ZSome (zop, zrd, zrs1, zshamt) = (z_s1730z3 z_s1744z3) in true
-    | z_s1761z3 when (begin
-      match (z_s1745z3 z_s1761z3) with
+      let ZSome (zop, zrd, zrs1, zshamt) = (z_s1732z3 z_s1746z3) in true
+    | z_s1763z3 when (begin
+      match (z_s1747z3 z_s1763z3) with
       | ZSome (zop, zrd, zrs1, zrs2) -> true
       | _ -> false
     end) ->
-      let ZSome (zop, zrd, zrs1, zrs2) = (z_s1745z3 z_s1761z3) in true
-    | z_s1785z3 when (begin
-      match (z_s1762z3 z_s1785z3) with
+      let ZSome (zop, zrd, zrs1, zrs2) = (z_s1747z3 z_s1763z3) in true
+    | z_s1787z3 when (begin
+      match (z_s1764z3 z_s1787z3) with
       | ZSome (zsizze, zis_unsigned, zaq, zrl, zrd, zrs1, zimm) -> true
       | _ -> false
     end) ->
-      let ZSome (zsizze, zis_unsigned, zaq, zrl, zrd, zrs1, zimm) = (z_s1762z3 z_s1785z3) in
+      let ZSome (zsizze, zis_unsigned, zaq, zrl, zrd, zrs1, zimm) = (z_s1764z3 z_s1787z3) in
       true
-    | z_s1807z3 when (begin
-      match (z_s1786z3 z_s1807z3) with
+    | z_s1809z3 when (begin
+      match (z_s1788z3 z_s1809z3) with
       | ZSome (zsizze, zaq, zrl, zrd, zrs1, zimm) -> true
       | _ -> false
     end) ->
-      let ZSome (zsizze, zaq, zrl, zrd, zrs1, zimm) = (z_s1786z3 z_s1807z3) in
+      let ZSome (zsizze, zaq, zrl, zrd, zrs1, zimm) = (z_s1788z3 z_s1809z3) in
       true
-    | z_s1823z3 when (begin
-      match (z_s1808z3 z_s1823z3) with
+    | z_s1825z3 when (begin
+      match (z_s1810z3 z_s1825z3) with
       | ZSome (zrd, zrs1, zimm) -> true
       | _ -> false
     end) ->
-      let ZSome (zrd, zrs1, zimm) = (z_s1808z3 z_s1823z3) in true
-    | z_s1840z3 when (begin
-      match (z_s1824z3 z_s1840z3) with
+      let ZSome (zrd, zrs1, zimm) = (z_s1810z3 z_s1825z3) in true
+    | z_s1842z3 when (begin
+      match (z_s1826z3 z_s1842z3) with
       | ZSome (zop, zrd, zrs1, zshamt) -> true
       | _ -> false
     end) ->
-      let ZSome (zop, zrd, zrs1, zshamt) = (z_s1824z3 z_s1840z3) in true
-    | z_s1857z3 when (begin
-      match (z_s1841z3 z_s1857z3) with
+      let ZSome (zop, zrd, zrs1, zshamt) = (z_s1826z3 z_s1842z3) in true
+    | z_s1859z3 when (begin
+      match (z_s1843z3 z_s1859z3) with
       | ZSome (zop, zrd, zrs1, zrs2) -> true
       | _ -> false
     end) ->
-      let ZSome (zop, zrd, zrs1, zrs2) = (z_s1841z3 z_s1857z3) in true
-    | z_s1872z3 when (begin
-      match (z_s1858z3 z_s1872z3) with
+      let ZSome (zop, zrd, zrs1, zrs2) = (z_s1843z3 z_s1859z3) in true
+    | z_s1874z3 when (begin
+      match (z_s1860z3 z_s1874z3) with
       | ZSome (zop, zrd, zrs1, zshamt) -> true
       | _ -> false
     end) ->
-      let ZSome (zop, zrd, zrs1, zshamt) = (z_s1858z3 z_s1872z3) in true
-    | z_s1889z3 when (begin
-      match (z_s1873z3 z_s1889z3) with
+      let ZSome (zop, zrd, zrs1, zshamt) = (z_s1860z3 z_s1874z3) in true
+    | z_s1891z3 when (begin
+      match (z_s1875z3 z_s1891z3) with
       | ZSome (zhigh, zsigned1, zsigned2, zrd, zrs1, zrs2) -> true
       | _ -> false
     end) ->
-      let ZSome (zhigh, zsigned1, zsigned2, zrd, zrs1, zrs2) = (z_s1873z3 z_s1889z3) in
+      let ZSome (zhigh, zsigned1, zsigned2, zrd, zrs1, zrs2) = (z_s1875z3 z_s1891z3) in
       true
-    | z_s1907z3 when (begin
-      match (z_s1890z3 z_s1907z3) with
+    | z_s1909z3 when (begin
+      match (z_s1892z3 z_s1909z3) with
       | ZSome (zs, zrd, zrs1, zrs2) -> true
       | _ -> false
     end) ->
-      let ZSome (zs, zrd, zrs1, zrs2) = (z_s1890z3 z_s1907z3) in true
-    | z_s1925z3 when (begin
-      match (z_s1908z3 z_s1925z3) with
+      let ZSome (zs, zrd, zrs1, zrs2) = (z_s1892z3 z_s1909z3) in true
+    | z_s1927z3 when (begin
+      match (z_s1910z3 z_s1927z3) with
       | ZSome (zs, zrd, zrs1, zrs2) -> true
       | _ -> false
     end) ->
-      let ZSome (zs, zrd, zrs1, zrs2) = (z_s1908z3 z_s1925z3) in true
-    | z_s1941z3 when (begin
-      match (z_s1926z3 z_s1941z3) with
+      let ZSome (zs, zrd, zrs1, zrs2) = (z_s1910z3 z_s1927z3) in true
+    | z_s1943z3 when (begin
+      match (z_s1928z3 z_s1943z3) with
       | ZSome (zrd, zrs1, zrs2) -> true
       | _ -> false
     end) ->
-      let ZSome (zrd, zrs1, zrs2) = (z_s1926z3 z_s1941z3) in true
-    | z_s1960z3 when (begin
-      match (z_s1942z3 z_s1960z3) with
+      let ZSome (zrd, zrs1, zrs2) = (z_s1928z3 z_s1943z3) in true
+    | z_s1962z3 when (begin
+      match (z_s1944z3 z_s1962z3) with
       | ZSome (zs, zrd, zrs1, zrs2) -> true
       | _ -> false
     end) ->
-      let ZSome (zs, zrd, zrs1, zrs2) = (z_s1942z3 z_s1960z3) in true
-    | z_s1979z3 when (begin
-      match (z_s1961z3 z_s1979z3) with
+      let ZSome (zs, zrd, zrs1, zrs2) = (z_s1944z3 z_s1962z3) in true
+    | z_s1981z3 when (begin
+      match (z_s1963z3 z_s1981z3) with
       | ZSome (zs, zrd, zrs1, zrs2) -> true
       | _ -> false
     end) ->
-      let ZSome (zs, zrd, zrs1, zrs2) = (z_s1961z3 z_s1979z3) in true
-    | z_s1991z3 when (begin
-      match (z_s1980z3 z_s1991z3) with
+      let ZSome (zs, zrd, zrs1, zrs2) = (z_s1963z3 z_s1981z3) in true
+    | z_s1993z3 when (begin
+      match (z_s1982z3 z_s1993z3) with
       | ZSome (zpred, zsucc) -> true
       | _ -> false
     end) ->
-      let ZSome (zpred, zsucc) = (z_s1980z3 z_s1991z3) in true
+      let ZSome (zpred, zsucc) = (z_s1982z3 z_s1993z3) in true
     | "fence.i" -> true
     | "ecall" -> true
     | "mret" -> true
     | "sret" -> true
     | "ebreak" -> true
     | "wfi" -> true
-    | z_s2003z3 when (begin
-      match (z_s1992z3 z_s2003z3) with
+    | z_s2005z3 when (begin
+      match (z_s1994z3 z_s2005z3) with
       | ZSome (zrs1, zrs2) -> true
       | _ -> false
     end) ->
-      let ZSome (zrs1, zrs2) = (z_s1992z3 z_s2003z3) in true
-    | z_s2021z3 when (begin
-      match (z_s2004z3 z_s2021z3) with
+      let ZSome (zrs1, zrs2) = (z_s1994z3 z_s2005z3) in true
+    | z_s2023z3 when (begin
+      match (z_s2006z3 z_s2023z3) with
       | ZSome (zsizze, zaq, zrl, zrd, zrs1) -> true
       | _ -> false
     end) ->
-      let ZSome (zsizze, zaq, zrl, zrd, zrs1) = (z_s2004z3 z_s2021z3) in true
-    | z_s2043z3 when (begin
-      match (z_s2022z3 z_s2043z3) with
+      let ZSome (zsizze, zaq, zrl, zrd, zrs1) = (z_s2006z3 z_s2023z3) in true
+    | z_s2045z3 when (begin
+      match (z_s2024z3 z_s2045z3) with
       | ZSome (zsizze, zaq, zrl, zrd, zrs1, zrs2) -> true
       | _ -> false
     end) ->
-      let ZSome (zsizze, zaq, zrl, zrd, zrs1, zrs2) = (z_s2022z3 z_s2043z3) in
+      let ZSome (zsizze, zaq, zrl, zrd, zrs1, zrs2) = (z_s2024z3 z_s2045z3) in
       true
-    | z_s2067z3 when (begin
-      match (z_s2044z3 z_s2067z3) with
+    | z_s2069z3 when (begin
+      match (z_s2046z3 z_s2069z3) with
       | ZSome (zop, zwidth, zaq, zrl, zrd, zrs1, zrs2) -> true
       | _ -> false
     end) ->
-      let ZSome (zop, zwidth, zaq, zrl, zrd, zrs1, zrs2) = (z_s2044z3 z_s2067z3) in
+      let ZSome (zop, zwidth, zaq, zrl, zrd, zrs1, zrs2) = (z_s2046z3 z_s2069z3) in
       true
-    | z_s2085z3 when (begin
-      match (z_s2068z3 z_s2085z3) with
+    | z_s2087z3 when (begin
+      match (z_s2070z3 z_s2087z3) with
       | ZSome (zop, zrd, zrs1, zcsr) -> true
       | _ -> false
     end) ->
-      let ZSome (zop, zrd, zrs1, zcsr) = (z_s2068z3 z_s2085z3) in true
-    | z_s2102z3 when (begin
-      match (z_s2086z3 z_s2102z3) with
+      let ZSome (zop, zrd, zrs1, zcsr) = (z_s2070z3 z_s2087z3) in true
+    | z_s2104z3 when (begin
+      match (z_s2088z3 z_s2104z3) with
       | ZSome (zop, zrd, zrs1, zcsr) -> true
       | _ -> false
     end) ->
-      let ZSome (zop, zrd, zrs1, zcsr) = (z_s2086z3 z_s2102z3) in true
+      let ZSome (zop, zrd, zrs1, zcsr) = (z_s2088z3 z_s2104z3) in true
     | "c.nop" -> true
-    | z_s2114z3 when (begin
-      match (z_s2103z3 z_s2114z3) with
+    | z_s2116z3 when (begin
+      match (z_s2105z3 z_s2116z3) with
       | ZSome (zrdc, znzzimm) ->
         zneq_vec (znzzimm, [B0; B0; B0; B0; B0; B0; B0; B0])
       | _ -> false
     end) ->
-      let ZSome (zrdc, znzzimm) = (z_s2103z3 z_s2114z3) in true
-    | z_s2130z3 when (begin
-      match (z_s2115z3 z_s2130z3) with
+      let ZSome (zrdc, znzzimm) = (z_s2105z3 z_s2116z3) in true
+    | z_s2132z3 when (begin
+      match (z_s2117z3 z_s2132z3) with
       | ZSome (zrdc, zrsc, zuimm) -> true
       | _ -> false
     end) ->
-      let ZSome (zrdc, zrsc, zuimm) = (z_s2115z3 z_s2130z3) in true
-    | z_s2146z3 when (begin
-      match (z_s2131z3 z_s2146z3) with
+      let ZSome (zrdc, zrsc, zuimm) = (z_s2117z3 z_s2132z3) in true
+    | z_s2148z3 when (begin
+      match (z_s2133z3 z_s2148z3) with
       | ZSome (zrdc, zrsc, zuimm) -> true
       | _ -> false
     end) ->
-      let ZSome (zrdc, zrsc, zuimm) = (z_s2131z3 z_s2146z3) in true
-    | z_s2162z3 when (begin
-      match (z_s2147z3 z_s2162z3) with
+      let ZSome (zrdc, zrsc, zuimm) = (z_s2133z3 z_s2148z3) in true
+    | z_s2164z3 when (begin
+      match (z_s2149z3 z_s2164z3) with
       | ZSome (zrsc1, zrsc2, zuimm) -> true
       | _ -> false
     end) ->
-      let ZSome (zrsc1, zrsc2, zuimm) = (z_s2147z3 z_s2162z3) in true
-    | z_s2178z3 when (begin
-      match (z_s2163z3 z_s2178z3) with
+      let ZSome (zrsc1, zrsc2, zuimm) = (z_s2149z3 z_s2164z3) in true
+    | z_s2180z3 when (begin
+      match (z_s2165z3 z_s2180z3) with
       | ZSome (zrsc1, zrsc2, zuimm) -> true
       | _ -> false
     end) ->
-      let ZSome (zrsc1, zrsc2, zuimm) = (z_s2163z3 z_s2178z3) in true
-    | z_s2190z3 when (begin
-      match (z_s2179z3 z_s2190z3) with
+      let ZSome (zrsc1, zrsc2, zuimm) = (z_s2165z3 z_s2180z3) in true
+    | z_s2192z3 when (begin
+      match (z_s2181z3 z_s2192z3) with
       | ZSome (zrsd, znzzi) ->
         (zneq_vec (znzzi, [B0; B0; B0; B0; B0; B0])) && (zneq_atom ((zregbits_to_regno zrsd), (zregbits_to_regno zzzreg)))
       | _ -> false
     end) ->
-      let ZSome (zrsd, znzzi) = (z_s2179z3 z_s2190z3) in true
-    | z_s2198z3 when (begin
-      match (z_s2191z3 z_s2198z3) with
+      let ZSome (zrsd, znzzi) = (z_s2181z3 z_s2192z3) in true
+    | z_s2200z3 when (begin
+      match (z_s2193z3 z_s2200z3) with
       | ZSome (zimm) -> true
       | _ -> false
     end) ->
-      let ZSome (zimm) = (z_s2191z3 z_s2198z3) in true
-    | z_s2210z3 when (begin
-      match (z_s2199z3 z_s2210z3) with
+      let ZSome (zimm) = (z_s2193z3 z_s2200z3) in true
+    | z_s2212z3 when (begin
+      match (z_s2201z3 z_s2212z3) with
       | ZSome (zrsd, zimm) -> true
       | _ -> false
     end) ->
-      let ZSome (zrsd, zimm) = (z_s2199z3 z_s2210z3) in true
-    | z_s2222z3 when (begin
-      match (z_s2211z3 z_s2222z3) with
+      let ZSome (zrsd, zimm) = (z_s2201z3 z_s2212z3) in true
+    | z_s2224z3 when (begin
+      match (z_s2213z3 z_s2224z3) with
       | ZSome (zrd, zimm) ->
         zneq_atom ((zregbits_to_regno zrd), (zregbits_to_regno zzzreg))
       | _ -> false
     end) ->
-      let ZSome (zrd, zimm) = (z_s2211z3 z_s2222z3) in true
-    | z_s2230z3 when (begin
-      match (z_s2223z3 z_s2230z3) with
+      let ZSome (zrd, zimm) = (z_s2213z3 z_s2224z3) in true
+    | z_s2232z3 when (begin
+      match (z_s2225z3 z_s2232z3) with
       | ZSome (zimm) -> zneq_vec (zimm, [B0; B0; B0; B0; B0; B0])
       | _ -> false
     end) ->
-      let ZSome (zimm) = (z_s2223z3 z_s2230z3) in true
-    | z_s2240z3 when (begin
-      match (z_s2231z3 z_s2240z3) with
+      let ZSome (zimm) = (z_s2225z3 z_s2232z3) in true
+    | z_s2244z3 when (begin
+      match (z_s2233z3 z_s2244z3) with
       | ZSome (zrd, zimm) ->
-        (zneq_atom ((zregbits_to_regno zrd), (zregbits_to_regno zzzreg))) && (zneq_atom ((zregbits_to_regno zrd), (zregbits_to_regno zsp)))
+        (zneq_atom ((zregbits_to_regno zrd), (zregbits_to_regno zzzreg))) && ((zneq_atom ((zregbits_to_regno zrd), (zregbits_to_regno zsp))) && (zneq_vec (zimm, [B0; B0; B0; B0; B0; B0])))
       | _ -> false
     end) ->
-      let ZSome (zrd, zimm) = (z_s2231z3 z_s2240z3) in true
-    | z_s2252z3 when (begin
-      match (z_s2241z3 z_s2252z3) with
+      let ZSome (zrd, zimm) = (z_s2233z3 z_s2244z3) in true
+    | z_s2256z3 when (begin
+      match (z_s2245z3 z_s2256z3) with
       | ZSome (zrsd, zshamt) -> zneq_vec (zshamt, [B0; B0; B0; B0; B0; B0])
       | _ -> false
     end) ->
-      let ZSome (zrsd, zshamt) = (z_s2241z3 z_s2252z3) in true
-    | z_s2264z3 when (begin
-      match (z_s2253z3 z_s2264z3) with
+      let ZSome (zrsd, zshamt) = (z_s2245z3 z_s2256z3) in true
+    | z_s2268z3 when (begin
+      match (z_s2257z3 z_s2268z3) with
       | ZSome (zrsd, zshamt) -> zneq_vec (zshamt, [B0; B0; B0; B0; B0; B0])
       | _ -> false
     end) ->
-      let ZSome (zrsd, zshamt) = (z_s2253z3 z_s2264z3) in true
-    | z_s2276z3 when (begin
-      match (z_s2265z3 z_s2276z3) with
+      let ZSome (zrsd, zshamt) = (z_s2257z3 z_s2268z3) in true
+    | z_s2280z3 when (begin
+      match (z_s2269z3 z_s2280z3) with
       | ZSome (zrsd, zimm) -> true
       | _ -> false
     end) ->
-      let ZSome (zrsd, zimm) = (z_s2265z3 z_s2276z3) in true
-    | z_s2288z3 when (begin
-      match (z_s2277z3 z_s2288z3) with
+      let ZSome (zrsd, zimm) = (z_s2269z3 z_s2280z3) in true
+    | z_s2292z3 when (begin
+      match (z_s2281z3 z_s2292z3) with
       | ZSome (zrsd, zrs2) -> true
       | _ -> false
     end) ->
-      let ZSome (zrsd, zrs2) = (z_s2277z3 z_s2288z3) in true
-    | z_s2300z3 when (begin
-      match (z_s2289z3 z_s2300z3) with
+      let ZSome (zrsd, zrs2) = (z_s2281z3 z_s2292z3) in true
+    | z_s2304z3 when (begin
+      match (z_s2293z3 z_s2304z3) with
       | ZSome (zrsd, zrs2) -> true
       | _ -> false
     end) ->
-      let ZSome (zrsd, zrs2) = (z_s2289z3 z_s2300z3) in true
-    | z_s2312z3 when (begin
-      match (z_s2301z3 z_s2312z3) with
+      let ZSome (zrsd, zrs2) = (z_s2293z3 z_s2304z3) in true
+    | z_s2316z3 when (begin
+      match (z_s2305z3 z_s2316z3) with
       | ZSome (zrsd, zrs2) -> true
       | _ -> false
     end) ->
-      let ZSome (zrsd, zrs2) = (z_s2301z3 z_s2312z3) in true
-    | z_s2324z3 when (begin
-      match (z_s2313z3 z_s2324z3) with
+      let ZSome (zrsd, zrs2) = (z_s2305z3 z_s2316z3) in true
+    | z_s2328z3 when (begin
+      match (z_s2317z3 z_s2328z3) with
       | ZSome (zrsd, zrs2) -> true
       | _ -> false
     end) ->
-      let ZSome (zrsd, zrs2) = (z_s2313z3 z_s2324z3) in true
-    | z_s2336z3 when (begin
-      match (z_s2325z3 z_s2336z3) with
+      let ZSome (zrsd, zrs2) = (z_s2317z3 z_s2328z3) in true
+    | z_s2340z3 when (begin
+      match (z_s2329z3 z_s2340z3) with
       | ZSome (zrsd, zrs2) -> true
       | _ -> false
     end) ->
-      let ZSome (zrsd, zrs2) = (z_s2325z3 z_s2336z3) in true
-    | z_s2348z3 when (begin
-      match (z_s2337z3 z_s2348z3) with
+      let ZSome (zrsd, zrs2) = (z_s2329z3 z_s2340z3) in true
+    | z_s2352z3 when (begin
+      match (z_s2341z3 z_s2352z3) with
       | ZSome (zrsd, zrs2) -> true
       | _ -> false
     end) ->
-      let ZSome (zrsd, zrs2) = (z_s2337z3 z_s2348z3) in true
-    | z_s2356z3 when (begin
-      match (z_s2349z3 z_s2356z3) with
+      let ZSome (zrsd, zrs2) = (z_s2341z3 z_s2352z3) in true
+    | z_s2360z3 when (begin
+      match (z_s2353z3 z_s2360z3) with
       | ZSome (zimm) -> true
       | _ -> false
     end) ->
-      let ZSome (zimm) = (z_s2349z3 z_s2356z3) in true
-    | z_s2368z3 when (begin
-      match (z_s2357z3 z_s2368z3) with
+      let ZSome (zimm) = (z_s2353z3 z_s2360z3) in true
+    | z_s2372z3 when (begin
+      match (z_s2361z3 z_s2372z3) with
       | ZSome (zrs, zimm) -> true
       | _ -> false
     end) ->
-      let ZSome (zrs, zimm) = (z_s2357z3 z_s2368z3) in true
-    | z_s2380z3 when (begin
-      match (z_s2369z3 z_s2380z3) with
+      let ZSome (zrs, zimm) = (z_s2361z3 z_s2372z3) in true
+    | z_s2384z3 when (begin
+      match (z_s2373z3 z_s2384z3) with
       | ZSome (zrs, zimm) -> true
       | _ -> false
     end) ->
-      let ZSome (zrs, zimm) = (z_s2369z3 z_s2380z3) in true
-    | z_s2392z3 when (begin
-      match (z_s2381z3 z_s2392z3) with
+      let ZSome (zrs, zimm) = (z_s2373z3 z_s2384z3) in true
+    | z_s2396z3 when (begin
+      match (z_s2385z3 z_s2396z3) with
       | ZSome (zrsd, zshamt) ->
         (zneq_vec (zshamt, [B0; B0; B0; B0; B0; B0])) && (zneq_atom ((zregbits_to_regno zrsd), (zregbits_to_regno zzzreg)))
       | _ -> false
     end) ->
-      let ZSome (zrsd, zshamt) = (z_s2381z3 z_s2392z3) in true
-    | z_s2404z3 when (begin
-      match (z_s2393z3 z_s2404z3) with
+      let ZSome (zrsd, zshamt) = (z_s2385z3 z_s2396z3) in true
+    | z_s2408z3 when (begin
+      match (z_s2397z3 z_s2408z3) with
       | ZSome (zrd, zuimm) ->
         zneq_atom ((zregbits_to_regno zrd), (zregbits_to_regno zzzreg))
       | _ -> false
     end) ->
-      let ZSome (zrd, zuimm) = (z_s2393z3 z_s2404z3) in true
-    | z_s2416z3 when (begin
-      match (z_s2405z3 z_s2416z3) with
+      let ZSome (zrd, zuimm) = (z_s2397z3 z_s2408z3) in true
+    | z_s2420z3 when (begin
+      match (z_s2409z3 z_s2420z3) with
       | ZSome (zrd, zuimm) ->
         zneq_atom ((zregbits_to_regno zrd), (zregbits_to_regno zzzreg))
       | _ -> false
     end) ->
-      let ZSome (zrd, zuimm) = (z_s2405z3 z_s2416z3) in true
-    | z_s2428z3 when (begin
-      match (z_s2417z3 z_s2428z3) with
+      let ZSome (zrd, zuimm) = (z_s2409z3 z_s2420z3) in true
+    | z_s2432z3 when (begin
+      match (z_s2421z3 z_s2432z3) with
       | ZSome (zrd, zuimm) -> true
       | _ -> false
     end) ->
-      let ZSome (zrd, zuimm) = (z_s2417z3 z_s2428z3) in true
-    | z_s2440z3 when (begin
-      match (z_s2429z3 z_s2440z3) with
+      let ZSome (zrd, zuimm) = (z_s2421z3 z_s2432z3) in true
+    | z_s2444z3 when (begin
+      match (z_s2433z3 z_s2444z3) with
       | ZSome (zrs2, zuimm) -> true
       | _ -> false
     end) ->
-      let ZSome (zrs2, zuimm) = (z_s2429z3 z_s2440z3) in true
-    | z_s2448z3 when (begin
-      match (z_s2441z3 z_s2448z3) with
+      let ZSome (zrs2, zuimm) = (z_s2433z3 z_s2444z3) in true
+    | z_s2452z3 when (begin
+      match (z_s2445z3 z_s2452z3) with
       | ZSome (zrs1) ->
         zneq_atom ((zregbits_to_regno zrs1), (zregbits_to_regno zzzreg))
       | _ -> false
     end) ->
-      let ZSome (zrs1) = (z_s2441z3 z_s2448z3) in true
-    | z_s2456z3 when (begin
-      match (z_s2449z3 z_s2456z3) with
+      let ZSome (zrs1) = (z_s2445z3 z_s2452z3) in true
+    | z_s2460z3 when (begin
+      match (z_s2453z3 z_s2460z3) with
       | ZSome (zrs1) ->
         zneq_atom ((zregbits_to_regno zrs1), (zregbits_to_regno zzzreg))
       | _ -> false
     end) ->
-      let ZSome (zrs1) = (z_s2449z3 z_s2456z3) in true
-    | z_s2468z3 when (begin
-      match (z_s2457z3 z_s2468z3) with
+      let ZSome (zrs1) = (z_s2453z3 z_s2460z3) in true
+    | z_s2472z3 when (begin
+      match (z_s2461z3 z_s2472z3) with
       | ZSome (zrd, zrs2) ->
         (zneq_atom ((zregbits_to_regno zrd), (zregbits_to_regno zzzreg))) && (zneq_atom ((zregbits_to_regno zrs2), (zregbits_to_regno zzzreg)))
       | _ -> false
     end) ->
-      let ZSome (zrd, zrs2) = (z_s2457z3 z_s2468z3) in true
+      let ZSome (zrd, zrs2) = (z_s2461z3 z_s2472z3) in true
     | "c.ebreak" -> true
-    | z_s2480z3 when (begin
-      match (z_s2469z3 z_s2480z3) with
+    | z_s2484z3 when (begin
+      match (z_s2473z3 z_s2484z3) with
       | ZSome (zrsd, zrs2) ->
         (zneq_atom ((zregbits_to_regno zrsd), (zregbits_to_regno zzzreg))) && (zneq_atom ((zregbits_to_regno zrs2), (zregbits_to_regno zzzreg)))
       | _ -> false
     end) ->
-      let ZSome (zrsd, zrs2) = (z_s2469z3 z_s2480z3) in true
+      let ZSome (zrsd, zrs2) = (z_s2473z3 z_s2484z3) in true
     | "stop_fetching" -> true
     | "thread_start" -> true
-    | z_s2488z3 when (begin
-      match (z_s2481z3 z_s2488z3) with
+    | z_s2492z3 when (begin
+      match (z_s2485z3 z_s2492z3) with
       | ZSome (zs) -> true
       | _ -> false
     end) ->
-      let ZSome (zs) = (z_s2481z3 z_s2488z3) in true
-    | z_s2496z3 when (begin
-      match (z_s2489z3 z_s2496z3) with
+      let ZSome (zs) = (z_s2485z3 z_s2492z3) in true
+    | z_s2500z3 when (begin
+      match (z_s2493z3 z_s2500z3) with
       | ZSome (zs) -> true
       | _ -> false
     end) ->
-      let ZSome (zs) = (z_s2489z3 z_s2496z3) in true
+      let ZSome (zs) = (z_s2493z3 z_s2500z3) in true
     | _ -> false
   end)
 
-and z_s3371z3 (z_s3372z3 : (string)) : (((bit) list * string)) zoption = sail_call (fun r ->
+and z_s3377z3 (z_s3378z3 : (string)) : (((bit) list * string)) zoption = sail_call (fun r ->
   begin
-    match z_s3372z3 with
-    | z_s3373z3 when (string_startswith (z_s3373z3, "c.illegal")) ->
+    match z_s3378z3 with
+    | z_s3379z3 when (string_startswith (z_s3379z3, "c.illegal")) ->
       begin
-        match (string_drop (z_s3373z3, (string_length "c.illegal"))) with
-        | z_s3374z3 ->
+        match (string_drop (z_s3379z3, (string_length "c.illegal"))) with
+        | z_s3380z3 ->
           begin
-            match (zspc_matches_prefix z_s3374z3) with
-            | ZSome ((), z_s3375z3) ->
+            match (zspc_matches_prefix z_s3380z3) with
+            | ZSome ((), z_s3381z3) ->
               begin
-                match (string_drop (z_s3374z3, z_s3375z3)) with
-                | z_s3376z3 ->
+                match (string_drop (z_s3380z3, z_s3381z3)) with
+                | z_s3382z3 ->
                   begin
-                    match (hex_bits_16_matches_prefix z_s3376z3) with
-                    | ZSome (zs, z_s3377z3) ->
+                    match (hex_bits_16_matches_prefix z_s3382z3) with
+                    | ZSome (zs, z_s3383z3) ->
                       begin
-                        match (string_drop (z_s3376z3, z_s3377z3)) with
+                        match (string_drop (z_s3382z3, z_s3383z3)) with
                         | zsz3 -> ZSome (zs, zsz3)
                         | _ -> ZNone ()
                       end
@@ -25627,24 +25675,24 @@ and z_s3371z3 (z_s3372z3 : (string)) : (((bit) list * string)) zoption = sail_ca
     | _ -> ZNone ()
   end)
 
-and z_s3363z3 (z_s3364z3 : (string)) : (((bit) list * string)) zoption = sail_call (fun r ->
+and z_s3369z3 (z_s3370z3 : (string)) : (((bit) list * string)) zoption = sail_call (fun r ->
   begin
-    match z_s3364z3 with
-    | z_s3365z3 when (string_startswith (z_s3365z3, "illegal")) ->
+    match z_s3370z3 with
+    | z_s3371z3 when (string_startswith (z_s3371z3, "illegal")) ->
       begin
-        match (string_drop (z_s3365z3, (string_length "illegal"))) with
-        | z_s3366z3 ->
+        match (string_drop (z_s3371z3, (string_length "illegal"))) with
+        | z_s3372z3 ->
           begin
-            match (zspc_matches_prefix z_s3366z3) with
-            | ZSome ((), z_s3367z3) ->
+            match (zspc_matches_prefix z_s3372z3) with
+            | ZSome ((), z_s3373z3) ->
               begin
-                match (string_drop (z_s3366z3, z_s3367z3)) with
-                | z_s3368z3 ->
+                match (string_drop (z_s3372z3, z_s3373z3)) with
+                | z_s3374z3 ->
                   begin
-                    match (hex_bits_32_matches_prefix z_s3368z3) with
-                    | ZSome (zs, z_s3369z3) ->
+                    match (hex_bits_32_matches_prefix z_s3374z3) with
+                    | ZSome (zs, z_s3375z3) ->
                       begin
-                        match (string_drop (z_s3368z3, z_s3369z3)) with
+                        match (string_drop (z_s3374z3, z_s3375z3)) with
                         | zsz3 -> ZSome (zs, zsz3)
                         | _ -> ZNone ()
                       end
@@ -25659,60 +25707,60 @@ and z_s3363z3 (z_s3364z3 : (string)) : (((bit) list * string)) zoption = sail_ca
     | _ -> ZNone ()
   end)
 
-and z_s3359z3 (z_s3360z3 : (string)) : (string) zoption = sail_call (fun r ->
+and z_s3365z3 (z_s3366z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
-    match z_s3360z3 with
-    | z_s3361z3 when (string_startswith (z_s3361z3, "thread_start")) ->
+    match z_s3366z3 with
+    | z_s3367z3 when (string_startswith (z_s3367z3, "thread_start")) ->
       begin
-        match (string_drop (z_s3361z3, (string_length "thread_start"))) with
+        match (string_drop (z_s3367z3, (string_length "thread_start"))) with
         | zsz3 -> ZSome zsz3
         | _ -> ZNone ()
       end
     | _ -> ZNone ()
   end)
 
-and z_s3355z3 (z_s3356z3 : (string)) : (string) zoption = sail_call (fun r ->
+and z_s3361z3 (z_s3362z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
-    match z_s3356z3 with
-    | z_s3357z3 when (string_startswith (z_s3357z3, "stop_fetching")) ->
+    match z_s3362z3 with
+    | z_s3363z3 when (string_startswith (z_s3363z3, "stop_fetching")) ->
       begin
-        match (string_drop (z_s3357z3, (string_length "stop_fetching"))) with
+        match (string_drop (z_s3363z3, (string_length "stop_fetching"))) with
         | zsz3 -> ZSome zsz3
         | _ -> ZNone ()
       end
     | _ -> ZNone ()
   end)
 
-and z_s3343z3 (z_s3344z3 : (string)) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s3349z3 (z_s3350z3 : (string)) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
-    match z_s3344z3 with
-    | z_s3345z3 when (string_startswith (z_s3345z3, "c.add")) ->
+    match z_s3350z3 with
+    | z_s3351z3 when (string_startswith (z_s3351z3, "c.add")) ->
       begin
-        match (string_drop (z_s3345z3, (string_length "c.add"))) with
-        | z_s3346z3 ->
+        match (string_drop (z_s3351z3, (string_length "c.add"))) with
+        | z_s3352z3 ->
           begin
-            match (zspc_matches_prefix z_s3346z3) with
-            | ZSome ((), z_s3347z3) ->
+            match (zspc_matches_prefix z_s3352z3) with
+            | ZSome ((), z_s3353z3) ->
               begin
-                match (string_drop (z_s3346z3, z_s3347z3)) with
-                | z_s3348z3 ->
+                match (string_drop (z_s3352z3, z_s3353z3)) with
+                | z_s3354z3 ->
                   begin
-                    match (zreg_name_matches_prefix z_s3348z3) with
-                    | ZSome (zrsd, z_s3349z3) ->
+                    match (zreg_name_matches_prefix z_s3354z3) with
+                    | ZSome (zrsd, z_s3355z3) ->
                       begin
-                        match (string_drop (z_s3348z3, z_s3349z3)) with
-                        | z_s3350z3 ->
+                        match (string_drop (z_s3354z3, z_s3355z3)) with
+                        | z_s3356z3 ->
                           begin
-                            match (zsep_matches_prefix z_s3350z3) with
-                            | ZSome ((), z_s3351z3) ->
+                            match (zsep_matches_prefix z_s3356z3) with
+                            | ZSome ((), z_s3357z3) ->
                               begin
-                                match (string_drop (z_s3350z3, z_s3351z3)) with
-                                | z_s3352z3 ->
+                                match (string_drop (z_s3356z3, z_s3357z3)) with
+                                | z_s3358z3 ->
                                   begin
-                                    match (zreg_name_matches_prefix z_s3352z3) with
-                                    | ZSome (zrs2, z_s3353z3) ->
+                                    match (zreg_name_matches_prefix z_s3358z3) with
+                                    | ZSome (zrs2, z_s3359z3) ->
                                       begin
-                                        match (string_drop (z_s3352z3, z_s3353z3)) with
+                                        match (string_drop (z_s3358z3, z_s3359z3)) with
                                         | zsz3 -> ZSome (zrsd, zrs2, zsz3)
                                         | _ -> ZNone ()
                                       end
@@ -25735,48 +25783,48 @@ and z_s3343z3 (z_s3344z3 : (string)) : (((bit) list * (bit) list * string)) zopt
     | _ -> ZNone ()
   end)
 
-and z_s3339z3 (z_s3340z3 : (string)) : (string) zoption = sail_call (fun r ->
+and z_s3345z3 (z_s3346z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
-    match z_s3340z3 with
-    | z_s3341z3 when (string_startswith (z_s3341z3, "c.ebreak")) ->
+    match z_s3346z3 with
+    | z_s3347z3 when (string_startswith (z_s3347z3, "c.ebreak")) ->
       begin
-        match (string_drop (z_s3341z3, (string_length "c.ebreak"))) with
+        match (string_drop (z_s3347z3, (string_length "c.ebreak"))) with
         | zsz3 -> ZSome zsz3
         | _ -> ZNone ()
       end
     | _ -> ZNone ()
   end)
 
-and z_s3327z3 (z_s3328z3 : (string)) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s3333z3 (z_s3334z3 : (string)) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
-    match z_s3328z3 with
-    | z_s3329z3 when (string_startswith (z_s3329z3, "c.mv")) ->
+    match z_s3334z3 with
+    | z_s3335z3 when (string_startswith (z_s3335z3, "c.mv")) ->
       begin
-        match (string_drop (z_s3329z3, (string_length "c.mv"))) with
-        | z_s3330z3 ->
+        match (string_drop (z_s3335z3, (string_length "c.mv"))) with
+        | z_s3336z3 ->
           begin
-            match (zspc_matches_prefix z_s3330z3) with
-            | ZSome ((), z_s3331z3) ->
+            match (zspc_matches_prefix z_s3336z3) with
+            | ZSome ((), z_s3337z3) ->
               begin
-                match (string_drop (z_s3330z3, z_s3331z3)) with
-                | z_s3332z3 ->
+                match (string_drop (z_s3336z3, z_s3337z3)) with
+                | z_s3338z3 ->
                   begin
-                    match (zreg_name_matches_prefix z_s3332z3) with
-                    | ZSome (zrd, z_s3333z3) ->
+                    match (zreg_name_matches_prefix z_s3338z3) with
+                    | ZSome (zrd, z_s3339z3) ->
                       begin
-                        match (string_drop (z_s3332z3, z_s3333z3)) with
-                        | z_s3334z3 ->
+                        match (string_drop (z_s3338z3, z_s3339z3)) with
+                        | z_s3340z3 ->
                           begin
-                            match (zsep_matches_prefix z_s3334z3) with
-                            | ZSome ((), z_s3335z3) ->
+                            match (zsep_matches_prefix z_s3340z3) with
+                            | ZSome ((), z_s3341z3) ->
                               begin
-                                match (string_drop (z_s3334z3, z_s3335z3)) with
-                                | z_s3336z3 ->
+                                match (string_drop (z_s3340z3, z_s3341z3)) with
+                                | z_s3342z3 ->
                                   begin
-                                    match (zreg_name_matches_prefix z_s3336z3) with
-                                    | ZSome (zrs2, z_s3337z3) ->
+                                    match (zreg_name_matches_prefix z_s3342z3) with
+                                    | ZSome (zrs2, z_s3343z3) ->
                                       begin
-                                        match (string_drop (z_s3336z3, z_s3337z3)) with
+                                        match (string_drop (z_s3342z3, z_s3343z3)) with
                                         | zsz3 -> ZSome (zrd, zrs2, zsz3)
                                         | _ -> ZNone ()
                                       end
@@ -25799,24 +25847,24 @@ and z_s3327z3 (z_s3328z3 : (string)) : (((bit) list * (bit) list * string)) zopt
     | _ -> ZNone ()
   end)
 
-and z_s3319z3 (z_s3320z3 : (string)) : (((bit) list * string)) zoption = sail_call (fun r ->
+and z_s3325z3 (z_s3326z3 : (string)) : (((bit) list * string)) zoption = sail_call (fun r ->
   begin
-    match z_s3320z3 with
-    | z_s3321z3 when (string_startswith (z_s3321z3, "c.jalr")) ->
+    match z_s3326z3 with
+    | z_s3327z3 when (string_startswith (z_s3327z3, "c.jalr")) ->
       begin
-        match (string_drop (z_s3321z3, (string_length "c.jalr"))) with
-        | z_s3322z3 ->
+        match (string_drop (z_s3327z3, (string_length "c.jalr"))) with
+        | z_s3328z3 ->
           begin
-            match (zspc_matches_prefix z_s3322z3) with
-            | ZSome ((), z_s3323z3) ->
+            match (zspc_matches_prefix z_s3328z3) with
+            | ZSome ((), z_s3329z3) ->
               begin
-                match (string_drop (z_s3322z3, z_s3323z3)) with
-                | z_s3324z3 ->
+                match (string_drop (z_s3328z3, z_s3329z3)) with
+                | z_s3330z3 ->
                   begin
-                    match (zreg_name_matches_prefix z_s3324z3) with
-                    | ZSome (zrs1, z_s3325z3) ->
+                    match (zreg_name_matches_prefix z_s3330z3) with
+                    | ZSome (zrs1, z_s3331z3) ->
                       begin
-                        match (string_drop (z_s3324z3, z_s3325z3)) with
+                        match (string_drop (z_s3330z3, z_s3331z3)) with
                         | zsz3 -> ZSome (zrs1, zsz3)
                         | _ -> ZNone ()
                       end
@@ -25831,24 +25879,24 @@ and z_s3319z3 (z_s3320z3 : (string)) : (((bit) list * string)) zoption = sail_ca
     | _ -> ZNone ()
   end)
 
-and z_s3311z3 (z_s3312z3 : (string)) : (((bit) list * string)) zoption = sail_call (fun r ->
+and z_s3317z3 (z_s3318z3 : (string)) : (((bit) list * string)) zoption = sail_call (fun r ->
   begin
-    match z_s3312z3 with
-    | z_s3313z3 when (string_startswith (z_s3313z3, "c.jr")) ->
+    match z_s3318z3 with
+    | z_s3319z3 when (string_startswith (z_s3319z3, "c.jr")) ->
       begin
-        match (string_drop (z_s3313z3, (string_length "c.jr"))) with
-        | z_s3314z3 ->
+        match (string_drop (z_s3319z3, (string_length "c.jr"))) with
+        | z_s3320z3 ->
           begin
-            match (zspc_matches_prefix z_s3314z3) with
-            | ZSome ((), z_s3315z3) ->
+            match (zspc_matches_prefix z_s3320z3) with
+            | ZSome ((), z_s3321z3) ->
               begin
-                match (string_drop (z_s3314z3, z_s3315z3)) with
-                | z_s3316z3 ->
+                match (string_drop (z_s3320z3, z_s3321z3)) with
+                | z_s3322z3 ->
                   begin
-                    match (zreg_name_matches_prefix z_s3316z3) with
-                    | ZSome (zrs1, z_s3317z3) ->
+                    match (zreg_name_matches_prefix z_s3322z3) with
+                    | ZSome (zrs1, z_s3323z3) ->
                       begin
-                        match (string_drop (z_s3316z3, z_s3317z3)) with
+                        match (string_drop (z_s3322z3, z_s3323z3)) with
                         | zsz3 -> ZSome (zrs1, zsz3)
                         | _ -> ZNone ()
                       end
@@ -25863,36 +25911,36 @@ and z_s3311z3 (z_s3312z3 : (string)) : (((bit) list * string)) zoption = sail_ca
     | _ -> ZNone ()
   end)
 
-and z_s3299z3 (z_s3300z3 : (string)) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s3305z3 (z_s3306z3 : (string)) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
-    match z_s3300z3 with
-    | z_s3301z3 when (string_startswith (z_s3301z3, "c.sdsp")) ->
+    match z_s3306z3 with
+    | z_s3307z3 when (string_startswith (z_s3307z3, "c.sdsp")) ->
       begin
-        match (string_drop (z_s3301z3, (string_length "c.sdsp"))) with
-        | z_s3302z3 ->
+        match (string_drop (z_s3307z3, (string_length "c.sdsp"))) with
+        | z_s3308z3 ->
           begin
-            match (zspc_matches_prefix z_s3302z3) with
-            | ZSome ((), z_s3303z3) ->
+            match (zspc_matches_prefix z_s3308z3) with
+            | ZSome ((), z_s3309z3) ->
               begin
-                match (string_drop (z_s3302z3, z_s3303z3)) with
-                | z_s3304z3 ->
+                match (string_drop (z_s3308z3, z_s3309z3)) with
+                | z_s3310z3 ->
                   begin
-                    match (zreg_name_matches_prefix z_s3304z3) with
-                    | ZSome (zrs2, z_s3305z3) ->
+                    match (zreg_name_matches_prefix z_s3310z3) with
+                    | ZSome (zrs2, z_s3311z3) ->
                       begin
-                        match (string_drop (z_s3304z3, z_s3305z3)) with
-                        | z_s3306z3 ->
+                        match (string_drop (z_s3310z3, z_s3311z3)) with
+                        | z_s3312z3 ->
                           begin
-                            match (zsep_matches_prefix z_s3306z3) with
-                            | ZSome ((), z_s3307z3) ->
+                            match (zsep_matches_prefix z_s3312z3) with
+                            | ZSome ((), z_s3313z3) ->
                               begin
-                                match (string_drop (z_s3306z3, z_s3307z3)) with
-                                | z_s3308z3 ->
+                                match (string_drop (z_s3312z3, z_s3313z3)) with
+                                | z_s3314z3 ->
                                   begin
-                                    match (hex_bits_6_matches_prefix z_s3308z3) with
-                                    | ZSome (zuimm, z_s3309z3) ->
+                                    match (hex_bits_6_matches_prefix z_s3314z3) with
+                                    | ZSome (zuimm, z_s3315z3) ->
                                       begin
-                                        match (string_drop (z_s3308z3, z_s3309z3)) with
+                                        match (string_drop (z_s3314z3, z_s3315z3)) with
                                         | zsz3 -> ZSome (zrs2, zuimm, zsz3)
                                         | _ -> ZNone ()
                                       end
@@ -25915,36 +25963,36 @@ and z_s3299z3 (z_s3300z3 : (string)) : (((bit) list * (bit) list * string)) zopt
     | _ -> ZNone ()
   end)
 
-and z_s3287z3 (z_s3288z3 : (string)) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s3293z3 (z_s3294z3 : (string)) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
-    match z_s3288z3 with
-    | z_s3289z3 when (string_startswith (z_s3289z3, "c.swsp")) ->
+    match z_s3294z3 with
+    | z_s3295z3 when (string_startswith (z_s3295z3, "c.swsp")) ->
       begin
-        match (string_drop (z_s3289z3, (string_length "c.swsp"))) with
-        | z_s3290z3 ->
+        match (string_drop (z_s3295z3, (string_length "c.swsp"))) with
+        | z_s3296z3 ->
           begin
-            match (zspc_matches_prefix z_s3290z3) with
-            | ZSome ((), z_s3291z3) ->
+            match (zspc_matches_prefix z_s3296z3) with
+            | ZSome ((), z_s3297z3) ->
               begin
-                match (string_drop (z_s3290z3, z_s3291z3)) with
-                | z_s3292z3 ->
+                match (string_drop (z_s3296z3, z_s3297z3)) with
+                | z_s3298z3 ->
                   begin
-                    match (zreg_name_matches_prefix z_s3292z3) with
-                    | ZSome (zrd, z_s3293z3) ->
+                    match (zreg_name_matches_prefix z_s3298z3) with
+                    | ZSome (zrd, z_s3299z3) ->
                       begin
-                        match (string_drop (z_s3292z3, z_s3293z3)) with
-                        | z_s3294z3 ->
+                        match (string_drop (z_s3298z3, z_s3299z3)) with
+                        | z_s3300z3 ->
                           begin
-                            match (zsep_matches_prefix z_s3294z3) with
-                            | ZSome ((), z_s3295z3) ->
+                            match (zsep_matches_prefix z_s3300z3) with
+                            | ZSome ((), z_s3301z3) ->
                               begin
-                                match (string_drop (z_s3294z3, z_s3295z3)) with
-                                | z_s3296z3 ->
+                                match (string_drop (z_s3300z3, z_s3301z3)) with
+                                | z_s3302z3 ->
                                   begin
-                                    match (hex_bits_6_matches_prefix z_s3296z3) with
-                                    | ZSome (zuimm, z_s3297z3) ->
+                                    match (hex_bits_6_matches_prefix z_s3302z3) with
+                                    | ZSome (zuimm, z_s3303z3) ->
                                       begin
-                                        match (string_drop (z_s3296z3, z_s3297z3)) with
+                                        match (string_drop (z_s3302z3, z_s3303z3)) with
                                         | zsz3 -> ZSome (zrd, zuimm, zsz3)
                                         | _ -> ZNone ()
                                       end
@@ -25967,36 +26015,36 @@ and z_s3287z3 (z_s3288z3 : (string)) : (((bit) list * (bit) list * string)) zopt
     | _ -> ZNone ()
   end)
 
-and z_s3275z3 (z_s3276z3 : (string)) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s3281z3 (z_s3282z3 : (string)) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
-    match z_s3276z3 with
-    | z_s3277z3 when (string_startswith (z_s3277z3, "c.ldsp")) ->
+    match z_s3282z3 with
+    | z_s3283z3 when (string_startswith (z_s3283z3, "c.ldsp")) ->
       begin
-        match (string_drop (z_s3277z3, (string_length "c.ldsp"))) with
-        | z_s3278z3 ->
+        match (string_drop (z_s3283z3, (string_length "c.ldsp"))) with
+        | z_s3284z3 ->
           begin
-            match (zspc_matches_prefix z_s3278z3) with
-            | ZSome ((), z_s3279z3) ->
+            match (zspc_matches_prefix z_s3284z3) with
+            | ZSome ((), z_s3285z3) ->
               begin
-                match (string_drop (z_s3278z3, z_s3279z3)) with
-                | z_s3280z3 ->
+                match (string_drop (z_s3284z3, z_s3285z3)) with
+                | z_s3286z3 ->
                   begin
-                    match (zreg_name_matches_prefix z_s3280z3) with
-                    | ZSome (zrd, z_s3281z3) ->
+                    match (zreg_name_matches_prefix z_s3286z3) with
+                    | ZSome (zrd, z_s3287z3) ->
                       begin
-                        match (string_drop (z_s3280z3, z_s3281z3)) with
-                        | z_s3282z3 ->
+                        match (string_drop (z_s3286z3, z_s3287z3)) with
+                        | z_s3288z3 ->
                           begin
-                            match (zsep_matches_prefix z_s3282z3) with
-                            | ZSome ((), z_s3283z3) ->
+                            match (zsep_matches_prefix z_s3288z3) with
+                            | ZSome ((), z_s3289z3) ->
                               begin
-                                match (string_drop (z_s3282z3, z_s3283z3)) with
-                                | z_s3284z3 ->
+                                match (string_drop (z_s3288z3, z_s3289z3)) with
+                                | z_s3290z3 ->
                                   begin
-                                    match (hex_bits_6_matches_prefix z_s3284z3) with
-                                    | ZSome (zuimm, z_s3285z3) ->
+                                    match (hex_bits_6_matches_prefix z_s3290z3) with
+                                    | ZSome (zuimm, z_s3291z3) ->
                                       begin
-                                        match (string_drop (z_s3284z3, z_s3285z3)) with
+                                        match (string_drop (z_s3290z3, z_s3291z3)) with
                                         | zsz3 -> ZSome (zrd, zuimm, zsz3)
                                         | _ -> ZNone ()
                                       end
@@ -26019,36 +26067,36 @@ and z_s3275z3 (z_s3276z3 : (string)) : (((bit) list * (bit) list * string)) zopt
     | _ -> ZNone ()
   end)
 
-and z_s3263z3 (z_s3264z3 : (string)) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s3269z3 (z_s3270z3 : (string)) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
-    match z_s3264z3 with
-    | z_s3265z3 when (string_startswith (z_s3265z3, "c.lwsp")) ->
+    match z_s3270z3 with
+    | z_s3271z3 when (string_startswith (z_s3271z3, "c.lwsp")) ->
       begin
-        match (string_drop (z_s3265z3, (string_length "c.lwsp"))) with
-        | z_s3266z3 ->
+        match (string_drop (z_s3271z3, (string_length "c.lwsp"))) with
+        | z_s3272z3 ->
           begin
-            match (zspc_matches_prefix z_s3266z3) with
-            | ZSome ((), z_s3267z3) ->
+            match (zspc_matches_prefix z_s3272z3) with
+            | ZSome ((), z_s3273z3) ->
               begin
-                match (string_drop (z_s3266z3, z_s3267z3)) with
-                | z_s3268z3 ->
+                match (string_drop (z_s3272z3, z_s3273z3)) with
+                | z_s3274z3 ->
                   begin
-                    match (zreg_name_matches_prefix z_s3268z3) with
-                    | ZSome (zrd, z_s3269z3) ->
+                    match (zreg_name_matches_prefix z_s3274z3) with
+                    | ZSome (zrd, z_s3275z3) ->
                       begin
-                        match (string_drop (z_s3268z3, z_s3269z3)) with
-                        | z_s3270z3 ->
+                        match (string_drop (z_s3274z3, z_s3275z3)) with
+                        | z_s3276z3 ->
                           begin
-                            match (zsep_matches_prefix z_s3270z3) with
-                            | ZSome ((), z_s3271z3) ->
+                            match (zsep_matches_prefix z_s3276z3) with
+                            | ZSome ((), z_s3277z3) ->
                               begin
-                                match (string_drop (z_s3270z3, z_s3271z3)) with
-                                | z_s3272z3 ->
+                                match (string_drop (z_s3276z3, z_s3277z3)) with
+                                | z_s3278z3 ->
                                   begin
-                                    match (hex_bits_6_matches_prefix z_s3272z3) with
-                                    | ZSome (zuimm, z_s3273z3) ->
+                                    match (hex_bits_6_matches_prefix z_s3278z3) with
+                                    | ZSome (zuimm, z_s3279z3) ->
                                       begin
-                                        match (string_drop (z_s3272z3, z_s3273z3)) with
+                                        match (string_drop (z_s3278z3, z_s3279z3)) with
                                         | zsz3 -> ZSome (zrd, zuimm, zsz3)
                                         | _ -> ZNone ()
                                       end
@@ -26071,36 +26119,36 @@ and z_s3263z3 (z_s3264z3 : (string)) : (((bit) list * (bit) list * string)) zopt
     | _ -> ZNone ()
   end)
 
-and z_s3251z3 (z_s3252z3 : (string)) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s3257z3 (z_s3258z3 : (string)) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
-    match z_s3252z3 with
-    | z_s3253z3 when (string_startswith (z_s3253z3, "c.slli")) ->
+    match z_s3258z3 with
+    | z_s3259z3 when (string_startswith (z_s3259z3, "c.slli")) ->
       begin
-        match (string_drop (z_s3253z3, (string_length "c.slli"))) with
-        | z_s3254z3 ->
+        match (string_drop (z_s3259z3, (string_length "c.slli"))) with
+        | z_s3260z3 ->
           begin
-            match (zspc_matches_prefix z_s3254z3) with
-            | ZSome ((), z_s3255z3) ->
+            match (zspc_matches_prefix z_s3260z3) with
+            | ZSome ((), z_s3261z3) ->
               begin
-                match (string_drop (z_s3254z3, z_s3255z3)) with
-                | z_s3256z3 ->
+                match (string_drop (z_s3260z3, z_s3261z3)) with
+                | z_s3262z3 ->
                   begin
-                    match (zreg_name_matches_prefix z_s3256z3) with
-                    | ZSome (zrsd, z_s3257z3) ->
+                    match (zreg_name_matches_prefix z_s3262z3) with
+                    | ZSome (zrsd, z_s3263z3) ->
                       begin
-                        match (string_drop (z_s3256z3, z_s3257z3)) with
-                        | z_s3258z3 ->
+                        match (string_drop (z_s3262z3, z_s3263z3)) with
+                        | z_s3264z3 ->
                           begin
-                            match (zsep_matches_prefix z_s3258z3) with
-                            | ZSome ((), z_s3259z3) ->
+                            match (zsep_matches_prefix z_s3264z3) with
+                            | ZSome ((), z_s3265z3) ->
                               begin
-                                match (string_drop (z_s3258z3, z_s3259z3)) with
-                                | z_s3260z3 ->
+                                match (string_drop (z_s3264z3, z_s3265z3)) with
+                                | z_s3266z3 ->
                                   begin
-                                    match (hex_bits_6_matches_prefix z_s3260z3) with
-                                    | ZSome (zshamt, z_s3261z3) ->
+                                    match (hex_bits_6_matches_prefix z_s3266z3) with
+                                    | ZSome (zshamt, z_s3267z3) ->
                                       begin
-                                        match (string_drop (z_s3260z3, z_s3261z3)) with
+                                        match (string_drop (z_s3266z3, z_s3267z3)) with
                                         | zsz3 -> ZSome (zrsd, zshamt, zsz3)
                                         | _ -> ZNone ()
                                       end
@@ -26123,36 +26171,36 @@ and z_s3251z3 (z_s3252z3 : (string)) : (((bit) list * (bit) list * string)) zopt
     | _ -> ZNone ()
   end)
 
-and z_s3239z3 (z_s3240z3 : (string)) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s3245z3 (z_s3246z3 : (string)) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
-    match z_s3240z3 with
-    | z_s3241z3 when (string_startswith (z_s3241z3, "c.bnez")) ->
+    match z_s3246z3 with
+    | z_s3247z3 when (string_startswith (z_s3247z3, "c.bnez")) ->
       begin
-        match (string_drop (z_s3241z3, (string_length "c.bnez"))) with
-        | z_s3242z3 ->
+        match (string_drop (z_s3247z3, (string_length "c.bnez"))) with
+        | z_s3248z3 ->
           begin
-            match (zspc_matches_prefix z_s3242z3) with
-            | ZSome ((), z_s3243z3) ->
+            match (zspc_matches_prefix z_s3248z3) with
+            | ZSome ((), z_s3249z3) ->
               begin
-                match (string_drop (z_s3242z3, z_s3243z3)) with
-                | z_s3244z3 ->
+                match (string_drop (z_s3248z3, z_s3249z3)) with
+                | z_s3250z3 ->
                   begin
-                    match (zcreg_name_matches_prefix z_s3244z3) with
-                    | ZSome (zrs, z_s3245z3) ->
+                    match (zcreg_name_matches_prefix z_s3250z3) with
+                    | ZSome (zrs, z_s3251z3) ->
                       begin
-                        match (string_drop (z_s3244z3, z_s3245z3)) with
-                        | z_s3246z3 ->
+                        match (string_drop (z_s3250z3, z_s3251z3)) with
+                        | z_s3252z3 ->
                           begin
-                            match (zsep_matches_prefix z_s3246z3) with
-                            | ZSome ((), z_s3247z3) ->
+                            match (zsep_matches_prefix z_s3252z3) with
+                            | ZSome ((), z_s3253z3) ->
                               begin
-                                match (string_drop (z_s3246z3, z_s3247z3)) with
-                                | z_s3248z3 ->
+                                match (string_drop (z_s3252z3, z_s3253z3)) with
+                                | z_s3254z3 ->
                                   begin
-                                    match (hex_bits_8_matches_prefix z_s3248z3) with
-                                    | ZSome (zimm, z_s3249z3) ->
+                                    match (hex_bits_8_matches_prefix z_s3254z3) with
+                                    | ZSome (zimm, z_s3255z3) ->
                                       begin
-                                        match (string_drop (z_s3248z3, z_s3249z3)) with
+                                        match (string_drop (z_s3254z3, z_s3255z3)) with
                                         | zsz3 -> ZSome (zrs, zimm, zsz3)
                                         | _ -> ZNone ()
                                       end
@@ -26175,36 +26223,36 @@ and z_s3239z3 (z_s3240z3 : (string)) : (((bit) list * (bit) list * string)) zopt
     | _ -> ZNone ()
   end)
 
-and z_s3227z3 (z_s3228z3 : (string)) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s3233z3 (z_s3234z3 : (string)) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
-    match z_s3228z3 with
-    | z_s3229z3 when (string_startswith (z_s3229z3, "c.beqz")) ->
+    match z_s3234z3 with
+    | z_s3235z3 when (string_startswith (z_s3235z3, "c.beqz")) ->
       begin
-        match (string_drop (z_s3229z3, (string_length "c.beqz"))) with
-        | z_s3230z3 ->
+        match (string_drop (z_s3235z3, (string_length "c.beqz"))) with
+        | z_s3236z3 ->
           begin
-            match (zspc_matches_prefix z_s3230z3) with
-            | ZSome ((), z_s3231z3) ->
+            match (zspc_matches_prefix z_s3236z3) with
+            | ZSome ((), z_s3237z3) ->
               begin
-                match (string_drop (z_s3230z3, z_s3231z3)) with
-                | z_s3232z3 ->
+                match (string_drop (z_s3236z3, z_s3237z3)) with
+                | z_s3238z3 ->
                   begin
-                    match (zcreg_name_matches_prefix z_s3232z3) with
-                    | ZSome (zrs, z_s3233z3) ->
+                    match (zcreg_name_matches_prefix z_s3238z3) with
+                    | ZSome (zrs, z_s3239z3) ->
                       begin
-                        match (string_drop (z_s3232z3, z_s3233z3)) with
-                        | z_s3234z3 ->
+                        match (string_drop (z_s3238z3, z_s3239z3)) with
+                        | z_s3240z3 ->
                           begin
-                            match (zsep_matches_prefix z_s3234z3) with
-                            | ZSome ((), z_s3235z3) ->
+                            match (zsep_matches_prefix z_s3240z3) with
+                            | ZSome ((), z_s3241z3) ->
                               begin
-                                match (string_drop (z_s3234z3, z_s3235z3)) with
-                                | z_s3236z3 ->
+                                match (string_drop (z_s3240z3, z_s3241z3)) with
+                                | z_s3242z3 ->
                                   begin
-                                    match (hex_bits_8_matches_prefix z_s3236z3) with
-                                    | ZSome (zimm, z_s3237z3) ->
+                                    match (hex_bits_8_matches_prefix z_s3242z3) with
+                                    | ZSome (zimm, z_s3243z3) ->
                                       begin
-                                        match (string_drop (z_s3236z3, z_s3237z3)) with
+                                        match (string_drop (z_s3242z3, z_s3243z3)) with
                                         | zsz3 -> ZSome (zrs, zimm, zsz3)
                                         | _ -> ZNone ()
                                       end
@@ -26227,24 +26275,24 @@ and z_s3227z3 (z_s3228z3 : (string)) : (((bit) list * (bit) list * string)) zopt
     | _ -> ZNone ()
   end)
 
-and z_s3219z3 (z_s3220z3 : (string)) : (((bit) list * string)) zoption = sail_call (fun r ->
+and z_s3225z3 (z_s3226z3 : (string)) : (((bit) list * string)) zoption = sail_call (fun r ->
   begin
-    match z_s3220z3 with
-    | z_s3221z3 when (string_startswith (z_s3221z3, "c.j")) ->
+    match z_s3226z3 with
+    | z_s3227z3 when (string_startswith (z_s3227z3, "c.j")) ->
       begin
-        match (string_drop (z_s3221z3, (string_length "c.j"))) with
-        | z_s3222z3 ->
+        match (string_drop (z_s3227z3, (string_length "c.j"))) with
+        | z_s3228z3 ->
           begin
-            match (zspc_matches_prefix z_s3222z3) with
-            | ZSome ((), z_s3223z3) ->
+            match (zspc_matches_prefix z_s3228z3) with
+            | ZSome ((), z_s3229z3) ->
               begin
-                match (string_drop (z_s3222z3, z_s3223z3)) with
-                | z_s3224z3 ->
+                match (string_drop (z_s3228z3, z_s3229z3)) with
+                | z_s3230z3 ->
                   begin
-                    match (hex_bits_11_matches_prefix z_s3224z3) with
-                    | ZSome (zimm, z_s3225z3) ->
+                    match (hex_bits_11_matches_prefix z_s3230z3) with
+                    | ZSome (zimm, z_s3231z3) ->
                       begin
-                        match (string_drop (z_s3224z3, z_s3225z3)) with
+                        match (string_drop (z_s3230z3, z_s3231z3)) with
                         | zsz3 -> ZSome (zimm, zsz3)
                         | _ -> ZNone ()
                       end
@@ -26259,36 +26307,36 @@ and z_s3219z3 (z_s3220z3 : (string)) : (((bit) list * string)) zoption = sail_ca
     | _ -> ZNone ()
   end)
 
-and z_s3207z3 (z_s3208z3 : (string)) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s3213z3 (z_s3214z3 : (string)) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
-    match z_s3208z3 with
-    | z_s3209z3 when (string_startswith (z_s3209z3, "c.addw")) ->
+    match z_s3214z3 with
+    | z_s3215z3 when (string_startswith (z_s3215z3, "c.addw")) ->
       begin
-        match (string_drop (z_s3209z3, (string_length "c.addw"))) with
-        | z_s3210z3 ->
+        match (string_drop (z_s3215z3, (string_length "c.addw"))) with
+        | z_s3216z3 ->
           begin
-            match (zspc_matches_prefix z_s3210z3) with
-            | ZSome ((), z_s3211z3) ->
+            match (zspc_matches_prefix z_s3216z3) with
+            | ZSome ((), z_s3217z3) ->
               begin
-                match (string_drop (z_s3210z3, z_s3211z3)) with
-                | z_s3212z3 ->
+                match (string_drop (z_s3216z3, z_s3217z3)) with
+                | z_s3218z3 ->
                   begin
-                    match (zcreg_name_matches_prefix z_s3212z3) with
-                    | ZSome (zrsd, z_s3213z3) ->
+                    match (zcreg_name_matches_prefix z_s3218z3) with
+                    | ZSome (zrsd, z_s3219z3) ->
                       begin
-                        match (string_drop (z_s3212z3, z_s3213z3)) with
-                        | z_s3214z3 ->
+                        match (string_drop (z_s3218z3, z_s3219z3)) with
+                        | z_s3220z3 ->
                           begin
-                            match (zsep_matches_prefix z_s3214z3) with
-                            | ZSome ((), z_s3215z3) ->
+                            match (zsep_matches_prefix z_s3220z3) with
+                            | ZSome ((), z_s3221z3) ->
                               begin
-                                match (string_drop (z_s3214z3, z_s3215z3)) with
-                                | z_s3216z3 ->
+                                match (string_drop (z_s3220z3, z_s3221z3)) with
+                                | z_s3222z3 ->
                                   begin
-                                    match (zcreg_name_matches_prefix z_s3216z3) with
-                                    | ZSome (zrs2, z_s3217z3) ->
+                                    match (zcreg_name_matches_prefix z_s3222z3) with
+                                    | ZSome (zrs2, z_s3223z3) ->
                                       begin
-                                        match (string_drop (z_s3216z3, z_s3217z3)) with
+                                        match (string_drop (z_s3222z3, z_s3223z3)) with
                                         | zsz3 -> ZSome (zrsd, zrs2, zsz3)
                                         | _ -> ZNone ()
                                       end
@@ -26311,36 +26359,36 @@ and z_s3207z3 (z_s3208z3 : (string)) : (((bit) list * (bit) list * string)) zopt
     | _ -> ZNone ()
   end)
 
-and z_s3195z3 (z_s3196z3 : (string)) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s3201z3 (z_s3202z3 : (string)) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
-    match z_s3196z3 with
-    | z_s3197z3 when (string_startswith (z_s3197z3, "c.subw")) ->
+    match z_s3202z3 with
+    | z_s3203z3 when (string_startswith (z_s3203z3, "c.subw")) ->
       begin
-        match (string_drop (z_s3197z3, (string_length "c.subw"))) with
-        | z_s3198z3 ->
+        match (string_drop (z_s3203z3, (string_length "c.subw"))) with
+        | z_s3204z3 ->
           begin
-            match (zspc_matches_prefix z_s3198z3) with
-            | ZSome ((), z_s3199z3) ->
+            match (zspc_matches_prefix z_s3204z3) with
+            | ZSome ((), z_s3205z3) ->
               begin
-                match (string_drop (z_s3198z3, z_s3199z3)) with
-                | z_s3200z3 ->
+                match (string_drop (z_s3204z3, z_s3205z3)) with
+                | z_s3206z3 ->
                   begin
-                    match (zcreg_name_matches_prefix z_s3200z3) with
-                    | ZSome (zrsd, z_s3201z3) ->
+                    match (zcreg_name_matches_prefix z_s3206z3) with
+                    | ZSome (zrsd, z_s3207z3) ->
                       begin
-                        match (string_drop (z_s3200z3, z_s3201z3)) with
-                        | z_s3202z3 ->
+                        match (string_drop (z_s3206z3, z_s3207z3)) with
+                        | z_s3208z3 ->
                           begin
-                            match (zsep_matches_prefix z_s3202z3) with
-                            | ZSome ((), z_s3203z3) ->
+                            match (zsep_matches_prefix z_s3208z3) with
+                            | ZSome ((), z_s3209z3) ->
                               begin
-                                match (string_drop (z_s3202z3, z_s3203z3)) with
-                                | z_s3204z3 ->
+                                match (string_drop (z_s3208z3, z_s3209z3)) with
+                                | z_s3210z3 ->
                                   begin
-                                    match (zcreg_name_matches_prefix z_s3204z3) with
-                                    | ZSome (zrs2, z_s3205z3) ->
+                                    match (zcreg_name_matches_prefix z_s3210z3) with
+                                    | ZSome (zrs2, z_s3211z3) ->
                                       begin
-                                        match (string_drop (z_s3204z3, z_s3205z3)) with
+                                        match (string_drop (z_s3210z3, z_s3211z3)) with
                                         | zsz3 -> ZSome (zrsd, zrs2, zsz3)
                                         | _ -> ZNone ()
                                       end
@@ -26363,36 +26411,36 @@ and z_s3195z3 (z_s3196z3 : (string)) : (((bit) list * (bit) list * string)) zopt
     | _ -> ZNone ()
   end)
 
-and z_s3183z3 (z_s3184z3 : (string)) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s3189z3 (z_s3190z3 : (string)) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
-    match z_s3184z3 with
-    | z_s3185z3 when (string_startswith (z_s3185z3, "c.and")) ->
+    match z_s3190z3 with
+    | z_s3191z3 when (string_startswith (z_s3191z3, "c.and")) ->
       begin
-        match (string_drop (z_s3185z3, (string_length "c.and"))) with
-        | z_s3186z3 ->
+        match (string_drop (z_s3191z3, (string_length "c.and"))) with
+        | z_s3192z3 ->
           begin
-            match (zspc_matches_prefix z_s3186z3) with
-            | ZSome ((), z_s3187z3) ->
+            match (zspc_matches_prefix z_s3192z3) with
+            | ZSome ((), z_s3193z3) ->
               begin
-                match (string_drop (z_s3186z3, z_s3187z3)) with
-                | z_s3188z3 ->
+                match (string_drop (z_s3192z3, z_s3193z3)) with
+                | z_s3194z3 ->
                   begin
-                    match (zcreg_name_matches_prefix z_s3188z3) with
-                    | ZSome (zrsd, z_s3189z3) ->
+                    match (zcreg_name_matches_prefix z_s3194z3) with
+                    | ZSome (zrsd, z_s3195z3) ->
                       begin
-                        match (string_drop (z_s3188z3, z_s3189z3)) with
-                        | z_s3190z3 ->
+                        match (string_drop (z_s3194z3, z_s3195z3)) with
+                        | z_s3196z3 ->
                           begin
-                            match (zsep_matches_prefix z_s3190z3) with
-                            | ZSome ((), z_s3191z3) ->
+                            match (zsep_matches_prefix z_s3196z3) with
+                            | ZSome ((), z_s3197z3) ->
                               begin
-                                match (string_drop (z_s3190z3, z_s3191z3)) with
-                                | z_s3192z3 ->
+                                match (string_drop (z_s3196z3, z_s3197z3)) with
+                                | z_s3198z3 ->
                                   begin
-                                    match (zcreg_name_matches_prefix z_s3192z3) with
-                                    | ZSome (zrs2, z_s3193z3) ->
+                                    match (zcreg_name_matches_prefix z_s3198z3) with
+                                    | ZSome (zrs2, z_s3199z3) ->
                                       begin
-                                        match (string_drop (z_s3192z3, z_s3193z3)) with
+                                        match (string_drop (z_s3198z3, z_s3199z3)) with
                                         | zsz3 -> ZSome (zrsd, zrs2, zsz3)
                                         | _ -> ZNone ()
                                       end
@@ -26415,36 +26463,36 @@ and z_s3183z3 (z_s3184z3 : (string)) : (((bit) list * (bit) list * string)) zopt
     | _ -> ZNone ()
   end)
 
-and z_s3171z3 (z_s3172z3 : (string)) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s3177z3 (z_s3178z3 : (string)) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
-    match z_s3172z3 with
-    | z_s3173z3 when (string_startswith (z_s3173z3, "c.or")) ->
+    match z_s3178z3 with
+    | z_s3179z3 when (string_startswith (z_s3179z3, "c.or")) ->
       begin
-        match (string_drop (z_s3173z3, (string_length "c.or"))) with
-        | z_s3174z3 ->
+        match (string_drop (z_s3179z3, (string_length "c.or"))) with
+        | z_s3180z3 ->
           begin
-            match (zspc_matches_prefix z_s3174z3) with
-            | ZSome ((), z_s3175z3) ->
+            match (zspc_matches_prefix z_s3180z3) with
+            | ZSome ((), z_s3181z3) ->
               begin
-                match (string_drop (z_s3174z3, z_s3175z3)) with
-                | z_s3176z3 ->
+                match (string_drop (z_s3180z3, z_s3181z3)) with
+                | z_s3182z3 ->
                   begin
-                    match (zcreg_name_matches_prefix z_s3176z3) with
-                    | ZSome (zrsd, z_s3177z3) ->
+                    match (zcreg_name_matches_prefix z_s3182z3) with
+                    | ZSome (zrsd, z_s3183z3) ->
                       begin
-                        match (string_drop (z_s3176z3, z_s3177z3)) with
-                        | z_s3178z3 ->
+                        match (string_drop (z_s3182z3, z_s3183z3)) with
+                        | z_s3184z3 ->
                           begin
-                            match (zsep_matches_prefix z_s3178z3) with
-                            | ZSome ((), z_s3179z3) ->
+                            match (zsep_matches_prefix z_s3184z3) with
+                            | ZSome ((), z_s3185z3) ->
                               begin
-                                match (string_drop (z_s3178z3, z_s3179z3)) with
-                                | z_s3180z3 ->
+                                match (string_drop (z_s3184z3, z_s3185z3)) with
+                                | z_s3186z3 ->
                                   begin
-                                    match (zcreg_name_matches_prefix z_s3180z3) with
-                                    | ZSome (zrs2, z_s3181z3) ->
+                                    match (zcreg_name_matches_prefix z_s3186z3) with
+                                    | ZSome (zrs2, z_s3187z3) ->
                                       begin
-                                        match (string_drop (z_s3180z3, z_s3181z3)) with
+                                        match (string_drop (z_s3186z3, z_s3187z3)) with
                                         | zsz3 -> ZSome (zrsd, zrs2, zsz3)
                                         | _ -> ZNone ()
                                       end
@@ -26467,36 +26515,36 @@ and z_s3171z3 (z_s3172z3 : (string)) : (((bit) list * (bit) list * string)) zopt
     | _ -> ZNone ()
   end)
 
-and z_s3159z3 (z_s3160z3 : (string)) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s3165z3 (z_s3166z3 : (string)) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
-    match z_s3160z3 with
-    | z_s3161z3 when (string_startswith (z_s3161z3, "c.xor")) ->
+    match z_s3166z3 with
+    | z_s3167z3 when (string_startswith (z_s3167z3, "c.xor")) ->
       begin
-        match (string_drop (z_s3161z3, (string_length "c.xor"))) with
-        | z_s3162z3 ->
+        match (string_drop (z_s3167z3, (string_length "c.xor"))) with
+        | z_s3168z3 ->
           begin
-            match (zspc_matches_prefix z_s3162z3) with
-            | ZSome ((), z_s3163z3) ->
+            match (zspc_matches_prefix z_s3168z3) with
+            | ZSome ((), z_s3169z3) ->
               begin
-                match (string_drop (z_s3162z3, z_s3163z3)) with
-                | z_s3164z3 ->
+                match (string_drop (z_s3168z3, z_s3169z3)) with
+                | z_s3170z3 ->
                   begin
-                    match (zcreg_name_matches_prefix z_s3164z3) with
-                    | ZSome (zrsd, z_s3165z3) ->
+                    match (zcreg_name_matches_prefix z_s3170z3) with
+                    | ZSome (zrsd, z_s3171z3) ->
                       begin
-                        match (string_drop (z_s3164z3, z_s3165z3)) with
-                        | z_s3166z3 ->
+                        match (string_drop (z_s3170z3, z_s3171z3)) with
+                        | z_s3172z3 ->
                           begin
-                            match (zsep_matches_prefix z_s3166z3) with
-                            | ZSome ((), z_s3167z3) ->
+                            match (zsep_matches_prefix z_s3172z3) with
+                            | ZSome ((), z_s3173z3) ->
                               begin
-                                match (string_drop (z_s3166z3, z_s3167z3)) with
-                                | z_s3168z3 ->
+                                match (string_drop (z_s3172z3, z_s3173z3)) with
+                                | z_s3174z3 ->
                                   begin
-                                    match (zcreg_name_matches_prefix z_s3168z3) with
-                                    | ZSome (zrs2, z_s3169z3) ->
+                                    match (zcreg_name_matches_prefix z_s3174z3) with
+                                    | ZSome (zrs2, z_s3175z3) ->
                                       begin
-                                        match (string_drop (z_s3168z3, z_s3169z3)) with
+                                        match (string_drop (z_s3174z3, z_s3175z3)) with
                                         | zsz3 -> ZSome (zrsd, zrs2, zsz3)
                                         | _ -> ZNone ()
                                       end
@@ -26519,36 +26567,36 @@ and z_s3159z3 (z_s3160z3 : (string)) : (((bit) list * (bit) list * string)) zopt
     | _ -> ZNone ()
   end)
 
-and z_s3147z3 (z_s3148z3 : (string)) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s3153z3 (z_s3154z3 : (string)) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
-    match z_s3148z3 with
-    | z_s3149z3 when (string_startswith (z_s3149z3, "c.sub")) ->
+    match z_s3154z3 with
+    | z_s3155z3 when (string_startswith (z_s3155z3, "c.sub")) ->
       begin
-        match (string_drop (z_s3149z3, (string_length "c.sub"))) with
-        | z_s3150z3 ->
+        match (string_drop (z_s3155z3, (string_length "c.sub"))) with
+        | z_s3156z3 ->
           begin
-            match (zspc_matches_prefix z_s3150z3) with
-            | ZSome ((), z_s3151z3) ->
+            match (zspc_matches_prefix z_s3156z3) with
+            | ZSome ((), z_s3157z3) ->
               begin
-                match (string_drop (z_s3150z3, z_s3151z3)) with
-                | z_s3152z3 ->
+                match (string_drop (z_s3156z3, z_s3157z3)) with
+                | z_s3158z3 ->
                   begin
-                    match (zcreg_name_matches_prefix z_s3152z3) with
-                    | ZSome (zrsd, z_s3153z3) ->
+                    match (zcreg_name_matches_prefix z_s3158z3) with
+                    | ZSome (zrsd, z_s3159z3) ->
                       begin
-                        match (string_drop (z_s3152z3, z_s3153z3)) with
-                        | z_s3154z3 ->
+                        match (string_drop (z_s3158z3, z_s3159z3)) with
+                        | z_s3160z3 ->
                           begin
-                            match (zsep_matches_prefix z_s3154z3) with
-                            | ZSome ((), z_s3155z3) ->
+                            match (zsep_matches_prefix z_s3160z3) with
+                            | ZSome ((), z_s3161z3) ->
                               begin
-                                match (string_drop (z_s3154z3, z_s3155z3)) with
-                                | z_s3156z3 ->
+                                match (string_drop (z_s3160z3, z_s3161z3)) with
+                                | z_s3162z3 ->
                                   begin
-                                    match (zcreg_name_matches_prefix z_s3156z3) with
-                                    | ZSome (zrs2, z_s3157z3) ->
+                                    match (zcreg_name_matches_prefix z_s3162z3) with
+                                    | ZSome (zrs2, z_s3163z3) ->
                                       begin
-                                        match (string_drop (z_s3156z3, z_s3157z3)) with
+                                        match (string_drop (z_s3162z3, z_s3163z3)) with
                                         | zsz3 -> ZSome (zrsd, zrs2, zsz3)
                                         | _ -> ZNone ()
                                       end
@@ -26571,36 +26619,36 @@ and z_s3147z3 (z_s3148z3 : (string)) : (((bit) list * (bit) list * string)) zopt
     | _ -> ZNone ()
   end)
 
-and z_s3135z3 (z_s3136z3 : (string)) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s3141z3 (z_s3142z3 : (string)) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
-    match z_s3136z3 with
-    | z_s3137z3 when (string_startswith (z_s3137z3, "c.andi")) ->
+    match z_s3142z3 with
+    | z_s3143z3 when (string_startswith (z_s3143z3, "c.andi")) ->
       begin
-        match (string_drop (z_s3137z3, (string_length "c.andi"))) with
-        | z_s3138z3 ->
+        match (string_drop (z_s3143z3, (string_length "c.andi"))) with
+        | z_s3144z3 ->
           begin
-            match (zspc_matches_prefix z_s3138z3) with
-            | ZSome ((), z_s3139z3) ->
+            match (zspc_matches_prefix z_s3144z3) with
+            | ZSome ((), z_s3145z3) ->
               begin
-                match (string_drop (z_s3138z3, z_s3139z3)) with
-                | z_s3140z3 ->
+                match (string_drop (z_s3144z3, z_s3145z3)) with
+                | z_s3146z3 ->
                   begin
-                    match (zcreg_name_matches_prefix z_s3140z3) with
-                    | ZSome (zrsd, z_s3141z3) ->
+                    match (zcreg_name_matches_prefix z_s3146z3) with
+                    | ZSome (zrsd, z_s3147z3) ->
                       begin
-                        match (string_drop (z_s3140z3, z_s3141z3)) with
-                        | z_s3142z3 ->
+                        match (string_drop (z_s3146z3, z_s3147z3)) with
+                        | z_s3148z3 ->
                           begin
-                            match (zsep_matches_prefix z_s3142z3) with
-                            | ZSome ((), z_s3143z3) ->
+                            match (zsep_matches_prefix z_s3148z3) with
+                            | ZSome ((), z_s3149z3) ->
                               begin
-                                match (string_drop (z_s3142z3, z_s3143z3)) with
-                                | z_s3144z3 ->
+                                match (string_drop (z_s3148z3, z_s3149z3)) with
+                                | z_s3150z3 ->
                                   begin
-                                    match (hex_bits_6_matches_prefix z_s3144z3) with
-                                    | ZSome (zimm, z_s3145z3) ->
+                                    match (hex_bits_6_matches_prefix z_s3150z3) with
+                                    | ZSome (zimm, z_s3151z3) ->
                                       begin
-                                        match (string_drop (z_s3144z3, z_s3145z3)) with
+                                        match (string_drop (z_s3150z3, z_s3151z3)) with
                                         | zsz3 -> ZSome (zrsd, zimm, zsz3)
                                         | _ -> ZNone ()
                                       end
@@ -26623,36 +26671,36 @@ and z_s3135z3 (z_s3136z3 : (string)) : (((bit) list * (bit) list * string)) zopt
     | _ -> ZNone ()
   end)
 
-and z_s3123z3 (z_s3124z3 : (string)) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s3129z3 (z_s3130z3 : (string)) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
-    match z_s3124z3 with
-    | z_s3125z3 when (string_startswith (z_s3125z3, "c.srai")) ->
+    match z_s3130z3 with
+    | z_s3131z3 when (string_startswith (z_s3131z3, "c.srai")) ->
       begin
-        match (string_drop (z_s3125z3, (string_length "c.srai"))) with
-        | z_s3126z3 ->
+        match (string_drop (z_s3131z3, (string_length "c.srai"))) with
+        | z_s3132z3 ->
           begin
-            match (zspc_matches_prefix z_s3126z3) with
-            | ZSome ((), z_s3127z3) ->
+            match (zspc_matches_prefix z_s3132z3) with
+            | ZSome ((), z_s3133z3) ->
               begin
-                match (string_drop (z_s3126z3, z_s3127z3)) with
-                | z_s3128z3 ->
+                match (string_drop (z_s3132z3, z_s3133z3)) with
+                | z_s3134z3 ->
                   begin
-                    match (zcreg_name_matches_prefix z_s3128z3) with
-                    | ZSome (zrsd, z_s3129z3) ->
+                    match (zcreg_name_matches_prefix z_s3134z3) with
+                    | ZSome (zrsd, z_s3135z3) ->
                       begin
-                        match (string_drop (z_s3128z3, z_s3129z3)) with
-                        | z_s3130z3 ->
+                        match (string_drop (z_s3134z3, z_s3135z3)) with
+                        | z_s3136z3 ->
                           begin
-                            match (zsep_matches_prefix z_s3130z3) with
-                            | ZSome ((), z_s3131z3) ->
+                            match (zsep_matches_prefix z_s3136z3) with
+                            | ZSome ((), z_s3137z3) ->
                               begin
-                                match (string_drop (z_s3130z3, z_s3131z3)) with
-                                | z_s3132z3 ->
+                                match (string_drop (z_s3136z3, z_s3137z3)) with
+                                | z_s3138z3 ->
                                   begin
-                                    match (hex_bits_6_matches_prefix z_s3132z3) with
-                                    | ZSome (zshamt, z_s3133z3) ->
+                                    match (hex_bits_6_matches_prefix z_s3138z3) with
+                                    | ZSome (zshamt, z_s3139z3) ->
                                       begin
-                                        match (string_drop (z_s3132z3, z_s3133z3)) with
+                                        match (string_drop (z_s3138z3, z_s3139z3)) with
                                         | zsz3 -> ZSome (zrsd, zshamt, zsz3)
                                         | _ -> ZNone ()
                                       end
@@ -26675,36 +26723,36 @@ and z_s3123z3 (z_s3124z3 : (string)) : (((bit) list * (bit) list * string)) zopt
     | _ -> ZNone ()
   end)
 
-and z_s3111z3 (z_s3112z3 : (string)) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s3117z3 (z_s3118z3 : (string)) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
-    match z_s3112z3 with
-    | z_s3113z3 when (string_startswith (z_s3113z3, "c.srli")) ->
+    match z_s3118z3 with
+    | z_s3119z3 when (string_startswith (z_s3119z3, "c.srli")) ->
       begin
-        match (string_drop (z_s3113z3, (string_length "c.srli"))) with
-        | z_s3114z3 ->
+        match (string_drop (z_s3119z3, (string_length "c.srli"))) with
+        | z_s3120z3 ->
           begin
-            match (zspc_matches_prefix z_s3114z3) with
-            | ZSome ((), z_s3115z3) ->
+            match (zspc_matches_prefix z_s3120z3) with
+            | ZSome ((), z_s3121z3) ->
               begin
-                match (string_drop (z_s3114z3, z_s3115z3)) with
-                | z_s3116z3 ->
+                match (string_drop (z_s3120z3, z_s3121z3)) with
+                | z_s3122z3 ->
                   begin
-                    match (zcreg_name_matches_prefix z_s3116z3) with
-                    | ZSome (zrsd, z_s3117z3) ->
+                    match (zcreg_name_matches_prefix z_s3122z3) with
+                    | ZSome (zrsd, z_s3123z3) ->
                       begin
-                        match (string_drop (z_s3116z3, z_s3117z3)) with
-                        | z_s3118z3 ->
+                        match (string_drop (z_s3122z3, z_s3123z3)) with
+                        | z_s3124z3 ->
                           begin
-                            match (zsep_matches_prefix z_s3118z3) with
-                            | ZSome ((), z_s3119z3) ->
+                            match (zsep_matches_prefix z_s3124z3) with
+                            | ZSome ((), z_s3125z3) ->
                               begin
-                                match (string_drop (z_s3118z3, z_s3119z3)) with
-                                | z_s3120z3 ->
+                                match (string_drop (z_s3124z3, z_s3125z3)) with
+                                | z_s3126z3 ->
                                   begin
-                                    match (hex_bits_6_matches_prefix z_s3120z3) with
-                                    | ZSome (zshamt, z_s3121z3) ->
+                                    match (hex_bits_6_matches_prefix z_s3126z3) with
+                                    | ZSome (zshamt, z_s3127z3) ->
                                       begin
-                                        match (string_drop (z_s3120z3, z_s3121z3)) with
+                                        match (string_drop (z_s3126z3, z_s3127z3)) with
                                         | zsz3 -> ZSome (zrsd, zshamt, zsz3)
                                         | _ -> ZNone ()
                                       end
@@ -26727,110 +26775,36 @@ and z_s3111z3 (z_s3112z3 : (string)) : (((bit) list * (bit) list * string)) zopt
     | _ -> ZNone ()
   end)
 
-and z_s3101z3 (z_s3102z3 : (string)) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s3105z3 (z_s3106z3 : (string)) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
-    match z_s3102z3 with
-    | z_s3103z3 when (string_startswith (z_s3103z3, "c.lui")) ->
+    match z_s3106z3 with
+    | z_s3107z3 when (string_startswith (z_s3107z3, "c.lui")) ->
       begin
-        match (string_drop (z_s3103z3, (string_length "c.lui"))) with
-        | z_s3104z3 ->
+        match (string_drop (z_s3107z3, (string_length "c.lui"))) with
+        | z_s3108z3 ->
           begin
-            match (zreg_name_matches_prefix z_s3104z3) with
-            | ZSome (zrd, z_s3105z3) ->
+            match (zspc_matches_prefix z_s3108z3) with
+            | ZSome ((), z_s3109z3) ->
               begin
-                match (string_drop (z_s3104z3, z_s3105z3)) with
-                | z_s3106z3 ->
+                match (string_drop (z_s3108z3, z_s3109z3)) with
+                | z_s3110z3 ->
                   begin
-                    match (zsep_matches_prefix z_s3106z3) with
-                    | ZSome ((), z_s3107z3) ->
+                    match (zreg_name_matches_prefix z_s3110z3) with
+                    | ZSome (zrd, z_s3111z3) ->
                       begin
-                        match (string_drop (z_s3106z3, z_s3107z3)) with
-                        | z_s3108z3 ->
+                        match (string_drop (z_s3110z3, z_s3111z3)) with
+                        | z_s3112z3 ->
                           begin
-                            match (hex_bits_6_matches_prefix z_s3108z3) with
-                            | ZSome (zimm, z_s3109z3) ->
+                            match (zsep_matches_prefix z_s3112z3) with
+                            | ZSome ((), z_s3113z3) ->
                               begin
-                                match (string_drop (z_s3108z3, z_s3109z3)) with
-                                | zsz3 -> ZSome (zrd, zimm, zsz3)
-                                | _ -> ZNone ()
-                              end
-                            | _ -> ZNone ()
-                          end
-                        | _ -> ZNone ()
-                      end
-                    | _ -> ZNone ()
-                  end
-                | _ -> ZNone ()
-              end
-            | _ -> ZNone ()
-          end
-        | _ -> ZNone ()
-      end
-    | _ -> ZNone ()
-  end)
-
-and z_s3093z3 (z_s3094z3 : (string)) : (((bit) list * string)) zoption = sail_call (fun r ->
-  begin
-    match z_s3094z3 with
-    | z_s3095z3 when (string_startswith (z_s3095z3, "c.addi16sp")) ->
-      begin
-        match (string_drop (z_s3095z3, (string_length "c.addi16sp"))) with
-        | z_s3096z3 ->
-          begin
-            match (zspc_matches_prefix z_s3096z3) with
-            | ZSome ((), z_s3097z3) ->
-              begin
-                match (string_drop (z_s3096z3, z_s3097z3)) with
-                | z_s3098z3 ->
-                  begin
-                    match (hex_bits_6_matches_prefix z_s3098z3) with
-                    | ZSome (zimm, z_s3099z3) ->
-                      begin
-                        match (string_drop (z_s3098z3, z_s3099z3)) with
-                        | zsz3 -> ZSome (zimm, zsz3)
-                        | _ -> ZNone ()
-                      end
-                    | _ -> ZNone ()
-                  end
-                | _ -> ZNone ()
-              end
-            | _ -> ZNone ()
-          end
-        | _ -> ZNone ()
-      end
-    | _ -> ZNone ()
-  end)
-
-and z_s3081z3 (z_s3082z3 : (string)) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
-  begin
-    match z_s3082z3 with
-    | z_s3083z3 when (string_startswith (z_s3083z3, "c.li")) ->
-      begin
-        match (string_drop (z_s3083z3, (string_length "c.li"))) with
-        | z_s3084z3 ->
-          begin
-            match (zspc_matches_prefix z_s3084z3) with
-            | ZSome ((), z_s3085z3) ->
-              begin
-                match (string_drop (z_s3084z3, z_s3085z3)) with
-                | z_s3086z3 ->
-                  begin
-                    match (zreg_name_matches_prefix z_s3086z3) with
-                    | ZSome (zrd, z_s3087z3) ->
-                      begin
-                        match (string_drop (z_s3086z3, z_s3087z3)) with
-                        | z_s3088z3 ->
-                          begin
-                            match (zsep_matches_prefix z_s3088z3) with
-                            | ZSome ((), z_s3089z3) ->
-                              begin
-                                match (string_drop (z_s3088z3, z_s3089z3)) with
-                                | z_s3090z3 ->
+                                match (string_drop (z_s3112z3, z_s3113z3)) with
+                                | z_s3114z3 ->
                                   begin
-                                    match (hex_bits_6_matches_prefix z_s3090z3) with
-                                    | ZSome (zimm, z_s3091z3) ->
+                                    match (hex_bits_6_matches_prefix z_s3114z3) with
+                                    | ZSome (zimm, z_s3115z3) ->
                                       begin
-                                        match (string_drop (z_s3090z3, z_s3091z3)) with
+                                        match (string_drop (z_s3114z3, z_s3115z3)) with
                                         | zsz3 -> ZSome (zrd, zimm, zsz3)
                                         | _ -> ZNone ()
                                       end
@@ -26853,36 +26827,120 @@ and z_s3081z3 (z_s3082z3 : (string)) : (((bit) list * (bit) list * string)) zopt
     | _ -> ZNone ()
   end)
 
-and z_s3069z3 (z_s3070z3 : (string)) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s3097z3 (z_s3098z3 : (string)) : (((bit) list * string)) zoption = sail_call (fun r ->
   begin
-    match z_s3070z3 with
-    | z_s3071z3 when (string_startswith (z_s3071z3, "c.addiw")) ->
+    match z_s3098z3 with
+    | z_s3099z3 when (string_startswith (z_s3099z3, "c.addi16sp")) ->
       begin
-        match (string_drop (z_s3071z3, (string_length "c.addiw"))) with
-        | z_s3072z3 ->
+        match (string_drop (z_s3099z3, (string_length "c.addi16sp"))) with
+        | z_s3100z3 ->
           begin
-            match (zspc_matches_prefix z_s3072z3) with
-            | ZSome ((), z_s3073z3) ->
+            match (zspc_matches_prefix z_s3100z3) with
+            | ZSome ((), z_s3101z3) ->
               begin
-                match (string_drop (z_s3072z3, z_s3073z3)) with
-                | z_s3074z3 ->
+                match (string_drop (z_s3100z3, z_s3101z3)) with
+                | z_s3102z3 ->
                   begin
-                    match (zreg_name_matches_prefix z_s3074z3) with
-                    | ZSome (zrsd, z_s3075z3) ->
+                    match (hex_bits_6_matches_prefix z_s3102z3) with
+                    | ZSome (zimm, z_s3103z3) ->
                       begin
-                        match (string_drop (z_s3074z3, z_s3075z3)) with
-                        | z_s3076z3 ->
+                        match (string_drop (z_s3102z3, z_s3103z3)) with
+                        | zsz3 -> ZSome (zimm, zsz3)
+                        | _ -> ZNone ()
+                      end
+                    | _ -> ZNone ()
+                  end
+                | _ -> ZNone ()
+              end
+            | _ -> ZNone ()
+          end
+        | _ -> ZNone ()
+      end
+    | _ -> ZNone ()
+  end)
+
+and z_s3085z3 (z_s3086z3 : (string)) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+  begin
+    match z_s3086z3 with
+    | z_s3087z3 when (string_startswith (z_s3087z3, "c.li")) ->
+      begin
+        match (string_drop (z_s3087z3, (string_length "c.li"))) with
+        | z_s3088z3 ->
+          begin
+            match (zspc_matches_prefix z_s3088z3) with
+            | ZSome ((), z_s3089z3) ->
+              begin
+                match (string_drop (z_s3088z3, z_s3089z3)) with
+                | z_s3090z3 ->
+                  begin
+                    match (zreg_name_matches_prefix z_s3090z3) with
+                    | ZSome (zrd, z_s3091z3) ->
+                      begin
+                        match (string_drop (z_s3090z3, z_s3091z3)) with
+                        | z_s3092z3 ->
                           begin
-                            match (zsep_matches_prefix z_s3076z3) with
-                            | ZSome ((), z_s3077z3) ->
+                            match (zsep_matches_prefix z_s3092z3) with
+                            | ZSome ((), z_s3093z3) ->
                               begin
-                                match (string_drop (z_s3076z3, z_s3077z3)) with
-                                | z_s3078z3 ->
+                                match (string_drop (z_s3092z3, z_s3093z3)) with
+                                | z_s3094z3 ->
                                   begin
-                                    match (hex_bits_6_matches_prefix z_s3078z3) with
-                                    | ZSome (zimm, z_s3079z3) ->
+                                    match (hex_bits_6_matches_prefix z_s3094z3) with
+                                    | ZSome (zimm, z_s3095z3) ->
                                       begin
-                                        match (string_drop (z_s3078z3, z_s3079z3)) with
+                                        match (string_drop (z_s3094z3, z_s3095z3)) with
+                                        | zsz3 -> ZSome (zrd, zimm, zsz3)
+                                        | _ -> ZNone ()
+                                      end
+                                    | _ -> ZNone ()
+                                  end
+                                | _ -> ZNone ()
+                              end
+                            | _ -> ZNone ()
+                          end
+                        | _ -> ZNone ()
+                      end
+                    | _ -> ZNone ()
+                  end
+                | _ -> ZNone ()
+              end
+            | _ -> ZNone ()
+          end
+        | _ -> ZNone ()
+      end
+    | _ -> ZNone ()
+  end)
+
+and z_s3073z3 (z_s3074z3 : (string)) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+  begin
+    match z_s3074z3 with
+    | z_s3075z3 when (string_startswith (z_s3075z3, "c.addiw")) ->
+      begin
+        match (string_drop (z_s3075z3, (string_length "c.addiw"))) with
+        | z_s3076z3 ->
+          begin
+            match (zspc_matches_prefix z_s3076z3) with
+            | ZSome ((), z_s3077z3) ->
+              begin
+                match (string_drop (z_s3076z3, z_s3077z3)) with
+                | z_s3078z3 ->
+                  begin
+                    match (zreg_name_matches_prefix z_s3078z3) with
+                    | ZSome (zrsd, z_s3079z3) ->
+                      begin
+                        match (string_drop (z_s3078z3, z_s3079z3)) with
+                        | z_s3080z3 ->
+                          begin
+                            match (zsep_matches_prefix z_s3080z3) with
+                            | ZSome ((), z_s3081z3) ->
+                              begin
+                                match (string_drop (z_s3080z3, z_s3081z3)) with
+                                | z_s3082z3 ->
+                                  begin
+                                    match (hex_bits_6_matches_prefix z_s3082z3) with
+                                    | ZSome (zimm, z_s3083z3) ->
+                                      begin
+                                        match (string_drop (z_s3082z3, z_s3083z3)) with
                                         | zsz3 -> ZSome (zrsd, zimm, zsz3)
                                         | _ -> ZNone ()
                                       end
@@ -26905,27 +26963,27 @@ and z_s3069z3 (z_s3070z3 : (string)) : (((bit) list * (bit) list * string)) zopt
     | _ -> ZNone ()
   end)
 
-and z_s3061z3 (z_s3062z3 : (string)) : (((bit) list * string)) zoption = sail_call (fun r ->
+and z_s3065z3 (z_s3066z3 : (string)) : (((bit) list * string)) zoption = sail_call (fun r ->
   begin
-    match z_s3062z3 with
-    | z_s3063z3 when (string_startswith (z_s3063z3, "c.jal")) ->
+    match z_s3066z3 with
+    | z_s3067z3 when (string_startswith (z_s3067z3, "c.jal")) ->
       begin
-        match (string_drop (z_s3063z3, (string_length "c.jal"))) with
-        | z_s3064z3 ->
+        match (string_drop (z_s3067z3, (string_length "c.jal"))) with
+        | z_s3068z3 ->
           begin
-            match (zspc_matches_prefix z_s3064z3) with
-            | ZSome ((), z_s3065z3) ->
+            match (zspc_matches_prefix z_s3068z3) with
+            | ZSome ((), z_s3069z3) ->
               begin
-                match (string_drop (z_s3064z3, z_s3065z3)) with
-                | z_s3066z3 ->
+                match (string_drop (z_s3068z3, z_s3069z3)) with
+                | z_s3070z3 ->
                   begin
-                    match (hex_bits_12_matches_prefix z_s3066z3) with
-                    | ZSome (zv__66, z_s3067z3) when (let zp0z3 = (access (zv__66, Big_int.zero)) in
+                    match (hex_bits_12_matches_prefix z_s3070z3) with
+                    | ZSome (zv__66, z_s3071z3) when (let zp0z3 = (access (zv__66, Big_int.zero)) in
                     eq_bit (zp0z3, B0)) ->
                       let zimm = (subrange (zv__66, (Big_int.of_int (11)), (Big_int.of_int (1)))) in
                       let zimm = (subrange (zv__66, (Big_int.of_int (11)), (Big_int.of_int (1)))) in
                       begin
-                        match (string_drop (z_s3066z3, z_s3067z3)) with
+                        match (string_drop (z_s3070z3, z_s3071z3)) with
                         | zsz3 -> ZSome (zimm, zsz3)
                         | _ -> ZNone ()
                       end
@@ -26940,36 +26998,36 @@ and z_s3061z3 (z_s3062z3 : (string)) : (((bit) list * string)) zoption = sail_ca
     | _ -> ZNone ()
   end)
 
-and z_s3049z3 (z_s3050z3 : (string)) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s3053z3 (z_s3054z3 : (string)) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
-    match z_s3050z3 with
-    | z_s3051z3 when (string_startswith (z_s3051z3, "c.addi")) ->
+    match z_s3054z3 with
+    | z_s3055z3 when (string_startswith (z_s3055z3, "c.addi")) ->
       begin
-        match (string_drop (z_s3051z3, (string_length "c.addi"))) with
-        | z_s3052z3 ->
+        match (string_drop (z_s3055z3, (string_length "c.addi"))) with
+        | z_s3056z3 ->
           begin
-            match (zspc_matches_prefix z_s3052z3) with
-            | ZSome ((), z_s3053z3) ->
+            match (zspc_matches_prefix z_s3056z3) with
+            | ZSome ((), z_s3057z3) ->
               begin
-                match (string_drop (z_s3052z3, z_s3053z3)) with
-                | z_s3054z3 ->
+                match (string_drop (z_s3056z3, z_s3057z3)) with
+                | z_s3058z3 ->
                   begin
-                    match (zreg_name_matches_prefix z_s3054z3) with
-                    | ZSome (zrsd, z_s3055z3) ->
+                    match (zreg_name_matches_prefix z_s3058z3) with
+                    | ZSome (zrsd, z_s3059z3) ->
                       begin
-                        match (string_drop (z_s3054z3, z_s3055z3)) with
-                        | z_s3056z3 ->
+                        match (string_drop (z_s3058z3, z_s3059z3)) with
+                        | z_s3060z3 ->
                           begin
-                            match (zsep_matches_prefix z_s3056z3) with
-                            | ZSome ((), z_s3057z3) ->
+                            match (zsep_matches_prefix z_s3060z3) with
+                            | ZSome ((), z_s3061z3) ->
                               begin
-                                match (string_drop (z_s3056z3, z_s3057z3)) with
-                                | z_s3058z3 ->
+                                match (string_drop (z_s3060z3, z_s3061z3)) with
+                                | z_s3062z3 ->
                                   begin
-                                    match (hex_bits_6_matches_prefix z_s3058z3) with
-                                    | ZSome (znzzi, z_s3059z3) ->
+                                    match (hex_bits_6_matches_prefix z_s3062z3) with
+                                    | ZSome (znzzi, z_s3063z3) ->
                                       begin
-                                        match (string_drop (z_s3058z3, z_s3059z3)) with
+                                        match (string_drop (z_s3062z3, z_s3063z3)) with
                                         | zsz3 -> ZSome (zrsd, znzzi, zsz3)
                                         | _ -> ZNone ()
                                       end
@@ -26992,53 +27050,53 @@ and z_s3049z3 (z_s3050z3 : (string)) : (((bit) list * (bit) list * string)) zopt
     | _ -> ZNone ()
   end)
 
-and z_s3033z3 (z_s3034z3 : (string)) : (((bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s3037z3 (z_s3038z3 : (string)) : (((bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
-    match z_s3034z3 with
-    | z_s3035z3 when (string_startswith (z_s3035z3, "c.sd")) ->
+    match z_s3038z3 with
+    | z_s3039z3 when (string_startswith (z_s3039z3, "c.sd")) ->
       begin
-        match (string_drop (z_s3035z3, (string_length "c.sd"))) with
-        | z_s3036z3 ->
+        match (string_drop (z_s3039z3, (string_length "c.sd"))) with
+        | z_s3040z3 ->
           begin
-            match (zspc_matches_prefix z_s3036z3) with
-            | ZSome ((), z_s3037z3) ->
+            match (zspc_matches_prefix z_s3040z3) with
+            | ZSome ((), z_s3041z3) ->
               begin
-                match (string_drop (z_s3036z3, z_s3037z3)) with
-                | z_s3038z3 ->
+                match (string_drop (z_s3040z3, z_s3041z3)) with
+                | z_s3042z3 ->
                   begin
-                    match (zcreg_name_matches_prefix z_s3038z3) with
-                    | ZSome (zrsc1, z_s3039z3) ->
+                    match (zcreg_name_matches_prefix z_s3042z3) with
+                    | ZSome (zrsc1, z_s3043z3) ->
                       begin
-                        match (string_drop (z_s3038z3, z_s3039z3)) with
-                        | z_s3040z3 ->
+                        match (string_drop (z_s3042z3, z_s3043z3)) with
+                        | z_s3044z3 ->
                           begin
-                            match (zsep_matches_prefix z_s3040z3) with
-                            | ZSome ((), z_s3041z3) ->
+                            match (zsep_matches_prefix z_s3044z3) with
+                            | ZSome ((), z_s3045z3) ->
                               begin
-                                match (string_drop (z_s3040z3, z_s3041z3)) with
-                                | z_s3042z3 ->
+                                match (string_drop (z_s3044z3, z_s3045z3)) with
+                                | z_s3046z3 ->
                                   begin
-                                    match (zcreg_name_matches_prefix z_s3042z3) with
-                                    | ZSome (zrsc2, z_s3043z3) ->
+                                    match (zcreg_name_matches_prefix z_s3046z3) with
+                                    | ZSome (zrsc2, z_s3047z3) ->
                                       begin
-                                        match (string_drop (z_s3042z3, z_s3043z3)) with
-                                        | z_s3044z3 ->
+                                        match (string_drop (z_s3046z3, z_s3047z3)) with
+                                        | z_s3048z3 ->
                                           begin
-                                            match (zsep_matches_prefix z_s3044z3) with
-                                            | ZSome ((), z_s3045z3) ->
+                                            match (zsep_matches_prefix z_s3048z3) with
+                                            | ZSome ((), z_s3049z3) ->
                                               begin
-                                                match (string_drop (z_s3044z3, z_s3045z3)) with
-                                                | z_s3046z3 ->
+                                                match (string_drop (z_s3048z3, z_s3049z3)) with
+                                                | z_s3050z3 ->
                                                   begin
-                                                    match (hex_bits_8_matches_prefix z_s3046z3) with
-                                                    | ZSome (zv__68, z_s3047z3) when (let zp0z3 = (access (zv__68, (Big_int.of_int (2)))) in
+                                                    match (hex_bits_8_matches_prefix z_s3050z3) with
+                                                    | ZSome (zv__68, z_s3051z3) when (let zp0z3 = (access (zv__68, (Big_int.of_int (2)))) in
                                                     let zp1z3 = (access (zv__68, (Big_int.of_int (1)))) in
                                                     let zp2z3 = (access (zv__68, Big_int.zero)) in
                                                     ((eq_bit (zp2z3, B0)) && (eq_bit (zp1z3, B0))) && (eq_bit (zp0z3, B0))) ->
                                                       let zuimm = (subrange (zv__68, (Big_int.of_int (7)), (Big_int.of_int (3)))) in
                                                       let zuimm = (subrange (zv__68, (Big_int.of_int (7)), (Big_int.of_int (3)))) in
                                                       begin
-                                                        match (string_drop (z_s3046z3, z_s3047z3)) with
+                                                        match (string_drop (z_s3050z3, z_s3051z3)) with
                                                         | zsz3 ->
                                                           ZSome (zrsc1, zrsc2, zuimm, zsz3)
                                                         | _ -> ZNone ()
@@ -27070,52 +27128,52 @@ and z_s3033z3 (z_s3034z3 : (string)) : (((bit) list * (bit) list * (bit) list * 
     | _ -> ZNone ()
   end)
 
-and z_s3017z3 (z_s3018z3 : (string)) : (((bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s3021z3 (z_s3022z3 : (string)) : (((bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
-    match z_s3018z3 with
-    | z_s3019z3 when (string_startswith (z_s3019z3, "c.sw")) ->
+    match z_s3022z3 with
+    | z_s3023z3 when (string_startswith (z_s3023z3, "c.sw")) ->
       begin
-        match (string_drop (z_s3019z3, (string_length "c.sw"))) with
-        | z_s3020z3 ->
+        match (string_drop (z_s3023z3, (string_length "c.sw"))) with
+        | z_s3024z3 ->
           begin
-            match (zspc_matches_prefix z_s3020z3) with
-            | ZSome ((), z_s3021z3) ->
+            match (zspc_matches_prefix z_s3024z3) with
+            | ZSome ((), z_s3025z3) ->
               begin
-                match (string_drop (z_s3020z3, z_s3021z3)) with
-                | z_s3022z3 ->
+                match (string_drop (z_s3024z3, z_s3025z3)) with
+                | z_s3026z3 ->
                   begin
-                    match (zcreg_name_matches_prefix z_s3022z3) with
-                    | ZSome (zrsc1, z_s3023z3) ->
+                    match (zcreg_name_matches_prefix z_s3026z3) with
+                    | ZSome (zrsc1, z_s3027z3) ->
                       begin
-                        match (string_drop (z_s3022z3, z_s3023z3)) with
-                        | z_s3024z3 ->
+                        match (string_drop (z_s3026z3, z_s3027z3)) with
+                        | z_s3028z3 ->
                           begin
-                            match (zsep_matches_prefix z_s3024z3) with
-                            | ZSome ((), z_s3025z3) ->
+                            match (zsep_matches_prefix z_s3028z3) with
+                            | ZSome ((), z_s3029z3) ->
                               begin
-                                match (string_drop (z_s3024z3, z_s3025z3)) with
-                                | z_s3026z3 ->
+                                match (string_drop (z_s3028z3, z_s3029z3)) with
+                                | z_s3030z3 ->
                                   begin
-                                    match (zcreg_name_matches_prefix z_s3026z3) with
-                                    | ZSome (zrsc2, z_s3027z3) ->
+                                    match (zcreg_name_matches_prefix z_s3030z3) with
+                                    | ZSome (zrsc2, z_s3031z3) ->
                                       begin
-                                        match (string_drop (z_s3026z3, z_s3027z3)) with
-                                        | z_s3028z3 ->
+                                        match (string_drop (z_s3030z3, z_s3031z3)) with
+                                        | z_s3032z3 ->
                                           begin
-                                            match (zsep_matches_prefix z_s3028z3) with
-                                            | ZSome ((), z_s3029z3) ->
+                                            match (zsep_matches_prefix z_s3032z3) with
+                                            | ZSome ((), z_s3033z3) ->
                                               begin
-                                                match (string_drop (z_s3028z3, z_s3029z3)) with
-                                                | z_s3030z3 ->
+                                                match (string_drop (z_s3032z3, z_s3033z3)) with
+                                                | z_s3034z3 ->
                                                   begin
-                                                    match (hex_bits_7_matches_prefix z_s3030z3) with
-                                                    | ZSome (zv__70, z_s3031z3) when (let zp0z3 = (access (zv__70, (Big_int.of_int (1)))) in
+                                                    match (hex_bits_7_matches_prefix z_s3034z3) with
+                                                    | ZSome (zv__70, z_s3035z3) when (let zp0z3 = (access (zv__70, (Big_int.of_int (1)))) in
                                                     let zp1z3 = (access (zv__70, Big_int.zero)) in
                                                     (eq_bit (zp1z3, B0)) && (eq_bit (zp0z3, B0))) ->
                                                       let zuimm = (subrange (zv__70, (Big_int.of_int (6)), (Big_int.of_int (2)))) in
                                                       let zuimm = (subrange (zv__70, (Big_int.of_int (6)), (Big_int.of_int (2)))) in
                                                       begin
-                                                        match (string_drop (z_s3030z3, z_s3031z3)) with
+                                                        match (string_drop (z_s3034z3, z_s3035z3)) with
                                                         | zsz3 ->
                                                           ZSome (zrsc1, zrsc2, zuimm, zsz3)
                                                         | _ -> ZNone ()
@@ -27147,53 +27205,53 @@ and z_s3017z3 (z_s3018z3 : (string)) : (((bit) list * (bit) list * (bit) list * 
     | _ -> ZNone ()
   end)
 
-and z_s3001z3 (z_s3002z3 : (string)) : (((bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s3005z3 (z_s3006z3 : (string)) : (((bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
-    match z_s3002z3 with
-    | z_s3003z3 when (string_startswith (z_s3003z3, "c.ld")) ->
+    match z_s3006z3 with
+    | z_s3007z3 when (string_startswith (z_s3007z3, "c.ld")) ->
       begin
-        match (string_drop (z_s3003z3, (string_length "c.ld"))) with
-        | z_s3004z3 ->
+        match (string_drop (z_s3007z3, (string_length "c.ld"))) with
+        | z_s3008z3 ->
           begin
-            match (zspc_matches_prefix z_s3004z3) with
-            | ZSome ((), z_s3005z3) ->
+            match (zspc_matches_prefix z_s3008z3) with
+            | ZSome ((), z_s3009z3) ->
               begin
-                match (string_drop (z_s3004z3, z_s3005z3)) with
-                | z_s3006z3 ->
+                match (string_drop (z_s3008z3, z_s3009z3)) with
+                | z_s3010z3 ->
                   begin
-                    match (zcreg_name_matches_prefix z_s3006z3) with
-                    | ZSome (zrdc, z_s3007z3) ->
+                    match (zcreg_name_matches_prefix z_s3010z3) with
+                    | ZSome (zrdc, z_s3011z3) ->
                       begin
-                        match (string_drop (z_s3006z3, z_s3007z3)) with
-                        | z_s3008z3 ->
+                        match (string_drop (z_s3010z3, z_s3011z3)) with
+                        | z_s3012z3 ->
                           begin
-                            match (zsep_matches_prefix z_s3008z3) with
-                            | ZSome ((), z_s3009z3) ->
+                            match (zsep_matches_prefix z_s3012z3) with
+                            | ZSome ((), z_s3013z3) ->
                               begin
-                                match (string_drop (z_s3008z3, z_s3009z3)) with
-                                | z_s3010z3 ->
+                                match (string_drop (z_s3012z3, z_s3013z3)) with
+                                | z_s3014z3 ->
                                   begin
-                                    match (zcreg_name_matches_prefix z_s3010z3) with
-                                    | ZSome (zrsc, z_s3011z3) ->
+                                    match (zcreg_name_matches_prefix z_s3014z3) with
+                                    | ZSome (zrsc, z_s3015z3) ->
                                       begin
-                                        match (string_drop (z_s3010z3, z_s3011z3)) with
-                                        | z_s3012z3 ->
+                                        match (string_drop (z_s3014z3, z_s3015z3)) with
+                                        | z_s3016z3 ->
                                           begin
-                                            match (zsep_matches_prefix z_s3012z3) with
-                                            | ZSome ((), z_s3013z3) ->
+                                            match (zsep_matches_prefix z_s3016z3) with
+                                            | ZSome ((), z_s3017z3) ->
                                               begin
-                                                match (string_drop (z_s3012z3, z_s3013z3)) with
-                                                | z_s3014z3 ->
+                                                match (string_drop (z_s3016z3, z_s3017z3)) with
+                                                | z_s3018z3 ->
                                                   begin
-                                                    match (hex_bits_8_matches_prefix z_s3014z3) with
-                                                    | ZSome (zv__72, z_s3015z3) when (let zp0z3 = (access (zv__72, (Big_int.of_int (2)))) in
+                                                    match (hex_bits_8_matches_prefix z_s3018z3) with
+                                                    | ZSome (zv__72, z_s3019z3) when (let zp0z3 = (access (zv__72, (Big_int.of_int (2)))) in
                                                     let zp1z3 = (access (zv__72, (Big_int.of_int (1)))) in
                                                     let zp2z3 = (access (zv__72, Big_int.zero)) in
                                                     ((eq_bit (zp2z3, B0)) && (eq_bit (zp1z3, B0))) && (eq_bit (zp0z3, B0))) ->
                                                       let zuimm = (subrange (zv__72, (Big_int.of_int (7)), (Big_int.of_int (3)))) in
                                                       let zuimm = (subrange (zv__72, (Big_int.of_int (7)), (Big_int.of_int (3)))) in
                                                       begin
-                                                        match (string_drop (z_s3014z3, z_s3015z3)) with
+                                                        match (string_drop (z_s3018z3, z_s3019z3)) with
                                                         | zsz3 ->
                                                           ZSome (zrdc, zrsc, zuimm, zsz3)
                                                         | _ -> ZNone ()
@@ -27225,52 +27283,52 @@ and z_s3001z3 (z_s3002z3 : (string)) : (((bit) list * (bit) list * (bit) list * 
     | _ -> ZNone ()
   end)
 
-and z_s2985z3 (z_s2986z3 : (string)) : (((bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s2989z3 (z_s2990z3 : (string)) : (((bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
-    match z_s2986z3 with
-    | z_s2987z3 when (string_startswith (z_s2987z3, "c.lw")) ->
+    match z_s2990z3 with
+    | z_s2991z3 when (string_startswith (z_s2991z3, "c.lw")) ->
       begin
-        match (string_drop (z_s2987z3, (string_length "c.lw"))) with
-        | z_s2988z3 ->
+        match (string_drop (z_s2991z3, (string_length "c.lw"))) with
+        | z_s2992z3 ->
           begin
-            match (zspc_matches_prefix z_s2988z3) with
-            | ZSome ((), z_s2989z3) ->
+            match (zspc_matches_prefix z_s2992z3) with
+            | ZSome ((), z_s2993z3) ->
               begin
-                match (string_drop (z_s2988z3, z_s2989z3)) with
-                | z_s2990z3 ->
+                match (string_drop (z_s2992z3, z_s2993z3)) with
+                | z_s2994z3 ->
                   begin
-                    match (zcreg_name_matches_prefix z_s2990z3) with
-                    | ZSome (zrdc, z_s2991z3) ->
+                    match (zcreg_name_matches_prefix z_s2994z3) with
+                    | ZSome (zrdc, z_s2995z3) ->
                       begin
-                        match (string_drop (z_s2990z3, z_s2991z3)) with
-                        | z_s2992z3 ->
+                        match (string_drop (z_s2994z3, z_s2995z3)) with
+                        | z_s2996z3 ->
                           begin
-                            match (zsep_matches_prefix z_s2992z3) with
-                            | ZSome ((), z_s2993z3) ->
+                            match (zsep_matches_prefix z_s2996z3) with
+                            | ZSome ((), z_s2997z3) ->
                               begin
-                                match (string_drop (z_s2992z3, z_s2993z3)) with
-                                | z_s2994z3 ->
+                                match (string_drop (z_s2996z3, z_s2997z3)) with
+                                | z_s2998z3 ->
                                   begin
-                                    match (zcreg_name_matches_prefix z_s2994z3) with
-                                    | ZSome (zrsc, z_s2995z3) ->
+                                    match (zcreg_name_matches_prefix z_s2998z3) with
+                                    | ZSome (zrsc, z_s2999z3) ->
                                       begin
-                                        match (string_drop (z_s2994z3, z_s2995z3)) with
-                                        | z_s2996z3 ->
+                                        match (string_drop (z_s2998z3, z_s2999z3)) with
+                                        | z_s3000z3 ->
                                           begin
-                                            match (zsep_matches_prefix z_s2996z3) with
-                                            | ZSome ((), z_s2997z3) ->
+                                            match (zsep_matches_prefix z_s3000z3) with
+                                            | ZSome ((), z_s3001z3) ->
                                               begin
-                                                match (string_drop (z_s2996z3, z_s2997z3)) with
-                                                | z_s2998z3 ->
+                                                match (string_drop (z_s3000z3, z_s3001z3)) with
+                                                | z_s3002z3 ->
                                                   begin
-                                                    match (hex_bits_7_matches_prefix z_s2998z3) with
-                                                    | ZSome (zv__74, z_s2999z3) when (let zp0z3 = (access (zv__74, (Big_int.of_int (1)))) in
+                                                    match (hex_bits_7_matches_prefix z_s3002z3) with
+                                                    | ZSome (zv__74, z_s3003z3) when (let zp0z3 = (access (zv__74, (Big_int.of_int (1)))) in
                                                     let zp1z3 = (access (zv__74, Big_int.zero)) in
                                                     (eq_bit (zp1z3, B0)) && (eq_bit (zp0z3, B0))) ->
                                                       let zuimm = (subrange (zv__74, (Big_int.of_int (6)), (Big_int.of_int (2)))) in
                                                       let zuimm = (subrange (zv__74, (Big_int.of_int (6)), (Big_int.of_int (2)))) in
                                                       begin
-                                                        match (string_drop (z_s2998z3, z_s2999z3)) with
+                                                        match (string_drop (z_s3002z3, z_s3003z3)) with
                                                         | zsz3 ->
                                                           ZSome (zrdc, zrsc, zuimm, zsz3)
                                                         | _ -> ZNone ()
@@ -27302,40 +27360,40 @@ and z_s2985z3 (z_s2986z3 : (string)) : (((bit) list * (bit) list * (bit) list * 
     | _ -> ZNone ()
   end)
 
-and z_s2973z3 (z_s2974z3 : (string)) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s2977z3 (z_s2978z3 : (string)) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
-    match z_s2974z3 with
-    | z_s2975z3 when (string_startswith (z_s2975z3, "c.addi4spn")) ->
+    match z_s2978z3 with
+    | z_s2979z3 when (string_startswith (z_s2979z3, "c.addi4spn")) ->
       begin
-        match (string_drop (z_s2975z3, (string_length "c.addi4spn"))) with
-        | z_s2976z3 ->
+        match (string_drop (z_s2979z3, (string_length "c.addi4spn"))) with
+        | z_s2980z3 ->
           begin
-            match (zspc_matches_prefix z_s2976z3) with
-            | ZSome ((), z_s2977z3) ->
+            match (zspc_matches_prefix z_s2980z3) with
+            | ZSome ((), z_s2981z3) ->
               begin
-                match (string_drop (z_s2976z3, z_s2977z3)) with
-                | z_s2978z3 ->
+                match (string_drop (z_s2980z3, z_s2981z3)) with
+                | z_s2982z3 ->
                   begin
-                    match (zcreg_name_matches_prefix z_s2978z3) with
-                    | ZSome (zrdc, z_s2979z3) ->
+                    match (zcreg_name_matches_prefix z_s2982z3) with
+                    | ZSome (zrdc, z_s2983z3) ->
                       begin
-                        match (string_drop (z_s2978z3, z_s2979z3)) with
-                        | z_s2980z3 ->
+                        match (string_drop (z_s2982z3, z_s2983z3)) with
+                        | z_s2984z3 ->
                           begin
-                            match (zsep_matches_prefix z_s2980z3) with
-                            | ZSome ((), z_s2981z3) ->
+                            match (zsep_matches_prefix z_s2984z3) with
+                            | ZSome ((), z_s2985z3) ->
                               begin
-                                match (string_drop (z_s2980z3, z_s2981z3)) with
-                                | z_s2982z3 ->
+                                match (string_drop (z_s2984z3, z_s2985z3)) with
+                                | z_s2986z3 ->
                                   begin
-                                    match (hex_bits_10_matches_prefix z_s2982z3) with
-                                    | ZSome (zv__76, z_s2983z3) when (let zp0z3 = (access (zv__76, (Big_int.of_int (1)))) in
+                                    match (hex_bits_10_matches_prefix z_s2986z3) with
+                                    | ZSome (zv__76, z_s2987z3) when (let zp0z3 = (access (zv__76, (Big_int.of_int (1)))) in
                                     let zp1z3 = (access (zv__76, Big_int.zero)) in
                                     (eq_bit (zp1z3, B0)) && (eq_bit (zp0z3, B0))) ->
                                       let znzzimm = (subrange (zv__76, (Big_int.of_int (9)), (Big_int.of_int (2)))) in
                                       let znzzimm = (subrange (zv__76, (Big_int.of_int (9)), (Big_int.of_int (2)))) in
                                       begin
-                                        match (string_drop (z_s2982z3, z_s2983z3)) with
+                                        match (string_drop (z_s2986z3, z_s2987z3)) with
                                         | zsz3 -> ZSome (zrdc, znzzimm, zsz3)
                                         | _ -> ZNone ()
                                       end
@@ -27358,63 +27416,63 @@ and z_s2973z3 (z_s2974z3 : (string)) : (((bit) list * (bit) list * string)) zopt
     | _ -> ZNone ()
   end)
 
-and z_s2969z3 (z_s2970z3 : (string)) : (string) zoption = sail_call (fun r ->
+and z_s2973z3 (z_s2974z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
-    match z_s2970z3 with
-    | z_s2971z3 when (string_startswith (z_s2971z3, "c.nop")) ->
+    match z_s2974z3 with
+    | z_s2975z3 when (string_startswith (z_s2975z3, "c.nop")) ->
       begin
-        match (string_drop (z_s2971z3, (string_length "c.nop"))) with
+        match (string_drop (z_s2975z3, (string_length "c.nop"))) with
         | zsz3 -> ZSome zsz3
         | _ -> ZNone ()
       end
     | _ -> ZNone ()
   end)
 
-and z_s2952z3 (z_s2953z3 : (string)) : ((zcsrop * (bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s2956z3 (z_s2957z3 : (string)) : ((zcsrop * (bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
-    match z_s2953z3 with
-    | z_s2954z3 ->
+    match z_s2957z3 with
+    | z_s2958z3 ->
       begin
-        match (zcsr_mnemonic_matches_prefix z_s2954z3) with
-        | ZSome (zop, z_s2955z3) ->
+        match (zcsr_mnemonic_matches_prefix z_s2958z3) with
+        | ZSome (zop, z_s2959z3) ->
           begin
-            match (string_drop (z_s2954z3, z_s2955z3)) with
-            | z_s2956z3 ->
+            match (string_drop (z_s2958z3, z_s2959z3)) with
+            | z_s2960z3 ->
               begin
-                match (zspc_matches_prefix z_s2956z3) with
-                | ZSome ((), z_s2957z3) ->
+                match (zspc_matches_prefix z_s2960z3) with
+                | ZSome ((), z_s2961z3) ->
                   begin
-                    match (string_drop (z_s2956z3, z_s2957z3)) with
-                    | z_s2958z3 ->
+                    match (string_drop (z_s2960z3, z_s2961z3)) with
+                    | z_s2962z3 ->
                       begin
-                        match (zreg_name_matches_prefix z_s2958z3) with
-                        | ZSome (zrd, z_s2959z3) ->
+                        match (zreg_name_matches_prefix z_s2962z3) with
+                        | ZSome (zrd, z_s2963z3) ->
                           begin
-                            match (string_drop (z_s2958z3, z_s2959z3)) with
-                            | z_s2960z3 ->
+                            match (string_drop (z_s2962z3, z_s2963z3)) with
+                            | z_s2964z3 ->
                               begin
-                                match (zsep_matches_prefix z_s2960z3) with
-                                | ZSome ((), z_s2961z3) ->
+                                match (zsep_matches_prefix z_s2964z3) with
+                                | ZSome ((), z_s2965z3) ->
                                   begin
-                                    match (string_drop (z_s2960z3, z_s2961z3)) with
-                                    | z_s2962z3 ->
+                                    match (string_drop (z_s2964z3, z_s2965z3)) with
+                                    | z_s2966z3 ->
                                       begin
-                                        match (zreg_name_matches_prefix z_s2962z3) with
-                                        | ZSome (zrs1, z_s2963z3) ->
+                                        match (zreg_name_matches_prefix z_s2966z3) with
+                                        | ZSome (zrs1, z_s2967z3) ->
                                           begin
-                                            match (string_drop (z_s2962z3, z_s2963z3)) with
-                                            | z_s2964z3 ->
+                                            match (string_drop (z_s2966z3, z_s2967z3)) with
+                                            | z_s2968z3 ->
                                               begin
-                                                match (zsep_matches_prefix z_s2964z3) with
-                                                | ZSome ((), z_s2965z3) ->
+                                                match (zsep_matches_prefix z_s2968z3) with
+                                                | ZSome ((), z_s2969z3) ->
                                                   begin
-                                                    match (string_drop (z_s2964z3, z_s2965z3)) with
-                                                    | z_s2966z3 ->
+                                                    match (string_drop (z_s2968z3, z_s2969z3)) with
+                                                    | z_s2970z3 ->
                                                       begin
-                                                        match (zcsr_name_map_matches_prefix z_s2966z3) with
-                                                        | ZSome (zcsr, z_s2967z3) ->
+                                                        match (zcsr_name_map_matches_prefix z_s2970z3) with
+                                                        | ZSome (zcsr, z_s2971z3) ->
                                                           begin
-                                                            match (string_drop (z_s2966z3, z_s2967z3)) with
+                                                            match (string_drop (z_s2970z3, z_s2971z3)) with
                                                             | zsz3 ->
                                                               ZSome (zop, zrd, zrs1, zcsr, zsz3)
                                                             | _ -> ZNone ()
@@ -27448,54 +27506,54 @@ and z_s2952z3 (z_s2953z3 : (string)) : ((zcsrop * (bit) list * (bit) list * (bit
     | _ -> ZNone ()
   end)
 
-and z_s2934z3 (z_s2935z3 : (string)) : ((zcsrop * (bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s2938z3 (z_s2939z3 : (string)) : ((zcsrop * (bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
-    match z_s2935z3 with
-    | z_s2936z3 ->
+    match z_s2939z3 with
+    | z_s2940z3 ->
       begin
-        match (zcsr_mnemonic_matches_prefix z_s2936z3) with
-        | ZSome (zop, z_s2937z3) ->
+        match (zcsr_mnemonic_matches_prefix z_s2940z3) with
+        | ZSome (zop, z_s2941z3) ->
           begin
-            match (string_drop (z_s2936z3, z_s2937z3)) with
-            | z_s2938z3 when (string_startswith (z_s2938z3, "i")) ->
+            match (string_drop (z_s2940z3, z_s2941z3)) with
+            | z_s2942z3 when (string_startswith (z_s2942z3, "i")) ->
               begin
-                match (string_drop (z_s2938z3, (string_length "i"))) with
-                | z_s2939z3 ->
+                match (string_drop (z_s2942z3, (string_length "i"))) with
+                | z_s2943z3 ->
                   begin
-                    match (zspc_matches_prefix z_s2939z3) with
-                    | ZSome ((), z_s2940z3) ->
+                    match (zspc_matches_prefix z_s2943z3) with
+                    | ZSome ((), z_s2944z3) ->
                       begin
-                        match (string_drop (z_s2939z3, z_s2940z3)) with
-                        | z_s2941z3 ->
+                        match (string_drop (z_s2943z3, z_s2944z3)) with
+                        | z_s2945z3 ->
                           begin
-                            match (zreg_name_matches_prefix z_s2941z3) with
-                            | ZSome (zrd, z_s2942z3) ->
+                            match (zreg_name_matches_prefix z_s2945z3) with
+                            | ZSome (zrd, z_s2946z3) ->
                               begin
-                                match (string_drop (z_s2941z3, z_s2942z3)) with
-                                | z_s2943z3 ->
+                                match (string_drop (z_s2945z3, z_s2946z3)) with
+                                | z_s2947z3 ->
                                   begin
-                                    match (zsep_matches_prefix z_s2943z3) with
-                                    | ZSome ((), z_s2944z3) ->
+                                    match (zsep_matches_prefix z_s2947z3) with
+                                    | ZSome ((), z_s2948z3) ->
                                       begin
-                                        match (string_drop (z_s2943z3, z_s2944z3)) with
-                                        | z_s2945z3 ->
+                                        match (string_drop (z_s2947z3, z_s2948z3)) with
+                                        | z_s2949z3 ->
                                           begin
-                                            match (hex_bits_5_matches_prefix z_s2945z3) with
-                                            | ZSome (zrs1, z_s2946z3) ->
+                                            match (hex_bits_5_matches_prefix z_s2949z3) with
+                                            | ZSome (zrs1, z_s2950z3) ->
                                               begin
-                                                match (string_drop (z_s2945z3, z_s2946z3)) with
-                                                | z_s2947z3 ->
+                                                match (string_drop (z_s2949z3, z_s2950z3)) with
+                                                | z_s2951z3 ->
                                                   begin
-                                                    match (zsep_matches_prefix z_s2947z3) with
-                                                    | ZSome ((), z_s2948z3) ->
+                                                    match (zsep_matches_prefix z_s2951z3) with
+                                                    | ZSome ((), z_s2952z3) ->
                                                       begin
-                                                        match (string_drop (z_s2947z3, z_s2948z3)) with
-                                                        | z_s2949z3 ->
+                                                        match (string_drop (z_s2951z3, z_s2952z3)) with
+                                                        | z_s2953z3 ->
                                                           begin
-                                                            match (zcsr_name_map_matches_prefix z_s2949z3) with
-                                                            | ZSome (zcsr, z_s2950z3) ->
+                                                            match (zcsr_name_map_matches_prefix z_s2953z3) with
+                                                            | ZSome (zcsr, z_s2954z3) ->
                                                               begin
-                                                                match (string_drop (z_s2949z3, z_s2950z3)) with
+                                                                match (string_drop (z_s2953z3, z_s2954z3)) with
                                                                 | zsz3 ->
                                                                   ZSome (zop, zrd, zrs1, zcsr, zsz3)
                                                                 | _ -> ZNone ()
@@ -27531,72 +27589,72 @@ and z_s2934z3 (z_s2935z3 : (string)) : ((zcsrop * (bit) list * (bit) list * (bit
     | _ -> ZNone ()
   end)
 
-and z_s2910z3 (z_s2911z3 : (string)) : ((zamoop * zword_width * bool * bool * (bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s2914z3 (z_s2915z3 : (string)) : ((zamoop * zword_width * bool * bool * (bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
-    match z_s2911z3 with
-    | z_s2912z3 ->
+    match z_s2915z3 with
+    | z_s2916z3 ->
       begin
-        match (zamo_mnemonic_matches_prefix z_s2912z3) with
-        | ZSome (zop, z_s2913z3) ->
+        match (zamo_mnemonic_matches_prefix z_s2916z3) with
+        | ZSome (zop, z_s2917z3) ->
           begin
-            match (string_drop (z_s2912z3, z_s2913z3)) with
-            | z_s2914z3 when (string_startswith (z_s2914z3, ".")) ->
+            match (string_drop (z_s2916z3, z_s2917z3)) with
+            | z_s2918z3 when (string_startswith (z_s2918z3, ".")) ->
               begin
-                match (string_drop (z_s2914z3, (string_length "."))) with
-                | z_s2915z3 ->
+                match (string_drop (z_s2918z3, (string_length "."))) with
+                | z_s2919z3 ->
                   begin
-                    match (zsizze_mnemonic_matches_prefix z_s2915z3) with
-                    | ZSome (zwidth, z_s2916z3) ->
+                    match (zsizze_mnemonic_matches_prefix z_s2919z3) with
+                    | ZSome (zwidth, z_s2920z3) ->
                       begin
-                        match (string_drop (z_s2915z3, z_s2916z3)) with
-                        | z_s2917z3 ->
+                        match (string_drop (z_s2919z3, z_s2920z3)) with
+                        | z_s2921z3 ->
                           begin
-                            match (zmaybe_aq_matches_prefix z_s2917z3) with
-                            | ZSome (zaq, z_s2918z3) ->
+                            match (zmaybe_aq_matches_prefix z_s2921z3) with
+                            | ZSome (zaq, z_s2922z3) ->
                               begin
-                                match (string_drop (z_s2917z3, z_s2918z3)) with
-                                | z_s2919z3 ->
+                                match (string_drop (z_s2921z3, z_s2922z3)) with
+                                | z_s2923z3 ->
                                   begin
-                                    match (zmaybe_rl_matches_prefix z_s2919z3) with
-                                    | ZSome (zrl, z_s2920z3) ->
+                                    match (zmaybe_rl_matches_prefix z_s2923z3) with
+                                    | ZSome (zrl, z_s2924z3) ->
                                       begin
-                                        match (string_drop (z_s2919z3, z_s2920z3)) with
-                                        | z_s2921z3 ->
+                                        match (string_drop (z_s2923z3, z_s2924z3)) with
+                                        | z_s2925z3 ->
                                           begin
-                                            match (zspc_matches_prefix z_s2921z3) with
-                                            | ZSome ((), z_s2922z3) ->
+                                            match (zspc_matches_prefix z_s2925z3) with
+                                            | ZSome ((), z_s2926z3) ->
                                               begin
-                                                match (string_drop (z_s2921z3, z_s2922z3)) with
-                                                | z_s2923z3 ->
+                                                match (string_drop (z_s2925z3, z_s2926z3)) with
+                                                | z_s2927z3 ->
                                                   begin
-                                                    match (zreg_name_matches_prefix z_s2923z3) with
-                                                    | ZSome (zrd, z_s2924z3) ->
+                                                    match (zreg_name_matches_prefix z_s2927z3) with
+                                                    | ZSome (zrd, z_s2928z3) ->
                                                       begin
-                                                        match (string_drop (z_s2923z3, z_s2924z3)) with
-                                                        | z_s2925z3 ->
+                                                        match (string_drop (z_s2927z3, z_s2928z3)) with
+                                                        | z_s2929z3 ->
                                                           begin
-                                                            match (zsep_matches_prefix z_s2925z3) with
-                                                            | ZSome ((), z_s2926z3) ->
+                                                            match (zsep_matches_prefix z_s2929z3) with
+                                                            | ZSome ((), z_s2930z3) ->
                                                               begin
-                                                                match (string_drop (z_s2925z3, z_s2926z3)) with
-                                                                | z_s2927z3 ->
+                                                                match (string_drop (z_s2929z3, z_s2930z3)) with
+                                                                | z_s2931z3 ->
                                                                   begin
-                                                                    match (zreg_name_matches_prefix z_s2927z3) with
-                                                                    | ZSome (zrs1, z_s2928z3) ->
+                                                                    match (zreg_name_matches_prefix z_s2931z3) with
+                                                                    | ZSome (zrs1, z_s2932z3) ->
                                                                       begin
-                                                                        match (string_drop (z_s2927z3, z_s2928z3)) with
-                                                                        | z_s2929z3 ->
+                                                                        match (string_drop (z_s2931z3, z_s2932z3)) with
+                                                                        | z_s2933z3 ->
                                                                           begin
-                                                                            match (zsep_matches_prefix z_s2929z3) with
-                                                                            | ZSome ((), z_s2930z3) ->
+                                                                            match (zsep_matches_prefix z_s2933z3) with
+                                                                            | ZSome ((), z_s2934z3) ->
                                                                               begin
-                                                                                match (string_drop (z_s2929z3, z_s2930z3)) with
-                                                                                | z_s2931z3 ->
+                                                                                match (string_drop (z_s2933z3, z_s2934z3)) with
+                                                                                | z_s2935z3 ->
                                                                                   begin
-                                                                                    match (zreg_name_matches_prefix z_s2931z3) with
-                                                                                    | ZSome (zrs2, z_s2932z3) ->
+                                                                                    match (zreg_name_matches_prefix z_s2935z3) with
+                                                                                    | ZSome (zrs2, z_s2936z3) ->
                                                                                       begin
-                                                                                        match (string_drop (z_s2931z3, z_s2932z3)) with
+                                                                                        match (string_drop (z_s2935z3, z_s2936z3)) with
                                                                                         | zsz3 ->
                                                                                           ZSome (zop, zwidth, zaq, zrl, zrd, zrs1, zrs2, zsz3)
                                                                                         | _ ->
@@ -27650,66 +27708,66 @@ and z_s2910z3 (z_s2911z3 : (string)) : ((zamoop * zword_width * bool * bool * (b
     | _ -> ZNone ()
   end)
 
-and z_s2888z3 (z_s2889z3 : (string)) : ((zword_width * bool * bool * (bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s2892z3 (z_s2893z3 : (string)) : ((zword_width * bool * bool * (bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
-    match z_s2889z3 with
-    | z_s2890z3 when (string_startswith (z_s2890z3, "sc.")) ->
+    match z_s2893z3 with
+    | z_s2894z3 when (string_startswith (z_s2894z3, "sc.")) ->
       begin
-        match (string_drop (z_s2890z3, (string_length "sc."))) with
-        | z_s2891z3 ->
+        match (string_drop (z_s2894z3, (string_length "sc."))) with
+        | z_s2895z3 ->
           begin
-            match (zsizze_mnemonic_matches_prefix z_s2891z3) with
-            | ZSome (zsizze, z_s2892z3) ->
+            match (zsizze_mnemonic_matches_prefix z_s2895z3) with
+            | ZSome (zsizze, z_s2896z3) ->
               begin
-                match (string_drop (z_s2891z3, z_s2892z3)) with
-                | z_s2893z3 ->
+                match (string_drop (z_s2895z3, z_s2896z3)) with
+                | z_s2897z3 ->
                   begin
-                    match (zmaybe_aq_matches_prefix z_s2893z3) with
-                    | ZSome (zaq, z_s2894z3) ->
+                    match (zmaybe_aq_matches_prefix z_s2897z3) with
+                    | ZSome (zaq, z_s2898z3) ->
                       begin
-                        match (string_drop (z_s2893z3, z_s2894z3)) with
-                        | z_s2895z3 ->
+                        match (string_drop (z_s2897z3, z_s2898z3)) with
+                        | z_s2899z3 ->
                           begin
-                            match (zmaybe_rl_matches_prefix z_s2895z3) with
-                            | ZSome (zrl, z_s2896z3) ->
+                            match (zmaybe_rl_matches_prefix z_s2899z3) with
+                            | ZSome (zrl, z_s2900z3) ->
                               begin
-                                match (string_drop (z_s2895z3, z_s2896z3)) with
-                                | z_s2897z3 ->
+                                match (string_drop (z_s2899z3, z_s2900z3)) with
+                                | z_s2901z3 ->
                                   begin
-                                    match (zspc_matches_prefix z_s2897z3) with
-                                    | ZSome ((), z_s2898z3) ->
+                                    match (zspc_matches_prefix z_s2901z3) with
+                                    | ZSome ((), z_s2902z3) ->
                                       begin
-                                        match (string_drop (z_s2897z3, z_s2898z3)) with
-                                        | z_s2899z3 ->
+                                        match (string_drop (z_s2901z3, z_s2902z3)) with
+                                        | z_s2903z3 ->
                                           begin
-                                            match (zreg_name_matches_prefix z_s2899z3) with
-                                            | ZSome (zrd, z_s2900z3) ->
+                                            match (zreg_name_matches_prefix z_s2903z3) with
+                                            | ZSome (zrd, z_s2904z3) ->
                                               begin
-                                                match (string_drop (z_s2899z3, z_s2900z3)) with
-                                                | z_s2901z3 ->
+                                                match (string_drop (z_s2903z3, z_s2904z3)) with
+                                                | z_s2905z3 ->
                                                   begin
-                                                    match (zsep_matches_prefix z_s2901z3) with
-                                                    | ZSome ((), z_s2902z3) ->
+                                                    match (zsep_matches_prefix z_s2905z3) with
+                                                    | ZSome ((), z_s2906z3) ->
                                                       begin
-                                                        match (string_drop (z_s2901z3, z_s2902z3)) with
-                                                        | z_s2903z3 ->
+                                                        match (string_drop (z_s2905z3, z_s2906z3)) with
+                                                        | z_s2907z3 ->
                                                           begin
-                                                            match (zreg_name_matches_prefix z_s2903z3) with
-                                                            | ZSome (zrs1, z_s2904z3) ->
+                                                            match (zreg_name_matches_prefix z_s2907z3) with
+                                                            | ZSome (zrs1, z_s2908z3) ->
                                                               begin
-                                                                match (string_drop (z_s2903z3, z_s2904z3)) with
-                                                                | z_s2905z3 ->
+                                                                match (string_drop (z_s2907z3, z_s2908z3)) with
+                                                                | z_s2909z3 ->
                                                                   begin
-                                                                    match (zsep_matches_prefix z_s2905z3) with
-                                                                    | ZSome ((), z_s2906z3) ->
+                                                                    match (zsep_matches_prefix z_s2909z3) with
+                                                                    | ZSome ((), z_s2910z3) ->
                                                                       begin
-                                                                        match (string_drop (z_s2905z3, z_s2906z3)) with
-                                                                        | z_s2907z3 ->
+                                                                        match (string_drop (z_s2909z3, z_s2910z3)) with
+                                                                        | z_s2911z3 ->
                                                                           begin
-                                                                            match (zreg_name_matches_prefix z_s2907z3) with
-                                                                            | ZSome (zrs2, z_s2908z3) ->
+                                                                            match (zreg_name_matches_prefix z_s2911z3) with
+                                                                            | ZSome (zrs2, z_s2912z3) ->
                                                                               begin
-                                                                                match (string_drop (z_s2907z3, z_s2908z3)) with
+                                                                                match (string_drop (z_s2911z3, z_s2912z3)) with
                                                                                 | zsz3 ->
                                                                                   ZSome (zsizze, zaq, zrl, zrd, zrs1, zrs2, zsz3)
                                                                                 | _ ->
@@ -27757,54 +27815,54 @@ and z_s2888z3 (z_s2889z3 : (string)) : ((zword_width * bool * bool * (bit) list 
     | _ -> ZNone ()
   end)
 
-and z_s2870z3 (z_s2871z3 : (string)) : ((zword_width * bool * bool * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s2874z3 (z_s2875z3 : (string)) : ((zword_width * bool * bool * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
-    match z_s2871z3 with
-    | z_s2872z3 when (string_startswith (z_s2872z3, "lr.")) ->
+    match z_s2875z3 with
+    | z_s2876z3 when (string_startswith (z_s2876z3, "lr.")) ->
       begin
-        match (string_drop (z_s2872z3, (string_length "lr."))) with
-        | z_s2873z3 ->
+        match (string_drop (z_s2876z3, (string_length "lr."))) with
+        | z_s2877z3 ->
           begin
-            match (zsizze_mnemonic_matches_prefix z_s2873z3) with
-            | ZSome (zsizze, z_s2874z3) ->
+            match (zsizze_mnemonic_matches_prefix z_s2877z3) with
+            | ZSome (zsizze, z_s2878z3) ->
               begin
-                match (string_drop (z_s2873z3, z_s2874z3)) with
-                | z_s2875z3 ->
+                match (string_drop (z_s2877z3, z_s2878z3)) with
+                | z_s2879z3 ->
                   begin
-                    match (zmaybe_aq_matches_prefix z_s2875z3) with
-                    | ZSome (zaq, z_s2876z3) ->
+                    match (zmaybe_aq_matches_prefix z_s2879z3) with
+                    | ZSome (zaq, z_s2880z3) ->
                       begin
-                        match (string_drop (z_s2875z3, z_s2876z3)) with
-                        | z_s2877z3 ->
+                        match (string_drop (z_s2879z3, z_s2880z3)) with
+                        | z_s2881z3 ->
                           begin
-                            match (zmaybe_rl_matches_prefix z_s2877z3) with
-                            | ZSome (zrl, z_s2878z3) ->
+                            match (zmaybe_rl_matches_prefix z_s2881z3) with
+                            | ZSome (zrl, z_s2882z3) ->
                               begin
-                                match (string_drop (z_s2877z3, z_s2878z3)) with
-                                | z_s2879z3 ->
+                                match (string_drop (z_s2881z3, z_s2882z3)) with
+                                | z_s2883z3 ->
                                   begin
-                                    match (zspc_matches_prefix z_s2879z3) with
-                                    | ZSome ((), z_s2880z3) ->
+                                    match (zspc_matches_prefix z_s2883z3) with
+                                    | ZSome ((), z_s2884z3) ->
                                       begin
-                                        match (string_drop (z_s2879z3, z_s2880z3)) with
-                                        | z_s2881z3 ->
+                                        match (string_drop (z_s2883z3, z_s2884z3)) with
+                                        | z_s2885z3 ->
                                           begin
-                                            match (zreg_name_matches_prefix z_s2881z3) with
-                                            | ZSome (zrd, z_s2882z3) ->
+                                            match (zreg_name_matches_prefix z_s2885z3) with
+                                            | ZSome (zrd, z_s2886z3) ->
                                               begin
-                                                match (string_drop (z_s2881z3, z_s2882z3)) with
-                                                | z_s2883z3 ->
+                                                match (string_drop (z_s2885z3, z_s2886z3)) with
+                                                | z_s2887z3 ->
                                                   begin
-                                                    match (zsep_matches_prefix z_s2883z3) with
-                                                    | ZSome ((), z_s2884z3) ->
+                                                    match (zsep_matches_prefix z_s2887z3) with
+                                                    | ZSome ((), z_s2888z3) ->
                                                       begin
-                                                        match (string_drop (z_s2883z3, z_s2884z3)) with
-                                                        | z_s2885z3 ->
+                                                        match (string_drop (z_s2887z3, z_s2888z3)) with
+                                                        | z_s2889z3 ->
                                                           begin
-                                                            match (zreg_name_matches_prefix z_s2885z3) with
-                                                            | ZSome (zrs1, z_s2886z3) ->
+                                                            match (zreg_name_matches_prefix z_s2889z3) with
+                                                            | ZSome (zrs1, z_s2890z3) ->
                                                               begin
-                                                                match (string_drop (z_s2885z3, z_s2886z3)) with
+                                                                match (string_drop (z_s2889z3, z_s2890z3)) with
                                                                 | zsz3 ->
                                                                   ZSome (zsizze, zaq, zrl, zrd, zrs1, zsz3)
                                                                 | _ -> ZNone ()
@@ -27840,36 +27898,36 @@ and z_s2870z3 (z_s2871z3 : (string)) : ((zword_width * bool * bool * (bit) list 
     | _ -> ZNone ()
   end)
 
-and z_s2858z3 (z_s2859z3 : (string)) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s2862z3 (z_s2863z3 : (string)) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
-    match z_s2859z3 with
-    | z_s2860z3 when (string_startswith (z_s2860z3, "sfence.vma")) ->
+    match z_s2863z3 with
+    | z_s2864z3 when (string_startswith (z_s2864z3, "sfence.vma")) ->
       begin
-        match (string_drop (z_s2860z3, (string_length "sfence.vma"))) with
-        | z_s2861z3 ->
+        match (string_drop (z_s2864z3, (string_length "sfence.vma"))) with
+        | z_s2865z3 ->
           begin
-            match (zspc_matches_prefix z_s2861z3) with
-            | ZSome ((), z_s2862z3) ->
+            match (zspc_matches_prefix z_s2865z3) with
+            | ZSome ((), z_s2866z3) ->
               begin
-                match (string_drop (z_s2861z3, z_s2862z3)) with
-                | z_s2863z3 ->
+                match (string_drop (z_s2865z3, z_s2866z3)) with
+                | z_s2867z3 ->
                   begin
-                    match (zreg_name_matches_prefix z_s2863z3) with
-                    | ZSome (zrs1, z_s2864z3) ->
+                    match (zreg_name_matches_prefix z_s2867z3) with
+                    | ZSome (zrs1, z_s2868z3) ->
                       begin
-                        match (string_drop (z_s2863z3, z_s2864z3)) with
-                        | z_s2865z3 ->
+                        match (string_drop (z_s2867z3, z_s2868z3)) with
+                        | z_s2869z3 ->
                           begin
-                            match (zsep_matches_prefix z_s2865z3) with
-                            | ZSome ((), z_s2866z3) ->
+                            match (zsep_matches_prefix z_s2869z3) with
+                            | ZSome ((), z_s2870z3) ->
                               begin
-                                match (string_drop (z_s2865z3, z_s2866z3)) with
-                                | z_s2867z3 ->
+                                match (string_drop (z_s2869z3, z_s2870z3)) with
+                                | z_s2871z3 ->
                                   begin
-                                    match (zreg_name_matches_prefix z_s2867z3) with
-                                    | ZSome (zrs2, z_s2868z3) ->
+                                    match (zreg_name_matches_prefix z_s2871z3) with
+                                    | ZSome (zrs2, z_s2872z3) ->
                                       begin
-                                        match (string_drop (z_s2867z3, z_s2868z3)) with
+                                        match (string_drop (z_s2871z3, z_s2872z3)) with
                                         | zsz3 -> ZSome (zrs1, zrs2, zsz3)
                                         | _ -> ZNone ()
                                       end
@@ -27892,12 +27950,24 @@ and z_s2858z3 (z_s2859z3 : (string)) : (((bit) list * (bit) list * string)) zopt
     | _ -> ZNone ()
   end)
 
+and z_s2858z3 (z_s2859z3 : (string)) : (string) zoption = sail_call (fun r ->
+  begin
+    match z_s2859z3 with
+    | z_s2860z3 when (string_startswith (z_s2860z3, "wfi")) ->
+      begin
+        match (string_drop (z_s2860z3, (string_length "wfi"))) with
+        | zsz3 -> ZSome zsz3
+        | _ -> ZNone ()
+      end
+    | _ -> ZNone ()
+  end)
+
 and z_s2854z3 (z_s2855z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s2855z3 with
-    | z_s2856z3 when (string_startswith (z_s2856z3, "wfi")) ->
+    | z_s2856z3 when (string_startswith (z_s2856z3, "ebreak")) ->
       begin
-        match (string_drop (z_s2856z3, (string_length "wfi"))) with
+        match (string_drop (z_s2856z3, (string_length "ebreak"))) with
         | zsz3 -> ZSome zsz3
         | _ -> ZNone ()
       end
@@ -27907,9 +27977,9 @@ and z_s2854z3 (z_s2855z3 : (string)) : (string) zoption = sail_call (fun r ->
 and z_s2850z3 (z_s2851z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s2851z3 with
-    | z_s2852z3 when (string_startswith (z_s2852z3, "ebreak")) ->
+    | z_s2852z3 when (string_startswith (z_s2852z3, "sret")) ->
       begin
-        match (string_drop (z_s2852z3, (string_length "ebreak"))) with
+        match (string_drop (z_s2852z3, (string_length "sret"))) with
         | zsz3 -> ZSome zsz3
         | _ -> ZNone ()
       end
@@ -27919,9 +27989,9 @@ and z_s2850z3 (z_s2851z3 : (string)) : (string) zoption = sail_call (fun r ->
 and z_s2846z3 (z_s2847z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s2847z3 with
-    | z_s2848z3 when (string_startswith (z_s2848z3, "sret")) ->
+    | z_s2848z3 when (string_startswith (z_s2848z3, "mret")) ->
       begin
-        match (string_drop (z_s2848z3, (string_length "sret"))) with
+        match (string_drop (z_s2848z3, (string_length "mret"))) with
         | zsz3 -> ZSome zsz3
         | _ -> ZNone ()
       end
@@ -27931,9 +28001,9 @@ and z_s2846z3 (z_s2847z3 : (string)) : (string) zoption = sail_call (fun r ->
 and z_s2842z3 (z_s2843z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s2843z3 with
-    | z_s2844z3 when (string_startswith (z_s2844z3, "mret")) ->
+    | z_s2844z3 when (string_startswith (z_s2844z3, "ecall")) ->
       begin
-        match (string_drop (z_s2844z3, (string_length "mret"))) with
+        match (string_drop (z_s2844z3, (string_length "ecall"))) with
         | zsz3 -> ZSome zsz3
         | _ -> ZNone ()
       end
@@ -27943,57 +28013,45 @@ and z_s2842z3 (z_s2843z3 : (string)) : (string) zoption = sail_call (fun r ->
 and z_s2838z3 (z_s2839z3 : (string)) : (string) zoption = sail_call (fun r ->
   begin
     match z_s2839z3 with
-    | z_s2840z3 when (string_startswith (z_s2840z3, "ecall")) ->
+    | z_s2840z3 when (string_startswith (z_s2840z3, "fence.i")) ->
       begin
-        match (string_drop (z_s2840z3, (string_length "ecall"))) with
+        match (string_drop (z_s2840z3, (string_length "fence.i"))) with
         | zsz3 -> ZSome zsz3
         | _ -> ZNone ()
       end
     | _ -> ZNone ()
   end)
 
-and z_s2834z3 (z_s2835z3 : (string)) : (string) zoption = sail_call (fun r ->
+and z_s2826z3 (z_s2827z3 : (string)) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
-    match z_s2835z3 with
-    | z_s2836z3 when (string_startswith (z_s2836z3, "fence.i")) ->
+    match z_s2827z3 with
+    | z_s2828z3 when (string_startswith (z_s2828z3, "fence")) ->
       begin
-        match (string_drop (z_s2836z3, (string_length "fence.i"))) with
-        | zsz3 -> ZSome zsz3
-        | _ -> ZNone ()
-      end
-    | _ -> ZNone ()
-  end)
-
-and z_s2822z3 (z_s2823z3 : (string)) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
-  begin
-    match z_s2823z3 with
-    | z_s2824z3 when (string_startswith (z_s2824z3, "fence")) ->
-      begin
-        match (string_drop (z_s2824z3, (string_length "fence"))) with
-        | z_s2825z3 ->
+        match (string_drop (z_s2828z3, (string_length "fence"))) with
+        | z_s2829z3 ->
           begin
-            match (zspc_matches_prefix z_s2825z3) with
-            | ZSome ((), z_s2826z3) ->
+            match (zspc_matches_prefix z_s2829z3) with
+            | ZSome ((), z_s2830z3) ->
               begin
-                match (string_drop (z_s2825z3, z_s2826z3)) with
-                | z_s2827z3 ->
+                match (string_drop (z_s2829z3, z_s2830z3)) with
+                | z_s2831z3 ->
                   begin
-                    match (zfence_bits_matches_prefix z_s2827z3) with
-                    | ZSome (zpred, z_s2828z3) ->
+                    match (zfence_bits_matches_prefix z_s2831z3) with
+                    | ZSome (zpred, z_s2832z3) ->
                       begin
-                        match (string_drop (z_s2827z3, z_s2828z3)) with
-                        | z_s2829z3 ->
+                        match (string_drop (z_s2831z3, z_s2832z3)) with
+                        | z_s2833z3 ->
                           begin
-                            match (zsep_matches_prefix z_s2829z3) with
-                            | ZSome ((), z_s2830z3) ->
+                            match (zsep_matches_prefix z_s2833z3) with
+                            | ZSome ((), z_s2834z3) ->
                               begin
-                                match (string_drop (z_s2829z3, z_s2830z3)) with
-                                | z_s2831z3 ->
+                                match (string_drop (z_s2833z3, z_s2834z3)) with
+                                | z_s2835z3 ->
                                   begin
-                                    match (zfence_bits_matches_prefix z_s2831z3) with
-                                    | ZSome (zsucc, z_s2832z3) ->
+                                    match (zfence_bits_matches_prefix z_s2835z3) with
+                                    | ZSome (zsucc, z_s2836z3) ->
                                       begin
-                                        match (string_drop (z_s2831z3, z_s2832z3)) with
+                                        match (string_drop (z_s2835z3, z_s2836z3)) with
                                         | zsz3 -> ZSome (zpred, zsucc, zsz3)
                                         | _ -> ZNone ()
                                       end
@@ -28016,57 +28074,57 @@ and z_s2822z3 (z_s2823z3 : (string)) : (((bit) list * (bit) list * string)) zopt
     | _ -> ZNone ()
   end)
 
-and z_s2803z3 (z_s2804z3 : (string)) : ((bool * (bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s2807z3 (z_s2808z3 : (string)) : ((bool * (bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
-    match z_s2804z3 with
-    | z_s2805z3 when (string_startswith (z_s2805z3, "rem")) ->
+    match z_s2808z3 with
+    | z_s2809z3 when (string_startswith (z_s2809z3, "rem")) ->
       begin
-        match (string_drop (z_s2805z3, (string_length "rem"))) with
-        | z_s2806z3 ->
+        match (string_drop (z_s2809z3, (string_length "rem"))) with
+        | z_s2810z3 ->
           begin
-            match (zmaybe_not_u_matches_prefix z_s2806z3) with
-            | ZSome (zs, z_s2807z3) ->
+            match (zmaybe_not_u_matches_prefix z_s2810z3) with
+            | ZSome (zs, z_s2811z3) ->
               begin
-                match (string_drop (z_s2806z3, z_s2807z3)) with
-                | z_s2808z3 when (string_startswith (z_s2808z3, "w")) ->
+                match (string_drop (z_s2810z3, z_s2811z3)) with
+                | z_s2812z3 when (string_startswith (z_s2812z3, "w")) ->
                   begin
-                    match (string_drop (z_s2808z3, (string_length "w"))) with
-                    | z_s2809z3 ->
+                    match (string_drop (z_s2812z3, (string_length "w"))) with
+                    | z_s2813z3 ->
                       begin
-                        match (zspc_matches_prefix z_s2809z3) with
-                        | ZSome ((), z_s2810z3) ->
+                        match (zspc_matches_prefix z_s2813z3) with
+                        | ZSome ((), z_s2814z3) ->
                           begin
-                            match (string_drop (z_s2809z3, z_s2810z3)) with
-                            | z_s2811z3 ->
+                            match (string_drop (z_s2813z3, z_s2814z3)) with
+                            | z_s2815z3 ->
                               begin
-                                match (zreg_name_matches_prefix z_s2811z3) with
-                                | ZSome (zrd, z_s2812z3) ->
+                                match (zreg_name_matches_prefix z_s2815z3) with
+                                | ZSome (zrd, z_s2816z3) ->
                                   begin
-                                    match (string_drop (z_s2811z3, z_s2812z3)) with
-                                    | z_s2813z3 ->
+                                    match (string_drop (z_s2815z3, z_s2816z3)) with
+                                    | z_s2817z3 ->
                                       begin
-                                        match (zsep_matches_prefix z_s2813z3) with
-                                        | ZSome ((), z_s2814z3) ->
+                                        match (zsep_matches_prefix z_s2817z3) with
+                                        | ZSome ((), z_s2818z3) ->
                                           begin
-                                            match (string_drop (z_s2813z3, z_s2814z3)) with
-                                            | z_s2815z3 ->
+                                            match (string_drop (z_s2817z3, z_s2818z3)) with
+                                            | z_s2819z3 ->
                                               begin
-                                                match (zreg_name_matches_prefix z_s2815z3) with
-                                                | ZSome (zrs1, z_s2816z3) ->
+                                                match (zreg_name_matches_prefix z_s2819z3) with
+                                                | ZSome (zrs1, z_s2820z3) ->
                                                   begin
-                                                    match (string_drop (z_s2815z3, z_s2816z3)) with
-                                                    | z_s2817z3 ->
+                                                    match (string_drop (z_s2819z3, z_s2820z3)) with
+                                                    | z_s2821z3 ->
                                                       begin
-                                                        match (zsep_matches_prefix z_s2817z3) with
-                                                        | ZSome ((), z_s2818z3) ->
+                                                        match (zsep_matches_prefix z_s2821z3) with
+                                                        | ZSome ((), z_s2822z3) ->
                                                           begin
-                                                            match (string_drop (z_s2817z3, z_s2818z3)) with
-                                                            | z_s2819z3 ->
+                                                            match (string_drop (z_s2821z3, z_s2822z3)) with
+                                                            | z_s2823z3 ->
                                                               begin
-                                                                match (zreg_name_matches_prefix z_s2819z3) with
-                                                                | ZSome (zrs2, z_s2820z3) ->
+                                                                match (zreg_name_matches_prefix z_s2823z3) with
+                                                                | ZSome (zrs2, z_s2824z3) ->
                                                                   begin
-                                                                    match (string_drop (z_s2819z3, z_s2820z3)) with
+                                                                    match (string_drop (z_s2823z3, z_s2824z3)) with
                                                                     | zsz3 ->
                                                                       ZSome (zs, zrd, zrs1, zrs2, zsz3)
                                                                     | _ ->
@@ -28105,57 +28163,57 @@ and z_s2803z3 (z_s2804z3 : (string)) : ((bool * (bit) list * (bit) list * (bit) 
     | _ -> ZNone ()
   end)
 
-and z_s2784z3 (z_s2785z3 : (string)) : ((bool * (bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s2788z3 (z_s2789z3 : (string)) : ((bool * (bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
-    match z_s2785z3 with
-    | z_s2786z3 when (string_startswith (z_s2786z3, "div")) ->
+    match z_s2789z3 with
+    | z_s2790z3 when (string_startswith (z_s2790z3, "div")) ->
       begin
-        match (string_drop (z_s2786z3, (string_length "div"))) with
-        | z_s2787z3 ->
+        match (string_drop (z_s2790z3, (string_length "div"))) with
+        | z_s2791z3 ->
           begin
-            match (zmaybe_not_u_matches_prefix z_s2787z3) with
-            | ZSome (zs, z_s2788z3) ->
+            match (zmaybe_not_u_matches_prefix z_s2791z3) with
+            | ZSome (zs, z_s2792z3) ->
               begin
-                match (string_drop (z_s2787z3, z_s2788z3)) with
-                | z_s2789z3 when (string_startswith (z_s2789z3, "w")) ->
+                match (string_drop (z_s2791z3, z_s2792z3)) with
+                | z_s2793z3 when (string_startswith (z_s2793z3, "w")) ->
                   begin
-                    match (string_drop (z_s2789z3, (string_length "w"))) with
-                    | z_s2790z3 ->
+                    match (string_drop (z_s2793z3, (string_length "w"))) with
+                    | z_s2794z3 ->
                       begin
-                        match (zspc_matches_prefix z_s2790z3) with
-                        | ZSome ((), z_s2791z3) ->
+                        match (zspc_matches_prefix z_s2794z3) with
+                        | ZSome ((), z_s2795z3) ->
                           begin
-                            match (string_drop (z_s2790z3, z_s2791z3)) with
-                            | z_s2792z3 ->
+                            match (string_drop (z_s2794z3, z_s2795z3)) with
+                            | z_s2796z3 ->
                               begin
-                                match (zreg_name_matches_prefix z_s2792z3) with
-                                | ZSome (zrd, z_s2793z3) ->
+                                match (zreg_name_matches_prefix z_s2796z3) with
+                                | ZSome (zrd, z_s2797z3) ->
                                   begin
-                                    match (string_drop (z_s2792z3, z_s2793z3)) with
-                                    | z_s2794z3 ->
+                                    match (string_drop (z_s2796z3, z_s2797z3)) with
+                                    | z_s2798z3 ->
                                       begin
-                                        match (zsep_matches_prefix z_s2794z3) with
-                                        | ZSome ((), z_s2795z3) ->
+                                        match (zsep_matches_prefix z_s2798z3) with
+                                        | ZSome ((), z_s2799z3) ->
                                           begin
-                                            match (string_drop (z_s2794z3, z_s2795z3)) with
-                                            | z_s2796z3 ->
+                                            match (string_drop (z_s2798z3, z_s2799z3)) with
+                                            | z_s2800z3 ->
                                               begin
-                                                match (zreg_name_matches_prefix z_s2796z3) with
-                                                | ZSome (zrs1, z_s2797z3) ->
+                                                match (zreg_name_matches_prefix z_s2800z3) with
+                                                | ZSome (zrs1, z_s2801z3) ->
                                                   begin
-                                                    match (string_drop (z_s2796z3, z_s2797z3)) with
-                                                    | z_s2798z3 ->
+                                                    match (string_drop (z_s2800z3, z_s2801z3)) with
+                                                    | z_s2802z3 ->
                                                       begin
-                                                        match (zsep_matches_prefix z_s2798z3) with
-                                                        | ZSome ((), z_s2799z3) ->
+                                                        match (zsep_matches_prefix z_s2802z3) with
+                                                        | ZSome ((), z_s2803z3) ->
                                                           begin
-                                                            match (string_drop (z_s2798z3, z_s2799z3)) with
-                                                            | z_s2800z3 ->
+                                                            match (string_drop (z_s2802z3, z_s2803z3)) with
+                                                            | z_s2804z3 ->
                                                               begin
-                                                                match (zreg_name_matches_prefix z_s2800z3) with
-                                                                | ZSome (zrs2, z_s2801z3) ->
+                                                                match (zreg_name_matches_prefix z_s2804z3) with
+                                                                | ZSome (zrs2, z_s2805z3) ->
                                                                   begin
-                                                                    match (string_drop (z_s2800z3, z_s2801z3)) with
+                                                                    match (string_drop (z_s2804z3, z_s2805z3)) with
                                                                     | zsz3 ->
                                                                       ZSome (zs, zrd, zrs1, zrs2, zsz3)
                                                                     | _ ->
@@ -28194,48 +28252,48 @@ and z_s2784z3 (z_s2785z3 : (string)) : ((bool * (bit) list * (bit) list * (bit) 
     | _ -> ZNone ()
   end)
 
-and z_s2768z3 (z_s2769z3 : (string)) : (((bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s2772z3 (z_s2773z3 : (string)) : (((bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
-    match z_s2769z3 with
-    | z_s2770z3 when (string_startswith (z_s2770z3, "mulw")) ->
+    match z_s2773z3 with
+    | z_s2774z3 when (string_startswith (z_s2774z3, "mulw")) ->
       begin
-        match (string_drop (z_s2770z3, (string_length "mulw"))) with
-        | z_s2771z3 ->
+        match (string_drop (z_s2774z3, (string_length "mulw"))) with
+        | z_s2775z3 ->
           begin
-            match (zspc_matches_prefix z_s2771z3) with
-            | ZSome ((), z_s2772z3) ->
+            match (zspc_matches_prefix z_s2775z3) with
+            | ZSome ((), z_s2776z3) ->
               begin
-                match (string_drop (z_s2771z3, z_s2772z3)) with
-                | z_s2773z3 ->
+                match (string_drop (z_s2775z3, z_s2776z3)) with
+                | z_s2777z3 ->
                   begin
-                    match (zreg_name_matches_prefix z_s2773z3) with
-                    | ZSome (zrd, z_s2774z3) ->
+                    match (zreg_name_matches_prefix z_s2777z3) with
+                    | ZSome (zrd, z_s2778z3) ->
                       begin
-                        match (string_drop (z_s2773z3, z_s2774z3)) with
-                        | z_s2775z3 ->
+                        match (string_drop (z_s2777z3, z_s2778z3)) with
+                        | z_s2779z3 ->
                           begin
-                            match (zsep_matches_prefix z_s2775z3) with
-                            | ZSome ((), z_s2776z3) ->
+                            match (zsep_matches_prefix z_s2779z3) with
+                            | ZSome ((), z_s2780z3) ->
                               begin
-                                match (string_drop (z_s2775z3, z_s2776z3)) with
-                                | z_s2777z3 ->
+                                match (string_drop (z_s2779z3, z_s2780z3)) with
+                                | z_s2781z3 ->
                                   begin
-                                    match (zreg_name_matches_prefix z_s2777z3) with
-                                    | ZSome (zrs1, z_s2778z3) ->
+                                    match (zreg_name_matches_prefix z_s2781z3) with
+                                    | ZSome (zrs1, z_s2782z3) ->
                                       begin
-                                        match (string_drop (z_s2777z3, z_s2778z3)) with
-                                        | z_s2779z3 ->
+                                        match (string_drop (z_s2781z3, z_s2782z3)) with
+                                        | z_s2783z3 ->
                                           begin
-                                            match (zsep_matches_prefix z_s2779z3) with
-                                            | ZSome ((), z_s2780z3) ->
+                                            match (zsep_matches_prefix z_s2783z3) with
+                                            | ZSome ((), z_s2784z3) ->
                                               begin
-                                                match (string_drop (z_s2779z3, z_s2780z3)) with
-                                                | z_s2781z3 ->
+                                                match (string_drop (z_s2783z3, z_s2784z3)) with
+                                                | z_s2785z3 ->
                                                   begin
-                                                    match (zreg_name_matches_prefix z_s2781z3) with
-                                                    | ZSome (zrs2, z_s2782z3) ->
+                                                    match (zreg_name_matches_prefix z_s2785z3) with
+                                                    | ZSome (zrs2, z_s2786z3) ->
                                                       begin
-                                                        match (string_drop (z_s2781z3, z_s2782z3)) with
+                                                        match (string_drop (z_s2785z3, z_s2786z3)) with
                                                         | zsz3 ->
                                                           ZSome (zrd, zrs1, zrs2, zsz3)
                                                         | _ -> ZNone ()
@@ -28267,54 +28325,54 @@ and z_s2768z3 (z_s2769z3 : (string)) : (((bit) list * (bit) list * (bit) list * 
     | _ -> ZNone ()
   end)
 
-and z_s2750z3 (z_s2751z3 : (string)) : ((bool * (bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s2754z3 (z_s2755z3 : (string)) : ((bool * (bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
-    match z_s2751z3 with
-    | z_s2752z3 when (string_startswith (z_s2752z3, "rem")) ->
+    match z_s2755z3 with
+    | z_s2756z3 when (string_startswith (z_s2756z3, "rem")) ->
       begin
-        match (string_drop (z_s2752z3, (string_length "rem"))) with
-        | z_s2753z3 ->
+        match (string_drop (z_s2756z3, (string_length "rem"))) with
+        | z_s2757z3 ->
           begin
-            match (zmaybe_not_u_matches_prefix z_s2753z3) with
-            | ZSome (zs, z_s2754z3) ->
+            match (zmaybe_not_u_matches_prefix z_s2757z3) with
+            | ZSome (zs, z_s2758z3) ->
               begin
-                match (string_drop (z_s2753z3, z_s2754z3)) with
-                | z_s2755z3 ->
+                match (string_drop (z_s2757z3, z_s2758z3)) with
+                | z_s2759z3 ->
                   begin
-                    match (zspc_matches_prefix z_s2755z3) with
-                    | ZSome ((), z_s2756z3) ->
+                    match (zspc_matches_prefix z_s2759z3) with
+                    | ZSome ((), z_s2760z3) ->
                       begin
-                        match (string_drop (z_s2755z3, z_s2756z3)) with
-                        | z_s2757z3 ->
+                        match (string_drop (z_s2759z3, z_s2760z3)) with
+                        | z_s2761z3 ->
                           begin
-                            match (zreg_name_matches_prefix z_s2757z3) with
-                            | ZSome (zrd, z_s2758z3) ->
+                            match (zreg_name_matches_prefix z_s2761z3) with
+                            | ZSome (zrd, z_s2762z3) ->
                               begin
-                                match (string_drop (z_s2757z3, z_s2758z3)) with
-                                | z_s2759z3 ->
+                                match (string_drop (z_s2761z3, z_s2762z3)) with
+                                | z_s2763z3 ->
                                   begin
-                                    match (zsep_matches_prefix z_s2759z3) with
-                                    | ZSome ((), z_s2760z3) ->
+                                    match (zsep_matches_prefix z_s2763z3) with
+                                    | ZSome ((), z_s2764z3) ->
                                       begin
-                                        match (string_drop (z_s2759z3, z_s2760z3)) with
-                                        | z_s2761z3 ->
+                                        match (string_drop (z_s2763z3, z_s2764z3)) with
+                                        | z_s2765z3 ->
                                           begin
-                                            match (zreg_name_matches_prefix z_s2761z3) with
-                                            | ZSome (zrs1, z_s2762z3) ->
+                                            match (zreg_name_matches_prefix z_s2765z3) with
+                                            | ZSome (zrs1, z_s2766z3) ->
                                               begin
-                                                match (string_drop (z_s2761z3, z_s2762z3)) with
-                                                | z_s2763z3 ->
+                                                match (string_drop (z_s2765z3, z_s2766z3)) with
+                                                | z_s2767z3 ->
                                                   begin
-                                                    match (zsep_matches_prefix z_s2763z3) with
-                                                    | ZSome ((), z_s2764z3) ->
+                                                    match (zsep_matches_prefix z_s2767z3) with
+                                                    | ZSome ((), z_s2768z3) ->
                                                       begin
-                                                        match (string_drop (z_s2763z3, z_s2764z3)) with
-                                                        | z_s2765z3 ->
+                                                        match (string_drop (z_s2767z3, z_s2768z3)) with
+                                                        | z_s2769z3 ->
                                                           begin
-                                                            match (zreg_name_matches_prefix z_s2765z3) with
-                                                            | ZSome (zrs2, z_s2766z3) ->
+                                                            match (zreg_name_matches_prefix z_s2769z3) with
+                                                            | ZSome (zrs2, z_s2770z3) ->
                                                               begin
-                                                                match (string_drop (z_s2765z3, z_s2766z3)) with
+                                                                match (string_drop (z_s2769z3, z_s2770z3)) with
                                                                 | zsz3 ->
                                                                   ZSome (zs, zrd, zrs1, zrs2, zsz3)
                                                                 | _ -> ZNone ()
@@ -28350,54 +28408,54 @@ and z_s2750z3 (z_s2751z3 : (string)) : ((bool * (bit) list * (bit) list * (bit) 
     | _ -> ZNone ()
   end)
 
-and z_s2732z3 (z_s2733z3 : (string)) : ((bool * (bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s2736z3 (z_s2737z3 : (string)) : ((bool * (bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
-    match z_s2733z3 with
-    | z_s2734z3 when (string_startswith (z_s2734z3, "div")) ->
+    match z_s2737z3 with
+    | z_s2738z3 when (string_startswith (z_s2738z3, "div")) ->
       begin
-        match (string_drop (z_s2734z3, (string_length "div"))) with
-        | z_s2735z3 ->
+        match (string_drop (z_s2738z3, (string_length "div"))) with
+        | z_s2739z3 ->
           begin
-            match (zmaybe_not_u_matches_prefix z_s2735z3) with
-            | ZSome (zs, z_s2736z3) ->
+            match (zmaybe_not_u_matches_prefix z_s2739z3) with
+            | ZSome (zs, z_s2740z3) ->
               begin
-                match (string_drop (z_s2735z3, z_s2736z3)) with
-                | z_s2737z3 ->
+                match (string_drop (z_s2739z3, z_s2740z3)) with
+                | z_s2741z3 ->
                   begin
-                    match (zspc_matches_prefix z_s2737z3) with
-                    | ZSome ((), z_s2738z3) ->
+                    match (zspc_matches_prefix z_s2741z3) with
+                    | ZSome ((), z_s2742z3) ->
                       begin
-                        match (string_drop (z_s2737z3, z_s2738z3)) with
-                        | z_s2739z3 ->
+                        match (string_drop (z_s2741z3, z_s2742z3)) with
+                        | z_s2743z3 ->
                           begin
-                            match (zreg_name_matches_prefix z_s2739z3) with
-                            | ZSome (zrd, z_s2740z3) ->
+                            match (zreg_name_matches_prefix z_s2743z3) with
+                            | ZSome (zrd, z_s2744z3) ->
                               begin
-                                match (string_drop (z_s2739z3, z_s2740z3)) with
-                                | z_s2741z3 ->
+                                match (string_drop (z_s2743z3, z_s2744z3)) with
+                                | z_s2745z3 ->
                                   begin
-                                    match (zsep_matches_prefix z_s2741z3) with
-                                    | ZSome ((), z_s2742z3) ->
+                                    match (zsep_matches_prefix z_s2745z3) with
+                                    | ZSome ((), z_s2746z3) ->
                                       begin
-                                        match (string_drop (z_s2741z3, z_s2742z3)) with
-                                        | z_s2743z3 ->
+                                        match (string_drop (z_s2745z3, z_s2746z3)) with
+                                        | z_s2747z3 ->
                                           begin
-                                            match (zreg_name_matches_prefix z_s2743z3) with
-                                            | ZSome (zrs1, z_s2744z3) ->
+                                            match (zreg_name_matches_prefix z_s2747z3) with
+                                            | ZSome (zrs1, z_s2748z3) ->
                                               begin
-                                                match (string_drop (z_s2743z3, z_s2744z3)) with
-                                                | z_s2745z3 ->
+                                                match (string_drop (z_s2747z3, z_s2748z3)) with
+                                                | z_s2749z3 ->
                                                   begin
-                                                    match (zsep_matches_prefix z_s2745z3) with
-                                                    | ZSome ((), z_s2746z3) ->
+                                                    match (zsep_matches_prefix z_s2749z3) with
+                                                    | ZSome ((), z_s2750z3) ->
                                                       begin
-                                                        match (string_drop (z_s2745z3, z_s2746z3)) with
-                                                        | z_s2747z3 ->
+                                                        match (string_drop (z_s2749z3, z_s2750z3)) with
+                                                        | z_s2751z3 ->
                                                           begin
-                                                            match (zreg_name_matches_prefix z_s2747z3) with
-                                                            | ZSome (zrs2, z_s2748z3) ->
+                                                            match (zreg_name_matches_prefix z_s2751z3) with
+                                                            | ZSome (zrs2, z_s2752z3) ->
                                                               begin
-                                                                match (string_drop (z_s2747z3, z_s2748z3)) with
+                                                                match (string_drop (z_s2751z3, z_s2752z3)) with
                                                                 | zsz3 ->
                                                                   ZSome (zs, zrd, zrs1, zrs2, zsz3)
                                                                 | _ -> ZNone ()
@@ -28433,51 +28491,51 @@ and z_s2732z3 (z_s2733z3 : (string)) : ((bool * (bit) list * (bit) list * (bit) 
     | _ -> ZNone ()
   end)
 
-and z_s2715z3 (z_s2716z3 : (string)) : ((bool * bool * bool * (bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s2719z3 (z_s2720z3 : (string)) : ((bool * bool * bool * (bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
-    match z_s2716z3 with
-    | z_s2717z3 ->
+    match z_s2720z3 with
+    | z_s2721z3 ->
       begin
-        match (zmul_mnemonic_matches_prefix z_s2717z3) with
-        | ZSome ((zhigh, zsigned1, zsigned2), z_s2718z3) ->
+        match (zmul_mnemonic_matches_prefix z_s2721z3) with
+        | ZSome ((zhigh, zsigned1, zsigned2), z_s2722z3) ->
           begin
-            match (string_drop (z_s2717z3, z_s2718z3)) with
-            | z_s2719z3 ->
+            match (string_drop (z_s2721z3, z_s2722z3)) with
+            | z_s2723z3 ->
               begin
-                match (zspc_matches_prefix z_s2719z3) with
-                | ZSome ((), z_s2720z3) ->
+                match (zspc_matches_prefix z_s2723z3) with
+                | ZSome ((), z_s2724z3) ->
                   begin
-                    match (string_drop (z_s2719z3, z_s2720z3)) with
-                    | z_s2721z3 ->
+                    match (string_drop (z_s2723z3, z_s2724z3)) with
+                    | z_s2725z3 ->
                       begin
-                        match (zreg_name_matches_prefix z_s2721z3) with
-                        | ZSome (zrd, z_s2722z3) ->
+                        match (zreg_name_matches_prefix z_s2725z3) with
+                        | ZSome (zrd, z_s2726z3) ->
                           begin
-                            match (string_drop (z_s2721z3, z_s2722z3)) with
-                            | z_s2723z3 ->
+                            match (string_drop (z_s2725z3, z_s2726z3)) with
+                            | z_s2727z3 ->
                               begin
-                                match (zsep_matches_prefix z_s2723z3) with
-                                | ZSome ((), z_s2724z3) ->
+                                match (zsep_matches_prefix z_s2727z3) with
+                                | ZSome ((), z_s2728z3) ->
                                   begin
-                                    match (string_drop (z_s2723z3, z_s2724z3)) with
-                                    | z_s2725z3 ->
+                                    match (string_drop (z_s2727z3, z_s2728z3)) with
+                                    | z_s2729z3 ->
                                       begin
-                                        match (zreg_name_matches_prefix z_s2725z3) with
-                                        | ZSome (zrs1, z_s2726z3) ->
+                                        match (zreg_name_matches_prefix z_s2729z3) with
+                                        | ZSome (zrs1, z_s2730z3) ->
                                           begin
-                                            match (string_drop (z_s2725z3, z_s2726z3)) with
-                                            | z_s2727z3 ->
+                                            match (string_drop (z_s2729z3, z_s2730z3)) with
+                                            | z_s2731z3 ->
                                               begin
-                                                match (zsep_matches_prefix z_s2727z3) with
-                                                | ZSome ((), z_s2728z3) ->
+                                                match (zsep_matches_prefix z_s2731z3) with
+                                                | ZSome ((), z_s2732z3) ->
                                                   begin
-                                                    match (string_drop (z_s2727z3, z_s2728z3)) with
-                                                    | z_s2729z3 ->
+                                                    match (string_drop (z_s2731z3, z_s2732z3)) with
+                                                    | z_s2733z3 ->
                                                       begin
-                                                        match (zreg_name_matches_prefix z_s2729z3) with
-                                                        | ZSome (zrs2, z_s2730z3) ->
+                                                        match (zreg_name_matches_prefix z_s2733z3) with
+                                                        | ZSome (zrs2, z_s2734z3) ->
                                                           begin
-                                                            match (string_drop (z_s2729z3, z_s2730z3)) with
+                                                            match (string_drop (z_s2733z3, z_s2734z3)) with
                                                             | zsz3 ->
                                                               ZSome (zhigh, zsigned1, zsigned2, zrd, zrs1, zrs2, zsz3)
                                                             | _ -> ZNone ()
@@ -28511,45 +28569,45 @@ and z_s2715z3 (z_s2716z3 : (string)) : ((bool * bool * bool * (bit) list * (bit)
     | _ -> ZNone ()
   end)
 
-and z_s2700z3 (z_s2701z3 : (string)) : ((zsopw * (bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s2704z3 (z_s2705z3 : (string)) : ((zsopw * (bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
-    match z_s2701z3 with
-    | z_s2702z3 ->
+    match z_s2705z3 with
+    | z_s2706z3 ->
       begin
-        match (zshiftiwop_mnemonic_matches_prefix z_s2702z3) with
-        | ZSome (zop, z_s2703z3) ->
+        match (zshiftiwop_mnemonic_matches_prefix z_s2706z3) with
+        | ZSome (zop, z_s2707z3) ->
           begin
-            match (string_drop (z_s2702z3, z_s2703z3)) with
-            | z_s2704z3 ->
+            match (string_drop (z_s2706z3, z_s2707z3)) with
+            | z_s2708z3 ->
               begin
-                match (zspc_matches_prefix z_s2704z3) with
-                | ZSome ((), z_s2705z3) ->
+                match (zspc_matches_prefix z_s2708z3) with
+                | ZSome ((), z_s2709z3) ->
                   begin
-                    match (string_drop (z_s2704z3, z_s2705z3)) with
-                    | z_s2706z3 ->
+                    match (string_drop (z_s2708z3, z_s2709z3)) with
+                    | z_s2710z3 ->
                       begin
-                        match (zreg_name_matches_prefix z_s2706z3) with
-                        | ZSome (zrd, z_s2707z3) ->
+                        match (zreg_name_matches_prefix z_s2710z3) with
+                        | ZSome (zrd, z_s2711z3) ->
                           begin
-                            match (string_drop (z_s2706z3, z_s2707z3)) with
-                            | z_s2708z3 ->
+                            match (string_drop (z_s2710z3, z_s2711z3)) with
+                            | z_s2712z3 ->
                               begin
-                                match (zsep_matches_prefix z_s2708z3) with
-                                | ZSome ((), z_s2709z3) ->
+                                match (zsep_matches_prefix z_s2712z3) with
+                                | ZSome ((), z_s2713z3) ->
                                   begin
-                                    match (string_drop (z_s2708z3, z_s2709z3)) with
-                                    | z_s2710z3 ->
+                                    match (string_drop (z_s2712z3, z_s2713z3)) with
+                                    | z_s2714z3 ->
                                       begin
-                                        match (zreg_name_matches_prefix z_s2710z3) with
-                                        | ZSome (zrs1, z_s2711z3) ->
+                                        match (zreg_name_matches_prefix z_s2714z3) with
+                                        | ZSome (zrs1, z_s2715z3) ->
                                           begin
-                                            match (string_drop (z_s2710z3, z_s2711z3)) with
-                                            | z_s2712z3 ->
+                                            match (string_drop (z_s2714z3, z_s2715z3)) with
+                                            | z_s2716z3 ->
                                               begin
-                                                match (hex_bits_5_matches_prefix z_s2712z3) with
-                                                | ZSome (zshamt, z_s2713z3) ->
+                                                match (hex_bits_5_matches_prefix z_s2716z3) with
+                                                | ZSome (zshamt, z_s2717z3) ->
                                                   begin
-                                                    match (string_drop (z_s2712z3, z_s2713z3)) with
+                                                    match (string_drop (z_s2716z3, z_s2717z3)) with
                                                     | zsz3 ->
                                                       ZSome (zop, zrd, zrs1, zshamt, zsz3)
                                                     | _ -> ZNone ()
@@ -28579,51 +28637,51 @@ and z_s2700z3 (z_s2701z3 : (string)) : ((zsopw * (bit) list * (bit) list * (bit)
     | _ -> ZNone ()
   end)
 
-and z_s2683z3 (z_s2684z3 : (string)) : ((zropw * (bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s2687z3 (z_s2688z3 : (string)) : ((zropw * (bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
-    match z_s2684z3 with
-    | z_s2685z3 ->
+    match z_s2688z3 with
+    | z_s2689z3 ->
       begin
-        match (zrtypew_mnemonic_matches_prefix z_s2685z3) with
-        | ZSome (zop, z_s2686z3) ->
+        match (zrtypew_mnemonic_matches_prefix z_s2689z3) with
+        | ZSome (zop, z_s2690z3) ->
           begin
-            match (string_drop (z_s2685z3, z_s2686z3)) with
-            | z_s2687z3 ->
+            match (string_drop (z_s2689z3, z_s2690z3)) with
+            | z_s2691z3 ->
               begin
-                match (zspc_matches_prefix z_s2687z3) with
-                | ZSome ((), z_s2688z3) ->
+                match (zspc_matches_prefix z_s2691z3) with
+                | ZSome ((), z_s2692z3) ->
                   begin
-                    match (string_drop (z_s2687z3, z_s2688z3)) with
-                    | z_s2689z3 ->
+                    match (string_drop (z_s2691z3, z_s2692z3)) with
+                    | z_s2693z3 ->
                       begin
-                        match (zreg_name_matches_prefix z_s2689z3) with
-                        | ZSome (zrd, z_s2690z3) ->
+                        match (zreg_name_matches_prefix z_s2693z3) with
+                        | ZSome (zrd, z_s2694z3) ->
                           begin
-                            match (string_drop (z_s2689z3, z_s2690z3)) with
-                            | z_s2691z3 ->
+                            match (string_drop (z_s2693z3, z_s2694z3)) with
+                            | z_s2695z3 ->
                               begin
-                                match (zsep_matches_prefix z_s2691z3) with
-                                | ZSome ((), z_s2692z3) ->
+                                match (zsep_matches_prefix z_s2695z3) with
+                                | ZSome ((), z_s2696z3) ->
                                   begin
-                                    match (string_drop (z_s2691z3, z_s2692z3)) with
-                                    | z_s2693z3 ->
+                                    match (string_drop (z_s2695z3, z_s2696z3)) with
+                                    | z_s2697z3 ->
                                       begin
-                                        match (zreg_name_matches_prefix z_s2693z3) with
-                                        | ZSome (zrs1, z_s2694z3) ->
+                                        match (zreg_name_matches_prefix z_s2697z3) with
+                                        | ZSome (zrs1, z_s2698z3) ->
                                           begin
-                                            match (string_drop (z_s2693z3, z_s2694z3)) with
-                                            | z_s2695z3 ->
+                                            match (string_drop (z_s2697z3, z_s2698z3)) with
+                                            | z_s2699z3 ->
                                               begin
-                                                match (zsep_matches_prefix z_s2695z3) with
-                                                | ZSome ((), z_s2696z3) ->
+                                                match (zsep_matches_prefix z_s2699z3) with
+                                                | ZSome ((), z_s2700z3) ->
                                                   begin
-                                                    match (string_drop (z_s2695z3, z_s2696z3)) with
-                                                    | z_s2697z3 ->
+                                                    match (string_drop (z_s2699z3, z_s2700z3)) with
+                                                    | z_s2701z3 ->
                                                       begin
-                                                        match (zreg_name_matches_prefix z_s2697z3) with
-                                                        | ZSome (zrs2, z_s2698z3) ->
+                                                        match (zreg_name_matches_prefix z_s2701z3) with
+                                                        | ZSome (zrs2, z_s2702z3) ->
                                                           begin
-                                                            match (string_drop (z_s2697z3, z_s2698z3)) with
+                                                            match (string_drop (z_s2701z3, z_s2702z3)) with
                                                             | zsz3 ->
                                                               ZSome (zop, zrd, zrs1, zrs2, zsz3)
                                                             | _ -> ZNone ()
@@ -28657,51 +28715,51 @@ and z_s2683z3 (z_s2684z3 : (string)) : ((zropw * (bit) list * (bit) list * (bit)
     | _ -> ZNone ()
   end)
 
-and z_s2666z3 (z_s2667z3 : (string)) : ((zsop * (bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s2670z3 (z_s2671z3 : (string)) : ((zsop * (bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
-    match z_s2667z3 with
-    | z_s2668z3 ->
+    match z_s2671z3 with
+    | z_s2672z3 ->
       begin
-        match (zshiftw_mnemonic_matches_prefix z_s2668z3) with
-        | ZSome (zop, z_s2669z3) ->
+        match (zshiftw_mnemonic_matches_prefix z_s2672z3) with
+        | ZSome (zop, z_s2673z3) ->
           begin
-            match (string_drop (z_s2668z3, z_s2669z3)) with
-            | z_s2670z3 ->
+            match (string_drop (z_s2672z3, z_s2673z3)) with
+            | z_s2674z3 ->
               begin
-                match (zspc_matches_prefix z_s2670z3) with
-                | ZSome ((), z_s2671z3) ->
+                match (zspc_matches_prefix z_s2674z3) with
+                | ZSome ((), z_s2675z3) ->
                   begin
-                    match (string_drop (z_s2670z3, z_s2671z3)) with
-                    | z_s2672z3 ->
+                    match (string_drop (z_s2674z3, z_s2675z3)) with
+                    | z_s2676z3 ->
                       begin
-                        match (zreg_name_matches_prefix z_s2672z3) with
-                        | ZSome (zrd, z_s2673z3) ->
+                        match (zreg_name_matches_prefix z_s2676z3) with
+                        | ZSome (zrd, z_s2677z3) ->
                           begin
-                            match (string_drop (z_s2672z3, z_s2673z3)) with
-                            | z_s2674z3 ->
+                            match (string_drop (z_s2676z3, z_s2677z3)) with
+                            | z_s2678z3 ->
                               begin
-                                match (zsep_matches_prefix z_s2674z3) with
-                                | ZSome ((), z_s2675z3) ->
+                                match (zsep_matches_prefix z_s2678z3) with
+                                | ZSome ((), z_s2679z3) ->
                                   begin
-                                    match (string_drop (z_s2674z3, z_s2675z3)) with
-                                    | z_s2676z3 ->
+                                    match (string_drop (z_s2678z3, z_s2679z3)) with
+                                    | z_s2680z3 ->
                                       begin
-                                        match (zreg_name_matches_prefix z_s2676z3) with
-                                        | ZSome (zrs1, z_s2677z3) ->
+                                        match (zreg_name_matches_prefix z_s2680z3) with
+                                        | ZSome (zrs1, z_s2681z3) ->
                                           begin
-                                            match (string_drop (z_s2676z3, z_s2677z3)) with
-                                            | z_s2678z3 ->
+                                            match (string_drop (z_s2680z3, z_s2681z3)) with
+                                            | z_s2682z3 ->
                                               begin
-                                                match (zsep_matches_prefix z_s2678z3) with
-                                                | ZSome ((), z_s2679z3) ->
+                                                match (zsep_matches_prefix z_s2682z3) with
+                                                | ZSome ((), z_s2683z3) ->
                                                   begin
-                                                    match (string_drop (z_s2678z3, z_s2679z3)) with
-                                                    | z_s2680z3 ->
+                                                    match (string_drop (z_s2682z3, z_s2683z3)) with
+                                                    | z_s2684z3 ->
                                                       begin
-                                                        match (hex_bits_5_matches_prefix z_s2680z3) with
-                                                        | ZSome (zshamt, z_s2681z3) ->
+                                                        match (hex_bits_5_matches_prefix z_s2684z3) with
+                                                        | ZSome (zshamt, z_s2685z3) ->
                                                           begin
-                                                            match (string_drop (z_s2680z3, z_s2681z3)) with
+                                                            match (string_drop (z_s2684z3, z_s2685z3)) with
                                                             | zsz3 ->
                                                               ZSome (zop, zrd, zrs1, zshamt, zsz3)
                                                             | _ -> ZNone ()
@@ -28735,48 +28793,48 @@ and z_s2666z3 (z_s2667z3 : (string)) : ((zsop * (bit) list * (bit) list * (bit) 
     | _ -> ZNone ()
   end)
 
-and z_s2650z3 (z_s2651z3 : (string)) : (((bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s2654z3 (z_s2655z3 : (string)) : (((bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
-    match z_s2651z3 with
-    | z_s2652z3 when (string_startswith (z_s2652z3, "addiw")) ->
+    match z_s2655z3 with
+    | z_s2656z3 when (string_startswith (z_s2656z3, "addiw")) ->
       begin
-        match (string_drop (z_s2652z3, (string_length "addiw"))) with
-        | z_s2653z3 ->
+        match (string_drop (z_s2656z3, (string_length "addiw"))) with
+        | z_s2657z3 ->
           begin
-            match (zspc_matches_prefix z_s2653z3) with
-            | ZSome ((), z_s2654z3) ->
+            match (zspc_matches_prefix z_s2657z3) with
+            | ZSome ((), z_s2658z3) ->
               begin
-                match (string_drop (z_s2653z3, z_s2654z3)) with
-                | z_s2655z3 ->
+                match (string_drop (z_s2657z3, z_s2658z3)) with
+                | z_s2659z3 ->
                   begin
-                    match (zreg_name_matches_prefix z_s2655z3) with
-                    | ZSome (zrd, z_s2656z3) ->
+                    match (zreg_name_matches_prefix z_s2659z3) with
+                    | ZSome (zrd, z_s2660z3) ->
                       begin
-                        match (string_drop (z_s2655z3, z_s2656z3)) with
-                        | z_s2657z3 ->
+                        match (string_drop (z_s2659z3, z_s2660z3)) with
+                        | z_s2661z3 ->
                           begin
-                            match (zsep_matches_prefix z_s2657z3) with
-                            | ZSome ((), z_s2658z3) ->
+                            match (zsep_matches_prefix z_s2661z3) with
+                            | ZSome ((), z_s2662z3) ->
                               begin
-                                match (string_drop (z_s2657z3, z_s2658z3)) with
-                                | z_s2659z3 ->
+                                match (string_drop (z_s2661z3, z_s2662z3)) with
+                                | z_s2663z3 ->
                                   begin
-                                    match (zreg_name_matches_prefix z_s2659z3) with
-                                    | ZSome (zrs1, z_s2660z3) ->
+                                    match (zreg_name_matches_prefix z_s2663z3) with
+                                    | ZSome (zrs1, z_s2664z3) ->
                                       begin
-                                        match (string_drop (z_s2659z3, z_s2660z3)) with
-                                        | z_s2661z3 ->
+                                        match (string_drop (z_s2663z3, z_s2664z3)) with
+                                        | z_s2665z3 ->
                                           begin
-                                            match (zsep_matches_prefix z_s2661z3) with
-                                            | ZSome ((), z_s2662z3) ->
+                                            match (zsep_matches_prefix z_s2665z3) with
+                                            | ZSome ((), z_s2666z3) ->
                                               begin
-                                                match (string_drop (z_s2661z3, z_s2662z3)) with
-                                                | z_s2663z3 ->
+                                                match (string_drop (z_s2665z3, z_s2666z3)) with
+                                                | z_s2667z3 ->
                                                   begin
-                                                    match (hex_bits_12_matches_prefix z_s2663z3) with
-                                                    | ZSome (zimm, z_s2664z3) ->
+                                                    match (hex_bits_12_matches_prefix z_s2667z3) with
+                                                    | ZSome (zimm, z_s2668z3) ->
                                                       begin
-                                                        match (string_drop (z_s2663z3, z_s2664z3)) with
+                                                        match (string_drop (z_s2667z3, z_s2668z3)) with
                                                         | zsz3 ->
                                                           ZSome (zrd, zrs1, zimm, zsz3)
                                                         | _ -> ZNone ()
@@ -28808,66 +28866,66 @@ and z_s2650z3 (z_s2651z3 : (string)) : (((bit) list * (bit) list * (bit) list * 
     | _ -> ZNone ()
   end)
 
-and z_s2628z3 (z_s2629z3 : (string)) : ((zword_width * bool * bool * (bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s2632z3 (z_s2633z3 : (string)) : ((zword_width * bool * bool * (bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
-    match z_s2629z3 with
-    | z_s2630z3 when (string_startswith (z_s2630z3, "s")) ->
+    match z_s2633z3 with
+    | z_s2634z3 when (string_startswith (z_s2634z3, "s")) ->
       begin
-        match (string_drop (z_s2630z3, (string_length "s"))) with
-        | z_s2631z3 ->
+        match (string_drop (z_s2634z3, (string_length "s"))) with
+        | z_s2635z3 ->
           begin
-            match (zsizze_mnemonic_matches_prefix z_s2631z3) with
-            | ZSome (zsizze, z_s2632z3) ->
+            match (zsizze_mnemonic_matches_prefix z_s2635z3) with
+            | ZSome (zsizze, z_s2636z3) ->
               begin
-                match (string_drop (z_s2631z3, z_s2632z3)) with
-                | z_s2633z3 ->
+                match (string_drop (z_s2635z3, z_s2636z3)) with
+                | z_s2637z3 ->
                   begin
-                    match (zmaybe_aq_matches_prefix z_s2633z3) with
-                    | ZSome (zaq, z_s2634z3) ->
+                    match (zmaybe_aq_matches_prefix z_s2637z3) with
+                    | ZSome (zaq, z_s2638z3) ->
                       begin
-                        match (string_drop (z_s2633z3, z_s2634z3)) with
-                        | z_s2635z3 ->
+                        match (string_drop (z_s2637z3, z_s2638z3)) with
+                        | z_s2639z3 ->
                           begin
-                            match (zmaybe_rl_matches_prefix z_s2635z3) with
-                            | ZSome (zrl, z_s2636z3) ->
+                            match (zmaybe_rl_matches_prefix z_s2639z3) with
+                            | ZSome (zrl, z_s2640z3) ->
                               begin
-                                match (string_drop (z_s2635z3, z_s2636z3)) with
-                                | z_s2637z3 ->
+                                match (string_drop (z_s2639z3, z_s2640z3)) with
+                                | z_s2641z3 ->
                                   begin
-                                    match (zspc_matches_prefix z_s2637z3) with
-                                    | ZSome ((), z_s2638z3) ->
+                                    match (zspc_matches_prefix z_s2641z3) with
+                                    | ZSome ((), z_s2642z3) ->
                                       begin
-                                        match (string_drop (z_s2637z3, z_s2638z3)) with
-                                        | z_s2639z3 ->
+                                        match (string_drop (z_s2641z3, z_s2642z3)) with
+                                        | z_s2643z3 ->
                                           begin
-                                            match (zreg_name_matches_prefix z_s2639z3) with
-                                            | ZSome (zrd, z_s2640z3) ->
+                                            match (zreg_name_matches_prefix z_s2643z3) with
+                                            | ZSome (zrd, z_s2644z3) ->
                                               begin
-                                                match (string_drop (z_s2639z3, z_s2640z3)) with
-                                                | z_s2641z3 ->
+                                                match (string_drop (z_s2643z3, z_s2644z3)) with
+                                                | z_s2645z3 ->
                                                   begin
-                                                    match (zsep_matches_prefix z_s2641z3) with
-                                                    | ZSome ((), z_s2642z3) ->
+                                                    match (zsep_matches_prefix z_s2645z3) with
+                                                    | ZSome ((), z_s2646z3) ->
                                                       begin
-                                                        match (string_drop (z_s2641z3, z_s2642z3)) with
-                                                        | z_s2643z3 ->
+                                                        match (string_drop (z_s2645z3, z_s2646z3)) with
+                                                        | z_s2647z3 ->
                                                           begin
-                                                            match (zreg_name_matches_prefix z_s2643z3) with
-                                                            | ZSome (zrs1, z_s2644z3) ->
+                                                            match (zreg_name_matches_prefix z_s2647z3) with
+                                                            | ZSome (zrs1, z_s2648z3) ->
                                                               begin
-                                                                match (string_drop (z_s2643z3, z_s2644z3)) with
-                                                                | z_s2645z3 ->
+                                                                match (string_drop (z_s2647z3, z_s2648z3)) with
+                                                                | z_s2649z3 ->
                                                                   begin
-                                                                    match (zsep_matches_prefix z_s2645z3) with
-                                                                    | ZSome ((), z_s2646z3) ->
+                                                                    match (zsep_matches_prefix z_s2649z3) with
+                                                                    | ZSome ((), z_s2650z3) ->
                                                                       begin
-                                                                        match (string_drop (z_s2645z3, z_s2646z3)) with
-                                                                        | z_s2647z3 ->
+                                                                        match (string_drop (z_s2649z3, z_s2650z3)) with
+                                                                        | z_s2651z3 ->
                                                                           begin
-                                                                            match (hex_bits_12_matches_prefix z_s2647z3) with
-                                                                            | ZSome (zimm, z_s2648z3) ->
+                                                                            match (hex_bits_12_matches_prefix z_s2651z3) with
+                                                                            | ZSome (zimm, z_s2652z3) ->
                                                                               begin
-                                                                                match (string_drop (z_s2647z3, z_s2648z3)) with
+                                                                                match (string_drop (z_s2651z3, z_s2652z3)) with
                                                                                 | zsz3 ->
                                                                                   ZSome (zsizze, zaq, zrl, zrd, zrs1, zimm, zsz3)
                                                                                 | _ ->
@@ -28915,72 +28973,72 @@ and z_s2628z3 (z_s2629z3 : (string)) : ((zword_width * bool * bool * (bit) list 
     | _ -> ZNone ()
   end)
 
-and z_s2604z3 (z_s2605z3 : (string)) : ((zword_width * bool * bool * bool * (bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s2608z3 (z_s2609z3 : (string)) : ((zword_width * bool * bool * bool * (bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
-    match z_s2605z3 with
-    | z_s2606z3 when (string_startswith (z_s2606z3, "l")) ->
+    match z_s2609z3 with
+    | z_s2610z3 when (string_startswith (z_s2610z3, "l")) ->
       begin
-        match (string_drop (z_s2606z3, (string_length "l"))) with
-        | z_s2607z3 ->
+        match (string_drop (z_s2610z3, (string_length "l"))) with
+        | z_s2611z3 ->
           begin
-            match (zsizze_mnemonic_matches_prefix z_s2607z3) with
-            | ZSome (zsizze, z_s2608z3) ->
+            match (zsizze_mnemonic_matches_prefix z_s2611z3) with
+            | ZSome (zsizze, z_s2612z3) ->
               begin
-                match (string_drop (z_s2607z3, z_s2608z3)) with
-                | z_s2609z3 ->
+                match (string_drop (z_s2611z3, z_s2612z3)) with
+                | z_s2613z3 ->
                   begin
-                    match (zmaybe_u_matches_prefix z_s2609z3) with
-                    | ZSome (zis_unsigned, z_s2610z3) ->
+                    match (zmaybe_u_matches_prefix z_s2613z3) with
+                    | ZSome (zis_unsigned, z_s2614z3) ->
                       begin
-                        match (string_drop (z_s2609z3, z_s2610z3)) with
-                        | z_s2611z3 ->
+                        match (string_drop (z_s2613z3, z_s2614z3)) with
+                        | z_s2615z3 ->
                           begin
-                            match (zmaybe_aq_matches_prefix z_s2611z3) with
-                            | ZSome (zaq, z_s2612z3) ->
+                            match (zmaybe_aq_matches_prefix z_s2615z3) with
+                            | ZSome (zaq, z_s2616z3) ->
                               begin
-                                match (string_drop (z_s2611z3, z_s2612z3)) with
-                                | z_s2613z3 ->
+                                match (string_drop (z_s2615z3, z_s2616z3)) with
+                                | z_s2617z3 ->
                                   begin
-                                    match (zmaybe_rl_matches_prefix z_s2613z3) with
-                                    | ZSome (zrl, z_s2614z3) ->
+                                    match (zmaybe_rl_matches_prefix z_s2617z3) with
+                                    | ZSome (zrl, z_s2618z3) ->
                                       begin
-                                        match (string_drop (z_s2613z3, z_s2614z3)) with
-                                        | z_s2615z3 ->
+                                        match (string_drop (z_s2617z3, z_s2618z3)) with
+                                        | z_s2619z3 ->
                                           begin
-                                            match (zspc_matches_prefix z_s2615z3) with
-                                            | ZSome ((), z_s2616z3) ->
+                                            match (zspc_matches_prefix z_s2619z3) with
+                                            | ZSome ((), z_s2620z3) ->
                                               begin
-                                                match (string_drop (z_s2615z3, z_s2616z3)) with
-                                                | z_s2617z3 ->
+                                                match (string_drop (z_s2619z3, z_s2620z3)) with
+                                                | z_s2621z3 ->
                                                   begin
-                                                    match (zreg_name_matches_prefix z_s2617z3) with
-                                                    | ZSome (zrd, z_s2618z3) ->
+                                                    match (zreg_name_matches_prefix z_s2621z3) with
+                                                    | ZSome (zrd, z_s2622z3) ->
                                                       begin
-                                                        match (string_drop (z_s2617z3, z_s2618z3)) with
-                                                        | z_s2619z3 ->
+                                                        match (string_drop (z_s2621z3, z_s2622z3)) with
+                                                        | z_s2623z3 ->
                                                           begin
-                                                            match (zsep_matches_prefix z_s2619z3) with
-                                                            | ZSome ((), z_s2620z3) ->
+                                                            match (zsep_matches_prefix z_s2623z3) with
+                                                            | ZSome ((), z_s2624z3) ->
                                                               begin
-                                                                match (string_drop (z_s2619z3, z_s2620z3)) with
-                                                                | z_s2621z3 ->
+                                                                match (string_drop (z_s2623z3, z_s2624z3)) with
+                                                                | z_s2625z3 ->
                                                                   begin
-                                                                    match (zreg_name_matches_prefix z_s2621z3) with
-                                                                    | ZSome (zrs1, z_s2622z3) ->
+                                                                    match (zreg_name_matches_prefix z_s2625z3) with
+                                                                    | ZSome (zrs1, z_s2626z3) ->
                                                                       begin
-                                                                        match (string_drop (z_s2621z3, z_s2622z3)) with
-                                                                        | z_s2623z3 ->
+                                                                        match (string_drop (z_s2625z3, z_s2626z3)) with
+                                                                        | z_s2627z3 ->
                                                                           begin
-                                                                            match (zsep_matches_prefix z_s2623z3) with
-                                                                            | ZSome ((), z_s2624z3) ->
+                                                                            match (zsep_matches_prefix z_s2627z3) with
+                                                                            | ZSome ((), z_s2628z3) ->
                                                                               begin
-                                                                                match (string_drop (z_s2623z3, z_s2624z3)) with
-                                                                                | z_s2625z3 ->
+                                                                                match (string_drop (z_s2627z3, z_s2628z3)) with
+                                                                                | z_s2629z3 ->
                                                                                   begin
-                                                                                    match (hex_bits_12_matches_prefix z_s2625z3) with
-                                                                                    | ZSome (zimm, z_s2626z3) ->
+                                                                                    match (hex_bits_12_matches_prefix z_s2629z3) with
+                                                                                    | ZSome (zimm, z_s2630z3) ->
                                                                                       begin
-                                                                                        match (string_drop (z_s2625z3, z_s2626z3)) with
+                                                                                        match (string_drop (z_s2629z3, z_s2630z3)) with
                                                                                         | zsz3 ->
                                                                                           ZSome (zsizze, zis_unsigned, zaq, zrl, zrd, zrs1, zimm, zsz3)
                                                                                         | _ ->
@@ -29034,51 +29092,51 @@ and z_s2604z3 (z_s2605z3 : (string)) : ((zword_width * bool * bool * bool * (bit
     | _ -> ZNone ()
   end)
 
-and z_s2587z3 (z_s2588z3 : (string)) : ((zrop * (bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s2591z3 (z_s2592z3 : (string)) : ((zrop * (bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
-    match z_s2588z3 with
-    | z_s2589z3 ->
+    match z_s2592z3 with
+    | z_s2593z3 ->
       begin
-        match (zrtype_mnemonic_matches_prefix z_s2589z3) with
-        | ZSome (zop, z_s2590z3) ->
+        match (zrtype_mnemonic_matches_prefix z_s2593z3) with
+        | ZSome (zop, z_s2594z3) ->
           begin
-            match (string_drop (z_s2589z3, z_s2590z3)) with
-            | z_s2591z3 ->
+            match (string_drop (z_s2593z3, z_s2594z3)) with
+            | z_s2595z3 ->
               begin
-                match (zspc_matches_prefix z_s2591z3) with
-                | ZSome ((), z_s2592z3) ->
+                match (zspc_matches_prefix z_s2595z3) with
+                | ZSome ((), z_s2596z3) ->
                   begin
-                    match (string_drop (z_s2591z3, z_s2592z3)) with
-                    | z_s2593z3 ->
+                    match (string_drop (z_s2595z3, z_s2596z3)) with
+                    | z_s2597z3 ->
                       begin
-                        match (zreg_name_matches_prefix z_s2593z3) with
-                        | ZSome (zrd, z_s2594z3) ->
+                        match (zreg_name_matches_prefix z_s2597z3) with
+                        | ZSome (zrd, z_s2598z3) ->
                           begin
-                            match (string_drop (z_s2593z3, z_s2594z3)) with
-                            | z_s2595z3 ->
+                            match (string_drop (z_s2597z3, z_s2598z3)) with
+                            | z_s2599z3 ->
                               begin
-                                match (zsep_matches_prefix z_s2595z3) with
-                                | ZSome ((), z_s2596z3) ->
+                                match (zsep_matches_prefix z_s2599z3) with
+                                | ZSome ((), z_s2600z3) ->
                                   begin
-                                    match (string_drop (z_s2595z3, z_s2596z3)) with
-                                    | z_s2597z3 ->
+                                    match (string_drop (z_s2599z3, z_s2600z3)) with
+                                    | z_s2601z3 ->
                                       begin
-                                        match (zreg_name_matches_prefix z_s2597z3) with
-                                        | ZSome (zrs1, z_s2598z3) ->
+                                        match (zreg_name_matches_prefix z_s2601z3) with
+                                        | ZSome (zrs1, z_s2602z3) ->
                                           begin
-                                            match (string_drop (z_s2597z3, z_s2598z3)) with
-                                            | z_s2599z3 ->
+                                            match (string_drop (z_s2601z3, z_s2602z3)) with
+                                            | z_s2603z3 ->
                                               begin
-                                                match (zsep_matches_prefix z_s2599z3) with
-                                                | ZSome ((), z_s2600z3) ->
+                                                match (zsep_matches_prefix z_s2603z3) with
+                                                | ZSome ((), z_s2604z3) ->
                                                   begin
-                                                    match (string_drop (z_s2599z3, z_s2600z3)) with
-                                                    | z_s2601z3 ->
+                                                    match (string_drop (z_s2603z3, z_s2604z3)) with
+                                                    | z_s2605z3 ->
                                                       begin
-                                                        match (zreg_name_matches_prefix z_s2601z3) with
-                                                        | ZSome (zrs2, z_s2602z3) ->
+                                                        match (zreg_name_matches_prefix z_s2605z3) with
+                                                        | ZSome (zrs2, z_s2606z3) ->
                                                           begin
-                                                            match (string_drop (z_s2601z3, z_s2602z3)) with
+                                                            match (string_drop (z_s2605z3, z_s2606z3)) with
                                                             | zsz3 ->
                                                               ZSome (zop, zrd, zrs1, zrs2, zsz3)
                                                             | _ -> ZNone ()
@@ -29112,45 +29170,45 @@ and z_s2587z3 (z_s2588z3 : (string)) : ((zrop * (bit) list * (bit) list * (bit) 
     | _ -> ZNone ()
   end)
 
-and z_s2572z3 (z_s2573z3 : (string)) : ((zsop * (bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s2576z3 (z_s2577z3 : (string)) : ((zsop * (bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
-    match z_s2573z3 with
-    | z_s2574z3 ->
+    match z_s2577z3 with
+    | z_s2578z3 ->
       begin
-        match (zshiftiop_mnemonic_matches_prefix z_s2574z3) with
-        | ZSome (zop, z_s2575z3) ->
+        match (zshiftiop_mnemonic_matches_prefix z_s2578z3) with
+        | ZSome (zop, z_s2579z3) ->
           begin
-            match (string_drop (z_s2574z3, z_s2575z3)) with
-            | z_s2576z3 ->
+            match (string_drop (z_s2578z3, z_s2579z3)) with
+            | z_s2580z3 ->
               begin
-                match (zspc_matches_prefix z_s2576z3) with
-                | ZSome ((), z_s2577z3) ->
+                match (zspc_matches_prefix z_s2580z3) with
+                | ZSome ((), z_s2581z3) ->
                   begin
-                    match (string_drop (z_s2576z3, z_s2577z3)) with
-                    | z_s2578z3 ->
+                    match (string_drop (z_s2580z3, z_s2581z3)) with
+                    | z_s2582z3 ->
                       begin
-                        match (zreg_name_matches_prefix z_s2578z3) with
-                        | ZSome (zrd, z_s2579z3) ->
+                        match (zreg_name_matches_prefix z_s2582z3) with
+                        | ZSome (zrd, z_s2583z3) ->
                           begin
-                            match (string_drop (z_s2578z3, z_s2579z3)) with
-                            | z_s2580z3 ->
+                            match (string_drop (z_s2582z3, z_s2583z3)) with
+                            | z_s2584z3 ->
                               begin
-                                match (zsep_matches_prefix z_s2580z3) with
-                                | ZSome ((), z_s2581z3) ->
+                                match (zsep_matches_prefix z_s2584z3) with
+                                | ZSome ((), z_s2585z3) ->
                                   begin
-                                    match (string_drop (z_s2580z3, z_s2581z3)) with
-                                    | z_s2582z3 ->
+                                    match (string_drop (z_s2584z3, z_s2585z3)) with
+                                    | z_s2586z3 ->
                                       begin
-                                        match (zreg_name_matches_prefix z_s2582z3) with
-                                        | ZSome (zrs1, z_s2583z3) ->
+                                        match (zreg_name_matches_prefix z_s2586z3) with
+                                        | ZSome (zrs1, z_s2587z3) ->
                                           begin
-                                            match (string_drop (z_s2582z3, z_s2583z3)) with
-                                            | z_s2584z3 ->
+                                            match (string_drop (z_s2586z3, z_s2587z3)) with
+                                            | z_s2588z3 ->
                                               begin
-                                                match (hex_bits_6_matches_prefix z_s2584z3) with
-                                                | ZSome (zshamt, z_s2585z3) ->
+                                                match (hex_bits_6_matches_prefix z_s2588z3) with
+                                                | ZSome (zshamt, z_s2589z3) ->
                                                   begin
-                                                    match (string_drop (z_s2584z3, z_s2585z3)) with
+                                                    match (string_drop (z_s2588z3, z_s2589z3)) with
                                                     | zsz3 ->
                                                       ZSome (zop, zrd, zrs1, zshamt, zsz3)
                                                     | _ -> ZNone ()
@@ -29180,51 +29238,51 @@ and z_s2572z3 (z_s2573z3 : (string)) : ((zsop * (bit) list * (bit) list * (bit) 
     | _ -> ZNone ()
   end)
 
-and z_s2555z3 (z_s2556z3 : (string)) : ((ziop * (bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s2559z3 (z_s2560z3 : (string)) : ((ziop * (bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
-    match z_s2556z3 with
-    | z_s2557z3 ->
+    match z_s2560z3 with
+    | z_s2561z3 ->
       begin
-        match (zitype_mnemonic_matches_prefix z_s2557z3) with
-        | ZSome (zop, z_s2558z3) ->
+        match (zitype_mnemonic_matches_prefix z_s2561z3) with
+        | ZSome (zop, z_s2562z3) ->
           begin
-            match (string_drop (z_s2557z3, z_s2558z3)) with
-            | z_s2559z3 ->
+            match (string_drop (z_s2561z3, z_s2562z3)) with
+            | z_s2563z3 ->
               begin
-                match (zspc_matches_prefix z_s2559z3) with
-                | ZSome ((), z_s2560z3) ->
+                match (zspc_matches_prefix z_s2563z3) with
+                | ZSome ((), z_s2564z3) ->
                   begin
-                    match (string_drop (z_s2559z3, z_s2560z3)) with
-                    | z_s2561z3 ->
+                    match (string_drop (z_s2563z3, z_s2564z3)) with
+                    | z_s2565z3 ->
                       begin
-                        match (zreg_name_matches_prefix z_s2561z3) with
-                        | ZSome (zrd, z_s2562z3) ->
+                        match (zreg_name_matches_prefix z_s2565z3) with
+                        | ZSome (zrd, z_s2566z3) ->
                           begin
-                            match (string_drop (z_s2561z3, z_s2562z3)) with
-                            | z_s2563z3 ->
+                            match (string_drop (z_s2565z3, z_s2566z3)) with
+                            | z_s2567z3 ->
                               begin
-                                match (zsep_matches_prefix z_s2563z3) with
-                                | ZSome ((), z_s2564z3) ->
+                                match (zsep_matches_prefix z_s2567z3) with
+                                | ZSome ((), z_s2568z3) ->
                                   begin
-                                    match (string_drop (z_s2563z3, z_s2564z3)) with
-                                    | z_s2565z3 ->
+                                    match (string_drop (z_s2567z3, z_s2568z3)) with
+                                    | z_s2569z3 ->
                                       begin
-                                        match (zreg_name_matches_prefix z_s2565z3) with
-                                        | ZSome (zrs1, z_s2566z3) ->
+                                        match (zreg_name_matches_prefix z_s2569z3) with
+                                        | ZSome (zrs1, z_s2570z3) ->
                                           begin
-                                            match (string_drop (z_s2565z3, z_s2566z3)) with
-                                            | z_s2567z3 ->
+                                            match (string_drop (z_s2569z3, z_s2570z3)) with
+                                            | z_s2571z3 ->
                                               begin
-                                                match (zsep_matches_prefix z_s2567z3) with
-                                                | ZSome ((), z_s2568z3) ->
+                                                match (zsep_matches_prefix z_s2571z3) with
+                                                | ZSome ((), z_s2572z3) ->
                                                   begin
-                                                    match (string_drop (z_s2567z3, z_s2568z3)) with
-                                                    | z_s2569z3 ->
+                                                    match (string_drop (z_s2571z3, z_s2572z3)) with
+                                                    | z_s2573z3 ->
                                                       begin
-                                                        match (hex_bits_12_matches_prefix z_s2569z3) with
-                                                        | ZSome (zimm, z_s2570z3) ->
+                                                        match (hex_bits_12_matches_prefix z_s2573z3) with
+                                                        | ZSome (zimm, z_s2574z3) ->
                                                           begin
-                                                            match (string_drop (z_s2569z3, z_s2570z3)) with
+                                                            match (string_drop (z_s2573z3, z_s2574z3)) with
                                                             | zsz3 ->
                                                               ZSome (zop, zrd, zrs1, zimm, zsz3)
                                                             | _ -> ZNone ()
@@ -29258,51 +29316,51 @@ and z_s2555z3 (z_s2556z3 : (string)) : ((ziop * (bit) list * (bit) list * (bit) 
     | _ -> ZNone ()
   end)
 
-and z_s2538z3 (z_s2539z3 : (string)) : ((zbop * (bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s2542z3 (z_s2543z3 : (string)) : ((zbop * (bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
-    match z_s2539z3 with
-    | z_s2540z3 ->
+    match z_s2543z3 with
+    | z_s2544z3 ->
       begin
-        match (zbtype_mnemonic_matches_prefix z_s2540z3) with
-        | ZSome (zop, z_s2541z3) ->
+        match (zbtype_mnemonic_matches_prefix z_s2544z3) with
+        | ZSome (zop, z_s2545z3) ->
           begin
-            match (string_drop (z_s2540z3, z_s2541z3)) with
-            | z_s2542z3 ->
+            match (string_drop (z_s2544z3, z_s2545z3)) with
+            | z_s2546z3 ->
               begin
-                match (zspc_matches_prefix z_s2542z3) with
-                | ZSome ((), z_s2543z3) ->
+                match (zspc_matches_prefix z_s2546z3) with
+                | ZSome ((), z_s2547z3) ->
                   begin
-                    match (string_drop (z_s2542z3, z_s2543z3)) with
-                    | z_s2544z3 ->
+                    match (string_drop (z_s2546z3, z_s2547z3)) with
+                    | z_s2548z3 ->
                       begin
-                        match (zreg_name_matches_prefix z_s2544z3) with
-                        | ZSome (zrs1, z_s2545z3) ->
+                        match (zreg_name_matches_prefix z_s2548z3) with
+                        | ZSome (zrs1, z_s2549z3) ->
                           begin
-                            match (string_drop (z_s2544z3, z_s2545z3)) with
-                            | z_s2546z3 ->
+                            match (string_drop (z_s2548z3, z_s2549z3)) with
+                            | z_s2550z3 ->
                               begin
-                                match (zsep_matches_prefix z_s2546z3) with
-                                | ZSome ((), z_s2547z3) ->
+                                match (zsep_matches_prefix z_s2550z3) with
+                                | ZSome ((), z_s2551z3) ->
                                   begin
-                                    match (string_drop (z_s2546z3, z_s2547z3)) with
-                                    | z_s2548z3 ->
+                                    match (string_drop (z_s2550z3, z_s2551z3)) with
+                                    | z_s2552z3 ->
                                       begin
-                                        match (zreg_name_matches_prefix z_s2548z3) with
-                                        | ZSome (zrs2, z_s2549z3) ->
+                                        match (zreg_name_matches_prefix z_s2552z3) with
+                                        | ZSome (zrs2, z_s2553z3) ->
                                           begin
-                                            match (string_drop (z_s2548z3, z_s2549z3)) with
-                                            | z_s2550z3 ->
+                                            match (string_drop (z_s2552z3, z_s2553z3)) with
+                                            | z_s2554z3 ->
                                               begin
-                                                match (zsep_matches_prefix z_s2550z3) with
-                                                | ZSome ((), z_s2551z3) ->
+                                                match (zsep_matches_prefix z_s2554z3) with
+                                                | ZSome ((), z_s2555z3) ->
                                                   begin
-                                                    match (string_drop (z_s2550z3, z_s2551z3)) with
-                                                    | z_s2552z3 ->
+                                                    match (string_drop (z_s2554z3, z_s2555z3)) with
+                                                    | z_s2556z3 ->
                                                       begin
-                                                        match (hex_bits_13_matches_prefix z_s2552z3) with
-                                                        | ZSome (zimm, z_s2553z3) ->
+                                                        match (hex_bits_13_matches_prefix z_s2556z3) with
+                                                        | ZSome (zimm, z_s2557z3) ->
                                                           begin
-                                                            match (string_drop (z_s2552z3, z_s2553z3)) with
+                                                            match (string_drop (z_s2556z3, z_s2557z3)) with
                                                             | zsz3 ->
                                                               ZSome (zop, zrs1, zrs2, zimm, zsz3)
                                                             | _ -> ZNone ()
@@ -29336,48 +29394,48 @@ and z_s2538z3 (z_s2539z3 : (string)) : ((zbop * (bit) list * (bit) list * (bit) 
     | _ -> ZNone ()
   end)
 
-and z_s2522z3 (z_s2523z3 : (string)) : (((bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s2526z3 (z_s2527z3 : (string)) : (((bit) list * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
-    match z_s2523z3 with
-    | z_s2524z3 when (string_startswith (z_s2524z3, "jalr")) ->
+    match z_s2527z3 with
+    | z_s2528z3 when (string_startswith (z_s2528z3, "jalr")) ->
       begin
-        match (string_drop (z_s2524z3, (string_length "jalr"))) with
-        | z_s2525z3 ->
+        match (string_drop (z_s2528z3, (string_length "jalr"))) with
+        | z_s2529z3 ->
           begin
-            match (zspc_matches_prefix z_s2525z3) with
-            | ZSome ((), z_s2526z3) ->
+            match (zspc_matches_prefix z_s2529z3) with
+            | ZSome ((), z_s2530z3) ->
               begin
-                match (string_drop (z_s2525z3, z_s2526z3)) with
-                | z_s2527z3 ->
+                match (string_drop (z_s2529z3, z_s2530z3)) with
+                | z_s2531z3 ->
                   begin
-                    match (zreg_name_matches_prefix z_s2527z3) with
-                    | ZSome (zrd, z_s2528z3) ->
+                    match (zreg_name_matches_prefix z_s2531z3) with
+                    | ZSome (zrd, z_s2532z3) ->
                       begin
-                        match (string_drop (z_s2527z3, z_s2528z3)) with
-                        | z_s2529z3 ->
+                        match (string_drop (z_s2531z3, z_s2532z3)) with
+                        | z_s2533z3 ->
                           begin
-                            match (zsep_matches_prefix z_s2529z3) with
-                            | ZSome ((), z_s2530z3) ->
+                            match (zsep_matches_prefix z_s2533z3) with
+                            | ZSome ((), z_s2534z3) ->
                               begin
-                                match (string_drop (z_s2529z3, z_s2530z3)) with
-                                | z_s2531z3 ->
+                                match (string_drop (z_s2533z3, z_s2534z3)) with
+                                | z_s2535z3 ->
                                   begin
-                                    match (zreg_name_matches_prefix z_s2531z3) with
-                                    | ZSome (zrs1, z_s2532z3) ->
+                                    match (zreg_name_matches_prefix z_s2535z3) with
+                                    | ZSome (zrs1, z_s2536z3) ->
                                       begin
-                                        match (string_drop (z_s2531z3, z_s2532z3)) with
-                                        | z_s2533z3 ->
+                                        match (string_drop (z_s2535z3, z_s2536z3)) with
+                                        | z_s2537z3 ->
                                           begin
-                                            match (zsep_matches_prefix z_s2533z3) with
-                                            | ZSome ((), z_s2534z3) ->
+                                            match (zsep_matches_prefix z_s2537z3) with
+                                            | ZSome ((), z_s2538z3) ->
                                               begin
-                                                match (string_drop (z_s2533z3, z_s2534z3)) with
-                                                | z_s2535z3 ->
+                                                match (string_drop (z_s2537z3, z_s2538z3)) with
+                                                | z_s2539z3 ->
                                                   begin
-                                                    match (hex_bits_12_matches_prefix z_s2535z3) with
-                                                    | ZSome (zimm, z_s2536z3) ->
+                                                    match (hex_bits_12_matches_prefix z_s2539z3) with
+                                                    | ZSome (zimm, z_s2540z3) ->
                                                       begin
-                                                        match (string_drop (z_s2535z3, z_s2536z3)) with
+                                                        match (string_drop (z_s2539z3, z_s2540z3)) with
                                                         | zsz3 ->
                                                           ZSome (zrd, zrs1, zimm, zsz3)
                                                         | _ -> ZNone ()
@@ -29409,36 +29467,36 @@ and z_s2522z3 (z_s2523z3 : (string)) : (((bit) list * (bit) list * (bit) list * 
     | _ -> ZNone ()
   end)
 
-and z_s2510z3 (z_s2511z3 : (string)) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s2514z3 (z_s2515z3 : (string)) : (((bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
-    match z_s2511z3 with
-    | z_s2512z3 when (string_startswith (z_s2512z3, "jal")) ->
+    match z_s2515z3 with
+    | z_s2516z3 when (string_startswith (z_s2516z3, "jal")) ->
       begin
-        match (string_drop (z_s2512z3, (string_length "jal"))) with
-        | z_s2513z3 ->
+        match (string_drop (z_s2516z3, (string_length "jal"))) with
+        | z_s2517z3 ->
           begin
-            match (zspc_matches_prefix z_s2513z3) with
-            | ZSome ((), z_s2514z3) ->
+            match (zspc_matches_prefix z_s2517z3) with
+            | ZSome ((), z_s2518z3) ->
               begin
-                match (string_drop (z_s2513z3, z_s2514z3)) with
-                | z_s2515z3 ->
+                match (string_drop (z_s2517z3, z_s2518z3)) with
+                | z_s2519z3 ->
                   begin
-                    match (zreg_name_matches_prefix z_s2515z3) with
-                    | ZSome (zrd, z_s2516z3) ->
+                    match (zreg_name_matches_prefix z_s2519z3) with
+                    | ZSome (zrd, z_s2520z3) ->
                       begin
-                        match (string_drop (z_s2515z3, z_s2516z3)) with
-                        | z_s2517z3 ->
+                        match (string_drop (z_s2519z3, z_s2520z3)) with
+                        | z_s2521z3 ->
                           begin
-                            match (zsep_matches_prefix z_s2517z3) with
-                            | ZSome ((), z_s2518z3) ->
+                            match (zsep_matches_prefix z_s2521z3) with
+                            | ZSome ((), z_s2522z3) ->
                               begin
-                                match (string_drop (z_s2517z3, z_s2518z3)) with
-                                | z_s2519z3 ->
+                                match (string_drop (z_s2521z3, z_s2522z3)) with
+                                | z_s2523z3 ->
                                   begin
-                                    match (hex_bits_21_matches_prefix z_s2519z3) with
-                                    | ZSome (zimm, z_s2520z3) ->
+                                    match (hex_bits_21_matches_prefix z_s2523z3) with
+                                    | ZSome (zimm, z_s2524z3) ->
                                       begin
-                                        match (string_drop (z_s2519z3, z_s2520z3)) with
+                                        match (string_drop (z_s2523z3, z_s2524z3)) with
                                         | zsz3 -> ZSome (zrd, zimm, zsz3)
                                         | _ -> ZNone ()
                                       end
@@ -29461,39 +29519,39 @@ and z_s2510z3 (z_s2511z3 : (string)) : (((bit) list * (bit) list * string)) zopt
     | _ -> ZNone ()
   end)
 
-and z_s2497z3 (z_s2498z3 : (string)) : ((zuop * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
+and z_s2501z3 (z_s2502z3 : (string)) : ((zuop * (bit) list * (bit) list * string)) zoption = sail_call (fun r ->
   begin
-    match z_s2498z3 with
-    | z_s2499z3 ->
+    match z_s2502z3 with
+    | z_s2503z3 ->
       begin
-        match (zutype_mnemonic_matches_prefix z_s2499z3) with
-        | ZSome (zop, z_s2500z3) ->
+        match (zutype_mnemonic_matches_prefix z_s2503z3) with
+        | ZSome (zop, z_s2504z3) ->
           begin
-            match (string_drop (z_s2499z3, z_s2500z3)) with
-            | z_s2501z3 ->
+            match (string_drop (z_s2503z3, z_s2504z3)) with
+            | z_s2505z3 ->
               begin
-                match (zspc_matches_prefix z_s2501z3) with
-                | ZSome ((), z_s2502z3) ->
+                match (zspc_matches_prefix z_s2505z3) with
+                | ZSome ((), z_s2506z3) ->
                   begin
-                    match (string_drop (z_s2501z3, z_s2502z3)) with
-                    | z_s2503z3 ->
+                    match (string_drop (z_s2505z3, z_s2506z3)) with
+                    | z_s2507z3 ->
                       begin
-                        match (zreg_name_matches_prefix z_s2503z3) with
-                        | ZSome (zrd, z_s2504z3) ->
+                        match (zreg_name_matches_prefix z_s2507z3) with
+                        | ZSome (zrd, z_s2508z3) ->
                           begin
-                            match (string_drop (z_s2503z3, z_s2504z3)) with
-                            | z_s2505z3 ->
+                            match (string_drop (z_s2507z3, z_s2508z3)) with
+                            | z_s2509z3 ->
                               begin
-                                match (zsep_matches_prefix z_s2505z3) with
-                                | ZSome ((), z_s2506z3) ->
+                                match (zsep_matches_prefix z_s2509z3) with
+                                | ZSome ((), z_s2510z3) ->
                                   begin
-                                    match (string_drop (z_s2505z3, z_s2506z3)) with
-                                    | z_s2507z3 ->
+                                    match (string_drop (z_s2509z3, z_s2510z3)) with
+                                    | z_s2511z3 ->
                                       begin
-                                        match (hex_bits_20_matches_prefix z_s2507z3) with
-                                        | ZSome (zimm, z_s2508z3) ->
+                                        match (hex_bits_20_matches_prefix z_s2511z3) with
+                                        | ZSome (zimm, z_s2512z3) ->
                                           begin
-                                            match (string_drop (z_s2507z3, z_s2508z3)) with
+                                            match (string_drop (z_s2511z3, z_s2512z3)) with
                                             | zsz3 ->
                                               ZSome (zop, zrd, zimm, zsz3)
                                             | _ -> ZNone ()
@@ -29522,508 +29580,508 @@ and z_s2497z3 (z_s2498z3 : (string)) : ((zuop * (bit) list * (bit) list * string
 and zassembly_matches_prefix (zargz3 : (string)) : ((zast * Big_int.num)) zoption = sail_call (fun r ->
   begin
     match zargz3 with
-    | z_s2509z3 when (begin
-      match (z_s2497z3 z_s2509z3) with
+    | z_s2513z3 when (begin
+      match (z_s2501z3 z_s2513z3) with
       | ZSome (zop, zrd, zimm, zsz3) -> true
       | _ -> false
     end) ->
-      let ZSome (zop, zrd, zimm, zsz3) = (z_s2497z3 z_s2509z3) in
+      let ZSome (zop, zrd, zimm, zsz3) = (z_s2501z3 z_s2513z3) in
       ZSome (ZUTYPE (zimm, zrd, zop), (fun (x,y) -> let n = sub_int (x,y) in if Big_int.less_equal n Big_int.zero then Big_int.zero else n) ((string_length zargz3), (string_length zsz3)))
-    | z_s2521z3 when (begin
-      match (z_s2510z3 z_s2521z3) with
+    | z_s2525z3 when (begin
+      match (z_s2514z3 z_s2525z3) with
       | ZSome (zrd, zimm, zsz3) -> true
       | _ -> false
     end) ->
-      let ZSome (zrd, zimm, zsz3) = (z_s2510z3 z_s2521z3) in
+      let ZSome (zrd, zimm, zsz3) = (z_s2514z3 z_s2525z3) in
       ZSome (ZRISCV_JAL (zimm, zrd), (fun (x,y) -> let n = sub_int (x,y) in if Big_int.less_equal n Big_int.zero then Big_int.zero else n) ((string_length zargz3), (string_length zsz3)))
-    | z_s2537z3 when (begin
-      match (z_s2522z3 z_s2537z3) with
+    | z_s2541z3 when (begin
+      match (z_s2526z3 z_s2541z3) with
       | ZSome (zrd, zrs1, zimm, zsz3) -> true
       | _ -> false
     end) ->
-      let ZSome (zrd, zrs1, zimm, zsz3) = (z_s2522z3 z_s2537z3) in
+      let ZSome (zrd, zrs1, zimm, zsz3) = (z_s2526z3 z_s2541z3) in
       ZSome (ZRISCV_JALR (zimm, zrs1, zrd), (fun (x,y) -> let n = sub_int (x,y) in if Big_int.less_equal n Big_int.zero then Big_int.zero else n) ((string_length zargz3), (string_length zsz3)))
-    | z_s2554z3 when (begin
-      match (z_s2538z3 z_s2554z3) with
+    | z_s2558z3 when (begin
+      match (z_s2542z3 z_s2558z3) with
       | ZSome (zop, zrs1, zrs2, zimm, zsz3) -> true
       | _ -> false
     end) ->
-      let ZSome (zop, zrs1, zrs2, zimm, zsz3) = (z_s2538z3 z_s2554z3) in
+      let ZSome (zop, zrs1, zrs2, zimm, zsz3) = (z_s2542z3 z_s2558z3) in
       ZSome (ZBTYPE (zimm, zrs2, zrs1, zop), (fun (x,y) -> let n = sub_int (x,y) in if Big_int.less_equal n Big_int.zero then Big_int.zero else n) ((string_length zargz3), (string_length zsz3)))
-    | z_s2571z3 when (begin
-      match (z_s2555z3 z_s2571z3) with
+    | z_s2575z3 when (begin
+      match (z_s2559z3 z_s2575z3) with
       | ZSome (zop, zrd, zrs1, zimm, zsz3) -> true
       | _ -> false
     end) ->
-      let ZSome (zop, zrd, zrs1, zimm, zsz3) = (z_s2555z3 z_s2571z3) in
+      let ZSome (zop, zrd, zrs1, zimm, zsz3) = (z_s2559z3 z_s2575z3) in
       ZSome (ZITYPE (zimm, zrs1, zrd, zop), (fun (x,y) -> let n = sub_int (x,y) in if Big_int.less_equal n Big_int.zero then Big_int.zero else n) ((string_length zargz3), (string_length zsz3)))
-    | z_s2586z3 when (begin
-      match (z_s2572z3 z_s2586z3) with
+    | z_s2590z3 when (begin
+      match (z_s2576z3 z_s2590z3) with
       | ZSome (zop, zrd, zrs1, zshamt, zsz3) -> true
       | _ -> false
     end) ->
-      let ZSome (zop, zrd, zrs1, zshamt, zsz3) = (z_s2572z3 z_s2586z3) in
+      let ZSome (zop, zrd, zrs1, zshamt, zsz3) = (z_s2576z3 z_s2590z3) in
       ZSome (ZSHIFTIOP (zshamt, zrs1, zrd, zop), (fun (x,y) -> let n = sub_int (x,y) in if Big_int.less_equal n Big_int.zero then Big_int.zero else n) ((string_length zargz3), (string_length zsz3)))
-    | z_s2603z3 when (begin
-      match (z_s2587z3 z_s2603z3) with
+    | z_s2607z3 when (begin
+      match (z_s2591z3 z_s2607z3) with
       | ZSome (zop, zrd, zrs1, zrs2, zsz3) -> true
       | _ -> false
     end) ->
-      let ZSome (zop, zrd, zrs1, zrs2, zsz3) = (z_s2587z3 z_s2603z3) in
+      let ZSome (zop, zrd, zrs1, zrs2, zsz3) = (z_s2591z3 z_s2607z3) in
       ZSome (ZRTYPE (zrs2, zrs1, zrd, zop), (fun (x,y) -> let n = sub_int (x,y) in if Big_int.less_equal n Big_int.zero then Big_int.zero else n) ((string_length zargz3), (string_length zsz3)))
-    | z_s2627z3 when (begin
-      match (z_s2604z3 z_s2627z3) with
+    | z_s2631z3 when (begin
+      match (z_s2608z3 z_s2631z3) with
       | ZSome (zsizze, zis_unsigned, zaq, zrl, zrd, zrs1, zimm, zsz3) -> true
       | _ -> false
     end) ->
-      let ZSome (zsizze, zis_unsigned, zaq, zrl, zrd, zrs1, zimm, zsz3) = (z_s2604z3 z_s2627z3) in
+      let ZSome (zsizze, zis_unsigned, zaq, zrl, zrd, zrs1, zimm, zsz3) = (z_s2608z3 z_s2631z3) in
       ZSome (ZLOAD (zimm, zrs1, zrd, zis_unsigned, zsizze, zaq, zrl), (fun (x,y) -> let n = sub_int (x,y) in if Big_int.less_equal n Big_int.zero then Big_int.zero else n) ((string_length zargz3), (string_length zsz3)))
-    | z_s2649z3 when (begin
-      match (z_s2628z3 z_s2649z3) with
+    | z_s2653z3 when (begin
+      match (z_s2632z3 z_s2653z3) with
       | ZSome (zsizze, zaq, zrl, zrd, zrs1, zimm, zsz3) -> true
       | _ -> false
     end) ->
-      let ZSome (zsizze, zaq, zrl, zrd, zrs1, zimm, zsz3) = (z_s2628z3 z_s2649z3) in
+      let ZSome (zsizze, zaq, zrl, zrd, zrs1, zimm, zsz3) = (z_s2632z3 z_s2653z3) in
       ZSome (ZSTORE (zimm, zrs1, zrd, zsizze, zaq, zrl), (fun (x,y) -> let n = sub_int (x,y) in if Big_int.less_equal n Big_int.zero then Big_int.zero else n) ((string_length zargz3), (string_length zsz3)))
-    | z_s2665z3 when (begin
-      match (z_s2650z3 z_s2665z3) with
+    | z_s2669z3 when (begin
+      match (z_s2654z3 z_s2669z3) with
       | ZSome (zrd, zrs1, zimm, zsz3) -> true
       | _ -> false
     end) ->
-      let ZSome (zrd, zrs1, zimm, zsz3) = (z_s2650z3 z_s2665z3) in
+      let ZSome (zrd, zrs1, zimm, zsz3) = (z_s2654z3 z_s2669z3) in
       ZSome (ZADDIW (zimm, zrs1, zrd), (fun (x,y) -> let n = sub_int (x,y) in if Big_int.less_equal n Big_int.zero then Big_int.zero else n) ((string_length zargz3), (string_length zsz3)))
-    | z_s2682z3 when (begin
-      match (z_s2666z3 z_s2682z3) with
+    | z_s2686z3 when (begin
+      match (z_s2670z3 z_s2686z3) with
       | ZSome (zop, zrd, zrs1, zshamt, zsz3) -> true
       | _ -> false
     end) ->
-      let ZSome (zop, zrd, zrs1, zshamt, zsz3) = (z_s2666z3 z_s2682z3) in
+      let ZSome (zop, zrd, zrs1, zshamt, zsz3) = (z_s2670z3 z_s2686z3) in
       ZSome (ZSHIFTW (zshamt, zrs1, zrd, zop), (fun (x,y) -> let n = sub_int (x,y) in if Big_int.less_equal n Big_int.zero then Big_int.zero else n) ((string_length zargz3), (string_length zsz3)))
-    | z_s2699z3 when (begin
-      match (z_s2683z3 z_s2699z3) with
+    | z_s2703z3 when (begin
+      match (z_s2687z3 z_s2703z3) with
       | ZSome (zop, zrd, zrs1, zrs2, zsz3) -> true
       | _ -> false
     end) ->
-      let ZSome (zop, zrd, zrs1, zrs2, zsz3) = (z_s2683z3 z_s2699z3) in
+      let ZSome (zop, zrd, zrs1, zrs2, zsz3) = (z_s2687z3 z_s2703z3) in
       ZSome (ZRTYPEW (zrs2, zrs1, zrd, zop), (fun (x,y) -> let n = sub_int (x,y) in if Big_int.less_equal n Big_int.zero then Big_int.zero else n) ((string_length zargz3), (string_length zsz3)))
-    | z_s2714z3 when (begin
-      match (z_s2700z3 z_s2714z3) with
+    | z_s2718z3 when (begin
+      match (z_s2704z3 z_s2718z3) with
       | ZSome (zop, zrd, zrs1, zshamt, zsz3) -> true
       | _ -> false
     end) ->
-      let ZSome (zop, zrd, zrs1, zshamt, zsz3) = (z_s2700z3 z_s2714z3) in
+      let ZSome (zop, zrd, zrs1, zshamt, zsz3) = (z_s2704z3 z_s2718z3) in
       ZSome (ZSHIFTIWOP (zshamt, zrs1, zrd, zop), (fun (x,y) -> let n = sub_int (x,y) in if Big_int.less_equal n Big_int.zero then Big_int.zero else n) ((string_length zargz3), (string_length zsz3)))
-    | z_s2731z3 when (begin
-      match (z_s2715z3 z_s2731z3) with
+    | z_s2735z3 when (begin
+      match (z_s2719z3 z_s2735z3) with
       | ZSome (zhigh, zsigned1, zsigned2, zrd, zrs1, zrs2, zsz3) -> true
       | _ -> false
     end) ->
-      let ZSome (zhigh, zsigned1, zsigned2, zrd, zrs1, zrs2, zsz3) = (z_s2715z3 z_s2731z3) in
+      let ZSome (zhigh, zsigned1, zsigned2, zrd, zrs1, zrs2, zsz3) = (z_s2719z3 z_s2735z3) in
       ZSome (ZMUL (zrs2, zrs1, zrd, zhigh, zsigned1, zsigned2), (fun (x,y) -> let n = sub_int (x,y) in if Big_int.less_equal n Big_int.zero then Big_int.zero else n) ((string_length zargz3), (string_length zsz3)))
-    | z_s2749z3 when (begin
-      match (z_s2732z3 z_s2749z3) with
+    | z_s2753z3 when (begin
+      match (z_s2736z3 z_s2753z3) with
       | ZSome (zs, zrd, zrs1, zrs2, zsz3) -> true
       | _ -> false
     end) ->
-      let ZSome (zs, zrd, zrs1, zrs2, zsz3) = (z_s2732z3 z_s2749z3) in
+      let ZSome (zs, zrd, zrs1, zrs2, zsz3) = (z_s2736z3 z_s2753z3) in
       ZSome (ZDIV (zrs2, zrs1, zrd, zs), (fun (x,y) -> let n = sub_int (x,y) in if Big_int.less_equal n Big_int.zero then Big_int.zero else n) ((string_length zargz3), (string_length zsz3)))
-    | z_s2767z3 when (begin
-      match (z_s2750z3 z_s2767z3) with
+    | z_s2771z3 when (begin
+      match (z_s2754z3 z_s2771z3) with
       | ZSome (zs, zrd, zrs1, zrs2, zsz3) -> true
       | _ -> false
     end) ->
-      let ZSome (zs, zrd, zrs1, zrs2, zsz3) = (z_s2750z3 z_s2767z3) in
+      let ZSome (zs, zrd, zrs1, zrs2, zsz3) = (z_s2754z3 z_s2771z3) in
       ZSome (ZREM (zrs2, zrs1, zrd, zs), (fun (x,y) -> let n = sub_int (x,y) in if Big_int.less_equal n Big_int.zero then Big_int.zero else n) ((string_length zargz3), (string_length zsz3)))
-    | z_s2783z3 when (begin
-      match (z_s2768z3 z_s2783z3) with
+    | z_s2787z3 when (begin
+      match (z_s2772z3 z_s2787z3) with
       | ZSome (zrd, zrs1, zrs2, zsz3) -> true
       | _ -> false
     end) ->
-      let ZSome (zrd, zrs1, zrs2, zsz3) = (z_s2768z3 z_s2783z3) in
+      let ZSome (zrd, zrs1, zrs2, zsz3) = (z_s2772z3 z_s2787z3) in
       ZSome (ZMULW (zrs2, zrs1, zrd), (fun (x,y) -> let n = sub_int (x,y) in if Big_int.less_equal n Big_int.zero then Big_int.zero else n) ((string_length zargz3), (string_length zsz3)))
-    | z_s2802z3 when (begin
-      match (z_s2784z3 z_s2802z3) with
+    | z_s2806z3 when (begin
+      match (z_s2788z3 z_s2806z3) with
       | ZSome (zs, zrd, zrs1, zrs2, zsz3) -> true
       | _ -> false
     end) ->
-      let ZSome (zs, zrd, zrs1, zrs2, zsz3) = (z_s2784z3 z_s2802z3) in
+      let ZSome (zs, zrd, zrs1, zrs2, zsz3) = (z_s2788z3 z_s2806z3) in
       ZSome (ZDIVW (zrs2, zrs1, zrd, zs), (fun (x,y) -> let n = sub_int (x,y) in if Big_int.less_equal n Big_int.zero then Big_int.zero else n) ((string_length zargz3), (string_length zsz3)))
-    | z_s2821z3 when (begin
-      match (z_s2803z3 z_s2821z3) with
+    | z_s2825z3 when (begin
+      match (z_s2807z3 z_s2825z3) with
       | ZSome (zs, zrd, zrs1, zrs2, zsz3) -> true
       | _ -> false
     end) ->
-      let ZSome (zs, zrd, zrs1, zrs2, zsz3) = (z_s2803z3 z_s2821z3) in
+      let ZSome (zs, zrd, zrs1, zrs2, zsz3) = (z_s2807z3 z_s2825z3) in
       ZSome (ZREMW (zrs2, zrs1, zrd, zs), (fun (x,y) -> let n = sub_int (x,y) in if Big_int.less_equal n Big_int.zero then Big_int.zero else n) ((string_length zargz3), (string_length zsz3)))
-    | z_s2833z3 when (begin
-      match (z_s2822z3 z_s2833z3) with
+    | z_s2837z3 when (begin
+      match (z_s2826z3 z_s2837z3) with
       | ZSome (zpred, zsucc, zsz3) -> true
       | _ -> false
     end) ->
-      let ZSome (zpred, zsucc, zsz3) = (z_s2822z3 z_s2833z3) in
+      let ZSome (zpred, zsucc, zsz3) = (z_s2826z3 z_s2837z3) in
       ZSome (ZFENCE (zpred, zsucc), (fun (x,y) -> let n = sub_int (x,y) in if Big_int.less_equal n Big_int.zero then Big_int.zero else n) ((string_length zargz3), (string_length zsz3)))
-    | z_s2837z3 when (begin
-      match (z_s2834z3 z_s2837z3) with
-      | ZSome (zsz3) -> true
-      | _ -> false
-    end) ->
-      let ZSome (zsz3) = (z_s2834z3 z_s2837z3) in
-      ZSome (ZFENCEI (), (fun (x,y) -> let n = sub_int (x,y) in if Big_int.less_equal n Big_int.zero then Big_int.zero else n) ((string_length zargz3), (string_length zsz3)))
     | z_s2841z3 when (begin
       match (z_s2838z3 z_s2841z3) with
       | ZSome (zsz3) -> true
       | _ -> false
     end) ->
       let ZSome (zsz3) = (z_s2838z3 z_s2841z3) in
-      ZSome (ZECALL (), (fun (x,y) -> let n = sub_int (x,y) in if Big_int.less_equal n Big_int.zero then Big_int.zero else n) ((string_length zargz3), (string_length zsz3)))
+      ZSome (ZFENCEI (), (fun (x,y) -> let n = sub_int (x,y) in if Big_int.less_equal n Big_int.zero then Big_int.zero else n) ((string_length zargz3), (string_length zsz3)))
     | z_s2845z3 when (begin
       match (z_s2842z3 z_s2845z3) with
       | ZSome (zsz3) -> true
       | _ -> false
     end) ->
       let ZSome (zsz3) = (z_s2842z3 z_s2845z3) in
-      ZSome (ZMRET (), (fun (x,y) -> let n = sub_int (x,y) in if Big_int.less_equal n Big_int.zero then Big_int.zero else n) ((string_length zargz3), (string_length zsz3)))
+      ZSome (ZECALL (), (fun (x,y) -> let n = sub_int (x,y) in if Big_int.less_equal n Big_int.zero then Big_int.zero else n) ((string_length zargz3), (string_length zsz3)))
     | z_s2849z3 when (begin
       match (z_s2846z3 z_s2849z3) with
       | ZSome (zsz3) -> true
       | _ -> false
     end) ->
       let ZSome (zsz3) = (z_s2846z3 z_s2849z3) in
-      ZSome (ZSRET (), (fun (x,y) -> let n = sub_int (x,y) in if Big_int.less_equal n Big_int.zero then Big_int.zero else n) ((string_length zargz3), (string_length zsz3)))
+      ZSome (ZMRET (), (fun (x,y) -> let n = sub_int (x,y) in if Big_int.less_equal n Big_int.zero then Big_int.zero else n) ((string_length zargz3), (string_length zsz3)))
     | z_s2853z3 when (begin
       match (z_s2850z3 z_s2853z3) with
       | ZSome (zsz3) -> true
       | _ -> false
     end) ->
       let ZSome (zsz3) = (z_s2850z3 z_s2853z3) in
-      ZSome (ZEBREAK (), (fun (x,y) -> let n = sub_int (x,y) in if Big_int.less_equal n Big_int.zero then Big_int.zero else n) ((string_length zargz3), (string_length zsz3)))
+      ZSome (ZSRET (), (fun (x,y) -> let n = sub_int (x,y) in if Big_int.less_equal n Big_int.zero then Big_int.zero else n) ((string_length zargz3), (string_length zsz3)))
     | z_s2857z3 when (begin
       match (z_s2854z3 z_s2857z3) with
       | ZSome (zsz3) -> true
       | _ -> false
     end) ->
       let ZSome (zsz3) = (z_s2854z3 z_s2857z3) in
-      ZSome (ZWFI (), (fun (x,y) -> let n = sub_int (x,y) in if Big_int.less_equal n Big_int.zero then Big_int.zero else n) ((string_length zargz3), (string_length zsz3)))
-    | z_s2869z3 when (begin
-      match (z_s2858z3 z_s2869z3) with
-      | ZSome (zrs1, zrs2, zsz3) -> true
-      | _ -> false
-    end) ->
-      let ZSome (zrs1, zrs2, zsz3) = (z_s2858z3 z_s2869z3) in
-      ZSome (ZSFENCE_VMA (zrs1, zrs2), (fun (x,y) -> let n = sub_int (x,y) in if Big_int.less_equal n Big_int.zero then Big_int.zero else n) ((string_length zargz3), (string_length zsz3)))
-    | z_s2887z3 when (begin
-      match (z_s2870z3 z_s2887z3) with
-      | ZSome (zsizze, zaq, zrl, zrd, zrs1, zsz3) -> true
-      | _ -> false
-    end) ->
-      let ZSome (zsizze, zaq, zrl, zrd, zrs1, zsz3) = (z_s2870z3 z_s2887z3) in
-      ZSome (ZLOADRES (zaq, zrl, zrs1, zsizze, zrd), (fun (x,y) -> let n = sub_int (x,y) in if Big_int.less_equal n Big_int.zero then Big_int.zero else n) ((string_length zargz3), (string_length zsz3)))
-    | z_s2909z3 when (begin
-      match (z_s2888z3 z_s2909z3) with
-      | ZSome (zsizze, zaq, zrl, zrd, zrs1, zrs2, zsz3) -> true
-      | _ -> false
-    end) ->
-      let ZSome (zsizze, zaq, zrl, zrd, zrs1, zrs2, zsz3) = (z_s2888z3 z_s2909z3) in
-      ZSome (ZSTORECON (zaq, zrl, zrs2, zrs1, zsizze, zrd), (fun (x,y) -> let n = sub_int (x,y) in if Big_int.less_equal n Big_int.zero then Big_int.zero else n) ((string_length zargz3), (string_length zsz3)))
-    | z_s2933z3 when (begin
-      match (z_s2910z3 z_s2933z3) with
-      | ZSome (zop, zwidth, zaq, zrl, zrd, zrs1, zrs2, zsz3) -> true
-      | _ -> false
-    end) ->
-      let ZSome (zop, zwidth, zaq, zrl, zrd, zrs1, zrs2, zsz3) = (z_s2910z3 z_s2933z3) in
-      ZSome (ZAMO (zop, zaq, zrl, zrs2, zrs1, zwidth, zrd), (fun (x,y) -> let n = sub_int (x,y) in if Big_int.less_equal n Big_int.zero then Big_int.zero else n) ((string_length zargz3), (string_length zsz3)))
-    | z_s2951z3 when (begin
-      match (z_s2934z3 z_s2951z3) with
-      | ZSome (zop, zrd, zrs1, zcsr, zsz3) -> true
-      | _ -> false
-    end) ->
-      let ZSome (zop, zrd, zrs1, zcsr, zsz3) = (z_s2934z3 z_s2951z3) in
-      ZSome (ZCSR (zcsr, zrs1, zrd, true, zop), (fun (x,y) -> let n = sub_int (x,y) in if Big_int.less_equal n Big_int.zero then Big_int.zero else n) ((string_length zargz3), (string_length zsz3)))
-    | z_s2968z3 when (begin
-      match (z_s2952z3 z_s2968z3) with
-      | ZSome (zop, zrd, zrs1, zcsr, zsz3) -> true
-      | _ -> false
-    end) ->
-      let ZSome (zop, zrd, zrs1, zcsr, zsz3) = (z_s2952z3 z_s2968z3) in
-      ZSome (ZCSR (zcsr, zrs1, zrd, false, zop), (fun (x,y) -> let n = sub_int (x,y) in if Big_int.less_equal n Big_int.zero then Big_int.zero else n) ((string_length zargz3), (string_length zsz3)))
-    | z_s2972z3 when (begin
-      match (z_s2969z3 z_s2972z3) with
+      ZSome (ZEBREAK (), (fun (x,y) -> let n = sub_int (x,y) in if Big_int.less_equal n Big_int.zero then Big_int.zero else n) ((string_length zargz3), (string_length zsz3)))
+    | z_s2861z3 when (begin
+      match (z_s2858z3 z_s2861z3) with
       | ZSome (zsz3) -> true
       | _ -> false
     end) ->
-      let ZSome (zsz3) = (z_s2969z3 z_s2972z3) in
+      let ZSome (zsz3) = (z_s2858z3 z_s2861z3) in
+      ZSome (ZWFI (), (fun (x,y) -> let n = sub_int (x,y) in if Big_int.less_equal n Big_int.zero then Big_int.zero else n) ((string_length zargz3), (string_length zsz3)))
+    | z_s2873z3 when (begin
+      match (z_s2862z3 z_s2873z3) with
+      | ZSome (zrs1, zrs2, zsz3) -> true
+      | _ -> false
+    end) ->
+      let ZSome (zrs1, zrs2, zsz3) = (z_s2862z3 z_s2873z3) in
+      ZSome (ZSFENCE_VMA (zrs1, zrs2), (fun (x,y) -> let n = sub_int (x,y) in if Big_int.less_equal n Big_int.zero then Big_int.zero else n) ((string_length zargz3), (string_length zsz3)))
+    | z_s2891z3 when (begin
+      match (z_s2874z3 z_s2891z3) with
+      | ZSome (zsizze, zaq, zrl, zrd, zrs1, zsz3) -> true
+      | _ -> false
+    end) ->
+      let ZSome (zsizze, zaq, zrl, zrd, zrs1, zsz3) = (z_s2874z3 z_s2891z3) in
+      ZSome (ZLOADRES (zaq, zrl, zrs1, zsizze, zrd), (fun (x,y) -> let n = sub_int (x,y) in if Big_int.less_equal n Big_int.zero then Big_int.zero else n) ((string_length zargz3), (string_length zsz3)))
+    | z_s2913z3 when (begin
+      match (z_s2892z3 z_s2913z3) with
+      | ZSome (zsizze, zaq, zrl, zrd, zrs1, zrs2, zsz3) -> true
+      | _ -> false
+    end) ->
+      let ZSome (zsizze, zaq, zrl, zrd, zrs1, zrs2, zsz3) = (z_s2892z3 z_s2913z3) in
+      ZSome (ZSTORECON (zaq, zrl, zrs2, zrs1, zsizze, zrd), (fun (x,y) -> let n = sub_int (x,y) in if Big_int.less_equal n Big_int.zero then Big_int.zero else n) ((string_length zargz3), (string_length zsz3)))
+    | z_s2937z3 when (begin
+      match (z_s2914z3 z_s2937z3) with
+      | ZSome (zop, zwidth, zaq, zrl, zrd, zrs1, zrs2, zsz3) -> true
+      | _ -> false
+    end) ->
+      let ZSome (zop, zwidth, zaq, zrl, zrd, zrs1, zrs2, zsz3) = (z_s2914z3 z_s2937z3) in
+      ZSome (ZAMO (zop, zaq, zrl, zrs2, zrs1, zwidth, zrd), (fun (x,y) -> let n = sub_int (x,y) in if Big_int.less_equal n Big_int.zero then Big_int.zero else n) ((string_length zargz3), (string_length zsz3)))
+    | z_s2955z3 when (begin
+      match (z_s2938z3 z_s2955z3) with
+      | ZSome (zop, zrd, zrs1, zcsr, zsz3) -> true
+      | _ -> false
+    end) ->
+      let ZSome (zop, zrd, zrs1, zcsr, zsz3) = (z_s2938z3 z_s2955z3) in
+      ZSome (ZCSR (zcsr, zrs1, zrd, true, zop), (fun (x,y) -> let n = sub_int (x,y) in if Big_int.less_equal n Big_int.zero then Big_int.zero else n) ((string_length zargz3), (string_length zsz3)))
+    | z_s2972z3 when (begin
+      match (z_s2956z3 z_s2972z3) with
+      | ZSome (zop, zrd, zrs1, zcsr, zsz3) -> true
+      | _ -> false
+    end) ->
+      let ZSome (zop, zrd, zrs1, zcsr, zsz3) = (z_s2956z3 z_s2972z3) in
+      ZSome (ZCSR (zcsr, zrs1, zrd, false, zop), (fun (x,y) -> let n = sub_int (x,y) in if Big_int.less_equal n Big_int.zero then Big_int.zero else n) ((string_length zargz3), (string_length zsz3)))
+    | z_s2976z3 when (begin
+      match (z_s2973z3 z_s2976z3) with
+      | ZSome (zsz3) -> true
+      | _ -> false
+    end) ->
+      let ZSome (zsz3) = (z_s2973z3 z_s2976z3) in
       ZSome (ZC_NOP (), (fun (x,y) -> let n = sub_int (x,y) in if Big_int.less_equal n Big_int.zero then Big_int.zero else n) ((string_length zargz3), (string_length zsz3)))
-    | z_s2984z3 when (begin
-      match (z_s2973z3 z_s2984z3) with
+    | z_s2988z3 when (begin
+      match (z_s2977z3 z_s2988z3) with
       | ZSome (zrdc, znzzimm, zsz3) ->
         zneq_vec (znzzimm, [B0; B0; B0; B0; B0; B0; B0; B0])
       | _ -> false
     end) ->
-      let ZSome (zrdc, znzzimm, zsz3) = (z_s2973z3 z_s2984z3) in
+      let ZSome (zrdc, znzzimm, zsz3) = (z_s2977z3 z_s2988z3) in
       ZSome (ZC_ADDI4SPN (zrdc, znzzimm), (fun (x,y) -> let n = sub_int (x,y) in if Big_int.less_equal n Big_int.zero then Big_int.zero else n) ((string_length zargz3), (string_length zsz3)))
-    | z_s3000z3 when (begin
-      match (z_s2985z3 z_s3000z3) with
+    | z_s3004z3 when (begin
+      match (z_s2989z3 z_s3004z3) with
       | ZSome (zrdc, zrsc, zuimm, zsz3) -> true
       | _ -> false
     end) ->
-      let ZSome (zrdc, zrsc, zuimm, zsz3) = (z_s2985z3 z_s3000z3) in
+      let ZSome (zrdc, zrsc, zuimm, zsz3) = (z_s2989z3 z_s3004z3) in
       ZSome (ZC_LW (zuimm, zrsc, zrdc), (fun (x,y) -> let n = sub_int (x,y) in if Big_int.less_equal n Big_int.zero then Big_int.zero else n) ((string_length zargz3), (string_length zsz3)))
-    | z_s3016z3 when (begin
-      match (z_s3001z3 z_s3016z3) with
+    | z_s3020z3 when (begin
+      match (z_s3005z3 z_s3020z3) with
       | ZSome (zrdc, zrsc, zuimm, zsz3) -> true
       | _ -> false
     end) ->
-      let ZSome (zrdc, zrsc, zuimm, zsz3) = (z_s3001z3 z_s3016z3) in
+      let ZSome (zrdc, zrsc, zuimm, zsz3) = (z_s3005z3 z_s3020z3) in
       ZSome (ZC_LD (zuimm, zrsc, zrdc), (fun (x,y) -> let n = sub_int (x,y) in if Big_int.less_equal n Big_int.zero then Big_int.zero else n) ((string_length zargz3), (string_length zsz3)))
-    | z_s3032z3 when (begin
-      match (z_s3017z3 z_s3032z3) with
+    | z_s3036z3 when (begin
+      match (z_s3021z3 z_s3036z3) with
       | ZSome (zrsc1, zrsc2, zuimm, zsz3) -> true
       | _ -> false
     end) ->
-      let ZSome (zrsc1, zrsc2, zuimm, zsz3) = (z_s3017z3 z_s3032z3) in
+      let ZSome (zrsc1, zrsc2, zuimm, zsz3) = (z_s3021z3 z_s3036z3) in
       ZSome (ZC_SW (zuimm, zrsc1, zrsc2), (fun (x,y) -> let n = sub_int (x,y) in if Big_int.less_equal n Big_int.zero then Big_int.zero else n) ((string_length zargz3), (string_length zsz3)))
-    | z_s3048z3 when (begin
-      match (z_s3033z3 z_s3048z3) with
+    | z_s3052z3 when (begin
+      match (z_s3037z3 z_s3052z3) with
       | ZSome (zrsc1, zrsc2, zuimm, zsz3) -> true
       | _ -> false
     end) ->
-      let ZSome (zrsc1, zrsc2, zuimm, zsz3) = (z_s3033z3 z_s3048z3) in
+      let ZSome (zrsc1, zrsc2, zuimm, zsz3) = (z_s3037z3 z_s3052z3) in
       ZSome (ZC_SD (zuimm, zrsc1, zrsc2), (fun (x,y) -> let n = sub_int (x,y) in if Big_int.less_equal n Big_int.zero then Big_int.zero else n) ((string_length zargz3), (string_length zsz3)))
-    | z_s3060z3 when (begin
-      match (z_s3049z3 z_s3060z3) with
+    | z_s3064z3 when (begin
+      match (z_s3053z3 z_s3064z3) with
       | ZSome (zrsd, znzzi, zsz3) ->
         (zneq_vec (znzzi, [B0; B0; B0; B0; B0; B0])) && (zneq_atom ((zregbits_to_regno zrsd), (zregbits_to_regno zzzreg)))
       | _ -> false
     end) ->
-      let ZSome (zrsd, znzzi, zsz3) = (z_s3049z3 z_s3060z3) in
+      let ZSome (zrsd, znzzi, zsz3) = (z_s3053z3 z_s3064z3) in
       ZSome (ZC_ADDI (znzzi, zrsd), (fun (x,y) -> let n = sub_int (x,y) in if Big_int.less_equal n Big_int.zero then Big_int.zero else n) ((string_length zargz3), (string_length zsz3)))
-    | z_s3068z3 when (begin
-      match (z_s3061z3 z_s3068z3) with
+    | z_s3072z3 when (begin
+      match (z_s3065z3 z_s3072z3) with
       | ZSome (zimm, zsz3) -> true
       | _ -> false
     end) ->
-      let ZSome (zimm, zsz3) = (z_s3061z3 z_s3068z3) in
+      let ZSome (zimm, zsz3) = (z_s3065z3 z_s3072z3) in
       ZSome (ZC_JAL zimm, (fun (x,y) -> let n = sub_int (x,y) in if Big_int.less_equal n Big_int.zero then Big_int.zero else n) ((string_length zargz3), (string_length zsz3)))
-    | z_s3080z3 when (begin
-      match (z_s3069z3 z_s3080z3) with
+    | z_s3084z3 when (begin
+      match (z_s3073z3 z_s3084z3) with
       | ZSome (zrsd, zimm, zsz3) -> true
       | _ -> false
     end) ->
-      let ZSome (zrsd, zimm, zsz3) = (z_s3069z3 z_s3080z3) in
+      let ZSome (zrsd, zimm, zsz3) = (z_s3073z3 z_s3084z3) in
       ZSome (ZC_ADDIW (zimm, zrsd), (fun (x,y) -> let n = sub_int (x,y) in if Big_int.less_equal n Big_int.zero then Big_int.zero else n) ((string_length zargz3), (string_length zsz3)))
-    | z_s3092z3 when (begin
-      match (z_s3081z3 z_s3092z3) with
+    | z_s3096z3 when (begin
+      match (z_s3085z3 z_s3096z3) with
       | ZSome (zrd, zimm, zsz3) ->
         zneq_atom ((zregbits_to_regno zrd), (zregbits_to_regno zzzreg))
       | _ -> false
     end) ->
-      let ZSome (zrd, zimm, zsz3) = (z_s3081z3 z_s3092z3) in
+      let ZSome (zrd, zimm, zsz3) = (z_s3085z3 z_s3096z3) in
       ZSome (ZC_LI (zimm, zrd), (fun (x,y) -> let n = sub_int (x,y) in if Big_int.less_equal n Big_int.zero then Big_int.zero else n) ((string_length zargz3), (string_length zsz3)))
-    | z_s3100z3 when (begin
-      match (z_s3093z3 z_s3100z3) with
+    | z_s3104z3 when (begin
+      match (z_s3097z3 z_s3104z3) with
       | ZSome (zimm, zsz3) -> zneq_vec (zimm, [B0; B0; B0; B0; B0; B0])
       | _ -> false
     end) ->
-      let ZSome (zimm, zsz3) = (z_s3093z3 z_s3100z3) in
+      let ZSome (zimm, zsz3) = (z_s3097z3 z_s3104z3) in
       ZSome (ZC_ADDI16SP zimm, (fun (x,y) -> let n = sub_int (x,y) in if Big_int.less_equal n Big_int.zero then Big_int.zero else n) ((string_length zargz3), (string_length zsz3)))
-    | z_s3110z3 when (begin
-      match (z_s3101z3 z_s3110z3) with
+    | z_s3116z3 when (begin
+      match (z_s3105z3 z_s3116z3) with
       | ZSome (zrd, zimm, zsz3) ->
-        (zneq_atom ((zregbits_to_regno zrd), (zregbits_to_regno zzzreg))) && (zneq_atom ((zregbits_to_regno zrd), (zregbits_to_regno zsp)))
+        (zneq_atom ((zregbits_to_regno zrd), (zregbits_to_regno zzzreg))) && ((zneq_atom ((zregbits_to_regno zrd), (zregbits_to_regno zsp))) && (zneq_vec (zimm, [B0; B0; B0; B0; B0; B0])))
       | _ -> false
     end) ->
-      let ZSome (zrd, zimm, zsz3) = (z_s3101z3 z_s3110z3) in
+      let ZSome (zrd, zimm, zsz3) = (z_s3105z3 z_s3116z3) in
       ZSome (ZC_LUI (zimm, zrd), (fun (x,y) -> let n = sub_int (x,y) in if Big_int.less_equal n Big_int.zero then Big_int.zero else n) ((string_length zargz3), (string_length zsz3)))
-    | z_s3122z3 when (begin
-      match (z_s3111z3 z_s3122z3) with
+    | z_s3128z3 when (begin
+      match (z_s3117z3 z_s3128z3) with
       | ZSome (zrsd, zshamt, zsz3) ->
         zneq_vec (zshamt, [B0; B0; B0; B0; B0; B0])
       | _ -> false
     end) ->
-      let ZSome (zrsd, zshamt, zsz3) = (z_s3111z3 z_s3122z3) in
+      let ZSome (zrsd, zshamt, zsz3) = (z_s3117z3 z_s3128z3) in
       ZSome (ZC_SRLI (zshamt, zrsd), (fun (x,y) -> let n = sub_int (x,y) in if Big_int.less_equal n Big_int.zero then Big_int.zero else n) ((string_length zargz3), (string_length zsz3)))
-    | z_s3134z3 when (begin
-      match (z_s3123z3 z_s3134z3) with
+    | z_s3140z3 when (begin
+      match (z_s3129z3 z_s3140z3) with
       | ZSome (zrsd, zshamt, zsz3) ->
         zneq_vec (zshamt, [B0; B0; B0; B0; B0; B0])
       | _ -> false
     end) ->
-      let ZSome (zrsd, zshamt, zsz3) = (z_s3123z3 z_s3134z3) in
+      let ZSome (zrsd, zshamt, zsz3) = (z_s3129z3 z_s3140z3) in
       ZSome (ZC_SRAI (zshamt, zrsd), (fun (x,y) -> let n = sub_int (x,y) in if Big_int.less_equal n Big_int.zero then Big_int.zero else n) ((string_length zargz3), (string_length zsz3)))
-    | z_s3146z3 when (begin
-      match (z_s3135z3 z_s3146z3) with
+    | z_s3152z3 when (begin
+      match (z_s3141z3 z_s3152z3) with
       | ZSome (zrsd, zimm, zsz3) -> true
       | _ -> false
     end) ->
-      let ZSome (zrsd, zimm, zsz3) = (z_s3135z3 z_s3146z3) in
+      let ZSome (zrsd, zimm, zsz3) = (z_s3141z3 z_s3152z3) in
       ZSome (ZC_ANDI (zimm, zrsd), (fun (x,y) -> let n = sub_int (x,y) in if Big_int.less_equal n Big_int.zero then Big_int.zero else n) ((string_length zargz3), (string_length zsz3)))
-    | z_s3158z3 when (begin
-      match (z_s3147z3 z_s3158z3) with
+    | z_s3164z3 when (begin
+      match (z_s3153z3 z_s3164z3) with
       | ZSome (zrsd, zrs2, zsz3) -> true
       | _ -> false
     end) ->
-      let ZSome (zrsd, zrs2, zsz3) = (z_s3147z3 z_s3158z3) in
+      let ZSome (zrsd, zrs2, zsz3) = (z_s3153z3 z_s3164z3) in
       ZSome (ZC_SUB (zrsd, zrs2), (fun (x,y) -> let n = sub_int (x,y) in if Big_int.less_equal n Big_int.zero then Big_int.zero else n) ((string_length zargz3), (string_length zsz3)))
-    | z_s3170z3 when (begin
-      match (z_s3159z3 z_s3170z3) with
+    | z_s3176z3 when (begin
+      match (z_s3165z3 z_s3176z3) with
       | ZSome (zrsd, zrs2, zsz3) -> true
       | _ -> false
     end) ->
-      let ZSome (zrsd, zrs2, zsz3) = (z_s3159z3 z_s3170z3) in
+      let ZSome (zrsd, zrs2, zsz3) = (z_s3165z3 z_s3176z3) in
       ZSome (ZC_XOR (zrsd, zrs2), (fun (x,y) -> let n = sub_int (x,y) in if Big_int.less_equal n Big_int.zero then Big_int.zero else n) ((string_length zargz3), (string_length zsz3)))
-    | z_s3182z3 when (begin
-      match (z_s3171z3 z_s3182z3) with
+    | z_s3188z3 when (begin
+      match (z_s3177z3 z_s3188z3) with
       | ZSome (zrsd, zrs2, zsz3) -> true
       | _ -> false
     end) ->
-      let ZSome (zrsd, zrs2, zsz3) = (z_s3171z3 z_s3182z3) in
+      let ZSome (zrsd, zrs2, zsz3) = (z_s3177z3 z_s3188z3) in
       ZSome (ZC_OR (zrsd, zrs2), (fun (x,y) -> let n = sub_int (x,y) in if Big_int.less_equal n Big_int.zero then Big_int.zero else n) ((string_length zargz3), (string_length zsz3)))
-    | z_s3194z3 when (begin
-      match (z_s3183z3 z_s3194z3) with
+    | z_s3200z3 when (begin
+      match (z_s3189z3 z_s3200z3) with
       | ZSome (zrsd, zrs2, zsz3) -> true
       | _ -> false
     end) ->
-      let ZSome (zrsd, zrs2, zsz3) = (z_s3183z3 z_s3194z3) in
+      let ZSome (zrsd, zrs2, zsz3) = (z_s3189z3 z_s3200z3) in
       ZSome (ZC_AND (zrsd, zrs2), (fun (x,y) -> let n = sub_int (x,y) in if Big_int.less_equal n Big_int.zero then Big_int.zero else n) ((string_length zargz3), (string_length zsz3)))
-    | z_s3206z3 when (begin
-      match (z_s3195z3 z_s3206z3) with
+    | z_s3212z3 when (begin
+      match (z_s3201z3 z_s3212z3) with
       | ZSome (zrsd, zrs2, zsz3) -> true
       | _ -> false
     end) ->
-      let ZSome (zrsd, zrs2, zsz3) = (z_s3195z3 z_s3206z3) in
+      let ZSome (zrsd, zrs2, zsz3) = (z_s3201z3 z_s3212z3) in
       ZSome (ZC_SUBW (zrsd, zrs2), (fun (x,y) -> let n = sub_int (x,y) in if Big_int.less_equal n Big_int.zero then Big_int.zero else n) ((string_length zargz3), (string_length zsz3)))
-    | z_s3218z3 when (begin
-      match (z_s3207z3 z_s3218z3) with
+    | z_s3224z3 when (begin
+      match (z_s3213z3 z_s3224z3) with
       | ZSome (zrsd, zrs2, zsz3) -> true
       | _ -> false
     end) ->
-      let ZSome (zrsd, zrs2, zsz3) = (z_s3207z3 z_s3218z3) in
+      let ZSome (zrsd, zrs2, zsz3) = (z_s3213z3 z_s3224z3) in
       ZSome (ZC_ADDW (zrsd, zrs2), (fun (x,y) -> let n = sub_int (x,y) in if Big_int.less_equal n Big_int.zero then Big_int.zero else n) ((string_length zargz3), (string_length zsz3)))
-    | z_s3226z3 when (begin
-      match (z_s3219z3 z_s3226z3) with
+    | z_s3232z3 when (begin
+      match (z_s3225z3 z_s3232z3) with
       | ZSome (zimm, zsz3) -> true
       | _ -> false
     end) ->
-      let ZSome (zimm, zsz3) = (z_s3219z3 z_s3226z3) in
+      let ZSome (zimm, zsz3) = (z_s3225z3 z_s3232z3) in
       ZSome (ZC_J zimm, (fun (x,y) -> let n = sub_int (x,y) in if Big_int.less_equal n Big_int.zero then Big_int.zero else n) ((string_length zargz3), (string_length zsz3)))
-    | z_s3238z3 when (begin
-      match (z_s3227z3 z_s3238z3) with
+    | z_s3244z3 when (begin
+      match (z_s3233z3 z_s3244z3) with
       | ZSome (zrs, zimm, zsz3) -> true
       | _ -> false
     end) ->
-      let ZSome (zrs, zimm, zsz3) = (z_s3227z3 z_s3238z3) in
+      let ZSome (zrs, zimm, zsz3) = (z_s3233z3 z_s3244z3) in
       ZSome (ZC_BEQZ (zimm, zrs), (fun (x,y) -> let n = sub_int (x,y) in if Big_int.less_equal n Big_int.zero then Big_int.zero else n) ((string_length zargz3), (string_length zsz3)))
-    | z_s3250z3 when (begin
-      match (z_s3239z3 z_s3250z3) with
+    | z_s3256z3 when (begin
+      match (z_s3245z3 z_s3256z3) with
       | ZSome (zrs, zimm, zsz3) -> true
       | _ -> false
     end) ->
-      let ZSome (zrs, zimm, zsz3) = (z_s3239z3 z_s3250z3) in
+      let ZSome (zrs, zimm, zsz3) = (z_s3245z3 z_s3256z3) in
       ZSome (ZC_BNEZ (zimm, zrs), (fun (x,y) -> let n = sub_int (x,y) in if Big_int.less_equal n Big_int.zero then Big_int.zero else n) ((string_length zargz3), (string_length zsz3)))
-    | z_s3262z3 when (begin
-      match (z_s3251z3 z_s3262z3) with
+    | z_s3268z3 when (begin
+      match (z_s3257z3 z_s3268z3) with
       | ZSome (zrsd, zshamt, zsz3) ->
         (zneq_vec (zshamt, [B0; B0; B0; B0; B0; B0])) && (zneq_atom ((zregbits_to_regno zrsd), (zregbits_to_regno zzzreg)))
       | _ -> false
     end) ->
-      let ZSome (zrsd, zshamt, zsz3) = (z_s3251z3 z_s3262z3) in
+      let ZSome (zrsd, zshamt, zsz3) = (z_s3257z3 z_s3268z3) in
       ZSome (ZC_SLLI (zshamt, zrsd), (fun (x,y) -> let n = sub_int (x,y) in if Big_int.less_equal n Big_int.zero then Big_int.zero else n) ((string_length zargz3), (string_length zsz3)))
-    | z_s3274z3 when (begin
-      match (z_s3263z3 z_s3274z3) with
+    | z_s3280z3 when (begin
+      match (z_s3269z3 z_s3280z3) with
       | ZSome (zrd, zuimm, zsz3) ->
         zneq_atom ((zregbits_to_regno zrd), (zregbits_to_regno zzzreg))
       | _ -> false
     end) ->
-      let ZSome (zrd, zuimm, zsz3) = (z_s3263z3 z_s3274z3) in
+      let ZSome (zrd, zuimm, zsz3) = (z_s3269z3 z_s3280z3) in
       ZSome (ZC_LWSP (zuimm, zrd), (fun (x,y) -> let n = sub_int (x,y) in if Big_int.less_equal n Big_int.zero then Big_int.zero else n) ((string_length zargz3), (string_length zsz3)))
-    | z_s3286z3 when (begin
-      match (z_s3275z3 z_s3286z3) with
+    | z_s3292z3 when (begin
+      match (z_s3281z3 z_s3292z3) with
       | ZSome (zrd, zuimm, zsz3) ->
         zneq_atom ((zregbits_to_regno zrd), (zregbits_to_regno zzzreg))
       | _ -> false
     end) ->
-      let ZSome (zrd, zuimm, zsz3) = (z_s3275z3 z_s3286z3) in
+      let ZSome (zrd, zuimm, zsz3) = (z_s3281z3 z_s3292z3) in
       ZSome (ZC_LDSP (zuimm, zrd), (fun (x,y) -> let n = sub_int (x,y) in if Big_int.less_equal n Big_int.zero then Big_int.zero else n) ((string_length zargz3), (string_length zsz3)))
-    | z_s3298z3 when (begin
-      match (z_s3287z3 z_s3298z3) with
+    | z_s3304z3 when (begin
+      match (z_s3293z3 z_s3304z3) with
       | ZSome (zrd, zuimm, zsz3) -> true
       | _ -> false
     end) ->
-      let ZSome (zrd, zuimm, zsz3) = (z_s3287z3 z_s3298z3) in
+      let ZSome (zrd, zuimm, zsz3) = (z_s3293z3 z_s3304z3) in
       ZSome (ZC_SWSP (zuimm, zrd), (fun (x,y) -> let n = sub_int (x,y) in if Big_int.less_equal n Big_int.zero then Big_int.zero else n) ((string_length zargz3), (string_length zsz3)))
-    | z_s3310z3 when (begin
-      match (z_s3299z3 z_s3310z3) with
+    | z_s3316z3 when (begin
+      match (z_s3305z3 z_s3316z3) with
       | ZSome (zrs2, zuimm, zsz3) -> true
       | _ -> false
     end) ->
-      let ZSome (zrs2, zuimm, zsz3) = (z_s3299z3 z_s3310z3) in
+      let ZSome (zrs2, zuimm, zsz3) = (z_s3305z3 z_s3316z3) in
       ZSome (ZC_SDSP (zuimm, zrs2), (fun (x,y) -> let n = sub_int (x,y) in if Big_int.less_equal n Big_int.zero then Big_int.zero else n) ((string_length zargz3), (string_length zsz3)))
-    | z_s3318z3 when (begin
-      match (z_s3311z3 z_s3318z3) with
+    | z_s3324z3 when (begin
+      match (z_s3317z3 z_s3324z3) with
       | ZSome (zrs1, zsz3) ->
         zneq_atom ((zregbits_to_regno zrs1), (zregbits_to_regno zzzreg))
       | _ -> false
     end) ->
-      let ZSome (zrs1, zsz3) = (z_s3311z3 z_s3318z3) in
+      let ZSome (zrs1, zsz3) = (z_s3317z3 z_s3324z3) in
       ZSome (ZC_JR zrs1, (fun (x,y) -> let n = sub_int (x,y) in if Big_int.less_equal n Big_int.zero then Big_int.zero else n) ((string_length zargz3), (string_length zsz3)))
-    | z_s3326z3 when (begin
-      match (z_s3319z3 z_s3326z3) with
+    | z_s3332z3 when (begin
+      match (z_s3325z3 z_s3332z3) with
       | ZSome (zrs1, zsz3) ->
         zneq_atom ((zregbits_to_regno zrs1), (zregbits_to_regno zzzreg))
       | _ -> false
     end) ->
-      let ZSome (zrs1, zsz3) = (z_s3319z3 z_s3326z3) in
+      let ZSome (zrs1, zsz3) = (z_s3325z3 z_s3332z3) in
       ZSome (ZC_JALR zrs1, (fun (x,y) -> let n = sub_int (x,y) in if Big_int.less_equal n Big_int.zero then Big_int.zero else n) ((string_length zargz3), (string_length zsz3)))
-    | z_s3338z3 when (begin
-      match (z_s3327z3 z_s3338z3) with
+    | z_s3344z3 when (begin
+      match (z_s3333z3 z_s3344z3) with
       | ZSome (zrd, zrs2, zsz3) ->
         (zneq_atom ((zregbits_to_regno zrd), (zregbits_to_regno zzzreg))) && (zneq_atom ((zregbits_to_regno zrs2), (zregbits_to_regno zzzreg)))
       | _ -> false
     end) ->
-      let ZSome (zrd, zrs2, zsz3) = (z_s3327z3 z_s3338z3) in
+      let ZSome (zrd, zrs2, zsz3) = (z_s3333z3 z_s3344z3) in
       ZSome (ZC_MV (zrd, zrs2), (fun (x,y) -> let n = sub_int (x,y) in if Big_int.less_equal n Big_int.zero then Big_int.zero else n) ((string_length zargz3), (string_length zsz3)))
-    | z_s3342z3 when (begin
-      match (z_s3339z3 z_s3342z3) with
+    | z_s3348z3 when (begin
+      match (z_s3345z3 z_s3348z3) with
       | ZSome (zsz3) -> true
       | _ -> false
     end) ->
-      let ZSome (zsz3) = (z_s3339z3 z_s3342z3) in
+      let ZSome (zsz3) = (z_s3345z3 z_s3348z3) in
       ZSome (ZC_EBREAK (), (fun (x,y) -> let n = sub_int (x,y) in if Big_int.less_equal n Big_int.zero then Big_int.zero else n) ((string_length zargz3), (string_length zsz3)))
-    | z_s3354z3 when (begin
-      match (z_s3343z3 z_s3354z3) with
+    | z_s3360z3 when (begin
+      match (z_s3349z3 z_s3360z3) with
       | ZSome (zrsd, zrs2, zsz3) ->
         (zneq_atom ((zregbits_to_regno zrsd), (zregbits_to_regno zzzreg))) && (zneq_atom ((zregbits_to_regno zrs2), (zregbits_to_regno zzzreg)))
       | _ -> false
     end) ->
-      let ZSome (zrsd, zrs2, zsz3) = (z_s3343z3 z_s3354z3) in
+      let ZSome (zrsd, zrs2, zsz3) = (z_s3349z3 z_s3360z3) in
       ZSome (ZC_ADD (zrsd, zrs2), (fun (x,y) -> let n = sub_int (x,y) in if Big_int.less_equal n Big_int.zero then Big_int.zero else n) ((string_length zargz3), (string_length zsz3)))
-    | z_s3358z3 when (begin
-      match (z_s3355z3 z_s3358z3) with
+    | z_s3364z3 when (begin
+      match (z_s3361z3 z_s3364z3) with
       | ZSome (zsz3) -> true
       | _ -> false
     end) ->
-      let ZSome (zsz3) = (z_s3355z3 z_s3358z3) in
+      let ZSome (zsz3) = (z_s3361z3 z_s3364z3) in
       ZSome (ZSTOP_FETCHING (), (fun (x,y) -> let n = sub_int (x,y) in if Big_int.less_equal n Big_int.zero then Big_int.zero else n) ((string_length zargz3), (string_length zsz3)))
-    | z_s3362z3 when (begin
-      match (z_s3359z3 z_s3362z3) with
+    | z_s3368z3 when (begin
+      match (z_s3365z3 z_s3368z3) with
       | ZSome (zsz3) -> true
       | _ -> false
     end) ->
-      let ZSome (zsz3) = (z_s3359z3 z_s3362z3) in
+      let ZSome (zsz3) = (z_s3365z3 z_s3368z3) in
       ZSome (ZTHREAD_START (), (fun (x,y) -> let n = sub_int (x,y) in if Big_int.less_equal n Big_int.zero then Big_int.zero else n) ((string_length zargz3), (string_length zsz3)))
-    | z_s3370z3 when (begin
-      match (z_s3363z3 z_s3370z3) with
+    | z_s3376z3 when (begin
+      match (z_s3369z3 z_s3376z3) with
       | ZSome (zs, zsz3) -> true
       | _ -> false
     end) ->
-      let ZSome (zs, zsz3) = (z_s3363z3 z_s3370z3) in
+      let ZSome (zs, zsz3) = (z_s3369z3 z_s3376z3) in
       ZSome (ZILLEGAL zs, (fun (x,y) -> let n = sub_int (x,y) in if Big_int.less_equal n Big_int.zero then Big_int.zero else n) ((string_length zargz3), (string_length zsz3)))
-    | z_s3378z3 when (begin
-      match (z_s3371z3 z_s3378z3) with
+    | z_s3384z3 when (begin
+      match (z_s3377z3 z_s3384z3) with
       | ZSome (zs, zsz3) -> true
       | _ -> false
     end) ->
-      let ZSome (zs, zsz3) = (z_s3371z3 z_s3378z3) in
+      let ZSome (zs, zsz3) = (z_s3377z3 z_s3384z3) in
       ZSome (ZC_ILLEGAL zs, (fun (x,y) -> let n = sub_int (x,y) in if Big_int.less_equal n Big_int.zero then Big_int.zero else n) ((string_length zargz3), (string_length zsz3)))
     | _ -> ZNone ()
   end)
@@ -30080,7 +30138,7 @@ and zencdec_forwards (zargz3 : (zast)) : (bit) list = sail_call (fun r ->
       append ([B0; B0; B0; B0; B0; B0; B0], (append ((zrs2), (append ((zrs1), (append ([B1; B1; B0], (append ((zrd), [B0; B1; B1; B0; B0; B1; B1])))))))))
     | ZRTYPE (zrs2, zrs1, zrd, ZRISCV_AND) ->
       append ([B0; B0; B0; B0; B0; B0; B0], (append ((zrs2), (append ((zrs1), (append ([B1; B1; B1], (append ((zrd), [B0; B1; B1; B0; B0; B1; B1])))))))))
-    | ZLOAD (zimm, zrs1, zrd, zis_unsigned, zsizze, zp0z3, zp1z3) when ((eq_bool (zp1z3, false)) && (eq_bool (zp0z3, false))) ->
+    | ZLOAD (zimm, zrs1, zrd, zis_unsigned, zsizze, zp0z3, zp1z3) when ((((zneq_vec ((zsizze_bits_forwards zsizze), [B1; B1])) || (not zis_unsigned)) && (eq_bool (zp1z3, false))) && (eq_bool (zp0z3, false))) ->
       append ((zimm), (append ((zrs1), (append ((zbool_bits_forwards zis_unsigned), (append ((zsizze_bits_forwards zsizze), (append ((zrd), [B0; B0; B0; B0; B0; B1; B1])))))))))
     | ZSTORE (zv__82, zrs2, zrs1, zsizze, zp0z3, zp1z3) when ((eq_bool (zp1z3, false)) && (eq_bool (zp0z3, false))) ->
       let zimm7 = (subrange (zv__82, (Big_int.of_int (11)), (Big_int.of_int (5)))) in
@@ -30529,7 +30587,7 @@ and zencdec_backwards (zargz3 : ((bit) list)) : zast = sail_call (fun r ->
     let z_mappingpatterns_26z3 = (subrange (zv__145, (Big_int.of_int (14)), (Big_int.of_int (14)))) in
     ((((((((zsizze_bits_backwards_matches z_mappingpatterns_27z3) && (if (zsizze_bits_backwards_matches z_mappingpatterns_27z3) then (let zsizze = (zsizze_bits_backwards z_mappingpatterns_27z3) in
     (zbool_bits_backwards_matches z_mappingpatterns_26z3) && (if (zbool_bits_backwards_matches z_mappingpatterns_26z3) then (let zis_unsigned = (zbool_bits_backwards z_mappingpatterns_26z3) in
-    true) else false)) else false)) && (eq_bit (zp6z3, B1))) && (eq_bit (zp5z3, B1))) && (eq_bit (zp4z3, B0))) && (eq_bit (zp3z3, B0))) && (eq_bit (zp2z3, B0))) && (eq_bit (zp1z3, B0))) && (eq_bit (zp0z3, B0))) ->
+    (zneq_vec ((zsizze_bits_forwards zsizze), [B1; B1])) || (not zis_unsigned)) else false)) else false)) && (eq_bit (zp6z3, B1))) && (eq_bit (zp5z3, B1))) && (eq_bit (zp4z3, B0))) && (eq_bit (zp3z3, B0))) && (eq_bit (zp2z3, B0))) && (eq_bit (zp1z3, B0))) && (eq_bit (zp0z3, B0))) ->
       let zimm = (subrange (zv__145, (Big_int.of_int (31)), (Big_int.of_int (20)))) in
       let zrs1 = (subrange (zv__145, (Big_int.of_int (19)), (Big_int.of_int (15)))) in
       let zrd = (subrange (zv__145, (Big_int.of_int (11)), (Big_int.of_int (7)))) in
@@ -31431,7 +31489,7 @@ and zencdec_forwards_matches (zargz3 : (zast)) : bool = sail_call (fun r ->
     | ZRTYPE (zrs2, zrs1, zrd, ZRISCV_SRA) -> true
     | ZRTYPE (zrs2, zrs1, zrd, ZRISCV_OR) -> true
     | ZRTYPE (zrs2, zrs1, zrd, ZRISCV_AND) -> true
-    | ZLOAD (zimm, zrs1, zrd, zis_unsigned, zsizze, zp0z3, zp1z3) when ((eq_bool (zp1z3, false)) && (eq_bool (zp0z3, false))) ->
+    | ZLOAD (zimm, zrs1, zrd, zis_unsigned, zsizze, zp0z3, zp1z3) when ((((zneq_vec ((zsizze_bits_forwards zsizze), [B1; B1])) || (not zis_unsigned)) && (eq_bool (zp1z3, false))) && (eq_bool (zp0z3, false))) ->
       true
     | ZSTORE (zv__301, zrs2, zrs1, zsizze, zp0z3, zp1z3) when ((eq_bool (zp1z3, false)) && (eq_bool (zp0z3, false))) ->
       true
@@ -31782,7 +31840,7 @@ and zencdec_backwards_matches (zargz3 : ((bit) list)) : bool = sail_call (fun r 
     let z_mappingpatterns_3z3 = (subrange (zv__364, (Big_int.of_int (14)), (Big_int.of_int (14)))) in
     ((((((((zsizze_bits_backwards_matches z_mappingpatterns_4z3) && (if (zsizze_bits_backwards_matches z_mappingpatterns_4z3) then (let zsizze = (zsizze_bits_backwards z_mappingpatterns_4z3) in
     (zbool_bits_backwards_matches z_mappingpatterns_3z3) && (if (zbool_bits_backwards_matches z_mappingpatterns_3z3) then (let zis_unsigned = (zbool_bits_backwards z_mappingpatterns_3z3) in
-    true) else false)) else false)) && (eq_bit (zp6z3, B1))) && (eq_bit (zp5z3, B1))) && (eq_bit (zp4z3, B0))) && (eq_bit (zp3z3, B0))) && (eq_bit (zp2z3, B0))) && (eq_bit (zp1z3, B0))) && (eq_bit (zp0z3, B0))) ->
+    (zneq_vec ((zsizze_bits_forwards zsizze), [B1; B1])) || (not zis_unsigned)) else false)) else false)) && (eq_bit (zp6z3, B1))) && (eq_bit (zp5z3, B1))) && (eq_bit (zp4z3, B0))) && (eq_bit (zp3z3, B0))) && (eq_bit (zp2z3, B0))) && (eq_bit (zp1z3, B0))) && (eq_bit (zp0z3, B0))) ->
       let z_mappingpatterns_4z3 = (subrange (zv__364, (Big_int.of_int (13)), (Big_int.of_int (12)))) in
       let z_mappingpatterns_3z3 = (subrange (zv__364, (Big_int.of_int (14)), (Big_int.of_int (14)))) in
       let zsizze = (zsizze_bits_backwards z_mappingpatterns_4z3) in
@@ -32627,7 +32685,7 @@ and zencdec_compressed_forwards (zargz3 : (zast)) : (bit) list = sail_call (fun 
       let znzzi5 = (subrange (zv__521, (Big_int.of_int (5)), (Big_int.of_int (5)))) in
       let znzzi40 = (subrange (zv__521, (Big_int.of_int (4)), Big_int.zero)) in
       append ([B0; B0; B0], (append ((znzzi5), (append ((zrsd), (append ((znzzi40), [B0; B1])))))))
-    | ZC_ADDIW (zv__522, zrsd) ->
+    | ZC_ADDIW (zv__522, zrsd) when (zneq_atom ((zregbits_to_regno zrsd), (zregbits_to_regno zzzreg))) ->
       let zimm5 = (subrange (zv__522, (Big_int.of_int (5)), (Big_int.of_int (5)))) in
       let zimm5 = (subrange (zv__522, (Big_int.of_int (5)), (Big_int.of_int (5)))) in
       let zimm40 = (subrange (zv__522, (Big_int.of_int (4)), Big_int.zero)) in
@@ -32651,7 +32709,10 @@ and zencdec_compressed_forwards (zargz3 : (zast)) : (bit) list = sail_call (fun 
       let znzzi5 = (subrange (zv__524, (Big_int.of_int (1)), (Big_int.of_int (1)))) in
       let znzzi4 = (subrange (zv__524, Big_int.zero, Big_int.zero)) in
       append ([B0; B1; B1], (append ((znzzi9), (append ([B0; B0; B0; B1; B0], (append ((znzzi4), (append ((znzzi6), (append ((znzzi87), (append ((znzzi5), [B0; B1])))))))))))))
-    | ZC_LUI (zv__525, zrd) when ((zneq_atom ((zregbits_to_regno zrd), (zregbits_to_regno zzzreg))) && (zneq_atom ((zregbits_to_regno zrd), (zregbits_to_regno zsp)))) ->
+    | ZC_LUI (zv__525, zrd) when (let zimm17 = (subrange (zv__525, (Big_int.of_int (5)), (Big_int.of_int (5)))) in
+    let zimm17 = (subrange (zv__525, (Big_int.of_int (5)), (Big_int.of_int (5)))) in
+    let zimm1612 = (subrange (zv__525, (Big_int.of_int (4)), Big_int.zero)) in
+    (zneq_atom ((zregbits_to_regno zrd), (zregbits_to_regno zzzreg))) && ((zneq_atom ((zregbits_to_regno zrd), (zregbits_to_regno zsp))) && (zneq_vec ((append (zimm17, zimm1612)), [B0; B0; B0; B0; B0; B0])))) ->
       let zimm17 = (subrange (zv__525, (Big_int.of_int (5)), (Big_int.of_int (5)))) in
       let zimm17 = (subrange (zv__525, (Big_int.of_int (5)), (Big_int.of_int (5)))) in
       let zimm1612 = (subrange (zv__525, (Big_int.of_int (4)), Big_int.zero)) in
@@ -32860,7 +32921,8 @@ and zencdec_compressed_backwards (zargz3 : ((bit) list)) : zast = sail_call (fun
     let zp2z3 = (access (zv__561, (Big_int.of_int (13)))) in
     let zp3z3 = (access (zv__561, (Big_int.of_int (1)))) in
     let zp4z3 = (access (zv__561, Big_int.zero)) in
-    ((((eq_bit (zp4z3, B1)) && (eq_bit (zp3z3, B0))) && (eq_bit (zp2z3, B1))) && (eq_bit (zp1z3, B0))) && (eq_bit (zp0z3, B0))) ->
+    let zrsd = (subrange (zv__561, (Big_int.of_int (11)), (Big_int.of_int (7)))) in
+    (((((zneq_atom ((zregbits_to_regno zrsd), (zregbits_to_regno zzzreg))) && (eq_bit (zp4z3, B1))) && (eq_bit (zp3z3, B0))) && (eq_bit (zp2z3, B1))) && (eq_bit (zp1z3, B0))) && (eq_bit (zp0z3, B0))) ->
       let zrsd = (subrange (zv__561, (Big_int.of_int (11)), (Big_int.of_int (7)))) in
       let zimm5 = (subrange (zv__561, (Big_int.of_int (12)), (Big_int.of_int (12)))) in
       let zimm40 = (subrange (zv__561, (Big_int.of_int (6)), (Big_int.of_int (2)))) in
@@ -32904,7 +32966,9 @@ and zencdec_compressed_backwards (zargz3 : ((bit) list)) : zast = sail_call (fun
     let zp3z3 = (access (zv__571, (Big_int.of_int (1)))) in
     let zp4z3 = (access (zv__571, Big_int.zero)) in
     let zrd = (subrange (zv__571, (Big_int.of_int (11)), (Big_int.of_int (7)))) in
-    ((((((zneq_atom ((zregbits_to_regno zrd), (zregbits_to_regno zzzreg))) && (zneq_atom ((zregbits_to_regno zrd), (zregbits_to_regno zsp)))) && (eq_bit (zp4z3, B1))) && (eq_bit (zp3z3, B0))) && (eq_bit (zp2z3, B1))) && (eq_bit (zp1z3, B1))) && (eq_bit (zp0z3, B0))) ->
+    let zimm17 = (subrange (zv__571, (Big_int.of_int (12)), (Big_int.of_int (12)))) in
+    let zimm1612 = (subrange (zv__571, (Big_int.of_int (6)), (Big_int.of_int (2)))) in
+    ((((((zneq_atom ((zregbits_to_regno zrd), (zregbits_to_regno zzzreg))) && ((zneq_atom ((zregbits_to_regno zrd), (zregbits_to_regno zsp))) && (zneq_vec ((append (zimm17, zimm1612)), [B0; B0; B0; B0; B0; B0])))) && (eq_bit (zp4z3, B1))) && (eq_bit (zp3z3, B0))) && (eq_bit (zp2z3, B1))) && (eq_bit (zp1z3, B1))) && (eq_bit (zp0z3, B0))) ->
       let zrd = (subrange (zv__571, (Big_int.of_int (11)), (Big_int.of_int (7)))) in
       let zimm17 = (subrange (zv__571, (Big_int.of_int (12)), (Big_int.of_int (12)))) in
       let zimm1612 = (subrange (zv__571, (Big_int.of_int (6)), (Big_int.of_int (2)))) in
@@ -33226,7 +33290,8 @@ and zencdec_compressed_forwards_matches (zargz3 : (zast)) : bool = sail_call (fu
     let znzzi40 = (subrange (zv__675, (Big_int.of_int (4)), Big_int.zero)) in
     (zneq_vec ((append (znzzi5, znzzi40)), [B0; B0; B0; B0; B0; B0])) && (zneq_atom ((zregbits_to_regno zrsd), (zregbits_to_regno zzzreg)))) ->
       true
-    | ZC_ADDIW (zv__676, zrsd) -> true
+    | ZC_ADDIW (zv__676, zrsd) when (zneq_atom ((zregbits_to_regno zrsd), (zregbits_to_regno zzzreg))) ->
+      true
     | ZC_LI (zv__677, zrd) when (zneq_atom ((zregbits_to_regno zrd), (zregbits_to_regno zzzreg))) ->
       true
     | ZC_ADDI16SP (zv__678) when (let znzzi9 = (subrange (zv__678, (Big_int.of_int (5)), (Big_int.of_int (5)))) in
@@ -33237,7 +33302,10 @@ and zencdec_compressed_forwards_matches (zargz3 : (zast)) : bool = sail_call (fu
     let znzzi4 = (subrange (zv__678, Big_int.zero, Big_int.zero)) in
     zneq_vec ((append (znzzi9, (append (znzzi87, (append (znzzi6, (append (znzzi5, znzzi4)))))))), [B0; B0; B0; B0; B0; B0])) ->
       true
-    | ZC_LUI (zv__679, zrd) when ((zneq_atom ((zregbits_to_regno zrd), (zregbits_to_regno zzzreg))) && (zneq_atom ((zregbits_to_regno zrd), (zregbits_to_regno zsp)))) ->
+    | ZC_LUI (zv__679, zrd) when (let zimm17 = (subrange (zv__679, (Big_int.of_int (5)), (Big_int.of_int (5)))) in
+    let zimm17 = (subrange (zv__679, (Big_int.of_int (5)), (Big_int.of_int (5)))) in
+    let zimm1612 = (subrange (zv__679, (Big_int.of_int (4)), Big_int.zero)) in
+    (zneq_atom ((zregbits_to_regno zrd), (zregbits_to_regno zzzreg))) && ((zneq_atom ((zregbits_to_regno zrd), (zregbits_to_regno zsp))) && (zneq_vec ((append (zimm17, zimm1612)), [B0; B0; B0; B0; B0; B0])))) ->
       true
     | ZC_SRLI (zv__680, zrsd) when (let znzzui5 = (subrange (zv__680, (Big_int.of_int (5)), (Big_int.of_int (5)))) in
     let znzzui5 = (subrange (zv__680, (Big_int.of_int (5)), (Big_int.of_int (5)))) in
@@ -33358,7 +33426,8 @@ and zencdec_compressed_backwards_matches (zargz3 : ((bit) list)) : bool = sail_c
     let zp2z3 = (access (zv__715, (Big_int.of_int (13)))) in
     let zp3z3 = (access (zv__715, (Big_int.of_int (1)))) in
     let zp4z3 = (access (zv__715, Big_int.zero)) in
-    ((((eq_bit (zp4z3, B1)) && (eq_bit (zp3z3, B0))) && (eq_bit (zp2z3, B1))) && (eq_bit (zp1z3, B0))) && (eq_bit (zp0z3, B0))) ->
+    let zrsd = (subrange (zv__715, (Big_int.of_int (11)), (Big_int.of_int (7)))) in
+    (((((zneq_atom ((zregbits_to_regno zrsd), (zregbits_to_regno zzzreg))) && (eq_bit (zp4z3, B1))) && (eq_bit (zp3z3, B0))) && (eq_bit (zp2z3, B1))) && (eq_bit (zp1z3, B0))) && (eq_bit (zp0z3, B0))) ->
       true
     | zv__718 when (let zp0z3 = (access (zv__718, (Big_int.of_int (15)))) in
     let zp1z3 = (access (zv__718, (Big_int.of_int (14)))) in
@@ -33391,7 +33460,9 @@ and zencdec_compressed_backwards_matches (zargz3 : ((bit) list)) : bool = sail_c
     let zp3z3 = (access (zv__725, (Big_int.of_int (1)))) in
     let zp4z3 = (access (zv__725, Big_int.zero)) in
     let zrd = (subrange (zv__725, (Big_int.of_int (11)), (Big_int.of_int (7)))) in
-    ((((((zneq_atom ((zregbits_to_regno zrd), (zregbits_to_regno zzzreg))) && (zneq_atom ((zregbits_to_regno zrd), (zregbits_to_regno zsp)))) && (eq_bit (zp4z3, B1))) && (eq_bit (zp3z3, B0))) && (eq_bit (zp2z3, B1))) && (eq_bit (zp1z3, B1))) && (eq_bit (zp0z3, B0))) ->
+    let zimm17 = (subrange (zv__725, (Big_int.of_int (12)), (Big_int.of_int (12)))) in
+    let zimm1612 = (subrange (zv__725, (Big_int.of_int (6)), (Big_int.of_int (2)))) in
+    ((((((zneq_atom ((zregbits_to_regno zrd), (zregbits_to_regno zzzreg))) && ((zneq_atom ((zregbits_to_regno zrd), (zregbits_to_regno zsp))) && (zneq_vec ((append (zimm17, zimm1612)), [B0; B0; B0; B0; B0; B0])))) && (eq_bit (zp4z3, B1))) && (eq_bit (zp3z3, B0))) && (eq_bit (zp2z3, B1))) && (eq_bit (zp1z3, B1))) && (eq_bit (zp0z3, B0))) ->
       true
     | zv__728 when (let zp0z3 = (access (zv__728, (Big_int.of_int (15)))) in
     let zp1z3 = (access (zv__728, (Big_int.of_int (14)))) in
@@ -33773,8 +33844,8 @@ let rec zundefined_regfp (() : (unit)) : zregfp = sail_call (fun r ->
 
 type  zregfps = (zregfp) list;;
 
-let string_of_zregfps (gs6123 : zregfps) =
-  string_of_list ", " (fun gs6124 -> string_of_zregfp gs6124) gs6123;;
+let string_of_zregfps (gs6144 : zregfps) =
+  string_of_list ", " (fun gs6145 -> string_of_zregfp gs6145) gs6144;;
 
 type  zniafp =
   | ZNIAFP_successor of unit
@@ -33790,8 +33861,8 @@ let rec zundefined_niafp (() : (unit)) : zniafp = sail_call (fun r ->
 
 type  zniafps = (zniafp) list;;
 
-let string_of_zniafps (gs6129 : zniafps) =
-  string_of_list ", " (fun gs6130 -> string_of_zniafp gs6130) gs6129;;
+let string_of_zniafps (gs6150 : zniafps) =
+  string_of_list ", " (fun gs6151 -> string_of_zniafp gs6151) gs6150;;
 
 type  zdiafp =
   | ZDIAFP_none of unit
