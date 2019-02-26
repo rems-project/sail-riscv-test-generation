@@ -19,18 +19,20 @@ let set_bytes bytes off v =
   in set off (build [] v)
 ;;
 
-let gens, socket, num =
+let gens, socket, num, custom2 =
   let gens = ref rand_gens in
   let port = ref None in
   let num = ref 1 in
   let remove_compressed = ref false in
+  let custom2 = ref false in
   let open Arg in
   let () = parse
     (align
        ["-p", String (fun p -> port := Some p), "<port> Provide an instruction generator service on this port";
         "-no_compressed", Set remove_compressed, " Generate non-compressed instructions";
         "-n", Set_int num, "<number> Number of instructions to generate";
-        "-restrict_registers", Unit (fun () -> gens := restrict_registers !gens), " Apply a simple-minded restriction on the choice of registers"])
+        "-restrict_registers", Unit (fun () -> gens := restrict_registers !gens), " Apply a simple-minded restriction on the choice of registers";
+        "-allow_custom_2", Set custom2, " Allow instructions in custom_2 encoding space (if present in the model)"];)
     (fun _ -> raise (Bad "Unexpected argument"))
     "RISC-V instruction generator"
   in (if !remove_compressed
@@ -46,7 +48,8 @@ let gens, socket, num =
         let () = listen sock 1 in
         Some sock
       | None -> None),
-     !num
+     !num,
+     !custom2
 ;;
 
 let rec generate_one () =
@@ -58,12 +61,16 @@ let rec generate_one () =
         try zencdec_forwards instr
         with Match_failure _ -> zencdec_compressed_forwards instr
       in
-      let asm =
-        try zassembly_forwards instr
-        with Match_failure _ -> "<not supported by assembler>"
-      in
-      let () = print_endline (string_of_bits bits ^ " " ^ asm) in
-      instr, bits
+      match custom2, bits with
+      | false, [_;_;_;_;_;_;_;_;_;_;_;_;_;_;_;_;_;_;_;_;_;_;_;_;_;B1;B0;B1;B1;B0;B1;B1] ->
+         aux ()
+      | _ ->
+         let asm =
+           try zassembly_forwards instr
+           with Match_failure _ -> "<not supported by assembler>"
+         in
+         let () = print_endline (string_of_bits bits ^ " " ^ asm) in
+         instr, bits
     with Match_failure _ -> aux ()
   in aux ()
 ;;

@@ -2,10 +2,10 @@
 
 This is a randomised instruction generator for RISC-V, based on the
 [Sail model][sail].  A snapshot of that model is in the `model`
-directory, and was generated from commit `d4ace417` using the
+directory, and was generated from commit `7e18680` using the
 `-ocaml_generators ast` option.
 
-[sail]: https://github.com/rems-project/sail
+[sail]: https://github.com/rems-project/sail-riscv
 
 Building this currently requires the lem, linksem, and zarith
 libraries to be installed.  The easiest way to do this is to install
