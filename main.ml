@@ -58,7 +58,11 @@ let rec generate_one () =
         try zencdec_forwards instr
         with Match_failure _ -> zencdec_compressed_forwards instr
       in
-      let () = print_endline (string_of_bits bits ^ " " ^ zassembly_forwards instr) in
+      let asm =
+        try zassembly_forwards instr
+        with Match_failure _ -> "<not supported by assembler>"
+      in
+      let () = print_endline (string_of_bits bits ^ " " ^ asm) in
       instr, bits
     with Match_failure _ -> aux ()
   in aux ()
