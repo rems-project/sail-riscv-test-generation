@@ -1,5 +1,11 @@
 .PHONY: clean top main.native main.top
 
+SAIL_RISCV_DIR=../../riscv-implementations/sail-riscv
+
+get_model:
+	make -C $(SAIL_RISCV_DIR) generated_definitions/ocaml/riscv-ast.ml
+	cp $(SAIL_RISCV_DIR)/generated_definitions/ocaml/riscv-ast.ml model/riscv.ml
+
 main.native:
 	ocamlbuild -use-ocamlfind main.native -I model
 
